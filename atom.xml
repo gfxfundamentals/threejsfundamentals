@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>three.js fundamentals</title>
+    <link>http://threejsfundamentals.org/</link>
+    <updated>2018-06-20T16:36:41Z</updated>
+    <author>
+        <name>threejsfundamenals contributors</name>
+        <uri>http://threejsfundamentals.org/contributors.html</uri>
+    </author>
+    <link rel="alternate" href="http://threejsfundamentals.org/"/>
+    <subtitle>Learn Three.js</subtitle>
+    <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <generator>Feed for Node.js</generator>
+    <entry>
+        <title type="html"><![CDATA[Three.js Fundamentals]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
+        </link>
+        <updated>2018-06-20T16:36:41Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+    </entry>
+</feed>
