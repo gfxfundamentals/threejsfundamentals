@@ -118,6 +118,17 @@
   function setupConsole() {
     var parent = document.createElement("div");
     parent.className = "console";
+    Object.assign(parent.style, {
+      fontFamily: 'monospace',
+      fontSize: 'medium',
+      maxHeight: '50%',
+      position: 'fixed',
+      bottom: 0,
+      left: 0,
+      width: '100%',
+      overflow: 'auto',
+      background: '#DDD',
+    });
     var numLinesRemaining = 100;
     var added = false;
 
@@ -154,24 +165,14 @@
   }
 
   /**
-   * @typedef {Object} GetWebGLContextOptions
-   * @property {boolean} [dontResize] by default `getWebGLContext` will resize the canvas to match the size it's displayed.
-   * @property {boolean} [noTitle] by default inserts a copy of the `<title>` content into the page
-   * @memberOf module:webgl-utils
-   */
-
-  /**
    * Gets a WebGL context.
    * makes its backing store the size it is displayed.
    * @param {HTMLCanvasElement} canvas a canvas element.
-   * @param {module:webgl-utils.GetThreejsContextOptions} [opt_options] options
    * @memberOf module:webgl-utils
    */
-  var setupLesson = function(canvas, opt_options) {
+  var setupLesson = function(canvas) {
     // only once
     setupLesson = function() {};
-
-    var options = opt_options || {};
 
     if (canvas) {
       canvas.addEventListener('webglcontextlost', function(e) {
@@ -194,14 +195,6 @@
 
     if (isInIFrame()) {
       updateCSSIfInIFrame();
-    } else if (!options.noTitle && options.title !== false) {
-      var titleElem = document.querySelector("title");
-      if (titleElem && titleElem.getAttribute("addtitletodoc") !== "false") {
-        var title = document.title;
-        var h1 = document.createElement("h1");
-        h1.innerText = title;
-        document.body.insertBefore(h1, document.body.children[0]);
-      }
     }
   };
 

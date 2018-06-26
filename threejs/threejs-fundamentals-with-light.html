@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Three.js - Fundamentals</title>
+    <title>Three.js - Fundamentals with light</title>
   </head>
   <body>
     <canvas id="c"></canvas>
@@ -27,17 +27,32 @@ function main() {
 
   const scene = new THREE.Scene();
 
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(-1, 2, 4);
+  scene.add(light);
+
   const boxWidth = 1;
   const boxHeight = 1;
   const boxDepth = 1;
   const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
-  const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
+  const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
 
-  renderer.render(scene, camera);
+  function render(time) {
+    time *= 0.001;  // convert time to seconds
+
+    cube.rotation.x = time;
+    cube.rotation.y = time;
+
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+
 }
 
 main();

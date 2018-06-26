@@ -197,6 +197,10 @@ function main() {
     }
     parseHTML(query.url, html);
     setupEditor(query.url);
+    if (query.startPane) {
+      const button = document.querySelector(".button-" + query.startPane);
+      toggleSourcePane(button);
+    }
   });
 }
 
@@ -212,7 +216,7 @@ function getSourceBlob(options) {
   source = source.replace('${html}', htmlParts.html.editor.getValue());
   source = source.replace('${css}', htmlParts.css.editor.getValue());
   source = source.replace('${js}', htmlParts.js.editor.getValue());
-  source = source.replace('<head>', '<head>\n<script match="false">webglLessonSettings = ' + JSON.stringify(options) + ";</script>");
+  source = source.replace('<head>', '<head>\n<script match="false">threejsLessonSettings = ' + JSON.stringify(options) + ";</script>");
 
   var scriptNdx = source.indexOf('<script>');
   g.numLinesBeforeScript = (source.substring(0, scriptNdx).match(/\n/g) || []).length;
@@ -234,31 +238,7 @@ function resize() {
 }
 
 function addCORSSupport(js) {
-  if (/requestCORS/.test(js)) {
-    return js;
-  }
-
-  let found = false;
-  js = js.replace(/^( +)(img|image)(\.src = )(.*?);.*?$/mg, function(match, indent, variable, code, url) {
-    found = true;
-    return indent + "requestCORSIfNotSameOrigin(" + variable + ", " + url + ")\n" +
-           indent + variable + code + url + ";";
-  });
-  if (found) {
-    js += `
-
-// This is needed if the images are not on the same domain
-// NOTE: The server providing the images must give CORS permissions
-// in order to be able to use the image with WebGL. Most sites
-// do NOT give permission.
-// See: http://webglfundamentals.org/webgl/lessons/webgl-cors-permission.html
-function requestCORSIfNotSameOrigin(img, url) {
-  if ((new URL(url)).origin !== window.location.origin) {
-    img.crossOrigin = "";
-  }
-}
-`;
-  }
+  // not yet needed for three.js
   return js;
 }
 
@@ -270,7 +250,7 @@ function openInCodepen() {
   const pen = {
     title                 : g.title,
     description           : "from: " + g.url,
-    tags                  : ["webgl", "webglfundamentals.org"],
+    tags                  : ["three.js", "threejsfundamentals.org"],
     editors               : "101",
     html                  : htmlParts.html.editor.getValue(),
     css                   : htmlParts.css.editor.getValue(),
@@ -298,7 +278,7 @@ function openInJSFiddle() {
   // const pen = {
   //   title                 : g.title,
   //   description           : "from: " + g.url,
-  //   tags                  : ["webgl", "webglfundamentals.org"],
+  //   tags                  : ["three.js", "threejsfundamentals.org"],
   //   editors               : "101",
   //   html                  : htmlParts.html.editor.getValue(),
   //   css                   : htmlParts.css.editor.getValue(),
