@@ -93,7 +93,7 @@ in the middle of a document is another example.</p>
 no size</p>
 <pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 </code></pre><p>That canvas defaults to 300x150 css pixels in size.</p>
-<p>In the web platform the recommend way to size set the size
+<p>In the web platform the recommended way to set the size
 of something is to use CSS.</p>
 <p>Let&#39;s make the canvas fill the page by adding CSS</p>
 <pre><code>&lt;style&gt;
@@ -108,13 +108,13 @@ html, body {
 }
 &lt;/style&gt;
 </code></pre><p>In HTML the body has a margin of 5px pixels by default so setting the
-margin to 0 removes margin. Setting the html and body height to 100%
+margin to 0 removes the margin. Setting the html and body height to 100%
 makes them fill the window. Otherwise they are only as large
 as the content that fills them.</p>
 <p>Next we tell the <code>id=c</code> element to be
-100% the size of it&#39;s container which in this case is the body of
+100% the size of its container which in this case is the body of
 the document.</p>
-<p>Finally we set it&#39;s <code>display</code> mode to <code>block</code>. The canvas&#39;s
+<p>Finally we set its <code>display</code> mode to <code>block</code>. A canvas&#39;s
 default display mode is <code>inline</code>. Inline
 elements can end up adding whitespace to what is displayed. By
 setting the canvas to <code>block</code> that issue goes away.</p>
@@ -128,7 +128,7 @@ setting the canvas to <code>block</code> that issue goes away.</p>
 <p>You can see the canvas is now filling the page but there are 2
 problems. One our cubes are stretched. They are not cubes they
 are more like boxes. Too tall or too wide. Open the
-example in it&#39;s own window and resize it. You&#39;ll see how
+example in its own window and resize it. You&#39;ll see how
 the cubes get stretched wide and tall.</p>
 <p><img src="resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center"></p>
 <p>The second problem is they look low resolution or blocky and
@@ -148,7 +148,7 @@ display size. We can do that by looking at the canvas&#39;s
 +  camera.updateProjectionMatrix();
 
   ...
-</code></pre><p>Now the cubes should stop being stretched.</p>
+</code></pre><p>Now the cubes should stop being distorted.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-update-camera.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-update-camera.html" target="_blank">click here to open in a separate window</a>
@@ -160,13 +160,13 @@ and you should see the cubes are no longer stretched tall or wide.
 They stay the correct aspect regardless of window size.</p>
 <p><img src="resources/images/resize-correct-aspect.png" width="407" class="threejs_center"></p>
 <p>Now let&#39;s fix the blockiness.</p>
-<p>Canvas&#39;s have 2 sizes. One size is the size the canvas is displayed
-in the page. That&#39;s what we set with CSS. The other size is the
+<p>Canvas elements have 2 sizes. One size is the size the canvas is displayed
+on the page. That&#39;s what we set with CSS. The other size is the
 number of pixels in the canvas itself. This is no different than an image.
-For example we might have a 128x64 image and using
-css we might display as 400x200</p>
+For example we might have a 128x64 pixel image and using
+css we might display as 400x200 pixels.</p>
 <pre><code>&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
-</code></pre><p>A canvas&#39;s internal size, its resolution, is often called it&#39;s drawingbuffer size.
+</code></pre><p>A canvas&#39;s internal size, its resolution, is often called its drawingbuffer size.
 In three.js we can set the canvas&#39;s drawingbuffer size by calling <code>renderer.setSize</code>.
 What size should we pick? The most obvious answer is &quot;the same size the canvas is displayed&quot;.
 Again, to do that we can look at the canvas&#39;s <code>clientWidth</code> and <code>clientHeight</code>
@@ -190,8 +190,8 @@ size if it&#39;s already the size we want.</p>
 pass in the new width and height. It&#39;s important to pass <code>false</code> at the end.
 <code>render.setSize</code> by default sets the canvas&#39;s CSS size but doing so is not
 what we want. We want the browser to continue to work how it does for all other
-elements which is to use CSS to determine the size of the element. We don&#39;t
-want canvases used by three to be different.</p>
+elements which is to use CSS to determine the display size of the element. We don&#39;t
+want canvases used by three to be different than other elements.</p>
 <p>Note that our function returns true if the canvas was resized. We can use
 this to check if there are other things we should update. Let&#39;s modify
 our render loop to use the new function</p>
@@ -214,7 +214,7 @@ returns <code>true</code>.</p>
 </div>
 
 </p>
-<p>It should now render with the a resolution that matches the display
+<p>It should now render with a resolution that matches the display
 size of the canvas.</p>
 <p>To make the point about letting CSS handle the resizing let&#39;s take
 our code and put it in a <a href="../resources/threejs-responsive.js">separate <code>.js</code> file</a>.
@@ -228,7 +228,7 @@ to change zero code for them to work.</p>
 
 </p>
 <p>and here&#39;s our same code used in an editor style layout
-where the control area can be resized</p>
+where the control area on the right can be resized.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-editor.html&startPane=html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-editor.html" target="_blank">click here to open in a separate window</a>
@@ -242,9 +242,9 @@ changed.</p>
 That&#39;s most Mac&#39;s now a days and many windows machines
 as well as pretty much all smartphones.</p>
 <p>The way this works in the browser is they use
-use CSS pixels to set the sizes which are suppose to be the same
+CSS pixels to set the sizes which are suppose to be the same
 regardless of how high res the display is. The browser
-will the just render everything with more detail but the
+will the just render text with more detail but the
 same physical size.</p>
 <p>There are various ways to handle HD-DPI with three.js.</p>
 <p>The first one is just not to do anything special. This
@@ -254,7 +254,7 @@ less power than desktops, at least as of 2018, and yet
 mobile phones often have very high resolution displays.
 The current top of the line phones have a HD-DPI ratio
 of 3x meaning for every one pixel from a non-HD-DPI display
-those phones have 9 pixels. That means the have to do 9x
+those phones have 9 pixels. That means they have to do 9x
 the rendering.</p>
 <p>Computing 9x the pixels is a lot of work so if we just
 leave the code as it is we&#39;ll compute 1x the pixels and the
@@ -262,7 +262,7 @@ browser will just draw it at 3x the size (3x by 3x = 9x pixels).</p>
 <p>For any heavy three.js app that&#39;s probably what you want
 otherwise you&#39;re likely to get a slow framerate.</p>
 <p>That said if you actually do want to render at the resolution
-of the device there are a couple of ways to do this in three.js</p>
+of the device there are a couple of ways to do this in three.js.</p>
 <p>One is to tell three.js a resolution multiplier using <code>renderer.setPixelRatio</code>.
 You ask the browser what the multiplier is from CSS pixels to device pixels
 and pass that to three.js</p>
@@ -286,7 +286,7 @@ you passed in.</p>
 There are many cases when using three.js where we need to know the actual
 size of the canvas&#39;s drawingBuffer. For example when making a post processing filter,
 or if we are making a shader that accesses <code>gl_FragCoord</code>, etc...
-By doing it oursevles we always know the size uses is the size we requested.
+By doing it oursevles we always know the size being used is the size we requested.
 There is no special case where magic is happening behind the scenes.</p>
 <p>Here&#39;s an example using the code above.</p>
 <p><div class="threejs_example_container">
