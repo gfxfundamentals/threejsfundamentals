@@ -271,20 +271,21 @@ and call <code>addObject</code> to add it the scene.</p>
   });
 }
 </code></pre><p>There&#39;s one other difference. We want to spin the text around its
-center but by default three.js creates the text off center. To
-work around this we can ask three.js to compute the bounding
+center but by default three.js creates the text such that its center of rotation
+is on the left edge. To work around this we can ask three.js to compute the bounding
 box of the geometry. We can then call the <code>getCenter</code> method
 of the bounding box and pass it our mesh&#39;s position object.
 <code>getCenter</code> copies the center of the box into the position.
 It also returns the position object so we can call <code>multiplyScaler(-1)</code>
-to position the entire object such that its
-effective center is um, ... at the center of the object.</p>
+to position the entire object such that its center of rotation
+is at the center of the object.</p>
 <p>If we then just called <code>addSolidGeometry</code> like with previous
 examples it would set the position again which is
 no good. So, in this case we create an <code>Object3D</code> which
 is the standard node for the three.js scene graph. <code>Mesh</code>
-is inherited from <code>Object3D</code> as well. We&#39;ll cover how the scene graph
-works in another article. For now it&#39;s enough to know that
+is inherited from <code>Object3D</code> as well. We&#39;ll cover <a href="threejs-scenegraph.html">how the scene graph
+works in another article</a>.
+For now it&#39;s enough to know that
 like DOM nodes, children are drawn relative to their parent.
 By making an <code>Object3D</code> and making our mesh a child of that
 we can position the <code>Object3D</code> where ever we want and still
@@ -315,7 +316,7 @@ repeat them here. You can also click the links above next to each shape
 to take you directly to the docs for that shape.</p>
 <p>One other thing that&#39;s important to cover is that almost all shapes
 have various settings for how much to subdivde them. A good example
-might be the sphere geometries. Sphere&#39;s take parameters for
+might be the sphere geometries. Spheres take parameters for
 how many divisions to make around and how many top to bottom. For example</p>
 <div class="spread">
 <div data-primitive-diagram="SphereBufferGeometryLow"></div>
@@ -327,7 +328,7 @@ how many divisions to make around and how many top to bottom. For example</p>
 or 30 triangles. The second sphere has 24 segments by 10. That&#39;s 240 segments
 or 480 triangles. The last one has 50 by 50 which is 2500 segments or 5000 triangles.</p>
 <p>It&#39;s up to you to decide how many subdivisions you need. It might
-look like you need the highest resolution but remove the lines
+look like you need a high number of segments but remove the lines
 and the flat shading and we get this</p>
 <div class="spread">
 <div data-primitive-diagram="SphereBufferGeometryLowSmooth"></div>
@@ -357,8 +358,9 @@ use cases of a plane. You&#39;d most likely only subdivide a plane
 if you expected to want to modify or warp it in some way. A box
 is similar.</p>
 <p>So, choose whatever is appropriate for your situation. The less
-subdivisions you choose the more likely things will run smoothly. You&#39;ll have
-to decide for yourself what the correct tradeoff is.</p>
+subdivisions you choose the more likely things will run smoothly and the less
+memory they&#39;ll take. You&#39;ll have to decide for yourself what the correct
+tradeoff is for your particular siutation.</p>
 <p>Next up let&#39;s go over <a href="threejs-scenegraph.html">how three&#39;s scene graph works and how
 to use it</a>.</p>
 <p><canvas id="c"></canvas></p>
