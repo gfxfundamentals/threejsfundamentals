@@ -28,7 +28,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-scenegraph.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-scenegraph.html">
         </link>
-        <updated>2018-07-18T08:21:56Z</updated>
+        <updated>2018-07-18T12:34:04Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -57,7 +57,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-06-26T08:53:34Z</published>
+        <published>2018-06-26T08:54:03Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
@@ -69,6 +69,6 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-06-26T08:53:34Z</published>
+        <published>2018-06-26T08:54:03Z</published>
     </entry>
 </feed>
