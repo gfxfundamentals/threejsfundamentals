@@ -48,6 +48,18 @@
         <published>2018-06-28T08:25:24Z</published>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Three.js Fundamentals]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
+        </link>
+        <updated>2018-07-18T07:57:20Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-06-26T08:53:34Z</published>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html">
@@ -58,17 +70,5 @@
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
         <published>2018-06-26T08:53:34Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Three.js Fundamentals]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
-        </link>
-        <updated>2018-07-18T07:57:20Z</updated>
-        <author>
-            <name>threejsfundamenals contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2018-06-26T08:24:15Z</published>
     </entry>
 </feed>
