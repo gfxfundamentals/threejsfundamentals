@@ -40,7 +40,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html">
         </link>
-        <updated>2018-07-18T07:57:44Z</updated>
+        <updated>2018-07-18T12:45:37Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -57,7 +57,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-06-26T08:54:03Z</published>
+        <published>2018-06-26T08:54:59Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
@@ -69,6 +69,6 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-06-26T08:54:03Z</published>
+        <published>2018-06-26T08:54:59Z</published>
     </entry>
 </feed>
