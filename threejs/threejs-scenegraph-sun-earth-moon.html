@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Three.js - Responsive</title>
+    <title>Three.js - Scenegraph - Sun Earth</title>
     <style>
     body {
         margin: 0;
@@ -27,44 +27,61 @@ function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas: canvas});
 
-  const fov = 75;
+  const fov = 40;
   const aspect = 2;  // the canvas default
   const zNear = 0.1;
-  const zFar = 5;
+  const zFar = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, zNear, zFar);
-  camera.position.z = 2;
+  camera.position.set(0, 50, 0);
+  camera.up.set(0, 0, 1);
+  camera.lookAt(0, 0, 0);
 
   const scene = new THREE.Scene();
 
   {
     const color = 0xFFFFFF;
-    const intensity = 1;
-    const light = new THREE.DirectionalLight(color, intensity);
-    light.position.set(-1, 2, 4);
+    const intensity = 3;
+    const light = new THREE.PointLight(color, intensity);
     scene.add(light);
   }
 
-  const boxWidth = 1;
-  const boxHeight = 1;
-  const boxDepth = 1;
-  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+  const objects = [];
 
-  function makeInstance(geometry, color, x) {
-    const material = new THREE.MeshPhongMaterial({color});
+  const radius = 1;
+  const widthSegments = 6;
+  const heightSegments = 6;
+  const sphereGeometry = new THREE.SphereBufferGeometry(
+      radius, widthSegments, heightSegments);
 
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+  const solarSystem = new THREE.Object3D();
+  scene.add(solarSystem);
+  objects.push(solarSystem);
 
-    cube.position.x = x;
+  const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xFFFF00});
+  const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+  sunMesh.scale.set(5, 5, 5);
+  solarSystem.add(sunMesh);
+  objects.push(sunMesh);
 
-    return cube;
-  }
+  const earthOrbit = new THREE.Object3D();
+  earthOrbit.position.x = 10;
+  solarSystem.add(earthOrbit);
+  objects.push(earthOrbit);
 
-  const cubes = [
-    makeInstance(geometry, 0x44aa88,  0),
-    makeInstance(geometry, 0x8844aa, -2),
-    makeInstance(geometry, 0xaa8844,  2),
-  ];
+  const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+  const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+  earthOrbit.add(earthMesh);
+  objects.push(earthMesh);
+
+  const moonOrbit = new THREE.Object3D();
+  moonOrbit.position.x = 2;
+  earthOrbit.add(moonOrbit);
+
+  const moonMaterial = new THREE.MeshPhongMaterial({color: 0x888888, emissive: 0x222222});
+  const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
+  moonMesh.scale.set(.5, .5, .5);
+  moonOrbit.add(moonMesh);
+  objects.push(moonMesh);
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
@@ -86,11 +103,8 @@ function main() {
       camera.updateProjectionMatrix();
     }
 
-    cubes.forEach((cube, ndx) => {
-      const speed = 1 + ndx * .1;
-      const rot = time * speed;
-      cube.rotation.x = rot;
-      cube.rotation.y = rot;
+    objects.forEach((obj) => {
+      obj.rotation.y = time;
     });
 
     renderer.render(scene, camera);
@@ -104,4 +118,6 @@ function main() {
 main();
 </script>
 </html>
+
+
 
