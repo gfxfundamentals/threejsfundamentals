@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-07-24T02:18:16Z</updated>
+    <updated>2018-07-31T05:10:14Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -12,21 +12,21 @@
     <subtitle>Learn Three.js</subtitle>
     <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
     <entry>
-        <title type="html"><![CDATA[Three.js Fundamentals]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
+        <title type="html"><![CDATA[Three.js Materials]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-materials.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html">
         </link>
-        <updated>2018-07-24T02:18:16Z</updated>
+        <updated>2018-07-31T05:10:14Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-24T02:18:16Z</published>
+        <published>2018-07-31T05:10:14Z</published>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Three.js Materials and Lights]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/threejs-materials-and-lights.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-materials-and-lights.html">
+        <title type="html"><![CDATA[Three.js Fundamentals]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
         </link>
         <updated>2018-07-24T02:18:16Z</updated>
         <author>

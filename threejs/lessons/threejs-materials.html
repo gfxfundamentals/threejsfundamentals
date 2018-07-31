@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-materials.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Materials" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="Materials in Three.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Materials" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html" />
+<meta name="twitter:description" content="Materials in Three.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Materials</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-materials.html" selected>English</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Materials</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is part of a series of articles about three.js. The
+first article is <a href="three-fundamentals.html">three.js fundamentals</a>. If
+you haven&#39;t read that yet and you&#39;re new to three.js you might want to
+consider starting there.</p>
+<p>Three.js provides several types of materials. 
+They define how objects will appear in the scene.
+Which materials you use really depends on what you&#39;re trying to
+accomplish.</p>
+<p>There are 2 ways to set most material properties. One at creation time which
+we&#39;ve seen before.</p>
+<pre><code>const material = new THREE.MeshPhongMaterial({
+  color: 0xFF0000,    // red (can also use a CSS color string here)
+  flatShading: true,
+});
+</code></pre><p>The other is after creation</p>
+<pre><code>const material = new THREE.MeshPhongMaterial();
+material.color.setHSL(0, 1, .5);  // red
+material.flatShading = true;
+</code></pre><p>note that properties of type <code>THREE.Color</code> have multiple ways to be set.</p>
+<pre><code>material.color.set(0x00FFFF);    // same as CSS&#39;s #RRGGBB style
+material.color.set(cssString);   // any CSS color, eg &#39;purple&#39;, &#39;#F32&#39;, 
+                                 // &#39;rgb(255, 127, 64)&#39;,
+                                 // &#39;hsl(180, 50%, 25%)&#39;
+material.color.set(someColor)    // some other THREE.Color
+material.color.setHSL(h, s, l)   // where h, s, and l are 0 to 1
+material.color.setRGB(r, g, b)   // where r, g, and b are 0 to 1
+</code></pre><p>And at creation time you and pass either a hex number or a CSS string</p>
+<pre><code>const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
+const m2 = new THREE.MeshBasicMaterial({color: &#39;red&#39;});            // red
+const m3 = new THREE.MeshBasicMaterial({color: &#39;#F00&#39;});           // red
+const m4 = new THREE.MeshBasicMaterial({color: &#39;rgb(255,0,0)&#39;});   // red
+const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // red
+</code></pre><p>So let&#39;s go over three.js&#39;s set of materials.</p>
+<p>The <code>MeshBasicMaterial</code> is not affected by lights. 
+The <code>MeshLambertMaterial</code> computes lighting only at the vertices vs the <code>MeshPhongMaterial</code> which computes lighting at every pixel. The <code>MeshPhongMaterial</code>
+also supports specular highlights.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshBasicMaterial" ></div>
+    <div class="code">Basic</div>
+  </div>
+  <div>
+    <div data-diagram="MeshLambertMaterial" ></div>
+    <div class="code">Lambert</div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterial" ></div>
+    <div class="code">Phong</div>
+  </div>
+</div>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshBasicMaterialLowPoly" ></div>
+  </div>
+  <div>
+    <div data-diagram="MeshLambertMaterialLowPoly" ></div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialLowPoly" ></div>
+  </div>
+</div>
+<div class="threejs_center code">low-poly models with same materials</div>
+
+<p>The <code>shininess</code> setting of the <code>MeshPhongMaterial</code> determines the <em>shininess</em> of the specular highlight. It defaults to 30.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshPhongMaterialShininess0" ></div>
+    <div class="code">shininess: 0</div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialShininess30" ></div>
+    <div class="code">shininess: 30</div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialShininess150" ></div>
+    <div class="code">shininess: 150</div>
+  </div>
+</div>
+
+<p>Note that setting the <code>emissive</code> property to a color on either a 
+<code>MeshLambertMaterial</code> or a <code>MeshPhongMaterial</code> and setting the <code>color</code> to black
+(and <code>shininess</code> to 0 for phong) ends up looking just like the <code>MeshBasicMaterial</code>.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshBasicMaterialCompare" ></div>
+    <div class="code">
+      <div>Basic</div>
+      <div>color: 'purple'</div>
+    </div>
+  </div>
+  <div>
+    <div data-diagram="MeshLambertMaterialCompare" ></div>
+    <div class="code">
+      <div>Lambert</div>
+      <div>color: 'black'</div>
+      <div>emissive: 'purple'</div>
+    </div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialCompare" ></div>
+    <div class="code">
+      <div>Phong</div>
+      <div>color: 'black'</div>
+      <div>emissive: 'purple'</div>
+      <div>shininess: 0</div>
+    </div>
+  </div>
+</div>
+
+<p>Why have all 3 when <code>MeshPhongMaterial</code> can do the same things as <code>MeshBasicMaterial</code>
+and <code>MeshLambertMaterial</code>? The reason is the more sophisticated material
+takes more GPU power to draw. On a slower GPU like say a mobile phone
+you might want to reduce the GPU power needed to draw your scene by
+using one of the less complex materials. It also follows that if you
+don&#39;t need the extra features then use the simplest material. If you don&#39;t
+need the lighting and the specular highlight then use the <code>MeshBasicMaterial</code>.</p>
+<p>The <code>MeshToonMaterial</code> is similar to the <code>MeshPhongMaterial</code>
+with one big difference. Rather than shading smoothly it uses a gradient map 
+(an X by 1 texture) to decide how to shade. The default uses a gradient map
+that is 70% brightness for the first 70% and 100% after but you can supply your
+own gradient map. This ends up giving a 2 tone look that looks like a cartoon.</p>
+<div class="spread">
+  <div data-diagram="MeshToonMaterial"></div>
+</div>
+
+<p>There are 3 materials that have special uses. <code>ShadowMaterial</code>
+is used to get the data created from shadows. We haven&#39;t
+covered shadows yet. When we do we&#39;ll use this material
+to take a peak at what&#39;s happening behind the scenes.</p>
+<p>The <code>MeshDepthMaterial</code> renders the depth of each pixel where
+pixels at negative <a href="https://threejs.org/docs/#api/cameras/PerspectiveCamera.near"><code>near</code></a> of the camera are 0 and negative <a href="https://threejs.org/docs/#api/cameras/PerspectiveCamera.far"><code>far</code></a> are 1. Certain special effects can use this data which we&#39;ll
+get into at another time.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshDepthMaterial"></div>
+  </div>
+</div>
+
+<p>The <code>MeshNormalMaterial</code> will show you the <em>normals</em> of geometry.
+<em>Normals</em> are the direction a particular triangle or pixel faces. 
+<code>MeshNormalMaterial</code> draws the view space normals. (the normals relative to the camera).
+<span class="color:red;">x is red</span>,
+<span class="color:green;">y is green</span>, and
+<span class="color:blue;">z is blue</span> so things facing
+to the right will be red, up will be green, and toward the screen will be blue.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshNormalMaterial"></div>
+  </div>
+</div>
+
+<p><code>ShaderMaterial</code> is for making custom materials using three.js shader
+system. <code>RawShaderMaterial</code> is for making entirely custom shaders with
+no help from three.js. Both of these topics are large and will be
+covered later.</p>
+<p>The last 2 materials we&#39;ll metion here are the <code>MeshStandardMaterial</code>
+and the <code>MeshPhysicsMaterial</code>. Both implement what&#39;s called <em>physically
+based rendering</em> or often PBR for short. This is a way of computing
+material properties and lights that comes close to the way
+lights and materials work in the real word. We&#39;ll cover these in
+more detail in another article.</p>
+<p>Most materials share a bunch of settings all defined by <code>Material</code>.
+<a href="https://threejs.org/docs/#api/materials/Material">See the docs</a>
+for all of them but let&#39;s go over two of the most commonly used
+properties.</p>
+<p><a href="https://threejs.org/docs/#api/materials/Material.flatShading"><code>flatShading</code></a>: 
+whether or not the object looks faceted or smooth. default = <code>false</code>.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="smoothShading"></div>
+    <div class="code">flatShading: false</div>
+  </div>
+  <div>
+    <div data-diagram="flatShading"></div>
+    <div class="code">flatShading: true</div>
+  </div>
+</div>
+
+<p><a href="https://threejs.org/docs/#api/materials/Material.side"><code>side</code></a>: which sides of triangles to show. The default is <code>THREE.FrontSide</code>.
+Other options are <code>THREE.BackSide</code> and <code>THREE.DoubleSide</code> (both sides).
+Most 3D objects drawn in three are probably opaque solids so the back sides
+(the sides facing inside the solid) do not need to be drawn. The most common
+reason to set <code>side</code> is for planes or other non-solid objects where it is
+common to see the back sides of triangles.</p>
+<p>Here are 6 planes drawn with <code>THREE.FrontSide</code> and <code>THREE.DoubleSide</code>.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="sideDefault" style="height: 250px;"></div>
+    <div class="code">side: THREE.FrontSide</div>
+  </div>
+  <div>
+    <div data-diagram="sideDouble" style="height: 250px;"></div>
+    <div class="code">side: THREE.DoubleSide</div>
+  </div>
+</div>
+
+<p>There&#39;s really a lot to consider with materials and we actually still
+have a bunch more to go. In particlar we&#39;ve mostly ignored textures
+which open up a whole slew of options. Before we cover textures though
+we need to take a break and cover 
+<a href="threejs-setup.html">setting up your development environment</a></p>
+<div class="threejs_bottombar">
+<h3>material.needsUpdate</h3>
+<p>
+This topic rarely affects most three.js apps but just as an FYI...
+Three.js applies material settings when a material is used where "used" 
+means "something is rendered that uses the material". Some material settings are
+only applied once as changing them requires lots of work by three.js.
+In those cases you need to set <code>material.needsUpdate = true</code> to tell
+three.js to apply your material changes. The most common settings
+that require you to set <code>needsUpdate</code> if you change the settings after
+using the material are:
+</p>
+<ul>
+  <li><code>flatShading</code></li>
+  <li>adding or removing a texture.
+    <p>
+    Changing a texture is ok, but if want switch from using no texture 
+    to using a texture or from using a texture to using no texture 
+    then you need to set <code>needsUpdate = true</code>.
+    </p>
+    <p>In the case of going from texture to no-texture it is often
+    just better to use a 1x1 pixel white texture.</p>
+  </li>
+</ul>
+<p>As mentioned above most apps never run into these issues. Most apps
+do not switch between flat shaded and non flat shaded. Most apps also
+either use textures or a solid color for a given material, they rarely
+switch from using one to using the other.
+</p>
+</div>
+
+<p><canvas id="c"></canvas></p>
+<script src="../resources/threejs/r94/three.min.js"></script>
+<script src="../resources/threejs/r94/js/controls/TrackballControls.js"></script>
+<script src="resources/threejs-lesson-utils.js"></script>
+<script src="resources/threejs-materials.js"></script>
+
+
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-materials.html" selected>English</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Three.js Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Three.js Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Three.js Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Three.js Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Three.js Materials</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://three.js">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Materials';
+            var disqus_title = 'Three.js Materials';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
