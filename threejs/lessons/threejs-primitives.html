@@ -78,7 +78,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>This article one in a series of articles about three.js.
+      <p>This article is one in a series of articles about three.js.
 The first article was <a href="threejs-fundamentals.html">about fundamentals</a>.
 If you haven&#39;t read that yet you might want to start there.</p>
 <p>Three.js has a large number of primitives. Primitives
@@ -320,9 +320,9 @@ have various settings for how much to subdivde them. A good example
 might be the sphere geometries. Spheres take parameters for
 how many divisions to make around and how many top to bottom. For example</p>
 <div class="spread">
-<div data-primitive-diagram="SphereBufferGeometryLow"></div>
-<div data-primitive-diagram="SphereBufferGeometryMedium"></div>
-<div data-primitive-diagram="SphereBufferGeometryHigh"></div>
+<div data-diagram="SphereBufferGeometryLow"></div>
+<div data-diagram="SphereBufferGeometryMedium"></div>
+<div data-diagram="SphereBufferGeometryHigh"></div>
 </div>
 
 <p>The first sphere has 5 segments around and 3 high which is 15 segments
@@ -332,9 +332,9 @@ or 480 triangles. The last one has 50 by 50 which is 2500 segments or 5000 trian
 look like you need a high number of segments but remove the lines
 and the flat shading and we get this</p>
 <div class="spread">
-<div data-primitive-diagram="SphereBufferGeometryLowSmooth"></div>
-<div data-primitive-diagram="SphereBufferGeometryMediumSmooth"></div>
-<div data-primitive-diagram="SphereBufferGeometryHighSmooth"></div>
+<div data-diagram="SphereBufferGeometryLowSmooth"></div>
+<div data-diagram="SphereBufferGeometryMediumSmooth"></div>
+<div data-diagram="SphereBufferGeometryHighSmooth"></div>
 </div>
 
 <p>It&#39;s now not so clear that the one on the right with 5000 triangles
@@ -349,8 +349,8 @@ per second. That&#39;s a lot of computing.</p>
 <p>Sometimes it&#39;s easy to choose. For example you can also choose
 to subdivide a plane.</p>
 <div class="spread">
-<div data-primitive-diagram="PlaneBufferGeometryLow"></div>
-<div data-primitive-diagram="PlaneBufferGeometryHigh"></div>
+<div data-diagram="PlaneBufferGeometryLow"></div>
+<div data-diagram="PlaneBufferGeometryHigh"></div>
 </div>
 
 <p>The plane on the left is 2 triangles. The plane on the right
@@ -367,15 +367,9 @@ to use it</a>.</p>
 <p><canvas id="c"></canvas></p>
 <p><script src="../resources/threejs/r94/three.min.js"></script></p>
 <p><script src="../resources/threejs/r94/js/controls/TrackballControls.js"></script></p>
+<p><script src="resources/threejs-lesson-utils.js"></script></p>
 <p><script src="resources/threejs-primitives.js"></script></p>
 <style>
-.spread {
-  display: flex;
-}
-.spread>div {
-  flex: 1 1 auto;
-  height: 150px;
-}
 .primitives {
 }
 .primitives>div {
@@ -404,14 +398,6 @@ to use it</a>.</p>
 }
 .primitives .desc {
   flex: 1 1 auto;
-}
-#c {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -100;
 }
 </style>
 
