@@ -104,7 +104,7 @@ material.color.set(cssString);   // any CSS color, eg &#39;purple&#39;, &#39;#F3
 material.color.set(someColor)    // some other THREE.Color
 material.color.setHSL(h, s, l)   // where h, s, and l are 0 to 1
 material.color.setRGB(r, g, b)   // where r, g, and b are 0 to 1
-</code></pre><p>And at creation time you and pass either a hex number or a CSS string</p>
+</code></pre><p>And at creation time you can pass either a hex number or a CSS string</p>
 <pre><code>const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
 const m2 = new THREE.MeshBasicMaterial({color: &#39;red&#39;});            // red
 const m3 = new THREE.MeshBasicMaterial({color: &#39;#F00&#39;});           // red
@@ -233,7 +233,7 @@ to the right will be red, up will be green, and toward the screen will be blue.<
 system. <code>RawShaderMaterial</code> is for making entirely custom shaders with
 no help from three.js. Both of these topics are large and will be
 covered later.</p>
-<p>The last 2 materials we&#39;ll metion here are the <code>MeshStandardMaterial</code>
+<p>The last 2 materials we&#39;ll mention here are the <code>MeshStandardMaterial</code>
 and the <code>MeshPhysicsMaterial</code>. Both implement what&#39;s called <em>physically
 based rendering</em> or often PBR for short. This is a way of computing
 material properties and lights that comes close to the way
