@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-07-31T13:24:52Z</updated>
+    <updated>2018-08-02T10:33:57Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -12,11 +12,35 @@
     <subtitle>Learn Three.js</subtitle>
     <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
     <entry>
+        <title type="html"><![CDATA[Three.js Setup]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-setup.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-setup.html">
+        </link>
+        <updated>2018-08-02T10:33:57Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-08-02T10:33:57Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js Textures]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-textures.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-textures.html">
+        </link>
+        <updated>2018-08-02T10:33:57Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-08-02T10:33:57Z</published>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Three.js Fog]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-fog.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fog.html">
         </link>
-        <updated>2018-07-31T13:24:52Z</updated>
+        <updated>2018-08-02T10:33:57Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -28,7 +52,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-materials.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html">
         </link>
-        <updated>2018-08-01T03:14:56Z</updated>
+        <updated>2018-08-01T03:15:10Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
