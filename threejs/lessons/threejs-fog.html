@@ -86,7 +86,7 @@ want to start with <a href="threejs-cameras.html">this article</a>.</p>
 <p>Fog in a 3D engine is generally a way of fading to a specific color
 based on the distance from the camera. In three.js you add fog by
 creating <code>Fog</code> or <code>FogExp2</code> object and setting it on the scene&#39;s
-<a href="https://threejs.org/docs/#api/scenes/Scene.fog"><code>fog</code></a> property.</p>
+<a href="Scene.fog"><code>fog</code></a> property.</p>
 <p><code>Fog</code> lets you choose <code>near</code> and <code>far</code> settings which are distances
 from the camera. Anything closer than <code>near</code> is unaffected by fog.
 Anything further than <code>far</code> is completely the fog color. Parts between
@@ -128,7 +128,7 @@ It is part of the calculation of each pixel of the color of the object.
 What that means is if you want your scene to fade to a certain color you 
 need to set the fog <strong>and</strong> the background color to the same color. 
 The background color is set using the 
-<a href="https://threejs.org/docs/#api/scenes/Scene.background"><code>scene.background</code></a>
+<a href="Scene.background"><code>scene.background</code></a>
 property. To pick a background color you attach a <code>THREE.Color</code> to it. For example</p>
 <pre><code>scene.background = new THREE.Color(&#39;#F00&#39;);  // red
 </code></pre><div class="spread">
@@ -220,7 +220,7 @@ that will set both colors when dat.GUI manipulates it.</p>
 As an RGB array (eg: <code>[255, 128, 64]</code>). Or, as an RGBA array (eg: <code>[127, 200, 75, 0.3]</code>).</p>
 <p>It&#39;s easiest for our purpose to use the hex string version since that way
 dat.GUI is only manipulating a single value. Fortunately <code>THREE.Color</code>
-as a <a href="https://threejs.org/docs/#api/math/Color.getHexString"><code>getHexString</code></a> method
+as a <a href="Color.getHexString"><code>getHexString</code></a> method
 we get use to easily get such a string, we just have to prepend a &#39;#&#39; to the front.</p>
 <pre><code>// We use this class to pass to dat.gui
 // so when it manipulates near or far
@@ -277,7 +277,7 @@ class FogGUIHelper {
 a very sharp transition between unfogged and completely fogged.
 where as <code>near</code> = 1.1 and <code>far</code> = 2.9 should just about be
 the smoothest given our cubes are spinning 2 units away from the camera.</p>
-<p>One last thing, there is a boolean <a href="https://threejs.org/docs/#api/materials/Material.fog"><code>fog</code></a>
+<p>One last thing, there is a boolean <a href="Material.fog"><code>fog</code></a>
 property on a material for whether or not objects rendered
 with that material are affected by fog. It defaults to <code>true</code>
 for most materials. As an example of why you might want
