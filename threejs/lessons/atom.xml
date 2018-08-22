@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-08-02T10:41:47Z</updated>
+    <updated>2018-08-22T04:05:19Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -11,6 +11,18 @@
     <link rel="alternate" href="http://threejsfundamentals.org/"/>
     <subtitle>Learn Three.js</subtitle>
     <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Material Feature Table]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-material-table.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-material-table.html">
+        </link>
+        <updated>2018-08-22T04:05:19Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-08-22T04:05:19Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Setup]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-setup.html</id>
@@ -28,7 +40,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-textures.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-textures.html">
         </link>
-        <updated>2018-08-02T10:33:57Z</updated>
+        <updated>2018-08-22T04:05:19Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -76,7 +88,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html">
         </link>
-        <updated>2018-08-01T03:14:16Z</updated>
+        <updated>2018-08-17T12:11:30Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>

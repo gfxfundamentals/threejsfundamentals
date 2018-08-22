@@ -93,7 +93,6 @@ in a 3D modeling program. Later in this series we&#39;ll
 cover making and loading data from several 3D modeling
 programs. For now let&#39;s go over some of the available
 primitives.</p>
-<div class="primitives">
 <div data-primitive="BoxBufferGeometry">A Box</div>
 <div data-primitive="CircleBufferGeometry">A flat circle</div>
 <div data-primitive="ConeBufferGeometry">A Cone</div>
@@ -118,7 +117,6 @@ for <code>TextBufferGeometry</code> and <code>TextGeometry</code> respectively.<
 <div data-primitive="TubeBufferGeometry">A circle traced down a path</div>
 <div data-primitive="EdgesGeometry">A helper object that takes another geometry as input and generates edges only if the angle between faces is greater than some threshold. For example if you look at the box at the top it shows a line going through each face showing every triangle that makes the box. Using an EdgesGeometry instead the middle lines are removed.</div>
 <div data-primitive="WireframeGeometry">Generates geometry that contains one line segment (2 points) per edge in the given geometry. With out this you'd often be missing edges or get extra edges since WebGL generally requires 2 points per line segment. For example if all you had was a single triangle there would only be 3 points. If you tried to draw it using a material with <code>wireframe: true</code> you would only get a single line. Passing that triangle geometry to a <code>WireframeGeometry</code> will generate a new Geometry that has 3 lines segments using 6 points..</div>
-</div>
 
 <p>You might notice of most of them come in pairs of <code>Geometry</code>
 or <code>BufferGeometry</code>. The difference between the 2 types is effectively flexibility
@@ -370,33 +368,36 @@ to use it</a>.</p>
 <p><script src="resources/threejs-lesson-utils.js"></script></p>
 <p><script src="resources/threejs-primitives.js"></script></p>
 <style>
-.primitives {
+div[data-primitive] {
+    padding-bottom: 2em;
+    border-bottom: 1px solid #888;
+    margin-bottom: 2em;
 }
-.primitives>div {
+div[data-primitive] .pair {
   display: flex;
   align-items: center;
   margin-bottom: 1em;
 }
-.primitives .shape {
+div[data-primitive] .shape {
   flex: 0 0 auto;
   width: 200px;
   height: 200px;
 }
-.primitives .desc {
+div[data-primitive] .desc {
   word-wrap: break-word;
   padding: 1em;
   min-width: 0;
 }
-.primitives .desc code {
+div[data-primitive] .desc code {
   white-space: normal;
 }
 @media (max-width: 550px) {
-  .primitives .shape {
+  div[data-primitive] .shape {
       width: 120px;
       height: 120px;
   }
 }
-.primitives .desc {
+div[data-primitive] .desc {
   flex: 1 1 auto;
 }
 </style>
@@ -414,13 +415,18 @@ to use it</a>.</p>
           <ul>
   <li>Fundamentals</li>
   <ul>
-    <li><a href="/threejs/lessons/threejs-fundamentals.html">Three.js Fundamentals</a></li>
-    <li><a href="/threejs/lessons/threejs-responsive.html">Three.js Responsive Design</a></li>
-    <li><a href="/threejs/lessons/threejs-primitives.html">Three.js Primitives</a></li>
-    <li><a href="/threejs/lessons/threejs-scenegraph.html">Three.js Scenegraph</a></li>
-    <li><a href="/threejs/lessons/threejs-materials.html">Three.js Materials</a></li>
-    <li><a href="/threejs/lessons/threejs-materials.html">Three.js Setup</a></li>
-    <li><a href="/threejs/lessons/threejs-fog.html">Three.js Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
   </ul>
 </ul>
 <ul>
