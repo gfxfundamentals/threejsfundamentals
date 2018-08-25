@@ -107,7 +107,7 @@ them all at once. Here&#39;s quick table of contents for this article.</p>
 in some 3rd party program like Photoshop or gIMP. For example let&#39;s
 put this image on cube.</p>
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="max-width: 600px;" class="border" >
+  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 <p>We&#39;ll modify one of our first samples. All we need to do is create a <code>TextureLoader</code>. Call its
@@ -130,14 +130,14 @@ const material = new THREE.MeshBasicMaterial({
 <p>How about 6 textures, one on each face of a cube? </p>
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="max-width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="max-width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="max-width: 100px;" class="border" >
+    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="max-width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="max-width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="max-width: 100px;" class="border" >
+    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -301,7 +301,7 @@ that <em>in general</em>, textures take <code>width * height * 4 * 1.33</code> b
 <p>Notice that says nothing about compression. I can make a .jpg image and set its compression super
 high. For example let&#39;s say I was making a scene of a house. Inside the house there is a table
 and I decide to put this wood texture on the top surface of the table</p>
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="max-width: 300px"></div>
+<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 <p>That image is only 157k so it will download relatively quickly but <a href="resources/images/compressed-but-large-wood-texture.jpg">it is actually 
 3024 x 3761 pixels in size</a>. 
