@@ -83,17 +83,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 it as easy as possible to get 3D content on a webpage.</p>
 <p>Three.js is often confused with WebGL since more often than
 not, but not always, three.js uses WebGL to draw 3D.
-WebGL is a very low-level
-system that only draws points, lines, and triangles. To do
-anything useful with WebGL generally requires quite a bit of
-code and that is where three.js comes in. It handlings things
-like scenes, lights, shadows, materials, textures, all things that you&#39;d
+<a href="https://webglfundamentals.org">WebGL is a very low-level system that only draws points, lines, and triangles</a>. 
+To do anything useful with WebGL generally requires quite a bit of
+code and that is where three.js comes in. It handles stuff
+like scenes, lights, shadows, materials, textures, 3d math, all things that you&#39;d
 have to write yourself if you were to use WebGL directly.</p>
 <p>These tutorials assume you already know JavaScript and, for the
-most part they will use ES6 style JavaScript. Most browsers
-that support three.js are auto-updated so most users should
+most part they will use ES6 style. <a href="threejs-prerequisites.html">See here for a
+terse list of things you&#39;re expected to already know</a>. 
+Most browsers that support three.js are auto-updated so most users should
 be able to run this code. If you&#39;d like to make this code run
-on older browsers look into a transpiler like <a href="http://babel.io">Babel</a>.</p>
+on really old browsers look into a transpiler like <a href="http://babel.io">Babel</a>.
+Of course users running really old browsers probably have machines
+that can&#39;t run three.js.</p>
 <p>When learning most programming languages the first thing people
 do is make the computer print <code>&quot;Hello World!&quot;</code>. For 3D one
 of the most common first things to do is to make a 3D cube.
@@ -162,9 +164,9 @@ and goes to 5 units in front of the camera. Because in this diagram we are looki
 the field of view is affected by the aspect. Our canvas is twice as wide
 as it is tall so across view the field of view will be much wider than
 our specified 75 degrees which is the vertical field of view.</p>
-<p>Next we make a <code>Scene</code>. A <code>Scene</code> in three.js is a form of scene graph.
+<p>Next we make a <code>Scene</code>. A <code>Scene</code> in three.js is the root of a form of scene graph.
 Anything you want three.js to draw needs to be added to the scene. We&#39;ll
-cover more details of how scenes work in a future article.</p>
+cover more details of <a href="threejs-scenegraph.html">how scenes work in a future article</a>.</p>
 <pre><code>const scene = new THREE.Scene();
 </code></pre><p>Next up we create a <code>BoxGeometry</code> which contains the data for a box.
 Almost anything we want to display in Three.js needs geometry which defines
@@ -217,8 +219,8 @@ You pass it a function to be called. In our case that function is <code>render</
 will call your function and if you update anything related to the display of the
 page the browser will re-render the page. In our case we are calling three&#39;s
 <code>renderer.render</code> function which will draw our scene.</p>
-<p><code>requestAnimationFrame</code> passes the time since the page started rendering to
-the our function. That time is passed in milliseconds. I find it&#39;s much
+<p><code>requestAnimationFrame</code> passes the time since the page loaded to
+our function. That time is passed in milliseconds. I find it&#39;s much
 easier to work with seconds so here we&#39;re converting that to seconds.</p>
 <p>We then set the cube&#39;s X and Y rotation to the current time. These rotations
 are in <a href="https://en.wikipedia.org/wiki/Radian">radians</a>. There are 2 pi radians
@@ -330,10 +332,12 @@ making our code responsive so it is adaptable to multiple situations</a>.</p>
     <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
     <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
   </ul>
   <li>Reference</li>
   <ul>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
     <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
   </ul>
 </ul>

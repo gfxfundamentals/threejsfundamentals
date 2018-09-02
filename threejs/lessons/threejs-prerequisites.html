@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-prerequisites.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Prerequisites" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="What you need to know to use this site." />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Prerequisites" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html" />
+<meta name="twitter:description" content="What you need to know to use this site." />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Prerequisites</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-prerequisites.html" selected>English</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Prerequisites</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>These articles are meant to help you learn how to use three.js.
+They assume you know how to program in JavaScript. They assume
+you know what the DOM is, how to write HTML as well as create DOM elements
+in JavaScript. They assume you know how to use <code>&lt;script&gt;</code> tags to
+include external JavaScript files as well as inline scripts.
+They assume you know some CSS and that you know what
+<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors">CSS selectors are</a>. 
+They also assume you know ES5, ES6 and maybe some ES7.
+They assume you know that the browser runs JavaScript only via events and callbacks.
+They assume you know what a closure is.</p>
+<p>Here&#39;s some brief refreshers and notes</p>
+<h2 id="-document-queryselector-and-document-queryselectorall-"><code>document.querySelector</code> and <code>document.querySelectorAll</code></h2>
+<p>You can use <code>document.querySelector</code> to select the first element
+that matches a CSS selector. <code>document.querySelectorAll</code> returns
+all elements that match a CSS selector.</p>
+<h2 id="you-don-t-need-onbody-">You don&#39;t need <code>onbody</code></h2>
+<p>Lots of 20yr old pages use HTML like</p>
+<pre><code>&lt;body onload=&quot;somefunction()&quot;&gt;
+</code></pre><p>That style is deprecated. Put your scripts
+at the bottom of the page.</p>
+<pre><code>&lt;html&gt;
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+     ...
+  &lt;/body&gt;
+  &lt;script src=&quot;script1.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // inline javascript
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre><p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
+<h2 id="you-don-t-need-type-text-javascript-">You don&#39;t need <code>type=&quot;text/javascript&quot;</code></h2>
+<p>modern</p>
+<pre><code>&lt;script&gt;...&lt;/script&gt;
+</code></pre><p>outdated</p>
+<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+</code></pre><h2 id="always-use-strict-mode">Always use <code>strict</code> mode</h2>
+<p>Put <code>&#39;use strict&#39;;</code> at the top of every JavaScript file.</p>
+<h2 id="know-how-closures-work">Know how closures work</h2>
+<pre><code>function a(v) {
+  const foo = v;
+  return function() {
+     return foo;
+  };
+}
+
+const f = a(123);
+const g = a(456);
+console.log(f());  // prints 123
+console.log(g());  // prints 456
+</code></pre><p>In the code above the function <code>a</code> creates a new function every time it&#39;s called. That
+funciton <em>closes</em> over the variable <code>foo</code>. Here&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">more info</a>.</p>
+<h2 id="understand-how-this-works">Understand how <code>this</code> works</h2>
+<p><code>this</code> is not magic. It&#39;s effectively a variable that is automatically passed to functions just like
+an argument is passed to function. The simple explaintion is when you call a function directly
+like</p>
+<pre><code>somefunction(a, b, c);
+</code></pre><p>This will be <code>null</code> where as when you call a function via the dot operator <code>.</code> like this</p>
+<pre><code>someobject.somefunction(a, b, c);
+</code></pre><p>This will be set to <code>someobject</code>.</p>
+<p>The parts where people get confused is with callbacks.</p>
+<pre><code> const callback = someobject.somefunction;
+ loader.load(callback);
+</code></pre><p>doesn&#39;t work as someone inexperienced might expect because when
+<code>loader.load</code> calls the callback it&#39;s not calling it with the dot <code>.</code> operator
+so by default <code>this</code> will be null (unless the loader explicitly sets it to someting).
+If you want <code>this</code> to be <code>someobject</code> when the callback happens you need to 
+tell JavaScript that by binding it to the function.</p>
+<pre><code> const callback = someobject.somefunction.bind(someobject);
+ loader.load(callback);
+</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><em>this</em> article might help</a>.</p>
+<h2 id="es5-es6-es7-stuff">ES5/ES6/ES7 stuff</h2>
+<h3 id="-var-is-deprecated-use-const-and-or-let-"><code>var</code> is deprecated. Use <code>const</code> and/or <code>let</code></h3>
+<p>There is no reason to use <code>var</code> <strong>EVER</strong> and at this point it&#39;s considered bad practice
+to use it at all. Use <code>const</code> if the variable will never be reassigned which is most of
+the time. Use <code>let</code> in those cases where the value changes.</p>
+<h3 id="use-for-elem-of-collection-never-for-elem-in-collection-">Use <code>for(elem of collection)</code> never <code>for(elem in collection)</code></h3>
+<p><code>for of</code> is new, <code>for in</code> is old. <code>for in</code> had issues that are solved by <code>for of</code></p>
+<p>As one example you can iterate over all the key/value pairs of an object with</p>
+<pre><code>for (const [key, value] of Object.entries(someObject)) {
+  console.log(key, value);
+}
+</code></pre><h3 id="use-foreach-map-and-filter-where-useful">Use <code>forEach</code>, <code>map</code>, and <code>filter</code>  where useful</h3>
+<p>Arrays added the functions <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach, 
+[`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>forEach</code></a>, and 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>filter</code></a> and
+are used fairly extensively in modern JavaScript.</p>
+<h3 id="use-destructuring">Use destructuring</h3>
+<p>Assume an object <code>const dims = {width: 300, height: 150}</code></p>
+<p>old code</p>
+<pre><code> const width = dims.width;
+ const height = dims.height;
+</code></pre><p>new code</p>
+<pre><code> const {width, height} = dims;
+</code></pre><h3 id="use-object-declaration-short-cuts">Use object declaration short cuts</h3>
+<p>old code</p>
+<pre><code> const width = 300;
+ const height = 150;
+ const obj = {
+   width: width,
+   height: height,
+   area: function() {
+     return this.width * this.height
+   },
+ };
+</code></pre><p>new code</p>
+<pre><code> const width = 300;
+ const height = 150;
+ const obj = {
+   width,
+   height,
+   area() {
+     return this.width * this.height;
+   },
+ };
+</code></pre><h3 id="use-the-spread-operator-">Use the spread operator <code>...</code></h3>
+<p>The spread operator has a ton of uses. Example</p>
+<pre><code> function log(className, ...args) {
+   const elem = document.createElement(&#39;div&#39;);
+   elem.className = className;
+   elem.textContent = [...args].join(&#39; &#39;);
+   document.body.appendChild(elem);
+ }
+</code></pre><p>Another example</p>
+<pre><code>const position = [1, 2, 3];
+somemesh.position.set(...position);
+</code></pre><h3 id="use-class-">Use <code>class</code></h3>
+<p>The syntax for making class like objects pre ES5 was unfamilar to most programmers.
+As of ES5 you can now <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">use the <code>class</code> keyword</a> which
+is closer to the style of C++/C#/Java.</p>
+<h3 id="understand-getters-and-setters">Understand getters and setters</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">Getters</a> and
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a> are
+common in most modern languages. The <code>class</code> syntax
+of ES5 makes them much easier than pre ES5.</p>
+<h3 id="use-arrow-functions-where-appropriate">Use arrow functions where appropriate</h3>
+<p>This is especially useful with callbacks and promises.</p>
+<pre><code>loader.load((texture) =&gt; {
+  // use textrue
+});
+</code></pre><p>Arrow functions bind <code>this</code>. They are a shortcut for</p>
+<pre><code>(function(args) {/* code */}).bind(this))
+</code></pre><h3 id="promises-as-well-as-async-await">Promises as well as async/await</h3>
+<p>Promises help with asynchronous code. Async/await help
+use promises.</p>
+<p>It&#39;s too big a topic to go into here but you can <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">read up
+on promises here</a>
+and <a href="">async/await here</a>.</p>
+<h3 id="use-template-literals">Use Template Literals</h3>
+<p>Template literals are strings using backticks instead of quotes.</p>
+<pre><code>const foo = `this is a template literal`;
+</code></pre><p>Template literals have basically 2 features. One is they can be multi-line</p>
+<pre><code>const foo = `this
+is
+a
+template
+literal`;
+const bar = &quot;this\nis\na\ntemplate\nliteral&quot;;
+</code></pre><p><code>foo</code> and <code>bar</code> above are the same.</p>
+<p>The other is that you can pop out of string mode and insert snippets of
+JavaScript using <code>${javascript-expression}</code>. This is the template part. Example:</p>
+<pre><code>const r = 192;
+const g = 255;
+const b = 64;
+const rgbCSSColor = `rgb(${r},${g},${b})`;
+</code></pre><p>or</p>
+<pre><code>const color = [192, 255, 64];
+const rgbCSSColor = `rgb(${color.join(&#39;,&#39;)})`;
+</code></pre><p>or</p>
+<pre><code>const aWidth = 10;
+const bWidth = 20;
+someElement.style.width = `${aWidth + bWidth}px`;
+</code></pre><h1 id="consider-using-visual-studio-code">Consider using Visual Studio Code</h1>
+<p>Of course use whatever editor you want but if you haven&#39;t tried it consider using <a href="https://code.visualstudio.com/">Visual Studio Code</a>
+for JavaScript and after installing it <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">setup eslint</a>.
+It might take a few minutes to setup but it will help you immensely with finding bugs in your JavaScript.</p>
+<p>As a simple example if you enable <a href="https://eslint.org/docs/rules/no-undef">the <code>no-undef</code> rule</a> then VSCode via ESLint will
+warn you of many undefined variables. You&#39;ll get warnings using <code>THREE</code> so add <code>/* global THREE */</code> at the top of your JavaScript files.</p>
+<h1 id="if-you-really-need-to-support-legacy-browsers-use-a-transpiler">If you really need to support legacy browsers use a transpiler</h1>
+<p>Most modern browsers are auto-updated so using all these features will help you 
+be productive and avoid bugs. That said, if you&#39;re on a project that absolutely
+must support old browsers there are <a href="https://babeljs.io">tools that will take your ES5/ES6/ES7 code
+and transpile the code back to pre ES5 Javascript</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-prerequisites.html" selected>English</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Prerequisites';
+            var disqus_title = 'Three.js Prerequisites';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

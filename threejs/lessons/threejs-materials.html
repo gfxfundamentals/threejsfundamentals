@@ -203,6 +203,39 @@ own gradient map. This ends up giving a 2 tone look that looks like a cartoon.</
   <div data-diagram="MeshToonMaterial"></div>
 </div>
 
+<p>Next up there are 2 <em>physically based rendering</em> materials. Physically Based
+Rendering is often abbreviated PBR.</p>
+<p>The materials above use simple math to make materials that look 3D but they
+aren&#39;t what actually happens in real world. The 2 PBR materials use much more
+complex math to come close to what actually happens in the real world.</p>
+<p>The first one is <code>MeshStandardMaterial</code>. The biggest difference between
+<code>MeshPhongMaterial</code> and <code>MeshStandardMaterial</code> is it uses different parameters.
+<code>MeshPhongMaterial</code> had a <code>shininess</code> setting. <code>MeshStandardMaterial</code> has 2
+settings <code>roughness</code> and <code>metalness</code>.</p>
+<p>At a basic level <a href="MeshStandardMaterial.roughness"><code>roughness</code></a> is the opposite
+of <code>shininess</code>. Something that has a high roughness, like a baseball doesn&#39;t 
+have hard reflections where as something that&#39;s not rough, like a billiard ball
+is very shiny. Roughness goes from 0 to 1.</p>
+<p>The other setting, <a href="MeshStandardMaterial.metalness"><code>metalness</code></a>, says
+how metal the material is. Metals behave differently than non-metals
+and so this setting goes from 0, not metal at all, to 1, 100% metal.</p>
+<p>Here&#39;s a quick sample of <code>MeshStandardMaterial</code> with <code>roughness</code> from 0 to 1
+across and <code>metalness</code> from 0 to 1 down.</p>
+<div data-diagram="MeshStandardMaterial" style="min-height: 400px"></div>
+
+<p>The <code>MeshPhysicalMaterial</code> is same as the <code>MeshStandardMaterial</code> but it
+adds a <code>clearCoat</code> parameter that goes from 0 to 1 for how much to 
+apply a clearcoat gloss layer and a <code>clearCoatRoughness</code> parameter
+that specifies how rough the gloss layer is.</p>
+<p>Here&#39;s the same grid of <code>roughness</code> by <code>metalness</code> as above but with
+<code>clearCoat</code> and <code>clearCoatRoughness</code> settings.</p>
+<div data-diagram="MeshPhysicalMaterial" style="min-height: 400px"></div>
+
+<p>The various standard materials progress from fastest to slowest
+<code>MeshBasicMaterial</code> ➡ <code>MeshLambertMaterial</code> ➡ <code>MeshPhongMaterial</code> ➡ 
+<code>MeshStandardMaterial</code> ➡ <code>MeshPhysicalMaterial</code>. The slower materials
+can make more realistic looking scenes but you might need to design
+your code to use the faster materials on low powered or mobile machines.</p>
 <p>There are 3 materials that have special uses. <code>ShadowMaterial</code>
 is used to get the data created from shadows. We haven&#39;t
 covered shadows yet. When we do we&#39;ll use this material
@@ -233,12 +266,6 @@ to the right will be red, up will be green, and toward the screen will be blue.<
 system. <code>RawShaderMaterial</code> is for making entirely custom shaders with
 no help from three.js. Both of these topics are large and will be
 covered later.</p>
-<p>The last 2 materials we&#39;ll mention here are the <code>MeshStandardMaterial</code>
-and the <code>MeshPhysicsMaterial</code>. Both implement what&#39;s called <em>physically
-based rendering</em> or often PBR for short. This is a way of computing
-material properties and lights that comes close to the way
-lights and materials work in the real word. We&#39;ll cover these in
-more detail in another article.</p>
 <p>Most materials share a bunch of settings all defined by <code>Material</code>.
 <a href="Material">See the docs</a>
 for all of them but let&#39;s go over two of the most commonly used
@@ -336,10 +363,12 @@ switch from using one to using the other.
     <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
     <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
   </ul>
   <li>Reference</li>
   <ul>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
     <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
   </ul>
 </ul>
