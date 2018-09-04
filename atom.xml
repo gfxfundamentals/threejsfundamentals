@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-09-02T04:50:25Z</updated>
+    <updated>2018-09-04T05:13:57Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -16,7 +16,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-lights.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-lights.html">
         </link>
-        <updated>2018-09-02T04:50:25Z</updated>
+        <updated>2018-09-04T05:13:57Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>

@@ -287,7 +287,7 @@ of helper objects we can add to our scene to help visualize
 invisible parts of a scene. In this case we&#39;ll use the
 <code>DirectionalLightHelper</code> which will draw a plane, to represent
 the light, and a line from the light to the target. We just
-pass it the light and add it to the scene.</p>
+pass it the light and add itd add it to the scene.</p>
 <pre><code class="lang-javascript">const helper = new THREE.DirectionalLightHelper(light);
 scene.add(helper);
 </code></pre>
@@ -309,7 +309,11 @@ itself. As such we pass in an <code>onChangeFn</code> function to
 get called anytime dat.GUI updates a value.</p>
 <p>Then we can use that for both the light&#39;s position
 and the target&#39;s position like this</p>
-<pre><code class="lang-javascript">+const onChange = helper.update.bind(helper);
+<pre><code class="lang-javascript">+const onChange = () =&gt; {
++  light.target.updateMatrixWorld();
++  helper.update();
++};
++onChange();
 
 const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
@@ -346,7 +350,14 @@ scene.add(light);
 <pre><code class="lang-javascript">-const helper = new THREE.DirectionalLightHelper(light);
 +const helper = new THREE.PointLightHelper(light);
 scene.add(helper);
-helper.update();
+</code></pre>
+<p>and as there is no target the <code>onChange</code> function can be simpler.</p>
+<pre><code class="lang-javascript">-const onChange = () =&gt; {
+-  light.target.updateMatrixWorld();
+-  helper.update();
+-};
+-onChange();
++const onChange = helper.update.bind(helper);
 </code></pre>
 <p>Note that at some level a <code>PointLightHelper</code> has no um, point.
 It just draws a small wireframe diamond. It could just as easily
@@ -393,7 +404,6 @@ scene.add(light.target);
 -const helper = new THREE.DirectionalLightHelper(light);
 +const helper = new THREE.SpotLightHelper(light);
 scene.add(helper);
-helper.update();
 </code></pre>
 <p>The spotlight&#39;s cone&#39;s angle is set with the <a href="Spotlight.angle"><code>angle</code></a>
 property in radians. We&#39;ll use our <code>DegRadHelper</code> from the 
