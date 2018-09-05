@@ -111,6 +111,8 @@ and pass it to three.js.</p>
 <pre><code>&lt;script&gt;
 &#39;use strict&#39;;
 
+/* global THREE */
+
 function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const renderer = new THREE.WebGLRenderer({canvas: canvas});
@@ -133,16 +135,16 @@ that uses WebGL to render 3D to the canvas.</p>
 <p>Next up we need a camera.</p>
 <pre><code>const fov = 75;
 const aspect = 2;  // the canvas default
-const zNear = 0.1;
-const zFar = 5;
-const camera = new THREE.PerspectiveCamera(fov, aspect, zNear, zFar);
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre><p><code>fov</code> is short for <code>field of view</code>. In this case 75 degrees in the vertical
 dimension. Note that most angles in three.js are in radians but for some
 reason the perspective camera takes degrees.</p>
 <p><code>aspect</code> is the display aspect of the canvas. We&#39;ll go over the details
 in another article but by default a canvas is 300x150 pixels which makes
 the aspect 300/150 or 2.</p>
-<p><code>zNear</code> and <code>zFar</code> represent the space in front of the camera
+<p><code>near</code> and <code>far</code> represent the space in front of the camera
 that will be rendered. Anything before that range or after that range
 will be clipped (not drawn).</p>
 <p>Those 4 settings define a <em>&quot;frustum&quot;</em>. A <em>frustum</em> is the name of
@@ -150,7 +152,7 @@ a 3d shape that is like a pyramid with the tip sliced off. In other
 words think of the word &quot;frustum&quot; as another 3D shape like sphere,
 cube, prism, frustum.</p>
 <p><img src="resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
-<p>The height of the zNear and zFar planes are determined by the field of view.
+<p>The height of the near and far planes are determined by the field of view.
 The width of both planes is determined by the field of view and the aspect.</p>
 <p>Anything inside the defined frustum will be be drawn. Anything outside
 will not.</p>
@@ -335,6 +337,8 @@ making our code responsive so it is adaptable to multiple situations</a>.</p>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
     <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
     <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
   </ul>
   <li>Reference</li>

@@ -91,9 +91,9 @@ We&#39;ll set the field of view to 45 degrees, the far plane to 100 units,
 and we&#39;ll move the camera 10 units up and 20 units back from the origin</p>
 <pre><code class="lang-javascript">*const fov = 45;
 const aspect = 2;  // the canvas default
-const zNear = 0.1;
-*const zFar = 100;
-const camera = new THREE.PerspectiveCamera(fov, aspect, zNear, zFar);
+const near = 0.1;
+*const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +camera.position.set(0, 10, 20);
 </code></pre>
 <p>Next let&#39;s add <code>OrbitControls</code>. <code>OrbitControls</code> let the user spin
@@ -550,7 +550,7 @@ gui.add(light, &#39;power&#39;, 0, 2000);
 <p>It&#39;s important to note each light you add to scene slows down how fast
 three.js renders the scene so you should always try to use as few as
 possible to achieve your goals. </p>
-<p>Next up let&#39;s go over <a href="threejs-shadows.html">how to render shadows</a>.</p>
+<p>Next up let&#39;s go over <a href="threejs-cameras.html">dealing with cameras</a>.</p>
 <p><canvas id="c"></canvas></p>
 <script src="../resources/threejs/r94/three.min.js"></script>
 <script src="../resources/threejs/r94/js/controls/OrbitControls.js"></script>
@@ -576,6 +576,8 @@ possible to achieve your goals. </p>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
     <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
     <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
   </ul>
   <li>Reference</li>

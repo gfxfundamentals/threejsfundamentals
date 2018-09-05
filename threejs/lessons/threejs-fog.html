@@ -205,10 +205,10 @@ class FogGUIHelper {
   scene.background = new THREE.Color(color);
 +
 +  const fogGUIHelper = new FogGUIHelper(scene.fog);
-+  gui.add(fogGUIHelper, &#39;near&#39;, zNear, zFar).listen();
-+  gui.add(fogGUIHelper, &#39;far&#39;, zNear, zFar).listen();
++  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
++  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
 }
-</code></pre><p>The <code>zNear</code> and <code>zFar</code> parameter set the minimum and maximum values
+</code></pre><p>The <code>near</code> and <code>far</code> parameter set the minimum and maximum values
 for adjusting the fog. They are set when we setup the camera.</p>
 <p>The <code>.listen()</code> at the end of the last 2 lines tells dat.GUI to <em>listen</em>
 for changes. That way when we change <code>near</code> because of an edit to <code>far</code>
@@ -265,8 +265,8 @@ class FogGUIHelper {
   scene.background = new THREE.Color(color);
 
 *  const fogGUIHelper = new FogGUIHelper(scene.fog, scene.background);
-  gui.add(fogGUIHelper, &#39;near&#39;, zNear, zFar).listen();
-  gui.add(fogGUIHelper, &#39;far&#39;, zNear, zFar).listen();
+  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
+  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
 +  gui.addColor(fogGUIHelper, &#39;color&#39;);
 }
 </code></pre><p><div class="threejs_example_container">
@@ -337,6 +337,8 @@ By turing fog of on the materials for the house we can fix that issue.</p>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
     <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
     <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
   </ul>
   <li>Reference</li>

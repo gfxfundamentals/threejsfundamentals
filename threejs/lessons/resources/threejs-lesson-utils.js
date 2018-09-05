@@ -1,12 +1,18 @@
 'use strict';
 
+/* global THREE */
+
 window.threejsLessonUtils = {
   init() {
     if (this.renderer) {
       return;
     }
     const canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({canvas: canvas, alpha: true});
+    const renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      alpha: true,
+      powerPreference: 'low-power',
+    });
     this.pixelRatio = Math.max(2, window.devicePixelRatio);
 
     this.renderer = renderer;
@@ -80,9 +86,9 @@ window.threejsLessonUtils = {
     const scene = new THREE.Scene();
     let targetFOVDeg = 60;
     const aspect = 1;
-    const zNear = 0.1;
-    const zFar = 50;
-    let camera = new THREE.PerspectiveCamera(targetFOVDeg, aspect, zNear, zFar);
+    const near = 0.1;
+    const far = 50;
+    let camera = new THREE.PerspectiveCamera(targetFOVDeg, aspect, near, far);
     camera.position.z = 15;
     scene.add(camera);
 

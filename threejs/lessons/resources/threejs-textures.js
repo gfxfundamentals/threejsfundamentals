@@ -1,6 +1,6 @@
 'use strict';
 
-/* global threejsLessonUtils */
+/* global THREE, threejsLessonUtils */
 
 {
   const loader = new THREE.TextureLoader();
@@ -144,7 +144,7 @@
       async create(props) {
         const { scene, camera, renderInfo } = props;
         scene.background = new THREE.Color('black');
-        camera.zFar = 150;
+        camera.far = 150;
         const texture = await filterTexturePromise;
         const root = new THREE.Object3D();
         const depth = 50;

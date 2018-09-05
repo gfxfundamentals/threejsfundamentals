@@ -155,7 +155,7 @@ we pass to <code>lookAt</code>. Before we do that though we need to tell the cam
 which way the top of the camera is facing or rather which way is &quot;up&quot; for the
 camera. For most situations positive Y being up is good enough but since 
 we are looking straight down we need to tell the camera that positive Z is up.</p>
-<pre><code>const camera = new THREE.PerspectiveCamera(fov, aspect, zNear, zFar);
+<pre><code>const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.set(0, 50, 0);
 camera.up.set(0, 0, 1);
 camera.lookAt(0, 0, 0);
@@ -432,6 +432,8 @@ body would be very complicated but using a scene graph it becomes much easier.</
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
     <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
     <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
   </ul>
   <li>Reference</li>
