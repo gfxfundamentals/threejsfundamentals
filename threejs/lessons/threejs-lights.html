@@ -311,18 +311,18 @@ itself. As such we pass in an <code>onChangeFn</code> function to
 get called anytime dat.GUI updates a value.</p>
 <p>Then we can use that for both the light&#39;s position
 and the target&#39;s position like this</p>
-<pre><code class="lang-javascript">+const onChange = () =&gt; {
+<pre><code class="lang-javascript">+function updateLight{
 +  light.target.updateMatrixWorld();
 +  helper.update();
-+};
-+onChange();
++}
++updateLight();
 
 const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2);
 
-+makeXYZGUI(gui, light.position, &#39;position&#39;, onChange);
-+makeXYZGUI(gui, light.target.position, &#39;target&#39;, onChange);
++makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
++makeXYZGUI(gui, light.target.position, &#39;target&#39;, updateLight);
 </code></pre>
 <p>Now we can move the light, and its target</p>
 <p><div class="threejs_example_container">
@@ -354,12 +354,11 @@ scene.add(light);
 scene.add(helper);
 </code></pre>
 <p>and as there is no target the <code>onChange</code> function can be simpler.</p>
-<pre><code class="lang-javascript">-const onChange = () =&gt; {
+<pre><code class="lang-javascript">function updateLight{
 -  light.target.updateMatrixWorld();
--  helper.update();
--};
--onChange();
-+const onChange = helper.update.bind(helper);
+  helper.update();
+}
+-updateLight();
 </code></pre>
 <p>Note that at some level a <code>PointLightHelper</code> has no um, point.
 It just draws a small wireframe diamond. It could just as easily
@@ -373,10 +372,10 @@ units away from the light.</p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2);
-+gui.add(light, &#39;distance&#39;, 0, 40).onChange(onChange);
++gui.add(light, &#39;distance&#39;, 0, 40).onChange(updateLight);
 
-makeXYZGUI(gui, light.position, &#39;position&#39;, onChange);
--makeXYZGUI(gui, light.target.position, &#39;target&#39;, onChange);
+makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
+-makeXYZGUI(gui, light.target.position, &#39;target&#39;, updateLight);
 </code></pre>
 <p>And now try it out.</p>
 <p><div class="threejs_example_container">
@@ -411,7 +410,7 @@ scene.add(helper);
 property in radians. We&#39;ll use our <code>DegRadHelper</code> from the 
 <a href="threejs-textures.html">texture artcle</a> to present a UI in
 degrees.</p>
-<pre><code class="lang-javascript">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(onChange);
+<pre><code class="lang-javascript">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(updateLight);
 </code></pre>
 <p>The inner cone is defined by setting the <a href="SpotLight.penumbra"><code>penumbra</code></a> property
 as a percentage from the outer cone. In other words when <code>penumbra</code> is 0 then the
@@ -497,13 +496,13 @@ its <code>width</code> and <code>height</code></p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 10);
-gui.add(light, &#39;width&#39;, 0, 20).onChange(onChange);
-gui.add(light, &#39;height&#39;, 0, 20).onChange(onChange);
-gui.add(new DegRadHelper(light.rotation, &#39;x&#39;), &#39;value&#39;, -180, 180).name(&#39;x rotation&#39;).onChange(onChange);
-gui.add(new DegRadHelper(light.rotation, &#39;y&#39;), &#39;value&#39;, -180, 180).name(&#39;y rotation&#39;).onChange(onChange);
-gui.add(new DegRadHelper(light.rotation, &#39;z&#39;), &#39;value&#39;, -180, 180).name(&#39;z rotation&#39;).onChange(onChange);
+gui.add(light, &#39;width&#39;, 0, 20).onChange(updateLight);
+gui.add(light, &#39;height&#39;, 0, 20).onChange(updateLight);
+gui.add(new DegRadHelper(light.rotation, &#39;x&#39;), &#39;value&#39;, -180, 180).name(&#39;x rotation&#39;).onChange(updateLight);
+gui.add(new DegRadHelper(light.rotation, &#39;y&#39;), &#39;value&#39;, -180, 180).name(&#39;y rotation&#39;).onChange(updateLight);
+gui.add(new DegRadHelper(light.rotation, &#39;z&#39;), &#39;value&#39;, -180, 180).name(&#39;z rotation&#39;).onChange(updateLight);
 
-makeXYZGUI(gui, light.position, &#39;position&#39;, onChange);
+makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 </code></pre>
 <p>And here is that.</p>
 <p><div class="threejs_example_container">

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-09-05T16:07:00Z</updated>
+    <updated>2018-09-06T08:51:39Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -16,7 +16,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html">
         </link>
-        <updated>2018-09-05T16:07:00Z</updated>
+        <updated>2018-09-06T08:51:39Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -40,7 +40,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-lights.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-lights.html">
         </link>
-        <updated>2018-09-05T16:07:00Z</updated>
+        <updated>2018-09-06T08:51:25Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
