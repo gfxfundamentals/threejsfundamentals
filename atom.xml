@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-09-06T08:51:39Z</updated>
+    <updated>2018-11-07T13:28:30Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -11,6 +11,18 @@
     <link rel="alternate" href="http://threejsfundamentals.org/"/>
     <subtitle>Learn Three.js</subtitle>
     <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Three.js Loading a .OBJ File]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html">
+        </link>
+        <updated>2018-11-07T13:28:30Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-11-07T13:28:30Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Cameras]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html</id>
@@ -28,7 +40,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-shadows.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-shadows.html">
         </link>
-        <updated>2018-09-02T04:50:25Z</updated>
+        <updated>2018-10-01T05:08:45Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -40,7 +52,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-lights.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-lights.html">
         </link>
-        <updated>2018-09-06T08:51:25Z</updated>
+        <updated>2018-10-01T05:07:37Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -129,19 +141,19 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-24T02:18:16Z</published>
+        <published>2018-07-31T05:10:14Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html">
         </link>
-        <updated>2018-07-24T02:18:16Z</updated>
+        <updated>2018-07-31T05:10:14Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-24T02:18:16Z</published>
+        <published>2018-07-31T05:10:14Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Scenegraph]]></title>
@@ -153,7 +165,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-24T02:18:16Z</published>
+        <published>2018-07-31T05:10:14Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Fundamentals]]></title>
@@ -165,6 +177,6 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-24T02:18:16Z</published>
+        <published>2018-07-31T05:10:14Z</published>
     </entry>
 </feed>

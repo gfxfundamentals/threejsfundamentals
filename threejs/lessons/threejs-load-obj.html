@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-load-obj.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Loading a .OBJ File" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="Loading a .OBJ File" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Loading a .OBJ File" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html" />
+<meta name="twitter:description" content="Loading a .OBJ File" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Loading a .OBJ File</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-load-obj.html" selected>English</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Loading a .OBJ File</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>One of the most common things people want to do with three.js
+is to load and display 3D models. Probably the single most common format
+of 3D models as if 2018 are .OBJ files.</p>
+<p>Searching the net I found <a href="https://www.turbosquid.com/FullPreview/Index.cfm/ID/464415">this public domain windmill 3D model</a>.</p>
+<div class="threejs_center"><img src="resources/images/windmill-obj.jpg"></div>
+
+<p>I downloaded the .obj version from that site. Inside is a file called
+<code>windmill.obj</code>. Let&#39;s try to display it. </p>
+<p>I started with the directional lighting example from 
+<a href="threejs-lights.html">the lights article</a> and I combined it with
+the hemispherical lighting example so I ended up with one
+<code>HemisphericalLight</code> and one <code>DirectionalLight</code>. I also removed all the GUI stuff
+related to adjusting the lights. I also removed the cube and sphere
+that were being added to the scene.</p>
+<p>From that the first thing we need to do is include the <code>THREE.OBJLoader2</code> loader in our scene. The <code>THREE.OBJLoader2</code> also needs the <code>LoadingSupport.js</code> file so let&#39;s add both.</p>
+<pre><code>&lt;script src=&quot;resources/threejs/r94/js/loaders/LoadingSupport.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r94/js/loaders/OBJLoader2.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>Then to load the .OBJ file we create an instance of <code>THREE.OBJLoader2</code>,
+pass it the URL of our .OBJ file, and pass in a callback that adds
+the loaded model to our scene.</p>
+<pre><code>{
+  const objLoader = new THREE.OBJLoader2();
+  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
+    const root = event.detail.loaderRootNode;
+    scene.add(root);
+  });
+}
+</code></pre><p>If we run that what happens?</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-wat.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-wat.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Hmmm, nothing appears. What&#39;s the problem? It turns out the problem is our camera
+is set just a few units from the origin and our camera frustum only 
+shows 100 units but our model is around 2000 units big.</p>
+<p>We can ask THREE.js what size the model is and try to set our
+camera automatically.</p>
+<p>First off we can ask THREE.js to compute a box that contains the scene
+we just loaded.</p>
+<pre><code>const box = new THREE.Box3().setFromObject(root);
+</code></pre><p>We can then use that to compute a camera settings. Note that there is no <em>right</em> answer
+on where to put the camera. We could be facing the scene from any direction at any
+altitude so we&#39;ll just have to pick something.</p>
+<p>As we went over in <a href="threejs-camera.html">the article on cameras</a> the camera defines a frustum.
+That frustum is defined by the field of view (<code>fov</code>) and the <code>near</code> and <code>far</code> settings. We
+want to know given whatever field of view the camera currently has, how far away does the camera
+need to be so the box containing the scene fits inside the frustum assiming the frustum was
+extended forever. In other words let&#39;s assume <code>near</code> is 0.00000001 and <code>far</code> is infinity.</p>
+<p>Since we know the size of the box and we know the field of view we have this triangle</p>
+<div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
+
+<p>You can see on the left is the camera and the blue frustum is projecting out in
+front of it. We just computed the box that contains the the windmill. We need to
+compute how far way we need the camera to be from the box so that the box appears
+inside the frustum.</p>
+<p>Using basic <em>right triangle</em> trigonametry and <a href="https://www.google.com/search?q=SOHCAHTOA">SOHCAHTOA</a>, 
+given we know the field of view for the frustum and we know the size of the box we can compute the <em>distance</em>.</p>
+<div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
+
+<p>Based on that diagram the formula for computing distance is</p>
+<pre><code>distance = halfSizeToFitOnScreen / tangent(halfFovY)
+</code></pre><p>Let&#39;s translate that to code. First let&#39;s make a function that will compute <code>distance</code> and then move the
+camera that <code>distance</code> units from the center of the box. We&#39;ll then point the
+camera at the <code>center</code> of the box.</p>
+<pre><code>function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+  const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+  const halfFovY = THREE.Math.degToRad(camera.fov * .5);
+  const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+
+  // compute a unit vector that points in the direction the camera is now
+  // from the center of the box
+  const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
+
+  // move the camera to a position distance units way from the center
+  // in whatever direction the camera was from the center already
+  camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
+
+  // pick some near and far values for the frustum that
+  // will contain the box.
+  camera.near = boxSize / 100;
+  camera.far = boxSize * 100;
+
+  camera.updateProjectionMatrix();
+
+  // point the camera to look at the center of the box
+  camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
+}
+</code></pre><p>We pass in 2 sizes. The <code>boxSize</code> and the <code>sizeToFitOnScreen</code>. If we just passed in <code>boxSize</code>
+and used that as <code>sizeToFitOnScreen</code> then the math would make the box fit perfectly inside
+the frustum. We want a little extra space above and below so we&#39;ll pass in a slightly 
+larger size. </p>
+<pre><code>{
+  const objLoader = new THREE.OBJLoader2();
+  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
+    const root = event.detail.loaderRootNode;
+    scene.add(root);
++    // compute the box that contains all the stuff
++    // from root and below
++    const box = new THREE.Box3().setFromObject(root);
++
++    const boxSize = box.getSize(new THREE.Vector3()).length();
++    const boxCenter = box.getCenter(new THREE.Vector3());
++
++    // set the camera to frame the box
++    frameArea(boxSize * 1.2, boxSize, boxCenter, camera);
++
++    // update the Trackball controls to handle the new size
++    controls.maxDistance = boxSize * 10;
++    controls.target.copy(boxCenter);
++    controls.update();
+  });
+}
+</code></pre><p>You can see above we pass in <code>boxSize * 1.2</code> to give us 20% more space above and below the box when trying 
+to fit it inside the frustum. We also updated the <code>OrbitControls</code> so the camera will orbit the center
+of the scene.</p>
+<p>Now if we try that we get...</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>This almost works. Use the mouse to rotate the camera and you
+should see the windmill. The problem is the windmill is large. The box is 2123 units
+and the box&#39;s center is at about (0, 770, 0). So, when we move the camera from where it
+starts (0, 10, 20) to <code>distance</code> units way from the center in the direction the camera
+is relative to the center that&#39;s moving the camera almost straight down below
+the windmill.</p>
+<p>Let&#39;s change it to move sideways from the center of the scene to in whatever direction
+the camera is from the center.</p>
+<pre><code>-// compute a unit vector that points in the direction the camera is now
+-// from the center of the box
+-const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
++// compute a unit vector that points in the direction the camera is now
++// in the xz plane from the center of the box
++const direction = (new THREE.Vector3())
++    .subVectors(camera.position, boxCenter)
++    .multiply(new THREE.Vector3(1, 0, 1))
++    .normalize();
+</code></pre><p>Also, now that we know the box that contains the windmill is over 2000 units big
+let&#39;s change the size of the ground plane.</p>
+<pre><code>-const planeSize = 40;
++const planeSize = 4000;
+
+const loader = new THREE.TextureLoader();
+const texture = loader.load(&#39;resources/images/checker.png&#39;);
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.magFilter = THREE.NearestFilter;
+-const repeats = planeSize / 2;
++const repeats = planeSize / 200;
+texture.repeat.set(repeats, repeats);
+</code></pre><p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera-xz.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera-xz.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>At the moment the entire scene is just gray since we haven&#39;t
+given the scene any matrials and .OBJ files don&#39;t have material
+parameters. The .OBJ loader can be passed an
+object of name / material pairs. When it loads the .OBJ file,
+any material name it finds it will look for the corresponding material
+in the object of materials set on the loader. If it finds a
+material that matches by name it will use that material. If
+not it will use the loader&#39;s default material.</p>
+<p>Sometimes .OBJ files come with a .MTL file that defines
+materials. In our case the windmill came with a .MTL file
+Looking at all the files I downloaded though I quickly see a
+problem</p>
+<pre><code> $ ls -l windmill
+ -rw-r--r--@ 1 gregg  staff       299 May 20  2009 windmill.mtl
+ -rw-r--r--@ 1 gregg  staff    142989 May 20  2009 windmill.obj
+ -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_diffuse.tga
+ -rw-r--r--@ 1 gregg  staff  12582956 Apr 20  2009 windmill_normal.tga
+ -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_spec.tga
+</code></pre><p>There are TARGA (.tga) files and they are giant!</p>
+<p>THREE.js actually has a TGA loader but it&#39;s argubly wrong to use it for most use cases.
+If you&#39;re making a viewer where you want to allow users to view random 3D files they
+find on the net then maybe, just maybe, you might want to load TGA files. (<a href="#loading-scenes">*</a>)</p>
+<p>One problem with TGA files are they can&#39;t be compressed well at all. TGA only supports very
+simple compression and looking above we can see the files are not compressed at all
+as the odds of them being all exactly the same size are extremely low. Further they 
+are 12 megabytes each!!! If we used those files the user would have to download 36meg
+to see the windmill.</p>
+<p>Another issue with TGA is the browser itself has no support for them so loading them 
+is likely going to be slower than loading supported formats like .JPG and .PNG</p>
+<p>I&#39;m pretty sure for our purposes converting them to .JPG will be the best option.
+Looking inside I see they are 3 channels each, RGB, there is no alpha channel. JPG
+only supports 3 channels so that&#39;s a good fit. JPG also supports lossy compression
+so we can make the files much smaller to download</p>
+<p>Loading the files up they were each 2048x2048. That seemed like a waste to me but of
+course it depends on your use case. I made them each 1024x1024 and saved them at a
+50% quality setting in Photoshop. Getting a file listing</p>
+<pre><code> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+ -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
+ -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
+ -rw-r--r--@ 1 gregg  staff  326070 Nov  7 18:37 windmill_diffuse.jpg
+ -rw-r--r--@ 1 gregg  staff  158544 Nov  7 18:38 windmill_normal.jpg
+ -rw-r--r--@ 1 gregg  staff  191864 Nov  7 18:39 windmill_spec.jpg
+</code></pre><p>We went from 36meg to 0.68meg!</p>
+<p>Now, to use the .MTL file we need to edit it to reference the .JPG files
+instead of the .TGA files. Fortunately it&#39;s a simple text file so it&#39;s easy to edit</p>
+<pre><code>newmtl blinn1SG
+Ka 0.10 0.10 0.10
+
+Kd 0.00 0.00 0.00
+Ks 0.00 0.00 0.00
+Ke 0.00 0.00 0.00
+Ns 0.060000
+Ni 1.500000
+d 1.000000
+Tr 0.000000
+Tf 1.000000 1.000000 1.000000 
+illum 2
+-map_Kd windmill_diffuse.tga
++map_Kd windmill_diffuse.jpg
+
+-map_Ks windmill_spec.tga
++map_Ks windmill_spec.jpg
+
+-map_bump windmill_normal.tga 
+-bump windmill_normal.tga 
++map_bump windmill_normal.jpg 
++bump windmill_normal.jpg
+</code></pre><p>Now that the .MTL file points to some reasonable size textures we need to load it.
+We load it first, when it&#39;s finished loading the materials we set the materials
+on the loader itself and then load the .OBJ file</p>
+<pre><code>{
++  const objLoader = new THREE.OBJLoader2();
++  objLoader.loadMtl(&#39;resources/models/windmill/windmill.mtl&#39;, null, (materials) =&gt; {
++    objLoader.setMaterials(materials);
+    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
+      const root = event.detail.loaderRootNode;
+      root.updateMatrixWorld();
+      scene.add(root);
+      // compute the box that contains all the stuff
+      // from root and below
+      const box = new THREE.Box3().setFromObject(root);
+
+      const boxSize = box.getSize(new THREE.Vector3()).length();
+      const boxCenter = box.getCenter(new THREE.Vector3());
+
+      // set the camera to frame the box
+      frameArea(boxSize * 1.2, boxSize, boxCenter, camera);
+
+      // update the Trackball controls to handle the new size
+      controls.maxDistance = boxSize * 10;
+      controls.target.copy(boxCenter);
+      controls.update();
+    });
++  });
+}
+</code></pre><p>Before we actually try it out I ran into some issues that rather than show a failure I&#39;m just going to talk about.</p>
+<p>Issue #1: The three <code>MTLLoader</code> creates materials that multiply the material&#39;s diffuse color by the diffuse texture map.</p>
+<p>That&#39;s a useful feature but looking a the .MTL file above the line</p>
+<pre><code>Kd 0.00 0.00 0.00
+</code></pre><p>sets the diffuse color to 0. Texture map * 0 = black! It&#39;s possible the modeling tool used to make the windmill
+did not multiply the diffuse texture map by the diffuse color. That&#39;s why it worked for whoever made this windmill.</p>
+<p>To fix this we can change the line to</p>
+<pre><code>Kd 1.00 1.00 1.00
+</code></pre><p>since Texture Map * 1 = Texture Map.</p>
+<p>Issue #2: The specular color is also black</p>
+<p>The line that starts with <code>Ks</code> specifies the specular color. It&#39;s likely the modeling software used to make the windmill
+did something similar as it did with diffuse maps in that it used the specular map&#39;s color for specular highlights.
+Three.js uses only the red channel of a specular map as input to how much of the specular color to reflect but three still
+needs a specular color set.</p>
+<p>Like above we can fix that by editing the .MTL file like this.</p>
+<pre><code>-Ks 0.00 0.00 0.00
++Ks 1.00 1.00 1.00
+</code></pre><p>Issue #3: The <code>windmill_normal.jpg</code> is a normal map not a bump map.</p>
+<p>Looking at <a href="https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432">the source for the MTLLoader</a>
+it expects the keyword <code>norm</code> for normal maps</p>
+<p>So we can change that part of the .MTL file like this</p>
+<p>-map_bump windmill_normal.jpg 
+-bump windmill_normal.jpg 
++norm windmill_normal.jpg </p>
+<p>Given all that if we now try it out it should load up </p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Loading models often runs into these kinds of issues. Common issues</p>
+<ul>
+<li><p>Needing to know the size</p>
+<p>Above we made the camera try to frame the scene but that&#39;s not always the approriate thing to do. Generally the most approriate thing
+to do is to make your own models or download the models, load them up in some 3D software and look their scale and adjust if need be.</p>
+</li>
+<li><p>Orientation Wrong</p>
+<p>THREE.js is generally Y = up. Some modeling packages default to Z = up, some Y = up. Some are settable. 
+If you run into this case where you load a model and it&#39;s on its side. You can either hack your code to rotate the model after loading (not recommended),
+or you can load the model into your favorite modeling package or use some command line tools to rotate the object in the orientation you need it to be
+just like you&#39;d edit an image for your website rather than download it and apply code to adjust it.</p>
+</li>
+<li><p>No .MTL file or wrong materials or incompatible parameters</p>
+<p>Above we used a .MTL file above which helped us load materials but there were issues. We manually edited the .MTL file to fix.
+It&#39;s also common to look inside the .OBJ file to see what materials there are, or to load the .OBJ file in THREE.js and walk the
+scene and print out all the materials. Then, go modify the code to make custom materials and assign them where appropriate either
+by making a name/material pair object to pass to the loader instead of loading the .MTL file, OR, after the scene has loaded, walking the
+scene and fixing things.</p>
+</li>
+</ul>
+<p>The last thing I wanted to show is spinning the windmill. Unfortunately, .OBJ files have no hirerarchy. That means all parts of the
+windmill are basically considered 1 single mesh. You can&#39;t spin the blades of the mill as they aren&#39;t separated from the building.</p>
+<p>This is one of the main reasons why .OBJ is not really a good format. If I was to guess, the reason it&#39;s more common than other formats
+is because it&#39;s simple and doesn&#39;t support many features it works more often than not. Especially if you&#39;re making something still like
+an architectural image and there&#39;s no need to animate anything it&#39;s not a bad way to get static props into a scene.</p>
+<p>Next up we&#39;ll try loading a gLTF scene. The gLTF format supports many more features</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-load-obj.html" selected>English</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Loading a .OBJ File';
+            var disqus_title = 'Three.js Loading a .OBJ File';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

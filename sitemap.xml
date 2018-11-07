@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url> <loc>http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html</loc> <changefreq>monthly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html" /> </url>
 <url> <loc>http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html</loc> <changefreq>monthly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html" /> </url>
 <url> <loc>http://threejsfundamentals.org/threejs/lessons/threejs-shadows.html</loc> <changefreq>monthly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="http://threejsfundamentals.org/threejs/lessons/threejs-shadows.html" /> </url>
 <url> <loc>http://threejsfundamentals.org/threejs/lessons/threejs-lights.html</loc> <changefreq>monthly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="http://threejsfundamentals.org/threejs/lessons/threejs-lights.html" /> </url>

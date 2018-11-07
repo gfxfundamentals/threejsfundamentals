@@ -202,7 +202,7 @@ color. </p>
 <p>And here&#39;s our code setting up dat.GUI</p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
-gui.add(light, &#39;intensity&#39;, 0, 2);
+gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 </code></pre>
 <p>And here&#39;s the result</p>
 <p><div class="threejs_example_container">
@@ -241,7 +241,7 @@ scene.add(light);
 -gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 +gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;skyColor&#39;);
 +gui.addColor(new ColorGUIHelper(light, &#39;groundColor&#39;), &#39;value&#39;).name(&#39;groundColor&#39;);
-gui.add(light, &#39;intensity&#39;, 0, 2);
+gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 </code></pre>
 <p>The result:</p>
 <p><div class="threejs_example_container">
@@ -273,7 +273,7 @@ in the direction of its target.</p>
 our GUI.</p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
-gui.add(light, &#39;intensity&#39;, 0, 2);
+gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 gui.add(light.target.position, &#39;x&#39;, -10, 10);
 gui.add(light.target.position, &#39;z&#39;, -10, 10);
 gui.add(light.target.position, &#39;y&#39;, 0, 10);
@@ -319,7 +319,7 @@ and the target&#39;s position like this</p>
 
 const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
-gui.add(light, &#39;intensity&#39;, 0, 2);
+gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 
 +makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 +makeXYZGUI(gui, light.target.position, &#39;target&#39;, updateLight);
@@ -371,7 +371,7 @@ units away from the light.</p>
 <p>Let&#39;s setup the GUI so we can adjust the distance.</p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
-gui.add(light, &#39;intensity&#39;, 0, 2);
+gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +gui.add(light, &#39;distance&#39;, 0, 40).onChange(updateLight);
 
 makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
@@ -418,7 +418,7 @@ inner code is the same size (0 = no difference) from the outer cone. When the
 <code>penumbra</code> is 1 then the light fades starting in the center of the cone to the
 outer cone. When <code>penumbra</code> is .5 then the light fades starting from 50% between
 the center of the outer cone.</p>
-<pre><code class="lang-javascript">gui.add(light, &#39;penumbra&#39;, 0, 1);
+<pre><code class="lang-javascript">gui.add(light, &#39;penumbra&#39;, 0, 1, 0.01);
 </code></pre>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-spot-w-helper.html"></iframe>
@@ -495,7 +495,7 @@ scene.add(helper);
 its <code>width</code> and <code>height</code></p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
-gui.add(light, &#39;intensity&#39;, 0, 10);
+gui.add(light, &#39;intensity&#39;, 0, 10, 0.01);
 gui.add(light, &#39;width&#39;, 0, 20).onChange(updateLight);
 gui.add(light, &#39;height&#39;, 0, 20).onChange(updateLight);
 gui.add(new DegRadHelper(light.rotation, &#39;x&#39;), &#39;value&#39;, -180, 180).name(&#39;x rotation&#39;).onChange(updateLight);
@@ -537,7 +537,7 @@ light.distance = Infinity;
 <p>and we&#39;ll add gui so we can change the <code>power</code> and <code>decay</code></p>
 <pre><code class="lang-javascript">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
-gui.add(light, &#39;decay&#39;, 0, 4);
+gui.add(light, &#39;decay&#39;, 0, 4, 0.01);
 gui.add(light, &#39;power&#39;, 0, 2000);
 </code></pre>
 <p><div class="threejs_example_container">

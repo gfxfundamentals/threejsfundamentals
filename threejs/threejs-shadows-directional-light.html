@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Three.js - Lights - Spot w/Helper</title>
+    <title>Three.js - Shadows - Directional Light</title>
     <style>
     html, body {
         margin: 0;
@@ -31,6 +31,7 @@
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas: canvas});
+  renderer.shadowMap.enabled = true;
 
   const fov = 45;
   const aspect = 2;  // the canvas default
@@ -63,6 +64,7 @@ function main() {
       side: THREE.DoubleSide,
     });
     const mesh = new THREE.Mesh(planeGeo, planeMat);
+    mesh.receiveShadow = true;
     mesh.rotation.x = Math.PI * -.5;
     scene.add(mesh);
   }
@@ -71,6 +73,8 @@ function main() {
     const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
     const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
     const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
     scene.add(mesh);
   }
@@ -81,6 +85,8 @@ function main() {
     const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
     const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
     const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
     scene.add(mesh);
   }
@@ -98,19 +104,6 @@ function main() {
     }
   }
 
-  class DegRadHelper {
-    constructor(obj, prop) {
-      this.obj = obj;
-      this.prop = prop;
-    }
-    get value() {
-      return THREE.Math.radToDeg(this.obj[this.prop]);
-    }
-    set value(v) {
-      this.obj[this.prop] = THREE.Math.degToRad(v);
-    }
-  }
-
   function makeXYZGUI(gui, vector3, name, onChangeFn) {
     const folder = gui.addFolder(name);
     folder.add(vector3, 'x', -10, 10).onChange(onChangeFn);
@@ -122,30 +115,28 @@ function main() {
   {
     const color = 0xFFFFFF;
     const intensity = 1;
-    const light = new THREE.SpotLight(color, intensity);
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.castShadow = true;
     light.position.set(0, 10, 0);
-    light.target.position.set(-5, 0, 0);
+    light.target.position.set(-4, 0, -4);
     scene.add(light);
     scene.add(light.target);
 
-    const helper = new THREE.SpotLightHelper(light);
+    const helper = new THREE.DirectionalLightHelper(light);
     scene.add(helper);
 
-    function updateLight() {
+    const onChange = () => {
       light.target.updateMatrixWorld();
       helper.update();
-    }
-    updateLight();
+    };
+    onChange();
 
     const gui = new dat.GUI();
     gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
     gui.add(light, 'intensity', 0, 2, 0.01);
-    gui.add(light, 'distance', 0, 40).onChange(updateLight);
-    gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
-    gui.add(light, 'penumbra', 0, 1, 0.01);
 
-    makeXYZGUI(gui, light.position, 'position', updateLight);
-    makeXYZGUI(gui, light.target.position, 'target', updateLight);
+    makeXYZGUI(gui, light.position, 'position', onChange);
+    makeXYZGUI(gui, light.target.position, 'target', onChange);
   }
 
   function resizeRendererToDisplaySize(renderer) {
@@ -161,7 +152,9 @@ function main() {
 
   function render() {
 
-    if (resizeRendererToDisplaySize(renderer)) {
+    resizeRendererToDisplaySize(renderer);
+
+    {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();

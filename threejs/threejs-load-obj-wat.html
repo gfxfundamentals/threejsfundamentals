@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Three.js - Lights - Spot w/Helper</title>
+    <title>Three.js - Load .OBJ ?</title>
     <style>
     html, body {
         margin: 0;
@@ -22,11 +22,12 @@
   </body>
 <script src="resources/threejs/r94/three.min.js"></script>
 <script src="resources/threejs/r94/js/controls/OrbitControls.js"></script>
-<script src="../3rdparty/dat.gui.min.js"></script>
+<script src="resources/threejs/r94/js/loaders/LoaderSupport.js"></script>
+<script src="resources/threejs/r94/js/loaders/OBJLoader2.js"></script>
 <script>
 'use strict';
 
-/* global THREE, dat */
+/* global THREE */
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -66,86 +67,31 @@ function main() {
     mesh.rotation.x = Math.PI * -.5;
     scene.add(mesh);
   }
+
   {
-    const cubeSize = 4;
-    const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
-    const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
-    const mesh = new THREE.Mesh(cubeGeo, cubeMat);
-    mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
-    scene.add(mesh);
-  }
-  {
-    const sphereRadius = 3;
-    const sphereWidthDivisions = 32;
-    const sphereHeightDivisions = 16;
-    const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
-    const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
-    const mesh = new THREE.Mesh(sphereGeo, sphereMat);
-    mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
-    scene.add(mesh);
-  }
-
-  class ColorGUIHelper {
-    constructor(object, prop) {
-      this.object = object;
-      this.prop = prop;
-    }
-    get value() {
-      return `#${this.object[this.prop].getHexString()}`;
-    }
-    set value(hexString) {
-      this.object[this.prop].set(hexString);
-    }
-  }
-
-  class DegRadHelper {
-    constructor(obj, prop) {
-      this.obj = obj;
-      this.prop = prop;
-    }
-    get value() {
-      return THREE.Math.radToDeg(this.obj[this.prop]);
-    }
-    set value(v) {
-      this.obj[this.prop] = THREE.Math.degToRad(v);
-    }
-  }
-
-  function makeXYZGUI(gui, vector3, name, onChangeFn) {
-    const folder = gui.addFolder(name);
-    folder.add(vector3, 'x', -10, 10).onChange(onChangeFn);
-    folder.add(vector3, 'y', 0, 10).onChange(onChangeFn);
-    folder.add(vector3, 'z', -10, 10).onChange(onChangeFn);
-    folder.open();
+    const skyColor = 0xB1E1FF;  // light blue
+    const groundColor = 0xB97A20;  // brownish orange
+    const intensity = 1;
+    const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+    scene.add(light);
   }
 
   {
     const color = 0xFFFFFF;
     const intensity = 1;
-    const light = new THREE.SpotLight(color, intensity);
+    const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(0, 10, 0);
     light.target.position.set(-5, 0, 0);
     scene.add(light);
     scene.add(light.target);
+  }
 
-    const helper = new THREE.SpotLightHelper(light);
-    scene.add(helper);
-
-    function updateLight() {
-      light.target.updateMatrixWorld();
-      helper.update();
-    }
-    updateLight();
-
-    const gui = new dat.GUI();
-    gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
-    gui.add(light, 'intensity', 0, 2, 0.01);
-    gui.add(light, 'distance', 0, 40).onChange(updateLight);
-    gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
-    gui.add(light, 'penumbra', 0, 1, 0.01);
-
-    makeXYZGUI(gui, light.position, 'position', updateLight);
-    makeXYZGUI(gui, light.target.position, 'target', updateLight);
+  {
+    const objLoader = new THREE.OBJLoader2();
+    objLoader.load('resources/models/windmill/windmill.obj', (event) => {
+      const root = event.detail.loaderRootNode;
+      scene.add(root);
+    });
   }
 
   function resizeRendererToDisplaySize(renderer) {
