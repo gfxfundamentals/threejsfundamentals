@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Some Three.js Tutorials",
   "main": "index.js",
+  "threejsfundamentals": {
+    "threeVersion": 98
+  },
   "dependencies": {},
   "devDependencies": {
     "eslint-plugin-google-camelcase": "0.0.1",
