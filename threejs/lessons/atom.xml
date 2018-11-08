@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-09-06T08:51:39Z</updated>
+    <updated>2018-11-08T13:09:18Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -12,11 +12,23 @@
     <subtitle>Learn Three.js</subtitle>
     <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
     <entry>
+        <title type="html"><![CDATA[Three.js Loading a .OBJ File]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html">
+        </link>
+        <updated>2018-11-08T13:09:18Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-11-08T13:09:18Z</published>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Three.js Cameras]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html">
         </link>
-        <updated>2018-09-06T08:51:39Z</updated>
+        <updated>2018-11-08T11:59:16Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -40,7 +52,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-lights.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-lights.html">
         </link>
-        <updated>2018-10-01T05:07:37Z</updated>
+        <updated>2018-11-08T11:59:16Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -88,7 +100,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-textures.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-textures.html">
         </link>
-        <updated>2018-09-02T04:50:25Z</updated>
+        <updated>2018-11-08T11:59:16Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -96,52 +108,52 @@
         <published>2018-08-02T10:33:57Z</published>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Three.js Fog]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fog.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fog.html">
-        </link>
-        <updated>2018-09-05T06:52:52Z</updated>
-        <author>
-            <name>threejsfundamenals contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2018-07-31T05:14:50Z</published>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Three.js Materials]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-materials.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html">
         </link>
-        <updated>2018-09-02T04:48:39Z</updated>
+        <updated>2018-11-08T11:59:16Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-31T05:10:14Z</published>
+        <published>2018-08-01T03:14:32Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js Fog]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fog.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fog.html">
+        </link>
+        <updated>2018-11-08T11:59:16Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-08-01T03:14:32Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Primitives]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html">
         </link>
-        <updated>2018-09-05T06:52:52Z</updated>
+        <updated>2018-11-08T11:59:16Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-28T02:30:36Z</published>
+        <published>2018-08-01T03:14:32Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html">
         </link>
-        <updated>2018-07-28T02:30:36Z</updated>
+        <updated>2018-08-01T03:14:32Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-28T02:30:36Z</published>
+        <published>2018-08-01T03:14:32Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Scenegraph]]></title>
@@ -153,7 +165,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-28T02:30:36Z</published>
+        <published>2018-08-01T03:14:32Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Fundamentals]]></title>
@@ -165,6 +177,6 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-07-28T02:30:36Z</published>
+        <published>2018-08-01T03:14:32Z</published>
     </entry>
 </feed>

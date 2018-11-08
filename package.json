@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Some Three.js Tutorials",
   "main": "index.js",
+  "threejsfundamentals": {
+    "threeVersion": 98
+  },
   "dependencies": {},
   "devDependencies": {
     "eslint-plugin-google-camelcase": "0.0.1",
@@ -29,12 +32,14 @@
     "moment": "^2.22.2",
     "mout": "^0.9.1",
     "promise": "^7.0.3",
+    "semver": "^5.6.0",
     "sitemap": "git://github.com/greggman/sitemap.js.git#multiple-langs",
     "taffydb": "^2.7.3"
   },
   "scripts": {
     "build": "grunt",
     "start": "http-server out",
+    "bumpthree": "grunt bumpthree",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

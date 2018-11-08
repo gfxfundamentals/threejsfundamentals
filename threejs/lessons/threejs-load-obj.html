@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-load-obj.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Loading a .OBJ File" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="Loading a .OBJ File" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Loading a .OBJ File" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html" />
+<meta name="twitter:description" content="Loading a .OBJ File" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Loading a .OBJ File</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-load-obj.html" selected>English</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Loading a .OBJ File</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>One of the most common things people want to do with three.js
+is to load and display 3D models. A common format is the .OBJ
+3D format so let&#39;s try loading one.</p>
+<p>Searching the net I found <a href="https://www.blendswap.com/blends/view/69174">this CC-BY-NC 3.0 windmill 3D model</a> by <a href="https://www.blendswap.com/user/ahedov">ahedov</a>.</p>
+<div class="threejs_center"><img src="resources/images/windmill-obj.jpg"></div>
+
+<p>I downloaded the .blend file from that site, loaded it into <a href="https://blender.org">Blender</a>
+and exported it as an .OBJ file.</p>
+<div class="threejs_center"><img style="width: 827px;" src="resources/images/windmill-export-as-obj.jpg"></div>
+
+<p>I used these export options</p>
+<div class="threejs_center"><img style="width: 239px;" src="resources/images/windmill-export-options.jpg"></div>
+
+<p>Let&#39;s try to display it!</p>
+<p>I started with the directional lighting example from 
+<a href="threejs-lights.html">the lights article</a> and I combined it with
+the hemispherical lighting example so I ended up with one
+<code>HemisphereLight</code> and one <code>DirectionalLight</code>. I also removed all the GUI stuff
+related to adjusting the lights. I also removed the cube and sphere
+that were being added to the scene.</p>
+<p>From that the first thing we need to do is include the <code>THREE.OBJLoader2</code> loader in our scene. The <code>THREE.OBJLoader2</code> also needs the <code>LoadingSupport.js</code> file so let&#39;s add both.</p>
+<pre><code>&lt;script src=&quot;resources/threejs/r98/js/loaders/LoadingSupport.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r98/js/loaders/OBJLoader2.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>Then to load the .OBJ file we create an instance of <code>THREE.OBJLoader2</code>,
+pass it the URL of our .OBJ file, and pass in a callback that adds
+the loaded model to our scene.</p>
+<pre><code>{
+  const objLoader = new THREE.OBJLoader2();
+  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
+    const root = event.detail.loaderRootNode;
+    scene.add(root);
+  });
+}
+</code></pre><p>If we run that what happens?</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-no-materials.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-no-materials.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Well it&#39;s close but we&#39;re getting errors about materials since we haven&#39;t
+given the scene any matrials and .OBJ files don&#39;t have material
+parameters. </p>
+<p>The .OBJ loader can be passed an
+object of name / material pairs. When it loads the .OBJ file,
+any material name it finds it will look for the corresponding material
+in the map of materials set on the loader. If it finds a
+material that matches by name it will use that material. If
+not it will use the loader&#39;s default material.</p>
+<p>Sometimes .OBJ files come with a .MTL file that defines
+materials. In our case the exporter also created a .MTL file.
+.MTL format is plain ASCII so it&#39;s easy to look at. Looking at it here</p>
+<pre><code># Blender MTL File: &#39;windmill_001.blend&#39;
+# Material Count: 2
+
+newmtl Material
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd windmill_001_lopatky_COL.jpg
+map_Bump windmill_001_lopatky_NOR.jpg
+
+newmtl windmill
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
+map_Kd windmill_001_base_COL.jpg
+map_Bump windmill_001_base_NOR.jpg
+map_Ns windmill_001_base_SPEC.jpg
+</code></pre><p>We can see there are 2 materials referencing 5 jpg textures
+but where are the texture files?</p>
+<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files.png"></div>
+
+<p>All we got was a .OBJ and an .MTL file.</p>
+<p>At least for this model it turns out the textures are embedded
+in the .blend file we downloaded. We can ask blender to
+export those files to by picking <strong>File-&gt;External Data-&gt;Unpack All Into Files</strong></p>
+<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-export-textures.jpg"></div>
+
+<p>and then chosing <strong>Write Files to Current Directory</strong></p>
+<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-overwrite.jpg"></div>
+
+<p>This ends up writing the files with the .blend file in a folder
+called <strong>textures</strong>.</p>
+<div class="threejs_center"><img style="width: 758px;" src="resources/images/windmill-exported-texture-files.png"></div>
+
+<p>I copied those textures into the same folder I exported the .OBJ
+file too.</p>
+<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
+
+<p>Now that we have the textures available we can load the .MTL file.</p>
+<p>First we need to include the <code>MTLLoader</code></p>
+<pre><code>&lt;script src=&quot;resources/threejs/r98/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r98/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r98/js/loaders/LoaderSupport.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r98/js/loaders/OBJLoader2.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r98/js/loaders/MTLLoader.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>Then we first load the .MTL file. When it&#39;s finished loading we set the just loaded materials on to the OBJLoader2 itself and then load the .OBJ file.</p>
+<pre><code>{
++  const objLoader = new THREE.OBJLoader2();
++  objLoader.loadMtl(&#39;resources/models/windmill/windmill.mtl&#39;, null, (materials) =&gt; {
++    objLoader.setMaterials(materials);
+    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
+      const root = event.detail.loaderRootNode;
+      scene.add(root);
+    });
++  });
+}
+</code></pre><p>And if we try that...</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>The last thing I wanted to show is spinning the windmill. Unfortunately, .OBJ files have no hirerarchy. That means all parts of the
+windmill are basically considered 1 single mesh. You can&#39;t spin the blades of the mill as they aren&#39;t separated from the rest of the building.</p>
+<p>This is one of the main reasons why .OBJ is not really a good format. If I was to guess, the reason it&#39;s more common than other formats
+is because it&#39;s simple and doesn&#39;t support many features it works more often than not. Especially if you&#39;re making something still like
+an architectural image and there&#39;s no need to animate anything it&#39;s not a bad way to get static props into a scene.</p>
+<p>Next up we&#39;ll try loading a gLTF scene. The gLTF format supports many more features.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-load-obj.html" selected>English</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Loading a .OBJ File';
+            var disqus_title = 'Three.js Loading a .OBJ File';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
