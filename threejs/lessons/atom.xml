@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2018-11-10T04:01:29Z</updated>
+    <updated>2018-11-19T09:19:04Z</updated>
     <generator>Feed for Node.js</generator>
     <author>
         <name>threejsfundamenals contributors</name>
@@ -11,6 +11,18 @@
     <link rel="alternate" href="http://threejsfundamentals.org/"/>
     <subtitle>Learn Three.js</subtitle>
     <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Three.js Loading a .GLTF File]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html">
+        </link>
+        <updated>2018-11-19T09:19:04Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-11-19T09:19:04Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Loading a .OBJ File]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html</id>
@@ -108,30 +120,6 @@
         <published>2018-08-02T10:33:57Z</published>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Three.js Materials]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/threejs-materials.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html">
-        </link>
-        <updated>2018-11-08T11:59:16Z</updated>
-        <author>
-            <name>threejsfundamenals contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2018-08-01T03:14:56Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Three.js Fog]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fog.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fog.html">
-        </link>
-        <updated>2018-11-08T11:59:16Z</updated>
-        <author>
-            <name>threejsfundamenals contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2018-08-01T03:14:56Z</published>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Three.js Primitives]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-primitives.html">
@@ -141,19 +129,19 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-08-01T03:14:56Z</published>
+        <published>2018-08-01T03:15:10Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html">
         </link>
-        <updated>2018-08-01T03:14:56Z</updated>
+        <updated>2018-08-01T03:15:10Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-08-01T03:14:56Z</published>
+        <published>2018-08-01T03:15:10Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Scenegraph]]></title>
@@ -165,7 +153,19 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-08-01T03:14:56Z</published>
+        <published>2018-08-01T03:15:10Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js Fog]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-fog.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fog.html">
+        </link>
+        <updated>2018-11-08T11:59:16Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-08-01T03:15:10Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Fundamentals]]></title>
@@ -177,6 +177,18 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-08-01T03:14:56Z</published>
+        <published>2018-08-01T03:15:10Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js Materials]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/threejs-materials.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/threejs-materials.html">
+        </link>
+        <updated>2018-11-08T11:59:16Z</updated>
+        <author>
+            <name>threejsfundamenals contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2018-08-01T03:15:10Z</published>
     </entry>
 </feed>
