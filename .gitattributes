@@ -12,4 +12,7 @@
 *.bin binary
 *.dds binary
 *.wasm binary
+*.tga binary
+*.glb binary
+*.bin binary
 
