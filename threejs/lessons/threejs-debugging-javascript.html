@@ -459,14 +459,15 @@ our question is about moving things on a path we could just use
 cubes on the path instead of loaded car models.</p>
 <p>Here&#39;s a more minimal example taking all the above into account. It
 shrunk from 271 lines to 135. We might consider shrinking it even
-more by simplifying our path.</p>
+more by simplifying our path. Maybe a path with 3 or 4 points would
+work just as well as our path with 21 points.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debugging-mcve.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-debugging-mcve.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>I keep the <code>OrbitController</code> just because it&#39;s useful for others
+<p>I kept the <code>OrbitController</code> just because it&#39;s useful for others
 to move the camera and figure out what&#39;s going on but depending
 on your issue you might be able to remove that as well.</p>
 <p>The best thing about making an MCVE is we&#39;ll often solve our own
@@ -477,6 +478,13 @@ often than not leads us to our bug.</p>
 asking to look at your code on Stack Overflow. By making the minimal
 example you make it much easier for them to help you. You&#39;ll also
 learn in the process.</p>
+<p>Also important, when you go to Stack Overflow to post your question
+<strong>put your code <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">in a snippet</a>*. Of course you are welcome to use
+JSFiddle or Codepen or similar site to test out your MCVE but
+once you actually get to posting your question on Stack Overflow
+you&#39;re required to put the code </strong>in the question itself*.</p>
+<p>Follow these suggestions and your far more likely to get help
+with your issue.</p>
 <h2 id="put-something-in-front-of-the-camera">Put something in front of the camera</h2>
 <p>This is just another wasy of saying if all else fails start with
 something that works and then slowly add stuff back in. If you get
@@ -507,7 +515,8 @@ over <a href="threejs-debugging-glsl.html">some tips for debugging GLSL</a>.</p>
   <li>Solutions</li>
   <ul>
     <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
-    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Multiple Canvases, Multiple Scenes</a></li>    
   </ul>
   <li>Tips</li>
   <ul>

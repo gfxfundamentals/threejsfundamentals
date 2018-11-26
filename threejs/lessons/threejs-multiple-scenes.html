@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-multiple-scenes.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Multiple Canvases Multiple Scenes" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to draw stuff all over the page with THREE.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-multiple-scenes.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Multiple Canvases Multiple Scenes" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-multiple-scenes.html" />
+<meta name="twitter:description" content="How to draw stuff all over the page with THREE.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Multiple Canvases Multiple Scenes</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-multiple-scenes.html" selected>English</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Multiple Canvases Multiple Scenes</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>A common question is how to use THREE.js with multiple canvases.
+Let&#39;s say you want to make an e-commerce site or you want to make
+a page with lots of 3D diagrams. At first glance it appears easy.
+Just make a canvas every where you want a diagram. For each canvas
+make a <code>Renderer</code>.</p>
+<p>You&#39;ll quickly find though that you run into problems.</p>
+<ol>
+<li><p>The browser limits how many WebGL contexts you can have.</p>
+<p>Typically that limit is around 8 of them. As soon as you create
+the 9th context the oldest one will be lost.</p>
+</li>
+<li><p>WebGL resources can not be shared across contexts</p>
+<p>That means if you want to load a 10 meg model into 2 canvases
+and that model uses 20 meg of textures your 10 meg model will
+have to be loaded twice and your textures will also be loaded
+twice. Nothing can be shared across contexts. This also
+means things have to be intialized twice, shaders compiled twice,
+etc. It gets worse as there are more canvases.</p>
+</li>
+</ol>
+<p>So what&#39;s the solution?</p>
+<p>The solution is one canvas that fills the viewport in the background and some other element to represent each &quot;virtual&quot; canvas. We make a single <code>Renderer</code> and then one <code>Scene</code> for each virtual canvas. We&#39;ll then check the positions of the virtual canvas elements and if they are on the screen we&#39;ll tell THREE.js to draw their scene at the correct place.</p>
+<p>With this solution there is only 1 canvas so we solve both problem 1
+and 2 above. We won&#39;t run into the WebGL context limit because we
+will only be using one context. We also won&#39;t run into the sharing
+issues for the same reasons.</p>
+<p>Let&#39;s start with a simple example with just 2 scenes. First we&#39;ll
+make the HTML</p>
+<pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;p&gt;
+  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
+  I love boxes. Presents come in boxes.
+  When I find a new box I&#39;m always excited to find out what&#39;s inside.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span id=&quot;pyramid&quot; class=&quot;diagram right&quot;&gt;&lt;/span&gt;
+  When I was a kid I dreamed of going on an expedition inside a pyramid
+  and finding a undiscovered tomb full of mummies and treasure.
+&lt;/p&gt;
+</code></pre><p>Then we can setup the CSS maybe something like this</p>
+<pre><code>#c {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1;
+}
+.diagram {
+  display: inline-block;
+  width: 5em;
+  height: 3em;
+  border: 1px solid black;
+}
+.left {
+  float: left;
+  margin-right: .25em;
+}
+.right {
+  float: right;
+  margin-left: .25em;
+}
+</code></pre><p>We set the canvsas to fill the screen and we set its <code>z-index</code> to
+-1 to make it appear behind other elements. We also need to specify some kind of width and height for our virtual canvas elements since there is nothing inside to give them any size.</p>
+<p>Now we&#39;ll make 2 scenes each with a light and a camera.
+To one scene we&#39;ll add a cube and to another a diamond.</p>
+<pre><code>function makeScene(elem) {
+  const scene = new THREE.Scene();
+
+  const fov = 45;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 5;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.z = 2;
+  camera.position.set(0, 1, 2);
+  camera.lookAt(0, 0, 0);
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
+  }
+
+  return {scene, camera, elem};
+}
+
+function setupScene1() {
+  const sceneInfo = makeScene(document.querySelector(&#39;#box&#39;));
+  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const mesh = new THREE.Mesh(geometry, material);
+  sceneInfo.scene.add(mesh);
+  sceneInfo.mesh = mesh;
+  return sceneInfo;
+}
+
+function setupScene2() {
+  const sceneInfo = makeScene(document.querySelector(&#39;#pyramid&#39;));
+  const radius = .8;
+  const widthSegments = 4;
+  const heightSegments = 2;
+  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const material = new THREE.MeshPhongMaterial({
+    color: &#39;blue&#39;,
+    flatShading: true,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  sceneInfo.scene.add(mesh);
+  sceneInfo.mesh = mesh;
+  return sceneInfo;
+}
+
+const sceneInfo1 = setupScene1();
+const sceneInfo2 = setupScene2();
+</code></pre><p>And then we&#39;ll make a function to render each scene
+only if the element is on the screen. We can tell THREE.js
+to only render to part of the canvas by turning on the <em>scissor</em>
+test with <code>Renderer.setScissorTest</code> and then setting both the scissor and the viewport with <code>Renderer.setViewport</code> and <code>Renderer.setScissor</code>.</p>
+<pre><code>function rendenerSceneInfo(sceneInfo) {
+  const {scene, camera, elem} = sceneInfo;
+
+  // get the viewport relative position opf this element
+  const {left, right, top, bottom, width, height} =
+      elem.getBoundingClientRect();
+
+  const isOffscreen =
+      bottom &lt; 0 ||
+      top &gt; renderer.domElement.clientHeight ||
+      right &lt; 0 ||
+      left &gt; renderer.domElement.clientWidth;
+
+  if (isOffscreen) {
+    return;
+  }
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setViewport(left, top, width, height);
+  renderer.setScissor(left, top, width, height);
+
+  renderer.render(scene, camera);
+}
+</code></pre><p>And then our render function will just first clear the screen
+and then render each scene.</p>
+<pre><code>function render(time) {
+  time *= 0.001;
+
+  resizeRendererToDisplaySize(renderer);
+
+  renderer.setScissorTest(false);
+  renderer.clear(true, true);
+  renderer.setScissorTest(true);
+
+  sceneInfo1.mesh.rotation.y = time * .1;
+  sceneInfo2.mesh.rotation.y = time * .1;
+
+  rendenerSceneInfo(sceneInfo1);
+  rendenerSceneInfo(sceneInfo2);
+
+  requestAnimationFrame(render);
+}
+</code></pre><p>And here it is</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-v1.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-v1.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>You can see where the first <code>&lt;span&gt;</code> is there&#39;s a red cube and where the second <code>span</code> is there&#39;s a blue diamond.</p>
+<h2 id="syncing-up">Syncing up</h2>
+<p>The code above works but there is one minor issue.
+If your scenes are complicated or if for whatever reason
+it takes too long to render, the position of the scenes
+drawn into the canvas will lag behind the rest of the page.</p>
+<p>If we give each area a border </p>
+<pre><code>.diagram {
+  display: inline-block;
+  width: 5em;
+  height: 3em;
++  border: 1px solid black;
+}
+</code></pre><p>And we set the background of each scene</p>
+<pre><code>const scene = new THREE.Scene();
++scene.background = new THREE.Color(&#39;red&#39;);
+</code></pre><p>And if we <a href="../threejs-multiple-scenes-v2.html" target="_blank">quickly scroll up and down</a> we&#39;ll see the issue. Here&#39;s a animation of scrolling slowed down by 10x.</p>
+<div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
+
+<p>We can switch to a different method which has a different tradeoff. We&#39;ll switch the canvas&#39;s CSS from <code>position: fixed</code> to <code>position: absolute</code>. </p>
+<pre><code>#c {
+-  position: fixed;
++  position: absolute;
+</code></pre><p>Then we&#39;ll set the canvas&#39;s transform to move it so
+the top of the canvas is at the top of whatever part
+the page is currently scrolled to.</p>
+<pre><code>function render(time) {
+  ...
+
+  const transform = `translateY(${window.scrollY}px)`;
+  renderer.domElement.style.transform = transform;
+</code></pre><p><code>position: fixed</code> kept the canvas from scrolling at all
+while the rest of the page scrolled over it. <code>position: absolute</code> will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we&#39;re too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but <a href="../threejs-multiple-scenes-v2.html" target="_blank">the stuff in the middle of the page should match up</a> and not slide. Here&#39;s a view of the results of the new method slowed down 10x.</p>
+<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
+
+<h2 id="making-it-more-generic">Making it more Generic</h2>
+<p>Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.</p>
+<p>We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.</p>
+<p>Here&#39;s the main render function</p>
+<pre><code>const sceneElements = [];
+function addScene(elem, fn) {
+  sceneElements.push({elem, fn});
+}
+
+function render(time) {
+  time *= 0.001;
+
+  resizeRendererToDisplaySize(renderer);
+
+  renderer.setScissorTest(false);
+  renderer.setClearColor(clearColor, 0);
+  renderer.clear(true, true);
+  renderer.setScissorTest(true);
+
+  const transform = `translateY(${window.scrollY}px)`;
+  renderer.domElement.style.transform = transform;
+
+  for (const {elem, fn} of sceneElements) {
+    // get the viewport relative position opf this element
+    const rect = elem.getBoundingClientRect();
+    const {left, right, top, bottom, width, height} = rect;
+
+    const isOffscreen =
+        bottom &lt; 0 ||
+        top &gt; renderer.domElement.clientHeight ||
+        right &lt; 0 ||
+        left &gt; renderer.domElement.clientWidth;
+
+    if (!isOffscreen) {
+      renderer.setViewport(left, top, width, height);
+      renderer.setScissor(left, top, width, height);
+
+      fn(time, rect);
+    }
+  }
+
+  requestAnimationFrame(render);
+}
+</code></pre><p>You can see it loops over <code>sceneElements</code> which it expects is an array of objects each of which have an <code>elem</code> and <code>fn</code> property.</p>
+<p>It checks if the element is on screen. If it is it calls <code>fn</code> and passes it the current time and its rectangle.</p>
+<p>Now the setup code for each scene just adds itself to the list of scenes</p>
+<pre><code>{
+  const elem = document.querySelector(&#39;#box&#39;);
+  const {scene, camera} = makeScene();
+  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+  addScene(elem, (time, rect) =&gt; {
+    camera.aspect = rect.width / rect.height;
+    camera.updateProjectionMatrix();
+    mesh.rotation.y = time * .1;
+    renderer.render(scene, camera);
+  });
+}
+
+{
+  const elem = document.querySelector(&#39;#pyramid&#39;);
+  const {scene, camera} = makeScene();
+  const radius = .8;
+  const widthSegments = 4;
+  const heightSegments = 2;
+  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const material = new THREE.MeshPhongMaterial({
+    color: &#39;blue&#39;,
+    flatShading: true,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+  addScene(elem, (time, rect) =&gt; {
+    camera.aspect = rect.width / rect.height;
+    camera.updateProjectionMatrix();
+    mesh.rotation.y = time * .1;
+    renderer.render(scene, camera);
+  });
+}
+</code></pre><p>With that we no longer needed <code>sceneInfo1</code> and <code>sceneInfo2</code> and the code that was rotating the meshes is now specific to each scene.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-generic.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-generic.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<h2 id="using-html-dataset">Using HTML Dataset</h2>
+<p>One last even more generic thing we can do is use HTML <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset</a>. This is a way to add your own data to an HTML element. Instead of using <code>id=&quot;...&quot;</code> we&#39;ll use <code>data-diagram=&quot;...&quot;</code> like this</p>
+<pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;p&gt;
+-  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
++  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
+  I love boxes. Presents come in boxes.
+  When I find a new box I&#39;m always excited to find out what&#39;s inside.
+&lt;/p&gt;
+&lt;p&gt;
+-  &lt;span id=&quot;pyramid&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
++  &lt;span data-diagram=&quot;pyramid&quot; class=&quot;right&quot;&gt;&lt;/span&gt;
+  When I was a kid I dreamed of going on an expedition inside a pyramid
+  and finding a undiscovered tomb full of mummies and treasure.
+&lt;/p&gt;
+</code></pre><p>We can them change the CSS selector to select for that</p>
+<pre><code>-.diagram
++*[data-diagram] {
+  display: inline-block;
+  width: 5em;
+  height: 3em;
+}
+</code></pre><p>We&#39;ll change the scene setup code to just be a map of names to <em>scene initialization functions</em> that return a <em>scene render function</em>.</p>
+<pre><code>const sceneInitFunctionsByName = {
+  &#39;box&#39;: () =&gt; {
+    const {scene, camera} = makeScene();
+    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;      camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    };
+  },
+  &#39;pyramid&#39;: () =&gt; {
+    const {scene, camera} = makeScene();
+    const radius = .8;
+    const widthSegments = 4;
+    const heightSegments = 2;
+    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const material = new THREE.MeshPhongMaterial({
+      color: &#39;blue&#39;,
+      flatShading: true,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    };
+  },
+};
+</code></pre><p>And to init we can just use <code>querySelectorAll</code> to find all the diagrams and call the corresponding init function for that diagram. </p>
+<pre><code>document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+  const sceneName = elem.dataset.diagram;
+  const sceneInitFunction = sceneInitFunctionsByName[sceneName];
+  const sceneRenderFunction = sceneInitFunction(elem);
+  addScene(elem, sceneRenderFunction());
+});
+</code></pre><p>No change to the visuals but the code is even more generic.</p>
+<p></p>
+<h2 id="adding-controls-to-each-element">Adding Controls to each element</h2>
+<p>Adding interactively, for example a <code>TrackballControls</code> is just as easy. First we add the script for the control.</p>
+<pre><code>&lt;script src=&quot;resources/threejs/r98/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>And then we can add a <code>TrackballControls</code> to each scene passing in the element associated with that scene.</p>
+<pre><code>-function makeScene() {
++function makeScene(elem) {
+  const scene = new THREE.Scene();
+
+  const fov = 45;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 5;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.set(0, 1, 2);
+  camera.lookAt(0, 0, 0);
++  scene.add(camera);
+
++  const controls = new THREE.TrackballControls(camera, elem);
++  controls.noZoom = true;
++  controls.noPan = true;
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+-    scene.add(light);
++    camera.add(light);
+  }
+
+-  return {scene, camera};
++ return {scene, camera, controls};
+}
+</code></pre><p>You&#39;ll notice we added the camera to the scene and the light to the camera. This makes the light relative to the camera. Since the <code>TrackballControls</code> are moving the camera this is probably what we want. It keeps the light shining on the side of the object we are looking at.</p>
+<p>We need up update those controls in our render functions</p>
+<pre><code>const sceneInitFunctionsByName = {
+- &#39;box&#39;: () =&gt; {
+-    const {scene, camera} = makeScene();
++ &#39;box&#39;: (elem) =&gt; {
++    const {scene, camera, controls} = makeScene(elem);
+    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
++      controls.handleResize();
++      controls.update();
+      renderer.render(scene, camera);
+    };
+  },
+-  &#39;pyramid&#39;: () =&gt; {
+-    const {scene, camera} = makeScene();
++  &#39;pyramid&#39;: (elem) =&gt; {
++    const {scene, camera, controls} = makeScene(elem);
+    const radius = .8;
+    const widthSegments = 4;
+    const heightSegments = 2;
+    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const material = new THREE.MeshPhongMaterial({
+      color: &#39;blue&#39;,
+      flatShading: true,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
++      controls.handleResize();
++      controls.update();
+      renderer.render(scene, camera);
+    };
+  },
+};
+</code></pre><p>And now if you drag the objects they&#39;ll rotate.</p>
+<p></p>
+<p>These techniques are used on this site itself. In particular <a href="threejs-primitives.html">the article about primitives</a> and <a href="threejs-materials.html">the article about materials</a> use this technique to add the various examples throughout the article.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-multiple-scenes.html" selected>English</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Multiple Canvases, Multiple Scenes</a></li>    
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Multiple Canvases Multiple Scenes';
+            var disqus_title = 'Three.js Multiple Canvases Multiple Scenes';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
