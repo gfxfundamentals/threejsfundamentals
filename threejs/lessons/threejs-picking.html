@@ -106,6 +106,9 @@ const scene = new THREE.Scene();
 +cameraPole.add(camera);
 </code></pre><p>and in the <code>render</code> function we&#39;ll spin the camera pole.</p>
 <pre><code>cameraPole.rotation.y = time * .1;
+</code></pre><p>Also let&#39;s put the light on the camera so the light moves with it.</p>
+<pre><code>-scene.add(light);
++camera.add(light);
 </code></pre><p>Let&#39;s generate 100 cubes with random colors in random positions, orientations,
 and scales.</p>
 <pre><code>const boxWidth = 1;
@@ -431,6 +434,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
   <ul>
     <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
     <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
   </ul>
   <li>Solutions</li>
@@ -457,7 +461,6 @@ for (let i = 0; i &lt; numObjects; ++i) {
   </ul>
   <li>Reference</li>
   <ul>
-    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
     <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
   </ul>
 </ul>

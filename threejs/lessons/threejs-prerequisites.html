@@ -119,7 +119,7 @@ at the bottom of the page.</p>
 </code></pre><p>outdated</p>
 <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 </code></pre><h2 id="always-use-strict-mode">Always use <code>strict</code> mode</h2>
-<p>Put <code>&#39;use strict&#39;;</code> at the top of every JavaScript file.</p>
+<p>Put <code>&#39;use strict&#39;;</code> at the top of every JavaScript file. It will help prevent lots of bugs.</p>
 <h2 id="know-how-closures-work">Know how closures work</h2>
 <pre><code>function a(v) {
   const foo = v;
@@ -157,7 +157,7 @@ tell JavaScript that by binding it to the function.</p>
 <h3 id="-var-is-deprecated-use-const-and-or-let-"><code>var</code> is deprecated. Use <code>const</code> and/or <code>let</code></h3>
 <p>There is no reason to use <code>var</code> <strong>EVER</strong> and at this point it&#39;s considered bad practice
 to use it at all. Use <code>const</code> if the variable will never be reassigned which is most of
-the time. Use <code>let</code> in those cases where the value changes.</p>
+the time. Use <code>let</code> in those cases where the value changes. This will help avoid tons of bugs.</p>
 <h3 id="use-for-elem-of-collection-never-for-elem-in-collection-">Use <code>for(elem of collection)</code> never <code>for(elem in collection)</code></h3>
 <p><code>for of</code> is new, <code>for in</code> is old. <code>for in</code> had issues that are solved by <code>for of</code></p>
 <p>As one example you can iterate over all the key/value pairs of an object with</p>
@@ -254,12 +254,30 @@ const rgbCSSColor = `rgb(${color.join(&#39;,&#39;)})`;
 <pre><code>const aWidth = 10;
 const bWidth = 20;
 someElement.style.width = `${aWidth + bWidth}px`;
-</code></pre><h1 id="consider-using-visual-studio-code">Consider using Visual Studio Code</h1>
+</code></pre><h1 id="learn-javascript-coding-convensions-">Learn JavaScript coding convensions.</h1>
+<p>While you&#39;re welcome to format your code any way you chose there is at least one convension you should be aware of. Variables, function names, method names, in JavaScript are all lowercasedCamelCase. Constructors, the names of classes are CapitalizedCamelCase. If you follow this rule you code will match most other JavaScript.</p>
+<h1 id="consider-using-visual-studio-code">Consider using Visual Studio Code</h1>
 <p>Of course use whatever editor you want but if you haven&#39;t tried it consider using <a href="https://code.visualstudio.com/">Visual Studio Code</a>
 for JavaScript and after installing it <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">setup eslint</a>.
 It might take a few minutes to setup but it will help you immensely with finding bugs in your JavaScript.</p>
-<p>As a simple example if you enable <a href="https://eslint.org/docs/rules/no-undef">the <code>no-undef</code> rule</a> then VSCode via ESLint will
-warn you of many undefined variables. You&#39;ll get warnings using <code>THREE</code> so add <code>/* global THREE */</code> at the top of your JavaScript files.</p>
+<p>Some examples</p>
+<p>If you enable <a href="https://eslint.org/docs/rules/no-undef">the <code>no-undef</code> rule</a> then VSCode via ESLint will warn you of many undefined variables. </p>
+<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+
+<p>Above you can see I mis-spelled <code>doTheThing</code> as <code>doThing</code>. There&#39;s a red squigle under <code>doThing</code> and hovering over it it tells me it&#39;s undefined. One error avoided.</p>
+<p>You&#39;ll get warnings using <code>THREE</code> so add <code>/* global THREE */</code> at the top of your JavaScript files to tell eslint that <code>THREE</code> exists.</p>
+<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+
+<p>Above you can see eslint knows the rule that <code>UpperCaseNames</code> are constructors and so you should be using <code>new</code>. Another error caught and avoided. This is <a href="https://eslint.org/docs/rules/new-cap">the <code>new-cap</code> rule</a>.</p>
+<p>There are <a href="https://eslint.org/docs/rules/">100s of rules you can turn on or off or customize</a>. For example above I mentioned you should use <code>const</code> and <code>let</code> over <code>var</code>.</p>
+<p>Here I used <code>var</code> and it warned me I should use <code>let</code> or <code>const</code></p>
+<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+
+<p>Here I used <code>let</code> but it saw I never change the value so it suggested I use <code>const</code>.</p>
+<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+
+<p>Of course if you&#39;d prefer to keep using <code>var</code> you can just turn off that rule. As I said above though I prefer to use <code>const</code> and <code>let</code> over <code>var</code> as they just work better and prevent bugs.</p>
+<p>For those cases where you really need to override a rule <a href="https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments">you can add comments to disable them</a> for a single line or a section of code.</p>
 <h1 id="if-you-really-need-to-support-legacy-browsers-use-a-transpiler">If you really need to support legacy browsers use a transpiler</h1>
 <p>Most modern browsers are auto-updated so using all these features will help you 
 be productive and avoid bugs. That said, if you&#39;re on a project that absolutely
@@ -279,6 +297,7 @@ and transpile the code back to pre ES5 Javascript</a>.</p>
   <ul>
     <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
     <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
     <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
   </ul>
   <li>Solutions</li>
@@ -305,7 +324,6 @@ and transpile the code back to pre ES5 Javascript</a>.</p>
   </ul>
   <li>Reference</li>
   <ul>
-    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
     <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
   </ul>
 </ul>
