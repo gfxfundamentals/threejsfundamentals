@@ -167,7 +167,7 @@ scene.add(cube);
 
 </p>
 <p>The cube is red because we set the <code>background</code> of the <code>rtScene</code> to red so the render target&#39;s texture is being cleared to red.</p>
-<p>Render target are used for all kinds of things. Shadows use a render target. <a href="threejs-picking.html">Picking can use a render target</a>. Various kinds of <a href="threejs-post-processing.html">post processing effects</a> require a render target.</p>
+<p>Render target are used for all kinds of things. Shadows use a render target. <a href="threejs-picking.html">Picking can use a render target</a>. Various kinds of <a href="threejs-post-processing.html">post processing effects</a> require a render target. Rendering a rear view mirror in a car or a live view on a monitor inside a 3D scene might use a render target.</p>
 <p>A few notes about using <code>WebGLRenderTarget</code>.</p>
 <ul>
 <li><p>By default <code>WebGLRenderTarget</code> creates 2 textures. A color texture and a depth/stencil texture. If you don&#39;t need the depth or stencil textures you can request it not create them by passing in options. Example:</p>
