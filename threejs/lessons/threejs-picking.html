@@ -286,8 +286,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
 <p>To do GPU picking we render each object in a unique color offscreen. We then look up the color of the pixel corresponding to the mouse position. The color tells us which object was picked.</p>
 <p>This can solve issue 2 and 3 above. As for issue 1, speed, it really depends. Every object has to be drawn twice. Once to draw it for viewing and again to draw it for picking. It&#39;s possible with fancier solutions maybe both of those could be done at the same time but we&#39;re not going to try that.</p>
 <p>One thing we can do though is since we&#39;re only going to be reading one pixel we can just setup the camera so only that one pixel is drawn. We can do this using <code>PerspectiveCamera.setViewOffset</code> which lets us tell THREE.js to compute a camera that just renders a smaller part of a larger rectangle. This should save some time.</p>
-<p>To do this type of picking in THREE.js at the moment requires we create 2 scenes. One we will fill with our normal meshes. The other we&#39;ll fill with meshes
-that use our picking material.</p>
+<p>To do this type of picking in THREE.js at the moment requires we create 2 scenes. One we will fill with our normal meshes. The other we&#39;ll fill with meshes that use our picking material.</p>
 <p>So, first create a second scene and make sure it clears to black.</p>
 <pre><code>const scene = new THREE.Scene();
 scene.background = new THREE.Color(&#39;white&#39;);
@@ -339,7 +338,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
 +  pickPosition.x = event.clientX;
 +  pickPosition.y = event.clientY;
 }
-</code></pre><p>Then let&#39;s change the <code>PickHelper</code> into a <code>GPUPickHelper</code></p>
+</code></pre><p>Then let&#39;s change the <code>PickHelper</code> into a <code>GPUPickHelper</code>. It will use a <code>WebGLRenderTarget</code> like we covered the <a href="threejs-rendertargets.html">article on render targets</a>. Our render target here is only a single pixel in size, 1x1. </p>
 <pre><code>-class PickHelper {
 +class GPUPickHelper {
   constructor() {
@@ -458,6 +457,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
     <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
     <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
     <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
   </ul>
   <li>Reference</li>
   <ul>

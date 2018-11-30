@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/threejs-setup.md. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/threejs-rendertargets.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -36,23 +36,23 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Setup" />
+<meta property="og:title" content="Three.js Render Targets" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to setup your development environment for three.js" />
-<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-setup.html" />
+<meta property="og:description" content="How to render to a texture." />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-rendertargets.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Setup" />
-<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-setup.html" />
-<meta name="twitter:description" content="How to setup your development environment for three.js" />
+<meta name="twitter:title" content="Three.js Render Targets" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-rendertargets.html" />
+<meta name="twitter:description" content="How to render to a texture." />
 <meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
 
-<title>Three.js Setup</title>
+<title>Three.js Render Targets</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
 <link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
@@ -62,7 +62,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-setup.html" selected>English</a>
+    <option value="/threejs/lessons/threejs-rendertargets.html" selected>English</a>
 </select>
 
 
@@ -76,56 +76,127 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Setup</h1>
+    <h1>Three.js Render Targets</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>This article is one in a series of articles about three.js.
-The first article was <a href="threejs-fundamentals.html">about three.js fundamentals</a>.
-If you haven&#39;t read that yet you might want to start there.</p>
-<p>Before we go any further we need to talk about setting up your
-computer to do developement. In particular, for security reasons,
-WebGL can not use images from your hard drive directly. That means
-in order to do development you need to use a web server. Fortunately
-development webservers are super easy to setup and use.</p>
-<p>First off if you&#39;d like you can download this entire site from <a href="https://github.com/greggman/threejsfundamentals/archive/gh-pages.zip">this link</a>.
-Once downloaded double click the zip file to unpack the files.</p>
-<p>Next download one of these simple web servers</p>
-<p>If you&#39;d prefer a web server with a user interface there&#39;s 
-<a href="https://greggman.github.io/servez">Servez</a></p>
-<p><div class="threejs_image border">
-  <img class="" src="/threejs/lessons/resources/servez.gif">
+      <p>A render target in three.js is basicaly a texture you can render to.
+After you render to it you can use that texture like any other texture.</p>
+<p>Let&#39;s make a simple example. We&#39;ll start with an example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
+<p>Rendering to a render target just almost exactly the same as normal rendering. First we create a <code>WebGLRenderTarget</code>.</p>
+<pre><code>const rtWidth = 512;
+const rtHeight = 512;
+const renderTarget = new THREE.WebGLRenderTarget(rtWidth, rtHeight);
+</code></pre><p>Then we need a <code>Camera</code> and a <code>Scene</code></p>
+<pre><code>const rtFov = 75;
+const rtAspect = rtWidth / rtHeight;
+const rtNear = 0.1;
+const rtFar = 5;
+const rtCamera = new THREE.PerspectiveCamera(rtFov, rtAspect, rtNear, rtFar);
+rtCamera.position.z = 2;
+
+const rtScene = new THREE.Scene();
+rtScene.background = new THREE.Color(&#39;red&#39;);
+</code></pre><p>Notice we set the aspect to the aspect for the render target, not the canvas.</p>
+<p>We fill the scene with stuff. In this case we&#39;re using the light and the 3 cubes <a href="threejs-responsive.html">from the previous article</a>.</p>
+<pre><code>{
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(-1, 2, 4);
+*  rtScene.add(light);
+}
+
+const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+
+function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+*  rtScene.add(cube);
+
+  cube.position.x = x;
+
+  return cube;
+}
+
+*const rtCubes = [
+  makeInstance(geometry, 0x44aa88,  0),
+  makeInstance(geometry, 0x8844aa, -2),
+  makeInstance(geometry, 0xaa8844,  2),
+];
+</code></pre><p>The <code>Scene</code> and <code>Camera</code> from previous article are still there. We&#39;ll use them to render to the canvas.
+We just need to add stuff to render.</p>
+<p>Let&#39;s add a cube that uses the render target&#39;s texture.</p>
+<pre><code>const material = new THREE.MeshPhongMaterial({
+  map: renderTarget.texture,
+});
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+</code></pre><p>Now at render time first we render the render target scene to the render target.</p>
+<pre><code>function render(time) {
+  time *= 0.001;
+
+  ...
+
+  // rotate all the cubes in the render target scene
+  rtCubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  // draw render target scene to render target
+  renderer.render(rtScene, rtCamera, renderTarget);
+</code></pre><p>Then we render the scene with the single cube that is using the render target&#39;s texture to the canvas.</p>
+<pre><code>  // rotate the cube in the scene
+  cube.rotation.x = time;
+  cube.rotation.y = time * 1.1;
+
+  // render the scene to the canvas
+  renderer.render(scene, camera);
+</code></pre><p>And voilà</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-target.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-target.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Just point it at the folder where you unzipped the files, click &quot;Start&quot;, then go to
-in your browser <a href="http://localhost:8080/"><code>http://localhost:8080/</code></a> or if you&#39;d
-like to browse the samples go to <a href="http://localhost:8080/threejs"><code>http://localhost:8080/threejs</code></a>.</p>
-<p>To stop serving pick stop or quit Servez.</p>
-<p>If you prefer the command line (I do), another way is to use <a href="https://nodejs.org">node.js</a>.
-Download it, install it, then open a command prompt / console / terminal window. If you&#39;re on Windows the installer will add a special &quot;Node Command Prompt&quot; so use that.</p>
-<p>Then install the <a href="https://github.com/indexzero/http-server"><code>http-server</code></a> by typing</p>
-<pre><code>npm -g install http-server
-</code></pre><p>If you&#39;re on OSX use</p>
-<pre><code>sudo npm -g install http-server
-</code></pre><p>Once you&#39;ve done that type</p>
-<pre><code>http-server path/to/folder/where/you/unzipped/files
-</code></pre><p>It should print something like</p>
-<p><div class="threejs_image ">
-  <img class="" src="/threejs/lessons/resources/http-server-response.png">
-</div>
+<p>The cube is red because we set the <code>background</code> of the <code>rtScene</code> to red so the render target&#39;s texture is being cleared to red.</p>
+<p>Render target are used for all kinds of things. Shadows use a render target. <a href="threejs-picking.html">Picking can use a render target</a>. Various kinds of <a href="threejs-post-processing.html">post processing effects</a> require a render target.</p>
+<p>A few notes about using <code>WebGLRenderTarget</code>.</p>
+<ul>
+<li><p>By default <code>WebGLRenderTarget</code> creates 2 textures. A color texture and a depth/stencil texture. If you don&#39;t need the depth or stencil textures you can request it not create them by passing in options. Example:</p>
+<pre><code>  const rt = new THREE.WebGLRenderTarget(width, height, {
+    depthBuffer: false,
+    stencilBuffer: false,
+  });
+</code></pre></li>
+<li><p>You might need to change the size of a render target</p>
+<p>In the example above we make a render target of a fixed size, 512x512. For things like post processing you generally need to make a render target the same size as your canvas. In our code that would mean when we change the canvas size we would also update both the render target size and the camera we&#39;re using when rendering to the render target. Example:</p>
+<pre><code>  function render(time) {
+    time *= 0.001;
 
-</p>
-<p>Then in your browser go to <a href="http://localhost:8080/"><code>http://localhost:8080/</code></a>.</p>
-<p>If you don&#39;t specify a path then http-server will serve the current folder.</p>
-<p>If either of those options are not to your liking 
-<a href="https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-http-server-or-simplehttpserver">there are many other simple servers to choose from</a>.</p>
-<p>Now that you have a server setup we can move on to <a href="threejs-textures.html">textures</a>.</p>
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+
+  +    renderTaret.setSize(canvas.width, canvas.height);
+  +    rtCamera.aspect = camera.aspect;
+  +    rtCamera.updateProjectionMatrix();
+    }
+</code></pre></li>
+</ul>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-setup.html" selected>English</a>
+    <option value="/threejs/lessons/threejs-rendertargets.html" selected>English</a>
 </select>
 
 
@@ -182,8 +253,8 @@ Download it, install it, then open a command prompt / console / terminal window.
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
-            var disqus_identifier = 'Three.js Setup';
-            var disqus_title = 'Three.js Setup';
+            var disqus_identifier = 'Three.js Render Targets';
+            var disqus_title = 'Three.js Render Targets';
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {
