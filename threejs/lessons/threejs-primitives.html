@@ -149,9 +149,8 @@ are filled in. Where as for <code>Geometry</code> you can add vertices as you go
 let&#39;s make an example creating each type of primitive. We&#39;ll start
 with the <a href="threejs-responsive.html">examples from the previous article</a>.</p>
 <p>Near the top let&#39;s set a background color</p>
-<pre><code>const canvas = document.querySelector(&#39;#c&#39;);
-const renderer = new THREE.WebGLRenderer({canvas: canvas});
-+renderer.setClearColor(0xAAAAAA);
+<pre><code>const scene = new THREE.Scene();
++scene.background = new THREE.Color(0xAAAAAA);
 </code></pre><p>This tells three.js to clear to lightish gray.</p>
 <p>The camera needs to change position so that we can see all the
 objects.</p>
