@@ -28,7 +28,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html">
         </link>
-        <updated>2018-11-30T08:41:05Z</updated>
+        <updated>2019-01-03T08:22:28Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -153,7 +153,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Fundamentals]]></title>
@@ -165,7 +165,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Prerequisites]]></title>
@@ -177,7 +177,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Primitives]]></title>
@@ -189,7 +189,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Material Feature Table]]></title>
@@ -201,19 +201,19 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-responsive.html">
         </link>
-        <updated>2018-09-02T04:49:06Z</updated>
+        <updated>2018-09-02T04:49:19Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Scenegraph]]></title>
@@ -225,19 +225,19 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Setup]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-setup.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-setup.html">
         </link>
-        <updated>2018-09-02T04:49:06Z</updated>
+        <updated>2018-09-02T04:49:19Z</updated>
         <author>
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Materials]]></title>
@@ -249,7 +249,7 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Textures]]></title>
@@ -261,6 +261,6 @@
             <name>threejsfundamenals contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2018-09-02T04:49:06Z</published>
+        <published>2018-09-02T04:49:19Z</published>
     </entry>
 </feed>
