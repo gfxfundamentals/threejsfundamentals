@@ -80,10 +80,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p><em>Post processing</em> generally refers to applying some kind of effect or filter to a 2D image. In the case of THREE.js we have a scene with a bunch of meshes in it. We render that scene into a 2D image. Normally that image is rendered directly into the canvas and displayed in the browser but instead we can <a href="threejs-rendertargets.html">render it to a render target</a> and then apply some <em>post processing</em> effects to the result before drawing it to the canvas.</p>
+      <p><em>Post processing</em> generally refers to applying some kind of effect or filter to a 2D image. In the case of THREE.js we have a scene with a bunch of meshes in it. We render that scene into a 2D image. Normally that image is rendered directly into the canvas and displayed in the browser but instead we can <a href="threejs-rendertargets.html">render it to a render target</a> and then apply some <em>post processing</em> effects to the result before drawing it to the canvas. It&#39;s called post processing because it happens after (post) the main scene processing.</p>
 <p>Examples of post processing are Instagram like filters,
 Photoshop filters, etc...</p>
-<p>THREE.js has some example classes to help setup a process processing pipeline. The way it works is you create an <code>EffectComposer</code> and to it you add multiple <code>Pass</code> objects.
+<p>THREE.js has some example classes to help setup a post processing pipeline. The way it works is you create an <code>EffectComposer</code> and to it you add multiple <code>Pass</code> objects.
 You then call <code>EffectComposer.render</code> and it renders your scene to a <a href="threejs-rendertargets.html">render target</a> and then applies each <code>Pass</code>.</p>
 <p>Each <code>Pass</code> can be some post processing effect like adding a vignette, blurring, applying a bloom, applying film grain, adjusting the hue, saturation, contrast, etc... and finally rendering the result to the canvas.</p>
 <p>It&#39;s a little bit important to understand how <code>EffectComposer</code> functions. It creates two [render targets](threejs-rendertargets.html]. Let&#39;s call them <strong>rtA</strong> and <strong>rtB</strong>.</p>
