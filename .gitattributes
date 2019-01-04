@@ -5,14 +5,18 @@
 *.js text
 *.html text
 
-*.png binary
-*.jpg binary
 *.jpeg binary
-*.gif binary
-*.bin binary
 *.dds binary
 *.wasm binary
 *.tga binary
 *.glb binary
 *.bin binary
+*.psd binary
+*.afdesign binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.eot binary
+*.tff binary
+*.woff binary
 
