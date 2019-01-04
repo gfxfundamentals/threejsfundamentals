@@ -118,11 +118,12 @@ draw it above the ground below your object.</p>
 
 <p>We&#39;ll use some of the code from <a href="threejs-cameras.html">the previous article</a>.</p>
 <p>Let&#39;s set the background color to white.</p>
-<pre><code>const scene = new THREE.Scene();
+<pre><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;white&#39;);
-</code></pre><p>Then we&#39;ll setup the same checkerboard ground but this time it&#39;s using
+</code></pre>
+<p>Then we&#39;ll setup the same checkerboard ground but this time it&#39;s using
 a <code>MeshBasicMaterial</code> as we don&#39;t need lighting for the ground.</p>
-<pre><code>+const loader = new THREE.TextureLoader();
+<pre><code class="lang-js">+const loader = new THREE.TextureLoader();
 
 {
   const planeSize = 40;
@@ -145,26 +146,28 @@ a <code>MeshBasicMaterial</code> as we don&#39;t need lighting for the ground.</
   mesh.rotation.x = Math.PI * -.5;
   scene.add(mesh);
 }
-</code></pre><p>Note we&#39;re setting the color to <code>1.5, 1.5, 1.5</code>. This will multiply the checkerboard
+</code></pre>
+<p>Note we&#39;re setting the color to <code>1.5, 1.5, 1.5</code>. This will multiply the checkerboard
 texture&#39;s colors by 1.5, 1.5, 1.5. Since the texture&#39;s colors are 0x808080 and 0xC0C0C0
 which is medium gray and light gray, multiplying them by 1.5 will give is a white and 
 light grey checkerboard.</p>
 <p>Let&#39;s load the shadow texture</p>
-<pre><code class="lang-javascript">const shadowTexture = loader.load(&#39;resources/images/roundshadow.png&#39;);
+<pre><code class="lang-js">const shadowTexture = loader.load(&#39;resources/images/roundshadow.png&#39;);
 </code></pre>
 <p>and make an array to remember each sphere and associated objects.</p>
-<pre><code class="lang-javascript">const sphereShadowBases = [];
+<pre><code class="lang-js">const sphereShadowBases = [];
 </code></pre>
 <p>Then we&#39;ll make a sphere geometry</p>
-<pre><code class="lang-javascript">const sphereRadius = 1;
+<pre><code class="lang-js">const sphereRadius = 1;
 const sphereWidthDivisions = 32;
 const sphereHeightDivisions = 16;
 const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 </code></pre>
 <p>And a plane geometry for the fake shadow</p>
-<pre><code>const planeSize = 1;
+<pre><code class="lang-js">const planeSize = 1;
 const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
-</code></pre><p>Now we&#39;ll make a bunch of spheres. For each sphere we&#39;ll create a <code>base</code>
+</code></pre>
+<p>Now we&#39;ll make a bunch of spheres. For each sphere we&#39;ll create a <code>base</code>
 <code>THREE.Object3D</code> and we&#39;ll make both the shadow plane mesh and the sphere mesh
 children of the base. That way if we move the base both the sphere and the shadow
 will move. We need to put the shadow slightly above the ground to prevent z-fighting. 
@@ -173,7 +176,7 @@ We&#39;ll go over both of these issues in <a href="threejs-transparency.html">an
 The shadow is a <code>MeshBasicMaterial</code> because it doesn&#39;t need lighting.</p>
 <p>We make each sphere a different hue and then save off the base, the sphere mesh,
 the shadow mesh and the initial y position of each sphere.</p>
-<pre><code class="lang-javascript">const numSpheres = 15;
+<pre><code class="lang-js">const numSpheres = 15;
 for (let i = 0; i &lt; numSpheres; ++i) {
   // make a base for the shadow and the sphere.
   // so they move together.
@@ -210,7 +213,7 @@ for (let i = 0; i &lt; numSpheres; ++i) {
 </code></pre>
 <p>We setup 2 lights. One is a <code>HemisphereLight</code> with the itensity set to 2 to really
 brighten things up.</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-js">{
   const skyColor = 0xB1E1FF;  // light blue
   const groundColor = 0xB97A20;  // brownish orange
   const intensity = 2;
@@ -219,7 +222,7 @@ brighten things up.</p>
 }
 </code></pre>
 <p>The other is a <code>DirectionalLight</code> so the spheres get some defintion</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -234,7 +237,7 @@ For each sphere, shadow, base set we move the base in the xz plane, we
 move the sphere up and down using <code>Math.abs(Math.sin(time))</code>
 which gives us a bouncy animation. And, we also set the shadow material&#39;s 
 opacity so that as each sphere goes higher its shadow fades out.</p>
-<pre><code class="lang-javascript">function render(time) {
+<pre><code class="lang-js">function render(time) {
   time *= 0.001;  // convert to seconds
 
   ...
@@ -280,21 +283,22 @@ appears to also use this kind of shadow for the main character.</p>
 the <code>PointLight</code>, and the <code>SpotLight</code>.</p>
 <p>Let&#39;s start with the <code>DirectionaLight</code> with helper example from <a href="threejs-lights.html">the lights article</a>. </p>
 <p>The first thing we need to do is turn on shadows in the renderer.</p>
-<pre><code>const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
 +renderer.shadowMap.enabled = true;
-</code></pre><p>Then we also need to tell the light to cast a shadow</p>
-<pre><code class="lang-javascript">const light = new THREE.DirectionalLight(color, intensity);
+</code></pre>
+<p>Then we also need to tell the light to cast a shadow</p>
+<pre><code class="lang-js">const light = new THREE.DirectionalLight(color, intensity);
 +light.castShadow = true;
 </code></pre>
 <p>We also need to go to each mesh in the scene and decide if it should
 both cast shadows and/or receive shadows.</p>
 <p>Let&#39;s make the plane (the ground) only receive shadows since we don&#39;t
 really care what happens underneath.</p>
-<pre><code class="lang-javascript">const mesh = new THREE.Mesh(planeGeo, planeMat);
+<pre><code class="lang-js">const mesh = new THREE.Mesh(planeGeo, planeMat);
 mesh.receiveShadow = true;
 </code></pre>
 <p>For the cube and the sphere let&#39;s have them both receive and cast shadows</p>
-<pre><code class="lang-javascript">const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+<pre><code class="lang-js">const mesh = new THREE.Mesh(cubeGeo, cubeMat);
 mesh.castShadow = true;
 mesh.receiveShadow = true;
 
@@ -319,7 +323,7 @@ the light&#39;s shadow camera defines an area inside of which
 the shadows get rendered. In the example above that area is too small.</p>
 <p>In order to visualize that area we can get the light&#39;s shadow camera and add
 a <code>CameraHelper</code> to the scene.</p>
-<pre><code class="lang-javascript">const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
+<pre><code class="lang-js">const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
 scene.add(cameraHelper);
 </code></pre>
 <p>And now you can see the area for which shadows are cast and received.</p>
@@ -343,7 +347,7 @@ and <code>zoom</code> properties.</p>
 that we&#39;ll pass an object and 2 properties. It will present one property that dat.GUI
 can adjust and in response will set the two properties one positive and one negative.
 We can use this to set <code>left</code> and <code>right</code> as <code>width</code> and <code>up</code> and <code>down</code> as <code>height</code>.</p>
-<pre><code class="lang-javascript">class DimensionGUIHelper {
+<pre><code class="lang-js">class DimensionGUIHelper {
   constructor(obj, minProp, maxProp) {
     this.obj = obj;
     this.minProp = minProp;
@@ -360,7 +364,7 @@ We can use this to set <code>left</code> and <code>right</code> as <code>width</
 </code></pre>
 <p>We&#39;ll also use the <code>MinMaxGUIHelper</code> we created in the <a href="threejs-cameras.html">camera article</a>
 to adjust <code>near</code> and <code>far</code>.</p>
-<pre><code>const gui = new dat.GUI();
+<pre><code class="lang-js">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +{
@@ -377,10 +381,11 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +  folder.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChange(updateCamera);
 +  folder.add(light.shadow.camera, &#39;zoom&#39;, 0.01, 1.5, 0.01).onChange(updateCamera);
 +}
-</code></pre><p>We tell the GUI to call our <code>updateCamera</code> function anytime anything changes.
+</code></pre>
+<p>We tell the GUI to call our <code>updateCamera</code> function anytime anything changes.
 Let&#39;s write that function to update the light, the helper for the light, the
 light&#39;s shadow camera, and the helper showing the light&#39;s shadow camera.</p>
-<pre><code>function updateCamera() {
+<pre><code class="lang-js">function updateCamera() {
   // update the light target&#39;s matrixWorld because it&#39;s needed by the helper
   light.target.updateMatrixWorld();
   helper.update();
@@ -390,7 +395,8 @@ light&#39;s shadow camera, and the helper showing the light&#39;s shadow camera.
   cameraHelper.update();
 }
 updateCamera();
-</code></pre><p>And now that we&#39;ve given the light&#39;s shadow camera a GUI we can play with the values.</p>
+</code></pre>
+<p>And now that we&#39;ve given the light&#39;s shadow camera a GUI we can play with the values.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-gui.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-gui.html" target="_blank">click here to open in a separate window</a>
@@ -424,7 +430,7 @@ Ok but what about `near` and `far` I hear you thinking. Can we set `near` to 0.0
 where we could manually set most its settings, <code>SpotLight</code>&#39;s shadow camera is controlled by the <code>SpotLight</code> itself. The <code>fov</code> for the shadow
 camera is directly connected to the <code>SpotLight</code>&#39;s <code>angle</code> setting.
 The <code>aspect</code> is set automatically based on the size of the shadow map.</p>
-<pre><code class="lang-javascript">-const light = new THREE.DirectionalLight(color, intensity);
+<pre><code class="lang-js">-const light = new THREE.DirectionalLight(color, intensity);
 +const light = new THREE.SpotLight(color, intensity);
 </code></pre>
 <p>and we added back in the <code>penumbra</code> and <code>angle</code> settings
@@ -464,7 +470,7 @@ so we render the inside of the box instead of the outside. Like the floor
 we&#39;ll set it only to receive shadows. Also we&#39;ll set the position of the
 box so its bottom is slightly below the floor so the floor and the bottom
 of the box don&#39;t z-fight.</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-js">{
   const cubeSize = 30;
   const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({
@@ -478,7 +484,7 @@ of the box don&#39;t z-fight.</p>
 }
 </code></pre>
 <p>And of course we need to switch the light to a <code>PointLight</code>.</p>
-<pre><code class="lang-javascript">-const light = new THREE.SpotLight(color, intensity);
+<pre><code class="lang-js">-const light = new THREE.SpotLight(color, intensity);
 +const light = new THREE.PointLight(color, intensity);
 
 ....

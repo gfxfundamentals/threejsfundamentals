@@ -115,13 +115,14 @@ put this image on cube.</p>
 <p>We&#39;ll modify one of our first samples. All we need to do is create a <code>TextureLoader</code>. Call its
 <a href="TextureLoader.load"><code>load</code></a> method with the URL of an
 image and and set the material&#39;s <code>map</code> property to the result instead of setting its <code>color</code>.</p>
-<pre><code>+const loader = new THREE.TextureLoader();
+<pre><code class="lang-js">+const loader = new THREE.TextureLoader();
 
 const material = new THREE.MeshBasicMaterial({
 -  color: 0xFF8844,
 +  map: loader.load(&#39;resources/images/wall.jpg&#39;),
 });
-</code></pre><p>Note that we&#39;re using <code>MeshBasicMaterial</code> so no need for any lights.</p>
+</code></pre>
+<p>Note that we&#39;re using <code>MeshBasicMaterial</code> so no need for any lights.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube.html" target="_blank">click here to open in a separate window</a>
@@ -144,7 +145,7 @@ const material = new THREE.MeshBasicMaterial({
 </div>
 
 <p>We just make 6 materials and pass them as an array when we create the <code>Mesh</code></p>
-<pre><code>const loader = new THREE.TextureLoader();
+<pre><code class="lang-js">const loader = new THREE.TextureLoader();
 
 -const material = new THREE.MeshBasicMaterial({
 -  map: loader.load(&#39;resources/images/wall.jpg&#39;),
@@ -159,7 +160,8 @@ const material = new THREE.MeshBasicMaterial({
 +];
 -const cube = new THREE.Mesh(geometry, material);
 +const cube = new THREE.Mesh(geometry, materials);
-</code></pre><p>It works!</p>
+</code></pre>
+<p>It works!</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-6-textures.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube-6-textures.html" target="_blank">click here to open in a separate window</a>
@@ -180,8 +182,9 @@ We&#39;ll go over them when we start building custom geometry.</p>
 <p>Most of the code on this site uses the easiest method of loading textures. 
 We create a <code>TextureLoader</code> and then call its <a href="TextureLoader.load"><code>load</code></a> method. 
 This returns a <code>Texture</code> object.</p>
-<pre><code>const texture = loader.load(&#39;resources/images/flower-1.jpg&#39;);
-</code></pre><p>It&#39;s important to note that using this method our texture will be transparent until
+<pre><code class="lang-js">const texture = loader.load(&#39;resources/images/flower-1.jpg&#39;);
+</code></pre>
+<p>It&#39;s important to note that using this method our texture will be transparent until
 the image is loaded asychronously by three.js at which point it will update the texture
 with the downloaded image.</p>
 <p>This has the big advantage that we don&#39;t have to wait for the texture to load and our
@@ -192,7 +195,7 @@ but if we want we can ask three.js to tell us when the texture has finished down
 that will be called when the texture has finished loading. Going back to our top example
 we can wait for the texture to load before creating our <code>Mesh</code> and adding it to scene
 like this</p>
-<pre><code>const loader = new THREE.TextureLoader();
+<pre><code class="lang-js">const loader = new THREE.TextureLoader();
 loader.load(&#39;resources/images/wall.jpg&#39;, (texture) =&gt; {
   const material = new THREE.MeshBasicMaterial({
     map: texture,
@@ -201,7 +204,8 @@ loader.load(&#39;resources/images/wall.jpg&#39;, (texture) =&gt; {
   scene.add(cube);
   cubes.push(cube);  // add to our list of cubes to rotate
 });
-</code></pre><p>Unless you clear your browser&#39;s cache and have a slow connection you&#39;re unlikely
+</code></pre>
+<p>Unless you clear your browser&#39;s cache and have a slow connection you&#39;re unlikely
 to see the any difference but rest assured it is waiting for the texture to load.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-wait-for-texture.html"></iframe>
@@ -213,7 +217,7 @@ to see the any difference but rest assured it is waiting for the texture to load
 <p>To wait until all textures have loaded you can use a <code>LoadingManager</code>. Create one
 and pass it to the <code>TextureLoader</code> then set its  <a href="LoadingManager.onLoad"><code>onLoad</code></a>
 property to a callback.</p>
-<pre><code>+const loadManager = new THREE.LoadingManager();
+<pre><code class="lang-js">+const loadManager = new THREE.LoadingManager();
 *const loader = new THREE.TextureLoader(loadManager);
 
 const materials = [
@@ -230,17 +234,19 @@ const materials = [
 +  scene.add(cube);
 +  cubes.push(cube);  // add to our list of cubes to rotate
 +};
-</code></pre><p>The <code>LoadingManager</code> also has an <a href="LoadingManager.onProgress"><code>onProgress</code></a> property
+</code></pre>
+<p>The <code>LoadingManager</code> also has an <a href="LoadingManager.onProgress"><code>onProgress</code></a> property
 we can set to another callback to show a progress indicator.</p>
 <p>First we&#39;ll add a progress bar in HTML</p>
-<pre><code>&lt;body&gt;
+<pre><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +  &lt;div id=&quot;loading&quot;&gt;
 +    &lt;div class=&quot;progress&quot;&gt;&lt;div class=&quot;progressbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
 +  &lt;/div&gt;
 &lt;/body&gt;
-</code></pre><p>and the CSS for it</p>
-<pre><code>#loading {
+</code></pre>
+<p>and the CSS for it</p>
+<pre><code class="lang-css">#loading {
     position: fixed;
     top: 0;
     left: 0;
@@ -262,10 +268,11 @@ we can set to another callback to show a progress indicator.</p>
     transform-origin: top left;
     transform: scaleX(0);
 }
-</code></pre><p>Then in the code we&#39;ll update the scale of the <code>progressbar</code> in our <code>onProgress</code> callback. It gets
+</code></pre>
+<p>Then in the code we&#39;ll update the scale of the <code>progressbar</code> in our <code>onProgress</code> callback. It gets
 called with the URL of the last item loaded, the number of items loaded so far, and the total
 number of items loaded.</p>
-<pre><code>+const loadingElem = document.querySelector(&#39;#loading&#39;);
+<pre><code class="lang-js">+const loadingElem = document.querySelector(&#39;#loading&#39;);
 +const progressBarElem = loadingElem.querySelector(&#39;.progressbar&#39;);
 
 loadManager.onLoad = () =&gt; {
@@ -279,7 +286,8 @@ loadManager.onLoad = () =&gt; {
 +  const progress = itemsLoaded / itemsTotal;
 +  progressBarElem.style.transform = `scaleX(${progress})`;
 +};
-</code></pre><p>Unless you clear your cache and have a slow connection you might not see
+</code></pre>
+<p>Unless you clear your cache and have a slow connection you might not see
 the loading bar.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-wait-for-all-textures.html"></iframe>
@@ -474,38 +482,44 @@ and <a href="Texture.wrapT"><code>wrapT</code></a> for vertical wrapping.</p>
 </li>
 </ul>
 <p>For example to turn on wrapping in both directions:</p>
-<pre><code>someTexture.wrapS = THREE.RepeatWrapping;
+<pre><code class="lang-js">someTexture.wrapS = THREE.RepeatWrapping;
 someTexture.wrapT = THREE.RepeatWrapping;
-</code></pre><p>Repeating is set with the [repeat] repeat property.</p>
-<pre><code>const timesToRepeatHorizontally = 4;
+</code></pre>
+<p>Repeating is set with the [repeat] repeat property.</p>
+<pre><code class="lang-js">const timesToRepeatHorizontally = 4;
 const timesToRepeatVertically = 2;
 someTexture.repeat.set(timesToRepeatHorizontally, timesToRepeatVertically);
-</code></pre><p>Offseting the texture can be done by setting the <code>offset</code> property. Textures
+</code></pre>
+<p>Offseting the texture can be done by setting the <code>offset</code> property. Textures
 are offset with units where 1 unit = 1 texture size. On other words 0 = no offset 
 and 1 = offset one full texture amount.</p>
-<pre><code>const xOffset = .5;   // offset by half the texture
+<pre><code class="lang-js">const xOffset = .5;   // offset by half the texture
 const yOffset = .25;  // offset by 1/2 the texture
 someTexture.offset.set(xOffset, yOffset);`
-</code></pre><p>Rotating the texture can be set by setting <code>rotation</code> property in radians
+</code></pre>
+<p>Rotating the texture can be set by setting <code>rotation</code> property in radians
 as well as the <code>center</code> property for choosing the center of rotation.
 It defaults to 0,0 which rotates from the bottom left corner. Like offset
 these units are in texture size so setting them to <code>.5, .5</code> would rotate
 around the center of the texture.</p>
-<pre><code>someTexture.center.set(.5, .5);
+<pre><code class="lang-js">someTexture.center.set(.5, .5);
 someTexture.rotation = THREE.Math.degToRad(45);
-</code></pre><p>Let&#39;s modify the top sample above to play with these values</p>
+</code></pre>
+<p>Let&#39;s modify the top sample above to play with these values</p>
 <p>First we&#39;ll keep a reference to the texture so we can manipulate it</p>
-<pre><code>+const texture = loader.load(&#39;resources/images/wall.jpg&#39;);
+<pre><code class="lang-js">+const texture = loader.load(&#39;resources/images/wall.jpg&#39;);
 const material = new THREE.MeshBasicMaterial({
 -  map: loader.load(&#39;resources/images/wall.jpg&#39;);
 +  map: texture,
 });
-</code></pre><p>Then we&#39;ll use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> again to provide a simple interface.</p>
-<pre><code>&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>As we did in previous dat.GUI examples we&#39;ll use a simple class to
+</code></pre>
+<p>Then we&#39;ll use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> again to provide a simple interface.</p>
+<pre><code class="lang-html">&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>As we did in previous dat.GUI examples we&#39;ll use a simple class to
 give dat.GUI an object that it can manipulate in degrees
 but that will set a property in radians.</p>
-<pre><code>class DegRadHelper {
+<pre><code class="lang-js">class DegRadHelper {
   constructor(obj, prop) {
     this.obj = obj;
     this.prop = prop;
@@ -517,10 +531,11 @@ but that will set a property in radians.</p>
     this.obj[this.prop] = THREE.Math.degToRad(v);
   }
 }
-</code></pre><p>We also need a class that will convert from a string like <code>&quot;123&quot;</code> into
+</code></pre>
+<p>We also need a class that will convert from a string like <code>&quot;123&quot;</code> into
 a number like <code>123</code> since three.js requires numbers for enum settings
 like <code>wrapS</code> and <code>wrapT</code> but dat.GUI only uses strings for enums.</p>
-<pre><code>class StringToNumberHelper {
+<pre><code class="lang-js">class StringToNumberHelper {
   constructor(obj, prop) {
     this.obj = obj;
     this.prop = prop;
@@ -532,8 +547,9 @@ like <code>wrapS</code> and <code>wrapT</code> but dat.GUI only uses strings for
     this.obj[this.prop] = parseFloat(v);
   }
 }
-</code></pre><p>Using those classes we can setup a simple GUI for the settings above</p>
-<pre><code>const wrapModes = {
+</code></pre>
+<p>Using those classes we can setup a simple GUI for the settings above</p>
+<pre><code class="lang-js">const wrapModes = {
   &#39;ClampToEdgeWrapping&#39;: THREE.ClampToEdgeWrapping,
   &#39;RepeatWrapping&#39;: THREE.RepeatWrapping,
   &#39;MirroredRepeatWrapping&#39;: THREE.MirroredRepeatWrapping,
@@ -558,7 +574,8 @@ gui.add(texture.center, &#39;x&#39;, -.5, 1.5, .01).name(&#39;texture.center.x&#
 gui.add(texture.center, &#39;y&#39;, -.5, 1.5, .01).name(&#39;texture.center.y&#39;);
 gui.add(new DegRadHelper(texture, &#39;rotation&#39;), &#39;value&#39;, -360, 360)
   .name(&#39;texture.rotation&#39;);
-</code></pre><p>The last thing to note about the example is that if you change <code>wrapS</code> or
+</code></pre>
+<p>The last thing to note about the example is that if you change <code>wrapS</code> or
 <code>wrapT</code> on the texture you must also set <a href="Texture.needsUpdate"><code>texture.needsUpdate</code></a> 
 so three.js knows to apply those settings. The other settings are automatically applied.</p>
 <p><div class="threejs_example_container">

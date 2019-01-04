@@ -149,12 +149,13 @@ are filled in. Where as for <code>Geometry</code> you can add vertices as you go
 let&#39;s make an example creating each type of primitive. We&#39;ll start
 with the <a href="threejs-responsive.html">examples from the previous article</a>.</p>
 <p>Near the top let&#39;s set a background color</p>
-<pre><code>const scene = new THREE.Scene();
+<pre><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(0xAAAAAA);
-</code></pre><p>This tells three.js to clear to lightish gray.</p>
+</code></pre>
+<p>This tells three.js to clear to lightish gray.</p>
 <p>The camera needs to change position so that we can see all the
 objects.</p>
-<pre><code>-const fov = 75;
+<pre><code class="lang-js">-const fov = 75;
 +const fov = 40;
 const aspect = 2;  // the canvas default
 const near = 0.1;
@@ -163,9 +164,10 @@ const near = 0.1;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 -camera.position.z = 2;
 +camera.position.z = 120;
-</code></pre><p>Let&#39;s add a function, <code>addObject</code>, that takes an x, y position and an <code>Object3D</code> and adds
+</code></pre>
+<p>Let&#39;s add a function, <code>addObject</code>, that takes an x, y position and an <code>Object3D</code> and adds
 the object to the scene.</p>
-<pre><code>const objects = [];
+<pre><code class="lang-js">const objects = [];
 const spread = 15;
 
 function addObject(x, y, obj) {
@@ -175,7 +177,8 @@ function addObject(x, y, obj) {
   scene.add(obj);
   objects.push(obj);
 }
-</code></pre><p>Let&#39;s also make a function to create a random colored material.
+</code></pre>
+<p>Let&#39;s also make a function to create a random colored material.
 We&#39;ll use a feature of <code>Color</code> that lets you set a color
 based on hue, saturation, and luminance.</p>
 <p><code>hue</code> goes from 0 to 1 around the color wheel with
@@ -187,7 +190,7 @@ the maximum amount of color. In other words
 as <code>luminance</code> goes from 0.0 to 0.5 the color
 will go from black to <code>hue</code>. From 0.5 to 1.0
 the color will go from <code>hue</code> to white.</p>
-<pre><code>function createMaterial() {
+<pre><code class="lang-js">function createMaterial() {
   const material = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide,
   });
@@ -199,7 +202,8 @@ the color will go from <code>hue</code> to white.</p>
 
   return material;
 }
-</code></pre><p>We also passed <code>side: THREE.DoubleSide</code> to the material.
+</code></pre>
+<p>We also passed <code>side: THREE.DoubleSide</code> to the material.
 This tells three to draw both sides of the triangles
 that make up a shape. For a solid shape like a sphere
 or a cube there&#39;s usually no reason to draw the
@@ -218,19 +222,21 @@ worry about it.</p>
 we pass a geometry and it creates a random colored
 material via <code>createMaterial</code> and adds it to the scene
 via <code>addObject</code>.</p>
-<pre><code>function addSolidGeometry(x, y, geometry) {
+<pre><code class="lang-js">function addSolidGeometry(x, y, geometry) {
   const mesh = new THREE.Mesh(geometry, createMaterial());
   addObject(x, y, mesh);
 }
-</code></pre><p>Now we can use this for the majority of the primitives we create.
+</code></pre>
+<p>Now we can use this for the majority of the primitives we create.
 For example creating a box</p>
-<pre><code>{
+<pre><code class="lang-js">{
   const width = 8;
   const height = 8;
   const depth = 8;
   addSolidGeometry(-2, -2, new THREE.BoxBufferGeometry(width, height, depth));
 }
-</code></pre><p>If you look in the code below you&#39;ll see a similar section for each type of geometry.</p>
+</code></pre>
+<p>If you look in the code below you&#39;ll see a similar section for each type of geometry.</p>
 <p>Here&#39;s the result:</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives.html"></iframe>
@@ -247,7 +253,7 @@ we create a <code>FontLoader</code> and pass it the url to our font
 and a callback. The callback is called after the font loads.
 In the callback we create the geometry
 and call <code>addObject</code> to add it the scene.</p>
-<pre><code>{
+<pre><code class="lang-js">{
   const loader = new THREE.FontLoader();
   loader.load(&#39;resources/threejs/fonts/helvetiker_regular.typeface.json&#39;, (font) =&gt; {
     const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
@@ -270,7 +276,8 @@ and call <code>addObject</code> to add it the scene.</p>
     addObject(-1, 1, parent);
   });
 }
-</code></pre><p>There&#39;s one other difference. We want to spin the text around its
+</code></pre>
+<p>There&#39;s one other difference. We want to spin the text around its
 center but by default three.js creates the text such that its center of rotation
 is on the left edge. To work around this we can ask three.js to compute the bounding
 box of the geometry. We can then call the <code>getCenter</code> method
@@ -302,12 +309,13 @@ where as the one on the right is.</p>
 <p>The other exceptions are the 2 line based examples for <code>EdgesGeometry</code>
 and <code>WireframeGeometry</code>. Instead of calling <code>addSolidGeometry</code> they call
 <code>addLineGeomtry</code> which looks like this</p>
-<pre><code>function addLineGeometry(x, y, geometry) {
+<pre><code class="lang-js">function addLineGeometry(x, y, geometry) {
   const material = new THREE.LineBasicMaterial({color: 0x000000});
   const mesh = new THREE.LineSegments(geometry, material);
   addObject(x, y, mesh);
 }
-</code></pre><p>It creates a black <code>LineBasicMaterial</code> and then creates a <code>LineSegments</code>
+</code></pre>
+<p>It creates a black <code>LineBasicMaterial</code> and then creates a <code>LineSegments</code>
 object which is a wrapper for <code>Mesh</code> that helps three know you&#39;re rendering
 line segments (2 points per segment).</p>
 <p>Each of the primitives has several parameters you can pass on creation

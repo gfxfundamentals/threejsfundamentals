@@ -108,7 +108,7 @@ will only be using one context. We also won&#39;t run into the sharing
 issues for the same reasons.</p>
 <p>Let&#39;s start with a simple example with just 2 scenes. First we&#39;ll
 make the HTML</p>
-<pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;p&gt;
   &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
   I love boxes. Presents come in boxes.
@@ -119,8 +119,9 @@ make the HTML</p>
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 &lt;/p&gt;
-</code></pre><p>Then we can setup the CSS maybe something like this</p>
-<pre><code>#c {
+</code></pre>
+<p>Then we can setup the CSS maybe something like this</p>
+<pre><code class="lang-css">#c {
   position: fixed;
   left: 0;
   top: 0;
@@ -143,11 +144,12 @@ make the HTML</p>
   float: right;
   margin-left: .25em;
 }
-</code></pre><p>We set the canvsas to fill the screen and we set its <code>z-index</code> to
+</code></pre>
+<p>We set the canvsas to fill the screen and we set its <code>z-index</code> to
 -1 to make it appear behind other elements. We also need to specify some kind of width and height for our virtual canvas elements since there is nothing inside to give them any size.</p>
 <p>Now we&#39;ll make 2 scenes each with a light and a camera.
 To one scene we&#39;ll add a cube and to another a diamond.</p>
-<pre><code>function makeScene(elem) {
+<pre><code class="lang-js">function makeScene(elem) {
   const scene = new THREE.Scene();
 
   const fov = 45;
@@ -198,11 +200,12 @@ function setupScene2() {
 
 const sceneInfo1 = setupScene1();
 const sceneInfo2 = setupScene2();
-</code></pre><p>And then we&#39;ll make a function to render each scene
+</code></pre>
+<p>And then we&#39;ll make a function to render each scene
 only if the element is on the screen. We can tell THREE.js
 to only render to part of the canvas by turning on the <em>scissor</em>
 test with <code>Renderer.setScissorTest</code> and then setting both the scissor and the viewport with <code>Renderer.setViewport</code> and <code>Renderer.setScissor</code>.</p>
-<pre><code>function rendenerSceneInfo(sceneInfo) {
+<pre><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
   // get the viewport relative position opf this element
@@ -227,9 +230,10 @@ test with <code>Renderer.setScissorTest</code> and then setting both the scissor
 
   renderer.render(scene, camera);
 }
-</code></pre><p>And then our render function will just first clear the screen
+</code></pre>
+<p>And then our render function will just first clear the screen
 and then render each scene.</p>
-<pre><code>function render(time) {
+<pre><code class="lang-js">function render(time) {
   time *= 0.001;
 
   resizeRendererToDisplaySize(renderer);
@@ -246,7 +250,8 @@ and then render each scene.</p>
 
   requestAnimationFrame(render);
 }
-</code></pre><p>And here it is</p>
+</code></pre>
+<p>And here it is</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-v1.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-v1.html" target="_blank">click here to open in a separate window</a>
@@ -260,39 +265,51 @@ If your scenes are complicated or if for whatever reason
 it takes too long to render, the position of the scenes
 drawn into the canvas will lag behind the rest of the page.</p>
 <p>If we give each area a border </p>
-<pre><code>.diagram {
+<pre><code class="lang-css">.diagram {
   display: inline-block;
   width: 5em;
   height: 3em;
 +  border: 1px solid black;
 }
-</code></pre><p>And we set the background of each scene</p>
-<pre><code>const scene = new THREE.Scene();
+</code></pre>
+<p>And we set the background of each scene</p>
+<pre><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;red&#39;);
-</code></pre><p>And if we <a href="../threejs-multiple-scenes-v2.html" target="_blank">quickly scroll up and down</a> we&#39;ll see the issue. Here&#39;s a animation of scrolling slowed down by 10x.</p>
+</code></pre>
+<p>And if we <a href="../threejs-multiple-scenes-v2.html" target="_blank">quickly scroll up and down</a> we&#39;ll see the issue. Here&#39;s a animation of scrolling slowed down by 10x.</p>
 <div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
 
 <p>We can switch to a different method which has a different tradeoff. We&#39;ll switch the canvas&#39;s CSS from <code>position: fixed</code> to <code>position: absolute</code>. </p>
-<pre><code>#c {
+<pre><code class="lang-css">#c {
 -  position: fixed;
 +  position: absolute;
-</code></pre><p>Then we&#39;ll set the canvas&#39;s transform to move it so
+</code></pre>
+<p>Then we&#39;ll set the canvas&#39;s transform to move it so
 the top of the canvas is at the top of whatever part
 the page is currently scrolled to.</p>
-<pre><code>function render(time) {
+<pre><code class="lang-js">function render(time) {
   ...
 
   const transform = `translateY(${window.scrollY}px)`;
   renderer.domElement.style.transform = transform;
-</code></pre><p><code>position: fixed</code> kept the canvas from scrolling at all
-while the rest of the page scrolled over it. <code>position: absolute</code> will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we&#39;re too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but <a href="../threejs-multiple-scenes-v2.html" target="_blank">the stuff in the middle of the page should match up</a> and not slide. Here&#39;s a view of the results of the new method slowed down 10x.</p>
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
 
-<h2 id="making-it-more-generic">Making it more Generic</h2>
-<p>Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.</p>
-<p>We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.</p>
-<p>Here&#39;s the main render function</p>
-<pre><code>const sceneElements = [];
+```js
+
+`position: fixed` kept the canvas from scrolling at all
+while the rest of the page scrolled over it. `position: absolute` will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we&#39;re too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but &lt;a href=&quot;../threejs-multiple-scenes-v2.html&quot; target=&quot;_blank&quot;&gt;the stuff in the middle of the page should match up&lt;/a&gt; and not slide. Here&#39;s a view of the results of the new method slowed down 10x.
+
+&lt;div class=&quot;threejs_center&quot;&gt;&lt;img class=&quot;border&quot; src=&quot;resources/images/multi-view-fixed.gif&quot;&gt;&lt;/div&gt;
+
+## Making it more Generic
+
+Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.
+
+We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.
+
+Here&#39;s the main render function
+
+```js
+const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({elem, fn});
 }
@@ -331,10 +348,11 @@ function render(time) {
 
   requestAnimationFrame(render);
 }
-</code></pre><p>You can see it loops over <code>sceneElements</code> which it expects is an array of objects each of which have an <code>elem</code> and <code>fn</code> property.</p>
+</code></pre>
+<p>You can see it loops over <code>sceneElements</code> which it expects is an array of objects each of which have an <code>elem</code> and <code>fn</code> property.</p>
 <p>It checks if the element is on screen. If it is it calls <code>fn</code> and passes it the current time and its rectangle.</p>
 <p>Now the setup code for each scene just adds itself to the list of scenes</p>
-<pre><code>{
+<pre><code class="lang-js">{
   const elem = document.querySelector(&#39;#box&#39;);
   const {scene, camera} = makeScene();
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
@@ -369,7 +387,8 @@ function render(time) {
     renderer.render(scene, camera);
   });
 }
-</code></pre><p>With that we no longer needed <code>sceneInfo1</code> and <code>sceneInfo2</code> and the code that was rotating the meshes is now specific to each scene.</p>
+</code></pre>
+<p>With that we no longer needed <code>sceneInfo1</code> and <code>sceneInfo2</code> and the code that was rotating the meshes is now specific to each scene.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-generic.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-generic.html" target="_blank">click here to open in a separate window</a>
@@ -378,7 +397,7 @@ function render(time) {
 </p>
 <h2 id="using-html-dataset">Using HTML Dataset</h2>
 <p>One last even more generic thing we can do is use HTML <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset</a>. This is a way to add your own data to an HTML element. Instead of using <code>id=&quot;...&quot;</code> we&#39;ll use <code>data-diagram=&quot;...&quot;</code> like this</p>
-<pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;p&gt;
 -  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
 +  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
@@ -391,15 +410,17 @@ function render(time) {
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 &lt;/p&gt;
-</code></pre><p>We can them change the CSS selector to select for that</p>
-<pre><code>-.diagram
+</code></pre>
+<p>We can them change the CSS selector to select for that</p>
+<pre><code class="lang-css">-.diagram
 +*[data-diagram] {
   display: inline-block;
   width: 5em;
   height: 3em;
 }
-</code></pre><p>We&#39;ll change the scene setup code to just be a map of names to <em>scene initialization functions</em> that return a <em>scene render function</em>.</p>
-<pre><code>const sceneInitFunctionsByName = {
+</code></pre>
+<p>We&#39;ll change the scene setup code to just be a map of names to <em>scene initialization functions</em> that return a <em>scene render function</em>.</p>
+<pre><code class="lang-js">const sceneInitFunctionsByName = {
   &#39;box&#39;: () =&gt; {
     const {scene, camera} = makeScene();
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
@@ -432,20 +453,23 @@ function render(time) {
     };
   },
 };
-</code></pre><p>And to init we can just use <code>querySelectorAll</code> to find all the diagrams and call the corresponding init function for that diagram. </p>
-<pre><code>document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+</code></pre>
+<p>And to init we can just use <code>querySelectorAll</code> to find all the diagrams and call the corresponding init function for that diagram. </p>
+<pre><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
   addScene(elem, sceneRenderFunction());
 });
-</code></pre><p>No change to the visuals but the code is even more generic.</p>
+</code></pre>
+<p>No change to the visuals but the code is even more generic.</p>
 <p></p>
 <h2 id="adding-controls-to-each-element">Adding Controls to each element</h2>
 <p>Adding interactively, for example a <code>TrackballControls</code> is just as easy. First we add the script for the control.</p>
-<pre><code>&lt;script src=&quot;resources/threejs/r98/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>And then we can add a <code>TrackballControls</code> to each scene passing in the element associated with that scene.</p>
-<pre><code>-function makeScene() {
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>And then we can add a <code>TrackballControls</code> to each scene passing in the element associated with that scene.</p>
+<pre><code class="lang-js">-function makeScene() {
 +function makeScene(elem) {
   const scene = new THREE.Scene();
 
@@ -474,9 +498,10 @@ function render(time) {
 -  return {scene, camera};
 + return {scene, camera, controls};
 }
-</code></pre><p>You&#39;ll notice we added the camera to the scene and the light to the camera. This makes the light relative to the camera. Since the <code>TrackballControls</code> are moving the camera this is probably what we want. It keeps the light shining on the side of the object we are looking at.</p>
+</code></pre>
+<p>You&#39;ll notice we added the camera to the scene and the light to the camera. This makes the light relative to the camera. Since the <code>TrackballControls</code> are moving the camera this is probably what we want. It keeps the light shining on the side of the object we are looking at.</p>
 <p>We need up update those controls in our render functions</p>
-<pre><code>const sceneInitFunctionsByName = {
+<pre><code class="lang-js">const sceneInitFunctionsByName = {
 - &#39;box&#39;: () =&gt; {
 -    const {scene, camera} = makeScene();
 + &#39;box&#39;: (elem) =&gt; {
@@ -518,7 +543,8 @@ function render(time) {
     };
   },
 };
-</code></pre><p>And now if you drag the objects they&#39;ll rotate.</p>
+</code></pre>
+<p>And now if you drag the objects they&#39;ll rotate.</p>
 <p></p>
 <p>These techniques are used on this site itself. In particular <a href="threejs-primitives.html">the article about primitives</a> and <a href="threejs-materials.html">the article about materials</a> use this technique to add the various examples throughout the article.</p>
 

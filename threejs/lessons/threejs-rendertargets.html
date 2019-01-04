@@ -84,11 +84,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 After you render to it you can use that texture like any other texture.</p>
 <p>Let&#39;s make a simple example. We&#39;ll start with an example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
 <p>Rendering to a render target just almost exactly the same as normal rendering. First we create a <code>WebGLRenderTarget</code>.</p>
-<pre><code>const rtWidth = 512;
+<pre><code class="lang-js">const rtWidth = 512;
 const rtHeight = 512;
 const renderTarget = new THREE.WebGLRenderTarget(rtWidth, rtHeight);
-</code></pre><p>Then we need a <code>Camera</code> and a <code>Scene</code></p>
-<pre><code>const rtFov = 75;
+</code></pre>
+<p>Then we need a <code>Camera</code> and a <code>Scene</code></p>
+<pre><code class="lang-js">const rtFov = 75;
 const rtAspect = rtWidth / rtHeight;
 const rtNear = 0.1;
 const rtFar = 5;
@@ -97,9 +98,10 @@ rtCamera.position.z = 2;
 
 const rtScene = new THREE.Scene();
 rtScene.background = new THREE.Color(&#39;red&#39;);
-</code></pre><p>Notice we set the aspect to the aspect for the render target, not the canvas.</p>
+</code></pre>
+<p>Notice we set the aspect to the aspect for the render target, not the canvas.</p>
 <p>We fill the scene with stuff. In this case we&#39;re using the light and the 3 cubes <a href="threejs-responsive.html">from the previous article</a>.</p>
-<pre><code>{
+<pre><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -128,16 +130,18 @@ function makeInstance(geometry, color, x) {
   makeInstance(geometry, 0x8844aa, -2),
   makeInstance(geometry, 0xaa8844,  2),
 ];
-</code></pre><p>The <code>Scene</code> and <code>Camera</code> from previous article are still there. We&#39;ll use them to render to the canvas.
+</code></pre>
+<p>The <code>Scene</code> and <code>Camera</code> from previous article are still there. We&#39;ll use them to render to the canvas.
 We just need to add stuff to render.</p>
 <p>Let&#39;s add a cube that uses the render target&#39;s texture.</p>
-<pre><code>const material = new THREE.MeshPhongMaterial({
+<pre><code class="lang-js">const material = new THREE.MeshPhongMaterial({
   map: renderTarget.texture,
 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
-</code></pre><p>Now at render time first we render the render target scene to the render target.</p>
-<pre><code>function render(time) {
+</code></pre>
+<p>Now at render time first we render the render target scene to the render target.</p>
+<pre><code class="lang-js">function render(time) {
   time *= 0.001;
 
   ...
@@ -152,14 +156,16 @@ scene.add(cube);
 
   // draw render target scene to render target
   renderer.render(rtScene, rtCamera, renderTarget);
-</code></pre><p>Then we render the scene with the single cube that is using the render target&#39;s texture to the canvas.</p>
-<pre><code>  // rotate the cube in the scene
+</code></pre>
+<p>Then we render the scene with the single cube that is using the render target&#39;s texture to the canvas.</p>
+<pre><code class="lang-js">  // rotate the cube in the scene
   cube.rotation.x = time;
   cube.rotation.y = time * 1.1;
 
   // render the scene to the canvas
   renderer.render(scene, camera);
-</code></pre><p>And voilà</p>
+</code></pre>
+<p>And voilà</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-target.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-target.html" target="_blank">click here to open in a separate window</a>

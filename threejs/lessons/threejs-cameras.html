@@ -114,7 +114,7 @@ plane, a sphere, and a cube and make it so we can adjust the camera&#39;s settin
 <p>To do that we&#39;ll make a <code>MinMaxGUIHelper</code> for the <code>near</code> and <code>far</code> settings so <code>far</code> 
 is always greater than <code>near</code>. It will have <code>min</code> and <code>max</code> properties that dat.GUI 
 will adjust. When adjusted they&#39;ll set the 2 properties we specify.</p>
-<pre><code class="lang-javascript">class MinMaxGUIHelper {
+<pre><code class="lang-js">class MinMaxGUIHelper {
   constructor(obj, minProp, maxProp, minDif) {
     this.obj = obj;
     this.minProp = minProp;
@@ -138,7 +138,7 @@ will adjust. When adjusted they&#39;ll set the 2 properties we specify.</p>
 }
 </code></pre>
 <p>Now we can setup our GUI like this</p>
-<pre><code class="lang-javascript">function updateCamera() {
+<pre><code class="lang-js">function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
@@ -191,25 +191,25 @@ the canvas</p>
 }
 </code></pre>
 <p>Then in our code we&#39;ll add a <code>CameraHelper</code>. A <code>CameraHelper</code> draws the frustum for a <code>Camera</code></p>
-<pre><code class="lang-javascript">const cameraHelper = new THREE.CameraHelper(camera);
+<pre><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
 
 ...
 
 scene.add(cameraHelper);
 </code></pre>
 <p>Now let&#39;s look up the 2 view elements.</p>
-<pre><code class="lang-javascript">const view1Elem = document.querySelector(&#39;#view1&#39;); 
+<pre><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;); 
 const view2Elem = document.querySelector(&#39;#view2&#39;);
 </code></pre>
 <p>And we&#39;ll set our existing <code>OrbitControls</code> to respond to the first
 view element only.</p>
-<pre><code class="lang-javascript">-const controls = new THREE.OrbitControls(camera, canvas);
+<pre><code class="lang-js">-const controls = new THREE.OrbitControls(camera, canvas);
 +const controls = new THREE.OrbitControls(camera, view1Elem);
 </code></pre>
 <p>Let&#39;s make a second <code>PerspectiveCamera</code> and a second <code>OrbitControls</code>.
 The second <code>OrbitControls</code> is tied to the second camera and gets input
 from the second view element.</p>
-<pre><code>const camera2 = new THREE.PerspectiveCamera(
+<pre><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
   60,  // fov
   2,   // aspect
   0.1, // near
@@ -221,12 +221,13 @@ camera2.lookAt(0, 5, 0);
 const controls2 = new THREE.OrbitControls(camera2, view2Elem);
 controls2.target.set(0, 5, 0);
 controls2.update();
-</code></pre><p>Finally we need to render the scene from the point of view of each
+</code></pre>
+<p>Finally we need to render the scene from the point of view of each
 camera using the scissor function to only render to part of the canvas.</p>
 <p>Here is a function that given an element will compute the rectangle
 of that element that overlaps the canvas. It will then set the scissor
 and viewport to that rectangle and return the aspect for that size.</p>
-<pre><code class="lang-javascript">function setScissorForElement(elem) {
+<pre><code class="lang-js">function setScissorForElement(elem) {
   const canvasRect = canvas.getBoundingClientRect();
   const elemRect = elem.getBoundingClientRect();
 
@@ -248,7 +249,7 @@ and viewport to that rectangle and return the aspect for that size.</p>
 }
 </code></pre>
 <p>And now we can use that function to draw the scene twice in our <code>render</code> function</p>
-<pre><code class="lang-javascript">  function render() {
+<pre><code class="lang-js">  function render() {
 
 -    if (resizeRendererToDisplaySize(renderer)) {
 -      const canvas = renderer.domElement;
@@ -307,7 +308,7 @@ and viewport to that rectangle and return the aspect for that size.</p>
 second view to dark blue just to make it easier to distinguish the two views.</p>
 <p>We can also remove our <code>updateCamera</code> code since we&#39;re updating everything
 in the <code>render</code> function.</p>
-<pre><code class="lang-javascript">-function updateCamera() {
+<pre><code class="lang-js">-function updateCamera() {
 -  camera.updateProjectionMatrix();
 -}
 
@@ -345,7 +346,7 @@ and the precision far from the camera is course. The units use start with <code>
 and slowly expand as they approach <code>far</code>.</p>
 <p>Starting with the top example, let&#39;s change the code to insert 20 spheres in a
 row.</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-js">{
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
@@ -361,7 +362,7 @@ row.</p>
 }
 </code></pre>
 <p>and let&#39;s set <code>near</code> to 0.00001</p>
-<pre><code class="lang-javascript">const fov = 45;
+<pre><code class="lang-js">const fov = 45;
 const aspect = 2;  // the canvas default
 -const near = 0.1;
 +const near = 0.00001;
@@ -369,7 +370,7 @@ const far = 100;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre>
 <p>We also need to tweak the GUI code a little to allow 0.00001 if the value is edited</p>
-<pre><code class="lang-javascript">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
+<pre><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
 +gui.add(minMaxGUIHelper, &#39;min&#39;, 0.00001, 50, 0.00001).name(&#39;near&#39;).onChange(updateCamera);
 </code></pre>
 <p>What do you think will happen?</p>
@@ -387,7 +388,7 @@ enough precision to decide which pixels are in front and which pixels are behind
 <p>One solution is to tell three.js use to a different method to compute which
 pixels are in front and which are behind. We can do that by enabling 
 <code>logarithmicDepthBuffer</code> when we create the <code>WebGLRenderer</code></p>
-<pre><code class="lang-javascript">-const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas: canvas});
 +const renderer = new THREE.WebGLRenderer({
 +  canvas: canvas,
 +  logarithmicDepthBuffer: true,
@@ -424,7 +425,7 @@ there is no perspective.</p>
 <p>Let&#39;s change the 2 view example above to use an <code>OrthographicCamera</code>
 in the first view.</p>
 <p>First let&#39;s setup an <code>OrthographicCamera</code>.</p>
-<pre><code class="lang-javascript">const left = -1;
+<pre><code class="lang-js">const left = -1;
 const right = 1;
 const top = 1;
 const bottom = -1;
@@ -438,7 +439,7 @@ a box 2 units wide and 2 units tall but we&#39;re going to adjust the <code>left
 by the aspect of the rectangle we&#39;re drawing to. We&#39;ll use the <code>zoom</code> property
 to make it easy to adjust how many units are actually shown by the camera.</p>
 <p>Let&#39;s add a GUI setting for <code>zoom</code></p>
-<pre><code class="lang-javascript">const gui = new dat.GUI();
+<pre><code class="lang-js">const gui = new dat.GUI();
 +gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
 </code></pre>
 <p>The call to <code>listen</code> tells dat.GUI to watch for changes. This is here because
@@ -446,7 +447,7 @@ the <code>OrbitControls</code> can also control zoom. For example the scrollwhee
 a mouse will zoom via the <code>OrbitControls</code>.</p>
 <p>Last we just need to change the part that renders the left
 side to update the <code>OrthographicCamera</code>.</p>
-<pre><code class="lang-javascript">{
+<pre><code class="lang-js">{
   const aspect = setScissorForElement(view1Elem);
 
   // update the camera for this aspect
@@ -476,7 +477,7 @@ to show. For example if you want one pixel of canvas to match
 one unit in the camera you could do something like</p>
 <p>To put the origin at the center and have 1 pixel = 1 three.js unit
 something like</p>
-<pre><code class="lang-javascript">camera.left = -canvas.width / 2;
+<pre><code class="lang-js">camera.left = -canvas.width / 2;
 camera.right = canvas.width / 2;
 camera.top = canvas.heigth / 2;
 camera.bottom = -canvas.height / 2;
@@ -486,7 +487,7 @@ camera.zoom = 1;
 </code></pre>
 <p>Or if we wanted the origin to be in the top left just like a 
 2D canvas we could use this</p>
-<pre><code class="lang-javascript">camera.left = 0;
+<pre><code class="lang-js">camera.left = 0;
 camera.right = canvas.width;
 camera.top = 0;
 camera.bottom = canvas.height;
@@ -496,7 +497,7 @@ camera.zoom = 1;
 </code></pre>
 <p>In which case the top left corner would be 0,0 just like a 2D canvas</p>
 <p>Let&#39;s try it! First let&#39;s set the camera up</p>
-<pre><code class="lang-javascript">const left = 0;
+<pre><code class="lang-js">const left = 0;
 const right = 300;  // default canvas size
 const top = 0;
 const bottom = 150;  // default canvas size
@@ -508,7 +509,7 @@ camera.zoom = 1;
 <p>Then let&#39;s load 6 textures and make 6 planes, one for each texture.
 We&#39;ll parent each plane to a <code>THREE.Object3D</code> to make it easy to offset
 the plane so it&#39;s center appears to be at it&#39;s top left corner.</p>
-<pre><code class="lang-javascript">const loader = new THREE.TextureLoader();
+<pre><code class="lang-js">const loader = new THREE.TextureLoader();
 const textures = [
   loader.load(&#39;resources/images/flower-1.jpg&#39;),
   loader.load(&#39;resources/images/flower-2.jpg&#39;),
@@ -536,7 +537,7 @@ const planes = textures.map((texture) =&gt; {
 </code></pre>
 <p>and we need to update the camera if the size of the canvas
 changes.</p>
-<pre><code class="lang-javascript">function render() {
+<pre><code class="lang-js">function render() {
 
   if (resizeRendererToDisplaySize(renderer)) {
     camera.right = canvas.width;
@@ -548,7 +549,7 @@ changes.</p>
 </code></pre>
 <p><code>planes</code> is an array of <code>THREE.Mesh</code>, one for each plane.
 Let&#39;s move them around based on the time.</p>
-<pre><code class="lang-javascript">function render(time) {
+<pre><code class="lang-js">function render(time) {
   time *= 0.001;  // convert to seconds;
 
   ...

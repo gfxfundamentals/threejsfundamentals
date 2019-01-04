@@ -90,29 +90,33 @@ Which materials you use really depends on what you&#39;re trying to
 accomplish.</p>
 <p>There are 2 ways to set most material properties. One at creation time which
 we&#39;ve seen before.</p>
-<pre><code>const material = new THREE.MeshPhongMaterial({
+<pre><code class="lang-js">const material = new THREE.MeshPhongMaterial({
   color: 0xFF0000,    // red (can also use a CSS color string here)
   flatShading: true,
 });
-</code></pre><p>The other is after creation</p>
-<pre><code>const material = new THREE.MeshPhongMaterial();
+</code></pre>
+<p>The other is after creation</p>
+<pre><code class="lang-js">const material = new THREE.MeshPhongMaterial();
 material.color.setHSL(0, 1, .5);  // red
 material.flatShading = true;
-</code></pre><p>note that properties of type <code>THREE.Color</code> have multiple ways to be set.</p>
-<pre><code>material.color.set(0x00FFFF);    // same as CSS&#39;s #RRGGBB style
+</code></pre>
+<p>note that properties of type <code>THREE.Color</code> have multiple ways to be set.</p>
+<pre><code class="lang-js">material.color.set(0x00FFFF);    // same as CSS&#39;s #RRGGBB style
 material.color.set(cssString);   // any CSS color, eg &#39;purple&#39;, &#39;#F32&#39;, 
                                  // &#39;rgb(255, 127, 64)&#39;,
                                  // &#39;hsl(180, 50%, 25%)&#39;
 material.color.set(someColor)    // some other THREE.Color
 material.color.setHSL(h, s, l)   // where h, s, and l are 0 to 1
 material.color.setRGB(r, g, b)   // where r, g, and b are 0 to 1
-</code></pre><p>And at creation time you can pass either a hex number or a CSS string</p>
-<pre><code>const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
+</code></pre>
+<p>And at creation time you can pass either a hex number or a CSS string</p>
+<pre><code class="lang-js">const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
 const m2 = new THREE.MeshBasicMaterial({color: &#39;red&#39;});            // red
 const m3 = new THREE.MeshBasicMaterial({color: &#39;#F00&#39;});           // red
 const m4 = new THREE.MeshBasicMaterial({color: &#39;rgb(255,0,0)&#39;});   // red
 const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // red
-</code></pre><p>So let&#39;s go over three.js&#39;s set of materials.</p>
+</code></pre>
+<p>So let&#39;s go over three.js&#39;s set of materials.</p>
 <p>The <code>MeshBasicMaterial</code> is not affected by lights. 
 The <code>MeshLambertMaterial</code> computes lighting only at the vertices vs the <code>MeshPhongMaterial</code> which computes lighting at every pixel. The <code>MeshPhongMaterial</code>
 also supports specular highlights.</p>

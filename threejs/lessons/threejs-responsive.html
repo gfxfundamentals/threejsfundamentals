@@ -93,12 +93,13 @@ bottom is something we might want to handle. A live diagram
 in the middle of a document is another example.</p>
 <p>The last sample we had used a plain canvas with no css and
 no size</p>
-<pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
-</code></pre><p>That canvas defaults to 300x150 css pixels in size.</p>
+<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>That canvas defaults to 300x150 css pixels in size.</p>
 <p>In the web platform the recommended way to set the size
 of something is to use CSS.</p>
 <p>Let&#39;s make the canvas fill the page by adding CSS</p>
-<pre><code>&lt;style&gt;
+<pre><code class="lang-html">&lt;style&gt;
 html, body {
    margin: 0;
    height: 100%;
@@ -109,7 +110,8 @@ html, body {
    display: block;
 }
 &lt;/style&gt;
-</code></pre><p>In HTML the body has a margin of 5px pixels by default so setting the
+</code></pre>
+<p>In HTML the body has a margin of 5px pixels by default so setting the
 margin to 0 removes the margin. Setting the html and body height to 100%
 makes them fill the window. Otherwise they are only as large
 as the content that fills them.</p>
@@ -142,7 +144,7 @@ to set the aspect of the camera to the aspect of the canvas&#39;s
 display size. We can do that by looking at the canvas&#39;s
 <code>clientWidth</code> and <code>clientHeight</code> properties.</p>
 <p>We&#39;ll update our render loop like this</p>
-<pre><code>function render(time) {
+<pre><code class="lang-js">function render(time) {
   time *= 0.001;
 
 +  const canvas = renderer.domElement;
@@ -150,7 +152,8 @@ display size. We can do that by looking at the canvas&#39;s
 +  camera.updateProjectionMatrix();
 
   ...
-</code></pre><p>Now the cubes should stop being distorted.</p>
+</code></pre>
+<p>Now the cubes should stop being distorted.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-update-camera.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-update-camera.html" target="_blank">click here to open in a separate window</a>
@@ -167,15 +170,16 @@ on the page. That&#39;s what we set with CSS. The other size is the
 number of pixels in the canvas itself. This is no different than an image.
 For example we might have a 128x64 pixel image and using
 css we might display as 400x200 pixels.</p>
-<pre><code>&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
-</code></pre><p>A canvas&#39;s internal size, its resolution, is often called its drawingbuffer size.
+<pre><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
+</code></pre>
+<p>A canvas&#39;s internal size, its resolution, is often called its drawingbuffer size.
 In three.js we can set the canvas&#39;s drawingbuffer size by calling <code>renderer.setSize</code>.
 What size should we pick? The most obvious answer is &quot;the same size the canvas is displayed&quot;.
 Again, to do that we can look at the canvas&#39;s <code>clientWidth</code> and <code>clientHeight</code>
 attributes.</p>
 <p>Let&#39;s write a function that checks if the renderer&#39;s canvas is not
 already the size it is being displayed as and if so set its size.</p>
-<pre><code>function resizeRendererToDisplaySize(renderer) {
+<pre><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
@@ -185,7 +189,8 @@ already the size it is being displayed as and if so set its size.</p>
   }
   return needResize;
 }
-</code></pre><p>Notice we check if the canvas actually needs to be resized. Resizing the canvas
+</code></pre>
+<p>Notice we check if the canvas actually needs to be resized. Resizing the canvas
 is an interesting part of the canvas spec and it&#39;s best not to set the same
 size if it&#39;s already the size we want.</p>
 <p>Once we know if we need to resize or not we then call <code>renderer.setSize</code> and
@@ -197,7 +202,7 @@ want canvases used by three to be different than other elements.</p>
 <p>Note that our function returns true if the canvas was resized. We can use
 this to check if there are other things we should update. Let&#39;s modify
 our render loop to use the new function</p>
-<pre><code>function render(time) {
+<pre><code class="lang-js">function render(time) {
   time *= 0.001;
 
 +  if (resizeRendererToDisplaySize(renderer)) {
@@ -207,7 +212,8 @@ our render loop to use the new function</p>
 +  }
 
   ...
-</code></pre><p>Since the apsect is only going to change if the canvas&#39;s display size
+</code></pre>
+<p>Since the apsect is only going to change if the canvas&#39;s display size
 changed we only set the camera&#39;s aspect if <code>resizeRendererToDisplaySize</code>
 returns <code>true</code>.</p>
 <p><div class="threejs_example_container">
@@ -273,7 +279,7 @@ and pass that to three.js</p>
 use the size you request multiplied by whatever pixel ratio
 you passed in.</p>
 <p>The other way is to do it yourself when you resize the canvas.</p>
-<pre><code>    function resizeRendererToDisplaySize(renderer) {
+<pre><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
       const width = canvas.clientWidth * pixelRatio;
@@ -284,7 +290,8 @@ you passed in.</p>
       }
       return needResize;
     }
-</code></pre><p>I prefer this second way. Why? Because it means I get what I ask for.
+</code></pre>
+<p>I prefer this second way. Why? Because it means I get what I ask for.
 There are many cases when using three.js where we need to know the actual
 size of the canvas&#39;s drawingBuffer. For example when making a post processing filter,
 or if we are making a shader that accesses <code>gl_FragCoord</code>, etc...

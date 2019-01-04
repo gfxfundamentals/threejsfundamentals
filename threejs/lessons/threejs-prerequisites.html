@@ -100,7 +100,7 @@ all elements that match a CSS selector.</p>
 <pre><code>&lt;body onload=&quot;somefunction()&quot;&gt;
 </code></pre><p>That style is deprecated. Put your scripts
 at the bottom of the page.</p>
-<pre><code>&lt;html&gt;
+<pre><code class="lang-html">&lt;html&gt;
   &lt;head&gt;
     ...
   &lt;/head&gt;
@@ -112,7 +112,8 @@ at the bottom of the page.</p>
     // inline javascript
   &lt;/script&gt;
 &lt;/html&gt;
-</code></pre><p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
+</code></pre>
+<p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
 <h2 id="you-don-t-need-type-text-javascript-">You don&#39;t need <code>type=&quot;text/javascript&quot;</code></h2>
 <p>modern</p>
 <pre><code>&lt;script&gt;...&lt;/script&gt;
@@ -121,7 +122,7 @@ at the bottom of the page.</p>
 </code></pre><h2 id="always-use-strict-mode">Always use <code>strict</code> mode</h2>
 <p>Put <code>&#39;use strict&#39;;</code> at the top of every JavaScript file. It will help prevent lots of bugs.</p>
 <h2 id="know-how-closures-work">Know how closures work</h2>
-<pre><code>function a(v) {
+<pre><code class="lang-js">function a(v) {
   const foo = v;
   return function() {
      return foo;
@@ -132,7 +133,8 @@ const f = a(123);
 const g = a(456);
 console.log(f());  // prints 123
 console.log(g());  // prints 456
-</code></pre><p>In the code above the function <code>a</code> creates a new function every time it&#39;s called. That
+</code></pre>
+<p>In the code above the function <code>a</code> creates a new function every time it&#39;s called. That
 funciton <em>closes</em> over the variable <code>foo</code>. Here&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">more info</a>.</p>
 <h2 id="understand-how-this-works">Understand how <code>this</code> works</h2>
 <p><code>this</code> is not magic. It&#39;s effectively a variable that is automatically passed to functions just like
@@ -161,10 +163,11 @@ the time. Use <code>let</code> in those cases where the value changes. This will
 <h3 id="use-for-elem-of-collection-never-for-elem-in-collection-">Use <code>for(elem of collection)</code> never <code>for(elem in collection)</code></h3>
 <p><code>for of</code> is new, <code>for in</code> is old. <code>for in</code> had issues that are solved by <code>for of</code></p>
 <p>As one example you can iterate over all the key/value pairs of an object with</p>
-<pre><code>for (const [key, value] of Object.entries(someObject)) {
+<pre><code class="lang-js">for (const [key, value] of Object.entries(someObject)) {
   console.log(key, value);
 }
-</code></pre><h3 id="use-foreach-map-and-filter-where-useful">Use <code>forEach</code>, <code>map</code>, and <code>filter</code>  where useful</h3>
+</code></pre>
+<h3 id="use-foreach-map-and-filter-where-useful">Use <code>forEach</code>, <code>map</code>, and <code>filter</code>  where useful</h3>
 <p>Arrays added the functions <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach, 
 [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>forEach</code></a>, and 
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>filter</code></a> and
@@ -178,7 +181,7 @@ are used fairly extensively in modern JavaScript.</p>
 <pre><code> const {width, height} = dims;
 </code></pre><h3 id="use-object-declaration-short-cuts">Use object declaration short cuts</h3>
 <p>old code</p>
-<pre><code> const width = 300;
+<pre><code class="lang-js"> const width = 300;
  const height = 150;
  const obj = {
    width: width,
@@ -187,8 +190,9 @@ are used fairly extensively in modern JavaScript.</p>
      return this.width * this.height
    },
  };
-</code></pre><p>new code</p>
-<pre><code> const width = 300;
+</code></pre>
+<p>new code</p>
+<pre><code class="lang-js"> const width = 300;
  const height = 150;
  const obj = {
    width,
@@ -197,18 +201,21 @@ are used fairly extensively in modern JavaScript.</p>
      return this.width * this.height;
    },
  };
-</code></pre><h3 id="use-the-spread-operator-">Use the spread operator <code>...</code></h3>
+</code></pre>
+<h3 id="use-the-spread-operator-">Use the spread operator <code>...</code></h3>
 <p>The spread operator has a ton of uses. Example</p>
-<pre><code> function log(className, ...args) {
+<pre><code class="lang-js"> function log(className, ...args) {
    const elem = document.createElement(&#39;div&#39;);
    elem.className = className;
    elem.textContent = [...args].join(&#39; &#39;);
    document.body.appendChild(elem);
  }
-</code></pre><p>Another example</p>
-<pre><code>const position = [1, 2, 3];
+</code></pre>
+<p>Another example</p>
+<pre><code class="lang-js">const position = [1, 2, 3];
 somemesh.position.set(...position);
-</code></pre><h3 id="use-class-">Use <code>class</code></h3>
+</code></pre>
+<h3 id="use-class-">Use <code>class</code></h3>
 <p>The syntax for making class like objects pre ES5 was unfamilar to most programmers.
 As of ES5 you can now <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">use the <code>class</code> keyword</a> which
 is closer to the style of C++/C#/Java.</p>
@@ -219,12 +226,14 @@ common in most modern languages. The <code>class</code> syntax
 of ES5 makes them much easier than pre ES5.</p>
 <h3 id="use-arrow-functions-where-appropriate">Use arrow functions where appropriate</h3>
 <p>This is especially useful with callbacks and promises.</p>
-<pre><code>loader.load((texture) =&gt; {
+<pre><code class="lang-js">loader.load((texture) =&gt; {
   // use textrue
 });
-</code></pre><p>Arrow functions bind <code>this</code>. They are a shortcut for</p>
-<pre><code>(function(args) {/* code */}).bind(this))
-</code></pre><h3 id="promises-as-well-as-async-await">Promises as well as async/await</h3>
+</code></pre>
+<p>Arrow functions bind <code>this</code>. They are a shortcut for</p>
+<pre><code class="lang-js">(function(args) {/* code */}).bind(this))
+</code></pre>
+<h3 id="promises-as-well-as-async-await">Promises as well as async/await</h3>
 <p>Promises help with asynchronous code. Async/await help
 use promises.</p>
 <p>It&#39;s too big a topic to go into here but you can <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">read up
@@ -234,27 +243,31 @@ and <a href="">async/await here</a>.</p>
 <p>Template literals are strings using backticks instead of quotes.</p>
 <pre><code>const foo = `this is a template literal`;
 </code></pre><p>Template literals have basically 2 features. One is they can be multi-line</p>
-<pre><code>const foo = `this
+<pre><code class="lang-js">const foo = `this
 is
 a
 template
 literal`;
 const bar = &quot;this\nis\na\ntemplate\nliteral&quot;;
-</code></pre><p><code>foo</code> and <code>bar</code> above are the same.</p>
+</code></pre>
+<p><code>foo</code> and <code>bar</code> above are the same.</p>
 <p>The other is that you can pop out of string mode and insert snippets of
 JavaScript using <code>${javascript-expression}</code>. This is the template part. Example:</p>
-<pre><code>const r = 192;
+<pre><code class="lang-js">const r = 192;
 const g = 255;
 const b = 64;
 const rgbCSSColor = `rgb(${r},${g},${b})`;
-</code></pre><p>or</p>
-<pre><code>const color = [192, 255, 64];
+</code></pre>
+<p>or</p>
+<pre><code class="lang-js">const color = [192, 255, 64];
 const rgbCSSColor = `rgb(${color.join(&#39;,&#39;)})`;
-</code></pre><p>or</p>
-<pre><code>const aWidth = 10;
+</code></pre>
+<p>or</p>
+<pre><code class="lang-js">const aWidth = 10;
 const bWidth = 20;
 someElement.style.width = `${aWidth + bWidth}px`;
-</code></pre><h1 id="learn-javascript-coding-convensions-">Learn JavaScript coding convensions.</h1>
+</code></pre>
+<h1 id="learn-javascript-coding-convensions-">Learn JavaScript coding convensions.</h1>
 <p>While you&#39;re welcome to format your code any way you chose there is at least one convension you should be aware of. Variables, function names, method names, in JavaScript are all lowercasedCamelCase. Constructors, the names of classes are CapitalizedCamelCase. If you follow this rule you code will match most other JavaScript.</p>
 <h1 id="consider-using-visual-studio-code">Consider using Visual Studio Code</h1>
 <p>Of course use whatever editor you want but if you haven&#39;t tried it consider using <a href="https://code.visualstudio.com/">Visual Studio Code</a>
