@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following disclaimer
+      in the documentation and/or other materials provided with the
+      distribution.
+
+    * Neither the name of Google Inc. nor the names of their
+      contributors may be used to endorse or promote products derived from
+      this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Multiple Canvases Multiple Scenes" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to draw stuff all over the page with THREE.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Multiple Canvases Multiple Scenes" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html" />
+<meta name="twitter:description" content="How to draw stuff all over the page with THREE.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Multiple Canvases Multiple Scenes</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-multiple-scenes.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-multiple-scenes.html" selected>Русский</a>
+</select>
+
+
+    <a href="#toc">Оглавление</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/ru/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Multiple Canvases Multiple Scenes</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/greggman/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
+<p><a href="/threejs/lessons/threejs-multiple-scenes.html">А пока можете почитать статью на английском языке</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-multiple-scenes.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-multiple-scenes.html" selected>Русский</a>
+</select>
+
+
+        <ul>
+  <li>Основы</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-prerequisites.html">Предварительные условия</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-setup.html">Настройка</a></li>
+  </ul>
+  <li>Решения</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-load-obj.html">Загрузить файл .OBJ</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-load-gltf.html">Загрузить файл .GLTF</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-multiple-scenes.html"> Несколько холстов, несколько сцен</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-picking.html">Выбор объектов с помощью мыши</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-post-processing.html">Постобработка</a></li>
+  </ul>
+  <li>Советы</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-debugging-javascript.html">Отладка JavaScript</a></li>
+  </ul>
+  <li>Основы</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-primitives.html">Примитивы</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-scenegraph.html">Граф сцены</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-materials.html">Материалы</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-textures.html">Текстуры</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-lights.html">Свет</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-cameras.html">Камера</a></li>
+    <li><a href="#"><del>Мотор!</del></a></li>
+    <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-fog.html">Туман</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-rendertargets.html">Цели рендеринга</a></li>
+  </ul>
+  <li>Ссылки</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-material-table.html">Таблица материалов</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

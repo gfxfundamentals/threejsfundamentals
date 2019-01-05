@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id></id>
+    <title>Основы three.js</title>
+    <updated>2019-01-05T01:39:37.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>ThreeJSFundamentals Contributors</name>
+        <uri>http://threejsfundamentals.org/contributors.html</uri>
+    </author>
+    <link rel="alternate" href="http://threejsfundamentals.org/"/>
+    <subtitle>Изучение Three.js с нуля.</subtitle>
+    <logo>http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Основы Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html">
+        </link>
+        <updated>2019-01-05T01:39:37.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-05T01:39:37.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Примитивы Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html">
+        </link>
+        <updated>2019-01-05T01:39:37.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-05T01:39:37.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js Oтзывчивый Дизайн]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html">
+        </link>
+        <updated>2019-01-05T01:39:37.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-05T01:39:37.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Граф сцены Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html">
+        </link>
+        <updated>2019-01-05T01:39:37.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-05T01:39:37.000Z</published>
+    </entry>
+</feed>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-primitives.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Примитивы Three.js" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="Обзор примитивов three.js." />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Примитивы Three.js" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html" />
+<meta name="twitter:description" content="Обзор примитивов three.js." />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Примитивы Three.js</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-primitives.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-primitives.html" selected>Русский</a>
+</select>
+
+
+    <a href="#toc">Оглавление</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/ru/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Примитивы Three.js</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Это вторая статья в серии статей о three.js.
+Первая была <a href="threejs-fundamentals.html">об основах</a>.
+Если вы её еще не читали, советую вам сделать это.</p>
+<p>Three.js имеет большое количество примитивов. Примитивы, как правило, 
+представляют собой трехмерные фигуры, которые генерируются во время 
+выполнения с помощью набора параметров.</p>
+<p>Примитивы используются для таких вещей, как сфера для глобуса или куча 
+прямоугольников для рисования трехмерного графика. Особенно часто 
+используются примитивы для экспериментов и начала работы с 3D. 
+Для большинства 3D-приложений художник чаще всего создает 3D-модели 
+в программе 3D-моделирования. Позже в этой серии мы рассмотрим 
+создание и загрузку данных из нескольких программ 3D-моделирования. 
+А сейчас давайте рассмотрим некоторые из доступных примитивов.</p>
+<div data-primitive="BoxBufferGeometry">Прямоугольный параллелепипед</div>
+<div data-primitive="CircleBufferGeometry">Круг</div>
+<div data-primitive="ConeBufferGeometry">Конус</div>
+<div data-primitive="CylinderBufferGeometry">Цилиндр</div>
+<div data-primitive="DodecahedronBufferGeometry">Додекаэдр (12 граней)</div>
+<div data-primitive="ExtrudeBufferGeometry">Выдавленная 2d фигура с скругленными краями.
+Здесь мы выдавливаем форму сердца. Обратите внимание, это основа 
+для <code>TextBufferGeometry</code> и <code>TextGeometry</code> соответственно.</div>
+<div data-primitive="IcosahedronBufferGeometry">Икосаэдр (20 граней)</div>
+<div data-primitive="LatheBufferGeometry">Форма, созданная вращением линии. Например, лампы, кегли для боулинга, свечи, подсвечники, бокалы для вина, стаканы для питья и т. Д. Вы указываете 2-мерный силуэт в виде серии точек, а затем указываете three.js , сколько секций нужно сделать, когда он вращает силуэт вокруг оси.</div>
+<div data-primitive="OctahedronBufferGeometry">Октаэдр (8 граней)</div>
+<div data-primitive="ParametricBufferGeometry">Поверхность, созданная путем предоставления функции, которая берет 2d точку из сетки и возвращает соответствующую 3d точку.</div>
+<div data-primitive="PlaneBufferGeometry">2D плоскость</div>
+<div data-primitive="PolyhedronBufferGeometry">Берет набор треугольников с центром вокруг точки и проецирует их на сферу</div>
+<div data-primitive="RingBufferGeometry">2D диск с отверстием в центре</div>
+<div data-primitive="ShapeBufferGeometry">2D контур, который строится из треугольников</div>
+<div data-primitive="SphereBufferGeometry">Сфера</div>
+<div data-primitive="TetrahedronBufferGeometry">Тераэдр (4 грани)</div>
+<div data-primitive="TextBufferGeometry">3D-текст, сгенерированный из 3D-шрифта и строки</div>
+<div data-primitive="TorusBufferGeometry">Тор (пончик)</div>
+<div data-primitive="TorusKnotBufferGeometry">Торический узел</div>
+<div data-primitive="TubeBufferGeometry">Труба - круг проходящий путь</div>
+<div data-primitive="EdgesGeometry">Вспомогательный объект, который принимает другую геометрию в качестве входных данных и генерирует ребра, только если угол между гранями больше некоторого порога. Например, если вы посмотрите на прямоугольник сверху, он показывает линию, проходящую через каждую грань, показывая каждый треугольник, из которого состоит прямоугольник. Используя EdgesGeometry, вместо этого удаляются средние линии.</div>
+<div data-primitive="WireframeGeometry">Создает геометрию, которая содержит один отрезок (2 точки) на ребро в заданной геометрии. Без этого вы часто теряете ребра или получаете дополнительные ребра, поскольку WebGL обычно требует 2 точки на отрезок. Например, если бы у вас был только один треугольник, было бы только 3 очка. Если вы попытаетесь нарисовать его, используя материал с <code>wireframe: true</code> вы получите только одну линию. А передача этой triangle geometry в <code>WireframeGeometry</code> создаст новую геометрию, которая имеет 3 отрезка линий, используя 6 точек..</div>
+
+<p>Вы можете заметить, что большинство из них приходят парами <code>Geometry</code> 
+или <code>BufferGeometry</code>. Разница между этими двумя типами заключается 
+в гибкости и производительности.</p>
+<p><code>BufferGeometry</code> основанные на примитивах типы ориентированы на производительность. 
+Вершины для геометрии генерируются непосредственно в эффективный формат 
+типизированного массива, готовый для загрузки в графический процессор 
+для рендеринга. Это означает, что они быстрее запускаются и занимают 
+меньше памяти, но если вы хотите изменить их данные, они берут то, 
+что часто считается более сложным программированием для манипулирования.</p>
+<p><code>Geometry</code> основанные на примитивах являются более гибкими, легче манипулировать типом. 
+Они построены на основе классов JavaScript, таких как <code>Vector3</code> для 3D-точки, <code>Face3</code> 
+для треугольников. Они занимают немного памяти, и прежде чем их можно будет отобразить, 
+нужно будет преобразовать их во что-то похожее на соответствующее 
+<code>BufferGeometry</code> представление.</p>
+<p>Если вы знаете, что не собираетесь манипулировать примитивом или если вам удобно 
+выполнять математику на прямую, чтобы манипулировать их внутренностями, то лучше 
+использовать основанные на <code>BufferGeometry</code> примитивы. 
+Если, с другой стороны, вы хотите изменить некоторые вещи перед рендерингом, 
+вам может быть проще работать с примитивами основанными на <code>Geometry</code>.</p>
+<p>В качестве простого примера в <code>BufferGeometry</code> не могут быть легко добавлены новые вершины.
+Количество используемых вершин определяется во время создания, создается 
+хранилище, а затем заполняются данные для вершин. В то время как с <code>Geometry</code> 
+вы можете добавлять вершины по мере необходимости.</p>
+<p>Мы рассмотрим создание пользовательской геометрии в другой статье. 
+А пока давайте создадим пример создания каждого типа примитива. 
+Начнем с <a href="threejs-responsive.html">примеров из предыдущей статьи</a>.</p>
+<p>Близ вершины давайте установим цвет фона в светло-серый</p>
+<pre><code>const scene = new THREE.Scene();
++scene.background = new THREE.Color(0xAAAAAA);
+</code></pre><p>Камера должна изменить положение, чтобы мы могли видеть все объекты.</p>
+<pre><code>-const fov = 75;
++const fov = 40;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 1000;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.z = 120;
+</code></pre><p>Давайте добавим функцию, <code>addObject</code>, которая добавляет 
+объект <code>Object3D</code> на сцену в позицию x, y.</p>
+<pre><code>const objects = [];
+const spread = 15;
+
+function addObject(x, y, obj) {
+  obj.position.x = x * spread;
+  obj.position.y = y * spread;
+
+  scene.add(obj);
+  objects.push(obj);
+}
+</code></pre><p>Давайте также сделаем функцию для создания случайно раскрашенного материала.
+Мы будем использовать особенность <code>Color</code> которая позволяет вам установить цвет 
+на основе оттенка, насыщенности и яркости (hue, saturation, luminance).</p>
+<p><code>hue</code> идет от 0 до 1 вокруг цветового круга с красным на 0, 
+зеленым на .33 и синим на .66. <code>saturation</code> 
+изменяется от 0 до 1, где 0 не имеет цвета, а 1 наиболее насыщен.
+<code>luminance</code> изменяется от 0 до 1, где 0 - черный, 1 - белый, 
+а 0.5 максимальное количество цвета. Другими словами, 
+<code>luminance</code> от 0,0 до 0,5 цвет будет изменяться с черного на <code>hue</code>. 
+От 0,5 до 1,0 цвет изменится <code>hue</code> на белый.</p>
+<pre><code>function createMaterial() {
+  const material = new THREE.MeshPhongMaterial({
+    side: THREE.DoubleSide,
+  });
+
+  const hue = Math.random();
+  const saturation = 1;
+  const luminance = .5;
+  material.color.setHSL(hue, saturation, luminance);
+
+  return material;
+}
+</code></pre><p>Мы также передаем материалу <code>side: THREE.DoubleSide</code>.
+Это говорит three нарисовать обе стороны треугольников, 
+которые составляют форму. Для сплошной (solid)  формы, 
+такой как сфера или куб, обычно нет причин рисовать 
+задние стороны треугольников, поскольку все они обращены 
+внутрь фигуры. В нашем случае мы рисуем несколько вещей, 
+таких как  <code>PlaneBufferGeometry</code> и <code>ShapeBufferGeometry</code>
+которые являются двухмерными и поэтому не имеют внутренней 
+части. Без установки <code>side: THREE.DoubleSide</code> они исчезнут,
+при взгляде на их задние стороны.</p>
+<p>Я должен отметить, что отрисовка быстрее, когда <strong>не</strong> установлено
+<code>side: THREE.DoubleSide</code> в реальной работе, мы бы устанавливали 
+его только для материалов, которые действительно в этом нуждаются, 
+но в этом случае мы не рисуем слишком много, поэтому нет 
+причин для беспокойства.</p>
+<p>Давайте создадим функцию <code>addSolidGeometry</code>, которой мы передадим 
+геометрию, и она создаст случайно раскрашенный материал 
+<code>createMaterial</code> и <code>addObject</code> добавит его в сцену.</p>
+<pre><code>function addSolidGeometry(x, y, geometry) {
+  const mesh = new THREE.Mesh(geometry, createMaterial());
+  addObject(x, y, mesh);
+}
+</code></pre><p>Теперь мы можем использовать это для большинства примитивов, 
+которые мы создаем. Например, создание прямоугольного параллелепипеда</p>
+<pre><code>{
+  const width = 8;
+  const height = 8;
+  const depth = 8;
+  addSolidGeometry(-2, -2, new THREE.BoxBufferGeometry(width, height, depth));
+}
+</code></pre><p>Если вы посмотрите на код ниже, вы увидите похожую часть для 
+каждого типа геометрии.</p>
+<p>Вот результат:</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-primitives.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Есть несколько заметных исключений из шаблона выше. 
+Самым большим, вероятно, является <code>TextBufferGeometry</code>. Он должен 
+загрузить данные 3D шрифта, прежде чем он сможет сгенерировать 
+сетку для текста. Эти данные загружаются асинхронно, поэтому 
+нам нужно дождаться их загрузки, прежде чем пытаться создать 
+геометрию. Вы можете увидеть ниже, мы создаем <code>FontLoader</code> 
+и передаем его URL нашему шрифту и обратному вызову (callback). 
+Обратный вызов срабатывает после загрузки шрифта. 
+В обратном вызове мы создаем геометрию и вызываем <code>addObject</code>, 
+чтобы добавить к ней сцену.</p>
+<pre><code>{
+  const loader = new THREE.FontLoader();
+  loader.load(&#39;../resources/threejs/fonts/helvetiker_regular.typeface.json&#39;, (font) =&gt; {
+    const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
+      font: font,
+      size: 3.0,
+      height: .2,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 0.15,
+      bevelSize: .3,
+      bevelSegments: 5,
+    });
+    const mesh = new THREE.Mesh(geometry, createMaterial());
+    geometry.computeBoundingBox();
+    geometry.boundingBox.getCenter(mesh.position).multiplyScalar(-1);
+
+    const parent = new THREE.Object3D();
+    parent.add(mesh);
+
+    addObject(-1, 1, parent);
+  });
+}
+</code></pre><p>Есть еще одно отличие. Мы хотим вращать текст вокруг его центра, 
+но по умолчанию three.js создает текст таким образом, чтобы его 
+центр вращения находился на левом краю. Чтобы обойти это, мы 
+можем попросить three.js вычислить ограничивающую 
+рамку (bounding box) геометрии. Затем мы можем вызвать <code>getCenter</code> 
+метод bounding box и передать ему объект позиции нашей полигональной 
+сетки (mesh). <code>getCenter</code> копирует центр коробки в указанное положение.
+Он также возвращает объект position, поэтому мы можем вызвать 
+<code>multiplyScaler(-1)</code> для позиционирования всего объекта таким образом, 
+чтобы его центр вращения находился в центре объекта.</p>
+<p>Если бы мы тогда просто вызвали <code>addSolidGeometry</code> как в предыдущих 
+примерах, это снова установило бы позицию, что не годится. 
+Итак, в этом случае мы создаем <code>Object3D</code> стандартный узел для графа 
+сцены three.js. <code>Mesh</code> так же наследуется от <code>Object3D</code>. Мы рассмотрим, 
+<a href="threejs-scenegraph.html">как работает график сцены, в другой статье</a>.
+На данный момент достаточно знать, что, как и DOM-узлы, дети рисуются 
+относительно своего родителя. Сделав <code>Object3D</code> и сделав нашу сетку 
+дочерней по отношению к этому, мы можем расположить <code>Object3D</code>  в то 
+место, где мы хотим, и при этом сохранить смещение центра, 
+которое мы установили раньше.</p>
+<p>Если бы мы этого не делали, текст был бы оторван от центра.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives-text.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-primitives-text.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Обратите внимание, что то что слева не вращается вокруг своего центра, 
+как то, что справа.</p>
+<p>Другие исключения - это 2-строчные примеры для <code>EdgesGeometry</code>
+и <code>WireframeGeometry</code>. Вместо того, чтобы вызвать <code>addSolidGeometry</code> 
+они вызвают <code>addLineGeomtry</code> который выглядит так</p>
+<pre><code>function addLineGeometry(x, y, geometry) {
+  const material = new THREE.LineBasicMaterial({color: 0x000000});
+  const mesh = new THREE.LineSegments(geometry, material);
+  addObject(x, y, mesh);
+}
+</code></pre><p>Он создает черный цвет <code>LineBasicMaterial</code>, а затем создает <code>LineSegments</code>, 
+который является оберткой <code>Mesh</code>, который помогает three знать, что вы 
+отрисовываете отрезки линии (2 точки на отрезок).</p>
+<p>Каждый из примитивов имеет несколько параметров, которые вы можете 
+передать при создании, и лучше всего <a href="https://threejs.org/docs/">посмотреть в документации</a> 
+по всем из них, а не повторять их здесь. Вы также можете нажать на ссылку выше рядом с 
+каждой фигурой, чтобы перейти непосредственно к документам для этой фигурой.</p>
+<p>Еще одна важная вещь - это то, что почти все фигуры имеют различные настройки того, 
+как их разделить на полигоны. Хорошим примером может служить геометрия сферы. 
+Сферы берут параметры для количества делений вокруг и количества делений сверху вниз. 
+Например</p>
+<div class="spread">
+<div data-diagram="SphereBufferGeometryLow"></div>
+<div data-diagram="SphereBufferGeometryMedium"></div>
+<div data-diagram="SphereBufferGeometryHigh"></div>
+</div>
+
+<p>Первая сфера имеет 5 сегментов вокруг и 3 высоты, что составляет 15 сегментов 
+или 30 треугольников. Вторая сфера имеет 24 сегмента на 10. Это 240 сегментов 
+или 480 треугольников. Последний имеет 50 на 50, что составляет 2500 сегментов 
+или 5000 треугольников.</p>
+<p>Вам решать, сколько сегментов вам нужно. Может показаться, что вам нужно 
+большое количество сегментов, но удалите линии и плоскую штриховку, 
+и мы получим это</p>
+<div class="spread">
+<div data-diagram="SphereBufferGeometryLowSmooth"></div>
+<div data-diagram="SphereBufferGeometryMediumSmooth"></div>
+<div data-diagram="SphereBufferGeometryHighSmooth"></div>
+</div>
+
+<p>Сейчас не очень понятно, что тот, который справа с 5000 треугольниками, 
+полностью лучше, чем тот, что в середине с 480. Если вы рисуете только 
+несколько сфер, как, например, один глобус для карты земли, то одна 
+сфера из 10000 треугольников - неплохой выбор. Если, с другой стороны, 
+вы пытаетесь нарисовать 1000 сфер, то 1000 сфер на 10000 треугольников 
+каждый - это 10 миллионов треугольников. Для плавной анимации вам нужно, 
+чтобы браузер рисовал со скоростью 60 кадров в секунду, поэтому вы должны 
+просить браузер рисовать 600 миллионов треугольников в секунду. Это много 
+вычислений.</p>
+<p>Иногда выбрать легко. Например, вы можете выбрать разделение для плоскости.</p>
+<div class="spread">
+<div data-diagram="PlaneBufferGeometryLow"></div>
+<div data-diagram="PlaneBufferGeometryHigh"></div>
+</div>
+
+<p>Плоскость слева - это 2 треугольника. Плоскость справа - это 200 треугольников. 
+В отличие от сферы, в большинстве случаев использования плоскости действительно 
+нет компромисса в качестве. Скорее всего, вы подразделяете плоскость только в 
+том случае, если вы хотите изменить или деформировать её каким-либо образом. 
+Для Box аналогично.</p>
+<p>Итак, выберите то, что подходит для вашей ситуации. Чем меньше разбиений 
+вы выберете, тем более вероятно, что все будет работать гладко и тем меньше 
+памяти они будут занимать. Вы должны решить для себя, каков правильный 
+компромисс для вашей конкретной ситуации.</p>
+<p>Далее давайте рассмотрим <a href="threejs-scenegraph.html">как работает граф сцены и как его использовать</a>.</p>
+<p><canvas id="c"></canvas></p>
+<p><script src="../../resources/threejs/r98/three.min.js"></script></p>
+<p><script src="../../resources/threejs/r98/js/controls/TrackballControls.js"></script></p>
+<p><script src="../resources/threejs-lesson-utils.js"></script></p>
+<p><script src="../resources/threejs-primitives.js"></script></p>
+<style>
+div[data-primitive] {
+    padding-bottom: 2em;
+    border-bottom: 1px solid #888;
+    margin-bottom: 2em;
+}
+div[data-primitive] .pair {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+div[data-primitive] .shape {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 200px;
+}
+div[data-primitive] .desc {
+  word-wrap: break-word;
+  padding: 1em;
+  min-width: 0;
+}
+div[data-primitive] .desc code {
+  white-space: normal;
+}
+@media (max-width: 550px) {
+  div[data-primitive] .shape {
+      width: 120px;
+      height: 120px;
+  }
+}
+div[data-primitive] .desc {
+  flex: 1 1 auto;
+}
+</style>
+
+
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-primitives.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-primitives.html" selected>Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Основы</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-prerequisites.html">Предварительные условия</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-setup.html">Настройка</a></li>
+  </ul>
+  <li>Решения</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-load-obj.html">Загрузить файл .OBJ</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-load-gltf.html">Загрузить файл .GLTF</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-multiple-scenes.html"> Несколько холстов, несколько сцен</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-picking.html">Выбор объектов с помощью мыши</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-post-processing.html">Постобработка</a></li>
+  </ul>
+  <li>Советы</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-debugging-javascript.html">Отладка JavaScript</a></li>
+  </ul>
+  <li>Основы</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-primitives.html">Примитивы</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-scenegraph.html">Граф сцены</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-materials.html">Материалы</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-textures.html">Текстуры</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-lights.html">Свет</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-cameras.html">Камера</a></li>
+    <li><a href="#"><del>Мотор!</del></a></li>
+    <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-fog.html">Туман</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-rendertargets.html">Цели рендеринга</a></li>
+  </ul>
+  <li>Ссылки</li>
+  <ul>
+    <li><a href="/threejs/lessons/ru/threejs-material-table.html">Таблица материалов</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/greggman/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Примитивы Three.js';
+            var disqus_title = 'Примитивы Three.js';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
