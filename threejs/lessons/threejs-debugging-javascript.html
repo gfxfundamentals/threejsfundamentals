@@ -112,10 +112,8 @@ Advanced Safari Preferences.</p>
 <p>Then in the Develop menu you can pick &quot;Show/Connect Web Inspector&quot;.</p>
 <div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
 
-<p>With Chrome you can also use Chrome on your computer to debug webpages
-running on Chrome on your Android phone or tablet. Similarly with
-Safari you can use your computer to debug webpages running on Safari
-on iPhones and iPads.</p>
+<p>With Chrome you can also <a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/">use Chrome on your computer to debug webpages running on Chrome on your Android phone or tablet</a>. Similarly with Safari you can <a href="https://www.google.com/search?q=safari+remote+debugging+ios">use your computer to debug webpages running on Safari
+on iPhones and iPads</a>.</p>
 <p>I&#39;m most familiar with Chrome so this guide will be using Chrome
 as an example when refering to tools but most browsers have similar
 features so it should be easy to apply anything here to all browsers.</p>
@@ -502,13 +500,23 @@ once you actually get to posting your question on Stack Overflow
 you&#39;re required to put the code </strong>in the question itself*.</p>
 <p>Follow these suggestions and your far more likely to get help
 with your issue.</p>
+<h2 id="use-a-meshbasicmaterial-">Use a <code>MeshBasicMaterial</code></h2>
+<p>Because the <code>MeshBasicMaterial</code> uses no lights this is one way to 
+remove reasons something might not be showing up. If your objects
+show up using <code>MeshBasicMaterial</code> but not with whatever materials
+you were using then you know the issue is likely with the materials
+and not some other part of the code.</p>
+<h2 id="check-your-near-and-far-settings-for-your-camera">Check your <code>near</code> and <code>far</code> settings for your camera</h2>
+<p>A <code>PerspectiveCamera</code> has <code>near</code> and <code>far</code> settings which are covered in the <a href="threejs-cameras.html">article on cameras</a>. Make sure they are set to fit the space that contains your objects. Maybe even just <strong>temporarily</strong> set them to something large like <code>near</code> = 0.001 and <code>far</code> = 1000000. You will likely run into depth resolution issues but you&#39;ll at least be able to see your objects provided they are in front of the camera.</p>
+<h2 id="check-your-scene-is-in-front-of-the-camera">Check your scene is in front of the camera</h2>
+<p>Sometimes things don&#39;t appear because they are not in front of the camera. If your camera is not controllable try adding camera control like the <code>OrbitController</code> so you can look around and find your scene. Or, try framing the scene using code which is covered in <a href="threejs-load-obj.html">this article</a>. That code finds the size of part of the scene and then moves the camera and adjusts the <code>near</code> and <code>far</code> settings to make it visible. You can then look in the debugger or add some <code>console.log</code> messages to print the size and center of the scene.</p>
 <h2 id="put-something-in-front-of-the-camera">Put something in front of the camera</h2>
 <p>This is just another wasy of saying if all else fails start with
 something that works and then slowly add stuff back in. If you get
 a screen with nothing on it then try putting something directly in
 front of the camera. Make a sphere or box, give it a simple material
 like the <code>MeshBasicMaterial</code> and make sure you can get that on the screen.
-Then start adding things back a ltitle at time and testing. Eventually
+Then start adding things back a little at time and testing. Eventually
 you&#39;ll either reproduce your bug or you&#39;ll find it on the way.</p>
 <hr>
 <p>These were a few tips for debugging JavsScript. Let&#39;s also go
