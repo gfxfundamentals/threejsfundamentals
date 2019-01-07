@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/index.md. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-*   Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
 
-*   Redistributions in binary form must reproduce the above
-    copyright notice, this list of conditions and the following disclaimer
-    in the documentation and/or other materials provided with the
-    distribution.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following disclaimer
+      in the documentation and/or other materials provided with the
+      distribution.
 
-*   Neither the name of Google Inc. nor the names of their
-    contributors may be used to endorse or promote products derived from
-    this software without specific prior written permission.
+    * Neither the name of Google Inc. nor the names of their
+      contributors may be used to endorse or promote products derived from
+      this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -35,61 +35,62 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Основы Three.js" />
+<meta property="og:title" content="Three.js Transparency" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Изучение Three.js с нуля." />
-<meta property="og:url" content="https://threejsfundamentals.org">
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to deal with transparency issues in THREE.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-transparency.html" />
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@greggman">
-<meta name="twitter:creator" content="@greggman">
-<meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="threejsfundamentals.org">
-<meta name="twitter:url" content="https://threejsfundamentals.org">
-<meta name="twitter:description" content="Изучение Three.js с нуля." />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Transparency" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-transparency.html" />
+<meta name="twitter:description" content="How to deal with transparency issues in THREE.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
-<title>Основы Three.js</title>
 
-<link rel="alternate" type="application/atom+xml" title="threejs fundamentals" href="https://threejsfundamentals.org/atom.xml" />
-
+<title>Three.js Transparency</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
-<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
-
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
-<link rel="stylesheet" href="/threejs/lessons/resources/index.css" type="text/css" />
 </head>
 <body>
-<div id="canvas">
-</div>
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/" >English</a>
-    <option value="/threejs/lessons/ru/" selected>Русский</a>
+    <option value="/threejs/lessons/threejs-transparency.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-transparency.html" selected>Русский</a>
 </select>
 
 
+    <a href="#toc">Оглавление</a>
   </div>
 </div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/ru/">threejsfundamentals.org</a></h1>
+</div>
+
+
 <div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Transparency</h1>
+  </div>
   <div class="lesson">
     <div class="lesson-main">
-      <h1>Основы Three.js <span class="rss"><a href="http://threejsfundamentals.org/atom.xml"><img src="/threejs/lessons/resources/rss-icon.svg" alt="rss"/></a></span></h1>
-      <div class="home-lang">
+      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/greggman/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
+<p><a href="/threejs/lessons/threejs-transparency.html">А пока можете почитать статью на английском языке</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
         <select class="language">
-    <option value="/" >English</a>
-    <option value="/threejs/lessons/ru/" selected>Русский</a>
+    <option value="/threejs/lessons/threejs-transparency.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-transparency.html" selected>Русский</a>
 </select>
 
 
-      </div>
-      <p>Эти статьи помогут изучить Three.js!</p>
-<p><ul>
+        <ul>
   <li>Основы</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
@@ -132,88 +133,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org">three.js</a></li>
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
-</p>
-<!--
 
-
-
--->
-
-      <div>
-      3d scene by: <a href="https://sketchfab.com/elsergio217">elsergio217</a>
-      </div>
     </div>
   </div>
 </div>
-<iframe class="background" src="/threejs/background.html"></iframe>
-<style>
-#forkongithub a {
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    font-family: arial,sans-serif;
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 40px;
-    font-size: 0.9rem;
-    line-height: 2rem;
-    position: relative;
-    transition: 0.5s;
-    display: block;
-    width: 300px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(150px) rotate(45deg) translate(10px,70px);
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
-    pointer-events: auto;
-}
-#forkongithub a:hover {
-    background: #c11;
-    color: #fff;
-}
-#forkongithub a::before,#forkongithub a::after {
-    content: "";
-    width: 100%;
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    height: 1px;
-    background: #fff;
-}
-#forkongithub a::after {
-    bottom: 1px;
-    top: auto;
-}
-
-#forkongithub{
-    z-index: 9999;
-    /* needed for firefox */
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    pointer-events: none;
-}}
-@media (max-width: 900px) {
-    #forkongithub a{
-        line-height: 1.2rem;
-    }
-}
-@media (max-width: 410px) {
-    #forkongithub a{
-        font-size: 0.7rem;
-        transform: translateX(150px) rotate(45deg) translate(20px,40px);
-    }
-}
-
-</style>
-<div id="forkongithub"><a href="https://github.com/greggman/threejsfundamentals">Fix or Fork me on GitHub</a></div>
 </body>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
 <script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
@@ -227,5 +153,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 </html>
+
 
 

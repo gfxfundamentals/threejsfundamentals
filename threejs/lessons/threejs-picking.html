@@ -87,7 +87,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>A few optimizations would include first checking if the ray intersects with an object&#39;s bounding sphere or bounding box, the sphere or box that contains the entire object. If the ray doesn&#39;t intersect one of those then we don&#39;t have to check the triangles of that object.</p>
 <p>THREE.js provides a <code>RayCaster</code> class that does exactly this.</p>
 <p>Let&#39;s make a scene with a 100 objects and try picking them. We&#39;ll
-start with an example from <a href="three.js">the article on responsive pages</a></p>
+start with an example from <a href="threejs-responsive.html">the article on responsive pages</a></p>
 <p>A few changes</p>
 <p>We&#39;ll parent the camera to another object so we can spin that other object and the camera will move around the scene just like a selfie stick.</p>
 <pre><code class="lang-js">*const fov = 60;

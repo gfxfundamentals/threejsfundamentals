@@ -293,24 +293,16 @@ the page is currently scrolled to.</p>
 
   const transform = `translateY(${window.scrollY}px)`;
   renderer.domElement.style.transform = transform;
+</code></pre>
+<p><code>position: fixed</code> kept the canvas from scrolling at all
+while the rest of the page scrolled over it. <code>position: absolute</code> will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we&#39;re too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but <a href="../threejs-multiple-scenes-v2.html" target="_blank">the stuff in the middle of the page should match up</a> and not slide. Here&#39;s a view of the results of the new method slowed down 10x.</p>
+<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
 
-```js
-
-`position: fixed` kept the canvas from scrolling at all
-while the rest of the page scrolled over it. `position: absolute` will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we&#39;re too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but &lt;a href=&quot;../threejs-multiple-scenes-v2.html&quot; target=&quot;_blank&quot;&gt;the stuff in the middle of the page should match up&lt;/a&gt; and not slide. Here&#39;s a view of the results of the new method slowed down 10x.
-
-&lt;div class=&quot;threejs_center&quot;&gt;&lt;img class=&quot;border&quot; src=&quot;resources/images/multi-view-fixed.gif&quot;&gt;&lt;/div&gt;
-
-## Making it more Generic
-
-Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.
-
-We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.
-
-Here&#39;s the main render function
-
-```js
-const sceneElements = [];
+<h2 id="making-it-more-generic">Making it more Generic</h2>
+<p>Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.</p>
+<p>We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.</p>
+<p>Here&#39;s the main render function</p>
+<pre><code class="lang-js">const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({elem, fn});
 }
@@ -546,7 +538,12 @@ function render(time) {
 };
 </code></pre>
 <p>And now if you drag the objects they&#39;ll rotate.</p>
-<p></p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-controls.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-controls.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
 <p>These techniques are used on this site itself. In particular <a href="threejs-primitives.html">the article about primitives</a> and <a href="threejs-materials.html">the article about materials</a> use this technique to add the various examples throughout the article.</p>
 
     </div>

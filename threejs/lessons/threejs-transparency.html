@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/index.md. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/threejs-transparency.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -35,61 +35,64 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <html lang="en">
 <head>
 <meta charset="utf-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Fundamentals" />
+<meta property="og:title" content="Three.js Transparency" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Learn Three.js" />
-<meta property="og:url" content="https://threejsfundamentals.org">
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to deal with transparency issues in THREE.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-transparency.html" />
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@greggman">
-<meta name="twitter:creator" content="@greggman">
-<meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="threejsfundamentals.org">
-<meta name="twitter:url" content="https://threejsfundamentals.org">
-<meta name="twitter:description" content="Learn Three.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Transparency" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-transparency.html" />
+<meta name="twitter:description" content="How to deal with transparency issues in THREE.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
-<title>Three.js Fundamentals</title>
 
-<link rel="alternate" type="application/atom+xml" title="threejs fundamentals" href="https://threejsfundamentals.org/atom.xml" />
-
+<title>Three.js Transparency</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
 <link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
-
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
-<link rel="stylesheet" href="/threejs/lessons/resources/index.css" type="text/css" />
 </head>
 <body>
-<div id="canvas">
-</div>
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/" >English</a>
-    <option value="/threejs/lessons/ru/" >Русский</a>
+    <option value="/threejs/lessons/threejs-transparency.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-transparency.html" >Русский</a>
 </select>
 
 
+    <a href="#toc">Table of Contents</a>
   </div>
 </div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
 <div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Transparency</h1>
+  </div>
   <div class="lesson">
     <div class="lesson-main">
-      <h1>Three.js Fundamentals <span class="rss"><a href="http://threejsfundamentals.org/atom.xml"><img src="/threejs/lessons/resources/rss-icon.svg" alt="rss"/></a></span></h1>
-      <div class="home-lang">
+      <p>TBD</p>
+
+    </div>
+    <div class="lesson-sidebar">
         <select class="language">
-    <option value="/" >English</a>
-    <option value="/threejs/lessons/ru/" >Русский</a>
+    <option value="/threejs/lessons/threejs-transparency.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-transparency.html" >Русский</a>
 </select>
 
 
-      </div>
-      <p>A set of articles to help learn Three.js.</p>
-<p><ul>
+        <div id="toc">
+          <ul>
   <li>Basics</li>
   <ul>
     <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
@@ -131,88 +134,38 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org">three.js</a></li>
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
-</p>
-<!--
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
 
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Transparency';
+            var disqus_title = 'Three.js Transparency';
 
--->
-
-      <div>
-      3d scene by: <a href="https://sketchfab.com/elsergio217">elsergio217</a>
-      </div>
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
-<iframe class="background" src="/threejs/background.html"></iframe>
-<style>
-#forkongithub a {
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    font-family: arial,sans-serif;
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 40px;
-    font-size: 0.9rem;
-    line-height: 2rem;
-    position: relative;
-    transition: 0.5s;
-    display: block;
-    width: 300px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(150px) rotate(45deg) translate(10px,70px);
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
-    pointer-events: auto;
-}
-#forkongithub a:hover {
-    background: #c11;
-    color: #fff;
-}
-#forkongithub a::before,#forkongithub a::after {
-    content: "";
-    width: 100%;
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    height: 1px;
-    background: #fff;
-}
-#forkongithub a::after {
-    bottom: 1px;
-    top: auto;
-}
-
-#forkongithub{
-    z-index: 9999;
-    /* needed for firefox */
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    pointer-events: none;
-}}
-@media (max-width: 900px) {
-    #forkongithub a{
-        line-height: 1.2rem;
-    }
-}
-@media (max-width: 410px) {
-    #forkongithub a{
-        font-size: 0.7rem;
-        transform: translateX(150px) rotate(45deg) translate(20px,40px);
-    }
-}
-
-</style>
-<div id="forkongithub"><a href="https://github.com/greggman/threejsfundamentals">Fix or Fork me on GitHub</a></div>
 </body>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
 <script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
@@ -226,5 +179,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 </html>
+
 
 
