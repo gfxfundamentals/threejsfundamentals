@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-setup.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Setup" />
+<meta property="og:title" content="Настройка окружения Three.js" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to setup your development environment for three.js" />
+<meta property="og:description" content="Как настроить разрабочее окружение для Three.js" />
 <meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Setup" />
+<meta name="twitter:title" content="Настройка окружения Three.js" />
 <meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html" />
-<meta name="twitter:description" content="How to setup your development environment for three.js" />
+<meta name="twitter:description" content="Как настроить разрабочее окружение для Three.js" />
 <meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
 
-<title>Three.js Setup</title>
+<title>Настройка окружения Three.js</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
 </head>
 <body>
@@ -75,12 +77,52 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Setup</h1>
+    <h1>Настройка окружения Three.js</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/greggman/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-setup.html">А пока можете почитать статью на английском языке</a>.</p>
+      <p>Эта статья является частью серии статей о three.js. 
+Первая статья - <a href="threejs-fundamentals.html">основы Three.js</a>.
+Если вы её еще не читали, советую вам сделать это.</p>
+<p>Прежде чем мы пойдем дальше, нам нужно поговорить о настройке вашего компьютера для разработки. 
+В частности, по соображениям безопасности WebGL не может напрямую использовать изображения с 
+вашего жесткого диска. Это означает, что для разработки вам необходимо использовать веб-сервер. 
+К счастью, веб-серверы разработки очень просты в настройке и использовании.</p>
+<p>Прежде всего, если вы хотите, вы можете скачать весь этот сайт по <a href="https://github.com/greggman/threejsfundamentals/archive/gh-pages.zip">этой ссылке</a>.
+После загрузки дважды щелкните по zip-файлу, чтобы распаковать файлы.</p>
+<p>Затем загрузите один из этих простых веб-серверов или воспользуйтесь средствами вашего ide</p>
+<p>Если вы предпочитаете веб-сервер с пользовательским интерфейсом, есть 
+<a href="https://greggman.github.io/servez">Servez</a></p>
+<p><div class="threejs_image border">
+  <img class="" src="/threejs/lessons/resources/servez.gif">
+</div>
+
+</p>
+<p>Просто укажите на папку, в которую вы распаковали файлы, нажмите &quot;Start&quot;, затем 
+перейдите в браузере на <a href="http://localhost:8080/"><code>http://localhost:8080/</code></a> или, если 
+вы хотите просмотреть примеры, перейдите в <a href="http://localhost:8080/threejs"><code>http://localhost:8080/threejs</code></a>.</p>
+<p>Чтобы остановить сервер нажмите stop или выйдите из Servez.</p>
+<p>Если вы предпочитаете командную строку (как я), еще один способ заключается 
+в использовании <a href="https://nodejs.org">node.js</a>.
+Загрузите его, установите его, затем откройте окно командной строки / консоли / терминала. 
+Если вы работаете в Windows, установщик добавит специальную &quot;Node Command Prompt&quot;, используйте ее.</p>
+<p>Затем установите <a href="https://github.com/indexzero/http-server"><code>http-server</code></a> набрав в консоли</p>
+<pre><code>npm -g install http-server
+</code></pre><p>Если вы используете OSX</p>
+<pre><code>sudo npm -g install http-server
+</code></pre><p>Как только вы сделали это, напишите</p>
+<pre><code>http-server path/to/folder/where/you/unzipped/files
+</code></pre><p>Это должно вывести что-то вроде</p>
+<p><div class="threejs_image ">
+  <img class="" src="/threejs/lessons/resources/http-server-response.png">
+</div>
+
+</p>
+<p>Затем в вашем браузере перейдите на <a href="http://localhost:8080/"><code>http://localhost:8080/</code></a>.</p>
+<p>Если вы не укажете путь, тогда http-сервер будет хостить(размещать на сервере) текущую папку.</p>
+<p>Если какой-либо из этих вариантов вам не по вкусу,
+<a href="https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-http-server-or-simplehttpserver">есть много других простых серверов на выбор</a>.</p>
+<p>Теперь, когда вы настроили сервер, мы можем перейти к <a href="threejs-textures.html">текстурам</a>.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -90,8 +132,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>
-  <li>Основы</li>
+        <div id="toc">
+          <ul>
+  <li>Введение</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
@@ -110,13 +153,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-debugging-javascript.html">Отладка JavaScript</a></li>
   </ul>
-  <li>Основы</li>
+  <li>Фунаментальные понятия</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-primitives.html">Примитивы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-scenegraph.html">Граф сцены</a></li>
     <li><a href="/threejs/lessons/ru/threejs-materials.html">Материалы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-textures.html">Текстуры</a></li>
-    <li><a href="/threejs/lessons/ru/threejs-lights.html">Свет</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-lights.html">Освещение</a></li>
     <li><a href="/threejs/lessons/ru/threejs-cameras.html">Камера</a></li>
     <li><a href="#"><del>Мотор!</del></a></li>
     <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
@@ -134,6 +177,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/greggman/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Настройка окружения Three.js';
+            var disqus_title = 'Настройка окружения Three.js';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>

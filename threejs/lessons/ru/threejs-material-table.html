@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-material-table.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Material Feature Table" />
+<meta property="og:title" content="Таблица характеристик материалов" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="A Table showing which matierals have which features" />
+<meta property="og:description" content="Таблица, показывающая, какие функции поддерживают каждый из материалов" />
 <meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-material-table.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Material Feature Table" />
+<meta name="twitter:title" content="Таблица характеристик материалов" />
 <meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-material-table.html" />
-<meta name="twitter:description" content="A Table showing which matierals have which features" />
+<meta name="twitter:description" content="Таблица, показывающая, какие функции поддерживают каждый из материалов" />
 <meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
 
-<title>Material Feature Table</title>
+<title>Таблица характеристик материалов</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
 </head>
 <body>
@@ -75,13 +77,284 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Material Feature Table</h1>
+    <h1>Таблица характеристик материалов</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/greggman/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-material-table.html">А пока можете почитать статью на английском языке</a>.</p>
+      <p>Наиболее распространенными материалами в three.js являются материалы 
+Mesh. Вот таблица, показывающая, какие функции поддерживают каждый из материалов.</p>
+<div>
+<div id="material-table" class="threejs_center"></div>
+<script>
+const materials = [
+  { 
+    name: 'MeshBasicMaterial',
+    shortName: 'Basic',
+    properties: [
+      'alphaMap',
+      'aoMap',
+      'aoMapIntensity',
+      'color',
+      'combine',
+      'envMap',
+      'lightMap',
+      'lightMapIntensity',
+      'map',
+      'reflectivity',
+      'refactionRatio',
+      'specularMap',
+      'wireframe',
+    ],
+  },
+  {
+    name: 'MeshLambertMaterial',
+    shortName: 'Lambert',
+    properties: [
+      'alphaMap',
+      'aoMap',
+      'aoMapIntensity',
+      'color',
+      'combine',
+      'emissive',
+      'emissiveMap',
+      'emissiveIntensity',
+      'envMap',
+      'lightMap',
+      'lightMapIntensity',
+      'map',
+      'reflectivity',
+      'refactionRatio',
+      'specularMap',
+      'wireframe',
+    ],
+  },
+  {
+    name: 'MeshPhongMaterial',
+    shortName: 'Phong',
+    properties: [
+      'alphaMap',
+      'aoMap',
+      'aoMapIntensity',
+      'bumpMap',
+      'bumpScale',
+      'color',
+      'combine',
+      'displacementMap',
+      'displacementScale',
+      'displacementBias',
+      'emissive',
+      'emissiveMap',
+      'emissiveIntensity',
+      'envMap',
+      'lightMap',
+      'lightMapIntensity',
+      'map',
+      'normalMap',
+      'normalMapType',
+      'normalScale',
+      'reflectivity',
+      'refactionRatio',
+      'shininess',
+      'specular',
+      'specularMap',
+      'wireframe',
+    ],
+  },
+  {
+    name: 'MeshStandardMaterial',
+    shortName: 'Standard',
+    properties: [
+      'alphaMap',
+      'aoMap',
+      'aoMapIntensity',
+      'bumpMap',
+      'bumpScale',
+      'color',
+      'displacementMap',
+      'displacementScale',
+      'displacementBias',
+      'emissive',
+      'emissiveMap',
+      'emissiveIntensity',
+      'envMap',
+      'evnMapIntensity',
+      'lightMap',
+      'lightMapIntensity',
+      'map',
+      'metalness',
+      'metalnessMap',
+      'normalMap',
+      'normalMapType',
+      'normalScale',
+      'refactionRatio',
+      'roughness',
+      'roughnessMap',
+      'wireframe',
+    ],
+  },
+  {
+    name: 'MeshPhysicalMaterial',
+    shortName: 'Physical',
+    properties: [
+      'alphaMap',
+      'aoMap',
+      'aoMapIntensity',
+      'bumpMap',
+      'bumpScale',
+      'color',
+      'displacementMap',
+      'displacementScale',
+      'displacementBias',
+      'emissive',
+      'emissiveMap',
+      'emissiveIntensity',
+      'envMap',
+      'evnMapIntensity',
+      'lightMap',
+      'lightMapIntensity',
+      'map',
+      'metalness',
+      'metalnessMap',
+      'normalMap',
+      'normalMapType',
+      'normalScale',
+      'refactionRatio',
+      'roughness',
+      'roughnessMap',
+      'wireframe',
+      'clearCoat',
+      'clearCoatRoughness',
+      'reflectivity',
+    ],
+  },
+];
 
+const allProperties = {};
+materials.forEach((material) => {
+  material.properties.forEach((property) => {
+    allProperties[property] = true;
+  });
+});
+
+function addElem(type, parent, content) {
+  const elem = document.createElement(type);
+  if (content) {
+    elem.textContent = content;
+  }
+  if (parent) {
+    parent.appendChild(elem);
+  }
+  return elem;
+}
+
+const table = document.createElement('table');
+const thead = addElem('thead', table);
+{
+  addElem('td', thead);
+  materials.forEach((material) => {
+    const td = addElem('td', thead);
+    const a = addElem('a', td, material.shortName);
+    a.href = `https://threejs.org/docs/#api/materials/${material.name}`;
+  });
+}
+Object.keys(allProperties).sort().forEach((property) => {
+  const tr = addElem('tr', table);
+  addElem('td', tr, property);
+  materials.forEach((material) => {
+    const hasProperty = material.properties.indexOf(property) >= 0;
+    const td = addElem('td', tr);
+    const a = addElem('a', td, hasProperty ? '•' : '');
+    a.href = `https://threejs.org/docs/#api/materials/${material.name}.${property}`;
+  });
+});
+document.querySelector('#material-table').appendChild(table);
+</script>
+<style>
+#material-table {
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+}
+#material-table tr:nth-child(even) {
+    background: #def;
+}
+#material-table thead>td {
+    vertical-align: bottom;
+    padding: .5em;
+}
+#material-table thead>td>a {
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    text-decoration: none;
+    display: block;
+    letter-spacing: -2px;
+}
+#material-table table {
+    border-collapse: collapse;
+    background: #cde;
+}
+#material-table td:nth-child(1) {
+    text-align: right;
+}
+#material-table td {
+    border: 1px solid black;
+    padding: .1em .5em .1em .5em;
+}
+#material-table td {
+  border: 1px solid black;
+}
+@media (max-width: 500px) {
+  #material-table {
+    font-size: small;
+  }
+  #material-table thead>td {
+      vertical-align: bottom;
+      padding: .5em 0 .5em 0;
+  }
+}
+</style>
+</div>
+
+<!--
+```
+phong
+  normalScale: 1,1 (0-1)
+  reflectivity: 0.5 (0-1)
+  refactionRatio: ???
+
+
+
+
+  MeshStandardMaterial
+  alphaMap: green channel
+  aoMap  (needs UV map, red channel)
+  aoMapIntensity: 1
+  bumpMap
+  bumpScale: 1
+  color
+  displacementMap
+  displacementScale
+  displacementBias
+  emissive
+  emissiveMap
+  emissiveIntensity: 1
+  envMap
+  evnMapIntensity: 1
+  lightMap (needs map)
+  lightMapIntensity: 1
+  map
+  metalness: 0.5 (0-1)
+  metalnessMap: (blue)
+  normalMap
+  normalMapType:  THREE.TangentSpaceNormalMap (default), and
+                  THREE.ObjectSpaceNormalMap.
+  normalScale: 1,1 (0-1)
+  refactionRatio: ???
+  roughness: 0.5 (0-1)
+  roughnessMap: (green)
+   wireframe
+```
+-->
     </div>
     <div class="lesson-sidebar">
         <select class="language">
@@ -90,8 +363,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>
-  <li>Основы</li>
+        <div id="toc">
+          <ul>
+  <li>Введение</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
@@ -110,13 +384,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-debugging-javascript.html">Отладка JavaScript</a></li>
   </ul>
-  <li>Основы</li>
+  <li>Фунаментальные понятия</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-primitives.html">Примитивы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-scenegraph.html">Граф сцены</a></li>
     <li><a href="/threejs/lessons/ru/threejs-materials.html">Материалы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-textures.html">Текстуры</a></li>
-    <li><a href="/threejs/lessons/ru/threejs-lights.html">Свет</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-lights.html">Освещение</a></li>
     <li><a href="/threejs/lessons/ru/threejs-cameras.html">Камера</a></li>
     <li><a href="#"><del>Мотор!</del></a></li>
     <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
@@ -134,6 +408,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/greggman/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Таблица характеристик материалов';
+            var disqus_title = 'Таблица характеристик материалов';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>

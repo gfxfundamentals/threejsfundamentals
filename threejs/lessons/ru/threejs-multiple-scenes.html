@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-multiple-scenes.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Multiple Canvases Multiple Scenes" />
+<meta property="og:title" content="Three.js - Несколько холстов и Несколько сцен" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to draw stuff all over the page with THREE.js" />
+<meta property="og:description" content="Kак рисовать на всей web-странице с THREE.js" />
 <meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Multiple Canvases Multiple Scenes" />
+<meta name="twitter:title" content="Three.js - Несколько холстов и Несколько сцен" />
 <meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html" />
-<meta name="twitter:description" content="How to draw stuff all over the page with THREE.js" />
+<meta name="twitter:description" content="Kак рисовать на всей web-странице с THREE.js" />
 <meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
 
-<title>Three.js Multiple Canvases Multiple Scenes</title>
+<title>Three.js - Несколько холстов и Несколько сцен</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
 </head>
 <body>
@@ -75,12 +77,504 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Multiple Canvases Multiple Scenes</h1>
+    <h1>Three.js - Несколько холстов и Несколько сцен</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/greggman/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-multiple-scenes.html">А пока можете почитать статью на английском языке</a>.</p>
+      <p>Допустим, вы хотите создать сайт электронной коммерции или сделать 
+страницу с множеством трехмерных диаграмм. На первый взгляд все 
+выглядит просто. Просто сделайте холст для каждой диаграммы. 
+Для каждого холста сделайте <code>Renderer</code>.</p>
+<p>Вы быстро обнаружите, что у вас возникли проблемы.</p>
+<ol>
+<li><p>Браузер ограничивает количество контекстов WebGL, которые вы можете иметь.</p>
+<p>Обычно этот предел составляет около 8. 
+Как только вы создадите 9-й контекст, самый старый будет потерян.</p>
+</li>
+<li><p>Ресурсы WebGL не могут быть разделены между контекстами (no shared memory)</p>
+<p>Это означает, что если вы хотите загрузить 10-мегабайтную модель в 2 полотна, 
+и эта модель использует 20 мегабайт текстур, ваша 10-мегабайтная модель должна 
+быть загружена дважды, а ваши текстуры также будут загружены дважды. Ничто не 
+может быть разделено между контекстами. Это также означает, что вещи должны 
+быть инициализированы дважды, шейдеры скомпилированы дважды и т.д. Всё 
+ухудшается, когда появляется больше холстов.</p>
+</li>
+</ol>
+<p>Так в чем же решение?</p>
+<p>Решением является один холст, который заполняет область просмотра в фоновом режиме 
+и некоторый другой элемент для представления каждого «виртуального» холста.
+Мы делаем один <code>Renderer</code> и затем одну <code>Scene</code> для каждого виртуального холста. 
+Затем мы проверим положение элементов виртуального холста и, если они будут на 
+экране, мы скажем THREE.js нарисовать их сцену в правильном месте.</p>
+<p>С этим решением есть только 1 холст, поэтому мы решаем обе задачи 1 и 2 выше. 
+Мы не будем сталкиваться с ограничением контекста WebGL, потому что мы будем 
+использовать только один контекст. Мы также не будем сталкиваться с проблемами 
+обмена по тем же причинам.</p>
+<p>Давайте начнем с простого примера с двумя сценами. Сначала мы сделаем HTML</p>
+<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;шутки про three js&lt;/canvas&gt;
+&lt;p&gt;
+  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
+  Я люблю коробки (boxes). Подарки приходят в коробках.
+  Когда я нахожу новую коробку, я всегда рад узнать, что внутри.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;span id=&quot;pyramid&quot; class=&quot;diagram right&quot;&gt;&lt;/span&gt;
+    Когда я был ребенком, я мечтал отправиться в экспедицию внутри пирамиды (pyramid).
+    и найти неоткрытую гробницу, полную мумий и сокровищ.
+&lt;/p&gt;
+</code></pre>
+<p>Затем мы можем настроить CSS, как-то так</p>
+<pre><code class="lang-css">#c {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: -1;
+}
+.diagram {
+  display: inline-block;
+  width: 5em;
+  height: 3em;
+  border: 1px solid black;
+}
+.left {
+  float: left;
+  margin-right: .25em;
+}
+.right {
+  float: right;
+  margin-left: .25em;
+}
+</code></pre>
+<p>Мы устанавливаем холст, чтобы заполнить экран, и мы устанавливаем <code>z-index</code> = 
+-1 , чтобы он появлялся позади других элементов. Нам также нужно указать некоторую 
+ширину и высоту для наших виртуальных элементов холста, поскольку внутри 
+нет ничего, что могло бы придать им какой-либо размер.</p>
+<p>Теперь мы сделаем 2 сцены с подсветкой и камерой. 
+К одной сцене мы добавим куб, а к другой ромб.</p>
+<pre><code class="lang-js">function makeScene(elem) {
+  const scene = new THREE.Scene();
+
+  const fov = 45;
+  const aspect = 2;  // по умолчанию для холста
+  const near = 0.1;
+  const far = 5;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.z = 2;
+  camera.position.set(0, 1, 2);
+  camera.lookAt(0, 0, 0);
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
+  }
+
+  return {scene, camera, elem};
+}
+
+function setupScene1() {
+  const sceneInfo = makeScene(document.querySelector(&#39;#box&#39;));
+  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const mesh = new THREE.Mesh(geometry, material);
+  sceneInfo.scene.add(mesh);
+  sceneInfo.mesh = mesh;
+  return sceneInfo;
+}
+
+function setupScene2() {
+  const sceneInfo = makeScene(document.querySelector(&#39;#pyramid&#39;));
+  const radius = .8;
+  const widthSegments = 4;
+  const heightSegments = 2;
+  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const material = new THREE.MeshPhongMaterial({
+    color: &#39;blue&#39;,
+    flatShading: true,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  sceneInfo.scene.add(mesh);
+  sceneInfo.mesh = mesh;
+  return sceneInfo;
+}
+
+const sceneInfo1 = setupScene1();
+const sceneInfo2 = setupScene2();
+</code></pre>
+<p>И тогда мы сделаем функцию для рендеринга каждой сцены, только если элемент 
+находится на экране. Мы можем указать THREE.js визуализировать только часть 
+холста, включив тест <em>scissor</em> через <code>Renderer.setScissorTest</code>, затем установим 
+плоскость обрезания и область просмотра (Viewport) с помощью 
+<code>Renderer.setViewport</code> и <code>Renderer.setScissor</code>.</p>
+<pre><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
+  const {scene, camera, elem} = sceneInfo;
+
+  // получаем относительную позицию окна просмотра этого элемента
+  const {left, right, top, bottom, width, height} =
+      elem.getBoundingClientRect();
+
+  const isOffscreen =
+      bottom &lt; 0 ||
+      top &gt; renderer.domElement.clientHeight ||
+      right &lt; 0 ||
+      left &gt; renderer.domElement.clientWidth;
+
+  if (isOffscreen) {
+    return;
+  }
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setViewport(left, top, width, height);
+  renderer.setScissor(left, top, width, height);
+
+  renderer.render(scene, camera);
+}
+</code></pre>
+<p>И тогда наша функция рендеринга просто сначала очистит экран, 
+а затем отрисует каждую сцену.</p>
+<pre><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  resizeRendererToDisplaySize(renderer);
+
+  renderer.setScissorTest(false);
+  renderer.clear(true, true);
+  renderer.setScissorTest(true);
+
+  sceneInfo1.mesh.rotation.y = time * .1;
+  sceneInfo2.mesh.rotation.y = time * .1;
+
+  rendenerSceneInfo(sceneInfo1);
+  rendenerSceneInfo(sceneInfo2);
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>И вот оно</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-v1.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-v1.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Вы можете увидеть, где на первом месте <code>&lt;span&gt;</code> находится красный куб, 
+а на втором <code>span</code> - синий ромб.</p>
+<h2 id="-">Синхронизация</h2>
+<p>Код выше работает, но есть одна небольшая проблема. 
+Если ваши сцены сложные или по какой-либо причине требуется 
+слишком много времени для рендеринга, положение сцен, 
+нарисованных на холсте, будет отставать от остальной части страницы.</p>
+<p>Если мы дадим каждой области границу</p>
+<pre><code class="lang-css">.diagram {
+  display: inline-block;
+  width: 5em;
+  height: 3em;
++  border: 1px solid black;
+}
+</code></pre>
+<p>И устанавливаем фон каждой сцены</p>
+<pre><code class="lang-js">const scene = new THREE.Scene();
++scene.background = new THREE.Color(&#39;red&#39;);
+</code></pre>
+<p>И если мы <a href="../../threejs-multiple-scenes-v2.html" target="_blank">быстро прокрутим вверх и вниз</a> 
+мы увидим проблему. Вот анимация прокрутки, замедленная в 10 раз.</p>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
+
+<p>Мы можем использовать другой метод, который имеет другой компромисс. 
+Мы переключим CSS холста с <code>position: fixed</code> на <code>position: absolute</code>. </p>
+<pre><code class="lang-css">#c {
+-  position: fixed;
++  position: absolute;
+</code></pre>
+<p>Затем мы установим преобразование (transform) холста, чтобы переместить его так, 
+чтобы верх холста находился в верхней части любой части, 
+на которую в данный момент прокручивается страница.</p>
+<pre><code class="lang-js">function render(time) {
+  ...
+
+  const transform = `translateY(${window.scrollY}px)`;
+  renderer.domElement.style.transform = transform;
+</code></pre>
+<p><code>position: fixed</code> удерживает холст от прокрутки вообще, 
+в то время как остальная часть страницы прокручивалась поверх него. 
+<code>position: absolute</code> позволит холсту прокручиваться с остальной частью 
+страницы, что означает, что все, что мы рисуем, будет прилипать 
+к странице, когда она прокручивается, даже если мы слишком медленны 
+для рендеринга. Когда мы наконец получаем возможность 
+рендеринга, мы перемещаем холст так, чтобы он соответствовал 
+месту прокрутки страницы, и затем мы повторно визуализируем. 
+Это означает, что только на краях окна будут отображаться некоторые не визуализированные биты, но
+<a href="../../threejs-multiple-scenes-v2.html" target="_blank"> материал в середине страницы должен совпадать</a>, 
+а не скользить. Вот представление результатов нового метода, замедленного в 10 раз.</p>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-fixed.gif"></div>
+
+<h2 id="-">Делаем это более универсальным</h2>
+<p>Теперь, когда у нас работает несколько сцен, давайте сделаем это немного более обобщенным.</p>
+<p>Мы могли бы сделать так, чтобы основная функция рендеринга, управляющая холстом, просто имела 
+список элементов и связанную с ними функцию рендеринга. Для каждого элемента он проверяет, 
+находится ли элемент на экране, и, если это так, вызывает соответствующую функцию рендеринга. 
+Таким образом, у нас была бы общая система, в которой отдельные сцены на самом деле не знают, 
+что знают, что их визуализируют в каком-то меньшем пространстве.</p>
+<p>Вот основная функция отрисовки</p>
+<pre><code class="lang-js">const sceneElements = [];
+function addScene(elem, fn) {
+  sceneElements.push({elem, fn});
+}
+
+function render(time) {
+  time *= 0.001;
+
+  resizeRendererToDisplaySize(renderer);
+
+  renderer.setScissorTest(false);
+  renderer.setClearColor(clearColor, 0);
+  renderer.clear(true, true);
+  renderer.setScissorTest(true);
+
+  const transform = `translateY(${window.scrollY}px)`;
+  renderer.domElement.style.transform = transform;
+
+  for (const {elem, fn} of sceneElements) {
+    // получаем относительную позицию окна просмотра этого элемента
+    const rect = elem.getBoundingClientRect();
+    const {left, right, top, bottom, width, height} = rect;
+
+    const isOffscreen =
+        bottom &lt; 0 ||
+        top &gt; renderer.domElement.clientHeight ||
+        right &lt; 0 ||
+        left &gt; renderer.domElement.clientWidth;
+
+    if (!isOffscreen) {
+      renderer.setViewport(left, top, width, height);
+      renderer.setScissor(left, top, width, height);
+
+      fn(time, rect);
+    }
+  }
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>Вы можете видеть, что он зацикливается на массиве объектов <code>sceneElements</code>, 
+каждый из которых имеет свойство <code>elem</code> и <code>fn</code>.</p>
+<p>Он проверяет, находится ли элемент на экране. Если это так, то он вызывает <code>fn</code>
+и передает ему текущее время и его прямоугольник.</p>
+<p>Теперь установочный код для каждой сцены просто добавляет себя в список сцен</p>
+<pre><code class="lang-js">{
+  const elem = document.querySelector(&#39;#box&#39;);
+  const {scene, camera} = makeScene();
+  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+  addScene(elem, (time, rect) =&gt; {
+    camera.aspect = rect.width / rect.height;
+    camera.updateProjectionMatrix();
+    mesh.rotation.y = time * .1;
+    renderer.render(scene, camera);
+  });
+}
+
+{
+  const elem = document.querySelector(&#39;#pyramid&#39;);
+  const {scene, camera} = makeScene();
+  const radius = .8;
+  const widthSegments = 4;
+  const heightSegments = 2;
+  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const material = new THREE.MeshPhongMaterial({
+    color: &#39;blue&#39;,
+    flatShading: true,
+  });
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+  addScene(elem, (time, rect) =&gt; {
+    camera.aspect = rect.width / rect.height;
+    camera.updateProjectionMatrix();
+    mesh.rotation.y = time * .1;
+    renderer.render(scene, camera);
+  });
+}
+</code></pre>
+<p>При этом нам больше не нужно <code>sceneInfo1</code> и <code>sceneInfo2</code>. 
+Код, который вращал меши, теперь специфичен для каждой сцены.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-generic.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-generic.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<h2 id="-html">Использование набора данных в HTML</h2>
+<p>Еще одна, еще более общая вещь, которую мы можем сделать, это использовать 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset</a>. 
+Это способ добавить свои собственные данные в элемент HTML. Вместо использования <code>id=&quot;...&quot;</code> 
+мы будем использовать <code>data-diagram=&quot;...&quot;</code> как тут</p>
+<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;p&gt;
+-  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
++  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
+  Я люблю коробки (boxes). Подарки приходят в коробках.
+  Когда я нахожу новую коробку, я всегда рад узнать, что внутри.
+&lt;/p&gt;
+&lt;p&gt;
+-  &lt;span id=&quot;pyramid&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
++  &lt;span data-diagram=&quot;pyramid&quot; class=&quot;right&quot;&gt;&lt;/span&gt;
+   Когда я был ребенком, я мечтал отправиться в экспедицию внутри пирамиды (pyramid).
+   и найти неоткрытую гробницу, полную мумий и сокровищ.
+&lt;/p&gt;
+</code></pre>
+<p>Мы можем их изменить селектор CSS, чтобы выбрать для этого</p>
+<pre><code class="lang-css">-.diagram
++*[data-diagram] {
+  display: inline-block;
+  width: 5em;
+  height: 3em;
+}
+</code></pre>
+<p>Мы изменим код установки сцены, чтобы он представлял собой карту имен для <em>функций инициализации сцены</em> 
+, которые возвращают функцию <em>отрисовки сцены</em>.</p>
+<pre><code class="lang-js">const sceneInitFunctionsByName = {
+  &#39;box&#39;: () =&gt; {
+    const {scene, camera} = makeScene();
+    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;      camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    };
+  },
+  &#39;pyramid&#39;: () =&gt; {
+    const {scene, camera} = makeScene();
+    const radius = .8;
+    const widthSegments = 4;
+    const heightSegments = 2;
+    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const material = new THREE.MeshPhongMaterial({
+      color: &#39;blue&#39;,
+      flatShading: true,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    };
+  },
+};
+</code></pre>
+<p>И для инициализации мы можем просто использовать <code>querySelectorAll</code>, 
+чтобы найти все диаграммы и вызвать соответствующую функцию инициализации для этой диаграммы.</p>
+<pre><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+  const sceneName = elem.dataset.diagram;
+  const sceneInitFunction = sceneInitFunctionsByName[sceneName];
+  const sceneRenderFunction = sceneInitFunction(elem);
+  addScene(elem, sceneRenderFunction());
+});
+</code></pre>
+<p>Никаких изменений в визуальных элементах, но код легче переиспользовать.</p>
+<p></p>
+<h2 id="-">Добавление элементов управления к каждому элементу</h2>
+<p>Например, добавление <code>TrackballControls</code> в интерактивном режиме так же просто. 
+Сначала мы добавляем скрипт для контролов.</p>
+<pre><code class="lang-html">&lt;script src=&quot;../resources/threejs/r98/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>И затем мы можем добавить <code>TrackballControls</code> к каждой сцене, передавая элемент, связанный с этой сценой.</p>
+<pre><code class="lang-js">-function makeScene() {
++function makeScene(elem) {
+  const scene = new THREE.Scene();
+
+  const fov = 45;
+  const aspect = 2;  // по умолчанию для canvas
+  const near = 0.1;
+  const far = 5;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.set(0, 1, 2);
+  camera.lookAt(0, 0, 0);
++  scene.add(camera);
+
++  const controls = new THREE.TrackballControls(camera, elem);
++  controls.noZoom = true;
++  controls.noPan = true;
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+-    scene.add(light);
++    camera.add(light);
+  }
+
+-  return {scene, camera};
++ return {scene, camera, controls};
+}
+</code></pre>
+<p>Вы заметите, что мы добавили камеру на сцену и свет на камеру. Это делает свет 
+относительно камеры. Поскольку <code>TrackballControls</code> двигает камеру, 
+это, вероятно, то, что мы хотим. Он сохраняет свет, 
+сияющий на стороне объекта, на который мы смотрим.</p>
+<p>Нам нужно обновить эти элементы управления в наших функциях отрисовки</p>
+<pre><code class="lang-js">const sceneInitFunctionsByName = {
+- &#39;box&#39;: () =&gt; {
+-    const {scene, camera} = makeScene();
++ &#39;box&#39;: (elem) =&gt; {
++    const {scene, camera, controls} = makeScene(elem);
+    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
++      controls.handleResize();
++      controls.update();
+      renderer.render(scene, camera);
+    };
+  },
+-  &#39;pyramid&#39;: () =&gt; {
+-    const {scene, camera} = makeScene();
++  &#39;pyramid&#39;: (elem) =&gt; {
++    const {scene, camera, controls} = makeScene(elem);
+    const radius = .8;
+    const widthSegments = 4;
+    const heightSegments = 2;
+    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const material = new THREE.MeshPhongMaterial({
+      color: &#39;blue&#39;,
+      flatShading: true,
+    });
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    return (time, rect) =&gt; {
+      mesh.rotation.y = time * .1;
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
++      controls.handleResize();
++      controls.update();
+      renderer.render(scene, camera);
+    };
+  },
+};
+</code></pre>
+<p>Теперь, если вы перетащите объекты, они будут вращаться.</p>
+<p></p>
+<p>Эти методы используются на самом сайте. В частности, 
+<a href="threejs-primitives.html">статья о примитивах</a> и <a href="threejs-materials.html">о материалах</a> 
+используют эту технику для добавления различных примеров по всей статье.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -90,8 +584,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>
-  <li>Основы</li>
+        <div id="toc">
+          <ul>
+  <li>Введение</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
@@ -110,13 +605,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-debugging-javascript.html">Отладка JavaScript</a></li>
   </ul>
-  <li>Основы</li>
+  <li>Фунаментальные понятия</li>
   <ul>
     <li><a href="/threejs/lessons/ru/threejs-primitives.html">Примитивы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-scenegraph.html">Граф сцены</a></li>
     <li><a href="/threejs/lessons/ru/threejs-materials.html">Материалы</a></li>
     <li><a href="/threejs/lessons/ru/threejs-textures.html">Текстуры</a></li>
-    <li><a href="/threejs/lessons/ru/threejs-lights.html">Свет</a></li>
+    <li><a href="/threejs/lessons/ru/threejs-lights.html">Освещение</a></li>
     <li><a href="/threejs/lessons/ru/threejs-cameras.html">Камера</a></li>
     <li><a href="#"><del>Мотор!</del></a></li>
     <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
@@ -134,6 +629,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/greggman/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js - Несколько холстов и Несколько сцен';
+            var disqus_title = 'Three.js - Несколько холстов и Несколько сцен';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
