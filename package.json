@@ -39,6 +39,7 @@
   },
   "scripts": {
     "build": "grunt",
+    "watch": "grunt watch",
     "start": "http-server out",
     "eslint": "grunt eslint",
     "bumpthree": "grunt bumpthree",
