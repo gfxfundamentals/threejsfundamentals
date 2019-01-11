@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-post-processing-3dlut.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Post Processing 3DLUT" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to implement a 3DLUT Post Process in THREE.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-post-processing-3dlut.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Post Processing 3DLUT" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-post-processing-3dlut.html" />
+<meta name="twitter:description" content="How to implement a 3DLUT Post Process in THREE.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Post Processing 3DLUT</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-post-processing-3dlut.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-post-processing-3dlut.html" >Русский</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Post Processing 3DLUT</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>In the last article we went over <a href="threejs-post-processing.html">post processing</a>.
+On of the common ways to post process is called a LUT or 3DLUT. LUT stands for LookUp Table. A 3DLUT is therefore a 3 dimensional look up table.</p>
+<p>How it works is we make a cube of colors. Then we index the cube using the colors of our source image. For each pixel in the original image we look up a position in the cube based on the red, green, and blue colors of the original pixel. The value we pull put of the 3DLUT is the new color.</p>
+<p>In Javascript we might do it like this. Imagine the colors are specified in integers from 0 to 255 and we have a large 3 dimensional array 256x256x256 in size. Then for to translate a color through the look up table</p>
+<pre><code>const newColor = lut[origColor.red][origColor.green][origColor.bue]
+</code></pre><p>Of course a 256x256x256 array would be rather large but as we pointed out in <a href="threejs-textures.html">the article on textures</a> textures are referenced from values of 0.0 to 1.0 regardless of the dimensions of the texture.</p>
+<p>Let&#39;s imagine an 8x8x8 cube.</p>
+<div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" style="width: 500px"></div>
+
+<p>First we might fill in the corners with 0,0,0 corner being pure black, the opposite 1,1,1 corner pure white. 1,0,0 being pure <span style"color:red;">red</span>. 0,1,0 being pure <span style"color:green;">green</span> and 0,0,1 being <span style"color:blue;">blue</span>. </p>
+<div class="threejs_center"><img src="resources/images/3dlut-axis.svg" style="width: 500px"></div>
+
+<p>We&#39;d add in the colors down each axis.</p>
+<div class="threejs_center"><img src="resources/images/3dlut-edges.svg" style="width: 500px"></div>
+
+<p>And the colors on edges that use 2 or more channels.</p>
+<div class="threejs_center"><img src="resources/images/3dlut-standard.svg" style="width: 500px"></div>
+
+<p>And finally fill in all the colors in between. This is an &quot;identity&quot; 3DLUT. It produces the exact same output as input. If you look up a color you&#39;ll get the same color out.</p>
+<div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-standard-lookup.svg" data-diagram="lookup" style="width: 600px"></object></div>
+
+<p>If we change the cube to shades of amber though then as we look up colors, we look up the same locations in the 3D lookup table but they produce different output.</p>
+<div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-amber-lookup.svg" data-diagram="lookup" style="width: 600px"></object></div>
+
+<p>Using this techinque by supplying a different lookup table we can apply all kinds of effects. Basically any effect that can be computed based only on a single color input. Those effects include adjusting hue, contrast, saturation, color cast, tint, brightness, exposure, levels, curves, posterize, shadows, highlghts, and many others. Even better they can all be combined into a single look up table.</p>
+<p>To use it we need a scene to apply it to. Let&#39;s throw together a quick scene. We&#39;ll start with a glTF file and display it like we covered in <a href="threejs-load-gltf.html">the article on loading a glTF</a>. The model we&#39;re loading is <a href="https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee">this model</a> by <a href="https://sketchfab.com/sarath.irn.kat005">The Ice Wolves</a>. It uses no lights so I removed the lights.</p>
+<p>We&#39;ll also add a background image like we covered in <a href="threejs-backgrounds.html">backgrounds and skyboxs</a>.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut-prep.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut-prep.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Now that we have a scene we need a 3DLUT. The simplest 3DLUT is a 2x2x2 identity LUT where <em>identity</em> means nothing happens. It&#39;s like multiplying by 1 or doing nothign, even though we&#39;re looking up colors in the LUT each color in maps to the same color out.</p>
+<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" style="width: 100px"></div>
+
+<p>WebGL1 doesn&#39;t support 3D textures so we&#39;ll use 4x2 2D texture and treat it as a 3D texture inside a custom shader where each slice of the cube is spread out horizontally across the texture.</p>
+<p>Here&#39;s the code to make 4x2 2D texture with the colors required for an identity LUT.</p>
+<pre><code class="lang-js">const makeIdentityLutTexture = function() {
+  const identityLUT = new Uint8Array([
+      0,   0,   0, 255,  // black
+    255,   0,   0, 255,  // red
+      0,   0, 255, 255,  // blue
+    255,   0, 255, 255,  // magenta
+      0, 255,   0, 255,  // green
+    255, 255,   0, 255,  // yellow
+      0, 255, 255, 255,  // cyan
+    255, 255, 255, 255,  // white
+  ]);
+
+  return function(filter) {
+    const texture = new THREE.DataTexture(identityLUT, 4, 2, THREE.RGBAFormat);
+    texture.minFilter = filter;
+    texture.magFilter = filter;
+    texture.needsUpdate = true;
+    texture.flipY = false;
+    return texture;
+  };
+}();
+</code></pre>
+<p>Let&#39;s make 2 of them, one filtered and one not</p>
+<pre><code class="lang-js">const lutTextures = [
+  { name: &#39;identity&#39;, size: 2, texture: makeIdentityLutTexture(THREE.LinearFilter) },
+  { name: &#39;identity not filtered&#39;, size: 2, texture: makeIdentityLutTexture(THREE.NearestFilter) },
+];
+</code></pre>
+<p>Taking the example using a custom shader from <a href="threejs-post-processing.html">the article on post processing</a> lets use these 2 custom shaders instead.</p>
+<pre><code class="lang-js">const lutShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    lutMap:  { value: null },
+    lutMapSize: { value: 1, },
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+    }
+  `,
+  fragmentShader: `
+    #include &lt;common&gt;
+
+    #define FILTER_LUT true
+
+    uniform sampler2D tDiffuse;
+    uniform sampler2D lutMap;
+    uniform float lutMapSize;
+
+    varying vec2 vUv;
+
+    vec4 sampleAs3DTexture(sampler2D tex, vec3 texCoord, float size) {
+      float sliceSize = 1.0 / size;                  // space of 1 slice
+      float slicePixelSize = sliceSize / size;       // space of 1 pixel
+      float width = size - 1.0;
+      float sliceInnerSize = slicePixelSize * width; // space of size pixels
+      float zSlice0 = floor( texCoord.z * width);
+      float zSlice1 = min( zSlice0 + 1.0, width);
+      float xOffset = slicePixelSize * 0.5 + texCoord.x * sliceInnerSize;
+      float yRange = (texCoord.y * width + 0.5) / size;
+      float s0 = xOffset + (zSlice0 * sliceSize);
+
+      #ifdef FILTER_LUT
+
+        float s1 = xOffset + (zSlice1 * sliceSize);
+        vec4 slice0Color = texture2D(tex, vec2(s0, yRange));
+        vec4 slice1Color = texture2D(tex, vec2(s1, yRange));
+        float zOffset = mod(texCoord.z * width, 1.0);
+        return mix(slice0Color, slice1Color, zOffset);
+
+      #else
+
+        return texture2D(tex, vec2( s0, yRange));
+
+      #endif
+    }
+
+    void main() {
+      vec4 originalColor = texture2D(tDiffuse, vUv);
+      gl_FragColor = sampleAs3DTexture(lutMap, originalColor.xyz, lutMapSize);
+    }
+  `,
+};
+
+const lutNearestShader = {
+  uniforms: Object.assign( {}, lutShader.uniforms ),
+  vertexShader: lutShader.vertexShader,
+  fragmentShader: lutShader.fragmentShader.replace(&#39;#define FILTER_LUT&#39;, &#39;//&#39;),
+};
+</code></pre>
+<p>You can see in the fragment shader there is this line</p>
+<pre><code class="lang-glsl">#define FILTER_LUT true
+</code></pre>
+<p>To generate the second shader we comment out that line.</p>
+<p>Then we use them to make 2 custom effects</p>
+<pre><code class="lang-js">const effectLUT = new THREE.ShaderPass(lutShader);
+effectLUT.renderToScreen = true;
+const effectLUTNearest = new THREE.ShaderPass(lutNearestShader);
+effectLUTNearest.renderToScreen = true;
+</code></pre>
+<p>Translating our existing code that draws the background as a separate scene we a <code>RenderPass</code> for both the scene drawing the glTF and the scene drawing the background.</p>
+<pre><code class="lang-js">const renderModel = new THREE.RenderPass(scene, camera);
+renderModel.clear = false;  // so we don&#39;t clear out the background
+const renderBG = new THREE.RenderPass(sceneBG, cameraBG);
+</code></pre>
+<p>and we can setup our <code>EffectComposer</code> to use all the passes</p>
+<pre><code class="lang-js">const rtParameters = {
+  minFilter: THREE.LinearFilter,
+  magFilter: THREE.LinearFilter,
+  format: THREE.RGBFormat,
+};
+const composer = new THREE.EffectComposer(renderer, new THREE.WebGLRenderTarget(1, 1, rtParameters));
+
+composer.addPass(renderBG);
+composer.addPass(renderModel);
+composer.addPass(effectLUT);
+composer.addPass(effectLUTNearest);
+</code></pre>
+<p>Let&#39;s make some GUI code to select one lut or the other</p>
+<pre><code class="lang-js">const lutNameIndexMap = {};
+lutTextures.forEach((info, ndx) =&gt; {
+  lutNameIndexMap[info.name] = ndx;
+});
+
+const lutSettings = {
+  lut: lutNameIndexMap.identity,
+};
+const gui = new dat.GUI({ width: 300 });
+gui.add(lutSettings, &#39;lut&#39;, lutNameIndexMap);
+</code></pre>
+<p>The last thing to do is turn on one effect or the other, depending on whether or not we want filtering, set the effect to use the selected texture, and render via the <code>EffectComposer</code></p>
+<pre><code class="lang-js">const lutInfo = lutTextures[lutSettings.lut];
+
+const effect = lutInfo.filter ? effectLUT : effectLUTNearest;
+effectLUT.enabled = lutInfo.filter;
+effectLUTNearest.enabled = !lutInfo.filter;
+
+const lutTexture = lutInfo.texture;
+effect.uniforms.lutMap.value = lutTexture;
+effect.uniforms.lutMapSize.value = lutInfo.size;
+
+composer.render(delta);
+</code></pre>
+<p>Given it&#39;s the identity 3DLUT nothing changes</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut-identity.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut-identity.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>but we select the unfiltered LUT we get something much more interesting</p>
+<div class="threejs_center"><img src="resources/images/unfiltered-3dlut.jpg" style="width: 500px"></div>
+
+<p>Why does this happen? Because with filtering on, the GPU linearly interpolates between the colors. With filtering off it does no interpolation so looking up colors in the 3DLUT only gives one of the exact colors in the 3DLUT.</p>
+<p>So how do we go about making more interesting 3DLUTs?</p>
+<p>First decide on the resolution of the table you want and generate the slices of the lookup cube using a simple script.</p>
+<pre><code class="lang-js">const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+
+function drawColorCubeImage(ctx, size) {
+  const canvas = ctx.canvas;
+  canvas.width = size * size;
+  canvas.height = size;
+
+  for (let zz = 0; zz &lt; size; ++zz) {
+    for (let yy = 0; yy &lt; size; ++yy) {
+      for (let xx = 0; xx &lt; size; ++xx) {
+        const r = Math.floor(xx / (size - 1) * 255);
+        const g = Math.floor(yy / (size - 1) * 255);
+        const b = Math.floor(zz / (size - 1) * 255);
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillRect(zz * size + xx, yy, 1, 1);
+      }
+    }
+  }
+  document.querySelector(&#39;#width&#39;).textContent = canvas.width;
+  document.querySelector(&#39;#height&#39;).textContent = canvas.height;
+}
+
+drawColorCubeImage(ctx, 8);
+</code></pre>
+<p>and we need a canvas </p>
+<pre><code class="lang-html">&lt;canvas&gt;&lt;/canvas&gt;
+</code></pre>
+<p>then we can generate a identity 3d lookup table for any size.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2F3dlut-base-cube-maker.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../3dlut-base-cube-maker.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>The larger the resolution the more fine adjustments we can make but being a cube of data the size required grows quickly. A size 8 cube only requires 2k but a size 64 cube requires 1meg. So use the smallest that reproduces the effect you want.</p>
+<p>Let&#39;s set the size to 16 and then click save the file which gives us this file.</p>
+<div class="threejs_center"><img src="resources/images/identity-lut-s16.png"></div>
+
+<p>We also need to capture an image of the thing we want to apply the LUT to, in this case the scene we created above before applying any effects. Note that normally we could right click on the scene above and pick &quot;Save As...&quot; but the <code>OrbitControls</code> might be preventing right clicking depnding on your OS. In my case I used my OSes screen capture feature to get a screenshot.</p>
+<div class="threejs_center"><img src="resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
+
+<p>We then go it into an image editor, in my case Photoshop, load up the sample image, and paste the 3DLUT in the top left corner</p>
+<blockquote>
+<p>note: I first tried dragging and dropping the lut file on top of the image
+in Photoshop but that didn&#39;t work. Photoshop made the image twice a large.
+I&#39;m guessing it was trying to match DPI or something. Loading the lut file
+separately and then copying and pasting it into the screen capture worked.</p>
+</blockquote>
+<div class="threejs_center"><img src="resources/images/3dlut-photoshop-before.jpg" style="width: 600px"></div>
+
+<p>We then use any of the color based full image adjustments to adjust the image. For Photoshop most of the adjustments we can use are available under the Image-&gt;Adjustments menu.</p>
+<div class="threejs_center"><img src="resources/images/3dlut-photoshop-after.jpg" style="width: 600px"></div>
+
+<p>After we&#39;ve adjusted the image to our liking you can see the 3DLUT slices we placed in the top left corner have the same adjustments applied.</p>
+<p>Okay but how do we use it?</p>
+<p>First I saved it as a png <code>3dlut-red-only-s16.png</code>. To save memory we could have cropped it to just the 16x256 top left corner of the LUT table but just for fun we&#39;ll crop it after loading. The good thing about using this method is we can get some idea of the effective of the LUT just by looking at the .png file. The bad thing is of course wasted bandwidth.</p>
+<p>Here&#39;s some code to load it. The code starts with an identity lut so the texture is usable immediately. It then loads the image, copies out only the 3DLUT part into a canvas, gets the data from the canvas, set it on the texture and sets <code>needsUpdate</code> to true to tell THREE.js to get the new data.</p>
+<pre><code class="lang-js">const makeLUTTexture = function() {
+  const imgLoader = new THREE.ImageLoader();
+  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+
+  return function(info) {
+    const texture = makeIdentityLutTexture(
+        info.filter ? THREE.LinearFilter : THREE.NearestFilter);
+
+    if (info.url) {
+      const lutSize = info.size;
+
+      // set the size to 2 (the identity size). We&#39;ll restore it when the
+      // image has loaded. This way the code using the lut doesn&#39;t have to
+      // care if the image has loaded or not
+      info.size = 2;
+
+      imgLoader.load(info.url, function(image) {
+        const width = lutSize * lutSize;
+        const height = lutSize;
+        info.size = lutSize;
+        ctx.canvas.width = width;
+        ctx.canvas.height = height;
+        ctx.drawImage(image, 0, 0);
+        const imageData = ctx.getImageData(0, 0, width, height);
+
+        texture.image.data = new Uint8Array(imageData.data.buffer);
+        texture.image.width = width;
+        texture.image.height = height;
+        texture.needsUpdate = true;
+      });
+    }
+
+    return texture;
+  };
+}();
+</code></pre>
+<p>Let&#39;s use it to load the lut png we just created.</p>
+<pre><code class="lang-js">const lutTextures = [
+  { name: &#39;identity&#39;,           size: 2, filter: true , },
+  { name: &#39;identity no filter&#39;, size: 2, filter: false, },
++  { name: &#39;custom&#39;,          url: &#39;resources/images/lut/3dlut-red-only-s16.png&#39; },
+];
+
++lutTextures.forEach((info) =&gt; {
++  // if not size set get it from the filename
++  if (!info.size) {
++    // assumes filename ends in &#39;-s&lt;num&gt;[n]&#39;
++    // where &lt;num&gt; is the size of the 3DLUT cube
++    // and [n] means &#39;no filtering&#39; or &#39;nearest&#39;
++    //
++    // examples:
++    //    &#39;foo-s16.png&#39; = size:16, filter: true
++    //    &#39;bar-s8n.png&#39; = size:8, filter: false
++    const m = /-s(\d+)(n*)\.[^.]+$/.exec(info.url);
++    if (m) {
++      info.size = parseInt(m[1]);
++      info.filter = info.filter === undefined ? m[2] !== &#39;n&#39; : info.filter;
++    }
++  }
++
++  info.texture = makeLUTTexture(info);
++});
+</code></pre>
+<p>Above you can see we encoded the size of the LUT into the end of the filename. This makes it easier to pass around LUTs as pngs.</p>
+<p>While we&#39;re at it lets add a bunch more existing lut png files.</p>
+<pre><code class="lang-js">const lutTextures = [
+  { name: &#39;identity&#39;,           size: 2, filter: true , },
+  { name: &#39;identity no filter&#39;, size: 2, filter: false, },
+  { name: &#39;custom&#39;,          url: &#39;resources/images/lut/3dlut-red-only-s16.png&#39; },
++  { name: &#39;monochrome&#39;,      url: &#39;resources/images/lut/monochrome-s8.png&#39; },
++  { name: &#39;sepia&#39;,           url: &#39;resources/images/lut/sepia-s8.png&#39; },
++  { name: &#39;saturated&#39;,       url: &#39;resources/images/lut/saturated-s8.png&#39;, },
++  { name: &#39;posterize&#39;,       url: &#39;resources/images/lut/posterize-s8n.png&#39;, },
++  { name: &#39;posterize-3-rgb&#39;, url: &#39;resources/images/lut/posterize-3-rgb-s8n.png&#39;, },
++  { name: &#39;posterize-3-lab&#39;, url: &#39;resources/images/lut/posterize-3-lab-s8n.png&#39;, },
++  { name: &#39;posterize-4-lab&#39;, url: &#39;resources/images/lut/posterize-4-lab-s8n.png&#39;, },
++  { name: &#39;posterize-more&#39;,  url: &#39;resources/images/lut/posterize-more-s8n.png&#39;, },
++  { name: &#39;inverse&#39;,         url: &#39;resources/images/lut/inverse-s8.png&#39;, },
++  { name: &#39;color negative&#39;,  url: &#39;resources/images/lut/color-negative-s8.png&#39;, },
++  { name: &#39;high contrast&#39;,   url: &#39;resources/images/lut/high-contrast-bw-s8.png&#39;, },
++  { name: &#39;funky contrast&#39;,  url: &#39;resources/images/lut/funky-contrast-s8.png&#39;, },
++  { name: &#39;nightvision&#39;,     url: &#39;resources/images/lut/nightvision-s8.png&#39;, },
++  { name: &#39;thermal&#39;,         url: &#39;resources/images/lut/thermal-s8.png&#39;, },
++  { name: &#39;b/w&#39;,             url: &#39;resources/images/lut/black-white-s8n.png&#39;, },
++  { name: &#39;hue +60&#39;,         url: &#39;resources/images/lut/hue-plus-60-s8.png&#39;, },
++  { name: &#39;hue +180&#39;,        url: &#39;resources/images/lut/hue-plus-180-s8.png&#39;, },
++  { name: &#39;hue -60&#39;,         url: &#39;resources/images/lut/hue-minus-60-s8.png&#39;, },
++  { name: &#39;red to cyan&#39;,     url: &#39;resources/images/lut/red-to-cyan-s8.png&#39; },
++  { name: &#39;blues&#39;,           url: &#39;resources/images/lut/blues-s8.png&#39; },
++  { name: &#39;infrared&#39;,        url: &#39;resources/images/lut/infrared-s8.png&#39; },
++  { name: &#39;radioactive&#39;,     url: &#39;resources/images/lut/radioactive-s8.png&#39; },
++  { name: &#39;goolgey&#39;,         url: &#39;resources/images/lut/googley-s8.png&#39; },
++  { name: &#39;bgy&#39;,             url: &#39;resources/images/lut/bgy-s8.png&#39; },
+];
+</code></pre>
+<p>And here&#39;s a bunch of luts to choose from.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>One last thing, just for fun, it turns out there&#39;s a standard LUT format defined by Adobe. If you <a href="https://www.google.com/search?q=lut+files">search on the net you can find lots of these LUT files</a>.</p>
+<p>I wrote a quick loader. Unfortunately there&#39;s 4 variations of the format but I could only find examples of 1 variation so I couldn&#39;t easily test that all variations work.</p>
+<p>I also write a quick drag and drop library. Let&#39;s use both to make it so you can drag and drop an Adobe LUT file to see it take affect.</p>
+<p>First we need the 2 libraries</p>
+<pre><code class="lang-html">&lt;script src=&quot;resources/lut-reader.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/drag-and-drop.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Then we can use them like this</p>
+<pre><code class="lang-js">dragAndDrop.setup({msg: &#39;Drop LUT File here&#39;});
+dragAndDrop.onDropFile(readLUTFile);
+
+function readLUTFile(file) {
+  const reader = new FileReader();
+  reader.onload = (e) =&gt; {
+    const lut = lutParser.lutTo2D3Drgb8(lutParser.parse(e.target.result));
+    const {size, data, name} = lut;
+    const texture = new THREE.DataTexture(data, size * size, size, THREE.RGBFormat);
+    texture.minFilter = THREE.LinearFilter;
+    texture.needsUpdate = true;
+    texture.flipY = false;
+    const lutTexture = {
+      name: (name &amp;&amp; name.toLowerCase().trim() !== &#39;untitled&#39;)
+          ? name
+          : file.name,
+      size: size,
+      filter: true,
+      texture,
+    };
+    lutTextures.push(lutTexture);
+    lutSettings.lut = lutTextures.length - 1;
+    updateGUI();
+  };
+
+  reader.readAsText(file);
+}
+</code></pre>
+<p>and we need to make the GUI update to include the new file(s)</p>
+<pre><code class="lang-js">const lutSettings = {
+  lut: lutNameIndexMap.thermal,
+};
+const gui = new dat.GUI({ width: 300 });
+gui.addFolder(&#39;Choose LUT or Drag&amp;Drop LUT File(s)&#39;);
+
+let lutGUI;
+function updateGUI() {
+  makeLutNameIndexMap();
+  if (lutGUI) {
+    gui.remove(lutGUI);
+  }
+  lutGUI = gui.add(lutSettings, &#39;lut&#39;, lutNameIndexMap);
+}
+updateGUI();
+</code></pre>
+<p>so you should be able to <a href="https://www.google.com/search?q=lut+files">download an Adobe LUT</a> and then drag and drop it on the example below.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut-w-loader.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut-w-loader.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Note that Adobe LUTs are not designed for online usage. They are large files. You can convert them to smaller files and save as our PNG format by dragging and dropping on the sample below, choosing a size and clicking &quot;Save...&quot;.</p>
+<p>The sample below is just a modification of the code above. We only draw the background picture, no glTF file. That picture is the an identity lut image created from the script above. We then use the effect to apply whatever LUT file is loaded so the result is the image we&#39;d need to reproduce the LUT file as a PNG.</p>
+<script src="resources/threejs-post-processing-3dlut.js"></script>
+
+<p>One thing completely skipped is how the shader itself works. Hopefully we can cover a little more GLSL in the future. For now, if you&#39;re curious, you can follow the links in the <a href="threejs-post-processing.html">post processing article</a> as well as maybe <a href="https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s">take a look at this video</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-post-processing-3dlut.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-post-processing-3dlut.html" >Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Post Processing 3DLUT';
+            var disqus_title = 'Three.js Post Processing 3DLUT';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
