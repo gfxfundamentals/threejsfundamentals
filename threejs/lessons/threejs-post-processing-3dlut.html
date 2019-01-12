@@ -115,7 +115,7 @@ On of the common ways to post process is called a LUT or 3DLUT. LUT stands for L
 
 </p>
 <p>Now that we have a scene we need a 3DLUT. The simplest 3DLUT is a 2x2x2 identity LUT where <em>identity</em> means nothing happens. It&#39;s like multiplying by 1 or doing nothign, even though we&#39;re looking up colors in the LUT each color in maps to the same color out.</p>
-<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" style="width: 100px"></div>
+<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" style="width: 200px"></div>
 
 <p>WebGL1 doesn&#39;t support 3D textures so we&#39;ll use 4x2 2D texture and treat it as a 3D texture inside a custom shader where each slice of the cube is spread out horizontally across the texture.</p>
 <p>Here&#39;s the code to make 4x2 2D texture with the colors required for an identity LUT.</p>
