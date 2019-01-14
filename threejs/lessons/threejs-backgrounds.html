@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-backgrounds.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Backgrounds and Skyboxes" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to add a background in THREE.js" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-backgrounds.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Backgrounds and Skyboxes" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-backgrounds.html" />
+<meta name="twitter:description" content="How to add a background in THREE.js" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Backgrounds and Skyboxes</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-backgrounds.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-backgrounds.html" >Русский</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Backgrounds and Skyboxes</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Most of the articles here use a solid color for a background.</p>
+<p>Adding as static background can be as simple as setting some CSS. Taking
+an example from <a href="../threejs-responsive.html">the article on making THREE.js responsive</a>
+we only need to change 2 things.</p>
+<p>We need to add some CSS to our canvas to set its background to an image</p>
+<pre><code class="lang-html">&lt;style&gt;
+body {
+    margin: 0;
+}
+#c {
+    width: 100vw;
+    height: 100vh;
+    display: block;
++    background: url(resources/images/daikanyama.jpg) no-repeat center center;
++    background-size: cover;
+}
+&lt;/style&gt;
+</code></pre>
+<p>and we need to tell the <code>WebGLRenderer</code> to use <code>alpha</code> so places we are not drawing anything are transparent.</p>
+<pre><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+-  const renderer = new THREE.WebGLRenderer({canvas: canvas});
++  const renderer = new THREE.WebGLRenderer({
++    canvas: canvas,
++    alpha: true,
++  });
+</code></pre>
+<p>And we get a background.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-css.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-css.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>If we want the background to be able to be affected by <a href="threejs-post-processing.html">post processing effects</a> then we need to draw the background using THREE.js.</p>
+<p>The most obvious thing to do is <a href="threejs-primitives.html">make a <code>PlaneBufferGeometry</code></a>, <a href="threejs-materials.html">make a <code>MeshBasicMaterial</code></a> and <a href="threejs-textures.html">give it a texture</a> with the background image we want. Then make a <code>Mesh</code> that displays the plane with that material.</p>
+<p>We then need to position the mesh so it looks like a background. There are several ways to do this.</p>
+<h2 id="place-it-in-the-scene-and-move-it-to-be-in-front-of-the-camera">Place it in the scene and move it to be in front of the camera</h2>
+<p>One way would be to place it in the scene and update its position, orientation, and scale every frame so it appears in front of the camera and fills the frame. That sounds like non trival math. We&#39;d also probably set its <code>renderOrder</code> so it renders first.</p>
+<h2 id="make-it-a-child-of-the-camera">Make it a child of the camera</h2>
+<p>We could put the <code>PerspectiveCamera</code> itself in the scene and then child the plane <code>Mesh</code> to the camera. Set its position to <code>0, 0, -someAmount</code> which will mean it&#39;s always in front of the camera. Then we only have to deal with what scale to make it.</p>
+<h2 id="we-can-put-it-in-it-s-own-scene-with-it-s-own-camera-">We can put it in it&#39;s own scene with it&#39;s own camera.</h2>
+<p>In this case we&#39;d make a separate <code>Scene</code> and a separate camera and draw it first in our render loop.
+Let&#39;s pick this solution.</p>
+<p>Starting over with an example from <a href="../threejs-responsive.html">the article on making THREE.js responsive</a> let&#39;s make the scene, plane, material, texture, and mesh</p>
+<pre><code class="lang-js">const bgCamera = new THREE.OrthographicCamera(
+  -1, // left
+   1, // right
+   1, // top
+  -1, // bottom
+  -1, // near,
+   1, // far
+);
+
+const bgScene = new THREE.Scene();
+
+const loader = new THREE.TextureLoader();
+const bgTexture = loader.load(&#39;resources/images/daikanyama.jpg&#39;);
+let bgMesh;
+{
+  const plane = new THREE.PlaneBufferGeometry(2, 2);
+  const material = new THREE.MeshBasicMaterial({
+    map: bgTexture,
+    depthTest: false,
+  });
+  bgMesh = new THREE.Mesh(plane, material);
+  bgScene.add(bgMesh);
+}
+</code></pre>
+<p>The camera is an <code>OrthographicCamera</code>. By setting its <code>left</code>, <code>right</code>, <code>top</code>, and <code>bottom</code> to -1 +1 we&#39;re telling the camera to show 2 units of space across the canvas. We also set the material not to do the <code>depthTest</code>. This also means it will not write to the depth buffer.</p>
+<p>We then make a plane that is 2x2 units large. Doing nothing else we&#39;d get the image filling the canvas.</p>
+<p>We need to draw the new scene</p>
+<pre><code class="lang-js">function render(time)
+
+    /* ... */
+
++    renderer.render(bgScene, bgCamera);
+    renderer.render(scene, camera);
+</code></pre>
+<p>By default every time <code>renderer.render</code> is called THREE.js will clear the canvas. We need to tell it not to do that otherwise the second call to render will clear our first render and we won&#39;t see the background. We can do this by setting <code>renderer.autoClearColor = false</code>.</p>
+<pre><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
++renderer.autoClearColor = false;
+</code></pre>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-separate-scene-bad-aspect.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-separate-scene-bad-aspect.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>This is getting us a background image but its stretched into a bad aspect since it&#39;s just drawing a 2x2 unit plane through a camera looking at 2x2 units of space. I intentionally used an image I hope is clear is being stretched or squished to make the issue clear.</p>
+<p>A common solution here might be to set the <code>left</code>, <code>right</code>, <code>top</code> and <code>bottom</code> properties of the <code>OrthographicCamera</code> to half the dimensions of the canvas so that the camera represents pixels. For example </p>
+<pre><code class="lang-js">bgCamera.left   = -canvas.width   / 2;
+bgCamera.right  =  canvas.width   / 2;
+bgCamera.top    =  canvsas.height / 2;
+bgCamera.bottom = -canvas.height  / 2;
+</code></pre>
+<p>We&#39;d then look at the size of the image and scale the <code>bgMesh</code> to match, checking that we choose a scale that covers the entire background.</p>
+<pre><code class="lang-js">// compute scale to make image fit horizontally
+let coverScale = bgTexture.image.width / canvas.width;
+// check if it fills vertically
+if (bgTexture.image.height * coverScale &lt; canvas.height) {
+  // no so scale to fit vertically
+  coverScale = bgTexture.image.height / canvas.height;
+}
+bgMesh.scale.x = bgTexture.image.width  * coverScale;
+bgMesh.scale.y = bgTexture.image.height * coverScale;
+</code></pre>
+<p>It turns out though there&#39;s a simpler solution. As it is we know a scale of (1, 1) will cover the screen. A scale of (1 / canvasAspect, 1) would make the plane a square. A but we need the plane to reflect the aspect of the image as well so this works.</p>
+<pre><code class="lang-js">// Scale the background plane to cover the canvas and keep the image&#39;s aspect correct.
+// Note the image may not have loaded yet.
+const canvasAspect = canvas.clientWidth / canvas.clientHeight;
+const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
+const aspect = imageAspect / canvasAspect;
+// choose an axis to have a scale of 1 and the other &gt;= 1
+bgMesh.scale.x = aspect &gt; 1 ? aspect : 1;
+bgMesh.scale.y = aspect &gt; 1 ? 1 : 1 / aspect;
+</code></pre>
+<p>and here&#39;s THREE.js drawing the background. There is no visible difference from the CSS version at the top but now if we used a <a href="threejs-post-processing.html">post processinfg effect</a> the background would be affected too.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-separate-scene.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-separate-scene.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Of course a static background is not usually what we want in a 3D scene. Instead we usually want some kind of <em>skybox</em>. A skybox is just that, box with the sky draw on it. We put the camera inside the box and it looks like there is a sky in the background.</p>
+<p>The most common way to implement a skybox is to make a cube, apply a texture to it, draw it from the inside. On each side of the cube put a texture (using texture coordinates) that looks like some image of the horizon. It&#39;s also often common to use a sky sphere or a sky dome with a texture drawn on it. You can probably figure that one out on your own. Just make a cube or sphere, <a href="../threejs-textures.html">apply a texture</a>, mark it as <code>THREE.BackSide</code> so we render the inside instead of the outside, and either put it in your scene directly or like above, or, make 2 scenes, a special one to draw the skybox/sphere/dome and the normal one to draw everything else. You&#39;d use your normal <code>PerspectiveCamera</code> to draw. No need for the <code>OrthographicCamera</code>.</p>
+<p>Another solution is to use a Cubemap. A Cubemap is a special kind of texture that has 6 sides, the sides of a cube. Instead of using standard texture coordinates it uses a direction from the center pointing outward to decide where to get a color.</p>
+<p>Here are the 6 images of a cubemap from the computer history museum in Mountain View, California.</p>
+<div class="threejs_center">
+  <img src="../resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
+  <img src="../resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
+  <img src="../resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
+</div>
+<div class="threejs_center">
+  <img src="../resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
+  <img src="../resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
+  <img src="../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
+</div>
+
+<p>To use them we use <code>CubeTextureLoader</code> to load them and setup a custom <code>ShaderMaterial</code> but using an already built in shader.</p>
+<pre><code class="lang-js">const bgScene = new THREE.Scene();
+let bgMesh;
+{
+  const loader = new THREE.CubeTextureLoader();
+  const texture = loader.load([
+    &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/neg-x.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/pos-y.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/neg-y.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/pos-z.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/neg-z.jpg&#39;,
+  ]);
+
+  const shader = THREE.ShaderLib.cube;
+  const material = new THREE.ShaderMaterial({
+    fragmentShader: shader.fragmentShader,
+    vertexShader: shader.vertexShader,
+    uniforms: shader.uniforms,
+    depthWrite: false,
+    side: THREE.BackSide,
+  });
+  material.uniforms.tCube.value = texture;
+  const plane = new THREE.BoxBufferGeometry(2, 2, 2);
+  bgMesh = new THREE.Mesh(plane, material);
+  bgScene.add(bgMesh);
+}
+</code></pre>
+<p>We set <code>side: THREE.BackSide</code> to see the inside of the cube and we set <code>depthWrite: false</code> so that we neither test nor write to the depth buffer.</p>
+<p>At render time we don&#39;t need a special camera. We just make sure the box is at the same position as the camera and render.</p>
+<pre><code class="lang-js">+bgMesh.position.copy(camera.position);
+renderer.render(bgScene, camera);
+renderer.render(scene, camera);
+</code></pre>
+<p>Note: the box must be larger than the camera&#39;s <code>near</code> setting but not so large that it passes the camera&#39;s <code>far</code> setting.</p>
+<p>Let&#39;s add some controls in so we can rotate the camera.</p>
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.z = 3;
+
++const controls = new THREE.OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</code></pre>
+<p>and try it out. Drag on the example to rotate the camera and see the cubemap surrounds us.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-cubemap.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-cubemap.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Another option is to use an Equirectangular map. This is the kind of picture a <a href="https://google.com/search?q=360+camera">360 camera</a> takes.</p>
+<p><a href="https://hdrihaven.com/hdri/?h=tears_of_steel_bridge">Here&#39;s one</a> I found from <a href="https://hdrihaven.com">this site</a>.</p>
+<div class="threejs_center"><img src="../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
+
+<p>To use it is similar to the cubemap above. We&#39;re only loading a 2D image in this case so we use the <code>TextureLoader</code> instead of the <code>CubeTextureLoader</code> and we use a different built in shader for our customer shader.</p>
+<pre><code class="lang-js">const bgScene = new THREE.Scene();
+let bgMesh;
+{
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load(
+    &#39;resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg&#39;,
+  );
+  texture.magFilter = THREE.LinearFilter;
+  texture.minFilter = THREE.LinearFilter;
+
+  const shader = THREE.ShaderLib.equirect;
+  const material = new THREE.ShaderMaterial({
+    fragmentShader: shader.fragmentShader,
+    vertexShader: shader.vertexShader,
+    uniforms: shader.uniforms,
+    depthWrite: false,
+    side: THREE.BackSide,
+  });
+  material.uniforms.tEquirect.value = texture;
+  const plane = new THREE.BoxBufferGeometry(2, 2, 2);
+  bgMesh = new THREE.Mesh(plane, material);
+  bgScene.add(bgMesh);
+}
+</code></pre>
+<p>Using equirectagular images requires more complicated shaders and so is slower than using cubemaps. Fortunately it&#39;s easy to convert from an equirectangular image to a cubemap. <a href="https://matheowis.github.io/HDRI-to-CubeMap/">Here&#39;s a site that will do it for you</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-backgrounds.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-backgrounds.html" >Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>    
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Backgrounds and Skyboxes';
+            var disqus_title = 'Three.js Backgrounds and Skyboxes';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
