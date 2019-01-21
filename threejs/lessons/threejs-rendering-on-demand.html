@@ -166,7 +166,7 @@ by setting the <code>enableDamping</code> property to true and we can set how mu
 controls.dampingFactor = 0.1;
 </code></pre>
 <p>With <code>enableDamping</code> on we need to call <code>control.update</code> in our render function so that the <code>OrbitControls</code> can
-continue to give us new camera settings as they smooth out the movement. But that means we can&#39;t call <code>render</code>
+continue to give us new camera settings as they smooth out the movement. But, that means we can&#39;t call <code>render</code>
 directly from the <code>change</code> event because we&#39;ll end up in an infinite loop. The controls will send us a <code>change</code> event
 and call <code>render</code>, <code>render</code> will call <code>control.update</code>. <code>control.update</code> will send another <code>change</code> event.</p>
 <p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> like this.</p>
@@ -250,6 +250,7 @@ The one above snaps when you press an arrow key, the one below slides.</p>
   <li>Tips</li>
   <ul>
     <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-render-on-demand.html">Rendering On Demand</a></li>
   </ul>
   <li>Fundamentals</li>
   <ul>
