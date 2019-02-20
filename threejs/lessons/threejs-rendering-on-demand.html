@@ -163,16 +163,35 @@ a <code>change</code> event anytime something changes.</p>
 <p>The <code>OrbitControls</code> have options to add a kind of inertia to make them feel less stiff. We can enable this
 by setting the <code>enableDamping</code> property to true and we can set how much inertia by adjusting the <code>dampingFactor</code></p>
 <pre><code class="lang-js">controls.enableDamping = true;
-controls.dampingFactor = 0.1;
+controls.dampingFactor = 0.05;
+controls.rotateSpeed = 0.1;
 </code></pre>
 <p>With <code>enableDamping</code> on we need to call <code>control.update</code> in our render function so that the <code>OrbitControls</code> can
 continue to give us new camera settings as they smooth out the movement. But, that means we can&#39;t call <code>render</code>
 directly from the <code>change</code> event because we&#39;ll end up in an infinite loop. The controls will send us a <code>change</code> event
 and call <code>render</code>, <code>render</code> will call <code>control.update</code>. <code>control.update</code> will send another <code>change</code> event.</p>
-<p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> like this.</p>
-<pre><code class="lang-js">-controls.addEventListener(&#39;change&#39;, render);
+<p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> but we need to make sure
+we only ask for a new frame of one has not already been requested which we can do like this.</p>
+<pre><code class="lang-js">+let requestId;
+
+function render() {
++  requestId = undefined;
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+render();
+
+-controls.addEventListener(&#39;change&#39;, render);
 +controls.addEventListener(&#39;change&#39;, () =&gt; {
-+  requestAnimationFrame(render);
++  if (!requestId) {
++    requestId = requestAnimationFrame(render);
++  }
 +});
 </code></pre>
 <p>It might be hard to see the difference. Try clicking on the example below and use the arrow keys to move around.
@@ -246,6 +265,10 @@ The one above snaps when you press an arrow key, the one below slides.</p>
     <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
     <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
     <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>    
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
   </ul>
   <li>Tips</li>
   <ul>
