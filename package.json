@@ -42,6 +42,7 @@
     "watch": "grunt buildwatch",
     "start": "http-server out",
     "eslint": "grunt eslint",
+    "pre-push": "grunt eslint",
     "bumpthree": "grunt bumpthree",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
