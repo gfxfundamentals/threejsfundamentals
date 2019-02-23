@@ -317,7 +317,7 @@ is used to rotate toward longitude on the equator. The <span style="color: blue;
 blue bar</span> represents <code>latHelper</code> which is used to rotate to a
 latitude above or below the equator. The <span style="color: red;">red
 sphere</span> represents the offset that that <code>positionHelper</code> provides.</p>
-<p>We could do all of the math manually to figure out positions on the global but
+<p>We could do all of the math manually to figure out positions on the globe but
 doing it this way leaves most of the math to the library itself so we don&#39;t need
 to deal with.</p>
 <p>For each data point we create a <code>MeshBasicMaterial</code> and a <code>Mesh</code> and then we ask
@@ -499,7 +499,7 @@ data.forEach((row, latNdx) =&gt; {
 +    // compute a color
 +    const hue = THREE.Math.lerp(0.7, 0.3, amount);
 +    const saturation = 1;
-+    const lightness = THREE.Math.lerp(0.1, 1.0, amount);
++    const lightness = THREE.Math.lerp(0.4, 1.0, amount);
 +    color.setHSL(hue, saturation, lightness);
 +    // get the colors as an array of values from 0 to 255
 +    const rgb = color.toArray().map(v =&gt; v * 255);

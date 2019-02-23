@@ -142,7 +142,7 @@ function main() {
         // compute a color
         const hue = THREE.Math.lerp(0.7, 0.3, amount);
         const saturation = 1;
-        const lightness = THREE.Math.lerp(0.1, 1.0, amount);
+        const lightness = THREE.Math.lerp(0.4, 1.0, amount);
         color.setHSL(hue, saturation, lightness);
         // get the colors as an array of values from 0 to 255
         const rgb = color.toArray().map(v => v * 255);
@@ -190,10 +190,11 @@ function main() {
     return needResize;
   }
 
-  let requestId;
+  let renderRequested = false;
 
   function render() {
-    requestId = undefined;
+    renderRequested = undefined;
+
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -205,13 +206,15 @@ function main() {
   }
   render();
 
-  controls.addEventListener('change', () => {
-    if (!requestId) {
-      requestId = requestAnimationFrame(render);
+  function requestRenderIfNotRequested() {
+    if (!renderRequested) {
+      renderRequested = true;
+      requestAnimationFrame(render);
     }
-  });
+  }
 
-  window.addEventListener('resize', render);
+  controls.addEventListener('change', requestRenderIfNotRequested);
+  window.addEventListener('resize', requestRenderIfNotRequested);
 
   // note: this is a workaround for an OrbitControls issue
   // in an iframe. Will remove once the issue is fixed in

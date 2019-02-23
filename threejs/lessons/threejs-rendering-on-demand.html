@@ -81,18 +81,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>The topic might be obvious to many people but just in case ... most Three.js examples render continuously. In other words they setup a <code>requestAnimationFrame</code> loop or &quot;rAF loop&quot; something like this</p>
+      <p>The topic might be obvious to many people but just in case ... most Three.js
+examples render continuously. In other words they setup a
+<code>requestAnimationFrame</code> loop or &quot;<em>rAF loop</em>&quot; something like this</p>
 <pre><code class="lang-js">function render() {
   ...
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);
 </code></pre>
-<p>For something that animates this makes sense but what about for something that does not animate? In that case rendering continuously is a waste of the devices power and if the user is on portable device it wastes the user&#39;s battery. </p>
-<p>The most obvious way to solve this is to render once at the start and then render only when something changes. Changes include textures or models finally loading. Data arriving from some external source. The user adjusting a setting or the camera or giving other relevant input.</p>
+<p>For something that animates this makes sense but what about for something that
+does not animate? In that case rendering continuously is a waste of the devices
+power and if the user is on portable device it wastes the user&#39;s battery. </p>
+<p>The most obvious way to solve this is to render once at the start and then
+render only when something changes. Changes include textures or models finally
+loading, data arriving from some external source, the user adjusting a setting
+or the camera or giving other relevant input.</p>
 <p>Let&#39;s take an example from <a href="threejs-responsive.html">the article on responsiveness</a>
 and modify it to render on demand.</p>
-<p>First we&#39;ll add in the <code>OrbitControls</code> so there is something that could change that we can render in response to.</p>
+<p>First we&#39;ll add in the <code>OrbitControls</code> so there is something that could change
+that we can render in response to.</p>
 <pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/three.min.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;resources/threejs/r98/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
@@ -146,11 +154,14 @@ camera.position.z = 2;
 <p>then we need to render once</p>
 <pre><code class="lang-js">render();
 </code></pre>
-<p>We need to render anytime the <code>OrbitControls</code> change the camera settings. Fortunately the <code>OrbitControls</code> dispatch
-a <code>change</code> event anytime something changes.</p>
+<p>We need to render anytime the <code>OrbitControls</code> change the camera settings.
+Fortunately the <code>OrbitControls</code> dispatch a <code>change</code> event anytime something
+changes.</p>
 <pre><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
 </code></pre>
-<p>We also need to handle the case where the user resizes the window. That was handled automatically before since we were rendering continuously but now what we are not we need to render when the window changes size.</p>
+<p>We also need to handle the case where the user resizes the window. That was
+handled automatically before since we were rendering continuously but now what
+we are not we need to render when the window changes size.</p>
 <pre><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
 </code></pre>
 <p>And with that we get something that renders on demand.</p>
@@ -160,43 +171,56 @@ a <code>change</code> event anytime something changes.</p>
 </div>
 
 </p>
-<p>The <code>OrbitControls</code> have options to add a kind of inertia to make them feel less stiff. We can enable this
-by setting the <code>enableDamping</code> property to true and we can set how much inertia by adjusting the <code>dampingFactor</code></p>
+<p>The <code>OrbitControls</code> have options to add a kind of inertia to make them feel less
+stiff. We can enable this by setting the <code>enableDamping</code> property to true and we
+can set how much inertia by adjusting the <code>dampingFactor</code></p>
 <pre><code class="lang-js">controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.rotateSpeed = 0.1;
 </code></pre>
-<p>With <code>enableDamping</code> on we need to call <code>control.update</code> in our render function so that the <code>OrbitControls</code> can
-continue to give us new camera settings as they smooth out the movement. But, that means we can&#39;t call <code>render</code>
-directly from the <code>change</code> event because we&#39;ll end up in an infinite loop. The controls will send us a <code>change</code> event
-and call <code>render</code>, <code>render</code> will call <code>control.update</code>. <code>control.update</code> will send another <code>change</code> event.</p>
-<p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> but we need to make sure
-we only ask for a new frame of one has not already been requested which we can do like this.</p>
-<pre><code class="lang-js">+let requestId;
+<p>With <code>enableDamping</code> on we need to call <code>controls.update</code> in our render function
+so that the <code>OrbitControls</code> can continue to give us new camera settings as they
+smooth out the movement. But, that means we can&#39;t call <code>render</code> directly from
+the <code>change</code> event because we&#39;ll end up in an infinite loop. The controls will
+send us a <code>change</code> event and call <code>render</code>, <code>render</code> will call <code>controls.update</code>.
+<code>controls.update</code> will send another <code>change</code> event.</p>
+<p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> but we need to
+make sure we only ask for a new frame if one has not already been requested
+which we can do by keeping a variable that tracks if we&#39;ve already requested a frame.</p>
+<pre><code class="lang-js">+let renderRequested = false;
 
 function render() {
-+  requestId = undefined;
++  renderRequested = false;
+
   if (resizeRendererToDisplaySize(renderer)) {
     const canvas = renderer.domElement;
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateProjectionMatrix();
   }
 
-  controls.update();
   renderer.render(scene, camera);
 }
 render();
 
--controls.addEventListener(&#39;change&#39;, render);
-+controls.addEventListener(&#39;change&#39;, () =&gt; {
-+  if (!requestId) {
-+    requestId = requestAnimationFrame(render);
++function requestRenderIfNotRequested() {
++  if (!renderRequested) {
++    renderRequested = true;
++    requestAnimationFrame(render);
 +  }
-+});
++}
+
+-controls.addEventListener(&#39;change&#39;, render);
++controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
 </code></pre>
-<p>It might be hard to see the difference. Try clicking on the example below and use the arrow keys to move around.
-Then try clicking on the example above and do the same thing and you should be able to tell the difference.
-The one above snaps when you press an arrow key, the one below slides.</p>
+<p>We should probably also use <code>requestRenderIfNotRequested</code> for resizing as well</p>
+<pre><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
++window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
+</code></pre>
+<p>It might be hard to see the difference. Try clicking on the example below and
+use the arrow keys to move around or dragging to spin. Then try clicking on the
+example above and do the same thing and you should be able to tell the
+difference. The one above snaps when you press an arrow key or drag, the one
+below slides.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">click here to open in a separate window</a>
@@ -208,11 +232,14 @@ The one above snaps when you press an arrow key, the one below slides.</p>
 &lt;script src=&quot;resources/threejs/r98/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>Let&#39;s allow setting the color and x scale of each cube. To be able to set the color we&#39;ll use the <code>ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on lights</a>.</p>
+<p>Let&#39;s allow setting the color and x scale of each cube. To be able to set the
+color we&#39;ll use the <code>ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
+lights</a>.</p>
 <p>First we need to create a GUI</p>
 <pre><code class="lang-js">const gui = new dat.GUI();
 </code></pre>
-<p>and then for each cube we&#39;ll create a folder and add 2 controls, one for <code>material.color</code> and another for <code>cube.scale.x</code>.</p>
+<p>and then for each cube we&#39;ll create a folder and add 2 controls, one for
+<code>material.color</code> and another for <code>cube.scale.x</code>.</p>
 <pre><code class="lang-js">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
@@ -222,21 +249,32 @@ The one above snaps when you press an arrow key, the one below slides.</p>
   cube.position.x = x;
 
 +  const folder = gui.addFolder(`Cube${x}`);
-+  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;).onChange(render);
-+  folder.add(cube.scale, &#39;x&#39;, .1, 1.5).name(&#39;scale x&#39;).onChange(render);
++  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
++      .name(&#39;color&#39;)
++      .onChange(rendrequestRenderIfNotRequesteder);
++  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
++      .name(&#39;scale x&#39;)
++      .onChange(requestRenderIfNotRequested);
 +  folder.open();
 
   return cube;
 }
 </code></pre>
-<p>You can see above dat.GUI controls have an <code>onChange</code> method that you can pass a callback to be called when the GUI changes a value. In our case we just need it to call <code>render</code>. The call to <code>folder.open</code> makes the folder start expanded.</p>
+<p>You can see above dat.GUI controls have an <code>onChange</code> method that you can pass a
+callback to be called when the GUI changes a value. In our case we just need it
+to call <code>requestRenderIfNotRequested</code>. The call to <code>folder.open</code> makes the
+folder start expanded.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>I hope this gives some idea of how to make three.js render on demand instead of continuously. Apps/pages that render three.js on demand are not as common as most pages using three.js are either games or 3D animated art but examples of pages that might be better rendering on demand would be say a map viewer, a 3d editor, a 3d graph generator, a product catalog, etc...</p>
+<p>I hope this gives some idea of how to make three.js render on demand instead of
+continuously. Apps/pages that render three.js on demand are not as common as
+most pages using three.js are either games or 3D animated art but examples of
+pages that might be better rendering on demand would be say a map viewer, a 3d
+editor, a 3d graph generator, a product catalog, etc...</p>
 
     </div>
     <div class="lesson-sidebar">
