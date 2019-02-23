@@ -93,7 +93,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T21:32:45.000Z</published>
+        <published>2019-01-06T11:05:53.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Textures]]></title>
@@ -105,31 +105,31 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T21:32:45.000Z</published>
+        <published>2019-01-06T11:05:53.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Cameras]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-cameras.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Debugging Three.js - GLSL]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-debugging-glsl.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-debugging-glsl.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Debugging JavaScript]]></title>
@@ -141,31 +141,31 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Fog]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-fog.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fog.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Fundamentals]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Loading a .GLTF File]]></title>
@@ -177,7 +177,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Loading a .OBJ File]]></title>
@@ -189,19 +189,19 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Material Feature Table]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-material-table.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-material-table.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Materials]]></title>
@@ -213,7 +213,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Multiple Canvases Multiple Scenes]]></title>
@@ -225,7 +225,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Picking]]></title>
@@ -237,31 +237,31 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Post Processing]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Prerequisites]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Primitives]]></title>
@@ -273,19 +273,19 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Render Targets]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-rendertargets.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-rendertargets.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Responsive Design]]></title>
@@ -297,7 +297,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Scenegraph]]></title>
@@ -309,19 +309,19 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Setup]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-setup.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-setup.html">
         </link>
-        <updated>2019-01-04T15:24:49.000Z</updated>
+        <updated>2019-01-04T15:32:43.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Shadows]]></title>
@@ -333,6 +333,6 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-04T15:24:49.000Z</published>
+        <published>2019-01-04T15:32:43.000Z</published>
     </entry>
 </feed>

@@ -96,6 +96,18 @@
         <published>2019-01-06T13:29:11.000Z</published>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Примитивы Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html">
+        </link>
+        <updated>2019-01-06T23:08:11.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-06T11:05:53.000Z</published>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Основы Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html">
@@ -130,17 +142,5 @@
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
         <published>2019-01-05T01:39:37.000Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Примитивы Three.js]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html">
-        </link>
-        <updated>2019-01-06T23:08:11.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2019-01-04T21:32:45.000Z</published>
     </entry>
 </feed>
