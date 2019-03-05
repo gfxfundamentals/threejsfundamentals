@@ -184,14 +184,14 @@ all the same properties as <code>baseFile</code> except with a new <code>min</co
   }
   fileInfos.push({
     name: &#39;&gt;50%men&#39;,
-    hueRange: [0.6, 0.6],
+    hueRange: [0.6, 1.1],
     file: makeDiffFile(menFile, womenFile, (men, women) =&gt; {
       return amountGreaterThan(men, women);
     }),
   });
   fileInfos.push({
     name: &#39;&gt;50% women&#39;, 
-    hueRange: [0.0, 0.0], 
+    hueRange: [0.0, 0.4],
     file: makeDiffFile(womenFile, menFile, (women, men) =&gt; {
       return amountGreaterThan(women, men);
     }),
