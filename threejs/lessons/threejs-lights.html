@@ -101,8 +101,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 or <em>orbit</em> the camera around some point. The <code>OrbitControls</code> are
 an optional feature of three.js so first we need to include them
 in our page</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r98/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r102/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Then we can use them. We pass the <code>OrbitControls</code> a camera to 
 control and the DOM element to use to get input events</p>
@@ -472,8 +472,8 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
 }
 </code></pre>
 <p>To use the <code>RectAreaLight</code> we need to include some extra three.js optional data</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r98/js/lights/RectAreaLightUniformsLib.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r102/js/lights/RectAreaLightUniformsLib.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>If you forget the data the light will still work but it will look funny so
 be sure to remember to include the extra data.</p>
@@ -484,14 +484,16 @@ be sure to remember to include the extra data.</p>
 +const height = 4;
 *const light = new THREE.RectAreaLight(color, intensity, width, height);
 light.position.set(0, 10, 0);
-+light.rotation.x = THREE.Math.degToRad(30);
++light.rotation.x = THREE.Math.degToRad(-90);
 scene.add(light);
 
 *const helper = new THREE.RectAreaLightHelper(light);
-scene.add(helper);
+*light.add(helper);
 </code></pre>
 <p>One thing to notice is that unlike the <code>DirectionalLight</code> and the <code>SpotLight</code> the
-<code>RectAreaLight</code> does not use a target. It just uses its rotation.</p>
+<code>RectAreaLight</code> does not use a target. It just uses its rotation. Another thing
+to notice is the helper needs to be a child of the light. It is not a child of the
+scene like other helpers.</p>
 <p>Let&#39;s also adjust the GUI. We&#39;ll make it so we can rotate the light and adjust
 its <code>width</code> and <code>height</code></p>
 <pre><code class="lang-js">const gui = new dat.GUI();
@@ -552,8 +554,8 @@ three.js renders the scene so you should always try to use as few as
 possible to achieve your goals. </p>
 <p>Next up let&#39;s go over <a href="threejs-cameras.html">dealing with cameras</a>.</p>
 <p><canvas id="c"></canvas></p>
-<script src="../resources/threejs/r98/three.min.js"></script>
-<script src="../resources/threejs/r98/js/controls/OrbitControls.js"></script>
+<script src="../resources/threejs/r102/three.min.js"></script>
+<script src="../resources/threejs/r102/js/controls/OrbitControls.js"></script>
 <script src="resources/threejs-lesson-utils.js"></script>
 <script src="resources/threejs-lights.js"></script>
 

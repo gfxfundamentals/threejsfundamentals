@@ -382,7 +382,10 @@ for (let i = 0; i &lt; numObjects; ++i) {
 +        1,                                     // rect height
 +    );
 +    // render the scene
-+    renderer.render(scene, camera, pickingTexture);
++    renderer.setRenderTarget(pickingTexture)
++    renderer.render(scene, camera);
++    renderer.setRenderTarget(null);
++
 +    // clear the view offset so rendering returns to normal
 +    camera.clearViewOffset();
 +    //read the pixel

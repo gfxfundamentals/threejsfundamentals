@@ -242,8 +242,9 @@ and viewport to that rectangle and return the aspect for that size.</p>
   const height = Math.min(canvasRect.height, bottom - top);
 
   // setup the scissor to only render to that part of the canvas
-  renderer.setScissor(left, top, width, height);
-  renderer.setViewport(left, top, width, height);
+  const positiveYUpBottom = canvasRect.height - bottom;
+  renderer.setScissor(left, positiveYUpBottom, width, height);
+  renderer.setViewport(left, positiveYUpBottom, width, height);
 
   // return the aspect
   return width / height;
@@ -590,8 +591,8 @@ orthographic views.</p>
 <p>That&#39;s the fundamentals of cameras. We&#39;ll cover a few common ways to move cameras
 in other articles. For now lets move on to <a href="threejs-shadows.html">shadows</a>.</p>
 <p><canvas id="c"></canvas></p>
-<script src="../resources/threejs/r98/three.min.js"></script>
-<script src="../resources/threejs/r98/js/controls/TrackballControls.js"></script>
+<script src="../resources/threejs/r102/three.min.js"></script>
+<script src="../resources/threejs/r102/js/controls/TrackballControls.js"></script>
 <script src="resources/threejs-lesson-utils.js"></script>
 <script src="resources/threejs-cameras.js"></script>
 

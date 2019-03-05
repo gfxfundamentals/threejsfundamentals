@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Основы three.js</title>
-    <updated>2019-01-07T18:09:45.000Z</updated>
+    <updated>2019-03-05T15:12:07.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,7 +16,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html">
         </link>
-        <updated>2019-01-07T18:09:45.000Z</updated>
+        <updated>2019-03-05T15:12:07.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -40,7 +40,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html">
         </link>
-        <updated>2019-01-07T18:09:45.000Z</updated>
+        <updated>2019-03-05T15:12:07.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -52,7 +52,43 @@
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-lights.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-lights.html">
         </link>
-        <updated>2019-01-07T18:09:45.000Z</updated>
+        <updated>2019-03-05T15:12:07.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-06T23:07:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Материалы Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html">
+        </link>
+        <updated>2019-03-05T15:12:07.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-06T23:07:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Примитивы Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html">
+        </link>
+        <updated>2019-03-05T15:12:07.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>http://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2019-01-06T23:07:00.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Настройка окружения Three.js]]></title>
+        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html</id>
+        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html">
+        </link>
+        <updated>2019-01-06T23:07:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -64,48 +100,12 @@
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-textures.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-textures.html">
         </link>
-        <updated>2019-01-07T18:09:45.000Z</updated>
+        <updated>2019-03-05T15:12:07.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-06T17:57:44.000Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Настройка окружения Three.js]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html">
-        </link>
-        <updated>2019-01-06T15:19:34.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2019-01-06T15:19:34.000Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Материалы Three.js]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html">
-        </link>
-        <updated>2019-01-06T23:08:11.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2019-01-06T14:09:40.000Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Примитивы Three.js]]></title>
-        <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
-        <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html">
-        </link>
-        <updated>2019-01-06T23:08:11.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>http://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2019-01-06T14:09:40.000Z</published>
+        <published>2019-01-06T23:07:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Основы Three.js]]></title>

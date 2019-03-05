@@ -231,8 +231,9 @@ const sceneInfo2 = setupScene2();
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 
-  renderer.setViewport(left, top, width, height);
-  renderer.setScissor(left, top, width, height);
+  const positiveYUpBottom = renderer.domElement.clientHeight - bottom;
+  renderer.setScissor(left, positiveYUpBottom, width, height);
+  renderer.setViewport(left, positiveYUpBottom, width, height);
 
   renderer.render(scene, camera);
 }
@@ -353,8 +354,9 @@ function render(time) {
         left &gt; renderer.domElement.clientWidth;
 
     if (!isOffscreen) {
-      renderer.setViewport(left, top, width, height);
-      renderer.setScissor(left, top, width, height);
+      const positiveYUpBottom = renderer.domElement.clientHeight - bottom;
+      renderer.setScissor(left, positiveYUpBottom, width, height);
+      renderer.setViewport(left, positiveYUpBottom, width, height);
 
       fn(time, rect);
     }
@@ -489,7 +491,7 @@ function render(time) {
 <h2 id="-">Добавление элементов управления к каждому элементу</h2>
 <p>Например, добавление <code>TrackballControls</code> в интерактивном режиме так же просто. 
 Сначала мы добавляем скрипт для контролов.</p>
-<pre><code class="lang-html">&lt;script src=&quot;../resources/threejs/r98/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;../resources/threejs/r102/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>И затем мы можем добавить <code>TrackballControls</code> к каждой сцене, передавая элемент, связанный с этой сценой.</p>
 <pre><code class="lang-js">-function makeScene() {

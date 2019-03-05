@@ -156,7 +156,9 @@ scene.add(cube);
   });
 
   // draw render target scene to render target
-  renderer.render(rtScene, rtCamera, renderTarget);
+  renderer.setRenderTarget(renderTarget);
+  renderer.render(rtScene, rtCamera);
+  renderer.setRenderTarget(null);
 </code></pre>
 <p>Then we render the scene with the single cube that is using the render target&#39;s texture to the canvas.</p>
 <pre><code class="lang-js">  // rotate the cube in the scene

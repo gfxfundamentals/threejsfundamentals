@@ -405,10 +405,10 @@ have. We could also write some custom animation code which would be easy but
 because the original webgl globe uses 
 <a href="https://github.com/tweenjs/tween.js/">an animation library</a> let&#39;s use the same one here.</p>
 <p>We need to include the library</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/three.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r98/js/utils/BufferGeometryUtils.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r98/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r98/js/libs/tween.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r102/js/utils/BufferGeometryUtils.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r102/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r102/js/libs/tween.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>And then create a <code>Tween</code> to animate the influences.</p>
 <pre><code class="lang-js">// show the selected data, hide the rest

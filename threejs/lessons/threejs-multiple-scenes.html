@@ -226,8 +226,9 @@ test with <code>Renderer.setScissorTest</code> and then setting both the scissor
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 
-  renderer.setViewport(left, top, width, height);
-  renderer.setScissor(left, top, width, height);
+  const positiveYUpBottom = canvasRect.height - bottom;
+  renderer.setScissor(left, positiveYUpBottom, width, height);
+  renderer.setViewport(left, positiveYUpBottom, width, height);
 
   renderer.render(scene, camera);
 }
@@ -332,8 +333,9 @@ function render(time) {
         left &gt; renderer.domElement.clientWidth;
 
     if (!isOffscreen) {
-      renderer.setViewport(left, top, width, height);
-      renderer.setScissor(left, top, width, height);
+      const positiveYUpBottom = renderer.domElement.clientHeight - bottom;
+      renderer.setScissor(left, positiveYUpBottom, width, height);
+      renderer.setViewport(left, positiveYUpBottom, width, height);
 
       fn(time, rect);
     }
@@ -459,7 +461,7 @@ function render(time) {
 <p></p>
 <h2 id="adding-controls-to-each-element">Adding Controls to each element</h2>
 <p>Adding interactively, for example a <code>TrackballControls</code> is just as easy. First we add the script for the control.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r98/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>And then we can add a <code>TrackballControls</code> to each scene passing in the element associated with that scene.</p>
 <pre><code class="lang-js">-function makeScene() {
