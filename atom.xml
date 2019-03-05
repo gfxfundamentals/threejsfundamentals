@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2019-03-05T15:12:07.000Z</updated>
+    <updated>2019-03-05T18:19:56.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,7 +16,7 @@
         <id>http://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">
         </link>
-        <updated>2019-03-05T15:12:07.000Z</updated>
+        <updated>2019-03-05T18:19:56.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
@@ -105,7 +105,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-06T23:07:00.000Z</published>
+        <published>2019-01-06T23:08:11.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Textures]]></title>
@@ -117,7 +117,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-01-06T23:07:00.000Z</published>
+        <published>2019-01-06T23:08:11.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Cameras]]></title>
