@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-align-html-elements-to-3d.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Aligning HTML Elements to 3D" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to line up an HTML Element to match a point in 3D space" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-align-html-elements-to-3d.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Aligning HTML Elements to 3D" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-align-html-elements-to-3d.html" />
+<meta name="twitter:description" content="How to line up an HTML Element to match a point in 3D space" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Aligning HTML Elements to 3D</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-align-html-elements-to-3d.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-align-html-elements-to-3d.html" >Русский</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Aligning HTML Elements to 3D</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is part of a series of articles about three.js. The first article
+is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If you haven&#39;t read that
+yet and you&#39;re new to three.js you might want to consider starting there. </p>
+<p>Sometimes you&#39;d like to display some text in your 3D scene. You have many options
+each with pluses and minuses.</p>
+<ul>
+<li><p>Use 3D text</p>
+<p>If you look at the <a href="threejs-primitives.html">primitives article</a> you&#39;ll see <code>TextBufferGeometry</code> which
+makes 3D text. This might be useful for flying logos but probably not so useful for stats, info,
+or labelling lots of things.</p>
+</li>
+<li><p>Use a texture with 2D text drawn into it.</p>
+<p>The article on <a href="threejs-textures-canvas.html">using a Canvas as a texture</a> shows using
+a canvas as a texture. You can draw text into a canvas and <a href="threejs-billboards.html">display it as a billboard</a>.
+The plus here might be that the text is integrated into the 3D scene. For something like a computer terminal
+shown in a 3D scene this might be perfect.</p>
+</li>
+<li><p>Use HTML Elements and position them to match the 3D</p>
+<p>The benefits to this approach is you can use all of HTML. Your HTML can have multiple elements. It can
+by styled with CSS. It can also be selected by the user as it is actual text. </p>
+</li>
+</ul>
+<p>This article will cover this last approach.</p>
+<p>Let&#39;s start simple. We&#39;ll make a 3D scene with a few primitives and then add a label to each primitive. We&#39;ll start
+with an example from <a href="threejs-responsive.html">the article on responsive pages</a> </p>
+<p>We&#39;ll add some <code>OrbitControls</code> like we did in <a href="threejs-lights.html">the article on lighting</a>.</p>
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r102/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="lang-js">const controls = new THREE.OrbitControls(camera, canvas);
+controls.target.set(0, 0, 0);
+controls.update();
+</code></pre>
+<p>We need to provide an HTML element to contain our label elements</p>
+<pre><code class="lang-html">&lt;body&gt;
+-  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;container&quot;&gt;
++    &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++    &lt;div id=&quot;labels&quot;&gt;&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>By putting both the canvas and the <code>&lt;div id=&quot;labels&quot;&gt;</code> inside a
+parent container we can make them overlap with this CSS</p>
+<pre><code class="lang-css">#c {
+-    width: 100vw;
+-    height: 100vh;
++    width: 100%;  /* let our container decide our size */
++    height: 100%;
+    display: block;
+}
++#container {
++  position: relative;  /* makes this the origin of its children */
++  width: 100vw;
++  height: 100vh;
++  overflow: hidden;
++}
++#labels {
++  position: absolute;  /* let us position ourself inside the container */
++  left: 0;             /* make our position the top left of the container */
++  top: 0;
++  color: white;
++}
+</code></pre>
+<p>let&#39;s also add some CSS for the labels themselves</p>
+<pre><code class="lang-css">#labels&gt;div {
+  position: absolute;  /* let us position them inside the container */
+  left: 0;             /* make their default position the top left of the container */
+  top: 0;
+  cursor: pointer;     /* change the cursor to a hand when over us */
+  font-size: large;
+  user-select: none;   /* don&#39;t let the text get selected */
+  text-shadow:         /* create a black outline */
+    -1px -1px 0 #000,
+     0   -1px 0 #000,
+     1px -1px 0 #000,
+     1px  0   0 #000,
+     1px  1px 0 #000,
+     0    1px 0 #000,
+    -1px  1px 0 #000,
+    -1px  0   0 #000;
+}
+#labels&gt;div:hover {
+  color: red;
+}
+</code></pre>
+<p>Now into our code we don&#39;t have to add too much. We had a function
+<code>makeInstance</code> that we used to generate cubes. Let&#39;s make it
+so we it also adds a label element.</p>
+<pre><code class="lang-js">+const labelContainerElem = document.querySelector(&#39;#labels&#39;);
+
+-function makeInstance(geometry, color, x) {
++function makeInstance(geometry, color, x, name) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
++  const elem = document.createElement(&#39;div&#39;);
++  elem.textContent = name;
++  labelContainerElem.appendChild(elem);
+
+-  return cube;
++  return {cube, elem};
+}
+</code></pre>
+<p>As you can see we&#39;re adding a <code>&lt;div&gt;</code> to the container, one for each cube. We&#39;re
+also returning an object with both the <code>cube</code> and the <code>elem</code> for the label.</p>
+<p>Calling it we need to provide a name for each</p>
+<pre><code class="lang-js">const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
++  makeInstance(geometry, 0x44aa88,  0, &#39;Aqua&#39;),
++  makeInstance(geometry, 0x8844aa, -2, &#39;Purple&#39;),
++  makeInstance(geometry, 0xaa8844,  2, &#39;Gold&#39;),
+];
+</code></pre>
+<p>What remains is positioning the label elements at render time</p>
+<pre><code class="lang-js">const tempV = new THREE.Vector3();
+
+...
+
+-cubes.forEach((cube, ndx) =&gt; {
++cubes.forEach((cubeInfo, ndx) =&gt; {
++  const {cube, elem} = cubeInfo;
+  const speed = 1 + ndx * .1;
+  const rot = time * speed;
+  cube.rotation.x = rot;
+  cube.rotation.y = rot;
+
++  // get the position of the center of the cube
++  cube.updateWorldMatrix(true, false);
++  cube.getWorldPosition(tempV);
++
++  // get the normalized screen coordinate of that position
++  // x and y will be in the -1 to +1 range with x = -1 being
++  // on the left and y = -1 being on the bottom
++  tempV.project(camera);
++
++  // convert the normalized position to CSS coordinates
++  const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
++  const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
++
++  // move the elem to that position
++  elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+});
+</code></pre>
+<p>And with that we have labels aligned to their corresponding objects.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>There are a couple of issues we probably want to deal with.</p>
+<p>One is that if we rotate the objects so they overlap all the labels
+overlap as well.</p>
+<p><img src="resources/images/overlapping-labels.png" class="threejs_center" style="width: 307px;"></p>
+<p>Another is that if we zoom way out so that the objects go outside
+the frustum the labels will still appear.</p>
+<p>A possible solution to the problem of overlapping objects is to use
+the <a href="threejs-picking.html">picking code from the article on picking</a>.
+We&#39;ll pass in the position of the object on the screen and then
+ask the <code>RayCaster</code> to tell us which objects were intersected.
+If our object is not the first one then we are not in the front.</p>
+<pre><code class="lang-js">const tempV = new THREE.Vector3();
++const raycaster = new THREE.Raycaster();
+
+...
+
+cubes.forEach((cubeInfo, ndx) =&gt; {
+  const {cube, elem} = cubeInfo;
+  const speed = 1 + ndx * .1;
+  const rot = time * speed;
+  cube.rotation.x = rot;
+  cube.rotation.y = rot;
+
+  // get the position of the center of the cube
+  cube.updateWorldMatrix(true, false);
+  cube.getWorldPosition(tempV);
+
+  // get the normalized screen coordinate of that position
+  // x and y will be in the -1 to +1 range with x = -1 being
+  // on the left and y = -1 being on the bottom
+  tempV.project(camera);
+
++  // ask the raycaster for all the objects that intersect
++  // from the eye toward this object&#39;s position
++  raycaster.setFromCamera(tempV, camera);
++  const intersectedObjects = raycaster.intersectObjects(scene.children);
++  // We&#39;re visible if the first intersection is this object.
++  const show = intersectedObjects.length &amp;&amp; cube === intersectedObjects[0].object;
++
++  if (!show) {
++    // hide the label
++    elem.style.display = &#39;none&#39;;
++  } else {
++    // unhide the label
++    elem.style.display = &#39;&#39;;
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+    const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+    // move the elem to that position
+    elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
++  }
+});
+</code></pre>
+<p>This handles overlapping.</p>
+<p>To handle going outside the frustum we can add this check if the origin of
+the object is outside the frustum by checking <code>tempV.z</code></p>
+<pre><code class="lang-js">-  if (!show) {
++  if (!show || Math.abs(tempV.z) &gt; 1) {
+    // hide the label
+    elem.style.display = &#39;none&#39;;
+</code></pre>
+<p>This <em>kind of</em> works because the normalized coordinates we computed include a <code>z</code>
+value that goes from -1 when at the <code>near</code> part of our camera frustum to +1 when
+at the <code>far</code> part of our camera frustum.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d-w-hiding.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d-w-hiding.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>For the frustum check, the solution above fails as we&#39;re only checking the origin of the object. For a large
+object. That origin might go outside the frustum but half of the object might still be in the frustum.</p>
+<p>A more correct solution would be to check if the object itself is in the frustum
+or not. Unfortunate that check is slow. For 3 cubes it will not be a problem
+but for many objects it might be.</p>
+<p>Three.js provides some functions to check if an object&#39;s bounding sphere is
+in a frustum</p>
+<pre><code class="lang-js">// at init time
+const frustum = new THREE.Frustum();
+const viewProjection = new THREE.Matrix4();
+
+...
+
+// before checking
+camera.updateMatrix();
+camera.updateMatrixWorld();
+camera.matrixWorldInverse.getInverse(camera.matrixWorld);
+
+...
+
+// then for each mesh
+someMesh.updateMatrix();
+someMesh.updateMatrixWorld();
+
+viewProjection.multiplyMatrices(
+    camera.projectionMatrix, camera.matrixWorldInverse);
+frustum.setFromMatrix(viewProjection);
+const inFrustum = frustum.contains(someMesh));
+</code></pre>
+<p>Our current overlapping solution has similar issues. Picking is slow. We could
+use gpu based picking like we covered in the <a href="threejs-picking.html">picking
+article</a> but that is also not free. Which solution you
+chose depends on your needs.</p>
+<p>While we&#39;re at it let&#39;s do one more example to show one more issue.
+Let&#39;s draw a globe like Google Maps and label the countries.</p>
+<p>I found <a href="http://thematicmapping.org/downloads/world_borders.php">this data</a>
+which contains the borders of countries. It&#39;s licensed as
+<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>.</p>
+<p>I <a href="https://github.com/greggman/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/">wrote some code</a>
+to load the data, and generate country outlines and some JSON data with the names
+of the countries and their locations.</p>
+<p><img src="../resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></p>
+<p>The JSON data is an array of entries something like this</p>
+<pre><code class="lang-json">[
+  {
+    &quot;name&quot;: &quot;Algeria&quot;,
+    &quot;min&quot;: [
+      -8.667223,
+      18.976387
+    ],
+    &quot;max&quot;: [
+      11.986475,
+      37.091385
+    ],
+    &quot;area&quot;: 238174,
+    &quot;lat&quot;: 28.163,
+    &quot;lon&quot;: 2.632,
+    &quot;population&quot;: {
+      &quot;2005&quot;: 32854159
+    }
+  },
+  ...
+</code></pre>
+<p>where min, max, lat, lon, are all in latitude and longitude degrees.</p>
+<p>Let&#39;s load it up. The code is based on the examples from <a href="threejs-optimize-lots-of-objects.html">optimizing lots of
+objects</a> though we are not drawing lots
+of objects we&#39;ll be using the same solutions for <a href="threejs-rendering-on-demand.htm">rendering on
+demand</a>.</p>
+<p>The first thing is to make a sphere and use the outline texture.</p>
+<pre><code class="lang-js">{
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load(&#39;resources/data/world/country-outlines-4k.png&#39;, render);
+  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const material = new THREE.MeshBasicMaterial({map: texture});
+  scene.add(new THREE.Mesh(geometry, material));
+}
+</code></pre>
+<p>Then let&#39;s load the JSON file by first making a loader</p>
+<pre><code class="lang-js">async function loadJSON(url) {
+  const req = await fetch(url);
+  return req.json();
+}
+</code></pre>
+<p>and then calling it</p>
+<pre><code class="lang-js">let countryInfos;
+async function loadCountryData() {
+  countryInfos = await loadJSON(&#39;resources/data/world/country-info.json&#39;);
+     ...
+  }
+  requestRenderIfNotRequested();
+}
+loadCountryData();
+</code></pre>
+<p>Now let&#39;s use that data to generate and place the labels.</p>
+<p>In the article on <a href="threejs-optimize-lots-of-objects.html">optimizing lots of objects</a>
+we had setup a small scene graph of helper objects to make it easy to 
+compute latitude and longitude positions on our globe. See that article 
+for an explanation of how they work.</p>
+<pre><code class="lang-js">const lonFudge = Math.PI * 1.5;
+const latFudge = Math.PI;
+// these helpers will make it easy to position the boxes
+// We can rotate the lon helper on its Y axis to the longitude
+const lonHelper = new THREE.Object3D();
+// We rotate the latHelper on its X axis to the latitude
+const latHelper = new THREE.Object3D();
+lonHelper.add(latHelper);
+// The position helper moves the object to the edge of the sphere
+const positionHelper = new THREE.Object3D();
+positionHelper.position.z = 1;
+latHelper.add(positionHelper);
+</code></pre>
+<p>We&#39;ll use that to compute a position for each label</p>
+<pre><code class="lang-js">const labelParentElem = document.querySelector(&#39;#labels&#39;);
+for (const countryInfo of countryInfos) {
+  const {lat, lon, name} = countryInfo;
+
+  // adjust the helpers to point to the latitude and longitude
+  lonHelper.rotation.y = THREE.Math.degToRad(lon) + lonFudge;
+  latHelper.rotation.x = THREE.Math.degToRad(lat) + latFudge;
+
+  // get the position of the lat/lon
+  positionHelper.updateWorldMatrix(true, false);
+  const position = new THREE.Vector3();
+  positionHelper.getWorldPosition(position);
+  countryInfo.position = position;
+
+  // add an element for each country
+  const elem = document.createElement(&#39;div&#39;);
+  elem.textContent = name;
+  labelParentElem.appendChild(elem);
+  countryInfo.elem = elem;
+</code></pre>
+<p>The code above looks very similar to the code we wrote for making cube labels
+making an element per label. When we&#39;re done we have an array, <code>countryInfos</code>,
+with one entry for each country to which we&#39;ve added an <code>elem</code> property for
+the label element for that country and a <code>position</code> with its position on the
+globe.</p>
+<p>Just like we did for the cubes we need to update the position of the
+labels and render time.</p>
+<pre><code class="lang-js">const tempV = new THREE.Vector3();
+
+function updateLabels() {
+  // exit if we have not yet loaded the JSON file
+  if (!countryInfos) {
+    return;
+  }
+
+  for (const countryInfo of countryInfos) {
+    const {position, elem} = countryInfo;
+
+    // get the normalized screen coordinate of that position
+    // x and y will be in the -1 to +1 range with x = -1 being
+    // on the left and y = -1 being on the bottom
+    tempV.copy(position);
+    tempV.project(camera);
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+    const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+    // move the elem to that position
+    elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+  }
+}
+</code></pre>
+<p>You can see the code above is substantially similar to the cube example before.
+The only major difference is we pre-computed the label positions at init time.
+We can do this because the globe never moves. Only our camera moves.</p>
+<p>Lastly we need to call <code>updateLabels</code> in our render loop</p>
+<pre><code class="lang-js">function render() {
+  renderRequested = undefined;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  controls.update();
+
++  updateLabels();
+
+  renderer.render(scene, camera);
+}
+</code></pre>
+<p>And this is what we get</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-elements-to-3d-globe-too-many-labels.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-elements-to-3d-globe-too-many-labels.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>That is way too many labels!</p>
+<p>We have 2 problems.</p>
+<ol>
+<li><p>Labels facing away from us are showing up.</p>
+</li>
+<li><p>There are too many labels.</p>
+</li>
+</ol>
+<p>For issue #1 we can&#39;t really use the <code>RayCaster</code> like we did above as there is
+nothing to intersect except the sphere. Instead what we can do is check if that
+particular country is facing away from us or not. This works because the label
+positions are around a sphere. In fact we&#39;re using a unit sphere, a sphere with
+a radius of 1.0. That means the positions are already unit directions making
+the math relatively easy.</p>
+<pre><code class="lang-js">const tempV = new THREE.Vector3();
++const normalMatrix = new THREE.Matrix3();
++const positiveZ = new THREE.Vector3(0, 0, 1);
+
+function updateLabels() {
+  // exit if we have not yet loaded the JSON file
+  if (!countryInfos) {
+    return;
+  }
+
++  const visibleDot = Math.cos(THREE.Math.degToRad(75));
++  // get a matrix that represents a relative orientation of the camera
++  normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+  for (const countryInfo of countryInfos) {
+    const {position, elem} = countryInfo;
+
++    // orient the position based on the camera&#39;s orientation
++    tempV.copy(position);
++    tempV.applyMatrix3(normalMatrix);
++
++    // get the dot product with positiveZ
++    // -1 = facing directly away and +1 = facing directly toward us
++    const dot = tempV.dot(positiveZ);
++
++    // if the orientation is not facing us hide it.
++    if (dot &lt; visibleDot) {
++      elem.style.display = &#39;none&#39;;
++      continue;
++    }
++
++    // restore the element to its default display style
++    elem.style.display = &#39;&#39;;
+
+    // get the normalized screen coordinate of that position
+    // x and y will be in the -1 to +1 range with x = -1 being
+    // on the left and y = -1 being on the bottom
+    tempV.copy(position);
+    tempV.project(camera);
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+    const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+    // move the elem to that position
+    countryInfo.elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+  }
+}
+</code></pre>
+<p>Above we use the positions as a direction, get their direction relative 
+to the camera and take the <em>dot product</em> with a positive Z vector. This
+gives us a value from -1 to 1 where -1 means the label is directly on the
+other side of the sphere and +1 means the label is directly on our side
+of the sphere. We then use that value to show or hide the element.</p>
+<p>For issue #2, too many labels we need some way to decide which labels
+to show. One way would be to only show labels for large countries.
+The data we&#39;re loading contains min and max values for the area a
+country covers. From that we can compute an area and then use that
+area to decide whether or not to display the country.</p>
+<p>At init time let&#39;s compute the area</p>
+<pre><code class="lang-js">const labelParentElem = document.querySelector(&#39;#labels&#39;);
+for (const countryInfo of countryInfos) {
+  const {lat, lon, min, max, name} = countryInfo;
+
+  // adjust the helpers to point to the latitude and longitude
+  lonHelper.rotation.y = THREE.Math.degToRad(lon) + lonFudge;
+  latHelper.rotation.x = THREE.Math.degToRad(lat) + latFudge;
+
+  // get the position of the lat/lon
+  positionHelper.updateWorldMatrix(true, false);
+  const position = new THREE.Vector3();
+  positionHelper.getWorldPosition(position);
+  countryInfo.position = position;
+
++  // compute the area for each country
++  const width = max[0] - min[0];
++  const height = max[1] - min[1];
++  const area = width * height;
++  countryInfo.area = area;
+
+  // add an element for each country
+  const elem = document.createElement(&#39;div&#39;);
+  elem.textContent = name;
+  labelParentElem.appendChild(elem);
+  countryInfo.elem = elem;
+}
+</code></pre>
+<p>Then at render time let&#39;s use the area to decide to display the label
+or not</p>
+<pre><code class="lang-js">+const large = 20 * 20;
+const visibleDot = Math.cos(THREE.Math.degToRad(75));
+// get a matrix that represents a relative orientation of the camera
+normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+for (const countryInfo of countryInfos) {
+-  const {position, elem} = countryInfo;
++  const {position, elem, area} = countryInfo;
++  // large enough?
++  if (area &lt; large) {
++    elem.style.display = &#39;none&#39;;
++    continue;
++  }
+
+  ...
+</code></pre>
+<p>Finally, since I&#39;m not sure what good values are for these settings lets
+add a GUI so we can play with them</p>
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r102/js/utils/BufferGeometryUtils.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r102/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="lang-js">+const settings = {
++  minArea: 20,
++  visibleAngleDeg: 75,
++};
++const gui = new dat.GUI({width: 300});
++gui.add(settings, &#39;minArea&#39;, 0, 50).onChange(requestRenderIfNotRequested);
++gui.add(settings, &#39;visibleAngleDeg&#39;, 0, 180).onChange(requestRenderIfNotRequested);
+
+function updateLabels() {
+  if (!countryInfos) {
+    return;
+  }
+
+-  const large = 20 * 20;
+-  const visibleDot = Math.cos(THREE.Math.degToRad(75));
++  const large = settings.minArea * settings.minArea;
++  const visibleDot = Math.cos(THREE.Math.degToRad(settings.visibleAngleDeg));
+  // get a matrix that represents a relative orientation of the camera
+  normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+  for (const countryInfo of countryInfos) {
+
+    ...
+</code></pre>
+<p>and here&#39;s the result</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-elements-to-3d-globe.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-elements-to-3d-globe.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>You can see as you rotate the earth labels that go behind disappear.
+Adjust the <code>visibleAngleDeg</code> to see the cutoff change.</p>
+<p>You can also adjust  the <code>minArea</code> value to see larger or smaller countries
+appear.</p>
+<p>I&#39;ll be honest, the more I worked on this the more I realized just how much
+work is put into Google Maps. They have also have to decide which labels to
+show. I&#39;m pretty sure they use all kinds of criteria. For example your current
+location, your default language setting, your account settings if you have an
+account.</p>
+<p>In any case I hope these examples gave you some idea of how to align HTML
+elements with your 3D.</p>
+<p>Next up let&#39;s make it so you can pick and highlight a country.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-align-html-elements-to-3d.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-align-html-elements-to-3d.html" >Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>    
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>    
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Aligning HTML Elements to 3D';
+            var disqus_title = 'Three.js Aligning HTML Elements to 3D';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
