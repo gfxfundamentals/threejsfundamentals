@@ -482,7 +482,7 @@ The only major difference is we pre-computed the label positions at init time.
 We can do this because the globe never moves. Only our camera moves.</p>
 <p>Lastly we need to call <code>updateLabels</code> in our render loop</p>
 <pre><code class="lang-js">function render() {
-  renderRequested = undefined;
+  renderRequested = false;
 
   if (resizeRendererToDisplaySize(renderer)) {
     const canvas = renderer.domElement;

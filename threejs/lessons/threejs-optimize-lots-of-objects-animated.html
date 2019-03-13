@@ -499,7 +499,7 @@ function showFileInfo(fileInfos, fileInfo) {
 <p>Then we&#39;ll update our render loop to update the tweens and keep rendering
 if there are still animations running.</p>
 <pre><code class="lang-js">function render() {
-  renderRequested = undefined;
+  renderRequested = false;
 
   if (resizeRendererToDisplaySize(renderer)) {
     const canvas = renderer.domElement;
