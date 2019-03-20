@@ -519,8 +519,9 @@ positions are around a sphere. In fact we&#39;re using a unit sphere, a sphere w
 a radius of 1.0. That means the positions are already unit directions making
 the math relatively easy.</p>
 <pre><code class="lang-js">const tempV = new THREE.Vector3();
++const cameraToPoint = new THREE.Vector3();
++const cameraPosition = new THREE.Vector3();
 +const normalMatrix = new THREE.Matrix3();
-+const positiveZ = new THREE.Vector3(0, 0, 1);
 
 function updateLabels() {
   // exit if we have not yet loaded the JSON file
@@ -528,22 +529,33 @@ function updateLabels() {
     return;
   }
 
-+  const visibleDot = Math.cos(THREE.Math.degToRad(75));
++  const minVisibleDot = 0.2;
 +  // get a matrix that represents a relative orientation of the camera
 +  normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
++  // get the camera&#39;s position
++  camera.getWorldPosition(cameraPosition);
   for (const countryInfo of countryInfos) {
     const {position, elem} = countryInfo;
 
-+    // orient the position based on the camera&#39;s orientation
++    // Orient the position based on the camera&#39;s orientation.
++    // Since the sphere is at the origin and the sphere is a unit sphere
++    // this gives us a camera relative direction vector for the position.
 +    tempV.copy(position);
 +    tempV.applyMatrix3(normalMatrix);
 +
-+    // get the dot product with positiveZ
-+    // -1 = facing directly away and +1 = facing directly toward us
-+    const dot = tempV.dot(positiveZ);
++    // compute the direction to this position from the camera
++    cameraToPoint.copy(position);
++    cameraToPoint.applyMatrix4(camera.matrixWorldInverse).normalize();
++
++    // get the dot product of camera relative direction to this position
++    // on the globe with the direction from the camera to that point.
++    // 1 = facing directly towards the camera
++    // 0 = exactly on tangent of the sphere from the camera
++    // &lt; 0 = facing away
++    const dot = tempV.dot(cameraToPoint);
 +
 +    // if the orientation is not facing us hide it.
-+    if (dot &lt; visibleDot) {
++    if (dot &lt; minVisibleDot) {
 +      elem.style.display = &#39;none&#39;;
 +      continue;
 +    }
@@ -566,11 +578,26 @@ function updateLabels() {
   }
 }
 </code></pre>
-<p>Above we use the positions as a direction, get their direction relative 
-to the camera and take the <em>dot product</em> with a positive Z vector. This
-gives us a value from -1 to 1 where -1 means the label is directly on the
-other side of the sphere and +1 means the label is directly on our side
-of the sphere. We then use that value to show or hide the element.</p>
+<p>Above we use the positions as a direction and get that direction relative to the
+camera. Then we get the camera relative direction from the camera to that
+position on the globe and take the <em>dot product</em>. The dot product returns the cosine
+of the angle between the to vectors. This gives us a value from -1
+to +1 where -1 means the label is facing the camera, 0 means the label is directly
+on the edge of the sphere relative to the camera, and anything greater than zero is
+behind. We then use that value to show or hide the element.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="dotProduct" style="height: 400px"></div>
+  </div>
+</div>
+
+<p>In the diagram above we can see the dot product of the direction the label is
+facing to direction from the camera to that position. If you rotate the
+direction you&#39;ll see the dot product is -1.0 when the direction is directly
+facing the camera, it&#39;s 0.0 when exactly on the tangent of the sphere relative
+to the camera or to put it another way it&#39;s 0 when the 2 vectors are
+perpendicular to each other, 90 degrees It&#39;s greater than zero with the label is
+behind the sphere.</p>
 <p>For issue #2, too many labels we need some way to decide which labels
 to show. One way would be to only show labels for large countries.
 The data we&#39;re loading contains min and max values for the area a
@@ -607,9 +634,11 @@ for (const countryInfo of countryInfos) {
 <p>Then at render time let&#39;s use the area to decide to display the label
 or not</p>
 <pre><code class="lang-js">+const large = 20 * 20;
-const visibleDot = Math.cos(THREE.Math.degToRad(75));
+const maxVisibleDot = 0.2;
 // get a matrix that represents a relative orientation of the camera
 normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+// get the camera&#39;s position
+camera.getWorldPosition(cameraPosition);
 for (const countryInfo of countryInfos) {
 -  const {position, elem} = countryInfo;
 +  const {position, elem, area} = countryInfo;
@@ -630,11 +659,11 @@ add a GUI so we can play with them</p>
 </code></pre>
 <pre><code class="lang-js">+const settings = {
 +  minArea: 20,
-+  visibleAngleDeg: 75,
++  maxVisibleDot: -0.2,
 +};
 +const gui = new dat.GUI({width: 300});
 +gui.add(settings, &#39;minArea&#39;, 0, 50).onChange(requestRenderIfNotRequested);
-+gui.add(settings, &#39;visibleAngleDeg&#39;, 0, 180).onChange(requestRenderIfNotRequested);
++gui.add(settings, &#39;maxVisibleDot&#39;, -1, 1, 0.01).onChange(requestRenderIfNotRequested);
 
 function updateLabels() {
   if (!countryInfos) {
@@ -642,14 +671,22 @@ function updateLabels() {
   }
 
 -  const large = 20 * 20;
--  const visibleDot = Math.cos(THREE.Math.degToRad(75));
+-  const maxVisibleDot = -0.2;
 +  const large = settings.minArea * settings.minArea;
-+  const visibleDot = Math.cos(THREE.Math.degToRad(settings.visibleAngleDeg));
   // get a matrix that represents a relative orientation of the camera
   normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+  // get the camera&#39;s position
+  camera.getWorldPosition(cameraPosition);
   for (const countryInfo of countryInfos) {
 
     ...
+
+    // if the orientation is not facing us hide it.
+-    if (dot &gt; maxVisibleDot) {
++    if (dot &gt; settings.maxVisibleDot) {
+      elem.style.display = &#39;none&#39;;
+      continue;
+    }
 </code></pre>
 <p>and here&#39;s the result</p>
 <p><div class="threejs_example_container">
@@ -659,18 +696,26 @@ function updateLabels() {
 
 </p>
 <p>You can see as you rotate the earth labels that go behind disappear.
-Adjust the <code>visibleAngleDeg</code> to see the cutoff change.</p>
-<p>You can also adjust  the <code>minArea</code> value to see larger or smaller countries
+Adjust the <code>minVisibleDot</code> to see the cutoff change.
+You can also adjust the <code>minArea</code> value to see larger or smaller countries
 appear.</p>
-<p>I&#39;ll be honest, the more I worked on this the more I realized just how much
+<p>The more I worked on this the more I realized just how much
 work is put into Google Maps. They have also have to decide which labels to
 show. I&#39;m pretty sure they use all kinds of criteria. For example your current
 location, your default language setting, your account settings if you have an
-account.</p>
+account, they probably use population or popularity, they might give priority
+to the countries in the center of the view, etc ... Lots to think about.</p>
 <p>In any case I hope these examples gave you some idea of how to align HTML
-elements with your 3D.</p>
+elements with your 3D. A few things I might change.</p>
 <p>Next up let&#39;s make it so you can <a href="threejs-indexed-textures.html">pick and highlight a country</a>.</p>
-
+<p><style>
+div[data-diagram] canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+</style></p>
+<script src="resources/threejs-align-html-elements-to-3d.js"></script>
     </div>
     <div class="lesson-sidebar">
         <select class="language">
