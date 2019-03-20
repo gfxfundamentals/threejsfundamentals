@@ -344,6 +344,58 @@ const inFrustum = frustum.contains(someMesh));
 use gpu based picking like we covered in the <a href="threejs-picking.html">picking
 article</a> but that is also not free. Which solution you
 chose depends on your needs.</p>
+<p>Another issue is the order the labels appear. If we change the code to have
+longer labels</p>
+<pre><code class="lang-js">const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0, &#39;Aqua&#39;),
+-  makeInstance(geometry, 0x8844aa, -2, &#39;Purple&#39;),
+-  makeInstance(geometry, 0xaa8844,  2, &#39;Gold&#39;),
++  makeInstance(geometry, 0x44aa88,  0, &#39;Aqua Colored Box&#39;),
++  makeInstance(geometry, 0x8844aa, -2, &#39;Purple Colored Box&#39;),
++  makeInstance(geometry, 0xaa8844,  2, &#39;Gold Colored Box&#39;),
+];
+</code></pre>
+<p>and set the CSS so these don&#39;t wrap</p>
+<pre><code class="lang-css">#labels&gt;div {
++  white-space: nowrap;
+</code></pre>
+<p>Then we can run into this issue</p>
+<div class="threejs_center"><img src="resources/images/label-sorting-issue.png" style="width: 401px;"></div>
+
+<p>You can see above the purple box is in the back but its label is in front of the aqua box.</p>
+<p>We can fix this by setting the <code>zIndex</code> of each element. The projected position has a <code>z</code> value
+that goes from -1 in front to positive 1 in back. <code>zIndex</code> is required to be an integer and goes the
+opposite direction meaning for <code>zIndex</code> greater values are in front so the following code should work.</p>
+<pre><code class="lang-js">// convert the normalized position to CSS coordinates
+const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+// move the elem to that position
+elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+
++// set the zIndex for sorting
++elem.style.zIndex = (-tempV.z * .5 + .5) * 100000 | 0;
+</code></pre>
+<p>Because of the way the projected z value works we need to pick a large number to spread out the values
+otherwise many will have the same value. To make sure the labels don&#39;t overlap with other parts of
+the page we can tell the browser to create a new <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context">stacking context</a>
+by setting the <code>z-index</code> of the container of the labels</p>
+<pre><code class="lang-css">#labels {
+  position: absolute;  /* let us position ourself inside the container */
++  z-index: 0;          /* make a new stacking context so children don&#39;t sort with rest of page */
+  left: 0;             /* make our position the top left of the container */
+  top: 0;
+  color: white;
+  z-index: 0;
+}
+</code></pre>
+<p>and now the labels should always be in the correct order.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d-w-sorting.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d-w-sorting.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
 <p>While we&#39;re at it let&#39;s do one more example to show one more issue.
 Let&#39;s draw a globe like Google Maps and label the countries.</p>
 <p>I found <a href="http://thematicmapping.org/downloads/world_borders.php">this data</a>
@@ -474,6 +526,9 @@ function updateLabels() {
 
     // move the elem to that position
     elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+
+    // set the zIndex for sorting
+    elem.style.zIndex = (-tempV.z * .5 + .5) * 100000 | 0;
   }
 }
 </code></pre>
@@ -575,6 +630,9 @@ function updateLabels() {
 
     // move the elem to that position
     countryInfo.elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+
+    // set the zIndex for sorting
+    elem.style.zIndex = (-tempV.z * .5 + .5) * 100000 | 0;
   }
 }
 </code></pre>
