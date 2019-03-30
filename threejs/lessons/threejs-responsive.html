@@ -149,7 +149,7 @@ display size. We can do that by looking at the canvas&#39;s
   time *= 0.001;
 
 +  const canvas = renderer.domElement;
-+  camera.aspect = client.clientWidth / client.clientHeight;
++  camera.aspect = canvas.clientWidth / canvas.clientHeight;
 +  camera.updateProjectionMatrix();
 
   ...
@@ -208,7 +208,7 @@ our render loop to use the new function</p>
 
 +  if (resizeRendererToDisplaySize(renderer)) {
 +    const canvas = renderer.domElement;
-+    camera.aspect = client.clientWidth / client.clientHeight;
++    camera.aspect = canvas.clientWidth / canvas.clientHeight;
 +    camera.updateProjectionMatrix();
 +  }
 
