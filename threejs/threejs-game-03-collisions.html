@@ -1,0 +1,191 @@
+<!-- Licensed under a BSD license. See license.html for license -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Three.js - Game - Collisions</title>
+    <style>
+    body {
+        margin: 0;
+    }
+    #c {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+  </body>
+<script src="resources/threejs/r98/three.js"></script>
+<script src="resources/FPSControls.js"></script>
+<script>
+'use strict';
+
+/* global THREE, FPSControls */
+
+class Player {
+  constructor(scene) {
+    this.scene = scene;
+    this.root = new THREE.Object3D();
+    scene.add(this.root);
+    this.head = new THREE.Object3D();
+    this.head.position.set(0, 2, 0);
+    this.root.add(this.head);
+    this.raycaster = new THREE.Raycaster();
+    this.rayTarget = new THREE.Vector3(0, 0, 0);
+    this.rayOrigin = new THREE.Vector3(0, 0, 0);
+    {
+      const material = new THREE.MeshBasicMaterial({color: 'red'});
+      const geometry = new THREE.SphereBufferGeometry();
+      this.targetMesh = new THREE.Mesh(geometry, material);
+      scene.add(this.targetMesh);
+    }
+  }
+  update(deltaTime, controls) {
+    if (controls.movement.length() > 0) {
+      this.rayTarget.copy(controls.movement);
+      this.rayTarget.normalize();
+      this.rayOrigin.setFromMatrixPosition(this.head.matrixWorld);
+      this.raycaster.set(this.rayOrigin, this.rayTarget);
+    }
+    this.targetMesh.visible = false;
+    const intersectedObjects = this.raycaster.intersectObjects(this.scene.children, true);
+    this.targetMesh.visible = true;
+    if (intersectedObjects.length) {
+      this.targetMesh.position.copy(intersectedObjects[0].point);
+
+      // pick the first object. It's the closest one
+      // this.pickedObject = intersectedObjects[0].object;
+      // save its color
+      // this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // set its emissive color to flashing red/yellow
+      // this.pickedObject.material.emissive.setHex((time * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
+    }
+
+
+    this.root.position.add(controls.movement);
+  }
+}
+
+function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+
+  const fov = 75;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 50;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.set(0, 2, 0);
+
+  const controls = new FPSControls(camera, canvas);
+  controls.lookSpeed = 0.3;
+  controls.movementSpeed = 4;
+  controls.move = false;
+  controls.constrainVertical = true;
+  controls.verticalMin = Math.PI * 0.3;
+  controls.verticalMax = Math.PI * 0.7;
+
+  const scene = new THREE.Scene();
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(-1, 2, 4);
+    scene.add(light);
+  }
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(1, 2, -3);
+    scene.add(light);
+  }
+
+  const player = new Player(scene);
+  player.root.add(camera);
+
+  const tiles = {
+    'W': { height: 3 },
+    '.': { height: 0.1 },
+  };
+
+  const levelData = `
+  WWWWWWWWW
+  W.......W
+  W.W...W.W
+  W.......W
+  W.......W
+  W.W...W.W
+  W.......W
+  WWWWWWWWW
+  `.trim().split('\n').map(s => s.trim().split(''));
+  const tilesDeep = levelData.length;
+  const tilesAcross = levelData[0].length;  // assumes all rows are the same length
+  const tileWidth = 5;
+  const tileDepth = 5;
+  const levelWidth = (tilesAcross - 1) * tileWidth;
+  const levelDepth = (tilesDeep   - 1) * tileDepth;
+
+  const material = new THREE.MeshPhongMaterial({color: '#FCC'});
+  const level = new THREE.Object3D();
+  scene.add(level);
+  levelData.forEach((row, z) => {
+    const v = z / (tilesDeep - 1);
+    row.forEach((tile, x) => {
+      const u = x / (tilesAcross - 1);
+      const tileInfo = tiles[tile];
+      const geometry = new THREE.BoxBufferGeometry(tileWidth, 1, tileDepth);
+      geometry.translate(0, 0.5, 0);
+      geometry.scale(1, tileInfo.height, 1);
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(
+        (u - 0.5) * (levelWidth - 1),
+        0,
+        (v - 0.5) * (levelDepth - 1),
+      );
+      level.add(mesh);
+    });
+  });
+
+  function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+
+  let then = 0;
+  function render(now) {
+    now *= 0.001;
+    const deltaTime = Math.min(now - then, 0.1);
+    then = now;
+
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+
+    controls.update(deltaTime);
+    player.update(deltaTime, controls, scene);
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+
+main();
+</script>
+</html>
+
