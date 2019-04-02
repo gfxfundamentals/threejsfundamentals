@@ -411,6 +411,41 @@ width like this</p>
 </div>
 
 </p>
+<p>Above we used a new canvas for each texture. Whether or not to use a 
+canvas per texture is up to you. If you need to up them often then 
+having one canvas per texture is probably the best option. If they are
+rarely or never updated then you can choose to use a single canvas
+for multiple textures by calling <code>WebGLRenderer.setTexture2D</code>.
+Let&#39;s change the code above to do just that.</p>
+<pre><code class="lang-js">+const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+
+function makeLabelCanvas(baseWidth, size, name) {
+  const borderSize = 2;
+-  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  const font =  `${size}px bold sans-serif`;
+
+  ...
+
+}
+
+function makePerson(x, labelWidth, size, name, color) {
+  const canvas = makeLabelCanvas(labelWidth, size, name);
+  const texture = new THREE.CanvasTexture(canvas);
+  // because our canvas is likely not a power of 2
+  // in both dimensions set the filtering appropriately.
+  texture.minFilter = THREE.LinearFilter;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
++  renderer.setTexture2D(texture, 0);
+
+  ...
+</code></pre>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels-one-canvas.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels-one-canvas.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
 <p>Another issue is that the labels don&#39;t always face the camera. If you&#39;re using 
 labels as badges that&#39;s probably a good thing. If you&#39;re using labels to put
 names over players in a 3D game maybe you want the labels to always face the camera.
