@@ -311,8 +311,8 @@ tall and however wide is needed to fit the text.</p>
 </code></pre>
 <p>What&#39;s left is to add some <code>OrbitControls</code> so we can move
 the camera.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r102/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <pre><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
@@ -463,6 +463,9 @@ function makePerson(x, labelWidth, size, name, color) {
 labels as badges that&#39;s probably a good thing. If you&#39;re using labels to put
 names over players in a 3D game maybe you want the labels to always face the camera.
 We&#39;ll cover how to do that in <a href="threejs-billboards.html">an article on billboards</a>.</p>
+<p>For labels in particular, <a href="threejs-align-html-elements-to-3d.html">another solution is to use HTML</a>.
+The labels in this article are <em>inside the 3D world</em> which is good if you want them
+to be hidden by other objects where as <a href="threejs-align-html-elements-to-3d.html">HTML labels</a> are always on top.</p>
 
     </div>
     <div class="lesson-sidebar">

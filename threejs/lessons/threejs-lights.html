@@ -101,8 +101,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 or <em>orbit</em> the camera around some point. The <code>OrbitControls</code> are
 an optional feature of three.js so first we need to include them
 in our page</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r102/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Then we can use them. We pass the <code>OrbitControls</code> a camera to 
 control and the DOM element to use to get input events</p>
@@ -472,8 +472,8 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
 }
 </code></pre>
 <p>To use the <code>RectAreaLight</code> we need to include some extra three.js optional data</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r102/js/lights/RectAreaLightUniformsLib.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r103/js/lights/RectAreaLightUniformsLib.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>If you forget the data the light will still work but it will look funny so
 be sure to remember to include the extra data.</p>
@@ -554,8 +554,8 @@ three.js renders the scene so you should always try to use as few as
 possible to achieve your goals. </p>
 <p>Next up let&#39;s go over <a href="threejs-cameras.html">dealing with cameras</a>.</p>
 <p><canvas id="c"></canvas></p>
-<script src="../resources/threejs/r102/three.min.js"></script>
-<script src="../resources/threejs/r102/js/controls/OrbitControls.js"></script>
+<script src="../resources/threejs/r103/three.min.js"></script>
+<script src="../resources/threejs/r103/js/controls/OrbitControls.js"></script>
 <script src="resources/threejs-lesson-utils.js"></script>
 <script src="resources/threejs-lights.js"></script>
 

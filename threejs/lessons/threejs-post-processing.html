@@ -129,14 +129,14 @@ composer.addPass(filmPass);
 </code></pre>
 <p>Since the <code>filmPass</code> is the last pass we set its <code>renderToScreen</code> property to true to tell it to render to the canvas. Without setting this it would instead render to the next render target.</p>
 <p>To use these classes we need to include a bunch of scripts.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r102/js/shaders/CopyShader.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/shaders/ConvolutionShader.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/shaders/FilmShader.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/postprocessing/EffectComposer.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/postprocessing/RenderPass.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/postprocessing/ShaderPass.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/postprocessing/BloomPass.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r102/js/postprocessing/FilmPass.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/js/shaders/CopyShader.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/shaders/ConvolutionShader.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/shaders/FilmShader.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/postprocessing/EffectComposer.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/postprocessing/RenderPass.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/postprocessing/ShaderPass.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/postprocessing/BloomPass.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r103/js/postprocessing/FilmPass.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>For pretty much any post processing <code>EffectComposer.js</code>, <code>RenderPass.js</code>, <code>ShaderPass.js</code>, and <code>CopyShader.js</code> are required. The rest depend on which effects you plan to use.
 Usually if you miss one you&#39;ll get an error in <a href="threejs-debugging-javascript.html">the JavaScript console</a> telling you which one you&#39;re missing.</p>

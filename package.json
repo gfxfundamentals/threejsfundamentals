@@ -4,7 +4,7 @@
   "description": "Some Three.js Tutorials",
   "main": "index.js",
   "threejsfundamentals": {
-    "threeVersion": 102
+    "threeVersion": 103
   },
   "dependencies": {},
   "devDependencies": {
