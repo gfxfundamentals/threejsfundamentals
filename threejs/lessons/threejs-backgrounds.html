@@ -99,7 +99,8 @@ body {
 }
 &lt;/style&gt;
 </code></pre>
-<p>and we need to tell the <code>WebGLRenderer</code> to use <code>alpha</code> so places we are not drawing anything are transparent.</p>
+<p>and we need to tell the <code>WebGLRenderer</code> to use <code>alpha</code> so places we are not
+drawing anything are transparent.</p>
 <pre><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
 -  const renderer = new THREE.WebGLRenderer({canvas: canvas});
@@ -115,100 +116,78 @@ body {
 </div>
 
 </p>
-<p>If we want the background to be able to be affected by <a href="threejs-post-processing.html">post processing effects</a> then we need to draw the background using THREE.js.</p>
-<p>The most obvious thing to do is <a href="threejs-primitives.html">make a <code>PlaneBufferGeometry</code></a>, <a href="threejs-materials.html">make a <code>MeshBasicMaterial</code></a> and <a href="threejs-textures.html">give it a texture</a> with the background image we want. Then make a <code>Mesh</code> that displays the plane with that material.</p>
-<p>We then need to position the mesh so it looks like a background. There are several ways to do this.</p>
-<h2 id="place-it-in-the-scene-and-move-it-to-be-in-front-of-the-camera">Place it in the scene and move it to be in front of the camera</h2>
-<p>One way would be to place it in the scene and update its position, orientation, and scale every frame so it appears in front of the camera and fills the frame. That sounds like non trival math. We&#39;d also probably set its <code>renderOrder</code> so it renders first.</p>
-<h2 id="make-it-a-child-of-the-camera">Make it a child of the camera</h2>
-<p>We could put the <code>PerspectiveCamera</code> itself in the scene and then child the plane <code>Mesh</code> to the camera. Set its position to <code>0, 0, -someAmount</code> which will mean it&#39;s always in front of the camera. Then we only have to deal with what scale to make it.</p>
-<h2 id="we-can-put-it-in-it-s-own-scene-with-it-s-own-camera-">We can put it in it&#39;s own scene with it&#39;s own camera.</h2>
-<p>In this case we&#39;d make a separate <code>Scene</code> and a separate camera and draw it first in our render loop.
-Let&#39;s pick this solution.</p>
-<p>Starting over with an example from <a href="../threejs-responsive.html">the article on making THREE.js responsive</a> let&#39;s make the scene, plane, material, texture, and mesh</p>
-<pre><code class="lang-js">const bgCamera = new THREE.OrthographicCamera(
-  -1, // left
-   1, // right
-   1, // top
-  -1, // bottom
-  -1, // near,
-   1, // far
-);
-
-const bgScene = new THREE.Scene();
-
-const loader = new THREE.TextureLoader();
+<p>If we want the background to be able to be affected by <a href="threejs-post-processing.html">post processing
+effects</a> then we need to draw the background using
+THREE.js.</p>
+<p>THREE.js makes this some what simple. We can just set the background of the scene to
+a texture.</p>
+<pre><code class="lang-js">const loader = new THREE.TextureLoader();
 const bgTexture = loader.load(&#39;resources/images/daikanyama.jpg&#39;);
-let bgMesh;
-{
-  const plane = new THREE.PlaneBufferGeometry(2, 2);
-  const material = new THREE.MeshBasicMaterial({
-    map: bgTexture,
-    depthTest: false,
-  });
-  bgMesh = new THREE.Mesh(plane, material);
-  bgScene.add(bgMesh);
-}
+scene.background = bgTexture;
 </code></pre>
-<p>The camera is an <code>OrthographicCamera</code>. By setting its <code>left</code>, <code>right</code>, <code>top</code>, and <code>bottom</code> to -1 +1 we&#39;re telling the camera to show 2 units of space across the canvas. We also set the material not to do the <code>depthTest</code>. This also means it will not write to the depth buffer.</p>
-<p>We then make a plane that is 2x2 units large. Doing nothing else we&#39;d get the image filling the canvas.</p>
-<p>We need to draw the new scene</p>
-<pre><code class="lang-js">function render(time)
-
-    /* ... */
-
-+    renderer.render(bgScene, bgCamera);
-    renderer.render(scene, camera);
-</code></pre>
-<p>By default every time <code>renderer.render</code> is called THREE.js will clear the canvas. We need to tell it not to do that otherwise the second call to render will clear our first render and we won&#39;t see the background. We can do this by setting <code>renderer.autoClearColor = false</code>.</p>
-<pre><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
-+renderer.autoClearColor = false;
-</code></pre>
+<p>which gives us</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-separate-scene-bad-aspect.html"></iframe>
-  <a class="threejs_center" href="/threejs/lessons/../threejs-background-separate-scene-bad-aspect.html" target="_blank">click here to open in a separate window</a>
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-scene-background.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-scene-background.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>This is getting us a background image but its stretched into a bad aspect since it&#39;s just drawing a 2x2 unit plane through a camera looking at 2x2 units of space. I intentionally used an image I hope is clear is being stretched or squished to make the issue clear.</p>
-<p>A common solution here might be to set the <code>left</code>, <code>right</code>, <code>top</code> and <code>bottom</code> properties of the <code>OrthographicCamera</code> to half the dimensions of the canvas so that the camera represents pixels. For example </p>
-<pre><code class="lang-js">bgCamera.left   = -canvas.width   / 2;
-bgCamera.right  =  canvas.width   / 2;
-bgCamera.top    =  canvsas.height / 2;
-bgCamera.bottom = -canvas.height  / 2;
-</code></pre>
-<p>We&#39;d then look at the size of the image and scale the <code>bgMesh</code> to match, checking that we choose a scale that covers the entire background.</p>
-<pre><code class="lang-js">// compute scale to make image fit horizontally
-let coverScale = bgTexture.image.width / canvas.width;
-// check if it fills vertically
-if (bgTexture.image.height * coverScale &lt; canvas.height) {
-  // no so scale to fit vertically
-  coverScale = bgTexture.image.height / canvas.height;
+<p>This gets us a background image but its stretched to fit the screen.</p>
+<p>We can solve this issue by setting the <code>repeat</code> and <code>offset</code> properties of
+the texture to show only a portion of image.</p>
+<pre><code class="lang-js">function render(time) {
+
+   ...
+
++  // Set the repeat and offset properties of the background texture
++  // to keep the image&#39;s aspect correct.
++  // Note the image may not have loaded yet.
++  const canvasAspect = canvas.clientWidth / canvas.clientHeight;
++  const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
++  const aspect = imageAspect / canvasAspect;
++
++  bgTexture.offset.x = aspect &gt; 1 ? (1 - 1 / aspect) / 2 : 0;
++  bgTexture.repeat.x = aspect &gt; 1 ? 1 / aspect : 1;
++
++  bgTexture.offset.y = aspect &gt; 1 ? 0 : (1 - aspect) / 2;
++  bgTexture.repeat.y = aspect &gt; 1 ? 1 : aspect;
+
+  ...
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
 }
-bgMesh.scale.x = bgTexture.image.width  * coverScale;
-bgMesh.scale.y = bgTexture.image.height * coverScale;
 </code></pre>
-<p>It turns out though there&#39;s a simpler solution. As it is we know a scale of (1, 1) will cover the screen. A scale of (1 / canvasAspect, 1) would make the plane a square. A but we need the plane to reflect the aspect of the image as well so this works.</p>
-<pre><code class="lang-js">// Scale the background plane to cover the canvas and keep the image&#39;s aspect correct.
-// Note the image may not have loaded yet.
-const canvasAspect = canvas.clientWidth / canvas.clientHeight;
-const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
-const aspect = imageAspect / canvasAspect;
-// choose an axis to have a scale of 1 and the other &gt;= 1
-bgMesh.scale.x = aspect &gt; 1 ? aspect : 1;
-bgMesh.scale.y = aspect &gt; 1 ? 1 : 1 / aspect;
-</code></pre>
-<p>and here&#39;s THREE.js drawing the background. There is no visible difference from the CSS version at the top but now if we used a <a href="threejs-post-processing.html">post processinfg effect</a> the background would be affected too.</p>
+<p>and now THREE.js drawing the background. There is no visible difference from
+the CSS version at the top but now if we used a <a href="threejs-post-processing.html">post processing
+effect</a> the background would be affected too.</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-separate-scene.html"></iframe>
-  <a class="threejs_center" href="/threejs/lessons/../threejs-background-separate-scene.html" target="_blank">click here to open in a separate window</a>
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-scene-background-fixed-aspect.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-scene-background-fixed-aspect.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Of course a static background is not usually what we want in a 3D scene. Instead we usually want some kind of <em>skybox</em>. A skybox is just that, box with the sky draw on it. We put the camera inside the box and it looks like there is a sky in the background.</p>
-<p>The most common way to implement a skybox is to make a cube, apply a texture to it, draw it from the inside. On each side of the cube put a texture (using texture coordinates) that looks like some image of the horizon. It&#39;s also often common to use a sky sphere or a sky dome with a texture drawn on it. You can probably figure that one out on your own. Just make a cube or sphere, <a href="../threejs-textures.html">apply a texture</a>, mark it as <code>THREE.BackSide</code> so we render the inside instead of the outside, and either put it in your scene directly or like above, or, make 2 scenes, a special one to draw the skybox/sphere/dome and the normal one to draw everything else. You&#39;d use your normal <code>PerspectiveCamera</code> to draw. No need for the <code>OrthographicCamera</code>.</p>
-<p>Another solution is to use a Cubemap. A Cubemap is a special kind of texture that has 6 sides, the sides of a cube. Instead of using standard texture coordinates it uses a direction from the center pointing outward to decide where to get a color.</p>
-<p>Here are the 6 images of a cubemap from the computer history museum in Mountain View, California.</p>
+<p>Of course a static background is not usually what we want in a 3D scene. Instead
+we usually want some kind of <em>skybox</em>. A skybox is just that, box with the sky
+draw on it. We put the camera inside the box and it looks like there is a sky in
+the background.</p>
+<p>The most common way to implement a skybox is to make a cube, apply a texture to
+it, draw it from the inside. On each side of the cube put a texture (using
+texture coordinates) that looks like some image of the horizon. It&#39;s also often
+common to use a sky sphere or a sky dome with a texture drawn on it. You can
+probably figure that one out on your own. Just make a cube or sphere, 
+<a href="../threejs-textures.html">apply a texture</a>, mark it as <code>THREE.BackSide</code> so we 
+render the inside instead of the outside, and either put it in your scene directly 
+or like above, or, make 2 scenes, a special one to draw the skybox/sphere/dome and the
+normal one to draw everything else. You&#39;d use your normal <code>PerspectiveCamera</code> to
+draw. No need for the <code>OrthographicCamera</code>.</p>
+<p>Another solution is to use a <em>Cubemap</em>. A Cubemap is a special kind of texture
+that has 6 sides, the sides of a cube. Instead of using standard texture
+coordinates it uses a direction from the center pointing outward to decide where
+to get a color.</p>
+<p>Here are the 6 images of a cubemap from the computer history museum in Mountain
+View, California.</p>
 <div class="threejs_center">
   <img src="../resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
   <img src="../resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
@@ -220,10 +199,9 @@ bgMesh.scale.y = aspect &gt; 1 ? 1 : 1 / aspect;
   <img src="../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
 </div>
 
-<p>To use them we use <code>CubeTextureLoader</code> to load them and setup a custom <code>ShaderMaterial</code> but using an already built in shader.</p>
-<pre><code class="lang-js">const bgScene = new THREE.Scene();
-let bgMesh;
-{
+<p>To use them we use <code>CubeTextureLoader</code> to load them and then use that as a the
+scene&#39;s background.</p>
+<pre><code class="lang-js">{
   const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
     &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
@@ -233,28 +211,34 @@ let bgMesh;
     &#39;resources/images/cubemaps/computer-history-museum/pos-z.jpg&#39;,
     &#39;resources/images/cubemaps/computer-history-museum/neg-z.jpg&#39;,
   ]);
-
-  const shader = THREE.ShaderLib.cube;
-  const material = new THREE.ShaderMaterial({
-    fragmentShader: shader.fragmentShader,
-    vertexShader: shader.vertexShader,
-    uniforms: shader.uniforms,
-    depthWrite: false,
-    side: THREE.BackSide,
-  });
-  material.uniforms.tCube.value = texture;
-  const plane = new THREE.BoxBufferGeometry(2, 2, 2);
-  bgMesh = new THREE.Mesh(plane, material);
-  bgScene.add(bgMesh);
+  scene.background = texture;
 }
 </code></pre>
-<p>We set <code>side: THREE.BackSide</code> to see the inside of the cube and we set <code>depthWrite: false</code> so that we neither test nor write to the depth buffer.</p>
-<p>At render time we don&#39;t need a special camera. We just make sure the box is at the same position as the camera and render.</p>
-<pre><code class="lang-js">+bgMesh.position.copy(camera.position);
-renderer.render(bgScene, camera);
-renderer.render(scene, camera);
+<p>At render time we don&#39;t need to adjust the texture like we did above</p>
+<pre><code class="lang-js">function render(time) {
+
+   ...
+
+-  // Set the repeat and offset properties of the background texture
+-  // to keep the image&#39;s aspect correct.
+-  // Note the image may not have loaded yet.
+-  const canvasAspect = canvas.clientWidth / canvas.clientHeight;
+-  const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
+-  const aspect = imageAspect / canvasAspect;
+-
+-  bgTexture.offset.x = aspect &gt; 1 ? (1 - 1 / aspect) / 2 : 0;
+-  bgTexture.repeat.x = aspect &gt; 1 ? 1 / aspect : 1;
+-
+-  bgTexture.offset.y = aspect &gt; 1 ? 0 : (1 - aspect) / 2;
+-  bgTexture.repeat.y = aspect &gt; 1 ? 1 : aspect;
+
+  ...
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+}
 </code></pre>
-<p>Note: the box must be larger than the camera&#39;s <code>near</code> setting but not so large that it passes the camera&#39;s <code>far</code> setting.</p>
 <p>Let&#39;s add some controls in so we can rotate the camera.</p>
 <pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
@@ -271,18 +255,24 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +controls.target.set(0, 0, 0);
 +controls.update();
 </code></pre>
-<p>and try it out. Drag on the example to rotate the camera and see the cubemap surrounds us.</p>
+<p>and try it out. Drag on the example to rotate the camera and see the cubemap
+surrounds us.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-cubemap.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-cubemap.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Another option is to use an Equirectangular map. This is the kind of picture a <a href="https://google.com/search?q=360+camera">360 camera</a> takes.</p>
-<p><a href="https://hdrihaven.com/hdri/?h=tears_of_steel_bridge">Here&#39;s one</a> I found from <a href="https://hdrihaven.com">this site</a>.</p>
+<p>Another option is to use an Equirectangular map. This is the kind of picture a
+<a href="https://google.com/search?q=360+camera">360 camera</a> takes.</p>
+<p><a href="https://hdrihaven.com/hdri/?h=tears_of_steel_bridge">Here&#39;s one</a> I found from
+<a href="https://hdrihaven.com">this site</a>.</p>
 <div class="threejs_center"><img src="../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
 
-<p>To use it is similar to the cubemap above. We&#39;re only loading a 2D image in this case so we use the <code>TextureLoader</code> instead of the <code>CubeTextureLoader</code> and we use a different built in shader for our customer shader.</p>
+<p>To use it is a little more involved. We make a separate <code>Scene</code>, a
+<code>BoxBufferGeometry</code>, and a custom <code>ShaderMaterial</code> but using a built in shader.
+We use these to render the background by itself before rendering the scene we
+already have.</p>
 <pre><code class="lang-js">const bgScene = new THREE.Scene();
 let bgMesh;
 {
@@ -294,19 +284,41 @@ let bgMesh;
   texture.minFilter = THREE.LinearFilter;
 
   const shader = THREE.ShaderLib.equirect;
-  const material = new THREE.ShaderMaterial({
+    const material = new THREE.ShaderMaterial({
     fragmentShader: shader.fragmentShader,
     vertexShader: shader.vertexShader,
     uniforms: shader.uniforms,
     depthWrite: false,
     side: THREE.BackSide,
   });
-  material.uniforms.tEquirect.value = texture;
+    material.uniforms.tEquirect.value = texture;
   const plane = new THREE.BoxBufferGeometry(2, 2, 2);
   bgMesh = new THREE.Mesh(plane, material);
   bgScene.add(bgMesh);
 }
 </code></pre>
+<p>The box must be larger than the camera&#39;s <code>near</code> setting but not so large that 
+it passes the camera&#39;s <code>far</code> setting.</p>
+<p>We set <code>side: THREE.BackSide</code> to see the inside of the box and we set
+<code>depthWrite: false</code> so that we neither test nor write to the depth buffer.</p>
+<p>At render time we just make sure the box is at the same position as the camera
+and render the new scene</p>
+<pre><code class="lang-js">function render(time)
+
+    /* ... */
+
++    bgMesh.position.copy(camera.position);
++    renderer.render(bgScene, bgCamera);
+    renderer.render(scene, camera);
+</code></pre>
+<p>By default every time <code>renderer.render</code> is called THREE.js will clear the
+canvas. We need to tell it not to do that otherwise the second call to render
+will clear our first render and we won&#39;t see the background. We can do this by
+setting <code>renderer.autoClearColor = false</code>.</p>
+<pre><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
++renderer.autoClearColor = false;
+</code></pre>
+<p>And there we have it.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-equirectangularmap.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-equirectangularmap.html" target="_blank">click here to open in a separate window</a>

@@ -217,9 +217,10 @@ are used fairly extensively in modern JavaScript.</p>
 somemesh.position.set(...position);
 </code></pre>
 <h3 id="use-class-">Use <code>class</code></h3>
-<p>The syntax for making class like objects pre ES5 was unfamilar to most programmers.
-As of ES5 you can now <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">use the <code>class</code> keyword</a> which
-is closer to the style of C++/C#/Java.</p>
+<p>The syntax for making class like objects pre ES5 was unfamiliar to most
+programmers. As of ES5 you can now <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">use the <code>class</code>
+keyword</a>
+which is closer to the style of C++/C#/Java.</p>
 <h3 id="understand-getters-and-setters">Understand getters and setters</h3>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">Getters</a> and
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a> are
@@ -268,30 +269,50 @@ const rgbCSSColor = `rgb(${color.join(&#39;,&#39;)})`;
 const bWidth = 20;
 someElement.style.width = `${aWidth + bWidth}px`;
 </code></pre>
-<h1 id="learn-javascript-coding-convensions-">Learn JavaScript coding convensions.</h1>
-<p>While you&#39;re welcome to format your code any way you chose there is at least one convension you should be aware of. Variables, function names, method names, in JavaScript are all lowercasedCamelCase. Constructors, the names of classes are CapitalizedCamelCase. If you follow this rule you code will match most other JavaScript.</p>
+<h1 id="learn-javascript-coding-conventions-">Learn JavaScript coding conventions.</h1>
+<p>While you&#39;re welcome to format your code any way you chose there is at least one
+convention you should be aware of. Variables, function names, method names, in
+JavaScript are all lowercasedCamelCase. Constructors, the names of classes are
+CapitalizedCamelCase. If you follow this rule you code will match most other
+JavaScript.</p>
 <h1 id="consider-using-visual-studio-code">Consider using Visual Studio Code</h1>
-<p>Of course use whatever editor you want but if you haven&#39;t tried it consider using <a href="https://code.visualstudio.com/">Visual Studio Code</a>
-for JavaScript and after installing it <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">setup eslint</a>.
-It might take a few minutes to setup but it will help you immensely with finding bugs in your JavaScript.</p>
+<p>Of course use whatever editor you want but if you haven&#39;t tried it consider
+using <a href="https://code.visualstudio.com/">Visual Studio Code</a> for JavaScript and
+after installing it <a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">setup
+eslint</a>.
+It might take a few minutes to setup but it will help you immensely with finding
+bugs in your JavaScript.</p>
 <p>Some examples</p>
-<p>If you enable <a href="https://eslint.org/docs/rules/no-undef">the <code>no-undef</code> rule</a> then VSCode via ESLint will warn you of many undefined variables. </p>
+<p>If you enable <a href="https://eslint.org/docs/rules/no-undef">the <code>no-undef</code> rule</a> then
+VSCode via ESLint will warn you of many undefined variables. </p>
 <div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
 
-<p>Above you can see I mis-spelled <code>doTheThing</code> as <code>doThing</code>. There&#39;s a red squigle under <code>doThing</code> and hovering over it it tells me it&#39;s undefined. One error avoided.</p>
-<p>You&#39;ll get warnings using <code>THREE</code> so add <code>/* global THREE */</code> at the top of your JavaScript files to tell eslint that <code>THREE</code> exists.</p>
+<p>Above you can see I mis-spelled <code>doTheThing</code> as <code>doThing</code>. There&#39;s a red squiggle
+under <code>doThing</code> and hovering over it it tells me it&#39;s undefined. One error
+avoided.</p>
+<p>You&#39;ll get warnings using <code>THREE</code> so add <code>/* global THREE */</code> at the top of your
+JavaScript files to tell eslint that <code>THREE</code> exists.</p>
 <div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
 
-<p>Above you can see eslint knows the rule that <code>UpperCaseNames</code> are constructors and so you should be using <code>new</code>. Another error caught and avoided. This is <a href="https://eslint.org/docs/rules/new-cap">the <code>new-cap</code> rule</a>.</p>
-<p>There are <a href="https://eslint.org/docs/rules/">100s of rules you can turn on or off or customize</a>. For example above I mentioned you should use <code>const</code> and <code>let</code> over <code>var</code>.</p>
+<p>Above you can see eslint knows the rule that <code>UpperCaseNames</code> are constructors
+and so you should be using <code>new</code>. Another error caught and avoided. This is <a href="https://eslint.org/docs/rules/new-cap">the
+<code>new-cap</code> rule</a>.</p>
+<p>There are <a href="https://eslint.org/docs/rules/">100s of rules you can turn on or off or
+customize</a>. For example above I mentioned you
+should use <code>const</code> and <code>let</code> over <code>var</code>.</p>
 <p>Here I used <code>var</code> and it warned me I should use <code>let</code> or <code>const</code></p>
 <div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
 
 <p>Here I used <code>let</code> but it saw I never change the value so it suggested I use <code>const</code>.</p>
 <div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
 
-<p>Of course if you&#39;d prefer to keep using <code>var</code> you can just turn off that rule. As I said above though I prefer to use <code>const</code> and <code>let</code> over <code>var</code> as they just work better and prevent bugs.</p>
-<p>For those cases where you really need to override a rule <a href="https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments">you can add comments to disable them</a> for a single line or a section of code.</p>
+<p>Of course if you&#39;d prefer to keep using <code>var</code> you can just turn off that rule.
+As I said above though I prefer to use <code>const</code> and <code>let</code> over <code>var</code> as they just
+work better and prevent bugs.</p>
+<p>For those cases where you really need to override a rule <a href="https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments">you can add comments
+to disable
+them</a>
+for a single line or a section of code.</p>
 <h1 id="if-you-really-need-to-support-legacy-browsers-use-a-transpiler">If you really need to support legacy browsers use a transpiler</h1>
 <p>Most modern browsers are auto-updated so using all these features will help you 
 be productive and avoid bugs. That said, if you&#39;re on a project that absolutely
