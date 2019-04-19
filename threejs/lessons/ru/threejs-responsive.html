@@ -93,12 +93,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 снизу - это то, что мы можем захотеть обработать. Динамическая диаграмма 
 в середине документа является еще одним примером.</p>
 <p>В последнем примере мы использовали простой холст без указания CSS и размера</p>
-<pre><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 </code></pre><p>Этот холст по умолчанию имеет размер 300x150 CSS пикселей.</p>
 <p>В вебе рекомендуемый способ установить размер чего-либо - использовать CSS.</p>
 <p>Прим. переводчика: Далее идет слишком подробное описание банальностей.</p>
 <p>Давайте растянем холст на всю страницу:</p>
-<pre><code>&lt;style&gt;
+<pre class="prettyprint"><code>&lt;style&gt;
 html, body {
    margin: 0;
    height: 100%;
@@ -141,7 +141,7 @@ html, body {
 Мы можем сделать это, задав холсту свойства
 <code>clientWidth</code> и <code>clientHeight</code>.</p>
 <p>Мы обновим наш цикл отрисовки следующим образом</p>
-<pre><code>function render(time) {
+<pre class="prettyprint"><code>function render(time) {
   time *= 0.001;
 
 +  const canvas = renderer.domElement;
@@ -166,7 +166,7 @@ html, body {
 Это ничем не отличается от изображения. Например, у нас может быть 
 изображение размером 128x64 пикселей, а с помощью css мы можем отобразить 
 как 400x200 пикселей.</p>
-<pre><code>&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
+<pre class="prettyprint"><code>&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
 </code></pre><p>Внутренний размер холста, его разрешение часто называют размером рисованного 
 буфера (drawingbuffer size). В three.js мы можем установить размер буфера 
 рисования холста, вызывая <code>renderer.setSize</code>. Какой размер мы должны выбрать? 
@@ -175,7 +175,7 @@ html, body {
 свойства.</p>
 <p>Давайте напишем функцию, которая проверяет, совпадает ли размер рисованного буфера 
 с размером, на котором он отображается, и, если это так, зададим холсту этот размер.</p>
-<pre><code>function resizeRendererToDisplaySize(renderer) {
+<pre class="prettyprint"><code>function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
@@ -199,7 +199,7 @@ html, body {
 Мы можем использовать это, чтобы проверить, есть ли другие вещи, которые мы 
 должны обновить. Давайте изменим наш цикл отрисовки, чтобы использовать 
 новую функцию.</p>
-<pre><code>function render(time) {
+<pre class="prettyprint"><code>function render(time) {
   time *= 0.001;
 
 +  if (resizeRendererToDisplaySize(renderer)) {
@@ -269,12 +269,12 @@ html, body {
 разрешения, используя <code>renderer.setPixelRatio</code>.
 Вы спрашиваете браузер, каков множитель пикселей CSS 
 для пикселей устройства, и передаете его в three.js.</p>
-<pre><code> renderer.setPixelRatio(window.devicePixelRatio);
+<pre class="prettyprint"><code> renderer.setPixelRatio(window.devicePixelRatio);
 </code></pre><p>После этого любые вызовы <code>renderer.setSize</code> будут магически 
 использовать размер, который вы запрашиваете, 
 умноженный на любое количество пикселей, которое вы передали.</p>
 <p>Другой способ - сделать это самостоятельно, когда вы измените размер холста.</p>
-<pre><code>    function resizeRendererToDisplaySize(renderer) {
+<pre class="prettyprint"><code>    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
       const width = canvas.clientWidth * pixelRatio;

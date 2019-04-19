@@ -111,7 +111,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 использовать только один контекст. Мы также не будем сталкиваться с проблемами 
 обмена по тем же причинам.</p>
 <p>Давайте начнем с простого примера с двумя сценами. Сначала мы сделаем HTML</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;шутки про three js&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;шутки про three js&lt;/canvas&gt;
 &lt;p&gt;
   &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
   Я люблю коробки (boxes). Подарки приходят в коробках.
@@ -124,7 +124,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 &lt;/p&gt;
 </code></pre>
 <p>Затем мы можем настроить CSS, как-то так</p>
-<pre><code class="lang-css">#c {
+<pre class="prettyprint"><code class="lang-css">#c {
   position: fixed;
   left: 0;
   top: 0;
@@ -154,7 +154,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 нет ничего, что могло бы придать им какой-либо размер.</p>
 <p>Теперь мы сделаем 2 сцены с подсветкой и камерой. 
 К одной сцене мы добавим куб, а к другой ромб.</p>
-<pre><code class="lang-js">function makeScene(elem) {
+<pre class="prettyprint"><code class="lang-js">function makeScene(elem) {
   const scene = new THREE.Scene();
 
   const fov = 45;
@@ -211,7 +211,7 @@ const sceneInfo2 = setupScene2();
 холста, включив тест <em>scissor</em> через <code>Renderer.setScissorTest</code>, затем установим 
 плоскость обрезания и область просмотра (Viewport) с помощью 
 <code>Renderer.setViewport</code> и <code>Renderer.setScissor</code>.</p>
-<pre><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
+<pre class="prettyprint"><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
   // получаем относительную позицию окна просмотра этого элемента
@@ -240,7 +240,7 @@ const sceneInfo2 = setupScene2();
 </code></pre>
 <p>И тогда наша функция рендеринга просто сначала очистит экран, 
 а затем отрисует каждую сцену.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;
 
   resizeRendererToDisplaySize(renderer);
@@ -273,7 +273,7 @@ const sceneInfo2 = setupScene2();
 слишком много времени для рендеринга, положение сцен, 
 нарисованных на холсте, будет отставать от остальной части страницы.</p>
 <p>Если мы дадим каждой области границу</p>
-<pre><code class="lang-css">.diagram {
+<pre class="prettyprint"><code class="lang-css">.diagram {
   display: inline-block;
   width: 5em;
   height: 3em;
@@ -281,7 +281,7 @@ const sceneInfo2 = setupScene2();
 }
 </code></pre>
 <p>И устанавливаем фон каждой сцены</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;red&#39;);
 </code></pre>
 <p>И если мы <a href="../../threejs-multiple-scenes-v2.html" target="_blank">быстро прокрутим вверх и вниз</a> 
@@ -290,14 +290,14 @@ const sceneInfo2 = setupScene2();
 
 <p>Мы можем использовать другой метод, который имеет другой компромисс. 
 Мы переключим CSS холста с <code>position: fixed</code> на <code>position: absolute</code>. </p>
-<pre><code class="lang-css">#c {
+<pre class="prettyprint"><code class="lang-css">#c {
 -  position: fixed;
 +  position: absolute;
 </code></pre>
 <p>Затем мы установим преобразование (transform) холста, чтобы переместить его так, 
 чтобы верх холста находился в верхней части любой части, 
 на которую в данный момент прокручивается страница.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   ...
 
   const transform = `translateY(${window.scrollY}px)`;
@@ -324,7 +324,7 @@ const sceneInfo2 = setupScene2();
 Таким образом, у нас была бы общая система, в которой отдельные сцены на самом деле не знают, 
 что знают, что их визуализируют в каком-то меньшем пространстве.</p>
 <p>Вот основная функция отрисовки</p>
-<pre><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint"><code class="lang-js">const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({elem, fn});
 }
@@ -370,7 +370,7 @@ function render(time) {
 <p>Он проверяет, находится ли элемент на экране. Если это так, то он вызывает <code>fn</code>
 и передает ему текущее время и его прямоугольник.</p>
 <p>Теперь установочный код для каждой сцены просто добавляет себя в список сцен</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const elem = document.querySelector(&#39;#box&#39;);
   const {scene, camera} = makeScene();
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
@@ -419,7 +419,7 @@ function render(time) {
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset</a>. 
 Это способ добавить свои собственные данные в элемент HTML. Вместо использования <code>id=&quot;...&quot;</code> 
 мы будем использовать <code>data-diagram=&quot;...&quot;</code> как тут</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;p&gt;
 -  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
 +  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
@@ -434,7 +434,7 @@ function render(time) {
 &lt;/p&gt;
 </code></pre>
 <p>Мы можем их изменить селектор CSS, чтобы выбрать для этого</p>
-<pre><code class="lang-css">-.diagram
+<pre class="prettyprint"><code class="lang-css">-.diagram
 +*[data-diagram] {
   display: inline-block;
   width: 5em;
@@ -443,7 +443,7 @@ function render(time) {
 </code></pre>
 <p>Мы изменим код установки сцены, чтобы он представлял собой карту имен для <em>функций инициализации сцены</em> 
 , которые возвращают функцию <em>отрисовки сцены</em>.</p>
-<pre><code class="lang-js">const sceneInitFunctionsByName = {
+<pre class="prettyprint"><code class="lang-js">const sceneInitFunctionsByName = {
   &#39;box&#39;: () =&gt; {
     const {scene, camera} = makeScene();
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
@@ -479,7 +479,7 @@ function render(time) {
 </code></pre>
 <p>И для инициализации мы можем просто использовать <code>querySelectorAll</code>, 
 чтобы найти все диаграммы и вызвать соответствующую функцию инициализации для этой диаграммы.</p>
-<pre><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+<pre class="prettyprint"><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
@@ -491,10 +491,10 @@ function render(time) {
 <h2 id="-">Добавление элементов управления к каждому элементу</h2>
 <p>Например, добавление <code>TrackballControls</code> в интерактивном режиме так же просто. 
 Сначала мы добавляем скрипт для контролов.</p>
-<pre><code class="lang-html">&lt;script src=&quot;../resources/threejs/r103/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;../resources/threejs/r103/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>И затем мы можем добавить <code>TrackballControls</code> к каждой сцене, передавая элемент, связанный с этой сценой.</p>
-<pre><code class="lang-js">-function makeScene() {
+<pre class="prettyprint"><code class="lang-js">-function makeScene() {
 +function makeScene(elem) {
   const scene = new THREE.Scene();
 
@@ -529,7 +529,7 @@ function render(time) {
 это, вероятно, то, что мы хотим. Он сохраняет свет, 
 сияющий на стороне объекта, на который мы смотрим.</p>
 <p>Нам нужно обновить эти элементы управления в наших функциях отрисовки</p>
-<pre><code class="lang-js">const sceneInitFunctionsByName = {
+<pre class="prettyprint"><code class="lang-js">const sceneInitFunctionsByName = {
 - &#39;box&#39;: () =&gt; {
 -    const {scene, camera} = makeScene();
 + &#39;box&#39;: (elem) =&gt; {

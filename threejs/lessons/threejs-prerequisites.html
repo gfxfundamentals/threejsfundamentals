@@ -98,10 +98,10 @@ that matches a CSS selector. <code>document.querySelectorAll</code> returns
 all elements that match a CSS selector.</p>
 <h2 id="you-don-t-need-onbody-">You don&#39;t need <code>onbody</code></h2>
 <p>Lots of 20yr old pages use HTML like</p>
-<pre><code>&lt;body onload=&quot;somefunction()&quot;&gt;
+<pre class="prettyprint"><code>&lt;body onload=&quot;somefunction()&quot;&gt;
 </code></pre><p>That style is deprecated. Put your scripts
 at the bottom of the page.</p>
-<pre><code class="lang-html">&lt;html&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;html&gt;
   &lt;head&gt;
     ...
   &lt;/head&gt;
@@ -117,13 +117,13 @@ at the bottom of the page.</p>
 <p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
 <h2 id="you-don-t-need-type-text-javascript-">You don&#39;t need <code>type=&quot;text/javascript&quot;</code></h2>
 <p>modern</p>
-<pre><code>&lt;script&gt;...&lt;/script&gt;
+<pre class="prettyprint"><code>&lt;script&gt;...&lt;/script&gt;
 </code></pre><p>outdated</p>
-<pre><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
 </code></pre><h2 id="always-use-strict-mode">Always use <code>strict</code> mode</h2>
 <p>Put <code>&#39;use strict&#39;;</code> at the top of every JavaScript file. It will help prevent lots of bugs.</p>
 <h2 id="know-how-closures-work">Know how closures work</h2>
-<pre><code class="lang-js">function a(v) {
+<pre class="prettyprint"><code class="lang-js">function a(v) {
   const foo = v;
   return function() {
      return foo;
@@ -141,19 +141,19 @@ funciton <em>closes</em> over the variable <code>foo</code>. Here&#39;s <a href=
 <p><code>this</code> is not magic. It&#39;s effectively a variable that is automatically passed to functions just like
 an argument is passed to function. The simple explaintion is when you call a function directly
 like</p>
-<pre><code>somefunction(a, b, c);
+<pre class="prettyprint"><code>somefunction(a, b, c);
 </code></pre><p>This will be <code>null</code> where as when you call a function via the dot operator <code>.</code> like this</p>
-<pre><code>someobject.somefunction(a, b, c);
+<pre class="prettyprint"><code>someobject.somefunction(a, b, c);
 </code></pre><p>This will be set to <code>someobject</code>.</p>
 <p>The parts where people get confused is with callbacks.</p>
-<pre><code> const callback = someobject.somefunction;
+<pre class="prettyprint"><code> const callback = someobject.somefunction;
  loader.load(callback);
 </code></pre><p>doesn&#39;t work as someone inexperienced might expect because when
 <code>loader.load</code> calls the callback it&#39;s not calling it with the dot <code>.</code> operator
 so by default <code>this</code> will be null (unless the loader explicitly sets it to someting).
 If you want <code>this</code> to be <code>someobject</code> when the callback happens you need to 
 tell JavaScript that by binding it to the function.</p>
-<pre><code> const callback = someobject.somefunction.bind(someobject);
+<pre class="prettyprint"><code> const callback = someobject.somefunction.bind(someobject);
  loader.load(callback);
 </code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><em>this</em> article might help</a>.</p>
 <h2 id="es5-es6-es7-stuff">ES5/ES6/ES7 stuff</h2>
@@ -164,7 +164,7 @@ the time. Use <code>let</code> in those cases where the value changes. This will
 <h3 id="use-for-elem-of-collection-never-for-elem-in-collection-">Use <code>for(elem of collection)</code> never <code>for(elem in collection)</code></h3>
 <p><code>for of</code> is new, <code>for in</code> is old. <code>for in</code> had issues that are solved by <code>for of</code></p>
 <p>As one example you can iterate over all the key/value pairs of an object with</p>
-<pre><code class="lang-js">for (const [key, value] of Object.entries(someObject)) {
+<pre class="prettyprint"><code class="lang-js">for (const [key, value] of Object.entries(someObject)) {
   console.log(key, value);
 }
 </code></pre>
@@ -176,13 +176,13 @@ are used fairly extensively in modern JavaScript.</p>
 <h3 id="use-destructuring">Use destructuring</h3>
 <p>Assume an object <code>const dims = {width: 300, height: 150}</code></p>
 <p>old code</p>
-<pre><code> const width = dims.width;
+<pre class="prettyprint"><code> const width = dims.width;
  const height = dims.height;
 </code></pre><p>new code</p>
-<pre><code> const {width, height} = dims;
+<pre class="prettyprint"><code> const {width, height} = dims;
 </code></pre><h3 id="use-object-declaration-short-cuts">Use object declaration short cuts</h3>
 <p>old code</p>
-<pre><code class="lang-js"> const width = 300;
+<pre class="prettyprint"><code class="lang-js"> const width = 300;
  const height = 150;
  const obj = {
    width: width,
@@ -193,7 +193,7 @@ are used fairly extensively in modern JavaScript.</p>
  };
 </code></pre>
 <p>new code</p>
-<pre><code class="lang-js"> const width = 300;
+<pre class="prettyprint"><code class="lang-js"> const width = 300;
  const height = 150;
  const obj = {
    width,
@@ -205,7 +205,7 @@ are used fairly extensively in modern JavaScript.</p>
 </code></pre>
 <h3 id="use-the-spread-operator-">Use the spread operator <code>...</code></h3>
 <p>The spread operator has a ton of uses. Example</p>
-<pre><code class="lang-js"> function log(className, ...args) {
+<pre class="prettyprint"><code class="lang-js"> function log(className, ...args) {
    const elem = document.createElement(&#39;div&#39;);
    elem.className = className;
    elem.textContent = [...args].join(&#39; &#39;);
@@ -213,7 +213,7 @@ are used fairly extensively in modern JavaScript.</p>
  }
 </code></pre>
 <p>Another example</p>
-<pre><code class="lang-js">const position = [1, 2, 3];
+<pre class="prettyprint"><code class="lang-js">const position = [1, 2, 3];
 somemesh.position.set(...position);
 </code></pre>
 <h3 id="use-class-">Use <code>class</code></h3>
@@ -228,12 +228,12 @@ common in most modern languages. The <code>class</code> syntax
 of ES5 makes them much easier than pre ES5.</p>
 <h3 id="use-arrow-functions-where-appropriate">Use arrow functions where appropriate</h3>
 <p>This is especially useful with callbacks and promises.</p>
-<pre><code class="lang-js">loader.load((texture) =&gt; {
+<pre class="prettyprint"><code class="lang-js">loader.load((texture) =&gt; {
   // use textrue
 });
 </code></pre>
 <p>Arrow functions bind <code>this</code>. They are a shortcut for</p>
-<pre><code class="lang-js">(function(args) {/* code */}).bind(this))
+<pre class="prettyprint"><code class="lang-js">(function(args) {/* code */}).bind(this))
 </code></pre>
 <h3 id="promises-as-well-as-async-await">Promises as well as async/await</h3>
 <p>Promises help with asynchronous code. Async/await help
@@ -243,9 +243,9 @@ on promises here</a>
 and <a href="">async/await here</a>.</p>
 <h3 id="use-template-literals">Use Template Literals</h3>
 <p>Template literals are strings using backticks instead of quotes.</p>
-<pre><code>const foo = `this is a template literal`;
+<pre class="prettyprint"><code>const foo = `this is a template literal`;
 </code></pre><p>Template literals have basically 2 features. One is they can be multi-line</p>
-<pre><code class="lang-js">const foo = `this
+<pre class="prettyprint"><code class="lang-js">const foo = `this
 is
 a
 template
@@ -255,17 +255,17 @@ const bar = &quot;this\nis\na\ntemplate\nliteral&quot;;
 <p><code>foo</code> and <code>bar</code> above are the same.</p>
 <p>The other is that you can pop out of string mode and insert snippets of
 JavaScript using <code>${javascript-expression}</code>. This is the template part. Example:</p>
-<pre><code class="lang-js">const r = 192;
+<pre class="prettyprint"><code class="lang-js">const r = 192;
 const g = 255;
 const b = 64;
 const rgbCSSColor = `rgb(${r},${g},${b})`;
 </code></pre>
 <p>or</p>
-<pre><code class="lang-js">const color = [192, 255, 64];
+<pre class="prettyprint"><code class="lang-js">const color = [192, 255, 64];
 const rgbCSSColor = `rgb(${color.join(&#39;,&#39;)})`;
 </code></pre>
 <p>or</p>
-<pre><code class="lang-js">const aWidth = 10;
+<pre class="prettyprint"><code class="lang-js">const aWidth = 10;
 const bWidth = 20;
 someElement.style.width = `${aWidth + bWidth}px`;
 </code></pre>

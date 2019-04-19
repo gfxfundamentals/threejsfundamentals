@@ -116,7 +116,7 @@ put this image on cube.</p>
 <p>We&#39;ll modify one of our first samples. All we need to do is create a <code>TextureLoader</code>. Call its
 <a href="TextureLoader.load"><code>load</code></a> method with the URL of an
 image and and set the material&#39;s <code>map</code> property to the result instead of setting its <code>color</code>.</p>
-<pre><code class="lang-js">+const loader = new THREE.TextureLoader();
+<pre class="prettyprint"><code class="lang-js">+const loader = new THREE.TextureLoader();
 
 const material = new THREE.MeshBasicMaterial({
 -  color: 0xFF8844,
@@ -146,7 +146,7 @@ const material = new THREE.MeshBasicMaterial({
 </div>
 
 <p>We just make 6 materials and pass them as an array when we create the <code>Mesh</code></p>
-<pre><code class="lang-js">const loader = new THREE.TextureLoader();
+<pre class="prettyprint"><code class="lang-js">const loader = new THREE.TextureLoader();
 
 -const material = new THREE.MeshBasicMaterial({
 -  map: loader.load(&#39;resources/images/wall.jpg&#39;),
@@ -183,7 +183,7 @@ We&#39;ll go over them when we start building custom geometry.</p>
 <p>Most of the code on this site uses the easiest method of loading textures. 
 We create a <code>TextureLoader</code> and then call its <a href="TextureLoader.load"><code>load</code></a> method. 
 This returns a <code>Texture</code> object.</p>
-<pre><code class="lang-js">const texture = loader.load(&#39;resources/images/flower-1.jpg&#39;);
+<pre class="prettyprint"><code class="lang-js">const texture = loader.load(&#39;resources/images/flower-1.jpg&#39;);
 </code></pre>
 <p>It&#39;s important to note that using this method our texture will be transparent until
 the image is loaded asychronously by three.js at which point it will update the texture
@@ -196,7 +196,7 @@ but if we want we can ask three.js to tell us when the texture has finished down
 that will be called when the texture has finished loading. Going back to our top example
 we can wait for the texture to load before creating our <code>Mesh</code> and adding it to scene
 like this</p>
-<pre><code class="lang-js">const loader = new THREE.TextureLoader();
+<pre class="prettyprint"><code class="lang-js">const loader = new THREE.TextureLoader();
 loader.load(&#39;resources/images/wall.jpg&#39;, (texture) =&gt; {
   const material = new THREE.MeshBasicMaterial({
     map: texture,
@@ -218,7 +218,7 @@ to see the any difference but rest assured it is waiting for the texture to load
 <p>To wait until all textures have loaded you can use a <code>LoadingManager</code>. Create one
 and pass it to the <code>TextureLoader</code> then set its  <a href="LoadingManager.onLoad"><code>onLoad</code></a>
 property to a callback.</p>
-<pre><code class="lang-js">+const loadManager = new THREE.LoadingManager();
+<pre class="prettyprint"><code class="lang-js">+const loadManager = new THREE.LoadingManager();
 *const loader = new THREE.TextureLoader(loadManager);
 
 const materials = [
@@ -239,7 +239,7 @@ const materials = [
 <p>The <code>LoadingManager</code> also has an <a href="LoadingManager.onProgress"><code>onProgress</code></a> property
 we can set to another callback to show a progress indicator.</p>
 <p>First we&#39;ll add a progress bar in HTML</p>
-<pre><code class="lang-html">&lt;body&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +  &lt;div id=&quot;loading&quot;&gt;
 +    &lt;div class=&quot;progress&quot;&gt;&lt;div class=&quot;progressbar&quot;&gt;&lt;/div&gt;&lt;/div&gt;
@@ -247,7 +247,7 @@ we can set to another callback to show a progress indicator.</p>
 &lt;/body&gt;
 </code></pre>
 <p>and the CSS for it</p>
-<pre><code class="lang-css">#loading {
+<pre class="prettyprint"><code class="lang-css">#loading {
     position: fixed;
     top: 0;
     left: 0;
@@ -273,7 +273,7 @@ we can set to another callback to show a progress indicator.</p>
 <p>Then in the code we&#39;ll update the scale of the <code>progressbar</code> in our <code>onProgress</code> callback. It gets
 called with the URL of the last item loaded, the number of items loaded so far, and the total
 number of items loaded.</p>
-<pre><code class="lang-js">+const loadingElem = document.querySelector(&#39;#loading&#39;);
+<pre class="prettyprint"><code class="lang-js">+const loadingElem = document.querySelector(&#39;#loading&#39;);
 +const progressBarElem = loadingElem.querySelector(&#39;.progressbar&#39;);
 
 loadManager.onLoad = () =&gt; {
@@ -317,7 +317,7 @@ and I decide to put this wood texture on the top surface of the table</p>
 <p>That image is only 157k so it will download relatively quickly but <a href="resources/images/compressed-but-large-wood-texture.jpg">it is actually 
 3024 x 3761 pixels in size</a>. 
 Following the equation above that&#39;s</p>
-<pre><code>3024 * 3761 * 4 * 1.33 = 60505764.5
+<pre class="prettyprint"><code>3024 * 3761 * 4 * 1.33 = 60505764.5
 </code></pre><p>That image will take <strong>60 MEG OF MEMORY!</strong> in three.js. 
 A few textures like that and you&#39;ll be out of memory.</p>
 <p>I bring this up because it&#39;s important to know that using textures has a hidden cost. 
@@ -483,18 +483,18 @@ and <a href="Texture.wrapT"><code>wrapT</code></a> for vertical wrapping.</p>
 </li>
 </ul>
 <p>For example to turn on wrapping in both directions:</p>
-<pre><code class="lang-js">someTexture.wrapS = THREE.RepeatWrapping;
+<pre class="prettyprint"><code class="lang-js">someTexture.wrapS = THREE.RepeatWrapping;
 someTexture.wrapT = THREE.RepeatWrapping;
 </code></pre>
 <p>Repeating is set with the [repeat] repeat property.</p>
-<pre><code class="lang-js">const timesToRepeatHorizontally = 4;
+<pre class="prettyprint"><code class="lang-js">const timesToRepeatHorizontally = 4;
 const timesToRepeatVertically = 2;
 someTexture.repeat.set(timesToRepeatHorizontally, timesToRepeatVertically);
 </code></pre>
 <p>Offseting the texture can be done by setting the <code>offset</code> property. Textures
 are offset with units where 1 unit = 1 texture size. On other words 0 = no offset 
 and 1 = offset one full texture amount.</p>
-<pre><code class="lang-js">const xOffset = .5;   // offset by half the texture
+<pre class="prettyprint"><code class="lang-js">const xOffset = .5;   // offset by half the texture
 const yOffset = .25;  // offset by 1/2 the texture
 someTexture.offset.set(xOffset, yOffset);`
 </code></pre>
@@ -503,24 +503,24 @@ as well as the <code>center</code> property for choosing the center of rotation.
 It defaults to 0,0 which rotates from the bottom left corner. Like offset
 these units are in texture size so setting them to <code>.5, .5</code> would rotate
 around the center of the texture.</p>
-<pre><code class="lang-js">someTexture.center.set(.5, .5);
+<pre class="prettyprint"><code class="lang-js">someTexture.center.set(.5, .5);
 someTexture.rotation = THREE.Math.degToRad(45);
 </code></pre>
 <p>Let&#39;s modify the top sample above to play with these values</p>
 <p>First we&#39;ll keep a reference to the texture so we can manipulate it</p>
-<pre><code class="lang-js">+const texture = loader.load(&#39;resources/images/wall.jpg&#39;);
+<pre class="prettyprint"><code class="lang-js">+const texture = loader.load(&#39;resources/images/wall.jpg&#39;);
 const material = new THREE.MeshBasicMaterial({
 -  map: loader.load(&#39;resources/images/wall.jpg&#39;);
 +  map: texture,
 });
 </code></pre>
 <p>Then we&#39;ll use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> again to provide a simple interface.</p>
-<pre><code class="lang-html">&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>As we did in previous dat.GUI examples we&#39;ll use a simple class to
 give dat.GUI an object that it can manipulate in degrees
 but that will set a property in radians.</p>
-<pre><code class="lang-js">class DegRadHelper {
+<pre class="prettyprint"><code class="lang-js">class DegRadHelper {
   constructor(obj, prop) {
     this.obj = obj;
     this.prop = prop;
@@ -536,7 +536,7 @@ but that will set a property in radians.</p>
 <p>We also need a class that will convert from a string like <code>&quot;123&quot;</code> into
 a number like <code>123</code> since three.js requires numbers for enum settings
 like <code>wrapS</code> and <code>wrapT</code> but dat.GUI only uses strings for enums.</p>
-<pre><code class="lang-js">class StringToNumberHelper {
+<pre class="prettyprint"><code class="lang-js">class StringToNumberHelper {
   constructor(obj, prop) {
     this.obj = obj;
     this.prop = prop;
@@ -550,7 +550,7 @@ like <code>wrapS</code> and <code>wrapT</code> but dat.GUI only uses strings for
 }
 </code></pre>
 <p>Using those classes we can setup a simple GUI for the settings above</p>
-<pre><code class="lang-js">const wrapModes = {
+<pre class="prettyprint"><code class="lang-js">const wrapModes = {
   &#39;ClampToEdgeWrapping&#39;: THREE.ClampToEdgeWrapping,
   &#39;RepeatWrapping&#39;: THREE.RepeatWrapping,
   &#39;MirroredRepeatWrapping&#39;: THREE.MirroredRepeatWrapping,

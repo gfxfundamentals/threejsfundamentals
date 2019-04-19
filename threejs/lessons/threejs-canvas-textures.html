@@ -89,7 +89,7 @@ at runtime. One way to do this is to use a <code>CanvasTexture</code>.</p>
 <p>A canvas texture takes a <code>&lt;canvas&gt;</code> as its input. If you don&#39;t know how to
 draw with the 2D canvas API on a canvas <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial">there&#39;s a good tutorial on MDN</a>.</p>
 <p>Let&#39;s make a simple canvas program. Here&#39;s one that draws dots at random places in random colors.</p>
-<pre><code class="lang-js">const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+<pre class="prettyprint"><code class="lang-js">const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 document.body.appendChild(ctx.canvas);
 ctx.canvas.width = 256;
 ctx.canvas.height = 256;
@@ -132,7 +132,7 @@ requestAnimationFrame(render);
 a cube from <a href="threejs-textures.html">the previous article</a>.
 We&#39;ll remove the code that loads an image and instead use
 our canvas by creating a <code>CanvasTexture</code> and passing it the canvas we created.</p>
-<pre><code class="lang-js">const cubes = [];  // just an array we can use to rotate the cubes
+<pre class="prettyprint"><code class="lang-js">const cubes = [];  // just an array we can use to rotate the cubes
 -const loader = new THREE.TextureLoader();
 -
 +const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
@@ -151,7 +151,7 @@ scene.add(cube);
 cubes.push(cube);  // add to our list of cubes to rotate
 </code></pre>
 <p>And then call the code to draw a random dot in our render loop</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -194,7 +194,7 @@ badge you might use a canvas texture to texture the badge.</p>
 or label.</p>
 <p>Let&#39;s take the example above and remove all the cube related
 stuff. Then let&#39;s set the background to white and add two <a href="threejs-lights.html">lights</a>.</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;white&#39;);
 +
 +function addLight(position) {
@@ -209,7 +209,7 @@ stuff. Then let&#39;s set the background to white and add two <a href="threejs-l
 +addLight([ 2, 1, .5]);
 </code></pre>
 <p>Let&#39;s make some code to make a label using canvas 2D</p>
-<pre><code class="lang-js">+function makeLabelCanvas(size, name) {
+<pre class="prettyprint"><code class="lang-js">+function makeLabelCanvas(size, name) {
 +  const borderSize = 2;
 +  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 +  const font =  `${size}px bold sans-serif`;
@@ -236,7 +236,7 @@ stuff. Then let&#39;s set the background to white and add two <a href="threejs-l
 <p>Then we&#39;ll make simple people from a cylinder for the body, a sphere
 for the head, and a plane for the label.</p>
 <p>First let&#39;s make the shared geometry.</p>
-<pre><code class="lang-js">+const bodyRadiusTop = .4;
+<pre class="prettyprint"><code class="lang-js">+const bodyRadiusTop = .4;
 +const bodyRadiusBottom = .2;
 +const bodyHeight = 2;
 +const bodyRadialSegments = 6;
@@ -253,7 +253,7 @@ for the head, and a plane for the label.</p>
 </code></pre>
 <p>Then let&#39;s make a function to build a person from these
 parts.</p>
-<pre><code class="lang-js">+function makePerson(x, size, name, color) {
+<pre class="prettyprint"><code class="lang-js">+function makePerson(x, size, name, color) {
 +  const canvas = makeLabelCanvas(size, name);
 +  const texture = new THREE.CanvasTexture(canvas);
 +  // because our canvas is likely not a power of 2
@@ -305,16 +305,16 @@ high. If 1 unit equals 1 meter then the code above tries to
 make the label in centimeters so they will be size centimeters
 tall and however wide is needed to fit the text.</p>
 <p>We can then make people with labels</p>
-<pre><code class="lang-js">+makePerson(-3, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
+<pre class="prettyprint"><code class="lang-js">+makePerson(-3, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
 +makePerson(-0, 32, &#39;Green Machine&#39;, &#39;green&#39;);
 +makePerson(+3, 32, &#39;Red Menace&#39;, &#39;red&#39;);
 </code></pre>
 <p>What&#39;s left is to add some <code>OrbitControls</code> so we can move
 the camera.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<pre><code class="lang-js">const fov = 75;
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 -const far = 5;
@@ -352,7 +352,7 @@ and setting <code>labelBaseScale</code> to half what it currently is.</p>
 label and then squish the text.</p>
 <p>This is pretty easy. Pass in a base width and scale the text to fit that
 width like this</p>
-<pre><code class="lang-js">-function makeLabelCanvas(size, name) {
+<pre class="prettyprint"><code class="lang-js">-function makeLabelCanvas(size, name) {
 +function makeLabelCanvas(baseWidth, size, name) {
   const borderSize = 2;
   const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
@@ -388,7 +388,7 @@ width like this</p>
 }
 </code></pre>
 <p>Then we can pass in a width for the labels</p>
-<pre><code class="lang-js">-function makePerson(x, size, name, color) {
+<pre class="prettyprint"><code class="lang-js">-function makePerson(x, size, name, color) {
 -  const canvas = makeLabelCanvas(size, name);
 +function makePerson(x, labelWidth, size, name, color) {
 +  const canvas = makeLabelCanvas(labelWidth, size, name);
@@ -417,7 +417,7 @@ having one canvas per texture is probably the best option. If they are
 rarely or never updated then you can choose to use a single canvas
 for multiple textures by forcing three.js to use the texture.
 Let&#39;s change the code above to do just that.</p>
-<pre><code class="lang-js">+const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+<pre class="prettyprint"><code class="lang-js">+const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 
 function makeLabelCanvas(baseWidth, size, name) {
   const borderSize = 2;

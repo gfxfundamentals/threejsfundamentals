@@ -150,13 +150,13 @@ are filled in. Where as for <code>Geometry</code> you can add vertices as you go
 let&#39;s make an example creating each type of primitive. We&#39;ll start
 with the <a href="threejs-responsive.html">examples from the previous article</a>.</p>
 <p>Near the top let&#39;s set a background color</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(0xAAAAAA);
 </code></pre>
 <p>This tells three.js to clear to lightish gray.</p>
 <p>The camera needs to change position so that we can see all the
 objects.</p>
-<pre><code class="lang-js">-const fov = 75;
+<pre class="prettyprint"><code class="lang-js">-const fov = 75;
 +const fov = 40;
 const aspect = 2;  // the canvas default
 const near = 0.1;
@@ -168,7 +168,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre>
 <p>Let&#39;s add a function, <code>addObject</code>, that takes an x, y position and an <code>Object3D</code> and adds
 the object to the scene.</p>
-<pre><code class="lang-js">const objects = [];
+<pre class="prettyprint"><code class="lang-js">const objects = [];
 const spread = 15;
 
 function addObject(x, y, obj) {
@@ -191,7 +191,7 @@ the maximum amount of color. In other words
 as <code>luminance</code> goes from 0.0 to 0.5 the color
 will go from black to <code>hue</code>. From 0.5 to 1.0
 the color will go from <code>hue</code> to white.</p>
-<pre><code class="lang-js">function createMaterial() {
+<pre class="prettyprint"><code class="lang-js">function createMaterial() {
   const material = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide,
   });
@@ -223,14 +223,14 @@ worry about it.</p>
 we pass a geometry and it creates a random colored
 material via <code>createMaterial</code> and adds it to the scene
 via <code>addObject</code>.</p>
-<pre><code class="lang-js">function addSolidGeometry(x, y, geometry) {
+<pre class="prettyprint"><code class="lang-js">function addSolidGeometry(x, y, geometry) {
   const mesh = new THREE.Mesh(geometry, createMaterial());
   addObject(x, y, mesh);
 }
 </code></pre>
 <p>Now we can use this for the majority of the primitives we create.
 For example creating a box</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const width = 8;
   const height = 8;
   const depth = 8;
@@ -254,7 +254,7 @@ we create a <code>FontLoader</code> and pass it the url to our font
 and a callback. The callback is called after the font loads.
 In the callback we create the geometry
 and call <code>addObject</code> to add it the scene.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const loader = new THREE.FontLoader();
   loader.load(&#39;resources/threejs/fonts/helvetiker_regular.typeface.json&#39;, (font) =&gt; {
     const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
@@ -310,7 +310,7 @@ where as the one on the right is.</p>
 <p>The other exceptions are the 2 line based examples for <code>EdgesGeometry</code>
 and <code>WireframeGeometry</code>. Instead of calling <code>addSolidGeometry</code> they call
 <code>addLineGeomtry</code> which looks like this</p>
-<pre><code class="lang-js">function addLineGeometry(x, y, geometry) {
+<pre class="prettyprint"><code class="lang-js">function addLineGeometry(x, y, geometry) {
   const material = new THREE.LineBasicMaterial({color: 0x000000});
   const mesh = new THREE.LineSegments(geometry, material);
   addObject(x, y, mesh);

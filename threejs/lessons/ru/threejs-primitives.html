@@ -146,10 +146,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 А пока давайте создадим пример создания каждого типа примитива. 
 Начнем с <a href="threejs-responsive.html">примеров из предыдущей статьи</a>.</p>
 <p>Близ вершины давайте установим цвет фона в светло-серый</p>
-<pre><code>const scene = new THREE.Scene();
+<pre class="prettyprint"><code>const scene = new THREE.Scene();
 +scene.background = new THREE.Color(0xAAAAAA);
 </code></pre><p>Камера должна изменить положение, чтобы мы могли видеть все объекты.</p>
-<pre><code>-const fov = 75;
+<pre class="prettyprint"><code>-const fov = 75;
 +const fov = 40;
 const aspect = 2;  // the canvas default
 const near = 0.1;
@@ -160,7 +160,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +camera.position.z = 120;
 </code></pre><p>Давайте добавим функцию, <code>addObject</code>, которая добавляет 
 объект <code>Object3D</code> на сцену в позицию x, y.</p>
-<pre><code>const objects = [];
+<pre class="prettyprint"><code>const objects = [];
 const spread = 15;
 
 function addObject(x, y, obj) {
@@ -180,7 +180,7 @@ function addObject(x, y, obj) {
 а 0.5 максимальное количество цвета. Другими словами, 
 <code>luminance</code> от 0,0 до 0,5 цвет будет изменяться с черного на <code>hue</code>. 
 От 0,5 до 1,0 цвет изменится <code>hue</code> на белый.</p>
-<pre><code>function createMaterial() {
+<pre class="prettyprint"><code>function createMaterial() {
   const material = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide,
   });
@@ -210,13 +210,13 @@ function addObject(x, y, obj) {
 <p>Давайте создадим функцию <code>addSolidGeometry</code>, которой мы передадим 
 геометрию, и она создаст случайно раскрашенный материал 
 <code>createMaterial</code> и <code>addObject</code> добавит его в сцену.</p>
-<pre><code>function addSolidGeometry(x, y, geometry) {
+<pre class="prettyprint"><code>function addSolidGeometry(x, y, geometry) {
   const mesh = new THREE.Mesh(geometry, createMaterial());
   addObject(x, y, mesh);
 }
 </code></pre><p>Теперь мы можем использовать это для большинства примитивов, 
 которые мы создаем. Например, создание прямоугольного параллелепипеда</p>
-<pre><code>{
+<pre class="prettyprint"><code>{
   const width = 8;
   const height = 8;
   const depth = 8;
@@ -241,7 +241,7 @@ function addObject(x, y, obj) {
 Обратный вызов срабатывает после загрузки шрифта. 
 В обратном вызове мы создаем геометрию и вызываем <code>addObject</code>, 
 чтобы добавить к ней сцену.</p>
-<pre><code>{
+<pre class="prettyprint"><code>{
   const loader = new THREE.FontLoader();
   loader.load(&#39;../resources/threejs/fonts/helvetiker_regular.typeface.json&#39;, (font) =&gt; {
     const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
@@ -296,7 +296,7 @@ function addObject(x, y, obj) {
 <p>Другие исключения - это 2-строчные примеры для <code>EdgesGeometry</code>
 и <code>WireframeGeometry</code>. Вместо того, чтобы вызвать <code>addSolidGeometry</code> 
 они вызвают <code>addLineGeomtry</code> который выглядит так</p>
-<pre><code>function addLineGeometry(x, y, geometry) {
+<pre class="prettyprint"><code>function addLineGeometry(x, y, geometry) {
   const material = new THREE.LineBasicMaterial({color: 0x000000});
   const mesh = new THREE.LineSegments(geometry, material);
   addObject(x, y, mesh);

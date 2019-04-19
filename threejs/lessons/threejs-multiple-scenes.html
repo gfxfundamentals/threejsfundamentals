@@ -109,7 +109,7 @@ will only be using one context. We also won&#39;t run into the sharing
 issues for the same reasons.</p>
 <p>Let&#39;s start with a simple example with just 2 scenes. First we&#39;ll
 make the HTML</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;p&gt;
   &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
   I love boxes. Presents come in boxes.
@@ -122,7 +122,7 @@ make the HTML</p>
 &lt;/p&gt;
 </code></pre>
 <p>Then we can setup the CSS maybe something like this</p>
-<pre><code class="lang-css">#c {
+<pre class="prettyprint"><code class="lang-css">#c {
   position: fixed;
   left: 0;
   top: 0;
@@ -150,7 +150,7 @@ make the HTML</p>
 -1 to make it appear behind other elements. We also need to specify some kind of width and height for our virtual canvas elements since there is nothing inside to give them any size.</p>
 <p>Now we&#39;ll make 2 scenes each with a light and a camera.
 To one scene we&#39;ll add a cube and to another a diamond.</p>
-<pre><code class="lang-js">function makeScene(elem) {
+<pre class="prettyprint"><code class="lang-js">function makeScene(elem) {
   const scene = new THREE.Scene();
 
   const fov = 45;
@@ -206,7 +206,7 @@ const sceneInfo2 = setupScene2();
 only if the element is on the screen. We can tell THREE.js
 to only render to part of the canvas by turning on the <em>scissor</em>
 test with <code>Renderer.setScissorTest</code> and then setting both the scissor and the viewport with <code>Renderer.setViewport</code> and <code>Renderer.setScissor</code>.</p>
-<pre><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
+<pre class="prettyprint"><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
   // get the viewport relative position opf this element
@@ -235,7 +235,7 @@ test with <code>Renderer.setScissorTest</code> and then setting both the scissor
 </code></pre>
 <p>And then our render function will just first clear the screen
 and then render each scene.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;
 
   resizeRendererToDisplaySize(renderer);
@@ -267,7 +267,7 @@ If your scenes are complicated or if for whatever reason
 it takes too long to render, the position of the scenes
 drawn into the canvas will lag behind the rest of the page.</p>
 <p>If we give each area a border </p>
-<pre><code class="lang-css">.diagram {
+<pre class="prettyprint"><code class="lang-css">.diagram {
   display: inline-block;
   width: 5em;
   height: 3em;
@@ -275,21 +275,21 @@ drawn into the canvas will lag behind the rest of the page.</p>
 }
 </code></pre>
 <p>And we set the background of each scene</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;red&#39;);
 </code></pre>
 <p>And if we <a href="../threejs-multiple-scenes-v2.html" target="_blank">quickly scroll up and down</a> we&#39;ll see the issue. Here&#39;s a animation of scrolling slowed down by 10x.</p>
 <div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
 
 <p>We can switch to a different method which has a different tradeoff. We&#39;ll switch the canvas&#39;s CSS from <code>position: fixed</code> to <code>position: absolute</code>. </p>
-<pre><code class="lang-css">#c {
+<pre class="prettyprint"><code class="lang-css">#c {
 -  position: fixed;
 +  position: absolute;
 </code></pre>
 <p>Then we&#39;ll set the canvas&#39;s transform to move it so
 the top of the canvas is at the top of whatever part
 the page is currently scrolled to.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   ...
 
   const transform = `translateY(${window.scrollY}px)`;
@@ -303,7 +303,7 @@ while the rest of the page scrolled over it. <code>position: absolute</code> wil
 <p>Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.</p>
 <p>We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.</p>
 <p>Here&#39;s the main render function</p>
-<pre><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint"><code class="lang-js">const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({elem, fn});
 }
@@ -347,7 +347,7 @@ function render(time) {
 <p>You can see it loops over <code>sceneElements</code> which it expects is an array of objects each of which have an <code>elem</code> and <code>fn</code> property.</p>
 <p>It checks if the element is on screen. If it is it calls <code>fn</code> and passes it the current time and its rectangle.</p>
 <p>Now the setup code for each scene just adds itself to the list of scenes</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const elem = document.querySelector(&#39;#box&#39;);
   const {scene, camera} = makeScene();
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
@@ -392,7 +392,7 @@ function render(time) {
 </p>
 <h2 id="using-html-dataset">Using HTML Dataset</h2>
 <p>One last even more generic thing we can do is use HTML <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset</a>. This is a way to add your own data to an HTML element. Instead of using <code>id=&quot;...&quot;</code> we&#39;ll use <code>data-diagram=&quot;...&quot;</code> like this</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;p&gt;
 -  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
 +  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
@@ -407,7 +407,7 @@ function render(time) {
 &lt;/p&gt;
 </code></pre>
 <p>We can them change the CSS selector to select for that</p>
-<pre><code class="lang-css">-.diagram
+<pre class="prettyprint"><code class="lang-css">-.diagram
 +*[data-diagram] {
   display: inline-block;
   width: 5em;
@@ -415,7 +415,7 @@ function render(time) {
 }
 </code></pre>
 <p>We&#39;ll change the scene setup code to just be a map of names to <em>scene initialization functions</em> that return a <em>scene render function</em>.</p>
-<pre><code class="lang-js">const sceneInitFunctionsByName = {
+<pre class="prettyprint"><code class="lang-js">const sceneInitFunctionsByName = {
   &#39;box&#39;: () =&gt; {
     const {scene, camera} = makeScene();
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
@@ -450,7 +450,7 @@ function render(time) {
 };
 </code></pre>
 <p>And to init we can just use <code>querySelectorAll</code> to find all the diagrams and call the corresponding init function for that diagram. </p>
-<pre><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+<pre class="prettyprint"><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
@@ -461,10 +461,10 @@ function render(time) {
 <p></p>
 <h2 id="adding-controls-to-each-element">Adding Controls to each element</h2>
 <p>Adding interactively, for example a <code>TrackballControls</code> is just as easy. First we add the script for the control.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>And then we can add a <code>TrackballControls</code> to each scene passing in the element associated with that scene.</p>
-<pre><code class="lang-js">-function makeScene() {
+<pre class="prettyprint"><code class="lang-js">-function makeScene() {
 +function makeScene(elem) {
   const scene = new THREE.Scene();
 
@@ -496,7 +496,7 @@ function render(time) {
 </code></pre>
 <p>You&#39;ll notice we added the camera to the scene and the light to the camera. This makes the light relative to the camera. Since the <code>TrackballControls</code> are moving the camera this is probably what we want. It keeps the light shining on the side of the object we are looking at.</p>
 <p>We need up update those controls in our render functions</p>
-<pre><code class="lang-js">const sceneInitFunctionsByName = {
+<pre class="prettyprint"><code class="lang-js">const sceneInitFunctionsByName = {
 - &#39;box&#39;: () =&gt; {
 -    const {scene, camera} = makeScene();
 + &#39;box&#39;: (elem) =&gt; {
@@ -554,13 +554,13 @@ solution we and a single canvas in the background. With this solution we have no
 and the GPU.</p>
 <p>The changes needed are pretty small</p>
 <p>First we&#39;ll change HTML as we no longer need a canvas in the page</p>
-<pre><code class="lang-html">&lt;body&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
 -  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
   ...
 &lt;/body&gt;
 </code></pre>
 <p>then we&#39;ll change the CSS</p>
-<pre><code>-#c {
+<pre class="prettyprint"><code>-#c {
 -  position: absolute;
 -  left: 0;
 -  top: 0;
@@ -583,7 +583,7 @@ canvas {
 <p>Now let&#39;s change the JavaScript. First we no longer
 look up the canvas. Instead we create one. We also
 just turn on the scissor test at the beginning.</p>
-<pre><code class="lang-js">function main() {
+<pre class="prettyprint"><code class="lang-js">function main() {
 -  const canvas = document.querySelector(&#39;#c&#39;);
 +  const canvas = document.createElement(&#39;canvas&#39;);
   const renderer = new THREE.WebGLRenderer({canvas: canvas, alpha: true});
@@ -593,7 +593,7 @@ just turn on the scissor test at the beginning.</p>
 </code></pre>
 <p>Then for each scene we create a 2D rendering context and
 append its canvas to the element for that scene</p>
-<pre><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint"><code class="lang-js">const sceneElements = [];
 function addScene(elem, fn) {
 +  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 +  elem.appendChild(ctx.canvas);
@@ -606,7 +606,7 @@ big enough to render this area we increase its size.
 As well if this area&#39;s canvas is the wrong size we
 change its size. Finally we set the scissor and viewport,
 render the scene for this area, then copy the result to the area&#39;s canvas.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;
 
 -  resizeRendererToDisplaySize(renderer);

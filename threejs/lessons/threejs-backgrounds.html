@@ -86,7 +86,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 an example from <a href="../threejs-responsive.html">the article on making THREE.js responsive</a>
 we only need to change 2 things.</p>
 <p>We need to add some CSS to our canvas to set its background to an image</p>
-<pre><code class="lang-html">&lt;style&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;style&gt;
 body {
     margin: 0;
 }
@@ -101,7 +101,7 @@ body {
 </code></pre>
 <p>and we need to tell the <code>WebGLRenderer</code> to use <code>alpha</code> so places we are not
 drawing anything are transparent.</p>
-<pre><code class="lang-js">function main() {
+<pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
 -  const renderer = new THREE.WebGLRenderer({canvas: canvas});
 +  const renderer = new THREE.WebGLRenderer({
@@ -121,7 +121,7 @@ effects</a> then we need to draw the background using
 THREE.js.</p>
 <p>THREE.js makes this some what simple. We can just set the background of the scene to
 a texture.</p>
-<pre><code class="lang-js">const loader = new THREE.TextureLoader();
+<pre class="prettyprint"><code class="lang-js">const loader = new THREE.TextureLoader();
 const bgTexture = loader.load(&#39;resources/images/daikanyama.jpg&#39;);
 scene.background = bgTexture;
 </code></pre>
@@ -135,7 +135,7 @@ scene.background = bgTexture;
 <p>This gets us a background image but its stretched to fit the screen.</p>
 <p>We can solve this issue by setting the <code>repeat</code> and <code>offset</code> properties of
 the texture to show only a portion of image.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
 
    ...
 
@@ -201,7 +201,7 @@ View, California.</p>
 
 <p>To use them we use <code>CubeTextureLoader</code> to load them and then use that as a the
 scene&#39;s background.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
     &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
@@ -215,7 +215,7 @@ scene&#39;s background.</p>
 }
 </code></pre>
 <p>At render time we don&#39;t need to adjust the texture like we did above</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
 
    ...
 
@@ -240,9 +240,9 @@ scene&#39;s background.</p>
 }
 </code></pre>
 <p>Let&#39;s add some controls in so we can rotate the camera.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<pre><code class="lang-js">const fov = 75;
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 -const far = 5;
@@ -273,7 +273,7 @@ surrounds us.</p>
 <code>BoxBufferGeometry</code>, and a custom <code>ShaderMaterial</code> but using a built in shader.
 We use these to render the background by itself before rendering the scene we
 already have.</p>
-<pre><code class="lang-js">const bgScene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const bgScene = new THREE.Scene();
 let bgMesh;
 {
   const loader = new THREE.TextureLoader();
@@ -303,7 +303,7 @@ it passes the camera&#39;s <code>far</code> setting.</p>
 <code>depthWrite: false</code> so that we neither test nor write to the depth buffer.</p>
 <p>At render time we just make sure the box is at the same position as the camera
 and render the new scene</p>
-<pre><code class="lang-js">function render(time)
+<pre class="prettyprint"><code class="lang-js">function render(time)
 
     /* ... */
 
@@ -315,7 +315,7 @@ and render the new scene</p>
 canvas. We need to tell it not to do that otherwise the second call to render
 will clear our first render and we won&#39;t see the background. We can do this by
 setting <code>renderer.autoClearColor = false</code>.</p>
-<pre><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
 +renderer.autoClearColor = false;
 </code></pre>
 <p>And there we have it.</p>

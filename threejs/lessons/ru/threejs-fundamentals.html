@@ -105,12 +105,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 это заставляют компьютер напечатать <code>&quot;Hello World!&quot;</code>. Для 3D одна из самых 
 распространенных задач - создать 3D-куб, так что давайте начнем с <code>&quot;Hello Cube!&quot;</code></p>
 <p>Первое, что нам нужно, это тэг <code>&lt;canvas&gt;</code>:</p>
-<pre><code>&lt;body&gt;
+<pre class="prettyprint"><code>&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;/body&gt;
 </code></pre><p>Three.js будет рисовать на этом холсте, так что нам нужно найти 
 его и передать three.js.</p>
-<pre><code>&lt;script&gt;
+<pre class="prettyprint"><code>&lt;script&gt;
 &#39;use strict&#39;;
 
 /* global THREE */
@@ -136,7 +136,7 @@ function main() {
 <code>WebGL2Renderer</code> или <code>WebGPURenderer</code>. На данный момент есть <code>WebGLRenderer</code>, 
 который использует WebGL для рисования 3D на холсте.</p>
 <p>Далее нам нужна камера.</p>
-<pre><code>const fov = 75;
+<pre class="prettyprint"><code>const fov = 75;
 const aspect = 2;  // значение для canvas по умолчанию
 const near = 0.1;
 const far = 5;
@@ -161,7 +161,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <p>По умолчанию камера смотрит вниз по оси -Z и вверх по оси +Y. Мы поместим наш куб 
 в начало координат (origin), поэтому нам нужно немного отодвинуть камеру назад, 
 чтобы что-то увидеть.</p>
-<pre><code>camera.position.z = 2;
+<pre class="prettyprint"><code>camera.position.z = 2;
 </code></pre><p>Вот как мы её направили.</p>
 <p><img src="../resources/scene-down.svg" width="500" class="threejs_center"/></p>
 <p>На диаграмме выше мы видим, что наша камера находится в <code>z = 2</code>. И смотрит вниз по оси -Z. 
@@ -176,29 +176,29 @@ our specified 75 degrees which is the vertical field of view.
 <p>Далее создадим <code>Scene</code>. <code>Scene</code> в three.js корень формы графа сцены. 
 Все, что вы хотите нарисовать необходимо добавить на сцену. Мы рассмотрим подробнее, 
 <a href="threejs-scenegraph.html">как работают сцены, в следующей статье</a>.</p>
-<pre><code>const scene = new THREE.Scene();
+<pre class="prettyprint"><code>const scene = new THREE.Scene();
 </code></pre><p>Далее мы создаем <code>BoxGeometry</code> который содержит данные для <a href="https://ru.wikipedia.org/wiki/Прямоугольный_параллелепипед">прямоугольного параллелепипеда</a>. 
 Почти все, что мы хотим отобразить в Three.js, нуждается в геометрии, 
 которая определяет вершины нашего трехмерного объекта.</p>
-<pre><code>const boxWidth = 1;
+<pre class="prettyprint"><code>const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 </code></pre><p>Затем мы создаем основной материал и устанавливаем его цвет. 
 Цвета могут быть определены с использованием 6-значных шестнадцатеричных 
 значений цвета, как в CSS.</p>
-<pre><code>const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
+<pre class="prettyprint"><code>const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </code></pre><p>Затем мы создаем <a href="https://ru.wikipedia.org/wiki/Полигональная_сетка">полигональную сетку</a> 
 <code>Mesh</code>. <code>Mesh</code> в three.js представляет комбинацию 
 формы объекта <code>Geometry</code> и <code>Material</code> (как нарисовать объект, 
 блестящий или плоский, какой цвет, какую текстуру(ры) применить и т.д.)
 а также положение, ориентацию, и масштаб этого объекта в сцене.</p>
-<pre><code>const cube = new THREE.Mesh(geometry, material);
+<pre class="prettyprint"><code>const cube = new THREE.Mesh(geometry, material);
 </code></pre><p>И, наконец, мы добавляем <code>Mesh</code> на сцену</p>
-<pre><code>scene.add(cube);
+<pre class="prettyprint"><code>scene.add(cube);
 </code></pre><p>Затем мы можем отрендерить сцену, вызвав функцию <code>render</code> рендерера 
 передав ей сцену и камеру.</p>
-<pre><code>renderer.render(scene, camera);
+<pre class="prettyprint"><code>renderer.render(scene, camera);
 </code></pre><p>Вот рабочий пример</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals.html"></iframe>
@@ -212,7 +212,7 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 анимации мы будем отрисовывать внутри цикла отрисовки, используя
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code>requestAnimationFrame</code></a>.</p>
 <p>Вот наш цикл</p>
-<pre><code>function render(time) {
+<pre class="prettyprint"><code>function render(time) {
   time *= 0.001;  // конвертировать время в секунды
 
   cube.rotation.x = time;
@@ -248,7 +248,7 @@ requestAnimationFrame(render);
 добавить немного освещения, поэтому давайте добавим источник света. 
 В Three.js есть много разных источников света, о которых мы поговорим в 
 следующей статье. А пока давайте создадим направленный свет.</p>
-<pre><code>{
+<pre class="prettyprint"><code>{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -261,7 +261,7 @@ requestAnimationFrame(render);
 в направлении начала координат.</p>
 <p>Нам также нужно изменить материал. <code>MeshBasicMaterial</code> не воспреимчив к свету. 
 Давайте изменим его на <code>MeshPhongMaterial</code>, который отражает свет.</p>
-<pre><code>-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
+<pre class="prettyprint"><code>-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
 +const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 </code></pre><p>И вот оно работает.</p>
 <p><div class="threejs_example_container">
@@ -277,7 +277,7 @@ requestAnimationFrame(render);
 <p>Сначала мы сделаем функцию, которая создает новый материал с указанным цветом. 
 Затем создает mesh, используя указанную геометрию, добавляет ее к сцене и 
 устанавливает ей позицию X.</p>
-<pre><code>function makeInstance(geometry, color, x) {
+<pre class="prettyprint"><code>function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -289,14 +289,14 @@ requestAnimationFrame(render);
 }
 </code></pre><p>Затем мы будем вызывать его 3 раза с 3 разными цветами и позициями X, 
 сохраняя экземпляры <code>Mesh</code> в массив.</p>
-<pre><code>const cubes = [
+<pre class="prettyprint"><code>const cubes = [
   makeInstance(geometry, 0x44aa88,  0),
   makeInstance(geometry, 0x8844aa, -2),
   makeInstance(geometry, 0xaa8844,  2),
 ];
 </code></pre><p>Наконец, мы закрутим все 3 куба в нашей функции отрисовки. 
 Мы рассчитываем немного разные коэффициенты вращения для каждого.</p>
-<pre><code>function render(time) {
+<pre class="prettyprint"><code>function render(time) {
   time *= 0.001;  // конвертировать время в секунды
 
   cubes.forEach((cube, ndx) =&gt; {

@@ -116,7 +116,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 землю, луну в качестве демонстрации того, как использовать граф сцены. 
 Конечно, настоящее Солнце, Земля и Луна используют физику, но для наших 
 целей мы подделаем это с помощью графа сцены.</p>
-<pre><code class="lang-js">// массив объектов, направление которых обновляется
+<pre class="prettyprint"><code class="lang-js">// массив объектов, направление которых обновляется
 const objects = [];
 
 // использовать только одну сферу для всего
@@ -142,7 +142,7 @@ objects.push(sunMesh);
 <p>Давайте также поместим один точечный источник света в центр сцены. Мы рассмотрим 
 более подробно о точечных источниках света позже, но пока простая версия 
 представляет собой точечный источник света.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 3;
   const light = new THREE.PointLight(color, intensity);
@@ -157,14 +157,14 @@ objects.push(sunMesh);
 в какой стороне &quot;верх&quot; для камеры. Для большинства ситуаций положительный 
 Y - это достаточно хорошо, но, так как мы смотрим прямо вниз, 
 мы должны сказать камере, что положительный Z - вверхy.</p>
-<pre><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+<pre class="prettyprint"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.set(0, 50, 0);
 camera.up.set(0, 0, 1);
 camera.lookAt(0, 0, 0);
 </code></pre>
 <p>В цикле отрисовки, переделанном из предыдущих примеров, 
 мы вращаем все объекты в нашем массиве <code>objects</code> с помощью этого кода.</p>
-<pre><code class="lang-js">objects.forEach((obj) =&gt; {
+<pre class="prettyprint"><code class="lang-js">objects.forEach((obj) =&gt; {
   obj.rotation.y = time;
 });
 </code></pre>
@@ -176,7 +176,7 @@ camera.lookAt(0, 0, 0);
 
 </p>
 <p>Теперь давайте добавим землю.</p>
-<pre><code class="lang-js">const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+<pre class="prettyprint"><code class="lang-js">const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
 const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
 earthMesh.position.x = 10;
 scene.add(earthMesh);
@@ -195,7 +195,7 @@ objects.push(earthMesh);
 </p>
 <p>Вы можете видеть, что Солнце и Земля вращаются, но Земля не вращается вокруг Солнца. 
 Давайте сделаем землю дитя солнца</p>
-<pre><code class="lang-js">-scene.add(earthMesh);
+<pre class="prettyprint"><code class="lang-js">-scene.add(earthMesh);
 +sunMesh.add(earthMesh);
 </code></pre>
 <p>а также...</p>
@@ -217,7 +217,7 @@ objects.push(earthMesh);
 <p><img src="../resources/images/scenegraph-sun-earth.svg" align="center"></p>
 <p>Чтобы это исправить, давайте добавим пустой узел графа сцены. 
 Мы будем связывать солнце и землю с этим узлом.</p>
-<pre><code class="lang-js">+const solarSystem = new THREE.Object3D();
+<pre class="prettyprint"><code class="lang-js">+const solarSystem = new THREE.Object3D();
 +scene.add(solarSystem);
 +objects.push(solarSystem);
 
@@ -251,7 +251,7 @@ objects.push(earthMesh);
 </p>
 <p>Намного лучше. Земля меньше Солнца, и она вращается вокруг Солнца и вращается сама.</p>
 <p>Продолжая ту же самую модель, давайте добавим луну.</p>
-<pre><code class="lang-js">+const earthOrbit = new THREE.Object3D();
+<pre class="prettyprint"><code class="lang-js">+const earthOrbit = new THREE.Object3D();
 +earthOrbit.position.x = 10;
 +solarSystem.add(earthOrbit);
 +objects.push(earthOrbit);
@@ -292,7 +292,7 @@ Three.js имеет несколько полезных ... ммм, помощн
 <span style="color:green">Y</span>, и
 <span style="color:blue">Z</span> Давайте добавим по одному к каждому узлу, 
 который мы создали.</p>
-<pre><code class="lang-js">// добавляем AxesHelper к каждому узлу
+<pre class="prettyprint"><code class="lang-js">// добавляем AxesHelper к каждому узлу
 objects.forEach((node) =&gt; {
   const axes = new THREE.AxesHelper();
   axes.material.depthTest = false;
@@ -330,7 +330,7 @@ dat.GUI принимает объект и имя свойства для это
 <p>Мы хотим сделать <code>GridHelper</code> и <code>AxesHelper</code> для каждого узла. Нам нужна метка для каждого 
 узла, поэтому мы избавимся от старого цикла и переключимся на вызов некоторой 
 функции, чтобы добавить помощники для каждого узла</p>
-<pre><code class="lang-js">-// добавляем AxesHelper к каждому узлу
+<pre class="prettyprint"><code class="lang-js">-// добавляем AxesHelper к каждому узлу
 -objects.forEach((node) =&gt; {
 -  const axes = new THREE.AxesHelper();
 -  axes.material.depthTest = false;
@@ -359,7 +359,7 @@ dat.GUI принимает объект и имя свойства для это
 установки для свойства. Таким образом, мы можем позволить dat.GUI думать, 
 что он манипулирует одним свойством, но внутри мы можем установить видимое 
 свойство <code>AxesHelper</code> и <code>GridHelper</code> для узла.</p>
-<pre><code class="lang-js">// Для включения и выключения видимых осей и сетки
+<pre class="prettyprint"><code class="lang-js">// Для включения и выключения видимых осей и сетки
 // dat.GUI требуется свойство, которое возвращает bool
 // это checkbox мы сделали сеттер и геттер
 // чтобы получить значение для `visible` от dat.GUI

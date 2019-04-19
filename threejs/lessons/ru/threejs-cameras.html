@@ -114,7 +114,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Для этого мы сделаем <code>MinMaxGUIHelper</code> для параметров <code>near</code> и <code>far</code>, так чтобы <code>far</code> 
 всегда был больше, чем <code>near</code>. У него будут свойства <code>min</code> и <code>max</code>, которые dat.GUI будет 
 настраивать. После настройки они установят 2 свойства, которые мы указываем.</p>
-<pre><code class="lang-js">class MinMaxGUIHelper {
+<pre class="prettyprint"><code class="lang-js">class MinMaxGUIHelper {
   constructor(obj, minProp, maxProp, minDif) {
     this.obj = obj;
     this.minProp = minProp;
@@ -138,7 +138,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 </code></pre>
 <p>Теперь мы можем настроить наш графический интерфейс следующим образом</p>
-<pre><code class="lang-js">function updateCamera() {
+<pre class="prettyprint"><code class="lang-js">function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
@@ -167,7 +167,7 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
 нарисовать 2 сцены с 2 камерами рядом, используя функцию scissor</p>
 <p>Для начала давайте используем HTML и CSS, чтобы определить 2 элемента рядом друг с другом. 
 Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные <code>OrbitControls</code>.</p>
-<pre><code class="lang-html">&lt;body&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +  &lt;div class=&quot;split&quot;&gt;
 +     &lt;div id=&quot;view1&quot; tabindex=&quot;1&quot;&gt;&lt;/div&gt;
@@ -177,7 +177,7 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
 </code></pre>
 <p>Для начала давайте используем HTML и CSS, чтобы расположить 2 элемента рядом друг с другом. 
 Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные</p>
-<pre><code class="lang-css">.split {
+<pre class="prettyprint"><code class="lang-css">.split {
   position: absolute;
   left: 0;
   top: 0;
@@ -191,25 +191,25 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
 }
 </code></pre>
 <p>Затем в нашем коде мы добавим <code>CameraHelper</code>. <code>CameraHelper</code> рисует frustum для <code>Camera</code></p>
-<pre><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
+<pre class="prettyprint"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
 
 ...
 
 scene.add(cameraHelper);
 </code></pre>
 <p>Теперь давайте посмотрим на 2 элемента view.</p>
-<pre><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;); 
+<pre class="prettyprint"><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;); 
 const view2Elem = document.querySelector(&#39;#view2&#39;);
 </code></pre>
 <p>И мы установим нашу существующую <code>OrbitControls</code> так, чтобы она отвечала 
 только за первый элемент представления.</p>
-<pre><code class="lang-js">-const controls = new THREE.OrbitControls(camera, canvas);
+<pre class="prettyprint"><code class="lang-js">-const controls = new THREE.OrbitControls(camera, canvas);
 +const controls = new THREE.OrbitControls(camera, view1Elem);
 </code></pre>
 <p>Создадим вторую <code>PerspectiveCamera</code> и вторую <code>OrbitControls</code>.
 Вторая <code>OrbitControls</code> привязана ко второй камере и получает 
 ввод от второго элемента view.</p>
-<pre><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
+<pre class="prettyprint"><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
   60,  // fov
   2,   // aspect
   0.1, // near
@@ -227,7 +227,7 @@ controls2.update();
 <p>Вот функция, которая для данного элемента будет вычислять прямоугольник этого 
 элемента, который перекрывает холст. Затем он установит плоскость отсечения (scissor) и область 
 просмотра (fov) в этот прямоугольник и вернет aspect для этого размера.</p>
-<pre><code class="lang-js">function setScissorForElement(elem) {
+<pre class="prettyprint"><code class="lang-js">function setScissorForElement(elem) {
   const canvasRect = canvas.getBoundingClientRect();
   const elemRect = elem.getBoundingClientRect();
 
@@ -249,7 +249,7 @@ controls2.update();
 }
 </code></pre>
 <p>И теперь мы можем использовать эту функцию, чтобы нарисовать сцену дважды в нашей функции <code>render</code></p>
-<pre><code class="lang-js">  function render() {
+<pre class="prettyprint"><code class="lang-js">  function render() {
 
 -    if (resizeRendererToDisplaySize(renderer)) {
 -      const canvas = renderer.domElement;
@@ -307,7 +307,7 @@ controls2.update();
 <p>Приведенный выше код устанавливает цвет фона сцены при рендеринге 
 второго представления темно-синим, чтобы было проще различать два представления.</p>
 <p>Мы также можем удалить наш <code>updateCamera</code> код, так как мы обновляем все в функции <code>render</code>.</p>
-<pre><code class="lang-js">-function updateCamera() {
+<pre class="prettyprint"><code class="lang-js">-function updateCamera() {
 -  camera.updateProjectionMatrix();
 -}
 
@@ -343,7 +343,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
 <code>near</code> и <code>far</code>. Хуже того, по умолчанию точность закрытия камеры детализирована (резкое отсечение), 
 а точность далеко от камеры - конечна. <code>near</code> медленно расширяется по мере приближения <code>far</code>.</p>
 <p>Начиная с верхнего примера, давайте изменим код, вставив 20 сфер в ряд.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
@@ -359,7 +359,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
 }
 </code></pre>
 <p>и давайте установим <code>near</code> = 0.00001</p>
-<pre><code class="lang-js">const fov = 45;
+<pre class="prettyprint"><code class="lang-js">const fov = 45;
 const aspect = 2;  // the canvas default
 -const near = 0.1;
 +const near = 0.00001;
@@ -368,7 +368,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre>
 <p>Нам также нужно немного подправить код графического интерфейса, 
 чтобы позволить 0.00001, если значение редактируется</p>
-<pre><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
+<pre class="prettyprint"><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
 +gui.add(minMaxGUIHelper, &#39;min&#39;, 0.00001, 50, 0.00001).name(&#39;near&#39;).onChange(updateCamera);
 </code></pre>
 <p>Как ты думаешь, что произойдет?</p>
@@ -386,7 +386,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <p>Одно из решений состоит в том, чтобы указать использование three.js другому методу для вычисления того, 
 какие пиксели находятся спереди, а какие - сзади. Мы можем сделать это, включив,
 <code>logarithmicDepthBuffer</code> когда мы создаем <code>WebGLRenderer</code></p>
-<pre><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas: canvas});
 +const renderer = new THREE.WebGLRenderer({
 +  canvas: canvas,
 +  logarithmicDepthBuffer: true,
@@ -425,7 +425,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <p>Давайте изменим приведенный выше пример 2 для использования <code>OrthographicCamera</code> 
 в первом представлении.</p>
 <p>Сначала давайте настроим <code>OrthographicCamera</code>.</p>
-<pre><code class="lang-js">const left = -1;
+<pre class="prettyprint"><code class="lang-js">const left = -1;
 const right = 1;
 const top = 1;
 const bottom = -1;
@@ -439,7 +439,7 @@ camera.zoom = 0.2;
 в соответствии со отношением сторон прямоугольника, к которому мы рисуем. 
 Мы будем использовать свойство <code>zoom</code>, чтобы упростить настройку количества единиц, отображаемых камерой.</p>
 <p>Давайте добавим настройки GUI для <code>zoom</code></p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 +gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
 </code></pre>
 <p>Вызовем <code>listen</code> говорящий dat.GUI следить за изменениями. 
@@ -447,7 +447,7 @@ camera.zoom = 0.2;
 Например, колесо прокрутки на мыши будет масштабироваться с помощью <code>OrbitControls</code>.</p>
 <p>Наконец, нам просто нужно изменить часть, которая отображает левую сторону, 
 чтобы обновить <code>OrthographicCamera</code>.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const aspect = setScissorForElement(view1Elem);
 
   // обновить камеру для этого соотношения сторон
@@ -476,7 +476,7 @@ camera.zoom = 0.2;
 если вы хотите, чтобы один пиксель холста соответствовал одному элементу 
 камеры, вы можете сделать что-то вроде:</p>
 <p>Поместить начало координат в центр и иметь 1 пиксель = 1 единицу three.js что-то вроде:</p>
-<pre><code class="lang-js">camera.left = -canvas.width / 2;
+<pre class="prettyprint"><code class="lang-js">camera.left = -canvas.width / 2;
 camera.right = canvas.width / 2;
 camera.top = canvas.heigth / 2;
 camera.bottom = -canvas.height / 2;
@@ -486,7 +486,7 @@ camera.zoom = 1;
 </code></pre>
 <p>Или, если бы мы хотели, чтобы источник находился в верхнем левом углу, 
 как 2D-холст, мы могли бы использовать это</p>
-<pre><code class="lang-js">camera.left = 0;
+<pre class="prettyprint"><code class="lang-js">camera.left = 0;
 camera.right = canvas.width;
 camera.top = 0;
 camera.bottom = canvas.height;
@@ -496,7 +496,7 @@ camera.zoom = 1;
 </code></pre>
 <p>В этом случае верхний левый угол будет 0,0, как 2D холст</p>
 <p>Давай попробуем! Сначала давайте настроим камеру</p>
-<pre><code class="lang-js">const left = 0;
+<pre class="prettyprint"><code class="lang-js">const left = 0;
 const right = 300;  // default canvas size
 const top = 0;
 const bottom = 150;  // default canvas size
@@ -508,7 +508,7 @@ camera.zoom = 1;
 <p>Затем давайте загрузим 6 текстур и сделаем 6 плоскостей, по одной на каждую текстуру. 
 Мы будем привязывать каждую плоскость к <code>THREE.Object3D</code> чтобы было легче сместить плоскость, 
 чтобы ее центр находился в ее верхнем левом углу.</p>
-<pre><code class="lang-js">const loader = new THREE.TextureLoader();
+<pre class="prettyprint"><code class="lang-js">const loader = new THREE.TextureLoader();
 const textures = [
   loader.load(&#39;../resources/images/flower-1.jpg&#39;),
   loader.load(&#39;../resources/images/flower-2.jpg&#39;),
@@ -535,7 +535,7 @@ const planes = textures.map((texture) =&gt; {
 });
 </code></pre>
 <p>и нам нужно обновить камеру, если размер холста изменится.</p>
-<pre><code class="lang-js">function render() {
+<pre class="prettyprint"><code class="lang-js">function render() {
 
   if (resizeRendererToDisplaySize(renderer)) {
     camera.right = canvas.width;
@@ -547,7 +547,7 @@ const planes = textures.map((texture) =&gt; {
 </code></pre>
 <p><code>planes</code> - массив <code>THREE.Mesh</code>, по одному для каждой плоскости. 
 Давайте переместим их в зависимости от времени.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;  // конвертировать в секунды; 
 
   ...

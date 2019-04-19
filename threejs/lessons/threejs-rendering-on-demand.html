@@ -84,7 +84,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>The topic might be obvious to many people but just in case ... most Three.js
 examples render continuously. In other words they setup a
 <code>requestAnimationFrame</code> loop or &quot;<em>rAF loop</em>&quot; something like this</p>
-<pre><code class="lang-js">function render() {
+<pre class="prettyprint"><code class="lang-js">function render() {
   ...
   requestAnimationFrame(render);
 }
@@ -101,11 +101,11 @@ or the camera or giving other relevant input.</p>
 and modify it to render on demand.</p>
 <p>First we&#39;ll add in the <code>OrbitControls</code> so there is something that could change
 that we can render in response to.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>and set them up</p>
-<pre><code class="lang-js">const fov = 75;
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
@@ -117,7 +117,7 @@ camera.position.z = 2;
 +controls.update();
 </code></pre>
 <p>Since we won&#39;t be animating the cubes anymore we no longer need to keep track of them</p>
-<pre><code class="lang-js">-const cubes = [
+<pre class="prettyprint"><code class="lang-js">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -127,7 +127,7 @@ camera.position.z = 2;
 +makeInstance(geometry, 0xaa8844,  2);
 </code></pre>
 <p>We can remove the code to animate the cubes and the calls to <code>requestAnimationFrame</code></p>
-<pre><code class="lang-js">-function render(time) {
+<pre class="prettyprint"><code class="lang-js">-function render(time) {
 -  time *= 0.001;
 +function render() {
 
@@ -152,17 +152,17 @@ camera.position.z = 2;
 -requestAnimationFrame(render);
 </code></pre>
 <p>then we need to render once</p>
-<pre><code class="lang-js">render();
+<pre class="prettyprint"><code class="lang-js">render();
 </code></pre>
 <p>We need to render anytime the <code>OrbitControls</code> change the camera settings.
 Fortunately the <code>OrbitControls</code> dispatch a <code>change</code> event anytime something
 changes.</p>
-<pre><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
+<pre class="prettyprint"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
 </code></pre>
 <p>We also need to handle the case where the user resizes the window. That was
 handled automatically before since we were rendering continuously but now what
 we are not we need to render when the window changes size.</p>
-<pre><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
+<pre class="prettyprint"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
 </code></pre>
 <p>And with that we get something that renders on demand.</p>
 <p><div class="threejs_example_container">
@@ -174,7 +174,7 @@ we are not we need to render when the window changes size.</p>
 <p>The <code>OrbitControls</code> have options to add a kind of inertia to make them feel less
 stiff. We can enable this by setting the <code>enableDamping</code> property to true and we
 can set how much inertia by adjusting the <code>dampingFactor</code></p>
-<pre><code class="lang-js">controls.enableDamping = true;
+<pre class="prettyprint"><code class="lang-js">controls.enableDamping = true;
 controls.dampingFactor = 0.05;
 controls.rotateSpeed = 0.1;
 </code></pre>
@@ -187,7 +187,7 @@ send us a <code>change</code> event and call <code>render</code>, <code>render</
 <p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> but we need to
 make sure we only ask for a new frame if one has not already been requested
 which we can do by keeping a variable that tracks if we&#39;ve already requested a frame.</p>
-<pre><code class="lang-js">+let renderRequested = false;
+<pre class="prettyprint"><code class="lang-js">+let renderRequested = false;
 
 function render() {
 +  renderRequested = false;
@@ -213,7 +213,7 @@ render();
 +controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
 </code></pre>
 <p>We should probably also use <code>requestRenderIfNotRequested</code> for resizing as well</p>
-<pre><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
+<pre class="prettyprint"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
 +window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
 </code></pre>
 <p>It might be hard to see the difference. Try clicking on the example below and
@@ -228,7 +228,7 @@ below slides.</p>
 
 </p>
 <p>Let&#39;s also add a simple dat.GUI GUI and make its changes render on demand.</p>
-<pre><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
@@ -236,11 +236,11 @@ below slides.</p>
 color we&#39;ll use the <code>ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
 lights</a>.</p>
 <p>First we need to create a GUI</p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 </code></pre>
 <p>and then for each cube we&#39;ll create a folder and add 2 controls, one for
 <code>material.color</code> and another for <code>cube.scale.x</code>.</p>
-<pre><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);

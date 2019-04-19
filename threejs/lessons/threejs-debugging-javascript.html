@@ -135,11 +135,11 @@ way the browser will always get the newest versions of your files.</p>
 <h2 id="use-the-javascript-console">Use the JavaScript console</h2>
 <p>Inside all devtools is a <em>console</em>. It shows warnings and error messages.
 You can print your own info to the console with with <code>console.log</code> as in</p>
-<pre><code class="lang-js">console.log(someObject.position.x, someObject.position.y, someObject.position.z);
+<pre class="prettyprint"><code class="lang-js">console.log(someObject.position.x, someObject.position.y, someObject.position.z);
 </code></pre>
 <p>Even cooler, if you log an object you can inspect it. For example if we log
 the root scene object from <a href="threejs-load-gltf.html">the gLTF article</a></p>
-<pre><code class="lang-js">  {
+<pre class="prettyprint"><code class="lang-js">  {
     const gltfLoader = new THREE.GLTFLoader();
     gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
       const root = gltf.scene;
@@ -155,7 +155,7 @@ in includes a stack trace.</p>
 <p>Another obvious but often overlooked way is to add <code>&lt;div&gt;</code> or <code>&lt;pre&gt;</code> tags
 and put data in them.</p>
 <p>The most obvious way is to make some HTML elements</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +&lt;div id=&quot;debug&quot;&gt;
 +  &lt;div&gt;x:&lt;span id=&quot;x&quot;&gt;&lt;/span&gt;&lt;/div&gt;
 +  &lt;div&gt;y:&lt;span id=&quot;y&quot;&gt;&lt;/span&gt;&lt;/div&gt;
@@ -164,7 +164,7 @@ and put data in them.</p>
 </code></pre>
 <p>Style them so they stay on top of the canvas. (assuming your canvas
 fills the page)</p>
-<pre><code class="lang-html">&lt;style&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;style&gt;
 #debug {
   position: absolute;
   left: 1em;
@@ -177,7 +177,7 @@ fills the page)</p>
 &lt;/style&gt;
 </code></pre>
 <p>And then looking the elements up and setting their content.</p>
-<pre><code class="lang-js">// at init time
+<pre class="prettyprint"><code class="lang-js">// at init time
 const xElem = document.querySelector(&#39;#x&#39;);
 const yElem = document.querySelector(&#39;#y&#39;);
 const zElem = document.querySelector(&#39;#z&#39;);
@@ -201,13 +201,13 @@ Any part of your code that wants to display data calls some function
 to add data to that buffer every frame. This is much less work
 than making an element per piece of data above.</p>
 <p>For example let&#39;s change the HTML from above to just this</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;div id=&quot;debug&quot;&gt;
   &lt;pre&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </code></pre>
 <p>And let&#39;s make simple class to manage this <em>clear back buffer</em>.</p>
-<pre><code class="lang-js">class ClearingLogger {
+<pre class="prettyprint"><code class="lang-js">class ClearingLogger {
   constructor(elem) {
     this.elem = elem;
     this.lines = [];
@@ -224,7 +224,7 @@ than making an element per piece of data above.</p>
 <p>Then let&#39;s make a simple example that everytime we click the mouse makes a mesh that moves in a random direction for 2 seconds. We&#39;ll start with
 one of the examples from the article on <a href="threejs-responsive.html">making things responsive</a></p>
 <p>Here&#39;s the code that adds a new <code>Mesh</code> everytime we click the mouse</p>
-<pre><code class="lang-js">const geometry = new THREE.SphereBufferGeometry();
+<pre class="prettyprint"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry();
 const material = new THREE.MeshBasicMaterial({color: &#39;red&#39;});
 
 const things = [];
@@ -251,7 +251,7 @@ canvas.addEventListener(&#39;click&#39;, createThing);
 </code></pre>
 <p>And here&#39;s the code that moves the meshes we created, logs them,
 and removes them when their timer has run out</p>
-<pre><code class="lang-js">const logger = new ClearingLogger(document.querySelector(&#39;#debug pre&#39;));
+<pre class="prettyprint"><code class="lang-js">const logger = new ClearingLogger(document.querySelector(&#39;#debug pre&#39;));
 
 let then = 0;
 function render(now) {
@@ -298,12 +298,12 @@ function render(now) {
 <p>Another thing to remember is that webpages can have data passed
 into them either via query parameters or the anchor, sometimes called
 the search and the hash.</p>
-<pre><code>https://domain/path/?query#anchor
+<pre class="prettyprint"><code>https://domain/path/?query#anchor
 </code></pre><p>You can use this to make features optional or pass in parameters.</p>
 <p>For example let&#39;s take the previous example and make it so
 the debug stuff only shows up if we put <code>?debug=true</code> in the URL.</p>
 <p>First we need some code to parse the query string</p>
-<pre><code class="lang-js">/**
+<pre class="prettyprint"><code class="lang-js">/**
   * Returns the query parameters as a key/value object. 
   * Example: If the query parameters are
   *
@@ -328,14 +328,14 @@ function getQuery() {
 }
 </code></pre>
 <p>Then we might make the debug element not show by default</p>
-<pre><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +&lt;div id=&quot;debug&quot; style=&quot;display: none;&quot;&gt;
   &lt;pre&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </code></pre>
 <p>Then in the code we read the params and choose to unhide the
 debug info if and only if <code>?debug=true</code> is passed in</p>
-<pre><code class="lang-js">const query = getQuery();
+<pre class="prettyprint"><code class="lang-js">const query = getQuery();
 const debug = query.debug === &#39;true&#39;;
 const logger = debug
    ? new ClearingLogger(document.querySelector(&#39;#debug pre&#39;))
@@ -345,7 +345,7 @@ if (debug) {
 }
 </code></pre>
 <p>We also made a <code>DummyLogger</code> that does nothing and chose to use it if <code>?debug=true</code> has not been passed in.</p>
-<pre><code class="lang-js">class DummyLogger {
+<pre class="prettyprint"><code class="lang-js">class DummyLogger {
   log() {}
   render() {}
 }
@@ -380,7 +380,7 @@ place to start looking.</p>
 <p>As an example when I first started making the path for the <a href="threejs-load-gltf.html">article about loading gLTF files</a> I made a curve using the
 <code>SplineCurve</code> class which makes a 2D curve.</p>
 <p>I then used that curve to move the cars like this</p>
-<pre><code class="lang-js">curve.getPointAt(zeroToOnePointOnCurve, car.position);
+<pre class="prettyprint"><code class="lang-js">curve.getPointAt(zeroToOnePointOnCurve, car.position);
 </code></pre>
 <p>Internally <code>curve.getPointAt</code> calls the <code>set</code> function
 on the object passed as the second argument. In this case that
@@ -407,7 +407,7 @@ debug version. I often switch my code to use <code>three.js</code> to step insid
 THREE.js to step through the code and see what is going on.</p>
 <h2 id="put-requestanimationframe-at-bottom-of-your-render-function-">Put <code>requestAnimationFrame</code> at bottom of your render function.</h2>
 <p>I see this pattern often</p>
-<pre><code class="lang-js">function render() {
+<pre class="prettyprint"><code class="lang-js">function render() {
    requestAnimationFrame(render);
 
    // -- do stuff --
@@ -418,7 +418,7 @@ requestAnimationFrame(render);
 </code></pre>
 <p>I&#39;d suggest that putting the call to <code>requestAnimationFrame</code> at
 the bottom as in</p>
-<pre><code class="lang-js">function render() {
+<pre class="prettyprint"><code class="lang-js">function render() {
    // -- do stuff --
 
    renderer.render(scene, camera);

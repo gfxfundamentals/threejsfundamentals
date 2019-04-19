@@ -90,7 +90,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Мы установим поле зрения (fov) на 45 градусов, дальнюю плоскость (far) на 100 единиц, 
 и мы переместим камеру на 10 единиц вверх и на 20 единиц назад от начала 
 координат.</p>
-<pre><code class="lang-js">*const fov = 45;
+<pre class="prettyprint"><code class="lang-js">*const fov = 45;
 const aspect = 2;  // значение по умолчанию для холста
 const near = 0.1;
 *const far = 100;
@@ -101,12 +101,12 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 или <em>поворачивать</em> камеру вокруг некоторой точки. <code>OrbitControls</code> - это 
 дополнительные функции three.js, поэтому сначала нам нужно 
 включить их в нашу страницу.</p>
-<pre><code class="lang-html">&lt;script src=&quot;../resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;../resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;../resources/threejs/r103/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Теперь мы можем использовать их. Мы передаем в <code>OrbitControls</code> камеру для 
 управления и элемент DOM для получения входных событий</p>
-<pre><code class="lang-js">const controls = new THREE.OrbitControls(camera, canvas);
+<pre class="prettyprint"><code class="lang-js">const controls = new THREE.OrbitControls(camera, canvas);
 controls.target.set(0, 5, 0);
 controls.update();
 </code></pre>
@@ -128,7 +128,7 @@ controls.update();
 при повторении и установке повторения равным половине размера 
 плоскости каждая клетка на шахматной доске будет иметь размер 
 ровно 1 единицу;</p>
-<pre><code class="lang-js">const planeSize = 40;
+<pre class="prettyprint"><code class="lang-js">const planeSize = 40;
 
 const loader = new THREE.TextureLoader();
 const texture = loader.load(&#39;../resources/images/checker.png&#39;);
@@ -141,7 +141,7 @@ texture.repeat.set(repeats, repeats);
 <p>Затем мы создаем геометрию плоскости, материал для плоскости и сетку, 
 чтобы вставить ее в сцену. Плоскости по умолчанию находятся в плоскости 
 XY, но земля находится в плоскости XZ, поэтому мы вращаем ее.</p>
-<pre><code class="lang-js">const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+<pre class="prettyprint"><code class="lang-js">const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
 const planeMat = new THREE.MeshPhongMaterial({
   map: texture,
   side: THREE.DoubleSide,
@@ -152,7 +152,7 @@ scene.add(mesh);
 </code></pre>
 <p>Давайте добавим куб и сферу, чтобы у нас было 3 вещи для освещения, 
 включая плоскость</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const cubeSize = 4;
   const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({color: &#39;#8AC&#39;});
@@ -174,7 +174,7 @@ scene.add(mesh);
 <p>Теперь, когда у нас есть сцена для освещения, давайте добавим свет!</p>
 <h2 id="-ambientlight-"><code>AmbientLight</code></h2>
 <p>Сначала давайте сделаем <code>AmbientLight</code></p>
-<pre><code class="lang-js">const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">const color = 0xFFFFFF;
 const intensity = 1;
 const light = new THREE.AmbientLight(color, intensity);
 scene.add(light);
@@ -189,7 +189,7 @@ scene.add(light);
 попытается установить свойство helper&#39;а, мы присвоим результат 
 обратно цвету источника света.</p>
 <p>Вот helper:</p>
-<pre><code class="lang-js">class ColorGUIHelper {
+<pre class="prettyprint"><code class="lang-js">class ColorGUIHelper {
   constructor(object, prop) {
     this.object = object;
     this.prop = prop;
@@ -203,7 +203,7 @@ scene.add(light);
 }
 </code></pre>
 <p>И вот наш код настройки dat.GUI</p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 </code></pre>
@@ -217,7 +217,7 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 <p>Нажмите и перетащите сценy, чтобы вращать камеру.</p>
 <p>Обратите внимание, формы плоские. <code>AmbientLight</code> только умножил цвет материала 
 на цвет света с учетом интенсивности.</p>
-<pre><code>color = materialColor * light.color * light.intensity;
+<pre class="prettyprint"><code>color = materialColor * light.color * light.intensity;
 </code></pre><p>Вот и все. У него нет направления.
 Этот стиль окружающего (ambient) освещения на самом деле не так полезен, 
 как освещение, так как он на 100% даже за исключением изменения цвета 
@@ -229,7 +229,7 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 между этими двумя цветами. Цвет неба, если поверхность объекта направлена 
 ​​вверх, и цвет земли, если поверхность объекта направлена ​​вниз.</p>
 <p>Вот новый код</p>
-<pre><code class="lang-js">-const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">-const color = 0xFFFFFF;
 +const skyColor = 0xB1E1FF;  // light blue
 +const groundColor = 0xB97A20;  // brownish orange
 const intensity = 1;
@@ -238,7 +238,7 @@ const intensity = 1;
 scene.add(light);
 </code></pre>
 <p>Давайте также обновим код dat.GUI для редактирования обоих цветов.</p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 -gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 +gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;skyColor&#39;);
 +gui.addColor(new ColorGUIHelper(light, &#39;groundColor&#39;), &#39;value&#39;).name(&#39;groundColor&#39;);
@@ -259,7 +259,7 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 <h2 id="-directionallight-"><code>DirectionalLight</code></h2>
 <p>Давайте переключим код на <code>DirectionalLight</code>. 
 <code>DirectionalLight</code> часто используется для воспроизведения солнца.</p>
-<pre><code class="lang-js">const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">const color = 0xFFFFFF;
 const intensity = 1;
 const light = new THREE.DirectionalLight(color, intensity);
 light.position.set(0, 10, 0);
@@ -271,7 +271,7 @@ scene.add(light.target);
 к сцене. <code>DirectionalLight</code> будет светить в направлении к своей цели.</p>
 <p>Давайте сделаем так, чтобы мы могли перемещать цель, 
 добавляя ее в наш графический интерфейс.</p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 gui.add(light.target.position, &#39;x&#39;, -10, 10);
@@ -290,14 +290,14 @@ gui.add(light.target.position, &#39;y&#39;, 0, 10);
 использовать тот <code>DirectionalLightHelper</code>, который нарисует плоскость, 
 чтобы изобразить источник света, и линию от света к цели. 
 Мы просто передаем ему свет и добавляем его на сцену.</p>
-<pre><code class="lang-js">const helper = new THREE.DirectionalLightHelper(light);
+<pre class="prettyprint"><code class="lang-js">const helper = new THREE.DirectionalLightHelper(light);
 scene.add(helper);
 </code></pre>
 <p>Пока мы работаем с ним, давайте сделаем так, чтобы мы могли установить 
 как положение источника света, так и цели. Для этого мы сделаем функцию, 
 которая по заданному <code>Vector3</code> скорректирует его <code>x</code>, <code>y</code> и <code>z</code> свойства, 
 используя <code>dat.GUI</code>.</p>
-<pre><code class="lang-js">function makeXYZGUI(gui, vector3, name, onChangeFn) {
+<pre class="prettyprint"><code class="lang-js">function makeXYZGUI(gui, vector3, name, onChangeFn) {
   const folder = gui.addFolder(name);
   folder.add(vector3, &#39;x&#39;, -10, 10).onChange(onChangeFn);
   folder.add(vector3, &#39;y&#39;, 0, 10).onChange(onChangeFn);
@@ -311,7 +311,7 @@ scene.add(helper);
 для вызова в любое время, а dat.GUI обновляет значение.</p>
 <p>Затем мы можем использовать это как для положения источника света, 
 так и для цели, как тут</p>
-<pre><code class="lang-js">+function updateLight{
+<pre class="prettyprint"><code class="lang-js">+function updateLight{
 +  light.target.updateMatrixWorld();
 +  helper.update();
 +}
@@ -338,7 +338,7 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 <h2 id="-pointlight-"><code>PointLight</code></h2>
 <p><code>PointLight</code> - это свет, который сидит в какой-то точке и излучает свет 
 во всех направлениях от этой точки. Давайте изменим код.</p>
-<pre><code class="lang-js">const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">const color = 0xFFFFFF;
 const intensity = 1;
 -const light = new THREE.DirectionalLight(color, intensity);
 +const light = new THREE.PointLight(color, intensity);
@@ -348,12 +348,12 @@ scene.add(light);
 -scene.add(light.target);
 </code></pre>
 <p>Давайте также перейдем к <code>PointLightHelper</code></p>
-<pre><code class="lang-js">-const helper = new THREE.DirectionalLightHelper(light);
+<pre class="prettyprint"><code class="lang-js">-const helper = new THREE.DirectionalLightHelper(light);
 +const helper = new THREE.PointLightHelper(light);
 scene.add(helper);
 </code></pre>
 <p>и поскольку нет цели, то <code>onChange</code> функция может быть проще.</p>
-<pre><code class="lang-js">function updateLight{
+<pre class="prettyprint"><code class="lang-js">function updateLight{
 -  light.target.updateMatrixWorld();
   helper.update();
 }
@@ -367,7 +367,7 @@ scene.add(helper);
 <code>distance</code> больше 0, то свет излучает свою полную интенсивность и 
 исчезает, с увеличением <code>distance</code> вдали от света.</p>
 <p>Давайте настроим графический интерфейс, чтобы мы могли регулировать расстояние.</p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +gui.add(light, &#39;distance&#39;, 0, 40).onChange(updateLight);
@@ -391,7 +391,7 @@ makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 <p>Чтобы использовать <code>SpotLight</code> нам нужна цель, т.к. это направленный свет. 
 Конус света открываем по направлению к цели.</p>
 <p>Модификация нашего <code>DirectionalLight</code> с помощником сверху</p>
-<pre><code class="lang-js">const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">const color = 0xFFFFFF;
 const intensity = 1;
 -const light = new THREE.DirectionalLight(color, intensity);
 +const light = new THREE.SpotLight(color, intensity);
@@ -405,14 +405,14 @@ scene.add(helper);
 <p>Угол конуса прожектора задается с помощью свойства <a href="Spotlight.angle"><code>angle</code></a> 
 в радианах. Мы будем использовать наш <code>DegRadHelper</code> из 
 <a href="threejs-textures.html">статьи про текстуры</a> для представления пользовательского интерфейса в градусах..</p>
-<pre><code class="lang-js">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(updateLight);
+<pre class="prettyprint"><code class="lang-js">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(updateLight);
 </code></pre>
 <p>Внутренний конус определяется путем установки свойства <a href="SpotLight.penumbra"><code>penumbra</code></a> 
 в процентах от внешнего конуса. Другими словами, когда <code>penumbra</code> = 0 , то внутренний код 
 имеет такой же размер (0 = нет разницы) от внешнего конуса. Когда значение
 <code>penumbra</code> равно 1, свет гаснет, начиная с центра конуса до внешнего конуса. 
 Когда <code>penumbra</code> равно .5, то свет гаснет, начиная с 50% между центром внешнего конуса.</p>
-<pre><code class="lang-js">gui.add(light, &#39;penumbra&#39;, 0, 1, 0.01);
+<pre class="prettyprint"><code class="lang-js">gui.add(light, &#39;penumbra&#39;, 0, 1, 0.01);
 </code></pre>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-spot-w-helper.html"></iframe>
@@ -431,7 +431,7 @@ scene.add(helper);
 свет или, возможно, матовый небесный свет в потолке.</p>
 <p><code>RectAreaLight</code> работает только с <code>MeshStandardMaterai</code> и
 <code>MeshPhysicalMaterial</code> поэтому давайте изменим все наши материалы на <code>MeshStandardMaterial</code></p>
-<pre><code class="lang-js">  ...
+<pre class="prettyprint"><code class="lang-js">  ...
 
   const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
 -  const planeMat = new THREE.MeshPhongMaterial({
@@ -465,13 +465,13 @@ scene.add(helper);
 }
 </code></pre>
 <p>Для использования <code>RectAreaLight</code> нам нужно включить некоторые дополнительные возможности three.js</p>
-<pre><code class="lang-html">&lt;script src=&quot;../resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;../resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;../resources/threejs/r103/js/lights/RectAreaLightUniformsLib.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Если вы забудете RectAreaLightUniformsLib, индикатор все равно будет работать, 
 но он будет выглядеть забавно, поэтому не забудьте включить дополнительный код.</p>
 <p>Теперь мы можем создать свет</p>
-<pre><code class="lang-js">const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">const color = 0xFFFFFF;
 *const intensity = 5;
 +const width = 12;
 +const height = 4;
@@ -487,7 +487,7 @@ scene.add(helper);
 <code>RectAreaLight</code> не использует цель. Он просто использует свой поворот.</p>
 <p>Давайте также настроим графический интерфейс. Мы сделаем так, чтобы мы могли вращать 
 свет и регулировать его <code>width</code> и <code>height</code></p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 10, 0.01);
 gui.add(light, &#39;width&#39;, 0, 20).onChange(updateLight);
@@ -517,11 +517,11 @@ makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 Там также есть распад <a href="PointLight.decay"><code>decay</code></a>, он должен быть установлен в <code>2</code> для реализма.</p>
 <p>Давайте проверим это.</p>
 <p>Сначала мы включим физически правильное осещение</p>
-<pre><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
 +renderer.physicallyCorrectLights = true;
 </code></pre>
 <p>Затем мы установим <code>power</code> = 800 lumens,  <code>decay</code> = 2 и <code>distance</code> до <code>Infinity</code>.</p>
-<pre><code class="lang-js">const color = 0xFFFFFF;
+<pre class="prettyprint"><code class="lang-js">const color = 0xFFFFFF;
 const intensity = 1;
 const light = new THREE.PointLight(color, intensity);
 light.power = 800;
@@ -529,7 +529,7 @@ light.decay = 2;
 light.distance = Infinity;
 </code></pre>
 <p>и мы добавим графический интерфейс, чтобы мы могли изменить <code>power</code> и <code>decay</code></p>
-<pre><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;decay&#39;, 0, 4, 0.01);
 gui.add(light, &#39;power&#39;, 0, 2000);

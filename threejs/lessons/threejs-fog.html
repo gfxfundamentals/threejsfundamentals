@@ -96,7 +96,7 @@ Anything further than <code>far</code> is completely the fog color. Parts betwee
 <code>near</code> and <code>far</code> fade from their material color to the fog color.</p>
 <p>There&#39;s also <code>FogExp2</code> which grows expotentially with distance from the camera.</p>
 <p>To use either type of fog you create one and and assign it to the scene as in</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;  // white
   const near = 10;
@@ -105,7 +105,7 @@ Anything further than <code>far</code> is completely the fog color. Parts betwee
 }
 </code></pre>
 <p>or for <code>FogExp2</code> it would be</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;
   const density = 0.1;
@@ -135,7 +135,7 @@ need to set the fog <strong>and</strong> the background color to the same color.
 The background color is set using the 
 <a href="Scene.background"><code>scene.background</code></a>
 property. To pick a background color you attach a <code>THREE.Color</code> to it. For example</p>
-<pre><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
+<pre class="prettyprint"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
 </code></pre>
 <div class="spread">
   <div>
@@ -151,7 +151,7 @@ property. To pick a background color you attach a <code>THREE.Color</code> to it
 <p>Here is one of our previous examples with fog added. The only addition
 is right after setting up the scene we add the fog and set the scene&#39;s
 backgound color</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 
 +{
 +  const near = 1;
@@ -179,7 +179,7 @@ the fog&#39;s <code>near</code> and <code>far</code> properties but it&#39;s inv
 <code>near</code> be greater than <code>far</code> so let&#39;s make a helper so dat.GUI
 can manipulate a <code>near</code> and <code>far</code> property but we&#39;ll make sure <code>near</code>
 is less than or equal to <code>far</code> and <code>far</code> is greater than or equal <code>near</code>.</p>
-<pre><code class="lang-js">// We use this class to pass to dat.gui
+<pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 class FogGUIHelper {
@@ -203,7 +203,7 @@ class FogGUIHelper {
 }
 </code></pre>
 <p>We can then add it like this</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -231,7 +231,7 @@ As an RGB array (eg: <code>[255, 128, 64]</code>). Or, as an RGBA array (eg: <co
 dat.GUI is only manipulating a single value. Fortunately <code>THREE.Color</code>
 as a <a href="Color.getHexString"><code>getHexString</code></a> method
 we get use to easily get such a string, we just have to prepend a &#39;#&#39; to the front.</p>
-<pre><code class="lang-js">// We use this class to pass to dat.gui
+<pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 +// Also when dat.gui maniplates color we&#39;ll
@@ -265,7 +265,7 @@ class FogGUIHelper {
 }
 </code></pre>
 <p>We then call <code>gui.addColor</code> to add a color UI for our helper&#39;s virutal property.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;

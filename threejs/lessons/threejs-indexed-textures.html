@@ -129,12 +129,12 @@ even lower the resolution but 217k seems good enough for now.</p>
 <p>So let&#39;s try using it for picking countries.</p>
 <p>Grabbing code from the <a href="threejs-picking.html">gpu picking example</a> we need
 a scene for picking.</p>
-<pre><code class="lang-js">const pickingScene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const pickingScene = new THREE.Scene();
 pickingScene.background = new THREE.Color(0);
 </code></pre>
 <p>and we need to add the globe with the our index texture to the
 picking scene.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const loader = new THREE.TextureLoader();
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
 
@@ -152,7 +152,7 @@ picking scene.</p>
 </code></pre>
 <p>Then let&#39;s copy over the <code>GPUPickingHelper</code> class we used
 before with a few minor changes.</p>
-<pre><code class="lang-js">class GPUPickHelper {
+<pre class="prettyprint"><code class="lang-js">class GPUPickHelper {
   constructor() {
     // create a 1x1 pixel render target
     this.pickingTexture = new THREE.WebGLRenderTarget(1, 1);
@@ -211,7 +211,7 @@ before with a few minor changes.</p>
 }
 </code></pre>
 <p>Now we can use that to pick countries.</p>
-<pre><code class="lang-js">const pickHelper = new GPUPickHelper();
+<pre class="prettyprint"><code class="lang-js">const pickHelper = new GPUPickHelper();
 
 function pickCountry(event) {
   // exit if we have not loaded the data yet
@@ -266,7 +266,7 @@ the array of countries. If <code>shift</code> or <code>ctrl</code> or <code>cmd<
 is pressed then you can select more than one country.</p>
 <p>All that&#39;s left is showing the selected countries. For now
 let&#39;s just update the labels.</p>
-<pre><code class="lang-js">function updateLabels() {
+<pre class="prettyprint"><code class="lang-js">function updateLabels() {
   // exit if we have not loaded the data yet
   if (!countryInfos) {
     return;
@@ -313,7 +313,7 @@ into a palette. So for example a value
 of 3 in the image means &quot;display color 3&quot;. What color color#3 is is
 defined somewhere else called a &quot;palette&quot;.</p>
 <p>In JavaScript you can think of it like this</p>
-<pre><code class="lang-js">const face7x7PixelImageData = [
+<pre class="prettyprint"><code class="lang-js">const face7x7PixelImageData = [
   0, 1, 1, 1, 1, 1, 0,
   1, 0, 0, 0, 0, 0, 1, 
   1, 0, 2, 0, 2, 0, 1,
@@ -347,7 +347,7 @@ That way we can use lighting and other features if we want.</p>
 we can modify the default shaders by adding a function to a material&#39;s
 <code>onBeforeCompile</code> property.</p>
 <p>The default fragment shader looks something like this before compiling.</p>
-<pre><code class="lang-glsl">#include &lt;common&gt;
+<pre class="prettyprint"><code class="lang-glsl">#include &lt;common&gt;
 #include &lt;color_pars_fragment&gt;
 #include &lt;uv_pars_fragment&gt;
 #include &lt;uv2_pars_fragment&gt;
@@ -396,7 +396,7 @@ and mix them for the final result.</p>
 <p>Like we <a href="threejs-lots-of-objects-animated.html">did before</a> we&#39;ll make an array
 of search and replacement strings and apply them to the shader in 
 <code>Material.onBeforeCompile</code>.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const loader = new THREE.TextureLoader();
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
 
@@ -460,7 +460,7 @@ list of countries loads to get an exact number or look it up.
 There&#39;s not much harm in just picking some larger number so
 let&#39;s choose 512.</p>
 <p>Here&#39;s the code to create the palette texture</p>
-<pre><code class="lang-js">const maxNumCountries = 512;
+<pre class="prettyprint"><code class="lang-js">const maxNumCountries = 512;
 const paletteTextureWidth = maxNumCountries;
 const paletteTextureHeight = 1;
 const palette = new Uint8Array(paletteTextureWidth * 3);
@@ -473,7 +473,7 @@ paletteTexture.magFilter = THREE.NearestFilter;
 we&#39;re giving it 512 RGB colors, 3 bytes each where each byte is
 red, green, and blue respectively using values that go from 0 to 255.</p>
 <p>Let&#39;s fill it with random colors just to see it work</p>
-<pre><code class="lang-js">for (let i = 1; i &lt; palette.length; ++i) {
+<pre class="prettyprint"><code class="lang-js">for (let i = 1; i &lt; palette.length; ++i) {
   palette[i] = Math.random() * 256;
 }
 // set the ocean color (index #0)
@@ -484,7 +484,7 @@ paletteTexture.needsUpdate = true;
 the contents of the <code>palette</code> array we need to set <code>paletteTexture.needsUpdate</code>
 to <code>true</code>.</p>
 <p>And then we still need to set the uniforms on the material.</p>
-<pre><code class="lang-js">const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+<pre class="prettyprint"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
 const material = new THREE.MeshBasicMaterial({map: texture});
 material.onBeforeCompile = function(shader) {
   fragmentShaderReplacements.forEach((rep) =&gt; {
@@ -507,7 +507,7 @@ scene.add(new THREE.Mesh(geometry, material));
 let&#39;s manipulate the palette for highlighting.</p>
 <p>First let&#39;s make function that will let us pass in a three.js
 style color and give us values we can put in the palette texture.</p>
-<pre><code class="lang-js">const tempColor = new THREE.Color();
+<pre class="prettyprint"><code class="lang-js">const tempColor = new THREE.Color();
 function get255BasedColor(color) {
   tempColor.set(color);
   return tempColor.toArray().map(v =&gt; v * 255);
@@ -517,7 +517,7 @@ function get255BasedColor(color) {
 return an array like <code>[255, 0, 0]</code>.</p>
 <p>Next let&#39;s use it to make a few colors and fill out the
 palette.</p>
-<pre><code class="lang-js">const selectedColor = get255BasedColor(&#39;red&#39;);
+<pre class="prettyprint"><code class="lang-js">const selectedColor = get255BasedColor(&#39;red&#39;);
 const unselectedColor = get255BasedColor(&#39;#444&#39;);
 const oceanColor = get255BasedColor(&#39;rgb(100,200,255)&#39;);
 resetPalette();
@@ -539,7 +539,7 @@ function resetPalette() {
 </code></pre>
 <p>Now let&#39;s use those functions to update the palette when a country
 is selected</p>
-<pre><code class="lang-js">function pickCountry(event) {
+<pre class="prettyprint"><code class="lang-js">function pickCountry(event) {
   // exit if we have not loaded the data yet
   if (!countryInfos) {
     return;
@@ -588,7 +588,7 @@ Another is did the user actually move the mouse. If the
 time is short or if they didn&#39;t move the mouse then it
 was probably a click. Otherwise they were probably trying
 to drag the globe.</p>
-<pre><code class="lang-js">+const maxClickTimeMs = 200;
+<pre class="prettyprint"><code class="lang-js">+const maxClickTimeMs = 200;
 +const maxMoveDeltaSq = 5 * 5;
 +const startPosition = {};
 +let startTimeMs;

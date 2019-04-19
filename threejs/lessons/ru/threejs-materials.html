@@ -89,18 +89,18 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 зависит от того, чего вы пытаетесь достичь.</p>
 <p>Есть 2 способа установить большинство свойств материала. 
 Один во время создания, который мы видели раньше.</p>
-<pre><code class="lang-js">const material = new THREE.MeshPhongMaterial({
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
   color: 0xFF0000,    // red (можно также использовать css цвета)
   flatShading: true,
 });
 </code></pre>
 <p>Другой после создания</p>
-<pre><code class="lang-js">const material = new THREE.MeshPhongMaterial();
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial();
 material.color.setHSL(0, 1, .5);  // red
 material.flatShading = true;
 </code></pre>
 <p>обратите внимание, что свойства типа <code>THREE.Color</code> могут быть установлены несколькими способами.</p>
-<pre><code class="lang-js">material.color.set(0x00FFFF);    // так же, как в CSS #RRGGBB
+<pre class="prettyprint"><code class="lang-js">material.color.set(0x00FFFF);    // так же, как в CSS #RRGGBB
 material.color.set(cssString);   // любой CSS цвет, например &#39;purple&#39;, &#39;#F32&#39;, 
                                  // &#39;rgb(255, 127, 64)&#39;,
                                  // &#39;hsl(180, 50%, 25%)&#39;
@@ -109,7 +109,7 @@ material.color.setHSL(h, s, l)   // где h, s, и l от 0 до 1
 material.color.setRGB(r, g, b)   // где r, g, и b от 0 до 1
 </code></pre>
 <p>И во время создания вы можете передать либо шестнадцатеричное число либо строку CSS</p>
-<pre><code class="lang-js">const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
+<pre class="prettyprint"><code class="lang-js">const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
 const m2 = new THREE.MeshBasicMaterial({color: &#39;red&#39;});            // red
 const m3 = new THREE.MeshBasicMaterial({color: &#39;#F00&#39;});           // red
 const m4 = new THREE.MeshBasicMaterial({color: &#39;rgb(255,0,0)&#39;});   // red

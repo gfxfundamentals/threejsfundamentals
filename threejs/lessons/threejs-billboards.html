@@ -87,7 +87,7 @@ other things that always face the camera. Three.js provides the <code>Sprite</co
 <code>SpriteMaterial</code> to make this happen.</p>
 <p>Let&#39;s change the badge example from <a href="threejs-canvas-textures.html">the article on canvas textures</a>
 to use <code>Sprite</code> and <code>SpriteMaterial</code></p>
-<pre><code class="lang-js">function makePerson(x, labelWidth, size, name, color) {
+<pre class="prettyprint"><code class="lang-js">function makePerson(x, labelWidth, size, name, color) {
   const canvas = makeLabelCanvas(labelWidth, size, name);
   const texture = new THREE.CanvasTexture(canvas);
   // because our canvas is likely not a power of 2
@@ -132,7 +132,7 @@ characters. </p>
 <div class="threejs_center"><img src="resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
 
 <p>We can move the position of the labels to fix.</p>
-<pre><code class="lang-js">+// if units are meters then 0.01 here makes size
+<pre class="prettyprint"><code class="lang-js">+// if units are meters then 0.01 here makes size
 +// of the label into centimeters.
 +const labelBaseScale = 0.01;
 const label = new THREE.Sprite(labelMaterial);
@@ -160,7 +160,7 @@ of 3D objects. This is often faster than drawing 3D objects.</p>
 tree from a cylinder for the base and a cone for the top.</p>
 <p>First we make the cone and cylinder geometry and materials that
 all the trees will share</p>
-<pre><code class="lang-js">const trunkRadius = .2;
+<pre class="prettyprint"><code class="lang-js">const trunkRadius = .2;
 const trunkHeight = 1;
 const trunkRadialSegments = 12;
 const trunkGeometry = new THREE.CylinderBufferGeometry(
@@ -177,7 +177,7 @@ const topMaterial = new THREE.MeshPhongMaterial({color: &#39;green&#39;});
 </code></pre>
 <p>Then we&#39;ll make a function that makes a <code>Mesh</code> each for the trunk and top
 of a tree and parents both to an <code>Object3D</code>.</p>
-<pre><code class="lang-js">function makeTree(x, z) {
+<pre class="prettyprint"><code class="lang-js">function makeTree(x, z) {
   const root = new THREE.Object3D();
   const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
   trunk.position.y = trunkHeight / 2;
@@ -194,14 +194,14 @@ of a tree and parents both to an <code>Object3D</code>.</p>
 }
 </code></pre>
 <p>Then we&#39;ll make a loop to place a grid of trees.</p>
-<pre><code class="lang-js">for (let z = -50; z &lt;= 50; z += 10) {
+<pre class="prettyprint"><code class="lang-js">for (let z = -50; z &lt;= 50; z += 10) {
   for (let x = -50; x &lt;= 50; x += 10) {
     makeTree(x, z);
   }
 }
 </code></pre>
 <p>Let&#39;s also add a ground plane while we&#39;re at it</p>
-<pre><code class="lang-js">// add ground
+<pre class="prettyprint"><code class="lang-js">// add ground
 {
   const size = 400;
   const geometry = new THREE.PlaneBufferGeometry(size, size);
@@ -212,7 +212,7 @@ of a tree and parents both to an <code>Object3D</code>.</p>
 }
 </code></pre>
 <p>and change the background to light blue</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 -scene.background = new THREE.Color(&#39;white&#39;);
 +scene.background = new THREE.Color(&#39;lightblue&#39;);
 </code></pre>
@@ -234,7 +234,7 @@ some code to try to generate one.</p>
 <p>Let&#39;s write some code to render an object to a texture
 using a <code>RenderTarget</code>. We covered rendering to a <code>RenderTarget</code>
 in <a href="threejs-rendertargets.html">the article on render targets</a>.</p>
-<pre><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+<pre class="prettyprint"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
   const halfFovY = THREE.Math.degToRad(camera.fov * .5);
   const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
@@ -304,19 +304,19 @@ the scene. </p>
 <p>It&#39;s important to note we need the lights in the scene but we
 need to make sure nothing else is in the scene.</p>
 <p>We also need to not set a background color on the scene</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 -scene.background = new THREE.Color(&#39;lightblue&#39;);
 </code></pre>
 <p>Finally we&#39;ve made the texture we return it and the position and scale we
 need to make the facade so that it will appear to be in the same place.</p>
 <p>We then make a tree and call this code and pass it in</p>
-<pre><code class="lang-js">// make billboard texture
+<pre class="prettyprint"><code class="lang-js">// make billboard texture
 const tree = makeTree(0, 0);
 const facadeSize = 64;
 const treeSpriteInfo = makeSpriteTexture(facadeSize, tree);
 </code></pre>
 <p>We can then make a grid of facades instead of a grid of tree models</p>
-<pre><code class="lang-js">+function makeSprite(spriteInfo, x, z) {
+<pre class="prettyprint"><code class="lang-js">+function makeSprite(spriteInfo, x, z) {
 +  const {texture, offset, scale} = spriteInfo;
 +  const mat = new THREE.SpriteMaterial({
 +    map: texture,
@@ -341,7 +341,7 @@ for (let z = -50; z &lt;= 50; z += 10) {
 <p>In the code above we apply the offset and scale needed to position the facade so it
 appears the same place the original tree would have appeared.</p>
 <p>Now that we&#39;re done making the tree facade texture we can set the background again</p>
-<pre><code class="lang-js">scene.background = new THREE.Color(&#39;lightblue&#39;);
+<pre class="prettyprint"><code class="lang-js">scene.background = new THREE.Color(&#39;lightblue&#39;);
 </code></pre>
 <p>and now we get a scene of tree facades</p>
 <p><div class="threejs_example_container">

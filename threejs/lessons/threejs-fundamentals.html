@@ -104,13 +104,13 @@ do is make the computer print <code>&quot;Hello World!&quot;</code>. For 3D one
 of the most common first things to do is to make a 3D cube.
 so let&#39;s start with &quot;Hello Cube!&quot;</p>
 <p>The first thing we need is a <code>&lt;canvas&gt;</code> tag so</p>
-<pre><code class="lang-html">&lt;body&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;/body&gt;
 </code></pre>
 <p>Three.js will draw into that canvas so we need to look it up
 and pass it to three.js.</p>
-<pre><code class="lang-html">&lt;script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script&gt;
 &#39;use strict&#39;;
 
 /* global THREE */
@@ -136,7 +136,7 @@ like <code>CSSRenderer</code>, a <code>CanvasRenderer</code> and in the future t
 <code>WebGL2Renderer</code> or <code>WebGPURenderer</code>. For now there&#39;s the <code>WebGLRenderer</code>
 that uses WebGL to render 3D to the canvas.</p>
 <p>Next up we need a camera.</p>
-<pre><code class="lang-js">const fov = 75;
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
@@ -163,7 +163,7 @@ will not.</p>
 <p>The camera defaults to looking down the -Z axis with +Y up. We&#39;ll put our cube
 at the origin so we need to move the camera back a litte from the origin
 in order to see anything.</p>
-<pre><code class="lang-js">camera.position.z = 2;
+<pre class="prettyprint"><code class="lang-js">camera.position.z = 2;
 </code></pre>
 <p>Here&#39;s what we&#39;re aiming for.</p>
 <p><img src="resources/scene-down.svg" width="500" class="threejs_center"/></p>
@@ -176,33 +176,33 @@ our specified 75 degrees which is the vertical field of view.</p>
 <p>Next we make a <code>Scene</code>. A <code>Scene</code> in three.js is the root of a form of scene graph.
 Anything you want three.js to draw needs to be added to the scene. We&#39;ll
 cover more details of <a href="threejs-scenegraph.html">how scenes work in a future article</a>.</p>
-<pre><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 </code></pre>
 <p>Next up we create a <code>BoxGeometry</code> which contains the data for a box.
 Almost anything we want to display in Three.js needs geometry which defines
 the vertices that make up our 3D object.</p>
-<pre><code class="lang-js">const boxWidth = 1;
+<pre class="prettyprint"><code class="lang-js">const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 </code></pre>
 <p>We then create a basic material and set its color. Colors can
 be specified using standard CSS style 6 digit hex color values.</p>
-<pre><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </code></pre>
 <p>We then create a <code>Mesh</code>. A <code>Mesh</code> in three represents the combination
 of a <code>Geometry</code> (the shape of the object) and a <code>Material</code> (how to draw
 the object, shiny or flat, what color, what texture(s) to apply. Etc.)
 as well as the position, orientation, and scale of that
 object in the scene.</p>
-<pre><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+<pre class="prettyprint"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
 </code></pre>
 <p>And finally we add that mesh to the scene</p>
-<pre><code class="lang-js">scene.add(cube);
+<pre class="prettyprint"><code class="lang-js">scene.add(cube);
 </code></pre>
 <p>We can then render the scene by calling the renderer&#39;s render function
 and passing it the scene and the camera</p>
-<pre><code class="lang-js">renderer.render(scene, camera);
+<pre class="prettyprint"><code class="lang-js">renderer.render(scene, camera);
 </code></pre>
 <p>Here&#39;s a working exmaple</p>
 <p><div class="threejs_example_container">
@@ -218,7 +218,7 @@ so we&#39;re only seeing a single face.</p>
 it clear it&#39;s being drawn in 3D. To animate it we&#39;ll render inside a render loop using
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code>requestAnimationFrame</code></a>.</p>
 <p>Here&#39;s our loop</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;  // convert time to seconds
 
   cube.rotation.x = time;
@@ -255,7 +255,7 @@ our loop.</p>
 so let&#39;s add a light. There are many kinds of lights in three.js which
 we&#39;ll go over in a future article. For now let&#39;s create a directional
 light.</p>
-<pre><code class="lang-js">{
+<pre class="prettyprint"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -269,7 +269,7 @@ above, and behind our camera. The target is still 0, 0, 0 so it will shine
 toward the origin.</p>
 <p>We also need to change the material. The <code>MeshBasicMaterial</code> is not affected by
 lights. Let&#39;s change it to a <code>MeshPhongMaterial</code> which is affected by lights.</p>
-<pre><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
 +const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 </code></pre>
 <p>And here it is working.</p>
@@ -287,7 +287,7 @@ material so each cube can be a different color.</p>
 with the specified color. Then it creates a mesh using
 the specified geometry and adds it to the scene and
 sets its X position.</p>
-<pre><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -300,7 +300,7 @@ sets its X position.</p>
 </code></pre>
 <p>Then we&#39;ll call it 3 times with 3 different colors and X positions
 saving the <code>Mesh</code> instances in an array.</p>
-<pre><code class="lang-js">const cubes = [
+<pre class="prettyprint"><code class="lang-js">const cubes = [
   makeInstance(geometry, 0x44aa88,  0),
   makeInstance(geometry, 0x8844aa, -2),
   makeInstance(geometry, 0xaa8844,  2),
@@ -308,7 +308,7 @@ saving the <code>Mesh</code> instances in an array.</p>
 </code></pre>
 <p>Finally we&#39;ll spin all 3 cubes in our render function. We
 compute a slightly different rotation for each one.</p>
-<pre><code class="lang-js">function render(time) {
+<pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;  // convert time to seconds
 
   cubes.forEach((cube, ndx) =&gt; {
