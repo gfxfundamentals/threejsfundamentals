@@ -104,15 +104,16 @@ extra info used only inside 3d editors</p>
 <p>These are usually specific to certain apps, usually games.</p>
 </li>
 <li><p>Transmission formats</p>
-<p>gLTF might be the first truely transmission format. I suppose VRML might be considered
+<p>gLTF might be the first true transmission format. I suppose VRML might be considered
 one but VRML was actually a pretty poor format.</p>
-<p>gLTF is designed to do 3 things well that all those other formats don&#39;t do</p>
+<p>gLTF is designed to do some things well that all those other formats don&#39;t do</p>
 <ol>
 <li><p>Be small for transmission</p>
 <p>For example this means much of their large data, like vertices, is stored in
 binary. When you download a .gLTF file that data can be uploaded to the GPU
 with zero processing. It&#39;s ready as is. This is in contrast to say VRML, .OBJ,
-or .DAE where vertices are stored as text and have to be parsed.</p>
+or .DAE where vertices are stored as text and have to be parsed. Text vertex
+positions can easily be 3x to 5x larger than binary.</p>
 </li>
 <li><p>Be ready to render</p>
 <p>This again is different from other formats except maybe App formats. The data
@@ -124,7 +125,7 @@ Materials have known values that are supposed to work everywhere.</p>
 </li>
 </ul>
 <p>gLTF was specifically designed so you should be able to download a glTF file and
-display it with a minimum of trouble. Let&#39;s cross our fingers that&#39;s truely the case
+display it with a minimum of trouble. Let&#39;s cross our fingers that&#39;s truly the case
 as none of the other formats have been able to do this.</p>
 <p>I wasn&#39;t really sure what I should show. At some level loading and displaying a gLTF file
 is simpler than an .OBJ file. Unlike a .OBJ file materials are directly part of the format.
@@ -177,8 +178,8 @@ objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, 
 <p>Next I wanted to see if I could animate the cars driving around so
 I needed to check if the scene had the cars as separate entities
 and if they were setup in a way I could use them.</p>
-<p>I wrote some code to dump put the scenegraph to the JavaScript
-console.</p>
+<p>I wrote some code to dump put the scenegraph to the <a href="threejs-debugging-javascript.html">JavaScript
+console</a>.</p>
 <p>Here&#39;s the code to print out the scenegraph.</p>
 <pre class="prettyprint"><code class="lang-js">function dumpObject(obj, lines = [], isLast = true, prefix = &#39;&#39;) {
   const localPrefix = isLast ? &#39;└─&#39; : &#39;├─&#39;;
@@ -239,7 +240,7 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
           │ │ └─Car_04_2_2_World_ap_0 [Mesh]
           ...
 </code></pre>
-<p>From that we can see all the cars happen to be under parent
+<p>From that we can see all the cars happen to be under a parent
 called <code>&quot;Cars&quot;</code></p>
 <pre class="prettyprint"><code class="lang-text">*          ├─Cars [Object3D]
           │ ├─CAR_03_1 [Object3D]
@@ -250,7 +251,7 @@ called <code>&quot;Cars&quot;</code></p>
           │ │ └─Car_04_World_ap_0 [Mesh]
 </code></pre>
 <p>So as a simple test I thought I would just try rotating
-all the children of the &quot;Cars&quot; node around their Y axis</p>
+all the children of the &quot;Cars&quot; node around their Y axis.</p>
 <p>I looked up the &quot;Cars&quot; node after loading the scene
 and saved the result.</p>
 <pre class="prettyprint"><code class="lang-js">+let cars;
@@ -262,7 +263,7 @@ and saved the result.</p>
 +    cars = root.getObjectByName(&#39;Cars&#39;);
 </code></pre>
 <p>Then in the <code>render</code> function we can just set the rotation
-of each child of <code>cars</code></p>
+of each child of <code>cars</code>.</p>
 <pre class="prettyprint"><code class="lang-js">+function render(time) {
 +  time *= 0.001;  // convert to seconds
 
@@ -291,7 +292,8 @@ of each child of <code>cars</code></p>
 
 </p>
 <p>Hmmm, it looks like unfortunately this scene wasn&#39;t designed to
-animate the cars as their origins are not setup for that purpose. The trucks are rotating in the wrong direction.</p>
+animate the cars as their origins are not setup for that purpose.
+The trucks are rotating in the wrong direction.</p>
 <p>This brings up an important point which is if you&#39;re going to
 do something in 3D you need to plan ahead and design your assets
 so they have their origins in the correct places, so they are
@@ -299,12 +301,14 @@ the correct scale, etc.</p>
 <p>Since I&#39;m not an artist and I don&#39;t know blender that well I
 will hack this example. We&#39;ll take each car and parent it to
 another <code>Object3D</code>. We will then move those <code>Object3D</code> objects
-to move the cars but separately we can set the car&#39;s <code>Object3D</code>
-to re-orient it so it&#39;s about where we really need it.</p>
+to move the cars but separately we can set the car&#39;s original
+<code>Object3D</code> to re-orient it so it&#39;s about where we really need it.</p>
 <p>Looking back at the scene graph listing it looks like there
 are really only 3 types of cars, &quot;Car_08&quot;, &quot;CAR_03&quot;, and &quot;Car_04&quot;.
-Each type of car will work with the same adjustments.</p>
-<p>I wrote this code to go through each car, parent it to a new <code>Object3D</code>, parent that new <code>Object3D</code> to the scene, and apply some per car <em>type</em> settings to fix its orientation, and add
+Hopefully each type of car will work with the same adjustments.</p>
+<p>I wrote this code to go through each car, parent it to a new
+<code>Object3D</code>, parent that new <code>Object3D</code> to the scene, and apply
+some per car <em>type</em> settings to fix its orientation, and add
 the new <code>Object3D</code> a <code>cars</code> array.</p>
 <pre class="prettyprint"><code class="lang-js">-let cars;
 +const cars = [];
@@ -322,7 +326,7 @@ the new <code>Object3D</code> a <code>cars</code> array.</p>
 +      { prefix: &#39;Car_04&#39;, rot: [0, Math.PI, 0], },
 +    ];
 +
-+     root.updateMatrixWorld();
++    root.updateMatrixWorld();
 +    for (const car of loadedCars.children.slice()) {
 +      const fix = fixes.find(fix =&gt; car.name.startsWith+(fix.prefix));
 +      const obj = new THREE.Object3D();
@@ -342,7 +346,7 @@ the new <code>Object3D</code> a <code>cars</code> array.</p>
 </div>
 
 </p>
-<p>Now let&#39;s drive them around</p>
+<p>Now let&#39;s drive them around.</p>
 <p>Making even a simple driving system is too much for this post but
 it seems instead we could just make one convoluted path that
 drives down all the roads and then put the cars on the path.
@@ -350,12 +354,12 @@ Here&#39;s a picture from Blender about half way through building
 the path.</p>
 <div class="threejs_center"><img src="resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
 
-<p>I needed as way to get the data for that path out of Blender.
+<p>I needed a way to get the data for that path out of Blender.
 Fortunately I was able to select just my path and export .OBJ checking &quot;write nurbs&quot;.</p>
 <div class="threejs_center"><img src="resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
 
 <p>Opening the .OBJ file I was able to get a list of points
-which I formated into this</p>
+which I formatted into this</p>
 <pre class="prettyprint"><code class="lang-js">const controlPoints = [
   [1.118281, 5.115846, -3.681386],
   [3.948875, 5.115846, -3.641834],
@@ -391,7 +395,7 @@ a curve like this</p>
 some extra points we could get what we want. For each pair
 of points we&#39;ll compute a point 10% of the way between
 the 2 points and another 90% of the way between the 2 points
-and pass the result to <code>CatmullRomCurve3</code></p>
+and pass the result to <code>CatmullRomCurve3</code>.</p>
 <p>This will give us a curve like this</p>
 <div class="threejs_center"><img src="resources/images/car-curves-after.png" style="width: 400px"></div>
 
@@ -446,11 +450,12 @@ let curveObject;
 }
 </code></pre>
 <p>The first part of that code makes a curve.
-The second part of that code generaetes 250 points
+The second part of that code generates 250 points
 from the curve and then creates an object to display
 the lines made by connecting those 250 points.</p>
-<p>Running <a href="../threejs-load-gltf-car-path.html">the example</a> I didn&#39;t see the curve. To make it
-visible made it ignore the depth test and render last</p>
+<p>Running <a href="../threejs-load-gltf-car-path.html">the example</a> I didn&#39;t see
+the curve. To make it visible I made it ignore the depth test and
+render last</p>
 <pre class="prettyprint"><code class="lang-js">    curveObject = new THREE.Line(geometry, material);
 +    material.depthTest = false;
 +    curveObject.renderOrder = 1;
@@ -458,24 +463,25 @@ visible made it ignore the depth test and render last</p>
 <p>And that&#39;s when I discovered it was way too small.</p>
 <div class="threejs_center"><img src="resources/images/car-curves-too-small.png" style="width: 498px"></div>
 
-<p>Checking the heirarchy in Blender I found out that the artist had
+<p>Checking the hierarchy in Blender I found out that the artist had
 scaled the node all the cars are parented to.</p>
 <div class="threejs_center"><img src="resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
 
 <p>Scaling is bad for real time 3D apps. It causes all kinds of
-issues and ends up being no end of frustrating when doing
+issues and ends up being no end of frustration when doing
 real time 3D. Artists often don&#39;t know this because it&#39;s so
-easy to scale an entire scene in a 3D editing program but if you decide to make a real time 3D app I suggest you instructor your
+easy to scale an entire scene in a 3D editing program but
+if you decide to make a real time 3D app I suggest you request your
 artists to never scale anything. If they change the scale
 they should find a way to apply that scale to the vertices
-so that when it ends up making it your app you can ignore
+so that when it ends up making it to your app you can ignore
 scale.</p>
-<p>And not just scale, in this case the cars are rotated and offset
+<p>And, not just scale, in this case the cars are rotated and offset
 by their parent, the <code>Cars</code> node. This will make it hard at runtime
 to move the cars around in world space. To be clear, in this case
 we want cars to drive around in world space which is why these
 issues are coming up. If something that is meant to be manipulated
-in a local space, the the moon revolving around the earth this
+in a local space, like the moon revolving around the earth this
 is less of an issue.</p>
 <p>Going back to the function we wrote above to dump the scene graph,
 let&#39;s dump the position, rotation, and scale of each node.</p>
@@ -535,8 +541,11 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
           │ │       rot: 0.000, 0.000, 0.000
           │ │       scl: 1.000, 1.000, 1.000
 </code></pre>
-<p>This shows us that <code>Cars</code> in the original scene has had its rotation and scale removed and applied to its children. That suggests either whatever exporter was used to create the .GLTF file did some special work here
-or more likely the artist exported a different version of the file than the corresponding .blend file, which is why things don&#39;t match.</p>
+<p>This shows us that <code>Cars</code> in the original scene has had its rotation and scale
+removed and applied to its children. That suggests either whatever exporter was
+used to create the .GLTF file did some special work here or more likely the
+artist exported a different version of the file than the corresponding .blend
+file, which is why things don&#39;t match.</p>
 <p>The moral of that is I should have probably downloaded the .blend
 file and exported myself. Before exporting I should have inspected
 all the major nodes and removed any transformations.</p>
@@ -559,18 +568,17 @@ all the major nodes and removed any transformations.</p>
         │   scl: 1.000, 1.000, 1.000
 </code></pre>
 <p>are also a waste.</p>
-<p>Ideally the scene would consist of a single
-&quot;root&quot; node with no position, rotation, or scale. A runtime I could then
-pull all the children out of that root and parent them to the scene itself.
-There might be children of the root like &quot;Cars&quot; which would
-help me find all the cars but ideally it would also have no
-translation, rotation, or scale so I could reparent the cars
-to the scene with the minimal amount of work.</p>
+<p>Ideally the scene would consist of a single &quot;root&quot; node with no position,
+rotation, or scale. At runtime I could then pull all the children out of that
+root and parent them to the scene itself. There might be children of the root
+like &quot;Cars&quot; which would help me find all the cars but ideally it would also have
+no translation, rotation, or scale so I could re-parent the cars to the scene
+with the minimal amount of work.</p>
 <p>In any case the quickest though maybe not the best fix is to just
 adjust the object we&#39;re using to view the curve.</p>
 <p>Here&#39;s what I ended up with.</p>
-<p>First I adjusted the position of the curve and after I found values
-that seemd to work. I then hid it.</p>
+<p>First I adjusted the position of the curve and found values
+that seemed to work. I then hid it.</p>
 <pre class="prettyprint"><code class="lang-js">{
   const points = curve.getPoints(250);
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -584,10 +592,11 @@ that seemd to work. I then hid it.</p>
   scene.add(curveObject);
 }
 </code></pre>
-<p>Then I wrote code to move the cars along the curve. For each car we pick
-a position from 0 to 1 along the curve and compute a point in world space
-using the <code>curveObject</code> to transform the point. We then pick another point
-slightly further down the curve. We set the car&#39;s orientation using <code>lookAt</code> and put the car at the mid point between the 2 points.</p>
+<p>Then I wrote code to move the cars along the curve. For each car we pick a
+position from 0 to 1 along the curve and compute a point in world space using
+the <code>curveObject</code> to transform the point. We then pick another point slightly
+further down the curve. We set the car&#39;s orientation using <code>lookAt</code> and put the
+car at the mid point between the 2 points.</p>
 <pre class="prettyprint"><code class="lang-js">// create 2 Vector3s we can use for path calculations
 const carPosition = new THREE.Vector3();
 const carTarget = new THREE.Vector3();
@@ -719,7 +728,7 @@ I ended up with.</p>
 </div>
 
 </p>
-<p>I hope walking through that example was useful and showed some
+<p>I hope walking through this project was useful and showed some
 good examples of working though some of the issues of loading
 a file with a scenegraph.</p>
 <p>One interesting thing is that comparing the .blend file to the .gltf
@@ -734,7 +743,7 @@ case</strong>.</p>
 a path for the cars to follow. Ideally that info could have been in
 the .GLTF file but to do that we&#39;d need to write our own exporter
 and some how mark nodes for how we want them exported or use a
-naming scheme or someting along those lines to get data from
+naming scheme or something along those lines to get data from
 whatever tool we&#39;re using to create the data into our app.</p>
 <p>All of that is left as an exercise to the reader.</p>
 
