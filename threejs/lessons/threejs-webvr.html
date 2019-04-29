@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-webvr.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js WebVR" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to use Virtual Reality in Three.js." />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-webvr.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js WebVR" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-webvr.html" />
+<meta name="twitter:description" content="How to use Virtual Reality in Three.js." />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js WebVR</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-webvr.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-webvr.html" >Русский</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js WebVR</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Making WebVR apps in three.js is pretty simple.
+You basically just have to tell three.js you want to use WebVR.
+If you think about it a few things about WebVR should be clear.
+Which way the camera is pointing is supplied by the VR system itself
+since the user turns their head to choose a direction to look.
+Similarly the field of view and aspect will be supplied by the VR system since
+each system has a different field of view and display aspect.</p>
+<p>Let&#39;s take an example from the article on <a href="threejs-responsive.html">making a responsive webpage</a>
+and make it support VR.</p>
+<p>The first thing we need to do is include the VR support after
+including three.js</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r103/js/vr/WebVR.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Then we need to enable three.js&#39;s WebVR support and add its
+WebVR button to our page</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas: canvas});
++  renderer.vr.enabled = true;
++  document.body.appendChild(WEBVR.createButton(renderer));
+</code></pre>
+<p>The last major thing we need to do is let three.js run our
+render loop. Until now we have used a <code>requestAnimationFrame</code>
+loop but to support VR we need to let three.js handle our
+render loop for us. We can do that by calling <code>WebGLRenderer.setAnimationLoop</code>
+and passing a function to call for the loop.</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  cubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  renderer.render(scene, camera);
+
+-  requestAnimationFrame(render);
+}
+
+-requestAnimationFrame(render);
++renderer.setAnimationLoop(render);
+</code></pre>
+<p>You&#39;d think that would be it but there is one more detail.
+In VR just like we don&#39;t control the field of view and direction
+the camera is looking we also don&#39;t control where the camera
+starts. At least not as of three.js r103. The camera is hardcoded
+to default to <code>x = 0</code>, <code>y = 1.6</code>, <code>z = 0</code></p>
+<p>Before we had the cubes along the X axis at Y and Z = 0.
+Let&#39;s move them to be in front of the default VR camera.</p>
+<pre class="prettyprint"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+cube.position.x = x;
++cube.position.y = 1.6;
++cube.position.z = -2;
+</code></pre>
+<p>We set them to <code>z = -2</code> since the camera will now be at <code>z = 0</code> and
+cameras default to looking down the -z axis.</p>
+<p>Let&#39;s also remove setting our camera&#39;s position since three.js
+will override it anyway.</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
+</code></pre>
+<p>This brings up an extremely important point. <strong>Units in VR are in meters</strong>.
+In other words <strong>One Unit = One Meter</strong>. This means the camera is 1.6 meters above 0.
+The cube&#39;s centers are 2 meters in front of the camera. Each cube
+is 1x1x1 meter large. This is important because VR needs to adjust things to the
+user <em>in the real world</em>. That means we need the units used in three.js to match
+the user&#39;s on movements.</p>
+<p>And with that we should get 3 spinning cubes in front
+of the camera with a button to enter WebVR.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-basic.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-basic.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>I find that VR works better if we have something surrounding the camera like
+room for reference so let&#39;s add a simple grid cubemap like we covered in
+<a href="threejs-backgrounds.html">the article on backgrounds</a>. We&#39;ll just use the same grid
+texture for each side of the cube which will give as a grid room.</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
++{
++  const loader = new THREE.CubeTextureLoader();
++  const texture = loader.load([
++    &#39;resources/images/grid-1024.png&#39;,
++    &#39;resources/images/grid-1024.png&#39;,
++    &#39;resources/images/grid-1024.png&#39;,
++    &#39;resources/images/grid-1024.png&#39;,
++    &#39;resources/images/grid-1024.png&#39;,
++    &#39;resources/images/grid-1024.png&#39;,
++  ]);
++  scene.background = texture;
++}
+</code></pre>
+<p>That&#39;s better.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-basic-w-background.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-basic-w-background.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Note: To actually see WebVR you will need a WebVR compatible device.
+I believe most Android Phones can support WebVR using Chrome or Firefox.
+For iOS you might be able to use this <a href="https://itunes.apple.com/us/app/webvr-browser/id1286543066?mt=8">WebVR App</a>
+though in general WebVR support on iOS is unsupported as of May 2019.</p>
+<p>To use WebVR on Android or iPhone you&#39;ll need a <em>VR Headset</em>
+for phones. You can get them for anywhere from $5 for one made of cardboard
+to $100. Unfortunately I don&#39;t know which ones to recommend. I&#39;ve purchased
+6 of them over the years and they are all of varying quality. I&#39;ve
+never paid more than about $25.</p>
+<p>Just to mention some of the issues</p>
+<ol>
+<li><p>Do they fit your phone</p>
+<p>Phones come in a variety of sizes and so the VR headsets need to match.
+Many headsets claim to match a large variety of sizes. My experience
+is the more sizes they match the worse they actually are since instead
+of being designed for a specific size they have to make compromises
+to match more sizes. Unfortunately multi-size headsets are the most common type.</p>
+</li>
+<li><p>Can they focus for your face</p>
+<p>Some devices have more adjustments than others. Generally there
+are at most 2 adjustments. How far the lenses are from your eyes
+and how far apart the lenses are.</p>
+</li>
+<li><p>Are they too reflective</p>
+<p>Many headsets of a cone of plastic from your eye to the phone.
+If that plastic is shinny or reflective then it will act like
+a mirror reflecting the screen and be very distracting.</p>
+<p>Few if any of the reviews seem to cover this issue.</p>
+</li>
+<li><p>Are the comfortable on your face.</p>
+<p>Most of the devices rest on your nose like a pair of glasses.
+That can hurt after a few minutes. Some have straps that go around
+your head. Others have a 3rd strap that goes over your head. These
+may or may not help keep the device at the right place.</p>
+<p>It turns out for most (all?) devices, you eyes need to be centered
+with the lenses. If the lenses are slightly above or below your
+eyes the image gets out of focus. This can be very frustrating
+as things might start in focus but 45-60 seconds later the device
+has shifted up or down 1 millimeter and you suddenly realize you&#39;ve
+been struggling to focus on a blurry image.</p>
+</li>
+<li><p>Can they support your glasses.</p>
+<p>If you wear eye glasses then you&#39;ll need to read the reviews to see
+if a particular headset works well with eye glasses.</p>
+</li>
+</ol>
+<p>I really can&#39;t make any recommendations unfortunately. <a href="https://vr.google.com/cardboard/get-cardboard/">Google has some
+cheap recommendations made from cardboard</a>
+some of them as low as $5 so maybe start there and if you enjoy it
+then consider upgrading. $5 is like the price of 1 coffee so seriously, give it try!</p>
+<p>There are also 3 basic types of devices.</p>
+<ol>
+<li><p>3 degrees of freedom (3dof), no input device</p>
+<p>This is generally the phone style although sometimes you can
+buy a 3rd party input device. The 3 degrees of freedom
+mean you can look up/down (1), left/right(2) and you can tilt
+your head left and right (3).</p>
+</li>
+<li><p>3 degrees of freedom (3dof) with 1 input device (3dof)</p>
+<p>This is basically Google Daydream and Oculus GO</p>
+<p>These also allow 3 degrees of freedom and include a small
+controller that acts like a laser pointer inside VR.
+The laser pointer also only has 3 degrees of freedom. The
+system can tell which way the input device is pointing but
+it can not tell where the device is.</p>
+</li>
+<li><p>6 degrees of freedom (6dof) with input devices (6dof)</p>
+<p>These are <em>the real deal</em> haha. 6 degrees of freedom
+means not only do these device know which way you are looking
+but they also know where your head actually is. That means
+if you move from left to right or forward and back or stand up / sit down
+the devices can register this and everything in VR moves accordingly.
+It&#39;s spookily and amazingly real feeling. With a good demo
+you&#39;ll be blown away or at least I was and still am.</p>
+<p>Further these devices usually include 2 controllers, one
+for each hand and the system can tell exactly where your
+hands are and which way they are oriented and so you can
+manipulate things in VR by just reaching out, touching,
+pushing, twisting, etc...</p>
+<p>6 degree of freedom devices include the Vive and Vive Pro,
+the Oculus Rift and Quest, and I believe all of the Windows MR devices.</p>
+</li>
+</ol>
+<p>With all that covered I don&#39;t for sure know which devices will work with WebVR.
+I&#39;m 99% sure that most Android phones will work when running Chrome. You may
+need to turn on VR support in <a href="about:flags"><code>about:flags</code></a>. I also know Google
+Daydream will also work and similarly you need to enable VR support in
+<a href="about:flags"><code>about:flags</code></a>. Oculus Rift, Vive, and Vive Pro will work via
+Chrome or Firefox. I&#39;m less sure about Oculus Go and Oculus Quest as both of
+them use custom OSes but according to the internet they both appear to work.</p>
+<p>Okay, after that long detour about VR Devices and WebVR
+there&#39;s some things to cover</p>
+<ul>
+<li><p>Supporting both VR and Non-VR</p>
+<p>AFAICT, at least as of r103, there is no easy way to support
+both VR and non-VR modes with three.js. With VR enabled but not in VR mode
+the camera&#39;s position is hard coded to <code>0, 1.6, 0</code>. Ideally
+if not in VR mode you&#39;d be able to control the camera using
+whatever means you want, for example the <code>OrbitControls</code>,
+and you&#39;d get some kind of event when switching into and
+out of VR mode so that you could turn the controls on/off.</p>
+<p>If three.js adds some support to do both I&#39;ll try to update
+this article. Until then you might need 2 versions of your 
+site OR pass in a flag in the URL, something like</p>
+</li>
+</ul>
+<pre class="prettyprint"><code>https://mysite.com/mycooldemo?allowvr=true
+</code></pre><p>Then we could add some links in to switch modes</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div class=&quot;mode&quot;&gt;
++    &lt;a href=&quot;?allowvr=true&quot; id=&quot;vr&quot;&gt;Allow VR&lt;/a&gt;
++    &lt;a href=&quot;?&quot; id=&quot;nonvr&quot;&gt;Use Non-VR Mode&lt;/a&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>and some CSS to position them</p>
+<pre class="prettyprint"><code class="lang-css">body {
+    margin: 0;
+}
+#c {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+}
++.mode {
++  position: absolute;
++  right: 1em;
++  top: 1em;
++}
+</code></pre>
+<p>in your code you could use that parameter like this</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+-  renderer.vr.enabled = true;
+-  document.body.appendChild(WEBVR.createButton(renderer));
+
+  const fov = 75;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 5;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
++  const params = (new URL(document.location)).searchParams;
++  const allowvr = params.get(&#39;allowvr&#39;) === &#39;true&#39;;
++  if (allowvr) {
++    renderer.vr.enabled = true;
++    document.body.appendChild(WEBVR.createButton(renderer));
++    document.querySelector(&#39;#vr&#39;).style.display = &#39;none&#39;;
++  } else {
++    // no VR, add some controls
++    camera.position.y = 1.6;
++    const controls = new THREE.OrbitControls(camera, canvas);
++    controls.target.set(0, 1.6, -2);
++    controls.update();
++    document.querySelector(&#39;#nonvr&#39;).style.display = &#39;none&#39;;
++  }
+</code></pre>
+<p>Whether that&#39;s good or bad I don&#39;t know. I have a feeling the differences
+between what&#39;s needed for VR and what&#39;s needed for non-VR are often
+very different so for all the most simple things maybe 2 separate pages
+are better? You&#39;ll have to decide.</p>
+<p>Note for various reasons this will not work in the live editor
+on this site so if you want to check it out 
+<a href="../threejs-webvr-basic-vr-optional.html" target="_blank">click here</a>.
+It should start in non-VR mode and you can use the mouse or fingers to move
+the camera. Clicking &quot;Allow VR&quot; should switch to allow VR mode and you should
+be able to click &quot;Enter VR&quot; if you&#39;re on a VR device.</p>
+<ul>
+<li><p>Deciding on the level of VR support</p>
+<p>Above we covered 3 types of VR devices. </p>
+<ul>
+<li>3DOF no input</li>
+<li>3DOF + 3DOF input</li>
+<li>6DOF + 6DOF input</li>
+</ul>
+<p>You need to decide how much effort you&#39;re willing to put in
+to support each type of device.</p>
+<p>For example the simplest device has no input. The best you can
+generally do is make it so there are some buttons or objects in the user&#39;s view
+and if the user aligns some marker in the center of the display
+on those objects for 1/2 a second or so then that button is clicked.
+A common UX is to display a small timer will appear over the object indicating
+if you keep the marker there for a moment the object/button will be selected.</p>
+<p>Since there is no other input that&#39;s about the best you can do</p>
+<p>The next level up you have one 3DOF input device. Generally it
+can point at things and the user has at least 2 buttons. The Daydream
+also has a touchpad which provides normal touch inputs.</p>
+<p>In any case if a user has this type of device it&#39;s far more
+comfortable for the user to by able to point at things with
+their controller than it is to make them do it with their
+head by looking at things.</p>
+<p>A similar level to that might be 3DOF or 6DOF device with a
+game console controller. You&#39;ll have to decide what to do here.
+I suspect the most common thing is the user still has to look
+to point and the controller is just used for buttons.</p>
+<p>The last level is a user with a 6DOF headset and 2 6DOF controllers.
+Those users will find an experience that is only 3DOF to often
+be frustrating. Similarly they usually expect to be able to 
+virtually manipulate things with their hands in VR so you&#39;ll
+have to decide if you want to support that or not.</p>
+</li>
+</ul>
+<p>As you can see getting started in VR is pretty easy but
+actually making something shippable in VR will require
+lots of decision making and design.</p>
+<p>This was a pretty brief intro into WebVR with three.js. We&#39;ll
+cover some of the input methods in future articles.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-webvr.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-webvr.html" >Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>    
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>    
+    <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+    <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+    <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+  </ul>
+  <li>WebVR</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-webvr.html">WebVR Basics</a></li>
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js WebVR';
+            var disqus_title = 'Three.js WebVR';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
