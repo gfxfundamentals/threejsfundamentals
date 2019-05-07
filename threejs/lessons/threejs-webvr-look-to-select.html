@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-webvr-look-to-select.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js WebVR - Look to Select" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to implement Look to Select." />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-webvr-look-to-select.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js WebVR - Look to Select" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-webvr-look-to-select.html" />
+<meta name="twitter:description" content="How to implement Look to Select." />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js WebVR - Look to Select</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-webvr-look-to-select.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-webvr-look-to-select.html" >Русский</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js WebVR - Look to Select</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p><strong>NOTE: The examples on this page require a VR capable
+device. Without one they won&#39;t work. See <a href="threejs-webvr.html">previous article</a>
+as to why</strong></p>
+<p>In the <a href="threejs-webvr.html">previous article</a> we went over
+a very simple WebVR example using three.js and we discussed
+the various kinds of VR systems.</p>
+<p>The simplest and possibly most common is the Google Cardboard style of VR which
+is basically a phone put into a $5 - $50 face mask. This kind of VR has no
+controller so people have to come up with creative solutions for allowing user
+input.</p>
+<p>The most common solution is &quot;look to select&quot; where if the
+user points their head at something for a moment it gets
+selected.</p>
+<p>Let&#39;s implement &quot;look to select&quot;! We&#39;ll start with
+<a href="threejs-webvr.html">an example from the previous article</a>
+and to do it we&#39;ll add the <code>PickHelper</code> we made in
+<a href="threejs-picking">the article on picking</a>. Here it is.</p>
+<pre class="prettyprint"><code class="lang-js">class PickHelper {
+  constructor() {
+    this.raycaster = new THREE.Raycaster();
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(normalizedPosition, scene, camera, time) {
+    // restore the color if there is a picked object
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
+    // cast a ray through the frustum
+    this.raycaster.setFromCamera(normalizedPosition, camera);
+    // get the list of objects the ray intersected
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+    if (intersectedObjects.length) {
+      // pick the first object. It&#39;s the closest one
+      this.pickedObject = intersectedObjects[0].object;
+      // save its color
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // set its emissive color to flashing red/yellow
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+</code></pre>
+<p>For an explanation of that code <a href="threejs-picking.html">see the article on picking</a>.</p>
+<p>To use it we just need to create an instance and call it in our render loop</p>
+<pre class="prettyprint"><code class="lang-js">+const pickHelper = new PickHelper();
+
+...
+function render(time) {
+  time *= 0.001;
+
+  ...
+
++  // 0, 0 is the center of the view in normalized coordinates.
++  pickHelper.pick({x: 0, y: 0}, scene, camera, time);
+</code></pre>
+<p>In the original picking example we converted the mouse coordinates
+from CSS pixels into normalized coordinates that go from -1 to +1
+across the canvas.</p>
+<p>In this case though we will always pick where the camera is
+facing which is the center of the screen so we pass in <code>0</code> for
+both <code>x</code> and <code>y</code> which is the center in normalized coordinates.</p>
+<p>And with that objects will flash when we look at them</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-look-to-select.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-look-to-select.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Typically we don&#39;t want selection to be immediate. Instead we require the user
+to keep the camera on the thing they want to select for a few moments to give them
+a chance not to select something by accident.</p>
+<p>To do that we need some kind of meter or gauge or some way
+to convey that the user must keep looking and for how long.</p>
+<p>One easy way we could do that is to make a 2 color texture
+and use a texture offset to slide the texture across a model.</p>
+<p>Let&#39;s do this by itself to see it work before we add it to
+the WebVR example.</p>
+<p>First we make an <code>OrthographicCamera</code></p>
+<pre class="prettyprint"><code class="lang-js">const left = -2;    // Use values for left
+const right = 2;    // right, top and bottom
+const top = 1;      // that match the default
+const bottom = -1;  // canvas size.
+const near = -1;
+const far = 1;
+const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
+</code></pre>
+<p>And of course update it if the canvas changes size</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    const aspect = canvas.clientWidth / canvas.clientHeight;
++    camera.left = -aspect;
++    camera.right = aspect;
+    camera.updateProjectionMatrix();
+  }
+  ...
+</code></pre>
+<p>We now have a camera that shows 2 units above and below the center and aspect units
+left and right.</p>
+<p>Next let&#39;s make a 2 color texture. We&#39;ll use a <code>DataTexture</code>
+which we&#39;ve used a few <a href="threejs-indexed-textures.html">other</a> 
+<a href="threejs-post-processing-3dlut.html">places</a>.</p>
+<pre class="prettyprint"><code class="lang-js">function makeDataTexture(data, width, height) {
+  const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat);
+  texture.minFilter = THREE.NearestFilter;
+  texture.magFilter = THREE.NearestFilter;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+const cursorColors = new Uint8Array([
+  64, 64, 64, 64,       // dark gray
+  255, 255, 255, 255,   // white
+]);
+const cursorTexture = makeDataTexture(cursorColors, 2, 1);
+</code></pre>
+<p>We&#39;ll then use that texture on a <code>TorusBufferGeometry</code></p>
+<pre class="prettyprint"><code class="lang-js">const ringRadius = 0.4;
+const tubeRadius = 0.1;
+const tubeSegments = 4;
+const ringSegments = 64;
+const cursorGeometry = new THREE.TorusBufferGeometry(
+    ringRadius, tubeRadius, tubeSegments, ringSegments);
+
+const cursorMaterial = new THREE.MeshBasicMaterial({
+  color: &#39;white&#39;,
+  map: cursorTexture,
+  transparent: true,
+  blending: THREE.CustomBlending,
+  blendSrc: THREE.OneMinusDstColorFactor,
+  blendDst: THREE.OneMinusSrcColorFactor,
+});
+const cursor = new THREE.Mesh(cursorGeometry, cursorMaterial);
+scene.add(cursor);
+</code></pre>
+<p>and then in <code>render</code> lets adjust the texture&#39;s offset</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    const aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.left = -aspect;
+    camera.right = aspect;
+    camera.updateProjectionMatrix();
+  }
+
++  const fromStart = 0;
++  const fromEnd = 2;
++  const toStart = -0.5;
++  const toEnd = 0.5;
++  cursorTexture.offset.x = THREE.Math.mapLinear(
++      time % 2,
++      fromStart, fromEnd,
++      toStart, toEnd);
+
+  renderer.render(scene, camera);
+}
+</code></pre>
+<p><code>THREE.Math.mapLinear</code> takes a value that goes between <code>fromStart</code> and <code>fromEnd</code>
+and maps it to a value between <code>toStart</code> and <code>toEnd</code>. In the case above we&#39;re
+taking <code>time % 2</code> which means a value that goes from 0 to 2 and maps
+that to a value that goes from -0.5 to 0.5</p>
+<p><a href="threejs-textures.html">Textures</a> are mapped to geometry using normalized texture coordinates
+that go from 0 to 1. That means our 2x1 pixel image, set to the default
+wrapping mode of <code>THREE.ClampToEdge</code>, if we adjust the
+texture coordinates by -0.5 then the entire mesh will be the first color
+and if we adjust the texture coordinates by +0.5 the entire mesh will
+be the second color. In between with the filtering set to <code>THREE.NearestFilter</code>
+we&#39;ll be able to move the transition between the 2 colors through the geometry.</p>
+<p>Let&#39;s add a background texture while we&#39;re at it just like we
+covered in <a href="threejs-backgrounds.html">the article on backgrounds</a>.
+We&#39;ll just use a 2x2 set of colors but set the texture&#39;s repeat
+settings to give us an 8x8 grid. This will give our cursor something
+to be rendered over so we can check it against different colors.</p>
+<pre class="prettyprint"><code class="lang-js">+const backgroundColors = new Uint8Array([
++    0,   0,   0, 255,  // black
++   90,  38,  38, 255,  // dark red
++  100, 175, 103, 255,  // medium green
++  255, 239, 151, 255,  // light yellow
++]);
++const backgroundTexture = makeDataTexture(backgroundColors, 2, 2);
++backgroundTexture.wrapS = THREE.RepeatWrapping;
++backgroundTexture.wrapT = THREE.RepeatWrapping;
++backgroundTexture.repeat.set(4, 4);
+
+const scene = new THREE.Scene();
++scene.background = backgroundTexture;
+</code></pre>
+<p>Now if we run that you&#39;ll see we get a circle like gauge
+and that we can set where the gauge is.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-look-to-select-selector.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-look-to-select-selector.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>A few things to notice <strong>and try</strong>.</p>
+<ul>
+<li><p>We set the <code>cursorMaterial</code>&#39;s <code>blending</code>, <code>blendSrc</code> and <code>blendDst</code>
+properties as follows</p>
+<pre class="prettyprint"><code>  blending: THREE.CustomBlending,
+  blendSrc: THREE.OneMinusDstColorFactor,
+  blendDst: THREE.OneMinusSrcColorFactor,
+</code></pre><p>This gives as an <em>inverse</em> type of effect. Comment out
+those 3 lines and you&#39;ll see the difference. I&#39;m just guessing
+the inverse effect is best here as that way we can hopefully
+see the cursor regardless of the colors it is over.</p>
+</li>
+<li><p>We use a <code>TorusBufferGeometry</code> and not a <code>RingBufferGeometry</code></p>
+<p>For whatever reason the <code>RingBufferGeometry</code> uses a flat
+UV mapping scheme. Because of this if we use a <code>RingBufferGeometry</code>
+the texture slides horizontally across the ring instead of
+around it like it does above.</p>
+<p>Try it out, change the <code>TorusBufferGeometry</code> to a <code>RingBufferGeometry</code>
+(it&#39;s just commented out in the example above) and you&#39;ll see what I
+mean.</p>
+<p>The <em>proper</em> thing to do (for some definition of <em>proper</em>) would be
+to either use the <code>RingBufferGeometry</code> but fix the texture coordinates
+so they go around the ring. Or else, generate our own ring geometry.
+But, the torus works just fine. Placed directly in front of the camera
+with a <code>MeshBasicMaterial</code> it will look exactly like a ring and the
+texture coordinates go around the ring so it works for our needs.</p>
+</li>
+</ul>
+<p>Let&#39;s integrate it with our WebVR code above. </p>
+<pre class="prettyprint"><code class="lang-js">class PickHelper {
+-  constructor() {
++  constructor(camera) {
+    this.raycaster = new THREE.Raycaster();
+    this.pickedObject = null;
+-    this.pickedObjectSavedColor = 0;
+
++    const cursorColors = new Uint8Array([
++      64, 64, 64, 64,       // dark gray
++      255, 255, 255, 255,   // white
++    ]);
++    this.cursorTexture = makeDataTexture(cursorColors, 2, 1);
++
++    const ringRadius = 0.4;
++    const tubeRadius = 0.1;
++    const tubeSegments = 4;
++    const ringSegments = 64;
++    const cursorGeometry = new THREE.TorusBufferGeometry(
++        ringRadius, tubeRadius, tubeSegments, ringSegments);
++
++    const cursorMaterial = new THREE.MeshBasicMaterial({
++      color: &#39;white&#39;,
++      map: this.cursorTexture,
++      transparent: true,
++      blending: THREE.CustomBlending,
++      blendSrc: THREE.OneMinusDstColorFactor,
++      blendDst: THREE.OneMinusSrcColorFactor,
++    });
++    const cursor = new THREE.Mesh(cursorGeometry, cursorMaterial);
++    // add the cursor as a child of the camera
++    camera.add(cursor);
++    // and move it in front of the camera
++    cursor.position.z = -1;
++    const scale = 0.05;
++    cursor.scale.set(scale, scale, scale);
++    this.cursor = cursor;
++
++    this.selectTimer = 0;
++    this.selectDuration = 2;
++    this.lastTime = 0;
+  }
+  pick(normalizedPosition, scene, camera, time) {
++    const elapsedTime = time - this.lastTime;
++    this.lastTime = time;
+
+-    // restore the color if there is a picked object
+-    if (this.pickedObject) {
+-      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+-      this.pickedObject = undefined;
+-    }
+
++    const lastPickedObject = this.pickedObject;
++    this.pickedObject = undefined;
+
+    // cast a ray through the frustum
+    this.raycaster.setFromCamera(normalizedPosition, camera);
+    // get the list of objects the ray intersected
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+    if (intersectedObjects.length) {
+      // pick the first object. It&#39;s the closest one
+      this.pickedObject = intersectedObjects[0].object;
+-      // save its color
+-      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+-      // set its emissive color to flashing red/yellow
+-      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+
++    // show the cursor only if it&#39;s hitting something
++    this.cursor.visible = this.pickedObject ? true : false;
++
++    let selected = false;
++
++    // if we&#39;re looking at the same object as before
++    // increment time select timer
++    if (this.pickedObject &amp;&amp; lastPickedObject === this.pickedObject) {
++      this.selectTimer += elapsedTime;
++      if (this.selectTimer &gt;= this.selectDuration) {
++        this.selectTimer = 0;
++        selected = true;
++      }
++    } else {
++      this.selectTimer = 0;
++    }
++
++    // set cursor material to show the timer state
++    const fromStart = 0;
++    const fromEnd = this.selectDuration;
++    const toStart = -0.5;
++    const toEnd = 0.5;
++    this.cursorTexture.offset.x = THREE.Math.mapLinear(
++        this.selectTimer,
++        fromStart, fromEnd,
++        toStart, toEnd);
++
++    return selected ? this.pickedObject : undefined;
+  }
+}
+</code></pre>
+<p>You can see the code above we added all the code to create
+the cursor geometry, texture, and material and we added it
+as a child of the camera so it will always be in front of
+the camera. Note we need to add the camera to the scene
+otherwise the cursor won&#39;t be rendered.</p>
+<pre class="prettyprint"><code class="lang-js">+scene.add(camera);
+</code></pre>
+<p>We then check if the thing we&#39;re picking this time is the same as it was last
+time. If so we add the elapsed time to a timer and if the timer reaches it&#39;s
+limit we return the selected item.</p>
+<p>Now let&#39;s use that to pick the cubes. As a simple example
+we&#39;ll just change the background texture to match the
+selected cube.</p>
+<p>First let&#39;s change the code we had for loading a cubemap
+into something a little more 
+<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">D.R.Y.</a>.</p>
+<pre class="prettyprint"><code class="lang-js">-{
+-  const loader = new THREE.CubeTextureLoader();
+-  const texture = loader.load([
+-    &#39;resources/images/grid-1024.png&#39;,
+-    &#39;resources/images/grid-1024.png&#39;,
+-    &#39;resources/images/grid-1024.png&#39;,
+-    &#39;resources/images/grid-1024.png&#39;,
+-    &#39;resources/images/grid-1024.png&#39;,
+-    &#39;resources/images/grid-1024.png&#39;,
+-  ]);
+-  scene.background = texture;
+-}
+
++const loader = new THREE.CubeTextureLoader();
++function loadCubemap(url) {
++  return loader.load([url, url, url, url, url, url]);
++}
++scene.background = loadCubemap(&#39;resources/images/grid-1024.png&#39;);
+</code></pre>
+<p>Then we&#39;ll load 3 more cubemap textures, one for each cube. We&#39;ll
+use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><code>Map</code></a>
+so that we can associate a <code>Mesh</code> with a texture.</p>
+<pre class="prettyprint"><code class="lang-js">-const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
+-];
++const cubeToTextureMap = new Map();
++cubeToTextureMap.set(
++    makeInstance(geometry, 0x44aa88,  0), 
++    loadCubemap(&#39;resources/images/grid-cyan-1024.png&#39;));
++cubeToTextureMap.set(
++    makeInstance(geometry, 0x8844aa, -2), 
++    loadCubemap(&#39;resources/images/grid-purple-1024.png&#39;));
++cubeToTextureMap.set(
++    makeInstance(geometry, 0xaa8844,  2), 
++    loadCubemap(&#39;resources/images/grid-gold-1024.png&#39;));
+</code></pre>
+<p>In <code>render</code> where we rotate the cubes we need to iterate over <code>cubeToTextureMap</code>
+instead of <code>cubes</code>.</p>
+<pre class="prettyprint"><code class="lang-js">-cubes.forEach((cube, ndx) =&gt; {
++let ndx = 0;
++cubeToTextureMap.forEach((texture, cube) =&gt; {
+  const speed = 1 + ndx * .1;
+  const rot = time * speed;
+  cube.rotation.x = rot;
+  cube.rotation.y = rot;
++  ++ndx;
+});
+</code></pre>
+<p>And now we can use our new <code>PickHelper</code> implementation
+to select one of the cubes and assign the associated background
+texture.</p>
+<pre class="prettyprint"><code class="lang-js">// 0, 0 is the center of the view in normalized coordinates.
+-pickHelper.pick({x: 0, y: 0}, scene, camera, time);
++const selectedObject = pickHelper.pick({x: 0, y: 0}, scene, camera, time);
++if (selectedObject) {
++  scene.background = cubeToTextureMap.get(selectedObject);
++}
+</code></pre>
+<p>And with that we should have a pretty decent <em>look to select</em> implementation.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-look-to-select-w-cursor.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-look-to-select-w-cursor.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>I hope this example gave some ideas of how to implement a &quot;look to select&quot;
+type of Google Cardboard level UX. Sliding textures using texture coordinates
+offsets is also a commonly useful technique.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-webvr-look-to-select.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-webvr-look-to-select.html" >Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>    
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>    
+    <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+    <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+    <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+  </ul>
+  <li>WebVR</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threejsfundamentals/issues">Create an issue on github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js WebVR - Look to Select';
+            var disqus_title = 'Three.js WebVR - Look to Select';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
