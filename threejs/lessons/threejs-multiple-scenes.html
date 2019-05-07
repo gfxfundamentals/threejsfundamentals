@@ -586,7 +586,7 @@ just turn on the scissor test at the beginning.</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
 -  const canvas = document.querySelector(&#39;#c&#39;);
 +  const canvas = document.createElement(&#39;canvas&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas: canvas, alpha: true});
+  const renderer = new THREE.WebGLRenderer({canvas, alpha: true});
 +  renderer.setScissorTest(true);
 
   ...

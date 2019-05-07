@@ -123,7 +123,7 @@ float v2 = v1.x + v1.y;  // adds 1.0 + 2.0
 <p>The first thing to do is let&#39;s make a single plane that fills the canvas. If you haven&#39;t read it yet we did this in <a href="threejs-backgrounds.html">the article on backgounds</a> so let&#39;s grab that example but remove the cubes. It&#39;s pretty short so here&#39;s the entire thing</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+  const renderer = new THREE.WebGLRenderer({canvas});
   renderer.autoClearColor = false;
 
   const camera = new THREE.OrthographicCamera(

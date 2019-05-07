@@ -99,7 +99,7 @@ including three.js</p>
 WebVR button to our page</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+  const renderer = new THREE.WebGLRenderer({canvas});
 +  renderer.vr.enabled = true;
 +  document.body.appendChild(WEBVR.createButton(renderer));
 </code></pre>
@@ -330,7 +330,7 @@ site OR pass in a flag in the URL, something like</p>
 <p>in your code you could use that parameter like this</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+  const renderer = new THREE.WebGLRenderer({canvas});
 -  renderer.vr.enabled = true;
 -  document.body.appendChild(WEBVR.createButton(renderer));
 

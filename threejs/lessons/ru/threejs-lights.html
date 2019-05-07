@@ -517,7 +517,7 @@ makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 Там также есть распад <a href="PointLight.decay"><code>decay</code></a>, он должен быть установлен в <code>2</code> для реализма.</p>
 <p>Давайте проверим это.</p>
 <p>Сначала мы включим физически правильное осещение</p>
-<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.physicallyCorrectLights = true;
 </code></pre>
 <p>Затем мы установим <code>power</code> = 800 lumens,  <code>decay</code> = 2 и <code>distance</code> до <code>Infinity</code>.</p>

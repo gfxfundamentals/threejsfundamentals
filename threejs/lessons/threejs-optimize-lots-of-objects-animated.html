@@ -472,7 +472,7 @@ if we need to call it again and <code>false</code> if all the animations are fin
 <p>To use it we&#39;ll create one </p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+  const renderer = new THREE.WebGLRenderer({canvas});
 +  const tweenManager = new TweenManger();
 
   ...

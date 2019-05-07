@@ -525,7 +525,7 @@ around 800 lumens. There&#39;s also a <a href="PointLight.decay"><code>decay</co
 be set to <code>2</code> for realistic decay.</p>
 <p>Let&#39;s test that.</p>
 <p>First we&#39;ll turn on physically correct lights</p>
-<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.physicallyCorrectLights = true;
 </code></pre>
 <p>Then we&#39;ll set the <code>power</code> to 800 lumens, the <code>decay</code> to 2, and

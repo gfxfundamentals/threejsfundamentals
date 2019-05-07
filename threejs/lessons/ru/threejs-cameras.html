@@ -386,9 +386,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <p>Одно из решений состоит в том, чтобы указать использование three.js другому методу для вычисления того, 
 какие пиксели находятся спереди, а какие - сзади. Мы можем сделать это, включив,
 <code>logarithmicDepthBuffer</code> когда мы создаем <code>WebGLRenderer</code></p>
-<pre class="prettyprint"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas});
 +const renderer = new THREE.WebGLRenderer({
-+  canvas: canvas,
++  canvas,
 +  logarithmicDepthBuffer: true,
 +});
 </code></pre>

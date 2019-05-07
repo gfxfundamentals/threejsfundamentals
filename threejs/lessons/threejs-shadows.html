@@ -284,7 +284,7 @@ appears to also use this kind of shadow for the main character.</p>
 the <code>PointLight</code>, and the <code>SpotLight</code>.</p>
 <p>Let&#39;s start with the <code>DirectionaLight</code> with helper example from <a href="threejs-lights.html">the lights article</a>. </p>
 <p>The first thing we need to do is turn on shadows in the renderer.</p>
-<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.shadowMap.enabled = true;
 </code></pre>
 <p>Then we also need to tell the light to cast a shadow</p>

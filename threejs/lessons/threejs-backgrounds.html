@@ -103,9 +103,9 @@ body {
 drawing anything are transparent.</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
--  const renderer = new THREE.WebGLRenderer({canvas: canvas});
+-  const renderer = new THREE.WebGLRenderer({canvas});
 +  const renderer = new THREE.WebGLRenderer({
-+    canvas: canvas,
++    canvas,
 +    alpha: true,
 +  });
 </code></pre>
@@ -315,7 +315,7 @@ and render the new scene</p>
 canvas. We need to tell it not to do that otherwise the second call to render
 will clear our first render and we won&#39;t see the background. We can do this by
 setting <code>renderer.autoClearColor = false</code>.</p>
-<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas: canvas});
+<pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.autoClearColor = false;
 </code></pre>
 <p>And there we have it.</p>
