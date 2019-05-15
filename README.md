@@ -94,6 +94,6 @@ now open your browser to `http://localhost:8080`
 
 ### Continuous build
 
-You can run `npm run watch` after you've built to get continuous building.
+You can run `npm run watch` to get continuous building.
 Only the article .md files and files that are normally copied are supported.
-
+The table of contents, templates, and index pages are not watched.
