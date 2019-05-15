@@ -421,70 +421,68 @@ otherwise the cursor won&#39;t be rendered.</p>
 time. If so we add the elapsed time to a timer and if the timer reaches it&#39;s
 limit we return the selected item.</p>
 <p>Now let&#39;s use that to pick the cubes. As a simple example
-we&#39;ll just change the background texture to match the
-selected cube.</p>
-<p>First let&#39;s change the code we had for loading a cubemap
-into something a little more 
-<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">D.R.Y.</a>.</p>
-<pre class="prettyprint"><code class="lang-js">-{
--  const loader = new THREE.CubeTextureLoader();
--  const texture = loader.load([
--    &#39;resources/images/grid-1024.png&#39;,
--    &#39;resources/images/grid-1024.png&#39;,
--    &#39;resources/images/grid-1024.png&#39;,
--    &#39;resources/images/grid-1024.png&#39;,
--    &#39;resources/images/grid-1024.png&#39;,
--    &#39;resources/images/grid-1024.png&#39;,
--  ]);
--  scene.background = texture;
--}
-
-+const loader = new THREE.CubeTextureLoader();
-+function loadCubemap(url) {
-+  return loader.load([url, url, url, url, url, url]);
-+}
-+scene.background = loadCubemap(&#39;resources/images/grid-1024.png&#39;);
+we&#39;ll add 3 spheres as well. When a cube is picked with hide
+the cube and un-hide the corresponding sphere.</p>
+<p>So first we&#39;ll make a sphere geometry</p>
+<pre class="prettyprint"><code class="lang-js">const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+-const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
++const boxGeometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
++
++const sphereRadius = 0.5;
++const sphereGeometry = new THREE.SphereBufferGeometry(sphereRadius);
 </code></pre>
-<p>Then we&#39;ll load 3 more cubemap textures, one for each cube. We&#39;ll
+<p>Then let&#39;s create 3 pairs of box and sphere meshes. We&#39;ll
 use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><code>Map</code></a>
-so that we can associate a <code>Mesh</code> with a texture.</p>
+so that we can associate each <code>Mesh</code> with it&#39;s partner.</p>
 <pre class="prettyprint"><code class="lang-js">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
 -];
-+const cubeToTextureMap = new Map();
-+cubeToTextureMap.set(
-+    makeInstance(geometry, 0x44aa88,  0), 
-+    loadCubemap(&#39;resources/images/grid-cyan-1024.png&#39;));
-+cubeToTextureMap.set(
-+    makeInstance(geometry, 0x8844aa, -2), 
-+    loadCubemap(&#39;resources/images/grid-purple-1024.png&#39;));
-+cubeToTextureMap.set(
-+    makeInstance(geometry, 0xaa8844,  2), 
-+    loadCubemap(&#39;resources/images/grid-gold-1024.png&#39;));
++const meshToMeshMap = new Map();
++[
++  { x:  0, boxColor: 0x44aa88, sphereColor: 0xFF4444, },
++  { x:  2, boxColor: 0x8844aa, sphereColor: 0x44FF44, },
++  { x: -2, boxColor: 0xaa8844, sphereColor: 0x4444FF, },
++].forEach((info) =&gt; {
++  const {x, boxColor, sphereColor} = info;
++  const sphere = makeInstance(sphereGeometry, sphereColor, x);
++  const box = makeInstance(boxGeometry, boxColor, x);
++  // hide the sphere
++  sphere.visible = false;
++  // map the sphere to the box
++  meshToMeshMap.set(box, sphere);
++  // map the box to the sphere
++  meshToMeshMap.set(sphere, box);
++});
 </code></pre>
-<p>In <code>render</code> where we rotate the cubes we need to iterate over <code>cubeToTextureMap</code>
+<p>In <code>render</code> where we rotate the cubes we need to iterate over <code>meshToMeshMap</code>
 instead of <code>cubes</code>.</p>
 <pre class="prettyprint"><code class="lang-js">-cubes.forEach((cube, ndx) =&gt; {
 +let ndx = 0;
-+cubeToTextureMap.forEach((texture, cube) =&gt; {
++for (const mesh of meshToMeshMap.keys()) {
   const speed = 1 + ndx * .1;
   const rot = time * speed;
-  cube.rotation.x = rot;
-  cube.rotation.y = rot;
+-  cube.rotation.x = rot;
+-  cube.rotation.y = rot;
+-});
++  mesh.rotation.x = rot;
++  mesh.rotation.y = rot;
 +  ++ndx;
-});
++}
 </code></pre>
 <p>And now we can use our new <code>PickHelper</code> implementation
-to select one of the cubes and assign the associated background
-texture.</p>
+to select one of the objects. When selected we hide
+that object and un-hide its partner.</p>
 <pre class="prettyprint"><code class="lang-js">// 0, 0 is the center of the view in normalized coordinates.
 -pickHelper.pick({x: 0, y: 0}, scene, camera, time);
-+const selectedObject = pickHelper.pick({x: 0, y: 0}, scene, camera, time);
-+if (selectedObject) {
-+  scene.background = cubeToTextureMap.get(selectedObject);
-+}
+if (selectedObject) {
+  selectedObject.visible = false;
+  const partnerObject = meshToMeshMap.get(selectedObject);
+  partnerObject.visible = true;
+}
 </code></pre>
 <p>And with that we should have a pretty decent <em>look to select</em> implementation.</p>
 <p><div class="threejs_example_container">
