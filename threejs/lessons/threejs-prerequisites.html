@@ -139,12 +139,12 @@ console.log(g());  // prints 456
 funciton <em>closes</em> over the variable <code>foo</code>. Here&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">more info</a>.</p>
 <h2 id="understand-how-this-works">Understand how <code>this</code> works</h2>
 <p><code>this</code> is not magic. It&#39;s effectively a variable that is automatically passed to functions just like
-an argument is passed to function. The simple explaintion is when you call a function directly
+an argument is passed to function. The simple explanation is when you call a function directly
 like</p>
 <pre class="prettyprint"><code>somefunction(a, b, c);
-</code></pre><p>This will be <code>null</code> where as when you call a function via the dot operator <code>.</code> like this</p>
+</code></pre><p><code>this</code> will be <code>null</code> (when in strict mode) where as when you call a function via the dot operator <code>.</code> like this</p>
 <pre class="prettyprint"><code>someobject.somefunction(a, b, c);
-</code></pre><p>This will be set to <code>someobject</code>.</p>
+</code></pre><p><code>this</code> will be set to <code>someobject</code>.</p>
 <p>The parts where people get confused is with callbacks.</p>
 <pre class="prettyprint"><code> const callback = someobject.somefunction;
  loader.load(callback);
@@ -155,7 +155,7 @@ If you want <code>this</code> to be <code>someobject</code> when the callback ha
 tell JavaScript that by binding it to the function.</p>
 <pre class="prettyprint"><code> const callback = someobject.somefunction.bind(someobject);
  loader.load(callback);
-</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><em>this</em> article might help</a>.</p>
+</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><em>this</em> article might help explain <code>this</code></a>.</p>
 <h2 id="es5-es6-es7-stuff">ES5/ES6/ES7 stuff</h2>
 <h3 id="-var-is-deprecated-use-const-and-or-let-"><code>var</code> is deprecated. Use <code>const</code> and/or <code>let</code></h3>
 <p>There is no reason to use <code>var</code> <strong>EVER</strong> and at this point it&#39;s considered bad practice
