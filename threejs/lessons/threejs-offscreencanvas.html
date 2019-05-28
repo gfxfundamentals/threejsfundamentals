@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-offscreencanvas.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js OffscreenCanvas" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to use three.js in a web worker" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-offscreencanvas.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js OffscreenCanvas" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-offscreencanvas.html" />
+<meta name="twitter:description" content="How to use three.js in a web worker" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js OffscreenCanvas</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-offscreencanvas.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-offscreencanvas.html" >Русский</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js OffscreenCanvas</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas"><code>OffscreenCanvas</code></a>
+is a relatively new browser feature currently only available in Chrome but apparently
+coming to other browsers. <code>OffscreenCanvas</code> allows a web worker to render
+to a canvas. This is a way to offload heavy work, like rendering a complex 3D scene,
+to a web worker so as not to slow down the responsiveness of the browser. It
+also means data is loaded and parsed in the worker so possibly less jank while
+the page loads.</p>
+<p>Getting <em>started</em> using it is pretty straight forward. Let&#39;s port the 3 spinning cube
+example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
+<p>Workers generally have their code separated
+into another script file. Most of the examples on this site have had
+their scripts embedded into the HTML file of the page they are on.</p>
+<p>In our case we&#39;ll make a file called <code>offscreencanvas-cubes.js</code> and
+copy all the JavaScript from <a href="threejs-responsive.html">the responsive example</a> into it. We&#39;ll then
+make the changes needed for it to run in a worker.</p>
+<p>We still need some JavaScript in our HTML file. The first thing
+we do there is look up the canvas and then transfer control of that
+canvas to be offscreen by calling <code>canvas.transferControlToOffscreen</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const offscreen = canvas.transferControlToOffscreen();
+
+  ...
+</code></pre>
+<p>We can then start our worker with <code>new Worker(pathToScript)</code>.
+We then pass the <code>offscreen</code> object to the worker.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-cubes.js&#39;);
+  worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
+}
+main();
+</code></pre>
+<p>It&#39;s important to note that workers can&#39;t access the <code>DOM</code>. They
+can&#39;t look at HTML elements nor can they receive mouse events or
+keyboard events. The only thing they can generally do is respond
+to messages sent to them.</p>
+<p>To send a message to a worker we call <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage"><code>worker.postMessage</code></a> and
+pass it 1 or 2 arguments. The first argument is a JavaScript object
+that will be <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm">cloned</a> 
+and sent to the worker. The second argument is an optional array
+of objects that are part of the first object that we want <em>transferred</em>
+to the worker. These objects will not be cloned. Instead they will be <em>transferred</em>
+and will cease to exist in the main page. Cease to exist is the probably
+the wrong description, rather they are neutered. Only certain types of
+objects can be transferred instead of cloned. They include <code>OffscreenCanvas</code>
+so once transferred the <code>offscreen</code> object back in the main page is useless.</p>
+<p>Workers receive messages from their <code>onmessage</code> handler. The object
+we passed to <code>postMessage</code> arrives on <code>event.data</code> passed to the <code>onmessage</code>
+handler on the worker. The code above declares a <code>type: &#39;main&#39;</code> in the object it passes
+to the worker. We&#39;ll make a handler that based on <code>type</code> calls
+a different function in the worker. Then we can add functions as
+needed and easily call them from the main page.</p>
+<pre class="prettyprint"><code class="lang-js">const handlers = {
+  main,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p>You can see above we just look up the handler based on the <code>type</code> pass it the <code>data</code>
+that was sent from the main page.</p>
+<p>So now we just need to start changing the <code>main</code> we pasted into 
+<code>offscreencanvas-cubes.js</code> from <a href="threejs-responsive.html">the responsive article</a>.</p>
+<p>The first thing we need to do is include THREE.js into our worker.</p>
+<pre class="prettyprint"><code class="lang-js">importScripts(&#39;https://threejsfundamentals.org/threejs/resources/threejs/r103/three.min.js&#39;);
+</code></pre>
+<p>Then instead of looking up the canvas from the DOM we&#39;ll receive it from the
+event data.</p>
+<pre class="prettyprint"><code class="lang-js">-function main() {
+-  const canvas = document.querySelector(&#39;#c&#39;);
++function main(data) {
++  const {canvas} = data;
+  const renderer = new THREE.WebGLRenderer({canvas});
+
+  ...
+</code></pre>
+<p>Remembering that workers can&#39;t see the DOM at all the first problem
+we run into is <code>resizeRendererToDisplaySize</code> can&#39;t look at <code>canvas.clientWidth</code>
+and <code>canvas.clientHeight</code> as those are DOM values. Here&#39;s the original code</p>
+<pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+</code></pre>
+<p>Instead we&#39;ll need to send sizes as they change to the worker. 
+So, let&#39;s add some global state and keep the width and height there.</p>
+<pre class="prettyprint"><code class="lang-js">const state = {
+  width: 300,  // canvas default
+  height: 150,  // canvas default
+};
+</code></pre>
+<p>Then let&#39;s add a <code>&#39;size&#39;</code> handler to update those values. </p>
+<pre class="prettyprint"><code class="lang-js">+function size(data) {
++  state.width = data.width;
++  state.height = data.height;
++}
+
+const handlers = {
+  main,
++  size,
+};
+</code></pre>
+<p>Now we can change <code>resizeRendererToDisplaySize</code> to use <code>state.width</code> and <code>state.height</code></p>
+<pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+-  const width = canvas.clientWidth;
+-  const height = canvas.clientHeight;
++  const width = state.width;
++  const height = state.height;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+</code></pre>
+<p>and where we compute the aspect we need similar changes</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
++    camera.aspect = state.width / state.height;
+    camera.updateProjectionMatrix();
+  }
+
+  ...
+</code></pre>
+<p>Back in the main page we&#39;ll send a <code>size</code> event anytime the page changes size.</p>
+<pre class="prettyprint"><code class="lang-js">const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
+
++function sendSize() {
++  worker.postMessage({
++    type: &#39;size&#39;,
++    width: canvas.clientWidth,
++    height: canvas.clientHeight,
++  });
++}
++
++window.addEventListener(&#39;resize&#39;, sendSize);
++sendSize();
+</code></pre>
+<p>We also call it once to send the initial size.</p>
+<p>And with just those few changes, assuming your browser fully supports <code>OffscreenCanvas</code>
+it should work. Before we run it though let&#39;s check if the browser actually supports
+<code>OffscreenCanvas</code> and if not display an error. First let&#39;s add some HTML to display the error.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;noOffscreenCanvas&quot; style=&quot;display:none;&quot;&gt;
++    &lt;div&gt;no OffscreenCanvas support&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>and some CSS for that</p>
+<pre class="prettyprint"><code class="lang-css">#noOffscreenCanvas {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    color: white;
+}
+</code></pre>
+<p>and then we can check for the existence of <code>transferControlToOffscreen</code> to see
+if the browser supports <code>OffscreenCanvas</code></p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
++  if (!canvas.transferControlToOffscreen) {
++    canvas.style.display = &#39;none&#39;;
++    document.querySelector(&#39;#noOffscreenCanvas&#39;).style.display = &#39;&#39;;
++    return;
++  }
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+  worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
+
+  ...
+</code></pre>
+<p>and with that, if your browser supports <code>OffscreenCanvas</code> this example should work</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>So that&#39;s great but since not every browser supports <code>OffscreenCanvas</code> at the moment
+let&#39;s change the code to work with both <code>OffscreenCanvas</code> and if not then fallback to using
+the canvas in the main page like normal.</p>
+<blockquote>
+<p>As an aside, if you need OffscreenCanvas to make your page responsive then
+it&#39;s not clear what the point of having a fallback is. Maybe based on if
+you end up running on the main page or in a worker you might adjust the amount
+of work done so that when running in a worker you can do more than when
+running in the main page. What you do is really up to you.</p>
+</blockquote>
+<p>The first thing we should probably do is separate out the three.js
+code from the code that is specific to the worker. That we we can
+use the same code on both the main page and the worker. In other words
+we will now have 3 files</p>
+<ol>
+<li><p>our html file.</p>
+<p><code>threejs-offscreencanvas-w-fallback.html</code></p>
+</li>
+<li><p>a JavaScript the contains our three.js code.</p>
+<p><code>shared-cubes.js</code></p>
+</li>
+<li><p>our worker support code</p>
+<p><code>offscreencanvas-worker-cubes.js</code></p>
+</li>
+</ol>
+<p><code>shared-cubes.js</code> and <code>offscreencanvas-worker-cubes.js</code> are basically
+the split of our previous <code>offscreencanvas-cubes.js</code> file. 
+We renamed <code>main</code> to <code>init</code> since we already have a <code>main</code> in our
+HTML file.</p>
+<p><code>offscreencanvas-worker-cubes.js</code> is just</p>
+<pre class="prettyprint"><code class="lang-js">&#39;use strict&#39;;
+
+/* global importScripts, init, state */
+
+importScripts(&#39;resources/threejs/r103/three.min.js&#39;);
++importScripts(&#39;shared-cubes.js&#39;);
+
+function size(data) {
+  state.width = data.width;
+  state.height = data.height;
+}
+
+const handlers = {
+-  main,
++  init,
+  size,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p>note we include <code>shared-cubes.js</code> which is all our three.js code</p>
+<p>Similarly we need to include <code>shared-cubes.js</code> in the main page</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r103/three.min.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;shared-cubes.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>We can remove the HTML and CSS we added previously</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+-  &lt;div id=&quot;noOffscreenCanvas&quot; style=&quot;display:none;&quot;&gt;
+-    &lt;div&gt;no OffscreenCanvas support&lt;/div&gt;
+-  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>and some CSS for that</p>
+<pre class="prettyprint"><code class="lang-css">-#noOffscreenCanvas {
+-    display: flex;
+-    width: 100vw;
+-    height: 100vh;
+-    align-items: center;
+-    justify-content: center;
+-    background: red;
+-    color: white;
+-}
+</code></pre>
+<p>Then let&#39;s change the code in the main page to call one start
+function or another depending on if the browser supports <code>OffscreenCanvas</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+-  if (!canvas.transferControlToOffscreen) {
+-    canvas.style.display = &#39;none&#39;;
+-    document.querySelector(&#39;#noOffscreenCanvas&#39;).style.display = &#39;&#39;;
+-    return;
+-  }
+-  const offscreen = canvas.transferControlToOffscreen();
+-  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+-  worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
++  if (canvas.transferControlToOffscreen) {
++    startWorker(canvas);
++  } else {
++    startMainPage(canvas);
++  }
+  ...
+</code></pre>
+<p>We&#39;ll move all the code we had to setup the worker inside <code>startWorker</code></p>
+<pre class="prettyprint"><code class="lang-js">function startWorker(canvas) {
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-worker-cubes.js&#39;);
+  worker.postMessage({type: &#39;init&#39;, canvas: offscreen}, [offscreen]);
+
+  function sendSize() {
+    worker.postMessage({
+      type: &#39;size&#39;,
+      width: canvas.clientWidth,
+      height: canvas.clientHeight,
+    });
+  }
+
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using OffscreenCanvas&#39;);
+}
+</code></pre>
+<p>for starting in the main page we can do this</p>
+<pre class="prettyprint"><code class="lang-js">function startMainPage(canvas) {
+  init({canvas});
+
+  function sendSize() {
+    state.width = canvas.clientWidth;
+    state.height = canvas.clientHeight;
+  }
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using regular canvas&#39;);
+}
+</code></pre>
+<p>and with that our example will run either in an OffscreenCanvas or
+fallback to running in the main page.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas-w-fallback.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas-w-fallback.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>So that was relatively easy. Let&#39;s try picking. We&#39;ll take some code from
+the <code>RayCaster</code> example from <a href="threejs-picking.html">the article on picking</a>
+and make it work offscreen.</p>
+<p>Let&#39;s copy the <code>shared-cube.js</code> to <code>shared-picking.js</code> and add the
+picking parts. We copy in the <code>PickHelper</code> </p>
+<pre class="prettyprint"><code class="lang-js">class PickHelper {
+  constructor() {
+    this.raycaster = new THREE.Raycaster();
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(normalizedPosition, scene, camera, time) {
+    // restore the color if there is a picked object
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
+    // cast a ray through the frustum
+    this.raycaster.setFromCamera(normalizedPosition, camera);
+    // get the list of objects the ray intersected
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+    if (intersectedObjects.length) {
+      // pick the first object. It&#39;s the closest one
+      this.pickedObject = intersectedObjects[0].object;
+      // save its color
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // set its emissive color to flashing red/yellow
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+
+const pickPosition = {x: 0, y: 0};
+const pickHelper = new PickHelper();
+</code></pre>
+<p>We updated <code>pickPosition</code> from the mouse like this</p>
+<pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
+  pickPosition.x = (event.clientX / canvas.clientWidth ) *  2 - 1;
+  pickPosition.y = (event.clientY / canvas.clientHeight) * -2 + 1;  // note we flip Y
+}
+window.addEventListener(&#39;mousemove&#39;, setPickPosition);
+</code></pre>
+<p>A worker can&#39;t read the mouse position directly so just like the size code
+let&#39;s send a message with the mouse position. Like the size code we&#39;ll
+send the mouse position and update <code>pickPosition</code></p>
+<pre class="prettyprint"><code class="lang-js">function size(data) {
+  state.width = data.width;
+  state.height = data.height;
+}
+
++function mouse(data) {
++  pickPosition.x = data.x;
++  pickPosition.y = data.y;
++}
+
+const handlers = {
+  init,
++  mouse,
+  size,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p>Back in our main page we need to add code to pass the mouse
+to the worker or the main page.</p>
+<pre class="prettyprint"><code class="lang-js">+let sendMouse;
+
+function startWorker(canvas) {
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-worker-picking.js&#39;);
+  worker.postMessage({type: &#39;init&#39;, canvas: offscreen}, [offscreen]);
+
++  sendMouse = (x, y) =&gt; {
++    worker.postMessage({
++      type: &#39;mouse&#39;,
++      x,
++      y,
++    });
++  };
+
+  function sendSize() {
+    worker.postMessage({
+      type: &#39;size&#39;,
+      width: canvas.clientWidth,
+      height: canvas.clientHeight,
+    });
+  }
+
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using OffscreenCanvas&#39;);  /* eslint-disable-line no-console */
+}
+
+function startMainPage(canvas) {
+  init({canvas});
+
++  sendMouse = (x, y) =&gt; {
++    pickPosition.x = x;
++    pickPosition.y = y;
++  };
+
+  function sendSize() {
+    state.width = canvas.clientWidth;
+    state.height = canvas.clientHeight;
+  }
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using regular canvas&#39;);  /* eslint-disable-line no-console */
+}
+</code></pre>
+<p>Then we can copy in all the mouse handling code to the main page and 
+make just minor changes to use <code>sendMouse</code></p>
+<pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
+-  pickPosition.x = (event.clientX / canvas.clientWidth ) *  2 - 1;
+-  pickPosition.y = (event.clientY / canvas.clientHeight) * -2 + 1;  // note we flip Y
++  sendMouse(
++      (event.clientX / canvas.clientWidth ) *  2 - 1,
++      (event.clientY / canvas.clientHeight) * -2 + 1);  // note we flip Y
+}
+
+function clearPickPosition() {
+  // unlike the mouse which always has a position
+  // if the user stops touching the screen we want
+  // to stop picking. For now we just pick a value
+  // unlikely to pick something
+-  pickPosition.x = -100000;
+-  pickPosition.y = -100000;
++  sendMouse(-100000, -100000);
+}
+window.addEventListener(&#39;mousemove&#39;, setPickPosition);
+window.addEventListener(&#39;mouseout&#39;, clearPickPosition);
+window.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
+
+window.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
+  // prevent the window from scrolling
+  event.preventDefault();
+  setPickPosition(event.touches[0]);
+}, {passive: false});
+
+window.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
+  setPickPosition(event.touches[0]);
+});
+
+window.addEventListener(&#39;touchend&#39;, clearPickPosition);
+</code></pre>
+<p>and with that picking should be working with <code>OffscreenCanvas</code>.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas-w-picking.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas-w-picking.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Let&#39;s take it one more step and add in the <code>OrbitControls</code>.
+This will be little more involved. The <code>OrbitControls</code> use
+the DOM pretty extensively checking the mouse, touch events,
+and the keyboard.</p>
+<p>Unlike our code so far we can&#39;t really use a global <code>state</code> object
+without re-writing all the OrbitControls code to work with it.
+The OrbitControls take an element to which they attach most
+of the DOM events they use. Maybe we could pass in our own
+object that has the same API surface as a DOM element. 
+We only need to support the features the OrbitControls need.</p>
+<p>Digging through the <a href="https://github.com/greggman/threejsfundamentals/blob/master/threejs/resources/threejs/r103/js/controls/OrbitControls.js">OrbitControls source code</a>
+it looks like we need to handle the following events.</p>
+<ul>
+<li>contextmenu</li>
+<li>mousedown</li>
+<li>mousemove</li>
+<li>mouseup</li>
+<li>touchstart</li>
+<li>touchmove</li>
+<li>touchend</li>
+<li>wheel</li>
+<li>keydown</li>
+</ul>
+<p>For the mouse events we need the <code>ctrlKey</code>, <code>metaKey</code>, <code>shiftKey</code>, 
+<code>button</code>, <code>clientX</code>, <code>clientY</code>, <code>pageX</code>, and <code>pageY</code>, properties</p>
+<p>For the keydown events we need the <code>ctrlKey</code>, <code>metaKey</code>, <code>shiftKey</code>, 
+and <code>keyCode</code> properties.</p>
+<p>For the wheel event we only need the <code>deltaY</code> property</p>
+<p>And for the touch events we only need <code>pageX</code> and <code>pageY</code> from
+the <code>touches</code> property.</p>
+<p>So, let&#39;s make a proxy object pair. One part will run in the main page,
+get all those events, and pass on the relevant property values
+to the worker. The other part will run in the worker, receive those
+events and pass them on using events that have the same structure
+as the original DOM events so the OrbitControls won&#39;t be able to
+tell the difference.</p>
+<p>Here&#39;s the code for the worker part.</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
+  handleEvent(data) {
+    this.dispatchEvent(data);
+  }
+}
+</code></pre>
+<p>All it does is if it receives a message it dispatches it.
+It inherits from <code>EventDispatcher</code> which provides methods like
+<code>addEventListener</code> and <code>removeEventListener</code> just like a DOM
+element so if we pass it to the OrbitControls it should work.</p>
+<p><code>ElementProxyReceiver</code> handles 1 element. In our case we only need
+one but it&#39;s best to think head so lets make a manager to manage
+more than one of them.</p>
+<pre class="prettyprint"><code class="lang-js">class ProxyManager {
+  constructor() {
+    this.targets = {};
+    this.handleEvent = this.handleEvent.bind(this);
+  }
+  makeProxy(data) {
+    const {id} = data;
+    const proxy = new ElementProxyReceiver();
+    this.targets[id] = proxy;
+  }
+  getProxy(id) {
+    return this.targets[id];
+  }
+  handleEvent(data) {
+    this.targets[data.id].handleEvent(data.data);
+  }
+}
+</code></pre>
+<p>We can make a instance of <code>ProxyManager</code> and call its <code>makeProxy</code>
+method with an id which will make an <code>ElementProxyReceiver</code> that
+responds to messages with that id.</p>
+<p>Let&#39;s hook it up to our worker&#39;s message handler.</p>
+<pre class="prettyprint"><code class="lang-js">const proxyManager = new ProxyManager();
+
+function start(data) {
+  const proxy = proxyManager.getProxy(data.canvasId);
+  init({
+    canvas: data.canvas,
+    inputElement: proxy,
+  });
+}
+
+function makeProxy(data) {
+  proxyManager.makeProxy(data);
+}
+
+...
+
+const handlers = {
+-  init,
+-  mouse,
++  start,
++  makeProxy,
++  event: proxyManager.handleEvent,
+   size,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p>We also need to actually add the <code>OrbitControls</code> to the top of
+the script</p>
+<pre class="prettyprint"><code class="lang-js">importScripts(&#39;resources/threejs/r103/three.js&#39;);
++importScripts(&#39;resources/threejs/r103/js/controls/OrbitControls.js&#39;);
+*importScripts(&#39;shared-orbitcontrols.js&#39;);
+</code></pre>
+<p>and in our shared three.js code we need to set them up</p>
+<pre class="prettyprint"><code class="lang-js">function init(data) {
+-  const {canvas} = data;
++  const {canvas, inputElement} = data;
+  const renderer = new THREE.WebGLRenderer({canvas});
+
++  const controls = new THREE.OrbitControls(camera, inputElement);
++  controls.target.set(0, 0, 0);
++  controls.update();
+</code></pre>
+<p>Notice we&#39;re passing the OrbitControls our proxy via <code>inputElement</code>
+instead of passing in the canvas like we do in other non-OffscreenCanvas
+examples.</p>
+<p>Next we can move all the picking event code from the HTML file
+to the shared three.js code as well while changing
+<code>canvas</code> to <code>inputElement</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
+-  sendMouse(
+-      (event.clientX / canvas.clientWidth ) *  2 - 1,
+-      (event.clientY / canvas.clientHeight) * -2 + 1);  // note we flip Y
++  pickPosition.x = (event.clientX / inputElement.clientWidth ) *  2 - 1;
++  pickPosition.y = (event.clientY / inputElement.clientHeight) * -2 + 1;  // note we flip Y
+}
+
+function clearPickPosition() {
+  // unlike the mouse which always has a position
+  // if the user stops touching the screen we want
+  // to stop picking. For now we just pick a value
+  // unlikely to pick something
+-  sendMouse(-100000, -100000);
++  pickPosition.x = -100000;
++  pickPosition.y = -100000;
+}
+
+*inputElement.addEventListener(&#39;mousemove&#39;, setPickPosition);
+*inputElement.addEventListener(&#39;mouseout&#39;, clearPickPosition);
+*inputElement.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
+
+*inputElement.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
+  // prevent the window from scrolling
+  event.preventDefault();
+  setPickPosition(event.touches[0]);
+}, {passive: false});
+
+*inputElement.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
+  setPickPosition(event.touches[0]);
+});
+
+*inputElement.addEventListener(&#39;touchend&#39;, clearPickPosition);
+</code></pre>
+<p>Back in the main page we need code to send messages for
+all the events we enumerated above.</p>
+<pre class="prettyprint"><code class="lang-js">let nextProxyId = 0;
+class ElementProxy {
+  constructor(element, worker, eventHandlers) {
+    this.id = nextProxyId++;
+    this.worker = worker;
+    const sendEvent = (data) =&gt; {
+      this.worker.postMessage({
+        type: &#39;event&#39;,
+        id: this.id,
+        data,
+      });
+    };
+
+    // register an id
+    worker.postMessage({
+      type: &#39;makeProxy&#39;,
+      id: this.id,
+    });
+    for (const [eventName, handler] of Object.entries(eventHandlers)) {
+      element.addEventListener(eventName, function(event) {
+        handler(event, sendEvent);
+      });
+    }
+  }
+}
+</code></pre>
+<p><code>ElementProxy</code> takes the element who&#39;s events we want to proxy. It
+then registers an id with the worker by picking one and sending it
+via the <code>makeProxy</code> message we setup earlier. The worker will make
+an <code>ElementProxyReceiver</code> and register it to that id.</p>
+<p>We then have an object of event handlers to register. This way
+we can pass handlers only for these events we want to forward to
+the worker.</p>
+<p>When we start the worker we first make a proxy and pass in our event handlers.</p>
+<pre class="prettyprint"><code class="lang-js">function startWorker(canvas) {
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-worker-orbitcontrols.js&#39;);
+
++  const eventHandlers = {
++    contextmenu: preventDefaultHandler,
++    mousedown: mouseEventHandler,
++    mousemove: mouseEventHandler,
++    mouseup: mouseEventHandler,
++    touchstart: touchEventHandler,
++    touchmove: touchEventHandler,
++    touchend: touchEventHandler,
++    wheel: wheelEventHandler,
++    keydown: filteredKeydownEventHandler,
++  };
++  const proxy = new ElementProxy(canvas, worker, eventHandlers);
+  worker.postMessage({
+    type: &#39;start&#39;,
+    canvas: offscreen,
++    canvasId: proxy.id,
+  }, [offscreen]);
+  console.log(&#39;using OffscreenCanvas&#39;);  /* eslint-disable-line no-console */
+}
+</code></pre>
+<p>And here are the event handlers. All they do is copy a list of properties
+from the event they receive. They are passed a <code>sendEvent</code> function to which they pass the data
+they make. That function will add the correct id and send it to the worker.</p>
+<pre class="prettyprint"><code class="lang-js">const mouseEventHandler = makeSendPropertiesHandler([
+  &#39;ctrlKey&#39;,
+  &#39;metaKey&#39;,
+  &#39;shiftKey&#39;,
+  &#39;button&#39;,
+  &#39;clientX&#39;,
+  &#39;clientY&#39;,
+  &#39;pageX&#39;,
+  &#39;pageY&#39;,
+]);
+const wheelEventHandlerImpl = makeSendPropertiesHandler([
+  &#39;deltaX&#39;,
+  &#39;deltaY&#39;,
+]);
+const keydownEventHandler = makeSendPropertiesHandler([
+  &#39;ctrlKey&#39;,
+  &#39;metaKey&#39;,
+  &#39;shiftKey&#39;,
+  &#39;keyCode&#39;,
+]);
+
+function wheelEventHandler(event, sendFn) {
+  event.preventDefault();
+  wheelEventHandlerImpl(event, sendFn);
+}
+
+function preventDefaultHandler(event) {
+  event.preventDefault();
+}
+
+function copyProperties(src, properties, dst) {
+  for (const name of properties) {
+      dst[name] = src[name];
+  }
+}
+
+function makeSendPropertiesHandler(properties) {
+  return function sendProperties(event, sendFn) {
+    const data = {type: event.type};
+    copyProperties(event, properties, data);
+    sendFn(data);
+  };
+}
+
+function touchEventHandler(event, sendFn) {
+  const touches = [];
+  const data = {type: event.type, touches};
+  for (let i = 0; i &lt; event.touches.length; ++i) {
+    const touch = event.touches[i];
+    touches.push({
+      pageX: touch.pageX,
+      pageY: touch.pageY,
+    });
+  }
+  sendFn(data);
+}
+
+// The four arrow keys
+const orbitKeys = {
+  &#39;37&#39;: true,  // left
+  &#39;38&#39;: true,  // up
+  &#39;39&#39;: true,  // right
+  &#39;40&#39;: true,  // down
+};
+function filteredKeydownEventHandler(event, sendFn) {
+  const {keyCode} = event;
+  if (orbitKeys[keyCode]) {
+    event.preventDefault();
+    keydownEventHandler(event, sendFn);
+  }
+}
+</code></pre>
+<p>This seems close to running but if we actually try it we&#39;ll see
+that the <code>OrbitControls</code> need a few more things.</p>
+<p>One is they call <code>element.focus</code>. We don&#39;t need that to happen
+in the worker so let&#39;s just add a stub.</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
+  handleEvent(data) {
+    this.dispatchEvent(data);
+  }
++  focus() {
++    // no-op
++  }
+}
+</code></pre>
+<p>Another is they call <code>event.preventDefault</code> and <code>event.stopPropagation</code>.
+We&#39;re already handling that in the main page so those can also be a noop.</p>
+<pre class="prettyprint"><code class="lang-js">+function noop() {
++}
+
+class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
+  handleEvent(data) {
++    data.preventDefault = noop;
++    data.stopPropagation = noop;
+    this.dispatchEvent(data);
+  }
+  focus() {
+    // no-op
+  }
+}
+</code></pre>
+<p>Another is they look at <code>clientWidth</code> and <code>clientHeight</code>. We
+were passing the size before but we can update the proxy pair
+to pass that as well.</p>
+<p>In the worker...</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
++  get clientWidth() {
++    return this.width;
++  }
++  get clientHeight() {
++    return this.height;
++  }
+  handleEvent(data) {
++    if (data.type === &#39;size&#39;) {
++      this.width = data.width;
++      this.height = data.height;
++      return;
++    }
+    data.preventDefault = noop;
+    data.stopPropagation = noop;
+    this.dispatchEvent(data);
+  }
+  focus() {
+    // no-op
+  }
+}
+</code></pre>
+<p>back in the main page we need to send the size</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxy {
+  constructor(element, worker, eventHandlers) {
+    this.id = nextProxyId++;
+    this.worker = worker;
+    const sendEvent = (data) =&gt; {
+      this.worker.postMessage({
+        type: &#39;event&#39;,
+        id: this.id,
+        data,
+      });
+    };
+
+    // register an id
+    worker.postMessage({
+      type: &#39;makeProxy&#39;,
+      id: this.id,
+    });
++    sendSize();
+    for (const [eventName, handler] of Object.entries(eventHandlers)) {
+      element.addEventListener(eventName, function(event) {
+        handler(event, sendEvent);
+      });
+    }
+
++    function sendSize() {
++      sendEvent({
++        type: &#39;size&#39;,
++        width: element.clientWidth,
++        height: element.clientHeight,
++      });
++    }
++
++    window.addEventListener(&#39;resize&#39;, sendSize);
+  }
+}
+</code></pre>
+<p>and in our shared three.js code we no longer need <code>state</code></p>
+<pre class="prettyprint"><code class="lang-js">-const state = {
+-  width: 300,   // canvas default
+-  height: 150,  // canvas default
+-};
+
+...
+
+function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+-  const width = state.width;
+-  const height = state.height;
++  const width = inputElement.clientWidth;
++  const height = inputElement.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+
+function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+-    camera.aspect = state.width / state.height;
++    camera.aspect = inputElement.clientWidth / inputElement.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  ...
+</code></pre>
+<p>A few more hacks. The OrbitControls attach event handlers to <code>window</code> to
+get keyboard events. Not sure that&#39;s the right place to attach them but that&#39;s beyond our control
+unless we fork the OrbitControls. In any case <code>window</code> doesn&#39;t exist in a worker.</p>
+<p>They also also add <code>mousemove</code> and <code>mouseup</code> events to the <code>document</code>
+to handle mouse capture (when the mouse goes outside the window) but
+like <code>window</code> there is no <code>document</code> in a worker.</p>
+<p>Finally they look at <code>document.body</code>.</p>
+<p>We can solve all of these with a few quick hacks. In our worker
+code we&#39;ll re-use our proxy for all 3 problems.</p>
+<pre class="prettyprint"><code class="lang-js">function start(data) {
+  const proxy = proxyManager.getProxy(data.canvasId);
++  proxy.body = proxy;  // HACK!
++  self.window = proxy;  // HACK!
++  self.document = proxy;  // HACK!
+  init({
+    canvas: data.canvas,
+    inputElement: proxy,
+  });
+}
+</code></pre>
+<p>This will give the <code>OrbitControls</code> something to inspect which
+matches their expectations.</p>
+<p>I know that was kind of hard to follow. The short version is:
+<code>ElementProxy</code> runs on the main page and forwards DOM events 
+to <code>ElementProxyReceiver</code> in the worker which
+masquerades as an <code>HTMLElement</code> that we can use both with the
+<code>OrbitControls</code> and with our own.</p>
+<p>The final thing is our fallback when we are not using OffscreenCanvas.
+All we have to do is pass the canvas itself as our <code>inputElement</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function startMainPage(canvas) {
+-  init({canvas});
++  init({canvas, inputElement: canvas});
+  console.log(&#39;using regular canvas&#39;);
+}
+</code></pre>
+<p>and now we should have OrbitControls working with OffscreenCanvas</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas-w-orbitcontrols.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas-w-orbitcontrols.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>This is probably the most complicated example on this site. It&#39;s a
+little hard to follow because there are 3 files involved for each
+sample. The HTML file, the worker file, the shared three.js code.</p>
+<p>I hope it wasn&#39;t too difficult to understand and that it provided some 
+useful examples of working with three.js, OffscreenCanvas and web workers.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-offscreencanvas.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-offscreencanvas.html" >Русский</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>    
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>    
+    <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+    <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+    <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+  </ul>
+  <li>WebVR</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+    <li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js OffscreenCanvas';
+            var disqus_title = 'Three.js OffscreenCanvas';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
