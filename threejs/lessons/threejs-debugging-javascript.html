@@ -112,8 +112,9 @@ Advanced Safari Preferences.</p>
 <p>Then in the Develop menu you can pick &quot;Show/Connect Web Inspector&quot;.</p>
 <div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
 
-<p>With Chrome you can also <a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/">use Chrome on your computer to debug webpages running on Chrome on your Android phone or tablet</a>. Similarly with Safari you can <a href="https://www.google.com/search?q=safari+remote+debugging+ios">use your computer to debug webpages running on Safari
-on iPhones and iPads</a>.</p>
+<p>With Chrome you can also <a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/">use Chrome on your computer to debug webpages running on Chrome on your Android phone or tablet</a>.
+Similarly with Safari you can 
+<a href="https://www.google.com/search?q=safari+remote+debugging+ios">use your computer to debug webpages running on Safari on iPhones and iPads</a>.</p>
 <p>I&#39;m most familiar with Chrome so this guide will be using Chrome
 as an example when refering to tools but most browsers have similar
 features so it should be easy to apply anything here to all browsers.</p>
@@ -221,9 +222,10 @@ than making an element per piece of data above.</p>
   }
 }
 </code></pre>
-<p>Then let&#39;s make a simple example that everytime we click the mouse makes a mesh that moves in a random direction for 2 seconds. We&#39;ll start with
-one of the examples from the article on <a href="threejs-responsive.html">making things responsive</a></p>
-<p>Here&#39;s the code that adds a new <code>Mesh</code> everytime we click the mouse</p>
+<p>Then let&#39;s make a simple example that every time we click the mouse makes a mesh
+that moves in a random direction for 2 seconds. We&#39;ll start with one of the
+examples from the article on <a href="threejs-responsive.html">making things responsive</a></p>
+<p>Here&#39;s the code that adds a new <code>Mesh</code> every time we click the mouse</p>
 <pre class="prettyprint"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry();
 const material = new THREE.MeshBasicMaterial({color: &#39;red&#39;});
 
@@ -333,7 +335,7 @@ function getQuery() {
   &lt;pre&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Then in the code we read the params and choose to unhide the
+<p>Then in the code we read the params and choose to un-hide the
 debug info if and only if <code>?debug=true</code> is passed in</p>
 <pre class="prettyprint"><code class="lang-js">const query = getQuery();
 const debug = query.debug === &#39;true&#39;;
@@ -377,8 +379,9 @@ as a value when you do something that doesn&#39;t make sense mathwise.</p>
 <p>Often when I&#39;m making something and nothing appears on the screen
 I&#39;ll check some values and if I see <code>NaN</code> I will instantly have a 
 place to start looking.</p>
-<p>As an example when I first started making the path for the <a href="threejs-load-gltf.html">article about loading gLTF files</a> I made a curve using the
-<code>SplineCurve</code> class which makes a 2D curve.</p>
+<p>As an example when I first started making the path for the
+<a href="threejs-load-gltf.html">article about loading gLTF files</a> I made
+a curve using the <code>SplineCurve</code> class which makes a 2D curve.</p>
 <p>I then used that curve to move the cars like this</p>
 <pre class="prettyprint"><code class="lang-js">curve.getPointAt(zeroToOnePointOnCurve, car.position);
 </code></pre>
@@ -392,8 +395,9 @@ and so it calls <code>car.position.set</code> with just x and y.</p>
 showed a bunch of <code>NaN</code> values.</p>
 <div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
-<p>Seeing the matrix had <code>NaN</code>s in it suggested something like <code>position</code>, <code>rotation</code>, <code>scale</code> or some other function that affects that matrix had bad data. Working backward from their it was easy
-to track down the issue.</p>
+<p>Seeing the matrix had <code>NaN</code>s in it suggested something like <code>position</code>,
+<code>rotation</code>, <code>scale</code> or some other function that affects that matrix had bad
+data. Working backward from their it was easy to track down the issue.</p>
 <p>In top of <code>NaN</code> there&#39;s also <code>Infinity</code> which is a similar sign there
 is a math bug somewhere.</p>
 <h2 id="look-in-the-code-">Look In the Code!</h2>
@@ -403,8 +407,8 @@ You can also look inside by stepping into functions in the debugger.
 When you do that consider using <code>three.js</code> instead of the more common
 <code>three.min.js</code>. <code>three.min.js</code> is the minified, compressed, and therefore
 smaller to download version. <code>three.js</code> is the larger but easier to
-debug version. I often switch my code to use <code>three.js</code> to step inside
-THREE.js to step through the code and see what is going on.</p>
+debug version. I often switch my code to use <code>three.js</code> to step through
+the code and see what is going on.</p>
 <h2 id="put-requestanimationframe-at-bottom-of-your-render-function-">Put <code>requestAnimationFrame</code> at bottom of your render function.</h2>
 <p>I see this pattern often</p>
 <pre class="prettyprint"><code class="lang-js">function render() {
@@ -427,24 +431,24 @@ the bottom as in</p>
 }
 requestAnimationFrame(render);
 </code></pre>
-<p>The biggest reason is it means your code will stop if you have an
-error. Putting <code>requestAnimationFrame</code> at the top means your
-code will keep running even if you have an error since you already
-requested another frame. IMO it&#39;s better to find those errors than 
-to ignore them. They could easily be the reason something is not appearing as you expect it to but unless your code stops you might 
-not even notice.</p>
+<p>The biggest reason is it means your code will stop if you have an error. Putting
+<code>requestAnimationFrame</code> at the top means your code will keep running even if you
+have an error since you already requested another frame. IMO it&#39;s better to find
+those errors than to ignore them. They could easily be the reason something is
+not appearing as you expect it to but unless your code stops you might not even
+notice.</p>
 <h2 id="check-your-units-">Check your units!</h2>
-<p>This bascially means knowning for example when to use degrees vs
+<p>This basically means knowing for example when to use degrees vs
 when to use radians. It&#39;s unfortunate that THREE.js does not
 consistently use the same units everywhere. Off the top of my head
 the camera&#39;s field of view is in degrees. All other angles are in
 radians.</p>
 <p>The other place to look out is your world unit size. Until
-recently 3D apps could choose any size they want. One app might choose
+recently 3D apps could choose any unit size they wanted. One app might choose
 1 unit = 1cm. Another might choose 1 unit = 1 foot. It&#39;s actually still
 true that you can chose any units you want for certain applications.
 That said, THREE.js assumes 1 unit = 1 meter. This is important for
-things like physicsally based rendering which uses meters to compute
+things like physically based rendering which uses meters to compute
 lighting effects. It&#39;s also important for AR and VR which need to
 deal with real world units like where your phone is or where the VR
 controllers are.</p>
@@ -452,8 +456,10 @@ controllers are.</p>
 <p>If you decide to ask a question about THREE.js it&#39;s almost always
 required for you to provide an MCVE which stands for Minimal, Complete,
 Verifiable, Example.</p>
-<p>The <strong>Minimal</strong> part is important. Let&#39;s say you where having
-an issue with the path moviement in the last example of the <a href="threejs-load-gltf.html">loading a gLTF article</a>. That example has many parts. Listing them out it has</p>
+<p>The <strong>Minimal</strong> part is important. Let&#39;s say you where having an issue with the
+path movement in the last example of the <a href="threejs-load-gltf.html">loading a gLTF
+article</a>. That example has many parts. Listing them out
+it has</p>
 <ol>
 <li>A bunch of HTML</li>
 <li>Some CSS</li>
@@ -464,14 +470,14 @@ an issue with the path moviement in the last example of the <a href="threejs-loa
 <li>Code to resize the canvas.</li>
 <li>Code to move the cars along paths</li>
 </ol>
-<p>That&#39;s pretty huge. If your question is only about the path following
-part you can remove most of the HTML as you only need a <code>&lt;canvas&gt;</code> and a <code>&lt;script&gt;</code> tag for THREE.js. You can remove the CSS and the resizing code.
-You can remove .GLTF code because you only care about the path. You
-can remove the lights and the shadows by using a <code>MeshBasicMaterial</code>.
-You can certainly remove the DAT.gui code. The code makes a ground plane
-with a texture. It would be easier to use a <code>GridHelper</code>. Finally if
-our question is about moving things on a path we could just use
-cubes on the path instead of loaded car models.</p>
+<p>That&#39;s pretty huge. If your question is only about the path following part you
+can remove most of the HTML as you only need a <code>&lt;canvas&gt;</code> and a <code>&lt;script&gt;</code> tag
+for THREE.js. You can remove the CSS and the resizing code. You can remove .GLTF
+code because you only care about the path. You can remove the lights and the
+shadows by using a <code>MeshBasicMaterial</code>. You can certainly remove the DAT.gui
+code. The code makes a ground plane with a texture. It would be easier to use a
+<code>GridHelper</code>. Finally if our question is about moving things on a path we could
+just use cubes on the path instead of loaded car models.</p>
 <p>Here&#39;s a more minimal example taking all the above into account. It
 shrunk from 271 lines to 135. We might consider shrinking it even
 more by simplifying our path. Maybe a path with 3 or 4 points would
@@ -493,11 +499,12 @@ often than not leads us to our bug.</p>
 asking to look at your code on Stack Overflow. By making the minimal
 example you make it much easier for them to help you. You&#39;ll also
 learn in the process.</p>
-<p>Also important, when you go to Stack Overflow to post your question
-<strong>put your code <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">in a snippet</a>*. Of course you are welcome to use
-JSFiddle or Codepen or similar site to test out your MCVE but
-once you actually get to posting your question on Stack Overflow
-you&#39;re required to put the code </strong>in the question itself*.</p>
+<p>Also important, when you go to Stack Overflow to post your question <strong>put your
+code <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">in a snippet</a>*.
+Of course you are welcome to use JSFiddle or Codepen or similar site to test out
+your MCVE but once you actually get to posting your question on Stack Overflow
+you&#39;re required to put the code </strong>in the question itself**. My making
+a snippet you satisfy that requirement.</p>
 <p>Follow these suggestions and your far more likely to get help
 with your issue.</p>
 <h2 id="use-a-meshbasicmaterial-">Use a <code>MeshBasicMaterial</code></h2>
@@ -505,13 +512,25 @@ with your issue.</p>
 remove reasons something might not be showing up. If your objects
 show up using <code>MeshBasicMaterial</code> but not with whatever materials
 you were using then you know the issue is likely with the materials
-and not some other part of the code.</p>
+or the lights and not some other part of the code.</p>
 <h2 id="check-your-near-and-far-settings-for-your-camera">Check your <code>near</code> and <code>far</code> settings for your camera</h2>
-<p>A <code>PerspectiveCamera</code> has <code>near</code> and <code>far</code> settings which are covered in the <a href="threejs-cameras.html">article on cameras</a>. Make sure they are set to fit the space that contains your objects. Maybe even just <strong>temporarily</strong> set them to something large like <code>near</code> = 0.001 and <code>far</code> = 1000000. You will likely run into depth resolution issues but you&#39;ll at least be able to see your objects provided they are in front of the camera.</p>
+<p>A <code>PerspectiveCamera</code> has <code>near</code> and <code>far</code> settings which are covered in the
+<a href="threejs-cameras.html">article on cameras</a>. Make sure they are set to fit the
+space that contains your objects. Maybe even just <strong>temporarily</strong> set them to
+something large like <code>near</code> = 0.001 and <code>far</code> = 1000000. You will likely run
+into depth resolution issues but you&#39;ll at least be able to see your objects
+provided they are in front of the camera.</p>
 <h2 id="check-your-scene-is-in-front-of-the-camera">Check your scene is in front of the camera</h2>
-<p>Sometimes things don&#39;t appear because they are not in front of the camera. If your camera is not controllable try adding camera control like the <code>OrbitController</code> so you can look around and find your scene. Or, try framing the scene using code which is covered in <a href="threejs-load-obj.html">this article</a>. That code finds the size of part of the scene and then moves the camera and adjusts the <code>near</code> and <code>far</code> settings to make it visible. You can then look in the debugger or add some <code>console.log</code> messages to print the size and center of the scene.</p>
+<p>Sometimes things don&#39;t appear because they are not in front of the camera. If
+your camera is not controllable try adding camera control like the
+<code>OrbitController</code> so you can look around and find your scene. Or, try framing
+the scene using code which is covered in <a href="threejs-load-obj.html">this article</a>.
+That code finds the size of part of the scene and then moves the camera and
+adjusts the <code>near</code> and <code>far</code> settings to make it visible. You can then look in
+the debugger or add some <code>console.log</code> messages to print the size and center of
+the scene.</p>
 <h2 id="put-something-in-front-of-the-camera">Put something in front of the camera</h2>
-<p>This is just another wasy of saying if all else fails start with
+<p>This is just another way of saying if all else fails start with
 something that works and then slowly add stuff back in. If you get
 a screen with nothing on it then try putting something directly in
 front of the camera. Make a sphere or box, give it a simple material
@@ -519,7 +538,7 @@ like the <code>MeshBasicMaterial</code> and make sure you can get that on the sc
 Then start adding things back a little at time and testing. Eventually
 you&#39;ll either reproduce your bug or you&#39;ll find it on the way.</p>
 <hr>
-<p>These were a few tips for debugging JavsScript. Let&#39;s also go
+<p>These were a few tips for debugging JavaScript. Let&#39;s also go
 over <a href="threejs-debugging-glsl.html">some tips for debugging GLSL</a>.</p>
 
     </div>
