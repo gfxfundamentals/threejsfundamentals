@@ -16,6 +16,36 @@ with diagrams where possible. Also it's probably best to
 ask to make sure someone else isn't already working on a similar
 article.
 
+## Article notes
+
+A code word in a paragraph, as in
+
+```md
+A `BoxBufferGeometry` makes a box.
+```
+
+Will get automatically turned into a link to the THREE.js docs
+if the word happens to be one of the names in the three.js library.
+Similarly adding a `.property` as in
+
+```md
+Use `Material.opacity` to set the opacity level.
+```
+
+Will get turned into a link to the three.js `Material` docs
+with an hash to `opacity`.
+
+The link itself will also be checked similarly so for example
+
+```md
+We can set the color by hsl using [material.setHSL(hue, saturation, level)](MeshBasicMaterial.setHSL) and
+passing in values from 0 to 1 for each of `hue`, `saturation` and `level`.
+```
+
+The `[stuff](Material.setHSL)` will get turned into a link to the docs
+
+Currently this happens in the browser, not at build time.
+
 ### Translating
 
 Each translation goes in a folder under `threejs/lessons/<country-code>`.
