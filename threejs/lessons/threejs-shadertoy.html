@@ -284,7 +284,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     fragColor = vec4(COLOR, 1.0) * p;
 }
 </code></pre>
-<p>Passing a texture into a shader is similar to <a href="../threejs-textures.html">passing one into a normal material</a> but we need to set up the texture on the uniforms.</p>
+<p>Passing a texture into a shader is similar to <a href="threejs-textures.html">passing one into a normal material</a> but we need to set up the texture on the uniforms.</p>
 <p>First we&#39;ll add the uniform for the texture to the shader. They&#39;re referred to as <code>sampler2D</code> in GLSL.</p>
 <pre class="prettyprint"><code class="lang-js">const fragmentShader = `
 #include &lt;common&gt;
@@ -295,7 +295,7 @@ uniform float iTime;
 
 ...
 </code></pre>
-<p>Then we can load a texture like we covered <a href="../threejs-textures.html">here</a> and assign the uniform&#39;s value.</p>
+<p>Then we can load a texture like we covered <a href="threejs-textures.html">here</a> and assign the uniform&#39;s value.</p>
 <pre class="prettyprint"><code class="lang-js">+const loader = new THREE.TextureLoader();
 +const texture = loader.load(&#39;resources/images/bayer.png&#39;);
 +texture.minFilter = THREE.NearestFilter;
@@ -355,7 +355,7 @@ void main() {
 -uniforms.iResolution.value.set(canvas.width, canvas.height, 1);
 uniforms.iTime.value = time;
 </code></pre>
-<p>Otherwise I copied back in the original camera and code that sets up 3 rotating cubes from <a href="../threejs-responsive.html">the article on responsiveness</a>. The result:</p>
+<p>Otherwise I copied back in the original camera and code that sets up 3 rotating cubes from <a href="threejs-responsive.html">the article on responsiveness</a>. The result:</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-as-texture.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-as-texture.html" target="_blank">click here to open in a separate window</a>
@@ -384,13 +384,14 @@ uniforms.iTime.value = time;
   <li>Solutions</li>
   <ul>
     <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
-    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>    
-    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>    
-    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>    
-    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>    
-    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>    
-    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>    
-    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>    
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+    <li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
     <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
     <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
     <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
