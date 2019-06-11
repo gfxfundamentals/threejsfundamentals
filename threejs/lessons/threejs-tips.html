@@ -360,6 +360,57 @@ and touch events so you can select the text beneath.</p>
 </div>
 
 </p>
+<hr>
+<p><a id="html-background"></a></p>
+<h1 id="making-your-background-a-three-js-animation">Making your background a three.js animation</h1>
+<p>A common question is how to make a three.js animation be the background of
+a webpage.</p>
+<p>There are 2 obvious ways.</p>
+<ul>
+<li>Set the canvas CSS <code>position</code> to <code>fixed</code> as in</li>
+</ul>
+<pre class="prettyprint"><code class="lang-css">#c {
+ position: fixed;
+ left: 0;
+ top: 0;
+ ...
+}
+</code></pre>
+<p>You can basically see this exact solution on the previous example. Just set <code>z-index</code> to -1
+and the cubes will appear behind the text.</p>
+<p>A small disadvantage to this solution is your JavaScript must integrate with the page
+and if you have a complex page then you need to make sure none of the JavaScript in your
+three.js visualization conflict with the JavaScript doing other things in the page.</p>
+<ul>
+<li>Use an <code>iframe</code></li>
+</ul>
+<p>This is the solution used on <a href="/">the front page of this site</a>.</p>
+<p>In your webpage just insert an iframe, for example</p>
+<pre class="prettyprint"><code class="lang-html">&lt;iframe id=&quot;background&quot; src=&quot;threejs-repsonsive.html&quot;&gt;
+&lt;div&gt;
+  Your content goes here.
+&lt;/div&gt;
+</code></pre>
+<p>Then style the iframe to fill the window and be in the background
+which is basically the same code as we used above for the canvas
+except we also need to set <code>border</code> to <code>none</code> since iframes have
+a border by default.</p>
+<pre class="prettyprint"><code>#background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border: none;
+    pointer-events: none;
+}
+</code></pre><p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-html-background.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-html-background.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -415,6 +466,7 @@ and touch events so you can select the text beneath.</p>
     <li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
     <li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
     <li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+    <li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
   </ul>
   <li>Fundamentals</li>
   <ul>
