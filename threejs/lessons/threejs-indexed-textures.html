@@ -343,7 +343,7 @@ in the palette a different color, we can highlight just that country.</p>
 <p>To do paletted index graphics requires some custom shader code. 
 Let&#39;s modify the default shaders in three.js. 
 That way we can use lighting and other features if we want.</p>
-<p>Like we covered in <a href="threejs-lots-of-objects-animated.html">the article on animating lots of objects</a>
+<p>Like we covered in <a href="threejs-optimize-lots-of-objects-animated.html">the article on animating lots of objects</a>
 we can modify the default shaders by adding a function to a material&#39;s
 <code>onBeforeCompile</code> property.</p>
 <p>The default fragment shader looks something like this before compiling.</p>
@@ -393,7 +393,7 @@ so we should be able to modify it after that point.</p>
 <p><code>diffuseColor</code> at that point in the shader should already be the color from 
 our outline texture so we can look up the color from a palette texture 
 and mix them for the final result.</p>
-<p>Like we <a href="threejs-lots-of-objects-animated.html">did before</a> we&#39;ll make an array
+<p>Like we <a href="threejs-optimize-lots-of-objects-animated.html">did before</a> we&#39;ll make an array
 of search and replacement strings and apply them to the shader in 
 <code>Material.onBeforeCompile</code>.</p>
 <pre class="prettyprint"><code class="lang-js">{
