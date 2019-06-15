@@ -278,13 +278,13 @@ and pass that to three.js</p>
 <pre class="prettyprint"><code> renderer.setPixelRatio(window.devicePixelRatio);
 </code></pre><p>After that any calls to <code>renderer.setSize</code> will magicially
 use the size you request multiplied by whatever pixel ratio
-you passed in. This is strongly <strong>NOT RECOMMENDED</strong>. See below</p>
+you passed in. <strong>This is strongly NOT RECOMMENDED</strong>. See below</p>
 <p>The other way is to do it yourself when you resize the canvas.</p>
 <pre class="prettyprint"><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
-      const width = canvas.clientWidth * pixelRatio;
-      const height = canvas.clientHeight * pixelRatio;
+      const width  = canvas.clientWidth  * pixelRatio | 0;
+      const height = canvas.clientHeight * pixelRatio | 0;
       const needResize = canvas.width !== width || canvas.height !== height;
       if (needResize) {
         renderer.setSize(width, height, false);
