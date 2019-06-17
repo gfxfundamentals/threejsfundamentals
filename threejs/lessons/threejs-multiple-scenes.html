@@ -424,7 +424,8 @@ function render(time) {
     scene.add(mesh);
     return (time, rect) =&gt; {
       mesh.rotation.y = time * .1;
-      camera.aspect = rect.width / rect.height;      camera.updateProjectionMatrix();
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
       renderer.render(scene, camera);
     };
   },
@@ -711,6 +712,7 @@ to render from a web worker and still use this technique. Unfortunately as of Ap
     <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
     <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
     <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+    <li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
   </ul>
   <li>WebVR</li>
   <ul>
