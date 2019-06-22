@@ -36,7 +36,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Scenegraph" />
+<meta property="og:title" content="Three.js Scene Graph" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 <meta property="og:description" content="What&#x27;s a scene graph?" />
@@ -46,13 +46,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Scenegraph" />
+<meta name="twitter:title" content="Three.js Scene Graph" />
 <meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/threejs-scenegraph.html" />
 <meta name="twitter:description" content="What&#x27;s a scene graph?" />
 <meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
 
 
-<title>Three.js Scenegraph</title>
+<title>Three.js Scene Graph</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
 <link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
@@ -77,13 +77,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Scenegraph</h1>
+    <h1>Three.js Scene Graph</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
       <p>This article is part of a series of articles about three.js. The
 first article is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If
-you haven&#39;t read yet you might want to consider starting there.</p>
+you haven&#39;t read that yet you might want to consider starting there.</p>
 <p>Three.js&#39;s core is arguably its scene graph. A scene graph in a 3D
 engine is a hierarchy of nodes in a graph where each node represents
 a local space.</p>
@@ -110,15 +110,15 @@ in the Earth&#39;s &quot;local space&quot; even though relative to the sun you a
 spinning around the earth at around 1000 miles per hour and around
 the sun at around 67,000 miles per hour. Your position in the solar
 system is similar to that of the moon above but you don&#39;t have to concern
-yourself. You just worry about your position relative to the earth its
+yourself. You just worry about your position relative to the earth in its
 &quot;local space&quot;.</p>
 <p>Let&#39;s take it one step at a time. Imagine we want to make
 a diagram of the sun, earth, and moon. We&#39;ll start with the sun by
 just making a sphere and putting it at the origin. Note: We&#39;re using
-sun, earth, moon as a demonstration of how to use a scenegraph. Of course
+sun, earth, moon as a demonstration of how to use a scene graph. Of course
 the real sun, earth, and moon use physics but for our purposes we&#39;ll
-fake it with a scenegraph.</p>
-<pre class="prettyprint"><code class="lang-js">// an array of objects who&#39;s rotation to update
+fake it with a scene graph.</p>
+<pre class="prettyprint"><code class="lang-js">// an array of objects whose rotation to update
 const objects = [];
 
 // use just one sphere for everything
@@ -152,11 +152,11 @@ represents light that eminates from a single point.</p>
 }
 </code></pre>
 <p>To make it easy to see we&#39;re going to put the camera directly above the origin
-looking down. The easist way to do that us to use the <code>lookAt</code> function. The <code>lookAt</code>
-function will orient the camera from its position to &quot;lookAt the position
+looking down. The easist way to do that is to use the <code>lookAt</code> function. The <code>lookAt</code>
+function will orient the camera from its position to &quot;look at&quot; the position
 we pass to <code>lookAt</code>. Before we do that though we need to tell the camera
 which way the top of the camera is facing or rather which way is &quot;up&quot; for the
-camera. For most situations positive Y being up is good enough but since 
+camera. For most situations positive Y being up is good enough but since
 we are looking straight down we need to tell the camera that positive Z is up.</p>
 <pre class="prettyprint"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.set(0, 50, 0);
@@ -237,7 +237,7 @@ earthMesh.position.x = 10;
 +solarSystem.add(earthMesh);
 objects.push(earthMesh);
 </code></pre>
-<p>Here we made a <code>Object3D</code>. Like a <code>Mesh</code> it is also a node in the scene graph
+<p>Here we made an <code>Object3D</code>. Like a <code>Mesh</code> it is also a node in the scene graph
 but unlike a <code>Mesh</code> it has no material or geometry. It just represents a local space.</p>
 <p>Our new scene graph looks like this</p>
 <p><img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center"></p>
@@ -274,7 +274,7 @@ objects.push(earthMesh);
 +moonOrbit.add(moonMesh);
 +objects.push(moonMesh);
 </code></pre>
-<p>Again we added another invisible scene graph node, a <code>Object3D</code> called <code>earthOrbit</code>
+<p>Again we added another invisible scene graph node, an <code>Object3D</code> called <code>earthOrbit</code>
 and added both the <code>earthMesh</code> and the <code>moonMesh</code> to it. The new scene graph looks like
 this.</p>
 <p><img src="resources/images/scenegraph-sun-earth-moon.svg" align="center"></p>
@@ -314,7 +314,7 @@ all the spheres. Otherwise a sphere might draw over them and cover them up.</p>
 </div>
 
 </p>
-<p>We can see the 
+<p>We can see the
 <span style="color:red">x (red)</span> and
 <span style="color:blue">z (blue)</span> axes. Since we are looking
 straight down and each of our objects is only rotating around its
@@ -322,7 +322,7 @@ y axis we don&#39;t see much of the <span style="color:green">y (green)</span> a
 <p>It might be hard to see some of them as there are 2 pairs of overlapping axes. Both the <code>sunMesh</code>
 and the <code>solarSystem</code> are at the same position. Similarly the <code>earthMesh</code> and
 <code>earthOrbit</code> are at the same position. Let&#39;s add some simple controls to allow us
-to turn them on/off for each node. 
+to turn them on/off for each node.
 While we&#39;re at it let&#39;s also add another helper called the <code>GridHelper</code>. It
 makes a 2D grid on the X,Z plane. By default the grid is 10x10 units.</p>
 <p>We&#39;re also going to use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> which is
@@ -351,7 +351,7 @@ some function to add the helpers for each node</p>
 +makeAxisGrid(earthMesh, &#39;earthMesh&#39;);
 +makeAxisGrid(moonMesh, &#39;moonMesh&#39;);
 </code></pre>
-<p><code>makeAxisGrid</code> makes a <code>AxisGridHelper</code> which is class we&#39;ll create
+<p><code>makeAxisGrid</code> makes an <code>AxisGridHelper</code> which is a class we&#39;ll create
 to make dat.GUI happy. Like it says above dat.GUI
 will automagically make a UI that manipulates the named property
 of some object. It will create a different UI depending on the type
@@ -364,7 +364,7 @@ the visible property of both the <code>AxesHelper</code> and <code>GridHelper</c
 <pre class="prettyprint"><code class="lang-js">// Turns both axes and grid visible on/off
 // dat.GUI requires a property that returns a bool
 // to decide to make a checkbox so we make a setter
-// can getter for `visible` which we can tell dat.GUI
+// and getter for `visible` which we can tell dat.GUI
 // to look at.
 class AxisGridHelper {
   constructor(node, units = 10) {
@@ -415,13 +415,13 @@ that represents the car&#39;s frame.</p>
 <p><img src="resources/images/scenegraph-human.svg" align="center"></p>
 <p>You can see the scene graph gets pretty complex for a human. In fact
 that scene graph above is simplified. For example you might extend it
-to cover the every finger (at least another 28 nodes) and every toe
-(yet another 28 nodes) plus ones for the and jaw, the eyes and maybe more.</p>
-<p>Let&#39;s make one semi-complex scenegraph. We&#39;ll make a tank. The tank will have
+to cover every finger (at least another 28 nodes) and every toe
+(yet another 28 nodes) plus ones for the face and jaw, the eyes and maybe more.</p>
+<p>Let&#39;s make one semi-complex scene graph. We&#39;ll make a tank. The tank will have
 6 wheels and a turret. The tank will follow a path. There will be a sphere that
 moves around and the tank will target the sphere.</p>
 <p>Here&#39;s the scene graph. The meshes are colored in green, the <code>Object3D</code>s in blue,
-and the lights in gold, and the cameras in purple. One camera has not been added
+the lights in gold, and the cameras in purple. One camera has not been added
 to the scene graph.</p>
 <div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
@@ -441,7 +441,7 @@ targetMesh.rotation.y = time * 13;
 targetMaterial.emissive.setHSL(time * 10 % 1, 1, .25);
 targetMaterial.color.setHSL(time * 10 % 1, 1, .25);
 </code></pre>
-<p>For the tank there&#39;s an <code>Object3D</code> called <code>tank</code> which used to move everything
+<p>For the tank there&#39;s an <code>Object3D</code> called <code>tank</code> which is used to move everything
 below it around. The code uses a <code>SplineCurve</code> which it can ask for positions
 along that curve. 0.0 is the start of the curve. 1.0 is the end of the curve. It
 asks for the current position where it puts the tank. It then asks for a
@@ -481,7 +481,7 @@ around with the target. We aim that back at the tank. It&#39;s purpose is to all
 <code>targetCamera</code> to be offset from the target itself. If we instead made the camera
 a child of <code>targetBob</code> and just aimed the camera itself it would be inside the
 target.</p>
-<pre class="prettyprint"><code class="lang-js">// make the targetCameraPivot look at the at the tank
+<pre class="prettyprint"><code class="lang-js">// make the targetCameraPivot look at the tank
 tank.getWorldPosition(targetPosition);
 targetCameraPivot.lookAt(targetPosition);
 </code></pre>
@@ -611,8 +611,8 @@ body would be very complicated but using a scene graph it becomes much easier.</
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
-            var disqus_identifier = 'Three.js Scenegraph';
-            var disqus_title = 'Three.js Scenegraph';
+            var disqus_identifier = 'Three.js Scene Graph';
+            var disqus_title = 'Three.js Scene Graph';
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {

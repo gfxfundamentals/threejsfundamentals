@@ -85,7 +85,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 first article is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If
 you haven&#39;t read that yet and you&#39;re new to three.js you might want to
 consider starting there.</p>
-<p>Three.js provides several types of materials. 
+<p>Three.js provides several types of materials.
 They define how objects will appear in the scene.
 Which materials you use really depends on what you&#39;re trying to
 accomplish.</p>
@@ -103,7 +103,7 @@ material.flatShading = true;
 </code></pre>
 <p>note that properties of type <code>THREE.Color</code> have multiple ways to be set.</p>
 <pre class="prettyprint"><code class="lang-js">material.color.set(0x00FFFF);    // same as CSS&#39;s #RRGGBB style
-material.color.set(cssString);   // any CSS color, eg &#39;purple&#39;, &#39;#F32&#39;, 
+material.color.set(cssString);   // any CSS color, eg &#39;purple&#39;, &#39;#F32&#39;,
                                  // &#39;rgb(255, 127, 64)&#39;,
                                  // &#39;hsl(180, 50%, 25%)&#39;
 material.color.set(someColor)    // some other THREE.Color
@@ -118,7 +118,7 @@ const m4 = new THREE.MeshBasicMaterial({color: &#39;rgb(255,0,0)&#39;});   // re
 const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // red
 </code></pre>
 <p>So let&#39;s go over three.js&#39;s set of materials.</p>
-<p>The <code>MeshBasicMaterial</code> is not affected by lights. 
+<p>The <code>MeshBasicMaterial</code> is not affected by lights.
 The <code>MeshLambertMaterial</code> computes lighting only at the vertices vs the <code>MeshPhongMaterial</code> which computes lighting at every pixel. The <code>MeshPhongMaterial</code>
 also supports specular highlights.</p>
 <div class="spread">
@@ -164,7 +164,7 @@ also supports specular highlights.</p>
   </div>
 </div>
 
-<p>Note that setting the <code>emissive</code> property to a color on either a 
+<p>Note that setting the <code>emissive</code> property to a color on either a
 <code>MeshLambertMaterial</code> or a <code>MeshPhongMaterial</code> and setting the <code>color</code> to black
 (and <code>shininess</code> to 0 for phong) ends up looking just like the <code>MeshBasicMaterial</code>.</p>
 <div class="spread">
@@ -202,7 +202,7 @@ using one of the less complex materials. It also follows that if you
 don&#39;t need the extra features then use the simplest material. If you don&#39;t
 need the lighting and the specular highlight then use the <code>MeshBasicMaterial</code>.</p>
 <p>The <code>MeshToonMaterial</code> is similar to the <code>MeshPhongMaterial</code>
-with one big difference. Rather than shading smoothly it uses a gradient map 
+with one big difference. Rather than shading smoothly it uses a gradient map
 (an X by 1 texture) to decide how to shade. The default uses a gradient map
 that is 70% brightness for the first 70% and 100% after but you can supply your
 own gradient map. This ends up giving a 2 tone look that looks like a cartoon.</p>
@@ -220,8 +220,8 @@ complex math to come close to what actually happens in the real world.</p>
 <code>MeshPhongMaterial</code> had a <code>shininess</code> setting. <code>MeshStandardMaterial</code> has 2
 settings <code>roughness</code> and <code>metalness</code>.</p>
 <p>At a basic level <a href="MeshStandardMaterial.roughness"><code>roughness</code></a> is the opposite
-of <code>shininess</code>. Something that has a high roughness, like a baseball doesn&#39;t 
-have hard reflections where as something that&#39;s not rough, like a billiard ball
+of <code>shininess</code>. Something that has a high roughness, like a baseball doesn&#39;t
+have hard reflections whereas something that&#39;s not rough, like a billiard ball,
 is very shiny. Roughness goes from 0 to 1.</p>
 <p>The other setting, <a href="MeshStandardMaterial.metalness"><code>metalness</code></a>, says
 how metal the material is. Metals behave differently than non-metals
@@ -231,7 +231,7 @@ across and <code>metalness</code> from 0 to 1 down.</p>
 <div data-diagram="MeshStandardMaterial" style="min-height: 400px"></div>
 
 <p>The <code>MeshPhysicalMaterial</code> is same as the <code>MeshStandardMaterial</code> but it
-adds a <code>clearCoat</code> parameter that goes from 0 to 1 for how much to 
+adds a <code>clearCoat</code> parameter that goes from 0 to 1 for how much to
 apply a clearcoat gloss layer and a <code>clearCoatRoughness</code> parameter
 that specifies how rough the gloss layer is.</p>
 <p>Here&#39;s the same grid of <code>roughness</code> by <code>metalness</code> as above but with
@@ -239,14 +239,14 @@ that specifies how rough the gloss layer is.</p>
 <div data-diagram="MeshPhysicalMaterial" style="min-height: 400px"></div>
 
 <p>The various standard materials progress from fastest to slowest
-<code>MeshBasicMaterial</code> ➡ <code>MeshLambertMaterial</code> ➡ <code>MeshPhongMaterial</code> ➡ 
+<code>MeshBasicMaterial</code> ➡ <code>MeshLambertMaterial</code> ➡ <code>MeshPhongMaterial</code> ➡
 <code>MeshStandardMaterial</code> ➡ <code>MeshPhysicalMaterial</code>. The slower materials
 can make more realistic looking scenes but you might need to design
 your code to use the faster materials on low powered or mobile machines.</p>
 <p>There are 3 materials that have special uses. <code>ShadowMaterial</code>
 is used to get the data created from shadows. We haven&#39;t
 covered shadows yet. When we do we&#39;ll use this material
-to take a peak at what&#39;s happening behind the scenes.</p>
+to take a peek at what&#39;s happening behind the scenes.</p>
 <p>The <code>MeshDepthMaterial</code> renders the depth of each pixel where
 pixels at negative <a href="PerspectiveCamera.near"><code>near</code></a> of the camera are 0 and negative <a href="PerspectiveCamera.far"><code>far</code></a> are 1. Certain special effects can use this data which we&#39;ll
 get into at another time.</p>
@@ -257,8 +257,8 @@ get into at another time.</p>
 </div>
 
 <p>The <code>MeshNormalMaterial</code> will show you the <em>normals</em> of geometry.
-<em>Normals</em> are the direction a particular triangle or pixel faces. 
-<code>MeshNormalMaterial</code> draws the view space normals. (the normals relative to the camera).
+<em>Normals</em> are the direction a particular triangle or pixel faces.
+<code>MeshNormalMaterial</code> draws the view space normals (the normals relative to the camera).
 <span class="color:red;">x is red</span>,
 <span class="color:green;">y is green</span>, and
 <span class="color:blue;">z is blue</span> so things facing
@@ -269,7 +269,7 @@ to the right will be red, up will be green, and toward the screen will be blue.<
   </div>
 </div>
 
-<p><code>ShaderMaterial</code> is for making custom materials using three.js shader
+<p><code>ShaderMaterial</code> is for making custom materials using the three.js shader
 system. <code>RawShaderMaterial</code> is for making entirely custom shaders with
 no help from three.js. Both of these topics are large and will be
 covered later.</p>
@@ -277,7 +277,7 @@ covered later.</p>
 <a href="Material">See the docs</a>
 for all of them but let&#39;s go over two of the most commonly used
 properties.</p>
-<p><a href="Material.flatShading"><code>flatShading</code></a>: 
+<p><a href="Material.flatShading"><code>flatShading</code></a>:
 whether or not the object looks faceted or smooth. default = <code>false</code>.</p>
 <div class="spread">
   <div>
@@ -311,13 +311,13 @@ common to see the back sides of triangles.</p>
 <p>There&#39;s really a lot to consider with materials and we actually still
 have a bunch more to go. In particular we&#39;ve mostly ignored textures
 which open up a whole slew of options. Before we cover textures though
-we need to take a break and cover 
+we need to take a break and cover
 <a href="threejs-setup.html">setting up your development environment</a></p>
 <div class="threejs_bottombar">
 <h3>material.needsUpdate</h3>
 <p>
 This topic rarely affects most three.js apps but just as an FYI...
-Three.js applies material settings when a material is used where "used" 
+Three.js applies material settings when a material is used where "used"
 means "something is rendered that uses the material". Some material settings are
 only applied once as changing them requires lots of work by three.js.
 In those cases you need to set <code>material.needsUpdate = true</code> to tell
@@ -327,10 +327,10 @@ using the material are:
 </p>
 <ul>
   <li><code>flatShading</code></li>
-  <li>adding or removing a texture.
+  <li>adding or removing a texture
     <p>
-    Changing a texture is ok, but if want switch from using no texture 
-    to using a texture or from using a texture to using no texture 
+    Changing a texture is ok, but if want to switch from using no texture
+    to using a texture or from using a texture to using no texture
     then you need to set <code>needsUpdate = true</code>.
     </p>
     <p>In the case of going from texture to no-texture it is often

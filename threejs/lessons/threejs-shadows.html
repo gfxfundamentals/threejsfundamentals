@@ -84,21 +84,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>This article is part of a series of articles about three.js. The
 first article is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If
 you haven&#39;t read that yet and you&#39;re new to three.js you might want to
-consider starting there. The 
+consider starting there. The
 <a href="threejs-cameras.html">previous article was about cameras</a> which is
 important to have read before you read this article as well as
 the <a href="threejs-lights.html">article before that one about lights</a>.</p>
 <p>Shadows on computers can be a complicated topic. There are various
 solutions and all of them have tradeoffs including the solutions
-available in three.js</p>
+available in three.js.</p>
 <p>Three.js by default uses <em>shadow maps</em>. The way a shadow map works
 is, <em>for every light that casts shadows all objects marked to cast
 shadows are rendered from the point of view of the light</em>. <strong>READ THAT
-AGAIN!</strong> and let it sink in. </p>
+AGAIN!</strong> and let it sink in.</p>
 <p>In other words, if you have 20 objects, and 5 lights, and
 all 20 objects are casting shadows and all 5 lights are casting
 shadows then your entire scene will be drawn 6 times. All 20 objects
-will be drawn for light #1, then all 20 objects will be drawn for 
+will be drawn for light #1, then all 20 objects will be drawn for
 light #2, then #3, etc and finally the actual scene will be drawn
 using data from the first 5 renders.</p>
 <p>It gets worse, if you have a point light casting shadows the scene
@@ -112,7 +112,7 @@ to pre-compute the effects of lighting offline. This results in static
 lighting or static lighting hints but at least it&#39;s fast. We&#39;ll
 cover both of those in another article.</p>
 <p>Another solution is to use fake shadows. Make a plane, put a grayscale
-texture in the plane that approximates a shadow, 
+texture in the plane that approximates a shadow,
 draw it above the ground below your object.</p>
 <p>For example let&#39;s use this texture as a fake shadow</p>
 <div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
@@ -150,7 +150,7 @@ a <code>MeshBasicMaterial</code> as we don&#39;t need lighting for the ground.</
 </code></pre>
 <p>Note we&#39;re setting the color to <code>1.5, 1.5, 1.5</code>. This will multiply the checkerboard
 texture&#39;s colors by 1.5, 1.5, 1.5. Since the texture&#39;s colors are 0x808080 and 0xC0C0C0
-which is medium gray and light gray, multiplying them by 1.5 will give is a white and 
+which is medium gray and light gray, multiplying them by 1.5 will give us a white and
 light grey checkerboard.</p>
 <p>Let&#39;s load the shadow texture</p>
 <pre class="prettyprint"><code class="lang-js">const shadowTexture = loader.load(&#39;resources/images/roundshadow.png&#39;);
@@ -171,7 +171,7 @@ const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
 <p>Now we&#39;ll make a bunch of spheres. For each sphere we&#39;ll create a <code>base</code>
 <code>THREE.Object3D</code> and we&#39;ll make both the shadow plane mesh and the sphere mesh
 children of the base. That way if we move the base both the sphere and the shadow
-will move. We need to put the shadow slightly above the ground to prevent z-fighting. 
+will move. We need to put the shadow slightly above the ground to prevent z-fighting.
 We also set <code>depthWrite</code> to false so that the shadows don&#39;t mess each other up.
 We&#39;ll go over both of these issues in <a href="threejs-transparency.html">another article</a>.
 The shadow is a <code>MeshBasicMaterial</code> because it doesn&#39;t need lighting.</p>
@@ -179,7 +179,7 @@ The shadow is a <code>MeshBasicMaterial</code> because it doesn&#39;t need light
 the shadow mesh and the initial y position of each sphere.</p>
 <pre class="prettyprint"><code class="lang-js">const numSpheres = 15;
 for (let i = 0; i &lt; numSpheres; ++i) {
-  // make a base for the shadow and the sphere.
+  // make a base for the shadow and the sphere
   // so they move together.
   const base = new THREE.Object3D();
   scene.add(base);
@@ -236,7 +236,7 @@ brighten things up.</p>
 <p>It would render as is but let&#39;s animate there spheres.
 For each sphere, shadow, base set we move the base in the xz plane, we
 move the sphere up and down using <code>Math.abs(Math.sin(time))</code>
-which gives us a bouncy animation. And, we also set the shadow material&#39;s 
+which gives us a bouncy animation. And, we also set the shadow material&#39;s
 opacity so that as each sphere goes higher its shadow fades out.</p>
 <pre class="prettyprint"><code class="lang-js">function render(time) {
   time *= 0.001;  // convert to seconds
@@ -249,7 +249,7 @@ opacity so that as each sphere goes higher its shadow fades out.</p>
     // u is a value that goes from 0 to 1 as we iterate the spheres
     const u = ndx / sphereShadowBases.length;
 
-    // compute a position for there base. This will move
+    // compute a position for the base. This will move
     // both the sphere and its shadow
     const speed = time * .2;
     const angle = speed + u * Math.PI * 2 * (ndx % 1 ? 1 : -1);
@@ -276,13 +276,13 @@ opacity so that as each sphere goes higher its shadow fades out.</p>
 <p>In some apps it&#39;s common to use a round or oval shadow for everything but
 of course you could also use different shaped shadow textures. You might also
 give the shadow a harder edge. A good example of using this type
-of shadow is <a href="https://www.google.com/search?tbm=isch&amp;q=animal+crossing+pocket+camp+screenshots">Animal Crossing Pocket Camp</a> 
+of shadow is <a href="https://www.google.com/search?tbm=isch&amp;q=animal+crossing+pocket+camp+screenshots">Animal Crossing Pocket Camp</a>
 where you can see each character has a simple round shadow. It&#39;s effective and cheap.
-<a href="https://www.google.com/search?q=monument+valley+screenshots&amp;tbm=isch">Monument Valley</a> 
+<a href="https://www.google.com/search?q=monument+valley+screenshots&amp;tbm=isch">Monument Valley</a>
 appears to also use this kind of shadow for the main character.</p>
-<p>So, moving on to shadow maps, there are 3 lights with can cast shadows. The <code>DirectionalLight</code>,
+<p>So, moving on to shadow maps, there are 3 lights which can cast shadows. The <code>DirectionalLight</code>,
 the <code>PointLight</code>, and the <code>SpotLight</code>.</p>
-<p>Let&#39;s start with the <code>DirectionaLight</code> with helper example from <a href="threejs-lights.html">the lights article</a>. </p>
+<p>Let&#39;s start with the <code>DirectionaLight</code> with the helper example from <a href="threejs-lights.html">the lights article</a>.</p>
 <p>The first thing we need to do is turn on shadows in the renderer.</p>
 <pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.shadowMap.enabled = true;
@@ -337,10 +337,10 @@ scene.add(cameraHelper);
 <p>Adjust the target x value back and forth and it should be pretty clear that only
 what&#39;s inside the light&#39;s shadow camera box is where shadows are drawn.</p>
 <p>We can adjust the size of that box by adjusting the light&#39;s shadow camera.</p>
-<p>Let&#39;s add some GUI setting to adjust the light&#39;s shadow camera box. Since a 
-<code>DirectionalLight</code> represents light all going in a parallel direction the
+<p>Let&#39;s add some GUI setting to adjust the light&#39;s shadow camera box. Since a
+<code>DirectionalLight</code> represents light all going in a parallel direction, the
 <code>DirectionalLight</code> uses an <code>OrthographicCamera</code> for its shadow camera.
-We went over how an <code>OrthographicCamera</code> works in <a href="threejs-cameras.html">the previous article about cameras.</a>.</p>
+We went over how an <code>OrthographicCamera</code> works in <a href="threejs-cameras.html">the previous article about cameras</a>.</p>
 <p>Recall an <code>OrthographicCamera</code> defines
 its box or <em>view frustum</em> by its <code>left</code>, <code>right</code>, <code>top</code>, <code>bottom</code>, <code>near</code>, <code>far</code>,
 and <code>zoom</code> properties.</p>
@@ -411,17 +411,17 @@ giant numbers to just cover everything? Set the <code>width</code> and <code>hei
 and you might see something like this</p>
 <div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
-<p>What&#39;s going on with these low-res shadows!</p>
-<p>This issue is yet another shadow related setting to be aware of. 
-Shadow maps are textures the shadows get drawn into. 
+<p>What&#39;s going on with these low-res shadows?!</p>
+<p>This issue is yet another shadow related setting to be aware of.
+Shadow maps are textures the shadows get drawn into.
 Those textures have a size. The shadow camera&#39;s area we set above is stretched
-across that size. That means the larger area you set the more blocky your shadows will
+across that size. That means the larger area you set, the more blocky your shadows will
 be.</p>
 <p>You can set the resolution of the shadow map&#39;s texture by setting <code>light.shadow.mapSize.width</code>
 and <code>light.shadow.mapSize.height</code>. They default to 512x512.
 The larger you make them the more memory they take and the slower they are to compute so you want
 to set them as small as you can and still make your scene work. The same is true with the
-light&#39;s shadow camera area. Smaller means better looking shadows so make the area as small as you 
+light&#39;s shadow camera area. Smaller means better looking shadows so make the area as small as you
 can and still cover your scene. Be aware that each user&#39;s machine has a maximum texture size
 allowed which is available on the renderer as <a href="WebGLRenderer.capabilities"><code>renderer.capabilities.maxTextureSize</code></a>.</p>
 <!--
@@ -465,8 +465,8 @@ Otherwise the <code>PointLight</code> shadow is effectively 6 <code>SpotLight</c
 each one pointing to the face of a cube around the light. This means
 <code>PointLight</code> shadows are much slower since the entire scene must be
 drawn 6 times, one for each direction.</p>
-<p>Let&#39;s put a box around our scene so we can see shadows on the walls 
-and ceiling. We&#39;ll set the material&#39;s <code>side</code> property to <code>THREE.BackSide</code> 
+<p>Let&#39;s put a box around our scene so we can see shadows on the walls
+and ceiling. We&#39;ll set the material&#39;s <code>side</code> property to <code>THREE.BackSide</code>
 so we render the inside of the box instead of the outside. Like the floor
 we&#39;ll set it only to receive shadows. Also we&#39;ll set the position of the
 box so its bottom is slightly below the floor so the floor and the bottom

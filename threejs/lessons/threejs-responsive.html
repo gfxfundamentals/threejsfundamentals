@@ -89,14 +89,14 @@ to any situation. Making a webpage responsive generally refers
 to the page displaying well on different sized displays from
 desktops to tablets to phones.</p>
 <p>For three.js there are even more situations to consider. For
-example a 3D editor with controls on the left, right, top, or
+example, a 3D editor with controls on the left, right, top, or
 bottom is something we might want to handle. A live diagram
 in the middle of a document is another example.</p>
-<p>The last sample we had used a plain canvas with no css and
+<p>The last sample we had used a plain canvas with no CSS and
 no size</p>
 <pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 </code></pre>
-<p>That canvas defaults to 300x150 css pixels in size.</p>
+<p>That canvas defaults to 300x150 CSS pixels in size.</p>
 <p>In the web platform the recommended way to set the size
 of something is to use CSS.</p>
 <p>Let&#39;s make the canvas fill the page by adding CSS</p>
@@ -112,7 +112,7 @@ html, body {
 }
 &lt;/style&gt;
 </code></pre>
-<p>In HTML the body has a margin of 5px pixels by default so setting the
+<p>In HTML the body has a margin of 5 pixels by default so setting the
 margin to 0 removes the margin. Setting the html and body height to 100%
 makes them fill the window. Otherwise they are only as large
 as the content that fills them.</p>
@@ -170,7 +170,7 @@ They stay the correct aspect regardless of window size.</p>
 on the page. That&#39;s what we set with CSS. The other size is the
 number of pixels in the canvas itself. This is no different than an image.
 For example we might have a 128x64 pixel image and using
-css we might display as 400x200 pixels.</p>
+CSS we might display as 400x200 pixels.</p>
 <pre class="prettyprint"><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
 </code></pre>
 <p>A canvas&#39;s internal size, its resolution, is often called its drawingbuffer size.
@@ -248,12 +248,12 @@ where the control area on the right can be resized.</p>
 changed.</p>
 <h2 id="handling-hd-dpi-displays">Handling HD-DPI displays</h2>
 <p>HD-DPI stands for high-density dot per inch displays.
-That&#39;s most Mac&#39;s now a days and many windows machines
+That&#39;s most Macs nowadays and many Windows machines
 as well as pretty much all smartphones.</p>
 <p>The way this works in the browser is they use
-CSS pixels to set the sizes which are suppose to be the same
+CSS pixels to set the sizes which are supposed to be the same
 regardless of how high res the display is. The browser
-will the just render text with more detail but the
+will just render text with more detail but the
 same physical size.</p>
 <p>There are various ways to handle HD-DPI with three.js.</p>
 <p>The first one is just not to do anything special. This
@@ -261,7 +261,7 @@ is arguably the most common. Rendering 3D graphics
 takes a lot of GPU processing power. Mobile GPUs have
 less power than desktops, at least as of 2018, and yet
 mobile phones often have very high resolution displays.
-The current top of the line phones have a HD-DPI ratio
+The current top of the line phones have an HD-DPI ratio
 of 3x meaning for every one pixel from a non-HD-DPI display
 those phones have 9 pixels. That means they have to do 9x
 the rendering.</p>
@@ -300,7 +300,7 @@ a screenshot, or reading pixels for GPU picking, for drawing into a 2D canvas,
 etc... There many many cases where if we use <code>setPixelRatio</code> then our actual size will be different
 than the size we requested and we&#39;ll have to guess when to use the size
 we asked for and when to use the size three.js is actually using.
-By doing it oursevles we always know the size being used is the size we requested.
+By doing it ourselves we always know the size being used is the size we requested.
 There is no special case where magic is happening behind the scenes.</p>
 <p>Here&#39;s an example using the code above.</p>
 <p><div class="threejs_example_container">

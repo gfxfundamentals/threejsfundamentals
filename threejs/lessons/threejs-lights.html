@@ -84,9 +84,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>This article is part of a series of articles about three.js. The
 first article is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If
 you haven&#39;t read that yet and you&#39;re new to three.js you might want to
-consider starting there. The 
+consider starting there. The
 <a href="threejs-textures.html">previous article was about textures</a>.</p>
-<p>Let go over how to use the various kinds of lights in three.</p>
+<p>Let&#39;s go over how to use the various kinds of lights in three.</p>
 <p>Starting with one of our previous samples let&#39;s update the camera.
 We&#39;ll set the field of view to 45 degrees, the far plane to 100 units,
 and we&#39;ll move the camera 10 units up and 20 units back from the origin</p>
@@ -104,7 +104,7 @@ in our page</p>
 <pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>Then we can use them. We pass the <code>OrbitControls</code> a camera to 
+<p>Then we can use them. We pass the <code>OrbitControls</code> a camera to
 control and the DOM element to use to get input events</p>
 <pre class="prettyprint"><code class="lang-js">const controls = new THREE.OrbitControls(camera, canvas);
 controls.target.set(0, 5, 0);
@@ -138,7 +138,7 @@ texture.magFilter = THREE.NearestFilter;
 const repeats = planeSize / 2;
 texture.repeat.set(repeats, repeats);
 </code></pre>
-<p>We then make a plane geometry, a material for the plane, and mesh
+<p>We then make a plane geometry, a material for the plane, and a mesh
 to insert it in the scene. Planes default to being in the XY plane
 but the ground is in the XZ plane so we rotate it.</p>
 <pre class="prettyprint"><code class="lang-js">const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
@@ -179,13 +179,13 @@ const light = new THREE.AmbientLight(color, intensity);
 scene.add(light);
 </code></pre>
 <p>Let&#39;s also make it so we can adjust the light&#39;s parameters.
-We&#39;ll use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> again. 
+We&#39;ll use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> again.
 To be able to adjust the color via dat.GUI we need a small helper
 that presents a property to dat.GUI that looks like a CSS hex color string
 (eg: <code>#FF8844</code>). Our helper will get the color from a named property,
 convert it to a hex string to offer to dat.GUI. When dat.GUI tries
 to set the helper&#39;s property we&#39;ll assign the result back to the light&#39;s
-color. </p>
+color.</p>
 <p>Here&#39;s the helper:</p>
 <pre class="prettyprint"><code class="lang-js">class ColorGUIHelper {
   constructor(object, prop) {
@@ -213,19 +213,19 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 
 </p>
 <p>Click and drag in the scene to <em>orbit</em> the camera.</p>
-<p>Notice there is no defintion. The shapes are flat. The <code>AmbientLight</code> effectively
-just multiply&#39;s the material&#39;s color by the light&#39;s color times the
+<p>Notice there is no definition. The shapes are flat. The <code>AmbientLight</code> effectively
+just multiplies the material&#39;s color by the light&#39;s color times the
 intensity.</p>
 <pre class="prettyprint"><code>color = materialColor * light.color * light.intensity;
-</code></pre><p>That&#39;s it. It has no direction. 
+</code></pre><p>That&#39;s it. It has no direction.
 This style of ambient lighting is actually not all that
 useful as lighting as it&#39;s 100% even so other than changing the color
 of everything in the scene it doesn&#39;t look much like <em>lighting</em>.
 What it does help with is making the darks not too dark.</p>
 <h2 id="-hemispherelight-"><code>HemisphereLight</code></h2>
-<p>Let&#39;s switch the code the a <code>HemisphereLight</code>. A <code>HemisphereLight</code>
+<p>Let&#39;s switch the code to a <code>HemisphereLight</code>. A <code>HemisphereLight</code>
 takes a sky color and a ground color and just multplies the
-material&#39;s color between those 2 colors. The sky color if the
+material&#39;s color between those 2 colors—the sky color if the
 surface of the object is pointing up and the ground color if
 the surface of the object is pointing down.</p>
 <p>Here&#39;s the new code</p>
@@ -290,11 +290,11 @@ of helper objects we can add to our scene to help visualize
 invisible parts of a scene. In this case we&#39;ll use the
 <code>DirectionalLightHelper</code> which will draw a plane, to represent
 the light, and a line from the light to the target. We just
-pass it the light and add itd add it to the scene.</p>
+pass it the light and add it to the scene.</p>
 <pre class="prettyprint"><code class="lang-js">const helper = new THREE.DirectionalLightHelper(light);
 scene.add(helper);
 </code></pre>
-<p>While we&#39;re at it lets make it so we can set both the position
+<p>While we&#39;re at it let&#39;s make it so we can set both the position
 of the light and the target. To do this we&#39;ll make a function
 that given a <code>Vector3</code> will adjust its <code>x</code>, <code>y</code>, and <code>z</code> properties
 using <code>dat.GUI</code>.</p>
@@ -334,7 +334,7 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 </p>
 <p>Orbit the camera and it gets easier to see. The plane
 represents a <code>DirectionalLight</code> because a directional
-light computes light comming in one direction. There is no
+light computes light coming in one direction. There is no
 <em>point</em> the light comes from, it&#39;s an infinite plane of light
 shooting out parallel rays of light.</p>
 <h2 id="-pointlight-"><code>PointLight</code></h2>
@@ -387,7 +387,7 @@ makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 </p>
 <p>Notice when <code>distance</code> is &gt; 0 how the light fades out.</p>
 <h2 id="-spotlight-"><code>SpotLight</code></h2>
-<p>Spotlights are affectively a point light with a cone
+<p>Spotlights are effectively a point light with a cone
 attached where the light only shines inside the cone.
 There&#39;s actually 2 cones. An outer cone and an inner
 cone. Between the inner cone and the outer cone the
@@ -408,7 +408,7 @@ scene.add(light.target);
 scene.add(helper);
 </code></pre>
 <p>The spotlight&#39;s cone&#39;s angle is set with the <a href="Spotlight.angle"><code>angle</code></a>
-property in radians. We&#39;ll use our <code>DegRadHelper</code> from the 
+property in radians. We&#39;ll use our <code>DegRadHelper</code> from the
 <a href="threejs-textures.html">texture article</a> to present a UI in
 degrees.</p>
 <pre class="prettyprint"><code class="lang-js">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(updateLight);
@@ -428,7 +428,7 @@ the center of the outer cone.</p>
 
 </p>
 <p>Notice with the default <code>penumbra</code> of 0 the spotlight has a very sharp edge
-where as as you adjust the <code>penumbra</code> toward 1 edge blurs.</p>
+whereas as you adjust the <code>penumbra</code> toward 1 the edge blurs.</p>
 <p>It might be hard to see the <em>cone</em> of the spotlight. The reason is it&#39;s
 below the ground. Shorten the distance to around 5 and you&#39;ll see the open
 end of the cone.</p>
@@ -436,7 +436,7 @@ end of the cone.</p>
 <p>There&#39;s one more type of light, the <code>RectAreaLight</code>, which represents
 exactly what it sounds like, a rectangular area of light like a long
 fluorescent light or maybe a frosted sky light in a ceiling.</p>
-<p>The <code>RectAreaLight</code> only works with the <code>MeshStandardMaterai</code> and the
+<p>The <code>RectAreaLight</code> only works with the <code>MeshStandardMaterial</code> and the
 <code>MeshPhysicalMaterial</code> so let&#39;s change all our materials to <code>MeshStandardMaterial</code></p>
 <pre class="prettyprint"><code class="lang-js">  ...
 
@@ -490,7 +490,7 @@ scene.add(light);
 *const helper = new THREE.RectAreaLightHelper(light);
 *light.add(helper);
 </code></pre>
-<p>One thing to notice is that unlike the <code>DirectionalLight</code> and the <code>SpotLight</code> the
+<p>One thing to notice is that unlike the <code>DirectionalLight</code> and the <code>SpotLight</code>, the
 <code>RectAreaLight</code> does not use a target. It just uses its rotation. Another thing
 to notice is the helper needs to be a child of the light. It is not a child of the
 scene like other helpers.</p>
@@ -517,10 +517,10 @@ makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 <p>One thing we didn&#39;t cover is that there is a setting on the <code>WebGLRenderer</code>
 called <code>physicallyCorrectLights</code>. It effects how light falls off as distance from light.
 It only affects <code>PointLight</code> and <code>SpotLight</code>. <code>RectAreaLight</code> does this automatically.</p>
-<p>For lights though the basic idea is you don&#39;t set a distance for them to fade out, 
-and you don&#39;t set <code>intensity</code>. Instead you set the <a href="PointLight.power"><code>power</code></a> of 
-the light in lumens and then three.js will use physics calculations like real lights. 
-The units of three.js in this case are meters and a 60w light bulb would have 
+<p>For lights though the basic idea is you don&#39;t set a distance for them to fade out,
+and you don&#39;t set <code>intensity</code>. Instead you set the <a href="PointLight.power"><code>power</code></a> of
+the light in lumens and then three.js will use physics calculations like real lights.
+The units of three.js in this case are meters and a 60w light bulb would have
 around 800 lumens. There&#39;s also a <a href="PointLight.decay"><code>decay</code></a> property. It should
 be set to <code>2</code> for realistic decay.</p>
 <p>Let&#39;s test that.</p>
@@ -549,9 +549,9 @@ gui.add(light, &#39;power&#39;, 0, 2000);
 </div>
 
 </p>
-<p>It&#39;s important to note each light you add to scene slows down how fast
+<p>It&#39;s important to note each light you add to the scene slows down how fast
 three.js renders the scene so you should always try to use as few as
-possible to achieve your goals. </p>
+possible to achieve your goals.</p>
 <p>Next up let&#39;s go over <a href="threejs-cameras.html">dealing with cameras</a>.</p>
 <p><canvas id="c"></canvas></p>
 <script src="../resources/threejs/r105/three.min.js"></script>

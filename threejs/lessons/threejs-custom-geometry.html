@@ -84,15 +84,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>A <a href="threejs-primitives.html">previous article</a> gave a tour of
 the various built in primitives included in THREE.js. In this
 article we&#39;ll cover making our own geometry.</p>
-<p>Just to be clear, if you are serious about making 3D content
+<p>Just to be clear, if you are serious about making 3D content,
 the most common way is to use a 3D modeling package like
-<a href="https://blender.org">blender</a>,
+<a href="https://blender.org">Blender</a>,
 <a href="https://www.autodesk.com/products/maya/overview">Maya</a>,
 <a href="https://www.autodesk.com/products/3ds-max/overview">3D Studio Max</a>,
 <a href="https://www.maxon.net/en-us/">Cinema4D</a>, etc...
 You&#39;d build a model and then export to <a href="threejs-load-gltf.html">gLTF</a>
 or <a href="threejs-load-obj.html">.obj</a> and load them up.
-Which ever one you choose expect to spend 2 or 3 weeks going through
+Whichever one you choose, expect to spend 2 or 3 weeks going through
 their respective tutorials as all of them have a learning curve
 to be useful.</p>
 <p>Still, there are times when we might want to generate our own
@@ -100,7 +100,7 @@ to be useful.</p>
 <p>First let&#39;s just make a cube. Even though three.js already
 provides us with <code>BoxGeometry</code> and <code>BoxBufferGeometry</code> a
 cube is easy to understand so let&#39;s start there.</p>
-<p>There are 2 ways to make custom geometry in THREE.js one
+<p>There are 2 ways to make custom geometry in THREE.js. One
 is with the <code>Geometry</code> class, the other is <code>BufferGeometry</code>.
 Each has their advantages. <code>Geometry</code> is arguably easier to
 use but slower and uses more memory. For few 1000s triangles
@@ -112,7 +112,7 @@ if you&#39;re going to generate more than 10000 triangles
 consider using <code>BufferGeometry</code>.</p>
 <p>Note when I say <code>Geometry</code> is slower I mean it is slower to
 start and slower to modify but it is not slower to draw so
-if you&#39;re not planning on modifying your geometry then 
+if you&#39;re not planning on modifying your geometry then
 as long as it&#39;s not too large there will only be slightly more
 delay for your program to start using <code>Geometry</code> vs using
 <code>BufferGeometry</code>. We&#39;ll go over both eventually. For now
@@ -259,8 +259,8 @@ property to an array of the 3 colors for the 3 vertices.</p>
 </p>
 <p>To use lighting we need normals. Normals are vectors that specify direction.
 Just like the colors we can specify a normal for the face by setting the <code>normal</code>
-property on each face with </p>
-<pre class="prettyprint"><code class="lang-js">face.normal = new THREE.Vector3(...)`
+property on each face with</p>
+<pre class="prettyprint"><code class="lang-js">face.normal = new THREE.Vector3(...)
 </code></pre>
 <p>or we can specify a normal for each vertex by setting the <code>vertexNormals</code>
 property with something like</p>
@@ -291,16 +291,16 @@ vertex normals for a smoother look by calling <code>Geometry.computeVertexNormal
 <pre class="prettyprint"><code class="lang-js">-geometry.computeFaceNormals();
 +geometry.computeVertexNormals();
 </code></pre>
-<p>Unfortunately a cube is not a good candidate for vertex normals since it 
+<p>Unfortunately a cube is not a good candidate for vertex normals since it
 means each vertex gets its normal from the
-normals of all the faces it shares. </p>
+normals of all the faces it shares.</p>
 <p><div class="threejs_example_container">
   <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-normals.html"></iframe>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-normals.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Adding texture coordinates, sometimes called UVs, is done via an array of 
+<p>Adding texture coordinates, sometimes called UVs, is done via an array of
 layers of parallel arrays to the <code>faces</code> array which is set via <code>Geometry.faceVertexUvs</code>.
 For our cube we could do something like</p>
 <pre class="prettyprint"><code class="lang-js"> geometry.faceVertexUvs[0].push(
@@ -350,7 +350,7 @@ function makeInstance(geometry, color, x) {
 </div>
 
 </p>
-<p>Putting that all together lets make a simple heightmap based
+<p>Putting that all together, let&#39;s make a simple heightmap based
 terrain mesh.</p>
 <p>A heightmap based terrain is where you have a 2D array of heights
 that you apply them to a grid. An easy way to get a 2D array of heights
@@ -358,7 +358,7 @@ is to draw them in an image editing program. Here&#39;s an image I drew.
 It&#39;s 64x64 pixels</p>
 <div class="threejs_center"><img src="../resources/images/heightmap-64x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
-<p>We&#39;ll load that and then generate a heightmap mesh from it. 
+<p>We&#39;ll load that and then generate a heightmap mesh from it.
 We can use the <code>ImageLoader</code> to load the image.</p>
 <pre class="prettyprint"><code class="lang-js">const imgLoader = new THREE.ImageLoader();
 imgLoader.load(&#39;resources/images/heightmap-64x64.png&#39;, createHeightmap);
@@ -382,7 +382,7 @@ from the image</p>
 
 <p>For each cell we&#39;ll generate 5 vertices. One for each corner of the cell
 and one at the center point of the cell with the average height of the 4
-corner heights. </p>
+corner heights.</p>
 <pre class="prettyprint"><code class="lang-js">const cellsAcross = width - 1;
 const cellsDeep = height - 1;
 for (let z = 0; z &lt; cellsDeep; ++z) {
@@ -425,13 +425,13 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
 
 <pre class="prettyprint"><code class="lang-js">    // create 4 triangles
     geometry.faces.push(
-      new THREE.Face3(ndx    , ndx + 4, ndx + 1),
+      new THREE.Face3(ndx + 0, ndx + 4, ndx + 1),
       new THREE.Face3(ndx + 1, ndx + 4, ndx + 3),
       new THREE.Face3(ndx + 3, ndx + 4, ndx + 2),
       new THREE.Face3(ndx + 2, ndx + 4, ndx + 0),
     );
 
-    // add the texture coordinates for each vertex of each face.
+    // add the texture coordinates for each vertex of each face
     const u0 = x / cellsAcross;
     const v0 = z / cellsAcross;
     const u1 = (x + 1) / cellsDeep;
