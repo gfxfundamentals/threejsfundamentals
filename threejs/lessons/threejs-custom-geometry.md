@@ -5,15 +5,15 @@ A [previous article](threejs-primitives.html) gave a tour of
 the various built in primitives included in THREE.js. In this
 article we'll cover making our own geometry.
 
-Just to be clear, if you are serious about making 3D content
+Just to be clear, if you are serious about making 3D content,
 the most common way is to use a 3D modeling package like
-[blender](https://blender.org),
+[Blender](https://blender.org),
 [Maya](https://www.autodesk.com/products/maya/overview),
 [3D Studio Max](https://www.autodesk.com/products/3ds-max/overview),
 [Cinema4D](https://www.maxon.net/en-us/), etc...
 You'd build a model and then export to [gLTF](threejs-load-gltf.html)
 or [.obj](threejs-load-obj.html) and load them up.
-Which ever one you choose expect to spend 2 or 3 weeks going through
+Whichever one you choose, expect to spend 2 or 3 weeks going through
 their respective tutorials as all of them have a learning curve
 to be useful.
 
@@ -24,7 +24,7 @@ First let's just make a cube. Even though three.js already
 provides us with `BoxGeometry` and `BoxBufferGeometry` a
 cube is easy to understand so let's start there.
 
-There are 2 ways to make custom geometry in THREE.js one
+There are 2 ways to make custom geometry in THREE.js. One
 is with the `Geometry` class, the other is `BufferGeometry`.
 Each has their advantages. `Geometry` is arguably easier to
 use but slower and uses more memory. For few 1000s triangles
@@ -38,7 +38,7 @@ consider using `BufferGeometry`.
 
 Note when I say `Geometry` is slower I mean it is slower to
 start and slower to modify but it is not slower to draw so
-if you're not planning on modifying your geometry then 
+if you're not planning on modifying your geometry then
 as long as it's not too large there will only be slightly more
 delay for your program to start using `Geometry` vs using
 `BufferGeometry`. We'll go over both eventually. For now
@@ -67,14 +67,14 @@ Centered around the origin we can add the vertex positions like this
 ```js
 const geometry = new THREE.Geometry();
 +geometry.vertices.push(
-+  new THREE.Vector3(-1, -1, -1),  // 0
-+  new THREE.Vector3( 1, -1, -1),  // 1
-+  new THREE.Vector3(-1,  1, -1),  // 2
-+  new THREE.Vector3( 1,  1, -1),  // 3
-+  new THREE.Vector3(-1, -1,  1),  // 4
-+  new THREE.Vector3( 1, -1,  1),  // 5
-+  new THREE.Vector3(-1,  1,  1),  // 6
-+  new THREE.Vector3( 1,  1,  1),  // 7
++  new THREE.Vector3(-1, -1,  1),  // 0
++  new THREE.Vector3( 1, -1,  1),  // 1
++  new THREE.Vector3(-1,  1,  1),  // 2
++  new THREE.Vector3( 1,  1,  1),  // 3
++  new THREE.Vector3(-1, -1, -1),  // 4
++  new THREE.Vector3( 1, -1, -1),  // 5
++  new THREE.Vector3(-1,  1, -1),  // 6
++  new THREE.Vector3( 1,  1, -1),  // 7
 +);
 ```
 
@@ -86,7 +86,7 @@ We do that by creating `Face3` objects and specifying the indices
 of the 3 vertices that make up that face.
 
 The order we specify the vertices is important. To be pointing toward the
-outside of the cube they must be specified in a clockwise direction
+outside of the cube they must be specified in a counter clockwise direction
 when that triangle is facing the camera.
 
 <div class="threejs_center"><img src="resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
@@ -96,24 +96,24 @@ the cube like this
 
 ```js
 geometry.faces.push(
-   // front
-   new THREE.Face3(0, 2, 3),
-   new THREE.Face3(0, 3, 1),
-   // right
-   new THREE.Face3(1, 3, 7),
-   new THREE.Face3(1, 7, 5),
-   // back
-   new THREE.Face3(5, 7, 6),
-   new THREE.Face3(5, 6, 4),
-   // left
-   new THREE.Face3(4, 6, 2),
-   new THREE.Face3(4, 2, 0),
-   // top
-   new THREE.Face3(2, 6, 7),
-   new THREE.Face3(2, 7, 3),
-   // bottom
-   new THREE.Face3(4, 0, 1),
-   new THREE.Face3(4, 1, 5),
+  // front
+  new THREE.Face3(0, 3, 2),
+  new THREE.Face3(0, 1, 3),
+  // right
+  new THREE.Face3(1, 7, 3),
+  new THREE.Face3(1, 5, 7),
+  // back
+  new THREE.Face3(5, 6, 7),
+  new THREE.Face3(5, 4, 6),
+  // left
+  new THREE.Face3(4, 2, 6),
+  new THREE.Face3(4, 0, 2),
+  // top
+  new THREE.Face3(2, 7, 6),
+  new THREE.Face3(2, 3, 7),
+  // bottom
+  new THREE.Face3(4, 1, 0),
+  new THREE.Face3(4, 5, 1),
 );
 ```
 
@@ -211,10 +211,10 @@ and we need to tell the material to use vertex colors
 
 To use lighting we need normals. Normals are vectors that specify direction.
 Just like the colors we can specify a normal for the face by setting the `normal`
-property on each face with 
+property on each face with
 
 ```js
-face.normal = new THREE.Vector3(...)`
+face.normal = new THREE.Vector3(...)
 ```
 
 or we can specify a normal for each vertex by setting the `vertexNormals`
@@ -256,36 +256,36 @@ vertex normals for a smoother look by calling `Geometry.computeVertexNormals`
 +geometry.computeVertexNormals();
 ```
 
-Unfortunately a cube is not a good candidate for vertex normals since it 
+Unfortunately a cube is not a good candidate for vertex normals since it
 means each vertex gets its normal from the
-normals of all the faces it shares. 
+normals of all the faces it shares.
 
 {{{example url="../threejs-custom-geometry-cube-vertex-normals.html" }}}
 
-Adding texture coordinates, sometimes called UVs, is done via an array of 
+Adding texture coordinates, sometimes called UVs, is done via an array of
 layers of parallel arrays to the `faces` array which is set via `Geometry.faceVertexUvs`.
 For our cube we could do something like
 
 ```js
- geometry.faceVertexUvs[0].push(
-   // front
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1) ],
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(1, 0) ],
-   // right
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1) ],
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(1, 0) ],
-   // back
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1) ],
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(1, 0) ],
-   // left
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1) ],
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(1, 0) ],
-   // top
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1) ],
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(1, 0) ],
-   // bottom
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(0, 1), new THREE.Vector2(1, 1) ],
-   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(1, 0) ],
+geometry.faceVertexUvs[0].push(
+  // front
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // right
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // back
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // left
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // top
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // bottom
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
 );
 ```
 
@@ -315,7 +315,7 @@ function makeInstance(geometry, color, x) {
 
 {{{example url="../threejs-custom-geometry-cube-texcoords.html" }}}
 
-Putting that all together lets make a simple heightmap based
+Putting that all together, let's make a simple heightmap based
 terrain mesh.
 
 A heightmap based terrain is where you have a 2D array of heights
@@ -325,7 +325,7 @@ It's 64x64 pixels
 
 <div class="threejs_center"><img src="../resources/images/heightmap-64x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
-We'll load that and then generate a heightmap mesh from it. 
+We'll load that and then generate a heightmap mesh from it.
 We can use the `ImageLoader` to load the image.
 
 ```js
@@ -353,7 +353,7 @@ from the image
 
 For each cell we'll generate 5 vertices. One for each corner of the cell
 and one at the center point of the cell with the average height of the 4
-corner heights. 
+corner heights.
 
 ```js
 const cellsAcross = width - 1;
@@ -401,13 +401,13 @@ We'll then make 4 triangles from those 5 vertices
 ```js
     // create 4 triangles
     geometry.faces.push(
-      new THREE.Face3(ndx    , ndx + 4, ndx + 1),
+      new THREE.Face3(ndx + 0, ndx + 4, ndx + 1),
       new THREE.Face3(ndx + 1, ndx + 4, ndx + 3),
       new THREE.Face3(ndx + 3, ndx + 4, ndx + 2),
       new THREE.Face3(ndx + 2, ndx + 4, ndx + 0),
     );
 
-    // add the texture coordinates for each vertex of each face.
+    // add the texture coordinates for each vertex of each face
     const u0 = x / cellsAcross;
     const v0 = z / cellsAcross;
     const u1 = (x + 1) / cellsDeep;
