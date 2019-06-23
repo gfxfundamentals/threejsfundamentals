@@ -85,7 +85,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>This article is a collection of small issues you might run into
 using three.js that seemed too small to have their own article.</p>
 <hr>
-<p><a id="screenshot"></a></p>
+<p><a id="screenshot" data-toc="Taking a screenshot"></a></p>
 <h1 id="taking-a-screenshot-of-the-canvas">Taking A Screenshot of the Canvas</h1>
 <p>In the browser there are effectively 2 functions that will take a screenshot.
 The old one 
@@ -188,7 +188,7 @@ elem.addEventListener(&#39;click&#39;, () =&gt; {
 </p>
 <p>For a different solution see the next item.</p>
 <hr>
-<p><a id="preservedrawingbuffer"></a></p>
+<p><a id="preservedrawingbuffer" data-toc="Prevent the Canvas Being Cleared"></a></p>
 <h1 id="preventing-the-canvas-being-cleared">Preventing the canvas being cleared</h1>
 <p>Let&#39;s say you wanted to let the user paint with an animated
 object. You need to pass in <code>preserveDrawingBuffer: true</code> when
@@ -219,7 +219,7 @@ the user turns their phone and the browser switches from portrait to landscape.<
 <p>If you really wanted to make a drawing program you&#39;d
 <a href="threejs-rendertargets.html">render to a texture using a render target</a>.</p>
 <hr>
-<p><a id="tabindex"></a></p>
+<p><a id="tabindex" data-toc="Get Keyboard Input From a Canvas"></a></p>
 <h1 id="getting-keyboard-input">Getting Keyboard Input</h1>
 <p>Throughout these tutorials we&#39;ve often attached event listeners to the <code>canvas</code>.
 While many events work, one that does not work by default is keyboard
@@ -280,7 +280,7 @@ canvas has both solutions applied.</p>
 
 </p>
 <hr>
-<p><a id="transparent-canvas"></a></p>
+<p><a id="transparent-canvas" data-toc="Make the Canvas Transparent"></a></p>
 <h1 id="making-the-canvas-transparent">Making the Canvas Transparent</h1>
 <p>By default THREE.js makes the canvas opaque. If you want the
 canvas to be transparent pass in <a href="WebGLRenderer.alpha"><code>alpha:true</code></a> when you create
@@ -362,7 +362,7 @@ and touch events so you can select the text beneath.</p>
 
 </p>
 <hr>
-<p><a id="html-background"></a></p>
+<p><a id="html-background" data-toc="Use three.js as Background in HTML"></a></p>
 <h1 id="making-your-background-a-three-js-animation">Making your background a three.js animation</h1>
 <p>A common question is how to make a three.js animation be the background of
 a webpage.</p>
@@ -423,74 +423,72 @@ a border by default.</p>
 
 
         <div id="toc">
-          <ul>
-  <li>Basics</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
-    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
-    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
-    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
-  </ul>
+          <ul>  <li>Basics</li>
+      <ul>
+        <li><a href="threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="threejs/lessons/threejs-setup.html">Setup</a></li>
+      </ul>
   <li>Solutions</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
-    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
-    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
-    <li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
-    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
-    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
-    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
-    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
-    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
-    <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
-    <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
-    <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
-    <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
-    <li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
-    <li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
-  </ul>
+      <ul>
+        <li><a href="threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="threejs/lessons/threejs-backgrounds.html">Load a .GLTF file</a></li>
+<li><a href="threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+      </ul>
   <li>WebVR</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-    <li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-    <li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
-  </ul>
+      <ul>
+        <li><a href="threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+      </ul>
   <li>Optimization</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
-    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
-    <li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
-  </ul>
+      <ul>
+        <li><a href="threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+      </ul>
   <li>Tips</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
-    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
-    <li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
-    <li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
-    <li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
-    <li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
-    <li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
-    <li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
-  </ul>
+      <ul>
+        <li><a href="threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+      </ul>
   <li>Fundamentals</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
-    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
-    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
-    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
-    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
-    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
-    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
-    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
-    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-    <li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
-    <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
-  </ul>
+      <ul>
+        <li><a href="threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+      </ul>
   <li>Reference</li>
-  <ul>
-    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
-  </ul>
-</ul>
+      <ul>
+        <li><a href="threejs/lessons/threejs-material-table.html">Material Table</a></li>
+      </ul></ul>
 <ul>
   <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
   <li><a href="https://threejs.org">three.js</a></li>
