@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-fundamentals.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js基础" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="学习Three.js的第一篇文章" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fundamentals.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js基础" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fundamentals.html" />
+<meta name="twitter:description" content="学习Three.js的第一篇文章" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js基础</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-fundamentals.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-fundamentals.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fundamentals.html" selected>中文</a>
+</select>
+
+
+    <a href="#toc">内容列表</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/zh_cn/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js基础</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>这是Three.js系列文章的第一篇。
+<a href="http://threejs.org">Three.js</a>是一个尽可能简化在网页端获取3D
+内容的库。</p>
+<p>Three.js经常会和WebGL混淆，
+但也并不总是,three.js其实是使用WebGL来绘制三维效果的。
+<a href="https://webglfundamentals.org">WebGL是一个只能画点、线和三角形的非常底层的系统</a>. 
+想要用WebGL来做一些实用的东西通常需要大量的代码，
+这就是Three.js的用武之地。它帮我们处理了像场景、灯光、阴影、材质、贴图、空间运算、几乎所有你需要自己通过WebGL来实现的东西。</p>
+<p>这套教程假设你已经了解了JavaScript,因为大部分内容我们将会
+用到ES6的语法。<a href="threejs-prerequisites.html">点击这里查看你需要提前掌握的东西</a>。 
+大部分支持Three.js的浏览器都会自动更新，所以部分用户应该都能运行本套教程的代码。
+如果你想在非常老的浏览器上运行此代码，
+你需要一个像<a href="http://babel.io">Babel</a>一样的语法编译器 。
+当然使用非常老的浏览器的用户可能根本不能运行Three.js。</p>
+<p>人们在学习大多数编程语言的时候第一件事就是让电脑打印<code>&quot;Hello World!&quot;</code>。
+对于三维来说第一件事往往是创建一个三维的立方体。
+所以我们从&quot;Hello Cube!&quot;开始。</p>
+<p>首先我们需要一个canvas标签。</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Three.js将会使用这个canvas标签所以我们要先获取它然后传给three.js。</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script&gt;
+&#39;use strict&#39;;
+
+/* global THREE */
+
+function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas});
+  ...
+&lt;/script&gt;
+</code></pre>
+<p>注意这里有一些细节。如果你没有给three.js传canvas，three.js会自己创建一个
+，但是你必须手动把它添加到文档中。在哪里添加可能会不一样这取决你怎么使用，
+我发现给three.js传一个canvas会更灵活一些。我可以将canvas放到任何地方，
+代码都会找到它，假如我有一段代码是将canvas插入到文档中，那么当需求变化时，
+我很可能必须去修改这段代码。</p>
+<p>在查找到canvas之后我们创建一个<code>WebGLRenderer</code>。渲染器负责拿到你提供的所有数据，
+然后将它渲染到canvas上。之前还有其他渲染器，比如<code>CSSRenderer</code>、<code>CanvasRenderer</code>。
+在将来可能还会有<code>WebGL2Renderer</code> 或者 <code>WebGPURenderer</code>。目前的话是 <code>WebGLRenderer</code>使用WebGL将三维渲染到canvas上。</p>
+<p>接下来我们需要一个摄像机。</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+</code></pre>
+<p><code>fov</code>是<code>field of view</code>的缩写。 当前的情况是垂直方向为75度。
+注意three.js中大多数的角用弧度表示，但是因为某些原因透视摄像机使用角度表示。</p>
+<p><code>aspect</code>指canvas的显示比例。我们将在别的文章详细讨论，但是在默认情况下
+canvas是300x150像素，所以aspect为300/150或者说2.。</p>
+<p><code>near</code>和<code>far</code>代表摄像机前方将要被渲染的空间。
+任何在这个范围前面或者后面的物体都将被裁剪(不绘制)。</p>
+<p>这四个参数定义了一个<em>&quot;frustum&quot;</em>。一个<em>frustum</em>是指一个像被削去顶部
+的金字塔形状。换句话说把<em>&quot;frustum&quot;</em>想象成其他形状比如球体、
+立方体、棱柱体、截椎体。 </p>
+<p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
+<p>近平面和远平面的高度由fov决定。
+两个平面的宽度由fov和aspect决定。</p>
+<p>截椎体内部的物体将被绘制，截椎体外的东西将不会被绘制。</p>
+<p>摄像机默认指向Z轴负方向，上方向朝向Y轴正方向。我们将会把立方体
+放置在坐标原点，所以我们需要往后移动摄像机才能看到物体。</p>
+<pre class="prettyprint"><code class="lang-js">camera.position.z = 2;
+</code></pre>
+<p>下面是我们想要达到的效果。</p>
+<p><img src="../resources/scene-down.svg" width="500" class="threejs_center"/></p>
+<p>上面的示意图中我们能看到摄像机的位置在<code>z = 2</code>。它朝向
+Z轴负方向。我们的截椎体从摄像机前方的0.1到5。因为这张图是俯视图,
+fov会受到aspect的影响。canvas的宽度是高度的两倍，
+所以水平视角会比我们设置的垂直视角75要大。</p>
+<p>然后我们创建一个<code>Scene</code>(场景)。<code>Scene</code>是three.js最基本的组成.
+需要three.js绘制的东西都需要加入到scene中。 我们将会
+在<a href="threejs-scenegraph.html">scene是如何工作的</a>中详细讨论。</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+</code></pre>
+<p>然后我们创建一个包含盒子信息的<code>BoxGeometry</code>。
+几乎所有的希望在three.js中显示的物体都需要一个定义了组成三维物体的顶点的几何体。</p>
+<pre class="prettyprint"><code class="lang-js">const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+</code></pre>
+<p>然后我们创建一个基本的材质并设置它的颜色. Colors的值可以
+用css方式和十六进制来表示。</p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
+</code></pre>
+<p>然后创建一个<code>Mesh</code>. <code>Mesh</code>代表了<code>Geometry</code>(物体的形状)和<code>Material</code> (怎么
+绘制物体, 光滑还是平整, 什么颜色, 什么贴图等等)的组合，
+以及物体在场景中的位置、朝向、和缩放。</p>
+<pre class="prettyprint"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+</code></pre>
+<p>最后我们将mesh添加到场景中。</p>
+<pre class="prettyprint"><code class="lang-js">scene.add(cube);
+</code></pre>
+<p>然后我们通过将scene和camera传递给renderer的render方法
+来渲染整个场景。</p>
+<pre class="prettyprint"><code class="lang-js">renderer.render(scene, camera);
+</code></pre>
+<p>这里有一个实例。</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals.html" target="_blank">点击在新标签页中打开</a>
+</div>
+
+</p>
+<p>很难看出来这是一个三维的立方体，因为我们
+直视Z轴的负方向并且立方体和坐标轴是对齐的，
+所以我们只能看到一个面。</p>
+<p>我们来让立方体旋转起来，希望
+能看出是三维的。为了让它动起来我们需要在渲染循环函数中使用
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code>requestAnimationFrame</code></a>.</p>
+<p>这是我们的渲染循环函数。</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;  // convert time to seconds
+
+  cube.rotation.x = time;
+  cube.rotation.y = time;
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p><code>requestAnimationFrame</code>会告诉浏览器你有那些东西想要做动画。
+传入一个函数作为回调函数。我们这里的函数是<code>render</code>。浏览器
+会调用你的函数然后如果你更新了跟页面显示有关的东西，
+浏览器就会重新渲染页面。我们这里是调用three.js的
+<code>renderer.render</code>函数来绘制我们的场景。</p>
+<p><code>requestAnimationFrame</code> 会传入从页面加载到
+我们函数的时间. 传入的时间是毫秒数。我发现
+用秒会更简单所以我们把它转换成秒。</p>
+<p>然后我们把立方体的X轴和Y轴方向的旋转角度设置成当前时间。这些旋转角度
+是<a href="https://en.wikipedia.org/wiki/Radian">弧度制</a>。一圈的弧度
+为2Π所以我们的立方体在每个方向旋转一周的时间为6.28
+秒。</p>
+<p>然后渲染我们的场景并且调用另一帧动画来继续我们的循环。</p>
+<p>在循环的未免我们调用一次<code>requestAnimationFrame</code>来开始循环渲染.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-animation.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-animation.html" target="_blank">点击在新标签页中打开</a>
+</div>
+
+</p>
+<p>效果好了一些但还是很难看出是三维的。添加灯光会有帮助，
+所以我们来添加一盏灯光。three.js中有很多种类型的灯光，
+我们将在<a href="threejs-lights.html">后期文章</a>中详细讨论。现在我们先创建一盏平行光。</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(-1, 2, 4);
+  scene.add(light);
+}
+</code></pre>
+<p>平行光有一个位置和目标点。默认值都为 0, 0, 0。 我们这里
+设置灯光的位置为 -1, 2, 4 所以它位于摄像机前面的
+稍微左上方一点。目标点还是 0, 0, 0 所以它朝向
+坐标原点。</p>
+<p>我们还需要改变材质。<code>MeshBasicMaterial</code>材质不会受到灯光的
+影响。我们将他改成会受灯光影响的<code>MeshPhongMaterial</code>材质。</p>
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
++const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
+</code></pre>
+<p>下面开始生效了。</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-light.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-light.html" target="_blank">点击在新标签页中打开</a>
+</div>
+
+</p>
+<p>现在应该可以很清楚的看出是三维的。</p>
+<p>为了更有乐趣我们再添加两个立方体。</p>
+<p>每个立方体将会使用同一个几何体但是不同的材质，
+这样每个立方体将会是不同的颜色。</p>
+<p>首先我们创建一个根据指定的颜色生成新材质的函数。
+然后函数会根据指定的几何体生成一个mesh，
+最后将他添加进场景并设置X轴的位置。</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
+  return cube;
+}
+</code></pre>
+<p>然后我们将使用三种不同的颜色和X轴位置调用三次函数，
+将生成的网格实例存在一个数组中。</p>
+<pre class="prettyprint"><code class="lang-js">const cubes = [
+  makeInstance(geometry, 0x44aa88,  0),
+  makeInstance(geometry, 0x8844aa, -2),
+  makeInstance(geometry, 0xaa8844,  2),
+];
+</code></pre>
+<p>最后我们将在渲染函数中旋转三个立方体。我们
+给每个立方体设置了稍微不同的旋转角度。</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;  // convert time to seconds
+
+  cubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  ...
+</code></pre>
+<p>这里是结果.</p>
+<p><div class="threejs_example_container">
+  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-3-cubes.html"></iframe>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-3-cubes.html" target="_blank">点击在新标签页中打开</a>
+</div>
+
+</p>
+<p>如果你对比上面的示意图可以看到
+效果符合我们的预想。位置为X = -2 和 X = +2
+的立方体有一部分在我们的截椎体外面。他们大部分是被
+包裹的，因为水平方向的视角非常大。</p>
+<p>希望这个简短的介绍能帮助你起步。 <a href="threejs-responsive.html">Next up we&#39;ll cover
+making our code responsive so it is adaptable to multiple situations</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-fundamentals.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-fundamentals.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fundamentals.html" selected>中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+    <li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+    <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+    <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+    <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+  </ul>
+  <li>WebVR</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+    <li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+    <li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+    <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js基础';
+            var disqus_title = 'Three.js基础';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

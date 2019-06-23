@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-prerequisites.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js先决条件" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="使用此网站你需要了解的。" />
+<meta property="og:url" content="http://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-prerequisites.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js先决条件" />
+<meta name="twitter:url" content="http://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-prerequisites.html" />
+<meta name="twitter:description" content="使用此网站你需要了解的。" />
+<meta name="twitter:image:src" content="http://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js先决条件</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-prerequisites.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-prerequisites.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-prerequisites.html" selected>中文</a>
+</select>
+
+
+    <a href="#toc">内容列表</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/zh_cn/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js先决条件</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>这些文章意在帮助你学习如何使用three.js。
+假设你知道怎么使用JavaScript编程。假设
+你知道DOM是什么，怎么写HTML以及使用JavaScript创建
+DOM元素。假设你知道如何使用 <code>&lt;script&gt;</code>标签来
+引用外部的JavaScript文件以及行内脚本。
+假设你了解CSS并且知道
+<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors">CSS选择器</a>. 
+还假设你了解ES5、 ES6或者一些ES7。
+假设你知道浏览器通过事件和回调函数来运行JavaScript。
+假设你知道什么是闭包。</p>
+<p>这有一些简单的复习和笔记。</p>
+<h2 id="-document-queryselector-and-document-queryselectorall-"><code>document.querySelector</code> and <code>document.querySelectorAll</code></h2>
+<p>你可以使用<code>document.querySelector</code>来选择和CSS选择器
+匹配的第一个元素。 <code>document.querySelectorAll</code>返回
+所有和CSS选择器匹配的元素。</p>
+<h2 id="you-don-t-need-onbody-">You don&#39;t need <code>onbody</code></h2>
+<p>很多20年前的页面像这样使用HTML</p>
+<pre class="prettyprint"><code>&lt;body onload=&quot;somefunction()&quot;&gt;
+</code></pre><p>这种风格已经被弃用了。将你的脚本放在
+页面的底部。</p>
+<pre class="prettyprint"><code class="lang-html">&lt;html&gt;
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+     ...
+  &lt;/body&gt;
+  &lt;script src=&quot;script1.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    // inline javascript
+  &lt;/script&gt;
+&lt;/html&gt;
+</code></pre>
+<p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
+<h2 id="-type-text-javascript-">不需要<code>type=&quot;text/javascript&quot;</code></h2>
+<p>最新的</p>
+<pre class="prettyprint"><code>&lt;script&gt;...&lt;/script&gt;
+</code></pre><p>过时的</p>
+<pre class="prettyprint"><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+</code></pre><h2 id="-strict-">始终使用<code>strict</code>模式</h2>
+<p>将<code>&#39;use strict&#39;;</code>放在JavaScript文件的顶部。可以帮助减少很多bug。</p>
+<h2 id="-">了解闭包如何工作</h2>
+<pre class="prettyprint"><code class="lang-js">function a(v) {
+  const foo = v;
+  return function() {
+     return foo;
+  };
+}
+
+const f = a(123);
+const g = a(456);
+console.log(f());  // prints 123
+console.log(g());  // prints 456
+</code></pre>
+<p>在上面的代码中函数<code>a</code>每次被调用都会创建一个新的函数。新函数
+会封存变量<code>foo</code>. 这里有 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">更多信息</a>.</p>
+<h2 id="-this-">理解<code>this</code>的工作原理</h2>
+<p><code>this</code>并不是什么魔法。它实际上像是一个像被自动传给函数的参数一样的变量。
+简单的说就是像这样直接调用函数</p>
+<pre class="prettyprint"><code>somefunction(a, b, c);
+</code></pre><p><code>this</code>将会为<code>null</code> (使用严格模式时) 当你使用<code>.</code>操作符像这样调用函数时</p>
+<pre class="prettyprint"><code>someobject.somefunction(a, b, c);
+</code></pre><p><code>this</code>将会被设置为<code>someobject</code>。</p>
+<p>令人困惑的部分是使用回调函数。</p>
+<pre class="prettyprint"><code> const callback = someobject.somefunction;
+ loader.load(callback);
+</code></pre><p>并没有像不熟悉的所期望的那样工作，因为当
+<code>loader.load</code>调用回调函数时并没有使用<code>.</code>操作符。
+所以默认<code>this</code>将会为null (除非loader明确将他设置为某些东西)。
+如果你希望<code>this</code>为<code>someobject</code>当回调函数执行时你需要
+通过将this绑定到函数来告诉JavaScript。</p>
+<pre class="prettyprint"><code> const callback = someobject.somefunction.bind(someobject);
+ loader.load(callback);
+</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><em>this</em> article might help explain <code>this</code></a>.</p>
+<h2 id="es5-es6-es7-">ES5/ES6/ES7 特性</h2>
+<h3 id="-var-const-let-"><code>var</code>已经被弃用，使用<code>const</code>和<code>let</code></h3>
+<p>没有<strong>任何</strong>理由再使用<code>var</code>，基于此使用它被认为是
+坏习惯。大所数时间如果变量不会被重新分配使用<code>const</code>。
+变量会改变的情况下使用<code>let</code>。这将会帮助避免大量bug。</p>
+<h3 id="-for-elem-of-collection-for-elem-in-collection-">使用<code>for(elem of collection)</code>而不是<code>for(elem in collection)</code></h3>
+<p><code>for of</code>是新的，<code>for in</code>是旧的。 <code>for of</code>解决了<code>for in</code>的问题。</p>
+<p>举个例子，你可以像这样迭代一个对象的所以键/值对</p>
+<pre class="prettyprint"><code class="lang-js">for (const [key, value] of Object.entries(someObject)) {
+  console.log(key, value);
+}
+</code></pre>
+<h3 id="-foreach-map-filter-">使用 <code>forEach</code>, <code>map</code>, 和 <code>filter</code></h3>
+<p>数组新增的函数<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach、
+[`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map"><code>forEach</code></a>和 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter"><code>filter</code></a>
+在现代JavaScript中使用都是相当广泛的。</p>
+<h3 id="-">使用解构赋值</h3>
+<p>假设有一个对象<code>const dims = {width: 300, height: 150}</code></p>
+<p>老的代码</p>
+<pre class="prettyprint"><code> const width = dims.width;
+ const height = dims.height;
+</code></pre><p>新代码</p>
+<pre class="prettyprint"><code> const {width, height} = dims;
+</code></pre><h3 id="-">使用对象声明简写</h3>
+<p>老的代码</p>
+<pre class="prettyprint"><code class="lang-js"> const width = 300;
+ const height = 150;
+ const obj = {
+   width: width,
+   height: height,
+   area: function() {
+     return this.width * this.height
+   },
+ };
+</code></pre>
+<p>新代码</p>
+<pre class="prettyprint"><code class="lang-js"> const width = 300;
+ const height = 150;
+ const obj = {
+   width,
+   height,
+   area() {
+     return this.width * this.height;
+   },
+ };
+</code></pre>
+<h3 id="-">使用扩展运算符<code>...</code></h3>
+<p>扩展运算符有大量的用途。例如</p>
+<pre class="prettyprint"><code class="lang-js"> function log(className, ...args) {
+   const elem = document.createElement(&#39;div&#39;);
+   elem.className = className;
+   elem.textContent = [...args].join(&#39; &#39;);
+   document.body.appendChild(elem);
+ }
+</code></pre>
+<p>另一个例子</p>
+<pre class="prettyprint"><code class="lang-js">const position = [1, 2, 3];
+somemesh.position.set(...position);
+</code></pre>
+<h3 id="-class-">使用<code>class</code></h3>
+<p>大多数人都不熟悉在ES5之前生成类对象的语法。
+ES5之后你现在可以<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">使用<code>class</code>
+关键字</a>
+接近于C++/C#/Java的语法。</p>
+<h3 id="-getters-setters">理解 getters 和 setters</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">Getters</a>和
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a>是
+在大多数现代语言中常见的。ES6<code>class</code>语法
+让他们比ES6之前的更容易。</p>
+<h3 id="-">合理使用箭头函数</h3>
+<p>回调函数和promise使用箭头函数非常有用</p>
+<pre class="prettyprint"><code class="lang-js">loader.load((texture) =&gt; {
+  // use textrue
+});
+</code></pre>
+<p>箭头函数会绑定<code>this</code>，它是下面的简写</p>
+<pre class="prettyprint"><code class="lang-js">(function(args) {/* code */}).bind(this))
+</code></pre>
+<h3 id="promises-async-await">Promises 以及 async/await</h3>
+<p>Promises改善异步代码的处理。Async/await改善
+promise的使用。</p>
+<p>这是一个需要深入了解的话题你可以<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">在这里
+细读promises</a>
+和<a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await">async/await</a>.</p>
+<h3 id="-">使用模板字符串</h3>
+<p>模板字符串是使用反引号代替引号的字符串。</p>
+<pre class="prettyprint"><code>const foo = `this is a template literal`;
+</code></pre><p>模板字符串有两个基本的特点。一个是它可以多行</p>
+<pre class="prettyprint"><code class="lang-js">const foo = `this
+is
+a
+template
+literal`;
+const bar = &quot;this\nis\na\ntemplate\nliteral&quot;;
+</code></pre>
+<p>上面的<code>foo</code>和<code>bar</code>是一样的。</p>
+<p>另一个是你可以超越字符串模式
+使用<code>${javascript表达式}</code>插入JavaScript代码段。这是模板部分。比如:</p>
+<pre class="prettyprint"><code class="lang-js">const r = 192;
+const g = 255;
+const b = 64;
+const rgbCSSColor = `rgb(${r},${g},${b})`;
+</code></pre>
+<p>or</p>
+<pre class="prettyprint"><code class="lang-js">const color = [192, 255, 64];
+const rgbCSSColor = `rgb(${color.join(&#39;,&#39;)})`;
+</code></pre>
+<p>or</p>
+<pre class="prettyprint"><code class="lang-js">const aWidth = 10;
+const bWidth = 20;
+someElement.style.width = `${aWidth + bWidth}px`;
+</code></pre>
+<h1 id="-javascript-">学习JavaScript代码风格。</h1>
+<p>尽管欢迎您以任何方式组织您的代码，但至少有一个约定您应该知道。
+在JavaScript中变量、函数名、方法名
+都是小驼峰。构造函数、类名都是
+大驼峰。如果你遵守这些约定你的diamagnetic将会和大部分JavaScript匹配。</p>
+<h1 id="-visual-studio-code">考虑使用Visual Studio Code</h1>
+<p>当然你想想用什么编辑器就用什么但是如果你没尝试过它那就考虑下
+使用<a href="https://code.visualstudio.com/">Visual Studio Code</a>来写JavaScript。
+安装完之后<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">设置
+eslint</a>。
+可能会花几分钟来设置但是会对你寻找JavaScript的bug有极大的帮助。</p>
+<p>一些例子</p>
+<p>如果你开启<a href="https://eslint.org/docs/rules/no-undef"><code>no-undef</code>规则</a>然后
+VSCode通过ESLint将会警告你很多没有定义的变量。 </p>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
+
+<p>上面你可以看到我将<code>doTheThing</code>误写成了<code>doThing</code>。有一个红色的曲线
+在<code>doThing</code>下面并且鼠标悬停会提醒我们它未定义。这样就避免了一个错误。</p>
+<p>使用<code>THREE</code>会得到警告所以将<code>/* global THREE */</code>放在你的
+JavaScript文件的顶部来告诉eslint<code>THREE</code>的存在。</p>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
+
+<p>上面你可以看到eslint知道使用<code>UpperCaseNames</code>规则的是构造函数
+所以你应该使用<code>new</code>操作符。另一个错误被捕捉并避免了。这是<a href="https://eslint.org/docs/rules/new-cap">the
+<code>new-cap</code>规则</a>。</p>
+<p>这里有<a href="https://eslint.org/docs/rules/">100多条规则你可以打开或者关闭或者自定义
+</a>。比如上面我提醒你
+应该使用<code>const</code>和<code>let</code>代替<code>var</code>。</p>
+<p>这里我使用了<code>var</code>它警告我应该使用<code>let</code>或者<code>const</code></p>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
+
+<p>这里我是用了<code>let</code>但是它发现我一直没改变值所以建议我使<code>const</code>。</p>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
+
+<p>当然如果你更希望继续使用<code>var</code>你只要关闭那条规则。
+如我上面所说所以我更喜欢使用<code>const</code>和<code>let</code>而不是<code>var</code>因为
+他们工作的更好而且能减少bugs。</p>
+<p>对于确实需要重写这些规则的情况<a href="https://eslint.org/docs/user-guide/configuring#disabling-rules-with-inline-comments">你可以添加注释
+来禁用
+他们</a>
+通过单行或者一段代码。</p>
+<h1 id="-">如果你确实需要支持老的浏览器请使用编译器</h1>
+<p>大多数现代浏览器都是自动更新的，所以使用这些新的特性会帮助你提高效率 
+和避免bug。意思是说，如果你正在做一个需要支持老的浏览器的项目，
+<a href="https://babeljs.io">有工具会把ES5/ES6/ES7代码
+转换成ES5之前的Javascript</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-prerequisites.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-prerequisites.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-prerequisites.html" selected>中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>
+  <li>Basics</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+    <li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+    <li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+    <li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+  </ul>
+  <li>Solutions</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+    <li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+    <li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+    <li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+    <li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+    <li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+    <li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+    <li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+    <li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+    <li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+    <li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+  </ul>
+  <li>WebVR</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+    <li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+  </ul>
+  <li>Optimization</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+    <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+    <li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+  </ul>
+  <li>Tips</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+    <li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+    <li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+  </ul>
+  <li>Fundamentals</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+    <li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+    <li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+    <li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+    <li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+    <li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+    <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+    <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+    <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+    <li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+    <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+  </ul>
+  <li>Reference</li>
+  <ul>
+    <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+  </ul>
+</ul>
+<ul>
+  <li><a href="https://github.com/greggman/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/greggman/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js先决条件';
+            var disqus_title = 'Three.js先决条件';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

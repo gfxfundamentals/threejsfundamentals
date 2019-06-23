@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id/>
     <title>Основы three.js</title>
-    <updated>2019-05-31T08:55:56.000Z</updated>
+    <updated>2019-06-02T16:37:39.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,132 +16,132 @@
         <title type="html"><![CDATA[Three.js - Камера]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html"/>
-        <updated>2019-05-31T08:55:56.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Основы Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html"/>
-        <updated>2019-05-31T08:48:57.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Освещение]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-lights.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-lights.html"/>
-        <updated>2019-05-31T08:55:56.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Таблица характеристик материалов]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-material-table.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-material-table.html"/>
-        <updated>2019-05-31T08:48:57.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Материалы Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html"/>
-        <updated>2019-05-31T08:55:56.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Несколько холстов и Несколько сцен]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html"/>
-        <updated>2019-05-31T08:55:56.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Примитивы Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html"/>
-        <updated>2019-05-31T08:55:56.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Oтзывчивый Дизайн]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html"/>
-        <updated>2019-05-31T08:48:57.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Граф сцены Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html"/>
-        <updated>2019-05-31T08:48:57.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Настройка окружения Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html"/>
-        <updated>2019-05-31T08:48:57.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Текстуры]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-textures.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-textures.html"/>
-        <updated>2019-05-31T08:55:56.000Z</updated>
+        <updated>2019-06-02T16:37:39.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-05-31T08:48:57.000Z</published>
+        <published>2019-06-02T16:37:39.000Z</published>
     </entry>
 </feed>
