@@ -22,7 +22,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Основы Three.js]]></title>
@@ -34,7 +34,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Освещение]]></title>
@@ -46,7 +46,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Таблица характеристик материалов]]></title>
@@ -58,7 +58,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Материалы Three.js]]></title>
@@ -70,7 +70,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Несколько холстов и Несколько сцен]]></title>
@@ -82,7 +82,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Примитивы Three.js]]></title>
@@ -94,7 +94,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Oтзывчивый Дизайн]]></title>
@@ -106,7 +106,7 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Граф сцены Three.js]]></title>
@@ -118,19 +118,19 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Настройка окружения Three.js]]></title>
         <id>http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html</id>
         <link href="http://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html"/>
-        <updated>2019-06-23T15:36:11.000Z</updated>
+        <updated>2019-06-24T07:59:44.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Текстуры]]></title>
@@ -142,6 +142,6 @@
             <email/>
             <uri>http://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2019-06-05T10:26:54.000Z</published>
+        <published>2019-06-06T09:43:15.000Z</published>
     </entry>
 </feed>
