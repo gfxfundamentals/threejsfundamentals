@@ -107,7 +107,7 @@ This is the template for the main page for each language
 
 #### `toc.html`
 
-This is template for the table of contents for the language. 
+This is template for the table of contents for the language.
 It is included on both the index and on each article. The only
 parts not auto-generated are the links ending links which
 you can translate if you want to.
@@ -121,6 +121,27 @@ links in one article that links to another article but that other article has no
 This way you don't have to go back and fix already translated articles. Just translate one article
 at a time and leave the links as is. They'll link to placeholders until someone translates the missing
 articles.
+
+Articles have front matter at the top
+
+```
+Title: Localized Title of article
+Description: Localized description of article (used in RSS and social media tags)
+Cateogry: category for article **THIS STAYS IN ENGLISH**
+TOC: Localized text for Table of Contents
+```
+
+**DO NOT CHANGE LINKS** : For example a link to a local resources might look like
+
+    [text](link)
+
+or
+
+    <img src="somelink">
+
+While you can add query parameters (see below) do not add "../" to try to make the link relative to the
+.md file. Links should stay as though the article exists at the same location as the original English.
+
 
 ### To build
 
