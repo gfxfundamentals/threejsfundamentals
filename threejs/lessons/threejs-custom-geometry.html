@@ -277,8 +277,8 @@ for us based on the positions we specified.</p>
 <pre class="prettyprint"><code class="lang-js">geometry.computeFaceNormals();
 </code></pre>
 <p>Removing the vertex color stuff and changing the material back to <code>MeshPhongMaterial</code></p>
-<pre class="prettyprint"><code class="lang-js">+const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
--const material = new THREE.MeshPhongMaterial({color});
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
++const material = new THREE.MeshPhongMaterial({color});
 </code></pre>
 <p>and now our cubes can be lit.</p>
 <p><div class="threejs_example_container">
