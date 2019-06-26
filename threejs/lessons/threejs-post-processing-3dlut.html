@@ -89,22 +89,22 @@ On of the common ways to post process is called a LUT or 3DLUT. LUT stands for L
 <pre class="prettyprint"><code>const newColor = lut[origColor.red][origColor.green][origColor.bue]
 </code></pre><p>Of course a 256x256x256 array would be rather large but as we pointed out in <a href="threejs-textures.html">the article on textures</a> textures are referenced from values of 0.0 to 1.0 regardless of the dimensions of the texture.</p>
 <p>Let&#39;s imagine an 8x8x8 cube.</p>
-<div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
 
-<p>First we might fill in the corners with 0,0,0 corner being pure black, the opposite 1,1,1 corner pure white. 1,0,0 being pure <span style"color:red;">red</span>. 0,1,0 being pure <span style"color:green;">green</span> and 0,0,1 being <span style"color:blue;">blue</span>. </p>
-<div class="threejs_center"><img src="resources/images/3dlut-axis.svg" style="width: 500px"></div>
+<p>First we might fill in the corners with 0,0,0 corner being pure black, the opposite 1,1,1 corner pure white. 1,0,0 being pure <span style="color:red;">red</span>. 0,1,0 being pure <span style="color:green;">green</span> and 0,0,1 being <span style="color:blue;">blue</span>. </p>
+<div class="threejs_center"><img src="resources/images/3dlut-axis.svg" class="noinvertdark" style="width: 500px"></div>
 
 <p>We&#39;d add in the colors down each axis.</p>
-<div class="threejs_center"><img src="resources/images/3dlut-edges.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="resources/images/3dlut-edges.svg" class="noinvertdark" style="width: 500px"></div>
 
 <p>And the colors on edges that use 2 or more channels.</p>
-<div class="threejs_center"><img src="resources/images/3dlut-standard.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="resources/images/3dlut-standard.svg" class="noinvertdark" style="width: 500px"></div>
 
 <p>And finally fill in all the colors in between. This is an &quot;identity&quot; 3DLUT. It produces the exact same output as input. If you look up a color you&#39;ll get the same color out.</p>
-<div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-standard-lookup.svg" data-diagram="lookup" style="width: 600px"></object></div>
+<div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-standard-lookup.svg" class="noinvertdark" data-diagram="lookup" style="width: 600px"></object></div>
 
 <p>If we change the cube to shades of amber though then as we look up colors, we look up the same locations in the 3D lookup table but they produce different output.</p>
-<div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-amber-lookup.svg" data-diagram="lookup" style="width: 600px"></object></div>
+<div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-amber-lookup.svg" class="noinvertdark" data-diagram="lookup" style="width: 600px"></object></div>
 
 <p>Using this techinque by supplying a different lookup table we can apply all kinds of effects. Basically any effect that can be computed based only on a single color input. Those effects include adjusting hue, contrast, saturation, color cast, tint, brightness, exposure, levels, curves, posterize, shadows, highlghts, and many others. Even better they can all be combined into a single look up table.</p>
 <p>To use it we need a scene to apply it to. Let&#39;s throw together a quick scene. We&#39;ll start with a glTF file and display it like we covered in <a href="threejs-load-gltf.html">the article on loading a glTF</a>. The model we&#39;re loading is <a href="https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee">this model</a> by <a href="https://sketchfab.com/sarath.irn.kat005">The Ice Wolves</a>. It uses no lights so I removed the lights.</p>
@@ -116,7 +116,7 @@ On of the common ways to post process is called a LUT or 3DLUT. LUT stands for L
 
 </p>
 <p>Now that we have a scene we need a 3DLUT. The simplest 3DLUT is a 2x2x2 identity LUT where <em>identity</em> means nothing happens. It&#39;s like multiplying by 1 or doing nothign, even though we&#39;re looking up colors in the LUT each color in maps to the same color out.</p>
-<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" style="width: 200px"></div>
+<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
 
 <p>WebGL1 doesn&#39;t support 3D textures so we&#39;ll use 4x2 2D texture and treat it as a 3D texture inside a custom shader where each slice of the cube is spread out horizontally across the texture.</p>
 <p>Here&#39;s the code to make 4x2 2D texture with the colors required for an identity LUT.</p>
