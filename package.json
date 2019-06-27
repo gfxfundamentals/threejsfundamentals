@@ -49,7 +49,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/greggman/threejsfundamentals.git"
+    "url": "git://github.com/gfxfundamentals/threejsfundamentals.git"
   },
   "keywords": [
     "three.js"
@@ -57,7 +57,7 @@
   "author": "Gregg Tavares",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/greggman/threejsfundamentals/issues"
+    "url": "https://github.com/gfxfundamentals/threejsfundamentals/issues"
   },
-  "homepage": "https://github.com/greggman/threejsfundamentals"
+  "homepage": "https://github.com/gfxfundamentals/threejsfundamentals"
 }
