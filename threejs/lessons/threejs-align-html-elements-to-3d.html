@@ -170,7 +170,7 @@ parent container we can make them overlap with this CSS</p>
 </code></pre>
 <p>Now into our code we don&#39;t have to add too much. We had a function
 <code>makeInstance</code> that we used to generate cubes. Let&#39;s make it
-so we it also adds a label element.</p>
+so it also adds a label element.</p>
 <pre class="prettyprint"><code class="lang-js">+const labelContainerElem = document.querySelector(&#39;#labels&#39;);
 
 -function makeInstance(geometry, color, x) {
