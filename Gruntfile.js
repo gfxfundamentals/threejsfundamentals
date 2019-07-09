@@ -7,6 +7,7 @@ const path = require('path');
 const semver = require('semver');
 const liveEditor = require('@gfxfundamentals/live-editor');
 const liveEditorPath = path.dirname(require.resolve('@gfxfundamentals/live-editor'));
+const customBuild = require('./build/js/custom-build');
 
 module.exports = function(grunt) {
 
@@ -122,6 +123,7 @@ module.exports = function(grunt) {
     siteName: 'ThreeJSFundamentals',
     siteThumbnail: 'threejsfundamentals.jpg',  // in rootFolder/lessons/resources
     templatePath: 'build/templates',
+    postHTMLFn: customBuild.postHTML,
   };
 
   // just the hackiest way to get this working.
