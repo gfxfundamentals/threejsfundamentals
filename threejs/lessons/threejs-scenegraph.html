@@ -172,7 +172,7 @@ objects in our <code>objects</code> array with this code.</p>
 </code></pre>
 <p>Since we added the <code>sunMesh</code> to the <code>objects</code> array it will rotate.</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -191,7 +191,7 @@ an <code>earthMesh</code>. We position that 10 units to the left of the sun
 and add it to the scene.  Since we added it to our <code>objects</code> array it will
 rotate too.</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -203,7 +203,7 @@ going around the sun. Let&#39;s make the earth a child of the sun</p>
 </code></pre>
 <p>and...</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -246,7 +246,7 @@ but unlike a <code>Mesh</code> it has no material or geometry. It just represent
 are being rotated and now because the <code>earthMesh</code> is not a child of the <code>sunMesh</code>
 it is no longer scaled by 5x.</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit-fixed.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit-fixed.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -281,7 +281,7 @@ this.</p>
 <p><img src="resources/images/scenegraph-sun-earth-moon.svg" align="center"></p>
 <p>and here&#39;s that</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -310,7 +310,7 @@ not check to see if they are drawing behind something else. We also
 set their <code>renderOrder</code> to 1 (the default is 0) so that they get drawn after
 all the spheres. Otherwise a sphere might draw over them and cover them up.</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -397,7 +397,7 @@ class AxisGridHelper {
 to 2 and for the <code>GridHelper</code> to 1 so that the axes get drawn after the grid.
 Otherwise the grid might overwrite the axes.</p>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes-grids.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes-grids.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes-grids.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -506,7 +506,7 @@ const infoElem = document.querySelector(&#39;#info&#39;);
 infoElem.textContent = camera.desc;
 </code></pre>
 <p><div class="threejs_example_container">
-  <iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-tank.html"></iframe>
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-tank.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-tank.html" target="_blank">click here to open in a separate window</a>
 </div>
 
@@ -553,6 +553,7 @@ body would be very complicated but using a scene graph it becomes much easier.</
 <li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
 <li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
 <li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
         </ul>
   <li>WebVR</li>
         <ul>
