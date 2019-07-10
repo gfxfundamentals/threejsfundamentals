@@ -170,15 +170,20 @@ const material = new THREE.MeshBasicMaterial({
 </div>
 
 </p>
-<p>It should be noted though that by default the only geometry that supports multiple
-materials is the <code>BoxGeometry</code> and <code>BoxBufferGeometry</code>. For other cases you will
-need to build or load custom geometry and/or modify texture coordinates. It&#39;s far
-more common to use a <a href="https://en.wikipedia.org/wiki/Texture_atlas">Texture Atlas</a>
-if you want to allow multiple images on a single
-geometry.</p>
+<p>It should be noted though that not all geometry types supports multiple
+materials. <code>BoxGeometry</code> and <code>BoxBufferGeometry</code> can use 6 materials one for each face.
+<code>ConeGeometry</code> and <code>ConeBufferGeometry</code> can use 2 materials, one for the bottom and one for the cone.
+<code>CylinderGeometry</code> and <code>CylinderBufferGeometry</code> can use 3 materials, bottom, top, and side.
+For other cases you will need to build or load custom geometry and/or modify texture coordinates.</p>
+<p>It&#39;s far more common in other 3D engines and far more performant to use a
+<a href="https://en.wikipedia.org/wiki/Texture_atlas">Texture Atlas</a>
+if you want to allow multiple images on a single geometry. A Texture atlas
+is where you put multiple images in a single texture and then use texture coordinates
+on the vertices of your geometry to select which parts of a texture are used on
+each triangle in your geometry.</p>
 <p>What are texture coordinates? They are data added to each vertex of a piece of geometry
 that specify what part of the texture corresponds to that specific vertex.
-We&#39;ll go over them when we start building custom geometry.</p>
+We&#39;ll go over them when we start <a href="threejs-custom-geometry.html">building custom geometry</a>.</p>
 <h2 id="-a-name-loading-a-loading-textures"><a name="loading"></a> Loading Textures</h2>
 <h3 id="-a-name-easy-a-the-easy-way"><a name="easy"></a> The Easy Way</h3>
 <p>Most of the code on this site uses the easiest method of loading textures.
