@@ -1738,9 +1738,25 @@ A generator function has preceded by the keyword <code>function*</code> (the ast
   }
 }
 </code></pre>
-<p>If we passed this function to the <code>CoroutineRunner</code> above it would print
+<p>If we added this function to the <code>CoroutineRunner</code> above it would print
 out each number, 0 to 9, once per frame or rather once per time we called <code>runner.update</code>.</p>
-<p>In the player let&#39;s use a coroutine to emit a note every half second to 1 second</p>
+<pre class="prettyprint"><code class="lang-js">const runner = new CoroutineRunner();
+runner.add(count0To9);
+while(runner.isBusy()) {
+  runner.update();
+}
+</code></pre>
+<p>Coroutines are removed automatically when they are finished. 
+To remove a coroutine early, before it reaches the end you need to keep
+a reference to its generator like this</p>
+<pre class="prettyprint"><code class="lang-js">const gen = count0To9();
+runner.add(gen);
+
+// sometime later
+
+runner.remove(gen);
+</code></pre>
+<p>In any case, in the player let&#39;s use a coroutine to emit a note every half second to 1 second</p>
 <pre class="prettyprint"><code class="lang-js">class Player extends Component {
   constructor(gameObject) {
 
@@ -1788,11 +1804,14 @@ instead of loading a note image let&#39;s make one using a canvas like we covere
   ctx.font = &#39;60px sans-serif&#39;;
   ctx.textAlign = &#39;center&#39;;
   ctx.textBaseline = &#39;middle&#39;;
+  ctx.fillStyle = &#39;#FFF&#39;;
   ctx.fillText(str, ctx.canvas.width / 2, ctx.canvas.height / 2);
   return new THREE.CanvasTexture(ctx.canvas);
 }
 const noteTexture = makeTextTexture(&#39;♪&#39;);
 </code></pre>
+<p>The texture we create above is white each means when we use it
+we can set the material&#39;s color and get a note of any color.</p>
 <p>Now that we have a noteTexture here&#39;s the <code>Note</code> component.
 It uses <code>SpriteMaterial</code> and a <code>Sprite</code> like we covered in
 <a href="threejs-billboards.html">the article on billboards</a> </p>
@@ -1801,6 +1820,7 @@ It uses <code>SpriteMaterial</code> and a <code>Sprite</code> like we covered in
     super(gameObject);
     const {transform} = gameObject;
     const noteMaterial = new THREE.SpriteMaterial({
+      color: new THREE.Color().setHSL(rand(1), 1, 0.5),
       map: noteTexture,
       side: THREE.DoubleSide,
       transparent: true,
@@ -1840,14 +1860,15 @@ from the scene and the note itself from active gameobjects.</p>
 
 </p>
 <p>You might be asking, why not use <code>setTimeout</code>? The problem with <code>setTimeout</code>
-is it&#39;s not related to the game clock. For example above we make the maximum
-amount of time allowed to elapse between frames is 1/20th of a second.
+is it&#39;s not related to the game clock. For example above we made the maximum
+amount of time allowed to elapse between frames to be 1/20th of a second.
 Our coroutine system will respect that limit but <code>setTimeout</code> would not.</p>
 <p>Of course we could have made a simple timer ourselves</p>
 <pre class="prettyprint"><code class="lang-js">class Player ... {
   update() {
     this.noteTimer -= globals.deltaTime;
     if (this.noteTimer &lt;= 0) {
+      // reset timer
       this.noteTimer = rand(0.5, 1);
       // create a gameobject with a note component
     }
@@ -1887,6 +1908,16 @@ function* animalCoroutine() {
 </code></pre>
 <p>This would have worked but of course as soon as our states were not so linear
 we&#39;d have had to switch to a <code>FiniteStateMachine</code>.</p>
+<p>It also wasn&#39;t clear to me if coroutines should run independently of their
+components. We could have made a global <code>CoroutineRunner</code> and put all
+coroutines on it. That would make cleaning them up harder. As it is now
+if the gameobject is removed all of it&#39;s components are removed and
+therefore the coroutine runners created are no longer called and it will
+all get garbage collected. If we had global runner then it would be
+the responsibility of each component to remove any coroutines it added
+or else some other mechanism of registering coroutines with a particular
+component or gameobject would be needed so that removing one removes the
+others.</p>
 <p>There are lots more issues a
 normal game engine would deal with. As it is there is no order to how
 gameobjects or their components are run. They are just run in the order added.
