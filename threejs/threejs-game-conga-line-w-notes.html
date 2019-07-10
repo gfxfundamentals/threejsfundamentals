@@ -343,6 +343,10 @@ function main() {
       }
 
       uiElem.addEventListener('mousedown', (e) => {
+        // this is needed because we call preventDefault();
+        // we also gave the canvas a tabindex so it can
+        // become the focus
+        canvas.focus();
         handleMouseMove(e);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
@@ -499,7 +503,7 @@ function main() {
   const globals = {
     camera,
     canvas,
-    debug: true,
+    debug: false,
     time: 0,
     moveSpeed: 16,
     deltaTime: 0,
@@ -615,11 +619,14 @@ function main() {
 
   const gui = new dat.GUI();
   gui.add(globals, 'debug').onChange(showHideDebugInfo);
+  gui.close();
 
   const labelContainerElem = document.querySelector('#labels');
   function showHideDebugInfo() {
     labelContainerElem.style.display = globals.debug ? '' : 'none';
   }
+  showHideDebugInfo();
+
   class StateDisplayHelper extends Component {
     constructor(gameObject, size) {
       super(gameObject);
@@ -910,11 +917,27 @@ function main() {
       'zebra',
       'horse',
     ];
-    animalModelNames.forEach((name, ndx) => {
+    const base = new THREE.Object3D();
+    const offset = new THREE.Object3D();
+    base.add(offset);
+
+    // position animals in a spiral.
+    const numAnimals = 28;
+    const arc = 10;
+    const b = 10 / (2 * Math.PI);
+    let r = 10;
+    let phi = r / b;
+    for (let i = 0; i < numAnimals; ++i) {
+      const name = animalModelNames[rand(animalModelNames.length) | 0];
       const gameObject = gameObjectManager.createGameObject(scene, name);
       gameObject.addComponent(Animal, models[name]);
-      gameObject.transform.position.x = (ndx + 1) * 5;
-    });
+      base.rotation.y = phi;
+      offset.position.x = r;
+      offset.updateWorldMatrix(true, false);
+      offset.getWorldPosition(gameObject.transform.position);
+      phi += arc / r;
+      r = b * phi;
+    }
   }
 
   function resizeRendererToDisplaySize(renderer) {

@@ -1578,11 +1578,14 @@ we&#39;ve used else where</p>
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const gui = new dat.GUI();
 +gui.add(globals, &#39;debug&#39;).onChange(showHideDebugInfo);
++showHideDebugInfo();
 
 const labelContainerElem = document.querySelector(&#39;#labels&#39;);
 +function showHideDebugInfo() {
 +  labelContainerElem.style.display = globals.debug ? &#39;&#39; : &#39;none&#39;;
 +}
++showHideDebugInfo();
+
 class StateDisplayHelper extends Component {
 
   ...
@@ -1853,6 +1856,42 @@ the transform at that velocity for 60 frames while fading out the note
 by setting the material&#39;s <a href="Material.opacity"><code>opacity</code></a>. 
 After the loop it the removes the transform
 from the scene and the note itself from active gameobjects.</p>
+<p>One last thing, let&#39;s add a few more animals</p>
+<pre class="prettyprint"><code class="lang-js">function init() {
+
+   ...
+
+  const animalModelNames = [
+    &#39;pig&#39;,
+    &#39;cow&#39;,
+    &#39;llama&#39;,
+    &#39;pug&#39;,
+    &#39;sheep&#39;,
+    &#39;zebra&#39;,
+    &#39;horse&#39;,
+  ];
++  const base = new THREE.Object3D();
++  const offset = new THREE.Object3D();
++  base.add(offset);
++
++  // position animals in a spiral.
++  const numAnimals = 28;
++  const arc = 10;
++  const b = 10 / (2 * Math.PI);
++  let r = 10;
++  let phi = r / b;
++  for (let i = 0; i &lt; numAnimals; ++i) {
++    const name = animalModelNames[rand(animalModelNames.length) | 0];
+    const gameObject = gameObjectManager.createGameObject(scene, name);
+    gameObject.addComponent(Animal, models[name]);
++    base.rotation.y = phi;
++    offset.position.x = r;
++    offset.updateWorldMatrix(true, false);
++    offset.getWorldPosition(gameObject.transform.position);
++    phi += arc / r;
++    r = b * phi;
+  }
+</code></pre>
 <p><div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-game-conga-line-w-notes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-game-conga-line-w-notes.html" target="_blank">click here to open in a separate window</a>
