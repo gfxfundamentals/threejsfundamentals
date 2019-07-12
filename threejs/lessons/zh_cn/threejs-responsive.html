@@ -249,8 +249,8 @@ three.js使用canvas和其他元素不一样。</p>
 <pre class="prettyprint"><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
-      const width = canvas.clientWidth * pixelRatio;
-      const height = canvas.clientHeight * pixelRatio;
+      const width = canvas.clientWidth * pixelRatio | 0;
+      const height = canvas.clientHeight * pixelRatio | 0;
       const needResize = canvas.width !== width || canvas.height !== height;
       if (needResize) {
         renderer.setSize(width, height, false);
