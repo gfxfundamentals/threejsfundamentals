@@ -329,13 +329,7 @@ the debug stuff only shows up if we put <code>?debug=true</code> in the URL.</p>
   *    }
   */
 function getQuery() {
-  const params = {};
-  const q = (window.location.search || &#39;&#39;).substring(1);
-  q.split(&#39;&amp;&#39;).forEach((pair) =&gt; {
-    const keyValue = pair.split(&#39;=&#39;).map(decodeURIComponent);
-    params[keyValue[0]] = keyValue[1];
-  });
-  return params;
+  return Object.fromEntries(new URLSearchParams(window.location.search).entries());
 }
 </code></pre>
 <p>Then we might make the debug element not show by default</p>
@@ -514,7 +508,12 @@ Of course you are welcome to use JSFiddle or Codepen or similar site to test out
 your MCVE but once you actually get to posting your question on Stack Overflow
 you&#39;re required to put the code to reproduce your issue <strong>in the question itself</strong>. 
 By making a snippet you satisfy that requirement.</p>
-<p>Follow these suggestions and your far more likely to get help
+<p>Also note all the live examples on this site should run as snippets.
+Just copy the HTML, CSS, and JavaScript parts to their respective
+parts of the <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">snippet editor</a>.
+Just remember to try to remove the parts that are not relevant to
+your issue and try to make your code the minimal amount needed.</p>
+<p>Follow these suggestions and you&#39;re far more likely to get help
 with your issue.</p>
 <h2 id="use-a-meshbasicmaterial-">Use a <code>MeshBasicMaterial</code></h2>
 <p>Because the <code>MeshBasicMaterial</code> uses no lights this is one way to 
