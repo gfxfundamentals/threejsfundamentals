@@ -185,9 +185,18 @@ clearPickPosition();
 
 ...
 
+function getCanvasRelativePosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+  };
+}
+
 function setPickPosition(event) {
-  pickPosition.x = (event.clientX / canvas.clientWidth ) *  2 - 1;
-  pickPosition.y = (event.clientY / canvas.clientHeight) * -2 + 1;  // note we flip Y
+  const pos = getCanvasRelativePosition(event);
+  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
 }
 
 function clearPickPosition() {
@@ -346,10 +355,11 @@ for (let i = 0; i &lt; numObjects; ++i) {
 <p>Note that abusing the <code>MeshPhongMaterial</code> might not be the best solution as it will still calculate all our lights when drawing the picking scene even though we don&#39;t need those calculations. A more optimized solution would make a custom shader that just writes the id where the texture&#39;s alpha is greater than <code>alphaTest</code>.</p>
 <p>Because we&#39;re picking from pixels instead of ray casting we can change the code that sets the pick position to just use pixels.</p>
 <pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
--  pickPosition.x = (event.clientX / canvas.clientWidth ) *  2 - 1;
--  pickPosition.y = (event.clientY / canvas.clientHeight) * -2 + 1;  // note we flip Y
-+  pickPosition.x = event.clientX;
-+  pickPosition.y = event.clientY;
+  const pos = getCanvasRelativePosition(event);
+-  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+-  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
++  pickPosition.x = pos.x;
++  pickPosition.y = pos.y;
 }
 </code></pre>
 <p>Then let&#39;s change the <code>PickHelper</code> into a <code>GPUPickHelper</code>. It will use a <code>WebGLRenderTarget</code> like we covered the <a href="threejs-rendertargets.html">article on render targets</a>. Our render target here is only a single pixel in size, 1x1. </p>

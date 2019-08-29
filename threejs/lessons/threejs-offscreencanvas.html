@@ -98,7 +98,7 @@ their scripts embedded into the HTML file of the page they are on.</p>
 copy all the JavaScript from <a href="threejs-responsive.html">the responsive example</a> into it. We&#39;ll then
 make the changes needed for it to run in a worker.</p>
 <p>We still need some JavaScript in our HTML file. The first thing
-we do there is look up the canvas and then transfer control of that
+we need to do there is look up the canvas and then transfer control of that
 canvas to be offscreen by calling <code>canvas.transferControlToOffscreen</code>.</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
@@ -107,7 +107,7 @@ canvas to be offscreen by calling <code>canvas.transferControlToOffscreen</code>
   ...
 </code></pre>
 <p>We can then start our worker with <code>new Worker(pathToScript)</code>.
-We then pass the <code>offscreen</code> object to the worker.</p>
+and pass the <code>offscreen</code> object to it.</p>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const offscreen = canvas.transferControlToOffscreen();
@@ -300,7 +300,7 @@ we will now have 3 files</p>
 <li><p>our html file.</p>
 <p><code>threejs-offscreencanvas-w-fallback.html</code></p>
 </li>
-<li><p>a JavaScript the contains our three.js code.</p>
+<li><p>a JavaScript that contains our three.js code.</p>
 <p><code>shared-cubes.js</code></p>
 </li>
 <li><p>our worker support code</p>
@@ -460,9 +460,18 @@ const pickPosition = {x: 0, y: 0};
 const pickHelper = new PickHelper();
 </code></pre>
 <p>We updated <code>pickPosition</code> from the mouse like this</p>
-<pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
-  pickPosition.x = (event.clientX / canvas.clientWidth ) *  2 - 1;
-  pickPosition.y = (event.clientY / canvas.clientHeight) * -2 + 1;  // note we flip Y
+<pre class="prettyprint"><code class="lang-js">function getCanvasRelativePosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+  };
+}
+
+function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
 }
 window.addEventListener(&#39;mousemove&#39;, setPickPosition);
 </code></pre>
@@ -545,11 +554,12 @@ function startMainPage(canvas) {
 <p>Then we can copy in all the mouse handling code to the main page and 
 make just minor changes to use <code>sendMouse</code></p>
 <pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
--  pickPosition.x = (event.clientX / canvas.clientWidth ) *  2 - 1;
--  pickPosition.y = (event.clientY / canvas.clientHeight) * -2 + 1;  // note we flip Y
+  const pos = getCanvasRelativePosition(event);
+-  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+-  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
 +  sendMouse(
-+      (event.clientX / canvas.clientWidth ) *  2 - 1,
-+      (event.clientY / canvas.clientHeight) * -2 + 1);  // note we flip Y
++      (pos.x / canvas.clientWidth ) *  2 - 1,
++      (pos.y / canvas.clientHeight) * -2 + 1);  // note we flip Y
 }
 
 function clearPickPosition() {
@@ -714,12 +724,22 @@ examples.</p>
 <p>Next we can move all the picking event code from the HTML file
 to the shared three.js code as well while changing
 <code>canvas</code> to <code>inputElement</code>.</p>
-<pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
+<pre class="prettyprint"><code class="lang-js">function getCanvasRelativePosition(event) {
+-  const rect = canvas.getBoundingClientRect();
++  const rect = inputElement.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+  };
+}
+
+function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
 -  sendMouse(
--      (event.clientX / canvas.clientWidth ) *  2 - 1,
--      (event.clientY / canvas.clientHeight) * -2 + 1);  // note we flip Y
-+  pickPosition.x = (event.clientX / inputElement.clientWidth ) *  2 - 1;
-+  pickPosition.y = (event.clientY / inputElement.clientHeight) * -2 + 1;  // note we flip Y
+-      (pos.x / canvas.clientWidth ) *  2 - 1,
+-      (pos.y / canvas.clientHeight) * -2 + 1);  // note we flip Y
++  pickPosition.x = (pos.x / inputElement.clientWidth ) *  2 - 1;
++  pickPosition.y = (pos.y / inputElement.clientHeight) * -2 + 1;  // note we flip Y
 }
 
 function clearPickPosition() {
@@ -932,8 +952,20 @@ to pass that as well.</p>
 +  get clientHeight() {
 +    return this.height;
 +  }
++  getBoundingClientRect() {
++    return {
++      left: this.left,
++      top: this.top,
++      width: this.width,
++      height: this.height,
++      right: this.left + this.width,
++      bottom: this.top + this.height,
++    };
++  }
   handleEvent(data) {
 +    if (data.type === &#39;size&#39;) {
++      this.left = data.left;
++      this.top = data.top;
 +      this.width = data.width;
 +      this.height = data.height;
 +      return;
@@ -947,7 +979,9 @@ to pass that as well.</p>
   }
 }
 </code></pre>
-<p>back in the main page we need to send the size</p>
+<p>back in the main page we need to send the size and the left and top positions as well.
+Note that as is we don&#39;t handle if the canvas moves, only if it resizes. If you wanted
+to handle moving you&#39;d need to call <code>sendSize</code> anytime something moved the canvas.</p>
 <pre class="prettyprint"><code class="lang-js">class ElementProxy {
   constructor(element, worker, eventHandlers) {
     this.id = nextProxyId++;
@@ -973,8 +1007,11 @@ to pass that as well.</p>
     }
 
 +    function sendSize() {
++      const rect = element.getBoundingClientRect();
 +      sendEvent({
 +        type: &#39;size&#39;,
++        left: rect.left,
++        top: rect.top,
 +        width: element.clientWidth,
 +        height: element.clientHeight,
 +      });
