@@ -56,7 +56,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
 <link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" type="text/css" />
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
 <div class="threejs_navbar">
@@ -362,42 +362,7 @@ function addObject(x, y, obj) {
 <p><script src="../../resources/threejs/r105/js/controls/TrackballControls.js"></script></p>
 <p><script src="../resources/threejs-lesson-utils.js"></script></p>
 <p><script src="../resources/threejs-primitives.js"></script></p>
-<style>
-div[data-primitive] {
-    padding-bottom: 2em;
-    border-bottom: 1px solid #888;
-    margin-bottom: 2em;
-}
-div[data-primitive] .pair {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1em;
-}
-div[data-primitive] .shape {
-  flex: 0 0 auto;
-  width: 200px;
-  height: 200px;
-}
-div[data-primitive] .desc {
-  word-wrap: break-word;
-  padding: 1em;
-  min-width: 0;
-}
-div[data-primitive] .desc code {
-  white-space: normal;
-}
-@media (max-width: 550px) {
-  div[data-primitive] .shape {
-      width: 120px;
-      height: 120px;
-  }
-}
-div[data-primitive] .desc {
-  flex: 1 1 auto;
-}
-</style>
-
-
+<link rel="stylesheet" href="resources/threejs-primitives.css">
 
     </div>
     <div class="lesson-sidebar">
