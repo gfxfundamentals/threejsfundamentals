@@ -400,16 +400,16 @@ you set the <a href="Texture.minFilter"><code>texture.minFilter</code></a> prope
 <li><p><code>THREE.LinearFilter</code></p>
 <p> same as above, choose 4 pixels from the texture and blend them</p>
 </li>
-<li><p><code>THREE.NearestMipMapNearestFilter</code></p>
+<li><p><code>THREE.NearestMipmapNearestFilter</code></p>
 <p> choose the appropriate mip then choose one pixel</p>
 </li>
-<li><p><code>THREE.NearestMipMapLinearFilter</code></p>
+<li><p><code>THREE.NearestMipmapLinearFilter</code></p>
 <p> choose 2 mips, choose one pixel from each, blend the 2 pixels</p>
 </li>
-<li><p><code>THREE.LinearMipMapNearestFilter</code></p>
+<li><p><code>THREE.LinearMipmapNearestFilter</code></p>
 <p> chose the appropriate mip then choose 4 pixels and blend them</p>
 </li>
-<li><p><code>THREE.LinearMipMapLinearFilter</code></p>
+<li><p><code>THREE.LinearMipmapLinearFilter</code></p>
 <p>choose 2 mips, choose 4 pixels from each and blend all 8 into 1 pixel</p>
 </li>
 </ul>
@@ -451,7 +451,7 @@ don&#39;t use the mips. Because of that they flicker in the distance because the
 picking pixels from the original texture. On the left just one pixel is chosen and
 in the middle 4 are chosen and blended but it&#39;s not enough come up with a good
 representative color. The other 4 strips do better with the bottom right,
-<code>LinearMipMapLinearFilter</code> being best.</p>
+<code>LinearMipmapLinearFilter</code> being best.</p>
 <p>If you click the picture above it will toggle between the texture we&#39;ve been using above
 and a texture where every mip level is a different color.</p>
 <div class="threejs_center">
@@ -607,8 +607,8 @@ metalness
 roughness
 -->
 <p><canvas id="c"></canvas></p>
-<p><script src="../resources/threejs/r105/three.min.js"></script></p>
-<p><script src="../resources/threejs/r105/js/controls/TrackballControls.js"></script></p>
+<p><script src="../resources/threejs/r108/three.min.js"></script></p>
+<p><script src="../resources/threejs/r108/js/controls/TrackballControls.js"></script></p>
 <p><script src="resources/threejs-lesson-utils.js"></script></p>
 <p><script src="resources/threejs-textures.js"></script></p>
 <link rel="stylesheet" href="resources/threejs-textures.css">
