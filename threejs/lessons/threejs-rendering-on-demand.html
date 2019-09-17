@@ -173,11 +173,8 @@ we are not we need to render when the window changes size.</p>
 
 </p>
 <p>The <code>OrbitControls</code> have options to add a kind of inertia to make them feel less
-stiff. We can enable this by setting the <code>enableDamping</code> property to true and we
-can set how much inertia by adjusting the <code>dampingFactor</code></p>
+stiff. We can enable this by setting the <code>enableDamping</code> property to true.</p>
 <pre class="prettyprint"><code class="lang-js">controls.enableDamping = true;
-controls.dampingFactor = 0.05;
-controls.rotateSpeed = 0.1;
 </code></pre>
 <p>With <code>enableDamping</code> on we need to call <code>controls.update</code> in our render function
 so that the <code>OrbitControls</code> can continue to give us new camera settings as they
