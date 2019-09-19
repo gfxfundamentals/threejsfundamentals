@@ -250,14 +250,23 @@ For example creating a box</p>
 The biggest is probably the <code>TextBufferGeometry</code>. It needs to load
 3D font data before it can generate a mesh for the text.
 That data loads asynchronously so we need to wait for it
-to load before trying to create the geometry. You can see below
-we create a <code>FontLoader</code> and pass it the url to our font
-and a callback. The callback is called after the font loads.
-In the callback we create the geometry
-and call <code>addObject</code> to add it the scene.</p>
+to load before trying to create the geometry. By promisifiying 
+font loading we can make it mush easier.
+We create a <code>FontLoader</code> and then a function <code>loadFont</code> that returns
+a promise that on resolve will give us the font. We then create
+an <code>async</code> function called <code>doit</code> and load the font using <code>await</code>.
+And finally create the geometry and call <code>addObject</code> to add it the scene.</p>
 <pre class="prettyprint"><code class="lang-js">{
   const loader = new THREE.FontLoader();
-  loader.load(&#39;resources/threejs/fonts/helvetiker_regular.typeface.json&#39;, (font) =&gt; {
+  // promisify font loading
+  function loadFont(url) {
+    return new Promise((resolve, reject) =&gt; {
+      loader.load(url, resolve, undefined, reject);
+    });
+  }
+
+  async function doit() {
+    const font = await loadFont(&#39;resources/threejs/fonts/helvetiker_regular.typeface.json&#39;);  /* threejsfundamentals: url */
     const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
       font: font,
       size: 3.0,
@@ -275,8 +284,9 @@ and call <code>addObject</code> to add it the scene.</p>
     const parent = new THREE.Object3D();
     parent.add(mesh);
 
-    addObject(-1, 1, parent);
-  });
+    addObject(-1, -1, parent);
+  }
+  doit();
 }
 </code></pre>
 <p>There&#39;s one other difference. We want to spin the text around its
