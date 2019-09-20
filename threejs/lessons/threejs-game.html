@@ -281,10 +281,10 @@ we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there&#39;s a utility function,
 <code>SkeletonUtils.clone</code> we can use to do this. So, first we need to include
 the utils.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r108/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/loaders/GLTFLoader.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r108/js/utils/SkeletonUtils.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/loaders/GLTFLoader.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r105/js/utils/SkeletonUtils.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint"><code class="lang-js">function init() {
@@ -1571,10 +1571,10 @@ class StateDisplayHelper extends Component {
 </code></pre>
 <p>While we&#39;re at it lets make it so we can turn them on/off using dat.GUI like
 we&#39;ve used else where</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r108/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/loaders/GLTFLoader.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/utils/SkeletonUtils.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/loaders/GLTFLoader.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/utils/SkeletonUtils.js&quot;&gt;&lt;/script&gt;
 +&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const gui = new dat.GUI();

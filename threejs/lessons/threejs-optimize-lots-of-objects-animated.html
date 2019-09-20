@@ -406,10 +406,10 @@ have. We could also write some custom animation code which would be easy but
 because the original webgl globe uses 
 <a href="https://github.com/tweenjs/tween.js/">an animation library</a> let&#39;s use the same one here.</p>
 <p>We need to include the library</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r108/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/utils/BufferGeometryUtils.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r108/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r108/js/libs/tween.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/utils/BufferGeometryUtils.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
++&lt;script src=&quot;resources/threejs/r105/js/libs/tween.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>And then create a <code>Tween</code> to animate the influences.</p>
 <pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest

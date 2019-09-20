@@ -394,16 +394,16 @@ PNG-файлы имеют сжатие без потерь, поэтому PNG-�
 <li><p><code>THREE.LinearFilter</code></p>
 <p> Как и выше, выберает 4 пикселя из текстуры и смешает их</p>
 </li>
-<li><p><code>THREE.NearestMipmapNearestFilter</code></p>
+<li><p><code>THREE.NearestMipMapNearestFilter</code></p>
 <p> выберает соответствующий mip, затем выберает один пиксель.</p>
 </li>
-<li><p><code>THREE.NearestMipmapLinearFilter</code></p>
+<li><p><code>THREE.NearestMipMapLinearFilter</code></p>
 <p> выберает 2 mips, выберает один пиксель из каждого, смешает 2 пикселя.</p>
 </li>
-<li><p><code>THREE.LinearMipmapNearestFilter</code></p>
+<li><p><code>THREE.LinearMipMapNearestFilter</code></p>
 <p> выберает подходящий mip, затем выберает 4 пикселя и смешает их.</p>
 </li>
-<li><p><code>THREE.LinearMipmapLinearFilter</code></p>
+<li><p><code>THREE.LinearMipMapLinearFilter</code></p>
 <p>выберает 2 mips, выберает 4 пикселя от каждого и смешает все 8 в 1 пиксель.</p>
 </li>
 </ul>
@@ -445,7 +445,7 @@ PNG-файлы имеют сжатие без потерь, поэтому PNG-�
 не использует mips. Из-за этого они мерцают на расстоянии, потому что графический процессор выбирает 
 пиксели из исходной текстуры. Слева выбран только один пиксель, а в середине 4 выбраны и смешаны, 
 но этого недостаточно, чтобы придумать хороший представительный цвет. Другие 4 полоски лучше с нижним правым, 
-<code>LinearMipmapLinearFilter</code> лучший.</p>
+<code>LinearMipMapLinearFilter</code> лучший.</p>
 <p>Если вы нажмете на картинку выше, она переключится между текстурой, которую мы использовали выше, 
 и текстурой, где каждый уровень мипа имеет свой цвет.</p>
 <div class="threejs_center">
@@ -599,8 +599,8 @@ metalness
 roughness
 -->
 <p><canvas id="c"></canvas></p>
-<p><script src="../../resources/threejs/r108/three.min.js"></script></p>
-<p><script src="../../resources/threejs/r108/js/controls/TrackballControls.js"></script></p>
+<p><script src="../../resources/threejs/r105/three.min.js"></script></p>
+<p><script src="../../resources/threejs/r105/js/controls/TrackballControls.js"></script></p>
 <p><script src="../resources/threejs-lesson-utils.js"></script></p>
 <p><script src="../resources/threejs-textures.js"></script></p>
 <link rel="stylesheet" href="resources/threejs-textures.css">
