@@ -142,7 +142,6 @@ or
 While you can add query parameters (see below) do not add "../" to try to make the link relative to the
 .md file. Links should stay as though the article exists at the same location as the original English.
 
-
 ### To build
 
 The site is built into the `out` folder
