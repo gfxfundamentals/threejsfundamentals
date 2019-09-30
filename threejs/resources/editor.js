@@ -395,7 +395,7 @@ function getSourceBlob(htmlParts) {
   source = source.replace('</head>', `<script src="${prefix}/resources/webgl-debug-helper.js"></script>
 <script src="${prefix}/resources/lessons-helper.js"></script>
   </head>`);
-  const scriptNdx = source.indexOf('<script>');
+  const scriptNdx = source.search(/<script(\s+type="module"\s*)?>/);
   g.rootScriptInfo.numLinesBeforeScript = (source.substring(0, scriptNdx).match(/\n/g) || []).length;
 
   const blob = new Blob([source], {type: 'text/html'});
