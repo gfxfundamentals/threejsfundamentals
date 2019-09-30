@@ -117,17 +117,15 @@ the hemispherical lighting example so I ended up with one
 <code>HemisphereLight</code> and one <code>DirectionalLight</code>. I also removed all the GUI stuff
 related to adjusting the lights. I also removed the cube and sphere
 that were being added to the scene.</p>
-<p>From that the first thing we need to do is include the <code>OBJLoader2</code> loader in our scene. The <code>OBJLoader2</code> also needs the <code>LoaderSupport.js</code> file so let&#39;s add both.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/js/loaders/LoaderSupport.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/loaders/OBJLoader2.js&quot;&gt;&lt;/script&gt;
+<p>From that the first thing we need to do is include the <code>OBJLoader2</code> loader in our script.</p>
+<pre class="prettyprint"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r108/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
 <p>Then to load the .OBJ file we create an instance of <code>OBJLoader2</code>,
 pass it the URL of our .OBJ file, and pass in a callback that adds
 the loaded model to our scene.</p>
 <pre class="prettyprint"><code class="lang-js">{
-  const objLoader = new THREE.OBJLoader2();
-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
-    const root = event.detail.loaderRootNode;
+  const objLoader = new OBJLoader2();
+  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
     scene.add(root);
   });
 }
@@ -140,7 +138,7 @@ the loaded model to our scene.</p>
 
 </p>
 <p>Well it&#39;s close but we&#39;re getting errors about materials since we haven&#39;t
-given the scene any matrials and .OBJ files don&#39;t have material
+given the scene any materials and .OBJ files don&#39;t have material
 parameters. </p>
 <p>The .OBJ loader can be passed an
 object of name / material pairs. When it loads the .OBJ file,
@@ -192,7 +190,7 @@ export those files to by picking <strong>File-&gt;External Data-&gt;Unpack All I
 <p>and then chosing <strong>Write Files to Current Directory</strong></p>
 <div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-overwrite.jpg"></div>
 
-<p>This ends up writing the files in the same folder asthe .blend file 
+<p>This ends up writing the files in the same folder as the .blend file 
 in a sub folder called <strong>textures</strong>.</p>
 <div class="threejs_center"><img style="width: 758px;" src="resources/images/windmill-exported-texture-files.png"></div>
 
@@ -201,20 +199,22 @@ file to.</p>
 <div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>Now that we have the textures available we can load the .MTL file.</p>
-<p>First we need to include the <code>MTLLoader</code></p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/loaders/LoaderSupport.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/loaders/OBJLoader2.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r105/js/loaders/MTLLoader.js&quot;&gt;&lt;/script&gt;
+<p>First we need to include the <code>MTLLoader</code> and the <code>MtlObjBridge</code>;</p>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
+import {OBJLoader2} from &#39;./resources/threejs/r108/examples/jsm/loaders/OBJLoader2.js&#39;;
++import {MTLLoader} from &#39;./resources/threejs/r108/examples/jsm/loaders/MTLLoader.js&#39;;
++import {MtlObjBridge} from &#39;./resources/threejs/r108/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
-<p>Then we first load the .MTL file. When it&#39;s finished loading we set the just loaded materials on to the <code>OBJLoader2</code> itself and then load the .OBJ file.</p>
+<p>Then we first load the .MTL file. When it&#39;s finished loading we add
+the just loaded materials on to the <code>OBJLoader2</code> itself via the <code>MtlObjBridge</code>
+and then load the .OBJ file.</p>
 <pre class="prettyprint"><code class="lang-js">{
-+  const objLoader = new THREE.OBJLoader2();
-+  objLoader.loadMtl(&#39;resources/models/windmill/windmill.mtl&#39;, null, (materials) =&gt; {
-+    objLoader.setMaterials(materials);
-    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
-      const root = event.detail.loaderRootNode;
++  const mtlLoader = new MTLLoader();
++  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
++    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
++    objLoader.addMaterials(materials);
+    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
       scene.add(root);
     });
 +  });
@@ -237,7 +237,9 @@ There is no easy way to fix this in the .MTL file. Off the top of my
 head I can think of 3 ways to fix this.</p>
 <ol>
 <li><p>Loop over all the materials after loading them and set them all to double sided.</p>
-<pre class="prettyprint"><code> objLoader.loadMtl(&#39;resources/models/windmill/windmill.mtl&#39;, null, (materials) =&gt; {
+<pre class="prettyprint"><code> const mtlLoader = new MTLLoader();
+ mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
+   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    for (const material of Object.values(materials)) {
      material.side = THREE.DoubleSide;
    }
@@ -251,8 +253,9 @@ is slower than single sided.</p>
 and the other called <code>&quot;Material&quot;</code>. Through trial and error I figured
 out the blades use the material called <code>&quot;Material&quot;</code>so we could set
 that one specifically </p>
-<pre class="prettyprint"><code> const objLoader = new THREE.OBJLoader2();
- objLoader.loadMtl(&#39;resources/models/windmill/windmill.mtl&#39;, null, (materials) =&gt; {
+<pre class="prettyprint"><code> const mtlLoader = new MTLLoader();
+ mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
+   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    materials.Material.side = THREE.DoubleSide;
    ...
 </code></pre></li>
@@ -339,8 +342,7 @@ We can ask THREE.js what size the model is and try to set our
 camera automatically.</p>
 <p>First off we can ask THREE.js to compute a box that contains the scene
 we just loaded and ask for its size and center</p>
-<pre class="prettyprint"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (event) =&gt; {
-  const root = event.detail.loaderRootNode;
+<pre class="prettyprint"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
   scene.add(root);
 
 +  const box = new THREE.Box3().setFromObject(root);
@@ -366,7 +368,7 @@ altitude so we&#39;ll just have to pick something.</p>
 <p>As we went over in <a href="threejs-cameras.html">the article on cameras</a> the camera defines a frustum.
 That frustum is defined by the field of view (<code>fov</code>) and the <code>near</code> and <code>far</code> settings. We
 want to know given whatever field of view the camera currently has, how far away does the camera
-need to be so the box containing the scene fits inside the frustum assiming the frustum
+need to be so the box containing the scene fits inside the frustum assuming the frustum
 extended forever. In other words let&#39;s assume <code>near</code> is 0.00000001 and <code>far</code> is infinity.</p>
 <p>Since we know the size of the box and we know the field of view we have this triangle</p>
 <div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
@@ -375,7 +377,7 @@ extended forever. In other words let&#39;s assume <code>near</code> is 0.0000000
 front of it. We just computed the box that contains the the windmill. We need to
 compute how far way the camera should be from the box so that the box appears
 inside the frustum.</p>
-<p>Using basic <em>right triangle</em> trigonametry and <a href="https://www.google.com/search?q=SOHCAHTOA">SOHCAHTOA</a>, 
+<p>Using basic <em>right triangle</em> trigonometry and <a href="https://www.google.com/search?q=SOHCAHTOA">SOHCAHTOA</a>, 
 given we know the field of view for the frustum and we know the size of the box we can compute the <em>distance</em>.</p>
 <div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
 
@@ -414,9 +416,8 @@ and used that as <code>sizeToFitOnScreen</code> then the math would make the box
 the frustum. We want a little extra space above and below so we&#39;ll pass in a slightly 
 larger size. </p>
 <pre class="prettyprint"><code class="lang-js">{
-  const objLoader = new THREE.OBJLoader2();
-  objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (event) =&gt; {
-    const root = event.detail.loaderRootNode;
+  const objLoader = new OBJLoader2();
+  objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
     scene.add(root);
 +    // compute the box that contains all the stuff
 +    // from root and below
@@ -455,7 +456,7 @@ the windmill.</p>
 <p>Let&#39;s change it to move sideways from the center of the box to in whatever direction
 the camera is from the center. All we need to do to do that is zero out the <code>y</code> component
 of the vector from the box to the camera. Then, when we normalize that vector it will
-become a vector parallel to the XZ plane. In otherwords parallel to the ground.</p>
+become a vector parallel to the XZ plane. In other words parallel to the ground.</p>
 <pre class="prettyprint"><code class="lang-js">-// compute a unit vector that points in the direction the camera is now
 -// from the center of the box
 -const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
@@ -503,7 +504,7 @@ some textures but looking at the files I quickly see an issue.</p>
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_spec.tga
 </code></pre>
 <p>There are TARGA (.tga) files and they are giant!</p>
-<p>THREE.js actually has a TGA loader but it&#39;s argubly wrong to use it for most use cases.
+<p>THREE.js actually has a TGA loader but it&#39;s arguably wrong to use it for most use cases.
 If you&#39;re making a viewer where you want to allow users to view random 3D files they
 find on the net then maybe, just maybe, you might want to load TGA files. (<a href="#loading-scenes">*</a>)</p>
 <p>One problem with TGA files are they can&#39;t be compressed well at all. TGA only supports very
@@ -557,11 +558,12 @@ illum 2
 <p>Now that the .MTL file points to some reasonable size textures we need to load it so we&#39;ll just do like we did above, first load the materials
 and then set them on the <code>OBJLoader2</code></p>
 <pre class="prettyprint"><code class="lang-js">{
-+  const objLoader = new THREE.OBJLoader2();
-+  objLoader.loadMtl(&#39;resources/models/windmill_2/windmill-fixed.mtl&#39;, null, (materials) =&gt; {
-+    objLoader.setMaterials(materials);
-    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
-      const root = event.detail.loaderRootNode;
++  const mtlLoader = new MTLLoader();
++  mtlLoader.load(&#39;resources/models/windmill_2/windmill-fixed.mtl&#39;, (mtlParseResult) =&gt; {
++    const objLoader = new OBJLoader2();
++    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
++    objLoader.addMaterials(materials);
+    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);
       // compute the box that contains all the stuff

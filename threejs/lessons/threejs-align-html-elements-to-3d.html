@@ -108,10 +108,10 @@ by styled with CSS. It can also be selected by the user as it is actual text. </
 <p>Let&#39;s start simple. We&#39;ll make a 3D scene with a few primitives and then add a label to each primitive. We&#39;ll start
 with an example from <a href="threejs-responsive.html">the article on responsive pages</a> </p>
 <p>We&#39;ll add some <code>OrbitControls</code> like we did in <a href="threejs-lights.html">the article on lighting</a>.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
-<pre class="prettyprint"><code class="lang-js">const controls = new THREE.OrbitControls(camera, canvas);
+<pre class="prettyprint"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 0, 0);
 controls.update();
 </code></pre>
@@ -711,16 +711,15 @@ for (const countryInfo of countryInfos) {
 </code></pre>
 <p>Finally, since I&#39;m not sure what good values are for these settings lets
 add a GUI so we can play with them</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/utils/BufferGeometryUtils.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
++import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const settings = {
 +  minArea: 20,
 +  maxVisibleDot: -0.2,
 +};
-+const gui = new dat.GUI({width: 300});
++const gui = new GUI({width: 300});
 +gui.add(settings, &#39;minArea&#39;, 0, 50).onChange(requestRenderIfNotRequested);
 +gui.add(settings, &#39;maxVisibleDot&#39;, -1, 1, 0.01).onChange(requestRenderIfNotRequested);
 
@@ -768,8 +767,7 @@ to the countries in the center of the view, etc ... Lots to think about.</p>
 elements with your 3D. A few things I might change.</p>
 <p>Next up let&#39;s make it so you can <a href="threejs-indexed-textures.html">pick and highlight a country</a>.</p>
 <p><link rel="stylesheet" href="resources/threejs-align-html-elements-to-3d.css"></p>
-<script src="/3rdparty/dat.gui.min.js"></script>
-<script src="resources/threejs-align-html-elements-to-3d.js"></script>
+<script type="module" src="resources/threejs-align-html-elements-to-3d.js"></script>
 
     </div>
     <div class="lesson-sidebar">

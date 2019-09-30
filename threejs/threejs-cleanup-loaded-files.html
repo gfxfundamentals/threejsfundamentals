@@ -24,13 +24,9 @@
   <body>
     <canvas id="c"></canvas>
   </body>
-<script src="resources/threejs/r105/three.min.js"></script>
-<script src="resources/threejs/r105/js/loaders/GLTFLoader.js"></script>
-<script>
-
-'use strict';
-
-/* global THREE */
+<script type="module">
+import * as THREE from './resources/threejs/r108/build/three.module.js';
+import {GLTFLoader} from './resources/threejs/r108/examples/jsm/loaders/GLTFLoader.js';
 
 class ResourceTracker {
   constructor() {
@@ -145,7 +141,7 @@ function main() {
     camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
   }
 
-  const gltfLoader = new THREE.GLTFLoader();
+  const gltfLoader = new GLTFLoader();
   function loadGLTF(url) {
     return new Promise((resolve, reject) => {
       gltfLoader.load(url, resolve, undefined, reject);

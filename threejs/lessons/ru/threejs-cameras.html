@@ -143,7 +143,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   camera.updateProjectionMatrix();
 }
 
-const gui = new dat.GUI();
+const gui = new GUI();
 gui.add(camera, &#39;fov&#39;, 1, 180).onChange(updateCamera);
 const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39;, 0.1);
 gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
@@ -204,8 +204,8 @@ const view2Elem = document.querySelector(&#39;#view2&#39;);
 </code></pre>
 <p>И мы установим нашу существующую <code>OrbitControls</code> так, чтобы она отвечала 
 только за первый элемент представления.</p>
-<pre class="prettyprint"><code class="lang-js">-const controls = new THREE.OrbitControls(camera, canvas);
-+const controls = new THREE.OrbitControls(camera, view1Elem);
+<pre class="prettyprint"><code class="lang-js">-const controls = new OrbitControls(camera, canvas);
++const controls = new OrbitControls(camera, view1Elem);
 </code></pre>
 <p>Создадим вторую <code>PerspectiveCamera</code> и вторую <code>OrbitControls</code>.
 Вторая <code>OrbitControls</code> привязана ко второй камере и получает 
@@ -219,7 +219,7 @@ const view2Elem = document.querySelector(&#39;#view2&#39;);
 camera2.position.set(40, 10, 30);
 camera2.lookAt(0, 5, 0);
 
-const controls2 = new THREE.OrbitControls(camera2, view2Elem);
+const controls2 = new OrbitControls(camera2, view2Elem);
 controls2.target.set(0, 5, 0);
 controls2.update();
 </code></pre>
@@ -312,7 +312,7 @@ controls2.update();
 -  camera.updateProjectionMatrix();
 -}
 
-const gui = new dat.GUI();
+const gui = new GUI();
 -gui.add(camera, &#39;fov&#39;, 1, 180).onChange(updateCamera);
 +gui.add(camera, &#39;fov&#39;, 1, 180);
 const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39;, 0.1);
@@ -440,7 +440,7 @@ camera.zoom = 0.2;
 в соответствии со отношением сторон прямоугольника, к которому мы рисуем. 
 Мы будем использовать свойство <code>zoom</code>, чтобы упростить настройку количества единиц, отображаемых камерой.</p>
 <p>Давайте добавим настройки GUI для <code>zoom</code></p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 +gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
 </code></pre>
 <p>Вызовем <code>listen</code> говорящий dat.GUI следить за изменениями. 
@@ -586,10 +586,7 @@ const planes = textures.map((texture) =&gt; {
 <p>Это основы камер. Мы рассмотрим несколько распространенных способов перемещения камер в других статьях. 
 А пока давайте перейдем к <a href="threejs-shadows.html">теням</a>.</p>
 <p><canvas id="c"></canvas></p>
-<script src="../../resources/threejs/r105/three.min.js"></script>
-<script src="../../resources/threejs/r105/js/controls/TrackballControls.js"></script>
-<script src="../resources/threejs-lesson-utils.js"></script>
-<script src="../resources/threejs-cameras.js"></script>
+<script type="module" src="../resources/threejs-cameras.js"></script>
 
     </div>
     <div class="lesson-sidebar">

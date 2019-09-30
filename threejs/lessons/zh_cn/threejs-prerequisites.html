@@ -109,20 +109,12 @@ DOM元素。假设你知道如何使用 <code>&lt;script&gt;</code>标签来
   &lt;body&gt;
      ...
   &lt;/body&gt;
-  &lt;script src=&quot;script1.js&quot;&gt;&lt;/script&gt;
   &lt;script&gt;
     // inline javascript
   &lt;/script&gt;
 &lt;/html&gt;
 </code></pre>
 <p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
-<h2 id="-type-text-javascript-">不需要<code>type=&quot;text/javascript&quot;</code></h2>
-<p>最新的</p>
-<pre class="prettyprint"><code>&lt;script&gt;...&lt;/script&gt;
-</code></pre><p>过时的</p>
-<pre class="prettyprint"><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-</code></pre><h2 id="-strict-">始终使用<code>strict</code>模式</h2>
-<p>将<code>&#39;use strict&#39;;</code>放在JavaScript文件的顶部。可以帮助减少很多bug。</p>
 <h2 id="-">了解闭包如何工作</h2>
 <pre class="prettyprint"><code class="lang-js">function a(v) {
   const foo = v;

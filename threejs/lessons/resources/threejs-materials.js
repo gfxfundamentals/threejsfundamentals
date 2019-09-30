@@ -1,6 +1,5 @@
-'use strict';
-
-/* global THREE, threejsLessonUtils */
+import * as THREE from '../../resources/threejs/r108/build/three.module.js';
+import {threejsLessonUtils} from './threejs-lesson-utils.js';
 
 {
   function makeSphere(widthDivisions, heightDivisions) {
@@ -225,8 +224,8 @@
     MeshPhysicalMaterial: {
       create(props) {
         const settings = {
-          clearCoat: .5,
-          clearCoatRoughness: 0,
+          clearcoat: .5,
+          clearcoatRoughness: 0,
         };
 
         function addElem(parent, type, style = {}) {
@@ -279,8 +278,8 @@
         }
 
         const {elem} = props.renderInfo;
-        addRange(elem, settings, 'clearCoat', 0, 1);
-        addRange(elem, settings, 'clearCoatRoughness', 0, 1);
+        addRange(elem, settings, 'clearcoat', 0, 1);
+        addRange(elem, settings, 'clearcoatRoughness', 0, 1);
         const area = addElem(elem, 'div', {
           width: '100%',
           height: '400px',
@@ -288,8 +287,8 @@
 
         return makeStandardPhysicalMaterialGrid(area, true, (meshes) => {
           meshes.forEach(row => row.forEach(mesh => {
-            mesh.material.clearCoat = settings.clearCoat;
-            mesh.material.clearCoatRoughness = settings.clearCoatRoughness;
+            mesh.material.clearcoat = settings.clearcoat;
+            mesh.material.clearcoatRoughness = settings.clearcoatRoughness;
           }));
         });
       },

@@ -57,13 +57,9 @@
       <div id="labels"></div>
     </div>
   </body>
-<script src="resources/threejs/r105/three.min.js"></script>
-<script src="resources/threejs/r105/js/utils/BufferGeometryUtils.js"></script>
-<script src="resources/threejs/r105/js/controls/OrbitControls.js"></script>
-<script>
-'use strict';
-
-/* global THREE */
+<script type="module">
+import * as THREE from './resources/threejs/r108/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r108/examples/jsm/controls/OrbitControls.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -76,7 +72,7 @@ function main() {
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.z = 2.5;
 
-  const controls = new THREE.OrbitControls(camera, canvas);
+  const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
   controls.enablePan = false;
   controls.minDistance = 1.2;
@@ -313,12 +309,12 @@ function main() {
       // set the view offset to represent just a single pixel under the mouse
       const pixelRatio = renderer.getPixelRatio();
       camera.setViewOffset(
-          renderer.context.drawingBufferWidth,   // full width
-          renderer.context.drawingBufferHeight,  // full top
-          cssPosition.x * pixelRatio | 0,        // rect x
-          cssPosition.y * pixelRatio | 0,        // rect y
-          1,                                     // rect width
-          1,                                     // rect height
+          renderer.getContext().drawingBufferWidth,   // full width
+          renderer.getContext().drawingBufferHeight,  // full top
+          cssPosition.x * pixelRatio | 0,             // rect x
+          cssPosition.y * pixelRatio | 0,             // rect y
+          1,                                          // rect width
+          1,                                          // rect height
       );
       // render the scene
       renderer.setRenderTarget(pickingTexture);
@@ -452,7 +448,6 @@ function main() {
     }
 
     controls.update();
-
 
     updateLabels();
 

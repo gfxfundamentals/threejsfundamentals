@@ -150,7 +150,7 @@ way the browser will always get the newest versions of your files.</p>
 <p>Even cooler, if you log an object you can inspect it. For example if we log
 the root scene object from <a href="threejs-load-gltf.html">the gLTF article</a></p>
 <pre class="prettyprint"><code class="lang-js">  {
-    const gltfLoader = new THREE.GLTFLoader();
+    const gltfLoader = new GLTFLoader();
     gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
       const root = gltf.scene;
       scene.add(root);

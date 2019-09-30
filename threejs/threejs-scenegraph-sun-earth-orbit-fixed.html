@@ -19,11 +19,8 @@
   <body>
     <canvas id="c"></canvas>
   </body>
-<script src="resources/threejs/r105/three.min.js"></script>
-<script>
-'use strict';
-
-/* global THREE */
+<script type="module">
+import * as THREE from './resources/threejs/r108/build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -106,6 +103,5 @@ function main() {
 main();
 </script>
 </html>
-
 
 

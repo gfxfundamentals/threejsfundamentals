@@ -366,7 +366,7 @@ We can use this to set <code>left</code> and <code>right</code> as <code>width</
 </code></pre>
 <p>We&#39;ll also use the <code>MinMaxGUIHelper</code> we created in the <a href="threejs-cameras.html">camera article</a>
 to adjust <code>near</code> and <code>far</code>.</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +{

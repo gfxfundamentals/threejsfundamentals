@@ -1,5 +1,3 @@
-'use strict';
-
 const materials = [
   {
     name: 'MeshBasicMaterial',
@@ -136,8 +134,8 @@ const materials = [
       'roughness',
       'roughnessMap',
       'wireframe',
-      'clearCoat',
-      'clearCoatRoughness',
+      'clearcoat',
+      'clearcoatRoughness',
       'reflectivity',
     ],
   },

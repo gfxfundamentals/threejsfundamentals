@@ -249,7 +249,7 @@ lutTextures.forEach((info, ndx) =&gt; {
 const lutSettings = {
   lut: lutNameIndexMap.identity,
 };
-const gui = new dat.GUI({ width: 300 });
+const gui = new GUI({ width: 300 });
 gui.add(lutSettings, &#39;lut&#39;, lutNameIndexMap);
 </code></pre>
 <p>The last thing to do is turn on one effect or the other, depending on whether or not we want filtering, set the effect to use the selected texture, and render via the <code>EffectComposer</code></p>
@@ -441,8 +441,8 @@ separately and then copying and pasting it into the screen capture worked.</p>
 <p>I wrote a quick loader. Unfortunately there&#39;s 4 variations of the format but I could only find examples of 1 variation so I couldn&#39;t easily test that all variations work.</p>
 <p>I also write a quick drag and drop library. Let&#39;s use both to make it so you can drag and drop an Adobe LUT file to see it take affect.</p>
 <p>First we need the 2 libraries</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/lut-reader.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/drag-and-drop.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as lutParser from &#39;./resources/lut-reader.js&#39;;
+import * as dragAndDrop from &#39;./resources/drag-and-drop.js&#39;;
 </code></pre>
 <p>Then we can use them like this</p>
 <pre class="prettyprint"><code class="lang-js">dragAndDrop.setup({msg: &#39;Drop LUT File here&#39;});
@@ -477,7 +477,7 @@ function readLUTFile(file) {
 <pre class="prettyprint"><code class="lang-js">const lutSettings = {
   lut: lutNameIndexMap.thermal,
 };
-const gui = new dat.GUI({ width: 300 });
+const gui = new GUI({ width: 300 });
 gui.addFolder(&#39;Choose LUT or Drag&amp;Drop LUT File(s)&#39;);
 
 let lutGUI;
@@ -506,7 +506,7 @@ updateGUI();
 
 </p>
 <p>One thing completely skipped is how the shader itself works. Hopefully we can cover a little more GLSL in the future. For now, if you&#39;re curious, you can follow the links in the <a href="threejs-post-processing.html">post processing article</a> as well as maybe <a href="https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s">take a look at this video</a>.</p>
-<script src="resources/threejs-post-processing-3dlut.js"></script>
+<script type="module" src="resources/threejs-post-processing-3dlut.js"></script>
 
 
     </div>

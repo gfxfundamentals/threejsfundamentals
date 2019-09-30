@@ -102,12 +102,12 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 или <em>поворачивать</em> камеру вокруг некоторой точки. <code>OrbitControls</code> - это 
 дополнительные функции three.js, поэтому сначала нам нужно 
 включить их в нашу страницу.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;../resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;../resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <p>Теперь мы можем использовать их. Мы передаем в <code>OrbitControls</code> камеру для 
 управления и элемент DOM для получения входных событий</p>
-<pre class="prettyprint"><code class="lang-js">const controls = new THREE.OrbitControls(camera, canvas);
+<pre class="prettyprint"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 5, 0);
 controls.update();
 </code></pre>
@@ -204,7 +204,7 @@ scene.add(light);
 }
 </code></pre>
 <p>И вот наш код настройки dat.GUI</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 </code></pre>
@@ -239,7 +239,7 @@ const intensity = 1;
 scene.add(light);
 </code></pre>
 <p>Давайте также обновим код dat.GUI для редактирования обоих цветов.</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 -gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 +gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;skyColor&#39;);
 +gui.addColor(new ColorGUIHelper(light, &#39;groundColor&#39;), &#39;value&#39;).name(&#39;groundColor&#39;);
@@ -272,7 +272,7 @@ scene.add(light.target);
 к сцене. <code>DirectionalLight</code> будет светить в направлении к своей цели.</p>
 <p>Давайте сделаем так, чтобы мы могли перемещать цель, 
 добавляя ее в наш графический интерфейс.</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 gui.add(light.target.position, &#39;x&#39;, -10, 10);
@@ -318,7 +318,7 @@ scene.add(helper);
 +}
 +updateLight();
 
-const gui = new dat.GUI();
+const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 
@@ -368,7 +368,7 @@ scene.add(helper);
 <code>distance</code> больше 0, то свет излучает свою полную интенсивность и 
 исчезает, с увеличением <code>distance</code> вдали от света.</p>
 <p>Давайте настроим графический интерфейс, чтобы мы могли регулировать расстояние.</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +gui.add(light, &#39;distance&#39;, 0, 40).onChange(updateLight);
@@ -466,8 +466,13 @@ scene.add(helper);
 }
 </code></pre>
 <p>Для использования <code>RectAreaLight</code> нам нужно включить некоторые дополнительные возможности three.js</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;../resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;../resources/threejs/r105/js/lights/RectAreaLightUniformsLib.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
++import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r108/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
+</code></pre>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas});
++  RectAreaLightUniformsLib.init();
 </code></pre>
 <p>Если вы забудете RectAreaLightUniformsLib, индикатор все равно будет работать, 
 но он будет выглядеть забавно, поэтому не забудьте включить дополнительный код.</p>
@@ -488,7 +493,7 @@ scene.add(helper);
 <code>RectAreaLight</code> не использует цель. Он просто использует свой поворот.</p>
 <p>Давайте также настроим графический интерфейс. Мы сделаем так, чтобы мы могли вращать 
 свет и регулировать его <code>width</code> и <code>height</code></p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 10, 0.01);
 gui.add(light, &#39;width&#39;, 0, 20).onChange(updateLight);
@@ -530,7 +535,7 @@ light.decay = 2;
 light.distance = Infinity;
 </code></pre>
 <p>и мы добавим графический интерфейс, чтобы мы могли изменить <code>power</code> и <code>decay</code></p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;decay&#39;, 0, 4, 0.01);
 gui.add(light, &#39;power&#39;, 0, 2000);
@@ -546,10 +551,7 @@ gui.add(light, &#39;power&#39;, 0, 2000);
 стараться использовать как можно меньше для достижения своих целей.</p>
 <p>Далее давайте перейдем к  <a href="threejs-cameras.html">работе с камерами</a>.</p>
 <p><canvas id="c"></canvas></p>
-<script src="../../resources/threejs/r105/three.min.js"></script>
-<script src="../../resources/threejs/r105/js/controls/OrbitControls.js"></script>
-<script src="../resources/threejs-lesson-utils.js"></script>
-<script src="../resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>
 
     </div>
     <div class="lesson-sidebar">

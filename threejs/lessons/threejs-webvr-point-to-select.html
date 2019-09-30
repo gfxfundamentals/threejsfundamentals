@@ -386,8 +386,8 @@ event we&#39;ll put it back in the scene.</p>
 +      object: selectedObject,
 +      parent: selectedObject.parent,
 +    });
-+    THREE.SceneUtils.detach(selectedObject, selectedObject.parent, scene);
-+    THREE.SceneUtils.attach(selectedObject, scene, controller);
++    SceneUtils.detach(selectedObject, selectedObject.parent, scene);
++    SceneUtils.attach(selectedObject, scene, controller);
 +  }
 +});
 +
@@ -396,8 +396,8 @@ event we&#39;ll put it back in the scene.</p>
 +  const selection = controllerToSelection.get(controller);
 +  if (selection) {
 +    controllerToSelection.delete(controller);
-+    THREE.SceneUtils.detach(selection.object, controller, scene);
-+    THREE.SceneUtils.attach(selection.object, scene, selection.parent);
++    SceneUtils.detach(selection.object, controller, scene);
++    SceneUtils.attach(selection.object, scene, selection.parent);
 +  }
 +});
 </code></pre>
@@ -408,9 +408,9 @@ the selected objects. These functions let us change the parent
 of an object without changing its orientation and position in the
 scene. </p>
 <p>We need to include them.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/vr/WebVR.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r105/js/utils/SceneUtils.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {WEBVR} from &#39;./resources/threejs/r108/examples/jsm/vr/WebVR.js&#39;;
++import {SceneUtils} from &#39;./resources/threejs/r108/examples/jsm/utils/SceneUtils.js&#39;;
 </code></pre>
 <p>And with that we should be able to move the objects around with a 6DOF
 controller or at least change their orientation with a 3DOF controller</p>

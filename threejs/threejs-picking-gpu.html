@@ -19,11 +19,8 @@
   <body>
     <canvas id="c"></canvas>
   </body>
-<script src="resources/threejs/r105/three.min.js"></script>
-<script>
-'use strict';
-
-/* global THREE */
+<script type="module">
+import * as THREE from './resources/threejs/r108/build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -143,12 +140,12 @@ function main() {
       // set the view offset to represent just a single pixel under the mouse
       const pixelRatio = renderer.getPixelRatio();
       camera.setViewOffset(
-          renderer.context.drawingBufferWidth,   // full width
-          renderer.context.drawingBufferHeight,  // full top
-          cssPosition.x * pixelRatio | 0,        // rect x
-          cssPosition.y * pixelRatio | 0,        // rect y
-          1,                                     // rect width
-          1,                                     // rect height
+          renderer.getContext().drawingBufferWidth,   // full width
+          renderer.getContext().drawingBufferHeight,  // full top
+          cssPosition.x * pixelRatio | 0,             // rect x
+          cssPosition.y * pixelRatio | 0,             // rect y
+          1,                                          // rect width
+          1,                                          // rect height
       );
       // render the scene
       renderer.setRenderTarget(pickingTexture);

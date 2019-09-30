@@ -143,7 +143,7 @@ const models = {
   knight: { url: &#39;resources/models/knight/KnightCharacter.gltf&#39; },
 };
 {
-  const gltfLoader = new THREE.GLTFLoader(manager);
+  const gltfLoader = new GLTFLoader(manager);
   for (const model of Object.values(models)) {
     gltfLoader.load(model.url, (gltf) =&gt; {
       model.gltf = gltf;
@@ -281,10 +281,10 @@ we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there&#39;s a utility function,
 <code>SkeletonUtils.clone</code> we can use to do this. So, first we need to include
 the utils.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/loaders/GLTFLoader.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r105/js/utils/SkeletonUtils.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
+import {GLTFLoader} from &#39;./resources/threejs/r108/examples/jsm/loaders/GLTFLoader.js&#39;;
++import {SkeletonUtils} from &#39;./resources/threejs/r108/examples/jsm/utils/SkeletonUtils.js&#39;;
 </code></pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint"><code class="lang-js">function init() {
@@ -295,7 +295,7 @@ the utils.</p>
   prepModelsAndAnimations();
 
 +  Object.values(models).forEach((model, ndx) =&gt; {
-+    const clonedScene = THREE.SkeletonUtils.clone(model.gltf.scene);
++    const clonedScene = SkeletonUtils.clone(model.gltf.scene);
 +    const root = new THREE.Object3D();
 +    root.add(clonedScene);
 +    scene.add(root);
@@ -324,7 +324,7 @@ function init() {
   prepModelsAndAnimations();
 
   Object.values(models).forEach((model, ndx) =&gt; {
-    const clonedScene = THREE.SkeletonUtils.clone(model.gltf.scene);
+    const clonedScene = SkeletonUtils.clone(model.gltf.scene);
     const root = new THREE.Object3D();
     root.add(clonedScene);
     scene.add(root);
@@ -384,7 +384,7 @@ function init() {
   prepModelsAndAnimations();
 
   Object.values(models).forEach((model, ndx) =&gt; {
-    const clonedScene = THREE.SkeletonUtils.clone(model.gltf.scene);
+    const clonedScene = SkeletonUtils.clone(model.gltf.scene);
     const root = new THREE.Object3D();
     root.add(clonedScene);
     scene.add(root);
@@ -627,7 +627,7 @@ takes the name of the animation to play and plays it.</p>
   constructor(gameObject, model) {
     super(gameObject);
     this.model = model;
-    this.animRoot = THREE.SkeletonUtils.clone(this.model.gltf.scene);
+    this.animRoot = SkeletonUtils.clone(this.model.gltf.scene);
     this.mixer = new THREE.AnimationMixer(this.animRoot);
     gameObject.transform.add(this.animRoot);
     this.actions = {};
@@ -1571,13 +1571,13 @@ class StateDisplayHelper extends Component {
 </code></pre>
 <p>While we&#39;re at it lets make it so we can turn them on/off using dat.GUI like
 we&#39;ve used else where</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/loaders/GLTFLoader.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/utils/SkeletonUtils.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
+import {GLTFLoader} from &#39;./resources/threejs/r108/examples/jsm/loaders/GLTFLoader.js&#39;;
+import {SkeletonUtils} from &#39;./resources/threejs/r108/examples/jsm/utils/SkeletonUtils.js&#39;;
++import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
-<pre class="prettyprint"><code class="lang-js">+const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">+const gui = new GUI();
 +gui.add(globals, &#39;debug&#39;).onChange(showHideDebugInfo);
 +showHideDebugInfo();
 

@@ -463,7 +463,7 @@ function render(time) {
 <p></p>
 <h2 id="adding-controls-to-each-element">Adding Controls to each element</h2>
 <p>Adding interactively, for example a <code>TrackballControls</code> is just as easy. First we add the script for the control.</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/js/controls/TrackballControls.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import {TrackballControls} from &#39;./resources/threejs/r108/examples/jsm/controls/TrackballControls.js&#39;;
 </code></pre>
 <p>And then we can add a <code>TrackballControls</code> to each scene passing in the element associated with that scene.</p>
 <pre class="prettyprint"><code class="lang-js">-function makeScene() {
@@ -479,7 +479,7 @@ function render(time) {
   camera.lookAt(0, 0, 0);
 +  scene.add(camera);
 
-+  const controls = new THREE.TrackballControls(camera, elem);
++  const controls = new TrackballControls(camera, elem);
 +  controls.noZoom = true;
 +  controls.noPan = true;
 

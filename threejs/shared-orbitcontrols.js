@@ -1,7 +1,3 @@
-'use strict';
-
-/* global THREE */
-
 function init(data) {   /* eslint-disable-line no-unused-vars */
   const {canvas, inputElement} = data;
   const renderer = new THREE.WebGLRenderer({canvas});

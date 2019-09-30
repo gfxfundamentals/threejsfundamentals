@@ -24,13 +24,8 @@
   <body>
     <canvas id="c"></canvas>
   </body>
-<script src="resources/threejs/r105/three.min.js"></script>
-<script src="resources/threejs/r105/js/loaders/GLTFLoader.js"></script>
-<script>
-
-'use strict';
-
-/* global THREE */
+<script type="module">
+import * as THREE from './resources/threejs/r108/build/three.module.js';
 
 class ResourceTracker {
   constructor() {

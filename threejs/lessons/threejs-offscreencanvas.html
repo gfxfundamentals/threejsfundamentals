@@ -89,6 +89,9 @@ to a canvas. This is a way to offload heavy work, like rendering a complex 3D sc
 to a web worker so as not to slow down the responsiveness of the browser. It
 also means data is loaded and parsed in the worker so possibly less jank while
 the page loads.</p>
+<p>One big issue with offscreen canvas is, at least in Chrome, es6 modules are not yet
+supported on web workers, so, unlike all the other examples on this site that use
+es6 modules these examples will use class scripts.</p>
 <p>Getting <em>started</em> using it is pretty straight forward. Let&#39;s port the 3 spinning cube
 example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
 <p>Workers generally have their code separated
@@ -153,7 +156,7 @@ that was sent from the main page.</p>
 <p>So now we just need to start changing the <code>main</code> we pasted into 
 <code>offscreencanvas-cubes.js</code> from <a href="threejs-responsive.html">the responsive article</a>.</p>
 <p>The first thing we need to do is include THREE.js into our worker.</p>
-<pre class="prettyprint"><code class="lang-js">importScripts(&#39;https://threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js&#39;);
+<pre class="prettyprint"><code class="lang-js">importScripts(&#39;resources/threejs/r108/build/three.min.js&#39;);
 </code></pre>
 <p>Then instead of looking up the canvas from the DOM we&#39;ll receive it from the
 event data.</p>
@@ -316,7 +319,7 @@ HTML file.</p>
 
 /* global importScripts, init, state */
 
-importScripts(&#39;resources/threejs/r105/three.min.js&#39;);
+importScripts(&#39;resources/threejs/r108/build/three.min.js&#39;);
 +importScripts(&#39;shared-cubes.js&#39;);
 
 function size(data) {
@@ -339,9 +342,9 @@ self.onmessage = function(e) {
 };
 </code></pre>
 <p>note we include <code>shared-cubes.js</code> which is all our three.js code</p>
-<p>Similarly we need to include <code>shared-cubes.js</code> in the main page</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;shared-cubes.js&quot;&gt;&lt;/script&gt;
+<p>Similarly we need to include three.js and  <code>shared-cubes.js</code> in the main page</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r108/build/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;shared-cubes.js&quot;&gt;&lt;script&gt;
 </code></pre>
 <p>We can remove the HTML and CSS we added previously</p>
 <pre class="prettyprint"><code class="lang-html">&lt;body&gt;
@@ -604,7 +607,7 @@ The OrbitControls take an element to which they attach most
 of the DOM events they use. Maybe we could pass in our own
 object that has the same API surface as a DOM element. 
 We only need to support the features the OrbitControls need.</p>
-<p>Digging through the <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r105/js/controls/OrbitControls.js">OrbitControls source code</a>
+<p>Digging through the <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r108/js/controls/OrbitControls.js">OrbitControls source code</a>
 it looks like we need to handle the following events.</p>
 <ul>
 <li>contextmenu</li>
@@ -704,8 +707,8 @@ self.onmessage = function(e) {
 </code></pre>
 <p>We also need to actually add the <code>OrbitControls</code> to the top of
 the script</p>
-<pre class="prettyprint"><code class="lang-js">importScripts(&#39;resources/threejs/r105/three.js&#39;);
-+importScripts(&#39;resources/threejs/r105/js/controls/OrbitControls.js&#39;);
+<pre class="prettyprint"><code class="lang-js">importScripts(&#39;resources/threejs/r108/build/three.min/js&#39;);
++importScripts(&#39;resources/threejs/r108/examples/js/controls/OrbitControls.js&#39;);
 *importScripts(&#39;shared-orbitcontrols.js&#39;);
 </code></pre>
 <p>and in our shared three.js code we need to set them up</p>
@@ -714,7 +717,7 @@ the script</p>
 +  const {canvas, inputElement} = data;
   const renderer = new THREE.WebGLRenderer({canvas});
 
-+  const controls = new THREE.OrbitControls(camera, inputElement);
++  const controls = new OrbitControls(camera, inputElement);
 +  controls.target.set(0, 0, 0);
 +  controls.update();
 </code></pre>

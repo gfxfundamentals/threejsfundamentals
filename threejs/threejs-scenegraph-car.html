@@ -19,12 +19,9 @@
   <body>
     <canvas id="c"></canvas>
   </body>
-<script src="resources/threejs/r105/three.min.js"></script>
 <script src="resources/threejs-lessons-helper.js"></script> <!-- you can and should delete this script. it is only used on the site to help with errors -->
-<script>
-'use strict';
-
-/* global THREE */
+<script type="module">
+import * as THREE from './resources/threejs/r108/build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -106,7 +103,6 @@ function main() {
       camera.updateProjectionMatrix();
     }
 
-
     wheelMeshes.forEach((obj) => {
       obj.rotation.x = time;
     });
@@ -122,6 +118,5 @@ function main() {
 main();
 </script>
 </html>
-
 
 

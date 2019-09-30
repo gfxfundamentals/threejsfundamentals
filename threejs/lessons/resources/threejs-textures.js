@@ -1,6 +1,5 @@
-'use strict';
-
-/* global THREE, threejsLessonUtils */
+import * as THREE from '../../resources/threejs/r108/build/three.module.js';
+import {threejsLessonUtils} from './threejs-lesson-utils.js';
 
 {
   const loader = new THREE.TextureLoader();
@@ -171,10 +170,10 @@
         const meshInfos = [
           { x: -1, y:  1, minFilter: THREE.NearestFilter,              magFilter: THREE.NearestFilter },
           { x:  0, y:  1, minFilter: THREE.LinearFilter,               magFilter: THREE.LinearFilter },
-          { x:  1, y:  1, minFilter: THREE.NearestMipMapNearestFilter, magFilter: THREE.LinearFilter },
-          { x: -1, y: -1, minFilter: THREE.NearestMipMapLinearFilter,  magFilter: THREE.LinearFilter },
-          { x:  0, y: -1, minFilter: THREE.LinearMipMapNearestFilter,  magFilter: THREE.LinearFilter },
-          { x:  1, y: -1, minFilter: THREE.LinearMipMapLinearFilter,   magFilter: THREE.LinearFilter },
+          { x:  1, y:  1, minFilter: THREE.NearestMipmapNearestFilter, magFilter: THREE.LinearFilter },
+          { x: -1, y: -1, minFilter: THREE.NearestMipmapLinearFilter,  magFilter: THREE.LinearFilter },
+          { x:  0, y: -1, minFilter: THREE.LinearMipmapNearestFilter,  magFilter: THREE.LinearFilter },
+          { x:  1, y: -1, minFilter: THREE.LinearMipmapLinearFilter,   magFilter: THREE.LinearFilter },
         ].map((info) => {
           const copyTexture = texture.clone();
           copyTexture.minFilter = info.minFilter;

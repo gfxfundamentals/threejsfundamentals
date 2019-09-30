@@ -42,16 +42,20 @@ function fixSourceLinks(url, source) {
   const urlPropRE = /(url:\s*)('|")(.*?)('|")/g;
   const workerRE = /(new\s+Worker\s*\(\s*)('|")(.*?)('|")/g;
   const importScriptsRE = /(importScripts\s*\(\s*)('|")(.*?)('|")/g;
+  const moduleRE = /(import.*?)('|")(.*?)('|")/g;
   const prefix = getPrefix(url);
 
   function addPrefix(url) {
-    return url.indexOf('://') < 0 && url[0] !== '?' ? (prefix + url) : url;
+    return url.indexOf('://') < 0 && !url.startsWith('data:') && url[0] !== '?' ? (prefix + url).replace(/\/.\//g, '/') : url;
   }
   function makeLinkFDedQuotes(match, fn, q1, url, q2) {
     return fn + q1 + addPrefix(url) + q2;
   }
   function makeTaggedFDedQuotes(match, start, q1, url, q2, suffix) {
     return start + q1 + addPrefix(url) + q2 + suffix;
+  }
+  function makeFDedQuotes(match, start, q1, url, q2) {
+    return start + q1 + addPrefix(url) + q2;
   }
   function makeArrayLinksFDed(match, prefix, arrayStr, suffix) {
     const lines = arrayStr.split(',').map((line) => {
@@ -73,6 +77,7 @@ function fixSourceLinks(url, source) {
   source = source.replace(importScriptsRE, makeLinkFDedQuotes);
   source = source.replace(loaderArrayLoadRE, makeArrayLinksFDed);
   source = source.replace(threejsfundamentalsUrlRE, makeTaggedFDedQuotes);
+  source = source.replace(moduleRE, makeFDedQuotes);
 
   return source;
 }

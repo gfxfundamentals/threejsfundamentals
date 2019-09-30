@@ -409,7 +409,7 @@ to a value</p>
 }
 </code></pre>
 <p>Then we&#39;ll add the gui</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new dat.GUI();
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 gui.add(new AllMaterialPropertyGUIHelper(&#39;alphaTest&#39;, scene), &#39;value&#39;, 0, 1)
     .name(&#39;alphaTest&#39;)
     .onChange(requestRenderIfNotRequested);
@@ -418,9 +418,9 @@ gui.add(new AllMaterialPropertyGUIHelper(&#39;transparent&#39;, scene), &#39;val
     .onChange(requestRenderIfNotRequested);
 </code></pre>
 <p>and of course we need to include dat.gui</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;resources/threejs/r105/js/controls/OrbitControls.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;../3rdparty/dat.gui.min.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
++import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <p>and here&#39;s the results</p>
 <p><div class="threejs_example_container">

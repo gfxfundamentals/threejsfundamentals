@@ -134,8 +134,8 @@ so that you can see console warnings, errors, and of course actually
 this site.</p>
 <p>The first thing we need to do is include the VR support after
 including three.js</p>
-<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r105/three.min.js&quot;&gt;&lt;/script&gt;
-+&lt;script src=&quot;resources/threejs/r105/js/vr/WebVR.js&quot;&gt;&lt;/script&gt;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
++import {WEBVR} from &#39;./resources/threejs/r108/examples/jsm/vr/WebVR.js&#39;;
 </code></pre>
 <p>Then we need to enable three.js&#39;s WebVR support and add its
 WebVR button to our page</p>
@@ -396,7 +396,7 @@ site OR pass in a flag in the URL, something like</p>
 +  } else {
 +    // no VR, add some controls
 +    camera.position.y = 1.6;
-+    const controls = new THREE.OrbitControls(camera, canvas);
++    const controls = new OrbitControls(camera, canvas);
 +    controls.target.set(0, 1.6, -2);
 +    controls.update();
 +    document.querySelector(&#39;#nonvr&#39;).style.display = &#39;none&#39;;

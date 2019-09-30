@@ -1,7 +1,3 @@
-'use strict';
-
-/* global THREE */
-
 const state = {
   width: 300,   // canvas default
   height: 150,  // canvas default

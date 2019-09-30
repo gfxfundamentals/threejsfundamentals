@@ -85,14 +85,29 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>These articles are meant to help you learn how to use three.js.
 They assume you know how to program in JavaScript. They assume
 you know what the DOM is, how to write HTML as well as create DOM elements
-in JavaScript. They assume you know how to use <code>&lt;script&gt;</code> tags to
-include external JavaScript files as well as inline scripts.
+in JavaScript. They assume you know how to use
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">es6 modules</a> 
+oth via import and via <code>&lt;script type=&quot;module&quot;&gt;</code> tags.
 They assume you know some CSS and that you know what
 <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Selectors">CSS selectors are</a>. 
 They also assume you know ES5, ES6 and maybe some ES7.
 They assume you know that the browser runs JavaScript only via events and callbacks.
 They assume you know what a closure is.</p>
 <p>Here&#39;s some brief refreshers and notes</p>
+<h2 id="es6-modules">es6 modules</h2>
+<p>es6 modules can be loaded via the <code>import</code> keyword in a script
+or inline via a <code>&lt;script type=&quot;module&quot;&gt;</code> tag. Here&#39;s an example of
+both</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+import * as THREE from &#39;./resources/threejs/r108/build/three.module.js&#39;;
+
+...
+
+&lt;/script&gt;
+</code></pre>
+<p>Paths must be absolute or relative. Relative paths always start with <code>./</code> or <code>../</code>
+which is different than other tags like <code>&lt;img&gt;</code> and <code>&lt;a&gt;</code> and css references.</p>
+<p>More details are mentioned at the bottom of <a href="threejs-fundamentals.html">this article</a>.</p>
 <h2 id="-document-queryselector-and-document-queryselectorall-"><code>document.querySelector</code> and <code>document.querySelectorAll</code></h2>
 <p>You can use <code>document.querySelector</code> to select the first element
 that matches a CSS selector. <code>document.querySelectorAll</code> returns
@@ -109,20 +124,12 @@ at the bottom of the page.</p>
   &lt;body&gt;
      ...
   &lt;/body&gt;
-  &lt;script src=&quot;script1.js&quot;&gt;&lt;/script&gt;
   &lt;script&gt;
     // inline javascript
   &lt;/script&gt;
 &lt;/html&gt;
 </code></pre>
 <p>or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script">use the <code>defer</code> property</a>.</p>
-<h2 id="you-don-t-need-type-text-javascript-">You don&#39;t need <code>type=&quot;text/javascript&quot;</code></h2>
-<p>modern</p>
-<pre class="prettyprint"><code>&lt;script&gt;...&lt;/script&gt;
-</code></pre><p>outdated</p>
-<pre class="prettyprint"><code>&lt;script type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
-</code></pre><h2 id="always-use-strict-mode">Always use <code>strict</code> mode</h2>
-<p>Put <code>&#39;use strict&#39;;</code> at the top of every JavaScript file. It will help prevent lots of bugs.</p>
 <h2 id="know-how-closures-work">Know how closures work</h2>
 <pre class="prettyprint"><code class="lang-js">function a(v) {
   const foo = v;
@@ -137,13 +144,13 @@ console.log(f());  // prints 123
 console.log(g());  // prints 456
 </code></pre>
 <p>In the code above the function <code>a</code> creates a new function every time it&#39;s called. That
-funciton <em>closes</em> over the variable <code>foo</code>. Here&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">more info</a>.</p>
+function <em>closes</em> over the variable <code>foo</code>. Here&#39;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">more info</a>.</p>
 <h2 id="understand-how-this-works">Understand how <code>this</code> works</h2>
 <p><code>this</code> is not magic. It&#39;s effectively a variable that is automatically passed to functions just like
 an argument is passed to function. The simple explanation is when you call a function directly
 like</p>
 <pre class="prettyprint"><code>somefunction(a, b, c);
-</code></pre><p><code>this</code> will be <code>null</code> (when in strict mode) where as when you call a function via the dot operator <code>.</code> like this</p>
+</code></pre><p><code>this</code> will be <code>null</code> (when in strict mode or in a module) where as when you call a function via the dot operator <code>.</code> like this</p>
 <pre class="prettyprint"><code>someobject.somefunction(a, b, c);
 </code></pre><p><code>this</code> will be set to <code>someobject</code>.</p>
 <p>The parts where people get confused is with callbacks.</p>
@@ -151,7 +158,7 @@ like</p>
  loader.load(callback);
 </code></pre><p>doesn&#39;t work as someone inexperienced might expect because when
 <code>loader.load</code> calls the callback it&#39;s not calling it with the dot <code>.</code> operator
-so by default <code>this</code> will be null (unless the loader explicitly sets it to someting).
+so by default <code>this</code> will be null (unless the loader explicitly sets it to something).
 If you want <code>this</code> to be <code>someobject</code> when the callback happens you need to 
 tell JavaScript that by binding it to the function.</p>
 <pre class="prettyprint"><code> const callback = someobject.somefunction.bind(someobject);
@@ -230,11 +237,14 @@ of ES5 makes them much easier than pre ES5.</p>
 <h3 id="use-arrow-functions-where-appropriate">Use arrow functions where appropriate</h3>
 <p>This is especially useful with callbacks and promises.</p>
 <pre class="prettyprint"><code class="lang-js">loader.load((texture) =&gt; {
-  // use textrue
+  // use texture
 });
 </code></pre>
-<p>Arrow functions bind <code>this</code>. They are a shortcut for</p>
-<pre class="prettyprint"><code class="lang-js">(function(args) {/* code */}).bind(this))
+<p>Arrow functions bind <code>this</code>. </p>
+<pre class="prettyprint"><code class="lang-js">const foo = (args) =&gt; {/* code */};
+</code></pre>
+<p>is a shortcut for</p>
+<pre class="prettyprint"><code class="lang-js">const foo = (function(args) {/* code */}).bind(this));
 </code></pre>
 <h3 id="promises-as-well-as-async-await">Promises as well as async/await</h3>
 <p>Promises help with asynchronous code. Async/await help
@@ -273,9 +283,14 @@ someElement.style.width = `${aWidth + bWidth}px`;
 <h1 id="learn-javascript-coding-conventions-">Learn JavaScript coding conventions.</h1>
 <p>While you&#39;re welcome to format your code any way you chose there is at least one
 convention you should be aware of. Variables, function names, method names, in
-JavaScript are all lowercasedCamelCase. Constructors, the names of classes are
+JavaScript are all lowerCasedCamelCase. Constructors, the names of classes are
 CapitalizedCamelCase. If you follow this rule you code will match most other
-JavaScript.</p>
+JavaScript. Many <a href="https://eslint.org">linters</a>, programs that check for obvious errors in your code,
+will point out errors if you use the wrong case since by following the convention
+above they know these are wrong</p>
+<pre class="prettyprint"><code class="lang-js">const v = new vector(); // clearly an error if all classes start with a capital letter
+const v = Vector();     // clearly an error if all functions start with a lowercase latter.
+</code></pre>
 <h1 id="consider-using-visual-studio-code">Consider using Visual Studio Code</h1>
 <p>Of course use whatever editor you want but if you haven&#39;t tried it consider
 using <a href="https://code.visualstudio.com/">Visual Studio Code</a> for JavaScript and
