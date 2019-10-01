@@ -531,7 +531,7 @@ function openInCodepen() {
 // from ${g.url}
 
 
-  `;
+`;
   getSourcesFromEditor();
   const scripts = makeScriptsForWorkers(g.rootScriptInfo);
   const pen = {
@@ -561,7 +561,7 @@ function openInJSFiddle() {
   const comment = `// ${g.title}
 // from ${g.url}
 
-  `;
+`;
 
   getSourcesFromEditor();
   const scripts = makeScriptsForWorkers(g.rootScriptInfo);
