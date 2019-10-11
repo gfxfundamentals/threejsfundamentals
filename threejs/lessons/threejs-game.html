@@ -1770,7 +1770,7 @@ class CoroutineRunner {
 }
 </code></pre>
 <p>It does things similar to <code>SafeArray</code> to make sure that it&#39;s safe to add or remove
-coroutines will other coroutines are running. It also handles nested coroutines.</p>
+coroutines while other coroutines are running. It also handles nested coroutines.</p>
 <p>To make a coroutine you make a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*">JavaScript generator function</a>.
 A generator function has preceded by the keyword <code>function*</code> (the asterisk is important!)</p>
 <p>Generator functions can <code>yield</code>. For example</p>
