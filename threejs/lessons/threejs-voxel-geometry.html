@@ -266,7 +266,7 @@ happen to be in neighboring cells.</p>
 +          const voxel = this.getVoxel(voxelX, voxelY, voxelZ);
 +          if (voxel) {
 +            for (const {dir} of VoxelWorld.faces) {
-+              const neighbor = getVoxel(
++              const neighbor = this.getVoxel(
 +                  voxelX + dir[0],
 +                  voxelY + dir[1],
 +                  voxelZ + dir[2]);
@@ -327,7 +327,7 @@ happen to be in neighboring cells.</p>
           if (voxel) {
 -            for (const {dir} of VoxelWorld.faces) {
 +            for (const {dir, corners} of VoxelWorld.faces) {
-              const neighbor = getVoxel(
+              const neighbor = this.getVoxel(
                   voxelX + dir[0],
                   voxelY + dir[1],
                   voxelZ + dir[2]);
@@ -414,7 +414,7 @@ VoxelWorld.faces = [
 ];
 </code></pre>
 <p>The code above would make basic geometry data for us. We just need to supply
-the <code>getVoxel</code> function. Let&#39;s start with just one hardcoded cell.</p>
+the <code>getVoxel</code> function. Let&#39;s start with just one hard coded cell.</p>
 <pre class="prettyprint"><code class="lang-js">class VoxelWorld {
   constructor(cellSize) {
     this.cellSize = cellSize;
