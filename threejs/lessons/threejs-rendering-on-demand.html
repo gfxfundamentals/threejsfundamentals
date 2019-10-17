@@ -288,7 +288,7 @@ lights</a>.</p>
 +  const folder = gui.addFolder(`Cube${x}`);
 +  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
 +      .name(&#39;color&#39;)
-+      .onChange(rendrequestRenderIfNotRequesteder);
++      .onChange(requestRenderIfNotRequested);
 +  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
 +      .name(&#39;scale x&#39;)
 +      .onChange(requestRenderIfNotRequested);

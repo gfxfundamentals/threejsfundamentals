@@ -252,7 +252,7 @@ for (let i = 0; i &lt; numSpheres; ++i) {
   sphereShadowBases.push({base, sphereMesh, shadowMesh, y: sphereMesh.position.y});
 }
 </code></pre>
-<p>We setup 2 lights. One is a <code>HemisphereLight</code> with the itensity set to 2 to really
+<p>We setup 2 lights. One is a <code>HemisphereLight</code> with the intensity set to 2 to really
 brighten things up.</p>
 <pre class="prettyprint"><code class="lang-js">{
   const skyColor = 0xB1E1FF;  // light blue
@@ -262,7 +262,7 @@ brighten things up.</p>
   scene.add(light);
 }
 </code></pre>
-<p>The other is a <code>DirectionalLight</code> so the spheres get some defintion</p>
+<p>The other is a <code>DirectionalLight</code> so the spheres get some definition</p>
 <pre class="prettyprint"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
@@ -322,7 +322,7 @@ where you can see each character has a simple round shadow. It&#39;s effective a
 appears to also use this kind of shadow for the main character.</p>
 <p>So, moving on to shadow maps, there are 3 lights which can cast shadows. The <code>DirectionalLight</code>,
 the <code>PointLight</code>, and the <code>SpotLight</code>.</p>
-<p>Let&#39;s start with the <code>DirectionaLight</code> with the helper example from <a href="threejs-lights.html">the lights article</a>.</p>
+<p>Let&#39;s start with the <code>DirectionalLight</code> with the helper example from <a href="threejs-lights.html">the lights article</a>.</p>
 <p>The first thing we need to do is turn on shadows in the renderer.</p>
 <pre class="prettyprint"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.shadowMap.enabled = true;
@@ -500,7 +500,7 @@ also blur the result
 
 -->
 <p>And finally there&#39;s shadows with a <code>PointLight</code>. Since a <code>PointLight</code>
-shines in all directions the only relevent settings are <code>near</code> and <code>far</code>.
+shines in all directions the only relevant settings are <code>near</code> and <code>far</code>.
 Otherwise the <code>PointLight</code> shadow is effectively 6 <code>SpotLight</code> shadows
 each one pointing to the face of a cube around the light. This means
 <code>PointLight</code> shadows are much slower since the entire scene must be

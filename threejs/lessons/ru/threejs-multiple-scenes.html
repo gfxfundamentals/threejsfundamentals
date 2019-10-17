@@ -251,7 +251,7 @@ const sceneInfo2 = setupScene2();
 холста, включив тест <em>scissor</em> через <code>Renderer.setScissorTest</code>, затем установим 
 плоскость обрезания и область просмотра (Viewport) с помощью 
 <code>Renderer.setViewport</code> и <code>Renderer.setScissor</code>.</p>
-<pre class="prettyprint"><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
+<pre class="prettyprint"><code class="lang-js">function renderSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
   // получаем относительную позицию окна просмотра этого элемента
@@ -292,8 +292,8 @@ const sceneInfo2 = setupScene2();
   sceneInfo1.mesh.rotation.y = time * .1;
   sceneInfo2.mesh.rotation.y = time * .1;
 
-  rendenerSceneInfo(sceneInfo1);
-  rendenerSceneInfo(sceneInfo2);
+  renderSceneInfo(sceneInfo1);
+  renderSceneInfo(sceneInfo2);
 
   requestAnimationFrame(render);
 }

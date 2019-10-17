@@ -137,7 +137,7 @@ the 9th context the oldest one will be lost.</p>
 and that model uses 20 meg of textures your 10 meg model will
 have to be loaded twice and your textures will also be loaded
 twice. Nothing can be shared across contexts. This also
-means things have to be intialized twice, shaders compiled twice,
+means things have to be initialized twice, shaders compiled twice,
 etc. It gets worse as there are more canvases.</p>
 </li>
 </ol>
@@ -186,7 +186,7 @@ make the HTML</p>
   margin-left: .25em;
 }
 </code></pre>
-<p>We set the canvsas to fill the screen and we set its <code>z-index</code> to
+<p>We set the canvas to fill the screen and we set its <code>z-index</code> to
 -1 to make it appear behind other elements. We also need to specify some kind of width and height for our virtual canvas elements since there is nothing inside to give them any size.</p>
 <p>Now we&#39;ll make 2 scenes each with a light and a camera.
 To one scene we&#39;ll add a cube and to another a diamond.</p>
@@ -246,7 +246,7 @@ const sceneInfo2 = setupScene2();
 only if the element is on the screen. We can tell THREE.js
 to only render to part of the canvas by turning on the <em>scissor</em>
 test with <code>Renderer.setScissorTest</code> and then setting both the scissor and the viewport with <code>Renderer.setViewport</code> and <code>Renderer.setScissor</code>.</p>
-<pre class="prettyprint"><code class="lang-js">function rendenerSceneInfo(sceneInfo) {
+<pre class="prettyprint"><code class="lang-js">function renderSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
   // get the viewport relative position opf this element
@@ -287,8 +287,8 @@ and then render each scene.</p>
   sceneInfo1.mesh.rotation.y = time * .1;
   sceneInfo2.mesh.rotation.y = time * .1;
 
-  rendenerSceneInfo(sceneInfo1);
-  rendenerSceneInfo(sceneInfo2);
+  renderSceneInfo(sceneInfo1);
+  renderSceneInfo(sceneInfo2);
 
   requestAnimationFrame(render);
 }

@@ -217,7 +217,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
 }
 </code></pre>
 <p>You can see we create a <code>RayCaster</code> and then we can call the <code>pick</code> function to cast a ray through the scene. If the ray hits something we change the color of the first thing it hits.</p>
-<p>Of course we could call this function only when the user pressed the mouse <em>down</em> which is probaby usually what you want but for this example we&#39;ll pick every frame whatever is under the mouse. To do this we first need to track where the mouse
+<p>Of course we could call this function only when the user pressed the mouse <em>down</em> which is probably usually what you want but for this example we&#39;ll pick every frame whatever is under the mouse. To do this we first need to track where the mouse
 is</p>
 <pre class="prettyprint"><code class="lang-js">const pickPosition = {x: 0, y: 0};
 clearPickPosition();
@@ -251,7 +251,7 @@ window.addEventListener(&#39;mousemove&#39;, setPickPosition);
 window.addEventListener(&#39;mouseout&#39;, clearPickPosition);
 window.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
 </code></pre>
-<p>Notice we&#39;re recording a normalized mouse position. Reguardless of the size of the canvas we need a value that goes from -1 on the left to +1 on the right. Similarly we need a value that goes from -1 on the bottom to +1 on the top.</p>
+<p>Notice we&#39;re recording a normalized mouse position. Regardless of the size of the canvas we need a value that goes from -1 on the left to +1 on the right. Similarly we need a value that goes from -1 on the bottom to +1 on the top.</p>
 <p>While we&#39;re at it lets support mobile as well</p>
 <pre class="prettyprint"><code class="lang-js">window.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
   // prevent the window from scrolling

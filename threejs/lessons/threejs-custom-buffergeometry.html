@@ -126,7 +126,7 @@ how to use <code>Geometry</code>. This article is about <code>BufferGeometry</co
 <code>BufferGeometry</code> is <em>generally</em> faster to start and uses
 less memory but can be harder to setup.</p>
 <p>In <a href="threejs-custom-geometry.html">the article on Geometry</a> we went over that to use a <code>Geometry</code> you supply an
-array of <code>Vector3</code> vertices (postions). You then make <code>Face3</code> objects specifying
+array of <code>Vector3</code> vertices (positions). You then make <code>Face3</code> objects specifying
 by index the 3 vertices that make each triangle of the shape you&#39;re making. To
 each <code>Face3</code> you can specify either a face normal or normals for each individual
 vertex of the face. You can also specify a face color or individual vertex
@@ -137,7 +137,7 @@ of the face.</p>
 
 <p><code>BufferGeometry</code> on the other hand uses <em>named</em> <code>BufferAttribute</code>s.
 Each <code>BufferAttribute</code> represents an array of one type of data: positions,
-normals, colors, and uv. Togther, the added <code>BufferAttribute</code>s represent
+normals, colors, and uv. Together, the added <code>BufferAttribute</code>s represent
 <em>parallel arrays</em> of all the data for each vertex.</p>
 <div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
 
@@ -157,7 +157,7 @@ part to be different then it must be a different vertex.</p>
 That is where the extra memory and time comes from when using <code>Geometry</code>. Extra
 memory for all the <code>Vector3</code>s, <code>Vector2</code>s, <code>Face3</code>s and array objects and then
 extra time to translate all of that data into parallel arrays in the form of
-<code>BufferAttribute</code>s like above. Somtimes that makes using <code>Geometry</code> easier.
+<code>BufferAttribute</code>s like above. Sometimes that makes using <code>Geometry</code> easier.
 With <code>BufferGeometry</code> it is up to us to supply the data already turned into this format.</p>
 <p>As a simple example let&#39;s make a cube using <code>BufferGeometry</code>. A cube is interesting
 because it appears to share vertices at the corners but really
@@ -246,7 +246,7 @@ and add it to the <code>BufferGeometry</code>.</p>
       &#39;uv&#39;,
       new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
 </code></pre>
-<p>Note that the names are sigificant. You must name your attributes the names
+<p>Note that the names are significant. You must name your attributes the names
 that match what three.js expects (unless you are creating a custom shader).
 In this case <code>position</code>, <code>normal</code>, and <code>uv</code>. If you want vertex colors then
 name your attribute <code>color</code>.</p>

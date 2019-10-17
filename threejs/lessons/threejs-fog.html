@@ -134,7 +134,7 @@ creating <code>Fog</code> or <code>FogExp2</code> object and setting it on the s
 from the camera. Anything closer than <code>near</code> is unaffected by fog.
 Anything further than <code>far</code> is completely the fog color. Parts between
 <code>near</code> and <code>far</code> fade from their material color to the fog color.</p>
-<p>There&#39;s also <code>FogExp2</code> which grows expotentially with distance from the camera.</p>
+<p>There&#39;s also <code>FogExp2</code> which grows exponentially with distance from the camera.</p>
 <p>To use either type of fog you create one and and assign it to the scene as in</p>
 <pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 {
@@ -190,7 +190,7 @@ property. To pick a background color you attach a <code>THREE.Color</code> to it
 
 <p>Here is one of our previous examples with fog added. The only addition
 is right after setting up the scene we add the fog and set the scene&#39;s
-backgound color</p>
+background color</p>
 <pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
 
 +{
@@ -274,7 +274,7 @@ we get use to easily get such a string, we just have to prepend a &#39;#&#39; to
 <pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
-+// Also when dat.gui maniplates color we&#39;ll
++// Also when dat.gui manipulates color we&#39;ll
 +// update both the fog and background colors.
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {
@@ -304,7 +304,7 @@ class FogGUIHelper {
 +  }
 }
 </code></pre>
-<p>We then call <code>gui.addColor</code> to add a color UI for our helper&#39;s virutal property.</p>
+<p>We then call <code>gui.addColor</code> to add a color UI for our helper&#39;s virtual property.</p>
 <pre class="prettyprint"><code class="lang-js">{
   const near = 1;
   const far = 2;
@@ -325,7 +325,7 @@ class FogGUIHelper {
 
 </p>
 <p>You can see setting <code>near</code> to like 1.9 and <code>far</code> to 2.0 gives
-a very sharp transition between unfogged and completely fogged.
+a very sharp transition between un-fogged and completely fogged.
 where as <code>near</code> = 1.1 and <code>far</code> = 2.9 should just about be
 the smoothest given our cubes are spinning 2 units away from the camera.</p>
 <p>One last thing, there is a boolean <a href="Material.fog"><code>fog</code></a>

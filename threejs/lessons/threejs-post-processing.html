@@ -161,7 +161,7 @@ This continues through all the passes. </p>
 target. Usually you need to set this to true on the last pass you add to your
 <code>EffectComposer</code>.</p>
 <p>Let&#39;s put together a basic example. We&#39;ll start with the example from <a href="threejs-responsive.html">the
-article on responsivness</a>.</p>
+article on responsiveness</a>.</p>
 <p>To that first we create an <code>EffectComposer</code>.</p>
 <pre class="prettyprint"><code class="lang-js">const composer = new EffectComposer(renderer);
 </code></pre>
@@ -251,7 +251,7 @@ that effect.</p>
 I found this line:</p>
 <pre class="prettyprint"><code class="lang-js">this.copyUniforms[ &quot;opacity&quot; ].value = strength;
 </code></pre>
-<p>So we can set the strengh by setting</p>
+<p>So we can set the strength by setting</p>
 <pre class="prettyprint"><code class="lang-js">bloomPass.copyUniforms.opacity.value = someValue;
 </code></pre>
 <p>Similarly looking in
@@ -270,7 +270,7 @@ if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 <pre class="prettyprint"><code class="lang-js">const gui = new GUI();
 {
   const folder = gui.addFolder(&#39;BloomPass&#39;);
-  folder.add(bloomPass.copyUniforms.opacity, &#39;value&#39;, 0, 2).name(&#39;stength&#39;);
+  folder.add(bloomPass.copyUniforms.opacity, &#39;value&#39;, 0, 2).name(&#39;strength&#39;);
   folder.open();
 }
 {

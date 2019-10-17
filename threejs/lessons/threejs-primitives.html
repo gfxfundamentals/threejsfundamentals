@@ -359,7 +359,7 @@ keep the center offset we set earlier.</p>
 whereas the one on the right is.</p>
 <p>The other exceptions are the 2 line based examples for <code>EdgesGeometry</code>
 and <code>WireframeGeometry</code>. Instead of calling <code>addSolidGeometry</code> they call
-<code>addLineGeomtry</code> which looks like this</p>
+<code>addLineGeometry</code> which looks like this</p>
 <pre class="prettyprint"><code class="lang-js">function addLineGeometry(x, y, geometry) {
   const material = new THREE.LineBasicMaterial({color: 0x000000});
   const mesh = new THREE.LineSegments(geometry, material);
@@ -399,7 +399,7 @@ and the flat shading and we get this</p>
 is entirely better than the one in the middle with only 480.
 If you&#39;re only drawing a few spheres, like say a single globe for
 a map of the earth, then a single 10000 triangle sphere is not a bad
-choice. If on the otherhand you&#39;re trying to draw 1000 spheres
+choice. If on the other hand you&#39;re trying to draw 1000 spheres
 then 1000 spheres times 10000 triangles each is 10 million triangles.
 To animate smoothly you need the browser to draw at 60 frames per
 second so you&#39;d be asking the browser to draw 600 million triangles
@@ -419,7 +419,7 @@ is similar.</p>
 <p>So, choose whatever is appropriate for your situation. The less
 subdivisions you choose the more likely things will run smoothly and the less
 memory they&#39;ll take. You&#39;ll have to decide for yourself what the correct
-tradeoff is for your particular siutation.</p>
+tradeoff is for your particular situation.</p>
 <p>Next up let&#39;s go over <a href="threejs-scenegraph.html">how three&#39;s scene graph works and how
 to use it</a>.</p>
 <p><canvas id="c"></canvas></p>

@@ -216,7 +216,7 @@ help us with events so both cameras can easily have their own <code>OrbitControl
 +  &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
-<p>And the CSS that will make those 2 views show up side by side overlayed on top of
+<p>And the CSS that will make those 2 views show up side by side overlaid on top of
 the canvas</p>
 <pre class="prettyprint"><code class="lang-css">.split {
   position: absolute;
@@ -461,7 +461,7 @@ in the distance well then you&#39;ll need to find other creative solutions that
 maybe we&#39;ll go over later. For now, just be aware you should take care
 to choose appropriate <code>near</code> and <code>far</code> values for your needs.</p>
 <p>The 2nd most common camera is the <code>OrthographicCamera</code>. Rather than
-specify a frustum it specfies a box with the settings <code>left</code>, <code>right</code>
+specify a frustum it specifies a box with the settings <code>left</code>, <code>right</code>
 <code>top</code>, <code>bottom</code>, <code>near</code>, and <code>far</code>. Because it&#39;s projecting a box
 there is no perspective.</p>
 <p>Let&#39;s change the 2 view example above to use an <code>OrthographicCamera</code>
@@ -485,7 +485,7 @@ to make it easy to adjust how many units are actually shown by the camera.</p>
 +gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
 </code></pre>
 <p>The call to <code>listen</code> tells dat.GUI to watch for changes. This is here because
-the <code>OrbitControls</code> can also control zoom. For example the scrollwheel on
+the <code>OrbitControls</code> can also control zoom. For example the scroll wheel on
 a mouse will zoom via the <code>OrbitControls</code>.</p>
 <p>Last we just need to change the part that renders the left
 side to update the <code>OrthographicCamera</code>.</p>
@@ -521,7 +521,7 @@ one unit in the camera you could do something like</p>
 something like</p>
 <pre class="prettyprint"><code class="lang-js">camera.left = -canvas.width / 2;
 camera.right = canvas.width / 2;
-camera.top = canvas.heigth / 2;
+camera.top = canvas.height / 2;
 camera.bottom = -canvas.height / 2;
 camera.near = -1;
 camera.far = 1;

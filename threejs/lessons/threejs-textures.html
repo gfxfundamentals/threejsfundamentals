@@ -369,7 +369,7 @@ A few textures like that and you&#39;ll be out of memory.</p>
 In order for three.js to use the texture it has to hand it off to the GPU and the
 GPU <em>in general</em> requires the texture data to be uncompressed.</p>
 <p>The moral of the story is make your textures small in dimensions not just small
-in file size. Small in file size = fast to download. Small in dimesions = takes
+in file size. Small in file size = fast to download. Small in dimensions = takes
 less memory. How small should you make them?
 As small as you can and still look as good as you need them to look.</p>
 <h2 id="-a-name-format-a-jpg-vs-png"><a name="format"></a> JPG vs PNG</h2>
@@ -413,7 +413,7 @@ original size.</p>
 <p>For setting the filter when the texture is drawn larger than its original size
 you set <a href="Texture.magFilter"><code>texture.magFilter</code></a> property to either <code>THREE.NearestFilter</code> or
  <code>THREE.LinearFilter</code>.  <code>NearestFilter</code> means
-just pick the closet single pixel from the orignal texture. With a low
+just pick the closet single pixel from the original texture. With a low
 resolution texture this gives you a very pixelated look like Minecraft.</p>
 <p><code>LinearFilter</code> means choose the 4 pixels from the texture that are closest
 to the where we should be choosing a color from and blend them in the
