@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/index.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Three.js tutorials and solutions" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+<meta property="og:title" content="Three.js Fundamentals" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="Learn Three.js" />
+<meta property="og:url" content="https://threejsfundamentals.org">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="threejsfundamentals.org">
+<meta name="twitter:url" content="https://threejsfundamentals.org">
+<meta name="twitter:description" content="Learn Three.js" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+
+<title>Three.js Fundamentals</title>
+
+<link rel="alternate" type="application/atom+xml" title="threejs fundamentals" href="https://threejsfundamentals.org/atom.xml" />
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ItemList",
+  "itemListElement":
+  [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 2,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-responsive.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 3,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 4,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-setup.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 5,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 6,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 7,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-backgrounds.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 8,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 9,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-multiple-scenes.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 10,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-picking.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 11,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 12,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-post-processing-3dlut.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 13,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-shadertoy.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 14,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-align-html-elements-to-3d.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 15,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-indexed-textures.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 16,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-canvas-textures.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 17,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 18,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-cleanup.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 19,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-voxel-geometry.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 20,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-game.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 21,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-webvr.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 22,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-webvr-look-to-select.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 23,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-webvr-point-to-select.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 24,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 25,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 26,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-offscreencanvas.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 27,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 28,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 29,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-debugging-glsl.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 30,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 31,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-scenegraph.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 32,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-materials.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 33,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-textures.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 34,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-lights.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 35,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-cameras.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 36,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-shadows.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 37,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-fog.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 38,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-rendertargets.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 39,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 40,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-custom-buffergeometry.html"
+  },
+  {
+    "@type": "ListItem",
+    "position": 41,
+    "url": "https://threejsfundamentals.org/threejs/lessons/threejs-material-table.html"
+  }
+]
+}
+</script>
+
+
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="stylesheet" href="/threejs/lessons/resources/index.css" />
+</head>
+<body>
+<div id="canvas">
+</div>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/" >English</a>
+    <option value="/threejs/lessons/ru/" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/" >中文</a>
+</select>
+
+
+  </div>
+</div>
+<div class="container">
+  <div class="lesson">
+    <div class="lesson-main">
+      <h1>Three.js Fundamentals <span class="rss"><a href="http://threejsfundamentals.org/atom.xml"><img src="/threejs/lessons/resources/rss-icon.svg" alt="rss"/></a></span></h1>
+      <div class="home-lang">
+        <select class="language">
+    <option value="/" >English</a>
+    <option value="/threejs/lessons/ru/" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/" >中文</a>
+</select>
+
+
+      </div>
+      <p>A set of articles to help learn Three.js.</p>
+<p><ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+</p>
+<!--
+
+
+
+-->
+
+      <div>
+      flamingo by: <a href="http://mirada.com/">mirada</a> from <a href="https://github.com/dataarts/3-dreams-of-black">3 Dreams of Black</a>
+      </div>
+    </div>
+  </div>
+</div>
+<iframe class="background" src="/threejs/background.html"></iframe>
+<style>
+#forkongithub a {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(150px) rotate(45deg) translate(10px,70px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+    pointer-events: auto;
+}
+#forkongithub a:hover {
+    background: #c11;
+    color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+#forkongithub{
+    z-index: 9999;
+    /* needed for firefox */
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+}
+@media (max-width: 900px) {
+    #forkongithub a{
+        line-height: 1.2rem;
+    }
+}
+@media (max-width: 410px) {
+    #forkongithub a{
+        font-size: 0.7rem;
+        transform: translateX(150px) rotate(45deg) translate(20px,40px);
+    }
+}
+
+</style>
+<div id="forkongithub"><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix or Fork me on GitHub</a></div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+

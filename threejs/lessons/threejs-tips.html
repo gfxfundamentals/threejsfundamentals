@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-tips.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Small issues that might trip you up using three.js" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_en.jpg" />
+
+<meta property="og:title" content="Three.js Tips" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_en.jpg" />
+<meta property="og:description" content="Small issues that might trip you up using three.js" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-tips.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Tips" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-tips.html" />
+<meta name="twitter:description" content="Small issues that might trip you up using three.js" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-tips.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-tips.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-tips.html",
+      "inLanguage":"en",
+      "name":"Three.js Tips",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-tips.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Tips</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-tips.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-tips.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-tips.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Tips</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is a collection of small issues you might run into
+using three.js that seemed too small to have their own article.</p>
+<hr>
+<p><a id="screenshot" data-toc="Taking a screenshot"></a></p>
+<h1 id="taking-a-screenshot-of-the-canvas">Taking A Screenshot of the Canvas</h1>
+<p>In the browser there are effectively 2 functions that will take a screenshot.
+The old one 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL"><code>canvas.toDataURL</code></a>
+and the new better one 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob"><code>canvas.toBlob</code></a></p>
+<p>So you&#39;d think it would be easy to take a screenshot by just adding some code like</p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++&lt;button id=&quot;screenshot&quot; type=&quot;button&quot;&gt;Save...&lt;/button&gt;
+</code></pre>
+<pre class="prettyprint"><code class="lang-js">const elem = document.querySelector(&#39;#screenshot&#39;);
+elem.addEventListener(&#39;click&#39;, () =&gt; {
+  canvas.toBlob((blob) =&gt; {
+    saveBlob(blob, `screencapture-${canvas.width}x${canvas.height}.png`);
+  });
+});
+
+const saveBlob = (function() {
+  const a = document.createElement(&#39;a&#39;);
+  document.body.appendChild(a);
+  a.style.display = &#39;none&#39;;
+  return function saveData(blob, fileName) {
+     const url = window.URL.createObjectURL(blob);
+     a.href = url;
+     a.download = fileName;
+     a.click();
+  };
+}());
+</code></pre>
+<p>Here&#39;s the example from <a href="threejs-responsive.html">the article on responsiveness</a>
+with the code above added and some CSS to place the button</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-screenshot-bad.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-screenshot-bad.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>When I tried it I got this screenshot</p>
+<div class="threejs_center"><img src="resources/images/screencapture-413x313.png"></div>
+
+<p>Yes, it&#39;s just a black image.</p>
+<p>It&#39;s possible it worked for you depending on your browser/OS but in general
+it&#39;s not likely to work.</p>
+<p>The issue is that for performance and compatibility reasons, by default the browser
+will clear a WebGL canvas&#39;s drawing buffer after you&#39;ve drawn to it.</p>
+<p>The solution is to call your rendering code just before capturing.</p>
+<p>In our code we need to adjust a few things. First let&#39;s separate
+out the rendering code.</p>
+<pre class="prettyprint"><code class="lang-js">+const state = {
++  time: 0,
++};
+
+-function render(time) {
+-  time *= 0.001;
++function render() {
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  cubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+-    const rot = time * speed;
++    const rot = state.time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  renderer.render(scene, camera);
+
+-  requestAnimationFrame(render);
+}
+
++function animate(time) {
++  state.time = time * 0.001;
++
++  render();
++
++  requestAnimationFrame(animate);
++}
++requestAnimationFrame(animate);
+</code></pre>
+<p>Now that <code>render</code> is only concerned with actually rendering
+we can call it just before capturing the canvas.</p>
+<pre class="prettyprint"><code class="lang-js">const elem = document.querySelector(&#39;#screenshot&#39;);
+elem.addEventListener(&#39;click&#39;, () =&gt; {
++  render();
+  canvas.toBlob((blob) =&gt; {
+    saveBlob(blob, `screencapture-${canvas.width}x${canvas.height}.png`);
+  });
+});
+</code></pre>
+<p>And now it should work.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-screenshot-good.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-screenshot-good.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>For a different solution see the next item.</p>
+<hr>
+<p><a id="preservedrawingbuffer" data-toc="Prevent the Canvas Being Cleared"></a></p>
+<h1 id="preventing-the-canvas-being-cleared">Preventing the canvas being cleared</h1>
+<p>Let&#39;s say you wanted to let the user paint with an animated
+object. You need to pass in <code>preserveDrawingBuffer: true</code> when
+you create the <code>WebGLRenderer</code>. This prevents the browser from
+clearing the canvas. You also need to tell three.js not to clear
+the canvas as well.</p>
+<pre class="prettyprint"><code class="lang-js">const canvas = document.querySelector(&#39;#c&#39;);
+-const renderer = new THREE.WebGLRenderer({canvas});
++const renderer = new THREE.WebGLRenderer({
++  canvas,
++  preserveDrawingBuffer: true,
++  alpha: true,
++});
++renderer.autoClearColor = false;
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-preservedrawingbuffer.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-preservedrawingbuffer.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Note that if you were serious about making a drawing program this would not be a
+solution as the browser will still clear the canvas anytime we change its
+resolution. We&#39;re changing is resolution based on its display size. Its display
+size changes when the window changes size. That includes when the user downloads
+a file, even in another tab, and the browser adds a status bar. It also includes when
+the user turns their phone and the browser switches from portrait to landscape.</p>
+<p>If you really wanted to make a drawing program you&#39;d
+<a href="threejs-rendertargets.html">render to a texture using a render target</a>.</p>
+<hr>
+<p><a id="tabindex" data-toc="Get Keyboard Input From a Canvas"></a></p>
+<h1 id="getting-keyboard-input">Getting Keyboard Input</h1>
+<p>Throughout these tutorials we&#39;ve often attached event listeners to the <code>canvas</code>.
+While many events work, one that does not work by default is keyboard
+events.</p>
+<p>To get keyboard events, set the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex"><code>tabindex</code></a>
+of the canvas to 0 or more. Eg.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas tabindex=&quot;0&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>This ends up causing a new issue though. Anything that has a <code>tabindex</code> set
+will get highlighted when it has the focus. To fix that set its focus CSS outline
+to none</p>
+<pre class="prettyprint"><code class="lang-css">canvas:focus {
+  outline:none;
+}
+</code></pre>
+<p>To demonstrate here are 3 canvases </p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c1&quot;&gt;&lt;/canvas&gt;
+&lt;canvas id=&quot;c2&quot; tabindex=&quot;0&quot;&gt;&lt;/canvas&gt;
+&lt;canvas id=&quot;c3&quot; tabindex=&quot;1&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>and some css just for the last canvas </p>
+<pre class="prettyprint"><code class="lang-css">#c3:focus {
+    outline: none;
+}
+</code></pre>
+<p>Let&#39;s attach the same event listeners to all of them</p>
+<pre class="prettyprint"><code class="lang-js">document.querySelectorAll(&#39;canvas&#39;).forEach((canvas) =&gt; {
+  const ctx = canvas.getContext(&#39;2d&#39;);
+
+  function draw(str) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.textAlign = &#39;center&#39;;
+    ctx.textBaseline = &#39;middle&#39;;
+    ctx.fillText(str, canvas.width / 2, canvas.height / 2);
+  }
+  draw(canvas.id);
+
+  canvas.addEventListener(&#39;focus&#39;, () =&gt; {
+    draw(&#39;has focus press a key&#39;);
+  });
+
+  canvas.addEventListener(&#39;blur&#39;, () =&gt; {
+    draw(&#39;lost focus&#39;);
+  });
+
+  canvas.addEventListener(&#39;keydown&#39;, (e) =&gt; {
+    draw(`keyCode: ${e.keyCode}`);
+  });
+});
+</code></pre>
+<p>Notice you can&#39;t get the first canvas to accept keyboard input.
+The second canvas you can but it gets highlighted. The 3rd
+canvas has both solutions applied.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-tabindex.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-tabindex.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<hr>
+<p><a id="transparent-canvas" data-toc="Make the Canvas Transparent"></a></p>
+<h1 id="making-the-canvas-transparent">Making the Canvas Transparent</h1>
+<p>By default THREE.js makes the canvas opaque. If you want the
+canvas to be transparent pass in <a href="WebGLRenderer.alpha"><code>alpha:true</code></a> when you create
+the <code>WebGLRenderer</code></p>
+<pre class="prettyprint"><code class="lang-js">const canvas = document.querySelector(&#39;#c&#39;);
+-const renderer = new THREE.WebGLRenderer({canvas});
++const renderer = new THREE.WebGLRenderer({
++  canvas,
++  alpha: true,
++});
+</code></pre>
+<p>You probably also want to tell it that your results are <strong>not</strong> using premultiplied alpha</p>
+<pre class="prettyprint"><code class="lang-js">const canvas = document.querySelector(&#39;#c&#39;);
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
++  premultipliedAlpha: false,
+});
+</code></pre>
+<p>Three.js defaults to the canvas using
+<a href="WebGLRenderer.premultipliedAlpha"><code>premultipliedAlpha: true</code></a> but defaults
+to materials outputting <a href="Material.premultipliedAlpha"><code>premultipliedAlpha: false</code></a>.</p>
+<p>If you&#39;d like a better understanding of when and when not to use premultiplied alpha
+here&#39;s <a href="https://developer.nvidia.com/content/alpha-blending-pre-or-not-pre">a good article on it</a>.</p>
+<p>In any case let&#39;s setup a simple example with a transparent canvas.</p>
+<p>We applied the settings above to the example from <a href="threejs-responsive.html">the article on responsiveness</a>.
+Let&#39;s also make the materials more transparent.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshPhongMaterial({
++    color,
++    opacity: 0.5,
++  });
+
+...
+</code></pre>
+<p>And let&#39;s add some HTML content</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;content&quot;&gt;
++    &lt;div&gt;
++      &lt;h1&gt;Cubes-R-Us!&lt;/h1&gt;
++      &lt;p&gt;We make the best cubes!&lt;/p&gt;
++    &lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>as well as some CSS to put the canvas in front</p>
+<pre class="prettyprint"><code class="lang-css">body {
+    margin: 0;
+}
+#c {
+    width: 100vw;
+    height: 100vh;
+    display: block;
++    position: fixed;
++    left: 0;
++    top: 0;
++    z-index: 2;
++    pointer-events: none;
+}
++#content {
++  font-size: 7vw;
++  font-family: sans-serif;
++  text-align: center;
++  width: 100vw;
++  height: 100vh;
++  display: flex;
++  justify-content: center;
++  align-items: center;
++}
+</code></pre>
+<p>note that <code>pointer-events: none</code> makes the canvas invisible to the mouse
+and touch events so you can select the text beneath.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-transparent-canvas.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-transparent-canvas.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<hr>
+<p><a id="html-background" data-toc="Use three.js as Background in HTML"></a></p>
+<h1 id="making-your-background-a-three-js-animation">Making your background a three.js animation</h1>
+<p>A common question is how to make a three.js animation be the background of
+a webpage.</p>
+<p>There are 2 obvious ways.</p>
+<ul>
+<li>Set the canvas CSS <code>position</code> to <code>fixed</code> as in</li>
+</ul>
+<pre class="prettyprint"><code class="lang-css">#c {
+ position: fixed;
+ left: 0;
+ top: 0;
+ ...
+}
+</code></pre>
+<p>You can basically see this exact solution on the previous example. Just set <code>z-index</code> to -1
+and the cubes will appear behind the text.</p>
+<p>A small disadvantage to this solution is your JavaScript must integrate with the page
+and if you have a complex page then you need to make sure none of the JavaScript in your
+three.js visualization conflict with the JavaScript doing other things in the page.</p>
+<ul>
+<li>Use an <code>iframe</code></li>
+</ul>
+<p>This is the solution used on <a href="/">the front page of this site</a>.</p>
+<p>In your webpage just insert an iframe, for example</p>
+<pre class="prettyprint"><code class="lang-html">&lt;iframe id=&quot;background&quot; src=&quot;threejs-responsive.html&quot;&gt;
+&lt;div&gt;
+  Your content goes here.
+&lt;/div&gt;
+</code></pre>
+<p>Then style the iframe to fill the window and be in the background
+which is basically the same code as we used above for the canvas
+except we also need to set <code>border</code> to <code>none</code> since iframes have
+a border by default.</p>
+<pre class="prettyprint"><code>#background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border: none;
+    pointer-events: none;
+}
+</code></pre><p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-html-background.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-html-background.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-tips.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-tips.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-tips.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Tips';
+            var disqus_title = 'Three.js Tips';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-debugging-javascript.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How to debug JavaScript with THREE.js" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-javascript_en.jpg" />
+
+<meta property="og:title" content="Three.js Debugging JavaScript" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-javascript_en.jpg" />
+<meta property="og:description" content="How to debug JavaScript with THREE.js" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Debugging JavaScript" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html" />
+<meta name="twitter:description" content="How to debug JavaScript with THREE.js" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-javascript_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-javascript_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html",
+      "inLanguage":"en",
+      "name":"Three.js Debugging JavaScript",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-debugging-javascript.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Debugging JavaScript</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-debugging-javascript.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-debugging-javascript.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-debugging-javascript.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Debugging JavaScript</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Most of this article is not directly about THREE.js but is
+rather about debugging JavaScript in general. It seemed important in
+that many people just starting with THREE.js are also just
+starting with JavaScript so I hope this can help them more easily
+solve any issues they run into.</p>
+<p>Debugging is a big topic and I probably can&#39;t begin to cover
+everything there is to know but if you&#39;re new to JavaScript
+then here&#39;s an attempt to give a few pointers. I strongly
+suggest you take some time to learn them. They&#39;ll help you 
+enormously in your learning.</p>
+<h2 id="learn-your-browser-s-developer-tools">Learn your Browser&#39;s Developer Tools</h2>
+<p>All browsers have developer tools. 
+<a href="https://developers.google.com/web/tools/chrome-devtools/">Chrome</a>,
+<a href="https://developer.mozilla.org/son/docs/Tools">Firefox</a>, 
+<a href="https://developer.apple.com/safari/tools/">Safari</a>, 
+<a href="https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide">Edge</a>.</p>
+<p>In Chrome you can click the the <code>⋮</code> icon, pick More Tools-&gt;Developer Tools
+to get to the developer tools. A keyboard shortcut is also shown there.</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
+
+<p>In Firefox you click the <code>☰</code> icon, pick &quot;Web Developer&quot;, then pick
+&quot;Toggle Tools&quot;</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
+
+<p>In Safari you first have to enable the Develop menu from the 
+Advanced Safari Preferences.</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
+
+<p>Then in the Develop menu you can pick &quot;Show/Connect Web Inspector&quot;.</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
+
+<p>With Chrome you can also <a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/">use Chrome on your computer to debug webpages running on Chrome on your Android phone or tablet</a>.
+Similarly with Safari you can 
+<a href="https://www.google.com/search?q=safari+remote+debugging+ios">use your computer to debug webpages running on Safari on iPhones and iPads</a>.</p>
+<p>I&#39;m most familiar with Chrome so this guide will be using Chrome
+as an example when referring to tools but most browsers have similar
+features so it should be easy to apply anything here to all browsers.</p>
+<h2 id="turn-off-the-cache">Turn off the cache</h2>
+<p>Browsers try to reuse data they&#39;ve already downloaded. This is great
+for users so if you visit a website a second time many of the files
+used to display the site will not have be downloaded again.</p>
+<p>On the other hand this can be bad for web development. You change
+a file on your computer, reload the page, and you don&#39;t see the changes
+because the browser uses the version it got last time.</p>
+<p>One solution during web development is to turn off the cache. This
+way the browser will always get the newest versions of your files.</p>
+<p>First pick settings from the corner menu</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
+
+<p>Then pick &quot;Disable Cache (while DevTools is open)&quot;.</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
+
+<h2 id="use-the-javascript-console">Use the JavaScript console</h2>
+<p>Inside all devtools is a <em>console</em>. It shows warnings and error messages.</p>
+<p><strong> READ THE MESSAGES!! </strong></p>
+<p>Typically there should be only 1 or 2 messages.</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
+
+<p>If you see any others <strong>READ THEM</strong>. For example:</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-errors.jpg" style="width: 779px"></div>
+
+<p>I mis-spelled &quot;three&quot; as &quot;threee&quot;</p>
+<p>You can also print your own info to the console with with <code>console.log</code> as in</p>
+<pre class="prettyprint"><code class="lang-js">console.log(someObject.position.x, someObject.position.y, someObject.position.z);
+</code></pre>
+<p>Even cooler, if you log an object you can inspect it. For example if we log
+the root scene object from <a href="threejs-load-gltf.html">the gLTF article</a></p>
+<pre class="prettyprint"><code class="lang-js">  {
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
+      const root = gltf.scene;
+      scene.add(root);
++      console.log(root);
+</code></pre>
+<p>Then we can expand that object in the JavaScript console</p>
+<div class="threejs_center"><img class="border" src="resources/images/devtools-console-object.gif"></div>
+
+<p>You can also use <code>console.error</code> which reports the message in red
+in includes a stack trace.</p>
+<h2 id="put-data-on-screen">Put data on screen</h2>
+<p>Another obvious but often overlooked way is to add <code>&lt;div&gt;</code> or <code>&lt;pre&gt;</code> tags
+and put data in them.</p>
+<p>The most obvious way is to make some HTML elements</p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++&lt;div id=&quot;debug&quot;&gt;
++  &lt;div&gt;x:&lt;span id=&quot;x&quot;&gt;&lt;/span&gt;&lt;/div&gt;
++  &lt;div&gt;y:&lt;span id=&quot;y&quot;&gt;&lt;/span&gt;&lt;/div&gt;
++  &lt;div&gt;z:&lt;span id=&quot;z&quot;&gt;&lt;/span&gt;&lt;/div&gt;
++&lt;/div&gt;
+</code></pre>
+<p>Style them so they stay on top of the canvas. (assuming your canvas
+fills the page)</p>
+<pre class="prettyprint"><code class="lang-html">&lt;style&gt;
+#debug {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+  padding: 1em;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-family: monospace;
+}
+&lt;/style&gt;
+</code></pre>
+<p>And then looking the elements up and setting their content.</p>
+<pre class="prettyprint"><code class="lang-js">// at init time
+const xElem = document.querySelector(&#39;#x&#39;);
+const yElem = document.querySelector(&#39;#y&#39;);
+const zElem = document.querySelector(&#39;#z&#39;);
+
+// at render or update time
+xElem.textContent = someObject.position.x.toFixed(3);
+yElem.textContent = someObject.position.y.toFixed(3);
+zElem.textContent = someObject.position.z.toFixed(3);
+</code></pre>
+<p>This is more useful for real time values</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debug-js-html-elements.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-debug-js-html-elements.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Another way to put data on the screen is to make a clearing logger.
+I just made that term up but lots of games I&#39;ve worked on have used this solution. The idea
+is you have a buffer that displays messages for only one frame.
+Any part of your code that wants to display data calls some function
+to add data to that buffer every frame. This is much less work
+than making an element per piece of data above.</p>
+<p>For example let&#39;s change the HTML from above to just this</p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;div id=&quot;debug&quot;&gt;
+  &lt;pre&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</code></pre>
+<p>And let&#39;s make simple class to manage this <em>clear back buffer</em>.</p>
+<pre class="prettyprint"><code class="lang-js">class ClearingLogger {
+  constructor(elem) {
+    this.elem = elem;
+    this.lines = [];
+  }
+  log(...args) {
+    this.lines.push([...args].join(&#39; &#39;));
+  }
+  render() {
+    this.elem.textContent = this.lines.join(&#39;\n&#39;);
+    this.lines = [];
+  }
+}
+</code></pre>
+<p>Then let&#39;s make a simple example that every time we click the mouse makes a mesh
+that moves in a random direction for 2 seconds. We&#39;ll start with one of the
+examples from the article on <a href="threejs-responsive.html">making things responsive</a></p>
+<p>Here&#39;s the code that adds a new <code>Mesh</code> every time we click the mouse</p>
+<pre class="prettyprint"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry();
+const material = new THREE.MeshBasicMaterial({color: &#39;red&#39;});
+
+const things = [];
+
+function rand(min, max) {
+  if (max === undefined) {
+    max = min;
+    min = 0;
+  }
+  return Math.random() * (max - min) + min;
+}
+
+function createThing() {
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+  things.push({
+    mesh,
+    timer: 2,
+    velocity: new THREE.Vector3(rand(-5, 5), rand(-5, 5), rand(-5, 5)),
+  });
+}
+
+canvas.addEventListener(&#39;click&#39;, createThing);
+</code></pre>
+<p>And here&#39;s the code that moves the meshes we created, logs them,
+and removes them when their timer has run out</p>
+<pre class="prettyprint"><code class="lang-js">const logger = new ClearingLogger(document.querySelector(&#39;#debug pre&#39;));
+
+let then = 0;
+function render(now) {
+  now *= 0.001;  // convert to seconds
+  const deltaTime = now - then;
+  then = now;
+
+  ...
+
+  logger.log(&#39;fps:&#39;, (1 / deltaTime).toFixed(1));
+  logger.log(&#39;num things:&#39;, things.length);
+  for (let i = 0; i &lt; things.length;) {
+    const thing = things[i];
+    const mesh = thing.mesh;
+    const pos = mesh.position;
+    logger.log(
+        &#39;timer:&#39;, thing.timer.toFixed(3), 
+        &#39;pos:&#39;, pos.x.toFixed(3), pos.y.toFixed(3), pos.z.toFixed(3));
+    thing.timer -= deltaTime;
+    if (thing.timer &lt;= 0) {
+      // remove this thing. Note we don&#39;t advance `i`
+      things.splice(i, 1);
+      scene.remove(mesh);
+    } else {
+      mesh.position.addScaledVector(thing.velocity, deltaTime);
+      ++i;
+    }
+  }
+
+  renderer.render(scene, camera);
+  logger.render();
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>Now click the mouse a bunch in the example below</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debug-js-clearing-logger.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-debug-js-clearing-logger.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<h2 id="query-parameters">Query Parameters</h2>
+<p>Another thing to remember is that webpages can have data passed
+into them either via query parameters or the anchor, sometimes called
+the search and the hash.</p>
+<pre class="prettyprint"><code>https://domain/path/?query#anchor
+</code></pre><p>You can use this to make features optional or pass in parameters.</p>
+<p>For example let&#39;s take the previous example and make it so
+the debug stuff only shows up if we put <code>?debug=true</code> in the URL.</p>
+<p>First we need some code to parse the query string</p>
+<pre class="prettyprint"><code class="lang-js">/**
+  * Returns the query parameters as a key/value object. 
+  * Example: If the query parameters are
+  *
+  *    abc=123&amp;def=456&amp;name=gman
+  *
+  * Then `getQuery()` will return an object like
+  *
+  *    {
+  *      abc: &#39;123&#39;,
+  *      def: &#39;456&#39;,
+  *      name: &#39;gman&#39;,
+  *    }
+  */
+function getQuery() {
+  return Object.fromEntries(new URLSearchParams(window.location.search).entries());
+}
+</code></pre>
+<p>Then we might make the debug element not show by default</p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++&lt;div id=&quot;debug&quot; style=&quot;display: none;&quot;&gt;
+  &lt;pre&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Then in the code we read the params and choose to un-hide the
+debug info if and only if <code>?debug=true</code> is passed in</p>
+<pre class="prettyprint"><code class="lang-js">const query = getQuery();
+const debug = query.debug === &#39;true&#39;;
+const logger = debug
+   ? new ClearingLogger(document.querySelector(&#39;#debug pre&#39;))
+   : new DummyLogger();
+if (debug) {
+  document.querySelector(&#39;#debug&#39;).style.display = &#39;&#39;;
+}
+</code></pre>
+<p>We also made a <code>DummyLogger</code> that does nothing and chose to use it if <code>?debug=true</code> has not been passed in.</p>
+<pre class="prettyprint"><code class="lang-js">class DummyLogger {
+  log() {}
+  render() {}
+}
+</code></pre>
+<p>You can see if we use this url:</p>
+<p><a target="_blank" href="../threejs-debug-js-params.html">threejs-debug-js-params.html</a></p>
+<p>there is no debug info but if we use this url:</p>
+<p><a target="_blank" href="../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a></p>
+<p>there is debug info.</p>
+<p>Multiple parameters can be passed in by separating with &#39;&amp;&#39; as in <code>somepage.html?someparam=somevalue&amp;someotherparam=someothervalue</code>. 
+Using parameters like this we can pass in all kinds of options. Maybe <code>speed=0.01</code> to slow down our app for making it easier to understand something or <code>showHelpers=true</code> for whether or not to add helpers
+that show the lights, shadow, or camera frustum seen in other lessons.</p>
+<h2 id="learn-to-use-the-debugger">Learn to use the Debugger</h2>
+<p>Every browser has a debugger where you can pause your program
+step through line by line and inspect all the variables.</p>
+<p>Teaching you how to use a debugger is too big a topic for this
+article but here&#39;s a few links</p>
+<ul>
+<li><a href="https://developers.google.com/web/tools/chrome-devtools/javascript/">Get Started with Debugging JavaScript in Chrome DevTools</a></li>
+<li><a href="https://javascript.info/debugging-chrome">Debugging in Chrome</a></li>
+<li><a href="https://hackernoon.com/tips-and-tricks-for-debugging-in-chrome-developer-tools-458ade27c7ab">Tips and Tricks for Debugging in Chrome Developer Tools</a></li>
+</ul>
+<h2 id="check-for-nan-in-the-debugger-or-elsewhere">Check for <code>NaN</code> in the debugger or elsewhere</h2>
+<p><code>NaN</code> is short for Not A Number. It&#39;s what JavaScript will assign
+as a value when you do something that doesn&#39;t make sense mathwise.</p>
+<p>As a simple example</p>
+<div class="threejs_center"><img class="border" src="resources/images/nan-banana.png" style="width: 180px;"></div>
+
+<p>Often when I&#39;m making something and nothing appears on the screen
+I&#39;ll check some values and if I see <code>NaN</code> I will instantly have a 
+place to start looking.</p>
+<p>As an example when I first started making the path for the
+<a href="threejs-load-gltf.html">article about loading gLTF files</a> I made
+a curve using the <code>SplineCurve</code> class which makes a 2D curve.</p>
+<p>I then used that curve to move the cars like this</p>
+<pre class="prettyprint"><code class="lang-js">curve.getPointAt(zeroToOnePointOnCurve, car.position);
+</code></pre>
+<p>Internally <code>curve.getPointAt</code> calls the <code>set</code> function
+on the object passed as the second argument. In this case that
+second argument is <code>car.position</code> which is a <code>Vector3</code>. <code>Vector3</code>&#39;s
+<code>set</code> function requires 3 arguments, x, y, and z but <code>SplineCurve</code> is a 2D curve
+and so it calls <code>car.position.set</code> with just x and y.</p>
+<p>The result is that <code>car.position.set</code> sets x to x, y to y, and z to <code>undefined</code>.</p>
+<p>A quick glance in the debugger looking at the car&#39;s <code>matrixWorld</code>
+showed a bunch of <code>NaN</code> values.</p>
+<div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
+
+<p>Seeing the matrix had <code>NaN</code>s in it suggested something like <code>position</code>,
+<code>rotation</code>, <code>scale</code> or some other function that affects that matrix had bad
+data. Working backward from their it was easy to track down the issue.</p>
+<p>In top of <code>NaN</code> there&#39;s also <code>Infinity</code> which is a similar sign there
+is a math bug somewhere.</p>
+<h2 id="look-in-the-code-">Look In the Code!</h2>
+<p>THREE.js is Open Source. Don&#39;t be afraid to look inside the code!
+You can look inside on <a href="https://github.com/mrdoob/three.js">github</a>.
+You can also look inside by stepping into functions in the debugger.
+When you do that consider using <code>three.js</code> instead of the more common
+<code>three.min.js</code>. <code>three.min.js</code> is the minified, compressed, and therefore
+smaller to download version. <code>three.js</code> is the larger but easier to
+debug version. I often switch my code to use <code>three.js</code> to step through
+the code and see what is going on.</p>
+<h2 id="put-requestanimationframe-at-bottom-of-your-render-function-">Put <code>requestAnimationFrame</code> at bottom of your render function.</h2>
+<p>I see this pattern often</p>
+<pre class="prettyprint"><code class="lang-js">function render() {
+   requestAnimationFrame(render);
+
+   // -- do stuff --
+
+   renderer.render(scene, camera);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p>I&#39;d suggest that putting the call to <code>requestAnimationFrame</code> at
+the bottom as in</p>
+<pre class="prettyprint"><code class="lang-js">function render() {
+   // -- do stuff --
+
+   renderer.render(scene, camera);
+
+   requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p>The biggest reason is it means your code will stop if you have an error. Putting
+<code>requestAnimationFrame</code> at the top means your code will keep running even if you
+have an error since you already requested another frame. IMO it&#39;s better to find
+those errors than to ignore them. They could easily be the reason something is
+not appearing as you expect it to but unless your code stops you might not even
+notice.</p>
+<h2 id="check-your-units-">Check your units!</h2>
+<p>This basically means knowing for example when to use degrees vs
+when to use radians. It&#39;s unfortunate that THREE.js does not
+consistently use the same units everywhere. Off the top of my head
+the camera&#39;s field of view is in degrees. All other angles are in
+radians.</p>
+<p>The other place to look out is your world unit size. Until
+recently 3D apps could choose any unit size they wanted. One app might choose
+1 unit = 1cm. Another might choose 1 unit = 1 foot. It&#39;s actually still
+true that you can chose any units you want for certain applications.
+That said, THREE.js assumes 1 unit = 1 meter. This is important for
+things like physically based rendering which uses meters to compute
+lighting effects. It&#39;s also important for AR and VR which need to
+deal with real world units like where your phone is or where the VR
+controllers are.</p>
+<h2 id="making-a-minimal-complete-verifiable-example-for-stack-overflow">Making a <em>Minimal, Complete, Verifiable, Example</em> for Stack Overflow</h2>
+<p>If you decide to ask a question about THREE.js it&#39;s almost always
+required for you to provide an MCVE which stands for Minimal, Complete,
+Verifiable, Example.</p>
+<p>The <strong>Minimal</strong> part is important. Let&#39;s say you where having an issue with the
+path movement in the last example of the <a href="threejs-load-gltf.html">loading a gLTF
+article</a>. That example has many parts. Listing them out
+it has</p>
+<ol>
+<li>A bunch of HTML</li>
+<li>Some CSS</li>
+<li>Lights</li>
+<li>Shadows</li>
+<li>DAT.gui code to manipulate shadows</li>
+<li>Code to load a .GLTF file</li>
+<li>Code to resize the canvas.</li>
+<li>Code to move the cars along paths</li>
+</ol>
+<p>That&#39;s pretty huge. If your question is only about the path following part you
+can remove most of the HTML as you only need a <code>&lt;canvas&gt;</code> and a <code>&lt;script&gt;</code> tag
+for THREE.js. You can remove the CSS and the resizing code. You can remove .GLTF
+code because you only care about the path. You can remove the lights and the
+shadows by using a <code>MeshBasicMaterial</code>. You can certainly remove the DAT.gui
+code. The code makes a ground plane with a texture. It would be easier to use a
+<code>GridHelper</code>. Finally if our question is about moving things on a path we could
+just use cubes on the path instead of loaded car models.</p>
+<p>Here&#39;s a more minimal example taking all the above into account. It
+shrunk from 271 lines to 135. We might consider shrinking it even
+more by simplifying our path. Maybe a path with 3 or 4 points would
+work just as well as our path with 21 points.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debugging-mcve.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-debugging-mcve.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>I kept the <code>OrbitController</code> just because it&#39;s useful for others
+to move the camera and figure out what&#39;s going on but depending
+on your issue you might be able to remove that as well.</p>
+<p>The best thing about making an MCVE is we&#39;ll often solve our own
+problem. The process of removing everything that&#39;s not needed and
+making the smallest example we can that reproduces the issue more
+often than not leads us to our bug.</p>
+<p>On top of that it&#39;s respectful of all the people&#39;s time who you are
+asking to look at your code on Stack Overflow. By making the minimal
+example you make it much easier for them to help you. You&#39;ll also
+learn in the process.</p>
+<p>Also important, when you go to Stack Overflow to post your question <strong>put your
+code <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">in a snippet</a>.</strong>
+Of course you are welcome to use JSFiddle or Codepen or similar site to test out
+your MCVE but once you actually get to posting your question on Stack Overflow
+you&#39;re required to put the code to reproduce your issue <strong>in the question itself</strong>. 
+By making a snippet you satisfy that requirement.</p>
+<p>Also note all the live examples on this site should run as snippets.
+Just copy the HTML, CSS, and JavaScript parts to their respective
+parts of the <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">snippet editor</a>.
+Just remember to try to remove the parts that are not relevant to
+your issue and try to make your code the minimal amount needed.</p>
+<p>Follow these suggestions and you&#39;re far more likely to get help
+with your issue.</p>
+<h2 id="use-a-meshbasicmaterial-">Use a <code>MeshBasicMaterial</code></h2>
+<p>Because the <code>MeshBasicMaterial</code> uses no lights this is one way to 
+remove reasons something might not be showing up. If your objects
+show up using <code>MeshBasicMaterial</code> but not with whatever materials
+you were using then you know the issue is likely with the materials
+or the lights and not some other part of the code.</p>
+<h2 id="check-your-near-and-far-settings-for-your-camera">Check your <code>near</code> and <code>far</code> settings for your camera</h2>
+<p>A <code>PerspectiveCamera</code> has <code>near</code> and <code>far</code> settings which are covered in the
+<a href="threejs-cameras.html">article on cameras</a>. Make sure they are set to fit the
+space that contains your objects. Maybe even just <strong>temporarily</strong> set them to
+something large like <code>near</code> = 0.001 and <code>far</code> = 1000000. You will likely run
+into depth resolution issues but you&#39;ll at least be able to see your objects
+provided they are in front of the camera.</p>
+<h2 id="check-your-scene-is-in-front-of-the-camera">Check your scene is in front of the camera</h2>
+<p>Sometimes things don&#39;t appear because they are not in front of the camera. If
+your camera is not controllable try adding camera control like the
+<code>OrbitController</code> so you can look around and find your scene. Or, try framing
+the scene using code which is covered in <a href="threejs-load-obj.html">this article</a>.
+That code finds the size of part of the scene and then moves the camera and
+adjusts the <code>near</code> and <code>far</code> settings to make it visible. You can then look in
+the debugger or add some <code>console.log</code> messages to print the size and center of
+the scene.</p>
+<h2 id="put-something-in-front-of-the-camera">Put something in front of the camera</h2>
+<p>This is just another way of saying if all else fails start with
+something that works and then slowly add stuff back in. If you get
+a screen with nothing on it then try putting something directly in
+front of the camera. Make a sphere or box, give it a simple material
+like the <code>MeshBasicMaterial</code> and make sure you can get that on the screen.
+Then start adding things back a little at time and testing. Eventually
+you&#39;ll either reproduce your bug or you&#39;ll find it on the way.</p>
+<hr>
+<p>These were a few tips for debugging JavaScript. Let&#39;s also go
+over <a href="threejs-debugging-glsl.html">some tips for debugging GLSL</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-debugging-javascript.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-debugging-javascript.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-debugging-javascript.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Debugging JavaScript';
+            var disqus_title = 'Three.js Debugging JavaScript';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

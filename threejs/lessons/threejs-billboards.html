@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-billboards.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How to make things always face the camera." />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-billboards_en.jpg" />
+
+<meta property="og:title" content="Three.js Billboards" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-billboards_en.jpg" />
+<meta property="og:description" content="How to make things always face the camera." />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Billboards" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html" />
+<meta name="twitter:description" content="How to make things always face the camera." />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-billboards_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-billboards_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html",
+      "inLanguage":"en",
+      "name":"Three.js Billboards",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-billboards.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Billboards</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-billboards.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-billboards.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-billboards.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Billboards</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>In <a href="threejs-canvas-textures.html">a previous article</a> we used a <code>CanvasTexture</code>
+to make labels / badges on characters. Sometimes we&#39;d like to make labels or
+other things that always face the camera. Three.js provides the <code>Sprite</code> and
+<code>SpriteMaterial</code> to make this happen.</p>
+<p>Let&#39;s change the badge example from <a href="threejs-canvas-textures.html">the article on canvas textures</a>
+to use <code>Sprite</code> and <code>SpriteMaterial</code></p>
+<pre class="prettyprint"><code class="lang-js">function makePerson(x, labelWidth, size, name, color) {
+  const canvas = makeLabelCanvas(labelWidth, size, name);
+  const texture = new THREE.CanvasTexture(canvas);
+  // because our canvas is likely not a power of 2
+  // in both dimensions set the filtering appropriately.
+  texture.minFilter = THREE.LinearFilter;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+
+-  const labelMaterial = new THREE.MeshBasicMaterial({
++  const labelMaterial = new THREE.SpriteMaterial({
+    map: texture,
+-    side: THREE.DoubleSide,
+    transparent: true,
+  });
+
+  const root = new THREE.Object3D();
+  root.position.x = x;
+
+  const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+  root.add(body);
+  body.position.y = bodyHeight / 2;
+
+  const head = new THREE.Mesh(headGeometry, bodyMaterial);
+  root.add(head);
+  head.position.y = bodyHeight + headRadius * 1.1;
+
+-  const label = new THREE.Mesh(labelGeometry, labelMaterial);
++  const label = new THREE.Sprite(labelMaterial);
+  root.add(label);
+  label.position.y = bodyHeight * 4 / 5;
+  label.position.z = bodyRadiusTop * 1.01;
+</code></pre>
+<p>and the labels now always face the camera</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-billboard-labels-w-sprites.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-billboard-labels-w-sprites.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>One problem is from certain angles the labels now intersect the
+characters. </p>
+<div class="threejs_center"><img src="resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
+
+<p>We can move the position of the labels to fix.</p>
+<pre class="prettyprint"><code class="lang-js">+// if units are meters then 0.01 here makes size
++// of the label into centimeters.
++const labelBaseScale = 0.01;
+const label = new THREE.Sprite(labelMaterial);
+root.add(label);
+-label.position.y = bodyHeight * 4 / 5;
+-label.position.z = bodyRadiusTop * 1.01;
++label.position.y = head.position.y + headRadius + size * labelBaseScale;
+
+-// if units are meters then 0.01 here makes size
+-// of the label into centimeters.
+-const labelBaseScale = 0.01;
+label.scale.x = canvas.width  * labelBaseScale;
+label.scale.y = canvas.height * labelBaseScale;
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-billboard-labels-w-sprites-adjust-height.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-billboard-labels-w-sprites-adjust-height.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Another thing we can do with billboards is draw facades.</p>
+<p>Instead of drawing 3D objects we draw 2D planes with an image
+of 3D objects. This is often faster than drawing 3D objects.</p>
+<p>For example let&#39;s make a scene with grid of trees. We&#39;ll make each
+tree from a cylinder for the base and a cone for the top.</p>
+<p>First we make the cone and cylinder geometry and materials that
+all the trees will share</p>
+<pre class="prettyprint"><code class="lang-js">const trunkRadius = .2;
+const trunkHeight = 1;
+const trunkRadialSegments = 12;
+const trunkGeometry = new THREE.CylinderBufferGeometry(
+    trunkRadius, trunkRadius, trunkHeight, trunkRadialSegments);
+
+const topRadius = trunkRadius * 4;
+const topHeight = trunkHeight * 2;
+const topSegments = 12;
+const topGeometry = new THREE.ConeBufferGeometry(
+    topRadius, topHeight, topSegments);
+
+const trunkMaterial = new THREE.MeshPhongMaterial({color: &#39;brown&#39;});
+const topMaterial = new THREE.MeshPhongMaterial({color: &#39;green&#39;});
+</code></pre>
+<p>Then we&#39;ll make a function that makes a <code>Mesh</code> each for the trunk and top
+of a tree and parents both to an <code>Object3D</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function makeTree(x, z) {
+  const root = new THREE.Object3D();
+  const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
+  trunk.position.y = trunkHeight / 2;
+  root.add(trunk);
+
+  const top = new THREE.Mesh(topGeometry, topMaterial);
+  top.position.y = trunkHeight + topHeight / 2;
+  root.add(top);
+
+  root.position.set(x, 0, z);
+  scene.add(root);
+
+  return root;
+}
+</code></pre>
+<p>Then we&#39;ll make a loop to place a grid of trees.</p>
+<pre class="prettyprint"><code class="lang-js">for (let z = -50; z &lt;= 50; z += 10) {
+  for (let x = -50; x &lt;= 50; x += 10) {
+    makeTree(x, z);
+  }
+}
+</code></pre>
+<p>Let&#39;s also add a ground plane while we&#39;re at it</p>
+<pre class="prettyprint"><code class="lang-js">// add ground
+{
+  const size = 400;
+  const geometry = new THREE.PlaneBufferGeometry(size, size);
+  const material = new THREE.MeshPhongMaterial({color: &#39;gray&#39;});
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.rotation.x = Math.PI * -0.5;
+  scene.add(mesh);
+}
+</code></pre>
+<p>and change the background to light blue</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+-scene.background = new THREE.Color(&#39;white&#39;);
++scene.background = new THREE.Color(&#39;lightblue&#39;);
+</code></pre>
+<p>and we get a grid of trees</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-billboard-trees-no-billboards.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-billboard-trees-no-billboards.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>There are 11x11 or 121 trees. Each tree is made from a 12 polygon
+cone and a 48 polygon trunk so each tree is 60 polygons. 121 * 60
+is 7260 polygons. That&#39;s not that many but of course a more detailed
+3D tree might be 1000-3000 polygons. If they were 3000 polygons each
+then 121 trees would be 363000 polygons to draw.</p>
+<p>Using facades we can bring that number down.</p>
+<p>We could manually create a facade in some painting program but let&#39;s write 
+some code to try to generate one.</p>
+<p>Let&#39;s write some code to render an object to a texture
+using a <code>RenderTarget</code>. We covered rendering to a <code>RenderTarget</code>
+in <a href="threejs-rendertargets.html">the article on render targets</a>.</p>
+<pre class="prettyprint"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+  const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+  const halfFovY = THREE.Math.degToRad(camera.fov * .5);
+  const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+
+  camera.position.copy(boxCenter);
+  camera.position.z += distance;
+
+  // pick some near and far values for the frustum that
+  // will contain the box.
+  camera.near = boxSize / 100;
+  camera.far = boxSize * 100;
+
+  camera.updateProjectionMatrix();
+}
+
+function makeSpriteTexture(textureSize, obj) {
+  const rt = new THREE.WebGLRenderTarget(textureSize, textureSize);
+
+  const aspect = 1;  // because the render target is square
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+  scene.add(obj);
+
+  // compute the box that contains obj
+  const box = new THREE.Box3().setFromObject(obj);
+
+  const boxSize = box.getSize(new THREE.Vector3());
+  const boxCenter = box.getCenter(new THREE.Vector3());
+
+  // set the camera to frame the box
+  const fudge = 1.1;
+  const size = Math.max(...boxSize.toArray()) * fudge;
+  frameArea(size, size, boxCenter, camera);
+
+  renderer.autoClear = false;
+  renderer.setRenderTarget(rt);
+  renderer.render(scene, camera);
+  renderer.setRenderTarget(null);
+  renderer.autoClear = true;
+
+  scene.remove(obj);
+
+  return {
+    position: boxCenter.multiplyScalar(fudge),
+    scale: size,
+    texture: rt.texture,
+  };
+}
+</code></pre>
+<p>Some things to note about the code above:</p>
+<p>We&#39;re using the field of view (<code>fov</code>) defined above this code.</p>
+<p>We&#39;re computing a box that contains the tree the same way
+we did in <a href="threejs-load-obj.html">the article on loading a .obj file</a>
+with a few minor changes.</p>
+<p>We call <code>frameArea</code> again adapted <a href="threejs-load-obj.html">the article on loading a .obj file</a>.
+In this case we compute how far the camera needs to be away from the object
+given its field of view to contain the object. We then position the camera -z that distance
+from the center of the box that contains the object.</p>
+<p>We multiply the size we want to fit by 1.1 (<code>fudge</code>) to make sure the tree fits
+completely in the render target. The issue here is the size we&#39;re using to
+calculate if the object fits in the camera&#39;s view is not taking into account
+that the very edges of the object will end up dipping outside area we
+calculated. We could compute how to make 100% of the box fit but that would
+waste space as well so instead we just <em>fudge</em> it.</p>
+<p>Then we render to the render target and remove the object from
+the scene. </p>
+<p>It&#39;s important to note we need the lights in the scene but we
+need to make sure nothing else is in the scene.</p>
+<p>We also need to not set a background color on the scene</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+-scene.background = new THREE.Color(&#39;lightblue&#39;);
+</code></pre>
+<p>Finally we&#39;ve made the texture we return it and the position and scale we
+need to make the facade so that it will appear to be in the same place.</p>
+<p>We then make a tree and call this code and pass it in</p>
+<pre class="prettyprint"><code class="lang-js">// make billboard texture
+const tree = makeTree(0, 0);
+const facadeSize = 64;
+const treeSpriteInfo = makeSpriteTexture(facadeSize, tree);
+</code></pre>
+<p>We can then make a grid of facades instead of a grid of tree models</p>
+<pre class="prettyprint"><code class="lang-js">+function makeSprite(spriteInfo, x, z) {
++  const {texture, offset, scale} = spriteInfo;
++  const mat = new THREE.SpriteMaterial({
++    map: texture,
++    transparent: true,
++  });
++  const sprite = new THREE.Sprite(mat);
++  scene.add(sprite);
++  sprite.position.set(
++      offset.x + x,
++      offset.y,
++      offset.z + z);
++  sprite.scale.set(scale, scale, scale);
++}
+
+for (let z = -50; z &lt;= 50; z += 10) {
+  for (let x = -50; x &lt;= 50; x += 10) {
+-    makeTree(x, z);
++    makeSprite(treeSpriteInfo, x, z);
+  }
+}
+</code></pre>
+<p>In the code above we apply the offset and scale needed to position the facade so it
+appears the same place the original tree would have appeared.</p>
+<p>Now that we&#39;re done making the tree facade texture we can set the background again</p>
+<pre class="prettyprint"><code class="lang-js">scene.background = new THREE.Color(&#39;lightblue&#39;);
+</code></pre>
+<p>and now we get a scene of tree facades</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-billboard-trees-static-billboards.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-billboard-trees-static-billboards.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Compare to the trees models above and you can see it looks fairly similar.
+We used a low-res texture, just 64x64 pixels so the facades are blocky.
+You could increase the resolution. Often facades are used only in the far
+distance when they are fairly small so a low-res texture is enough and
+it saves on drawing detailed trees that are only a few pixels big when
+far away.</p>
+<p>Another issue is we are only viewing the tree from one side. This is often
+solved by rendering more facades, say from 8 directions around the object
+and then setting which facade to show based on which direction the camera
+is looking at the facade.</p>
+<p>Whether or not you use facades is up to you but hopefully this article
+gave you some ideas and suggested some solutions if you decide to use them.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-billboards.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-billboards.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-billboards.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Billboards';
+            var disqus_title = 'Three.js Billboards';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

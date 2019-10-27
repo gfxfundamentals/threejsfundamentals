@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-transparency.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How to deal with transparency issues in THREE.js" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-transparency_en.jpg" />
+
+<meta property="og:title" content="Three.js Transparency" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-transparency_en.jpg" />
+<meta property="og:description" content="How to deal with transparency issues in THREE.js" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Transparency" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html" />
+<meta name="twitter:description" content="How to deal with transparency issues in THREE.js" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-transparency_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-transparency_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html",
+      "inLanguage":"en",
+      "name":"Three.js Transparency",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Transparency</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-transparency.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-transparency.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-transparency.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Transparency</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Transparency in three.js is both easy and hard.</p>
+<p>First we&#39;ll go over the easy part. Let&#39;s make a
+scene with 8 cubes placed in a 2x2x2 grid.</p>
+<p>We&#39;ll start with the example from
+<a href="threejs-rendering-on-demand.md">the article on rendering on demand</a>
+which had 3 cubes and modify it to have 8. First
+let&#39;s change our <code>makeInstance</code> function to take
+an x, y, and z</p>
+<pre class="prettyprint"><code class="lang-js">-function makeInstance(geometry, color) {
++function makeInstance(geometry, color, x, y, z) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+-  cube.position.x = x;
++  cube.position.set(x, y, z);
+
+  return cube;
+}
+</code></pre>
+<p>Then we can create 8 cubes</p>
+<pre class="prettyprint"><code class="lang-js">+function hsl(h, s, l) {
++  return (new THREE.Color()).setHSL(h, s, l);
++}
+
+-makeInstance(geometry, 0x44aa88,  0);
+-makeInstance(geometry, 0x8844aa, -2);
+-makeInstance(geometry, 0xaa8844,  2);
+
++{
++  const d = 0.8;
++  makeInstance(geometry, hsl(0 / 8, 1, .5), -d, -d, -d);
++  makeInstance(geometry, hsl(1 / 8, 1, .5),  d, -d, -d);
++  makeInstance(geometry, hsl(2 / 8, 1, .5), -d,  d, -d);
++  makeInstance(geometry, hsl(3 / 8, 1, .5),  d,  d, -d);
++  makeInstance(geometry, hsl(4 / 8, 1, .5), -d, -d,  d);
++  makeInstance(geometry, hsl(5 / 8, 1, .5),  d, -d,  d);
++  makeInstance(geometry, hsl(6 / 8, 1, .5), -d,  d,  d);
++  makeInstance(geometry, hsl(7 / 8, 1, .5),  d,  d,  d);
++}
+</code></pre>
+<p>I also adjusted the camera</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 25;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 4;
++camera.position.z = 2;
+</code></pre>
+<p>Set the background to white</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
++scene.background = new THREE.Color(&#39;white&#39;);
+</code></pre>
+<p>And added a second light so all sides of the cubes get some lighting.</p>
+<pre class="prettyprint"><code class="lang-js">-{
++function addLight(...pos) {
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+-  light.position.set(-1, 2, 4);
++  light.position.set(...pos);
+  scene.add(light);
+}
++addLight(-1, 2, 4);
++addLight( 1, -1, -2);
+</code></pre>
+<p>To make the cubes transparent we just need to set the
+<a href="Material.transparent"><code>transparent</code></a> flag and to set an
+<a href="Material.opacity"><code>opacity</code></a> level with 1 being completely opaque
+and 0 being completely transparent.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x, y, z) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshPhongMaterial({
++    color,
++    opacity: 0.5,
++    transparent: true,
++  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.set(x, y, z);
+
+  return cube;
+}
+</code></pre>
+<p>and with that we get 8 transparent cubes</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-transparency.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Drag on the example to rotate the view. </p>
+<p>So it seems easy but ... look closer. The cubes are
+missing their backs.</p>
+<div class="threejs_center"><img src="resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
+<div class="threejs_center">no backs</div>
+
+<p>We learned about the <a href="Material.side"><code>side</code></a> material property in 
+<a href="threejs-materials.html">the article on materials</a>.
+So, let&#39;s set it to <code>THREE.DoubleSide</code> to get both sides of each cube to be drawn.</p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
+  color,
+  map: loader.load(url),
+  opacity: 0.5,
+  transparent: true,
++  side: THREE.DoubleSide,
+});
+</code></pre>
+<p>And we get</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-doubleside.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-doubleside.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Give it a spin. It kind of looks like it&#39;s working as we can see backs
+except on closer inspection sometimes we can&#39;t.</p>
+<div class="threejs_center"><img src="resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
+<div class="threejs_center">the left back face of each cube is missing</div>
+
+<p>This happens because of the way 3D objects are generally drawn. For each geometry
+each triangle is drawn one at a time. When each pixel of the triangle is drawn
+2 things are recorded. One, the color for that pixel and two, the depth of that pixel.
+When the next triangle is drawn, for each pixel if the depth is deeper than the
+previously recorded depth no pixel is drawn.</p>
+<p>This works great for opaque things but it fails for transparent things.</p>
+<p>The solution is to sort transparent things and draw the stuff in back before
+drawing the stuff in front. THREE.js does this for objects like <code>Mesh</code> otherwise
+the very first example would have failed between cubes with some cubes blocking
+out others. Unfortunately for individual triangles shorting would be extremely slow. </p>
+<p>The cube has 12 triangles, 2 for each face, and the order they are drawn is 
+<a href="threejs-custom-buffergeometry.html">the same order they are built in the geometry</a>
+so depending on which direction we are looking the triangles closer to the camera
+might get drawn first. In that case the triangles in the back aren&#39;t drawn.
+This is why sometimes we don&#39;t see the backs.</p>
+<p>For a convex object like a sphere or a cube one kind of solution is to add
+every cube to the scene twice. Once with a material that draws
+only the back facing triangles and another with a material that only
+draws the front facing triangles.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x, y, z) {
++  [THREE.BackSide, THREE.FrontSide].forEach((side) =&gt; {
+    const material = new THREE.MeshPhongMaterial({
+      color,
+      opacity: 0.5,
+      transparent: true,
++      side,
+    });
+
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    cube.position.set(x, y, z);
++  });
+}
+</code></pre>
+<p>Any with that it <em>seems</em> to work.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-doubleside-hack.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-doubleside-hack.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>It assumes that the three.js&#39;s sorting is stable. Meaning that because we
+added the <code>side: THREE.BackSide</code> mesh first and because it&#39;s at the exact same
+position that it will be drawn before the <code>side: THREE.FrontSide</code> mesh.</p>
+<p>Let&#39;s make 2 intersecting planes (after deleting all the code related to cubes).
+We&#39;ll <a href="threejs-textures.html">add a texture</a> to each plane.</p>
+<pre class="prettyprint"><code class="lang-js">const planeWidth = 1;
+const planeHeight = 1;
+const geometry = new THREE.PlaneBufferGeometry(planeWidth, planeHeight);
+
+const loader = new THREE.TextureLoader();
+
+function makeInstance(geometry, color, rotY, url) {
+  const texture = loader.load(url, render);
+  const material = new THREE.MeshPhongMaterial({
+    color,
+    map: texture,
+    opacity: 0.5,
+    transparent: true,
+    side: THREE.DoubleSide,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  mesh.rotation.y = rotY;
+}
+
+makeInstance(geometry, &#39;pink&#39;,       0,             &#39;resources/images/happyface.png&#39;);
+makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/images/hmmmface.png&#39;);
+</code></pre>
+<p>This time we can use <code>side: THREE.DoubleSide</code> since we can only ever see one
+side of a plane at a time. Also note we pass our <code>render</code> function to the texture
+loading function so that when the texture finishes loading we re-render the scene.
+This is because this sample is <a href="threejs-rendering-on-demand.html">rendering on demand</a>
+instead of rendering continuously.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-intersecting-planes.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-intersecting-planes.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>And again we see a similar issue.</p>
+<div class="threejs_center"><img src="resources/images/transparency-planes.png" style="width: 408px;"></div>
+<div class="threejs_center">half a face is missing</div>
+
+<p>The solution here is to manually split the each pane into 2 panes
+so that there really is no intersection.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, rotY, url) {
++  const base = new THREE.Object3D();
++  scene.add(base);
++  base.rotation.y = rotY;
+
++  [-1, 1].forEach((x) =&gt; {
+    const texture = loader.load(url, render);
++    texture.offset.x = x &lt; 0 ? 0 : 0.5;
++    texture.repeat.x = .5;
+    const material = new THREE.MeshPhongMaterial({
+      color,
+      map: texture,
+      opacity: 0.5,
+      transparent: true,
+      side: THREE.DoubleSide,
+    });
+
+    const mesh = new THREE.Mesh(geometry, material);
+-    scene.add(mesh);
++    base.add(mesh);
+
+-    mesh.rotation.y = rotY;
++    mesh.position.x = x * .25;
+  });
+}
+</code></pre>
+<p>How you accomplish that is up to you. If I was using modeling package like
+<a href="https://blender.org">Blender</a> I&#39;d probably do this manually by adjusting
+texture coordinates. Here though we&#39;re using <code>PlaneBufferGeometry</code> which by
+default stretches the texture across the plane. Like we <a href="threejs-textures.html">covered
+before</a> By setting the <a href="Texture.repeat"><code>texture.repeat</code></a>
+and <a href="Texture.offset"><code>texture.offset</code></a> we can scale and move the texture to get
+the correct half of the face texture on each plane.</p>
+<p>The code above also makes a <code>Object3D</code> and parents the 2 planes to it.
+It seemed easier to rotate a parent <code>Object3D</code> than to do the math
+required do it without. </p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-intersecting-planes-fixed.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-intersecting-planes-fixed.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>This solution really only works for simple things like 2 planes that
+are not changing their intersection position.</p>
+<p>For textured objects one more solution is to set an alpha test.</p>
+<p>An alpha test is a level of <em>alpha</em> below which three.js will not
+draw the pixel. If we don&#39;t draw a pixel at all then the depth
+issues mentioned above disappear. For relatively sharp edged textures
+this works pretty well. Examples include leaf textures on a plant or tree
+or often a patch of grass.</p>
+<p>Let&#39;s try on the 2 planes. First let&#39;s use different textures.
+The textures above were 100% opaque. These 2 use transparency.</p>
+<div class="spread">
+  <div><img class="checkerboard" src="../resources/images/tree-01.png"></div>
+  <div><img class="checkerboard" src="../resources/images/tree-02.png"></div>
+</div>
+
+<p>Going back to the 2 planes that intersect (before we split them) let&#39;s
+use these textures and set an <a href="Material.alphaTest"><code>alphaTest</code></a>.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, rotY, url) {
+  const texture = loader.load(url, render);
+  const material = new THREE.MeshPhongMaterial({
+    color,
+    map: texture,
+-    opacity: 0.5,
+    transparent: true,
++    alphaTest: 0.5,
+    side: THREE.DoubleSide,
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  mesh.rotation.y = rotY;
+}
+
+-makeInstance(geometry, &#39;pink&#39;,       0,             &#39;resources/images/happyface.png&#39;);
+-makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/images/hmmmface.png&#39;);
++makeInstance(geometry, &#39;white&#39;, 0,             &#39;resources/images/tree-01.png&#39;);
++makeInstance(geometry, &#39;white&#39;, Math.PI * 0.5, &#39;resources/images/tree-02.png&#39;);
+</code></pre>
+<p>Before we run this let&#39;s add a small UI so we can more easily play with the <code>alphaTest</code>
+and <code>transparent</code> settings. We&#39;ll use dat.gui like we introduced
+in the <a href="threejs-scenegraph.html">article on three.js&#39;s scenegraph</a>.</p>
+<p>First we&#39;ll make a helper for dat.gui that sets every material in the scene
+to a value</p>
+<pre class="prettyprint"><code class="lang-js">class AllMaterialPropertyGUIHelper {
+  constructor(prop, scene) {
+    this.prop = prop;
+    this.scene = scene;
+  }
+  get value() {
+    const {scene, prop} = this;
+    let v;
+    scene.traverse((obj) =&gt; {
+      if (obj.material &amp;&amp; obj.material[prop] !== undefined) {
+        v = obj.material[prop];
+      }
+    });
+    return v;
+  }
+  set value(v) {
+    const {scene, prop} = this;
+    scene.traverse((obj) =&gt; {
+      if (obj.material &amp;&amp; obj.material[prop] !== undefined) {
+        obj.material[prop] = v;
+        obj.material.needsUpdate = true;
+      }
+    });
+  }
+}
+</code></pre>
+<p>Then we&#39;ll add the gui</p>
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
+gui.add(new AllMaterialPropertyGUIHelper(&#39;alphaTest&#39;, scene), &#39;value&#39;, 0, 1)
+    .name(&#39;alphaTest&#39;)
+    .onChange(requestRenderIfNotRequested);
+gui.add(new AllMaterialPropertyGUIHelper(&#39;transparent&#39;, scene), &#39;value&#39;)
+    .name(&#39;transparent&#39;)
+    .onChange(requestRenderIfNotRequested);
+</code></pre>
+<p>and of course we need to include dat.gui</p>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
++import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
+</code></pre>
+<p>and here&#39;s the results</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-intersecting-planes-alphatest.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-intersecting-planes-alphatest.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>You can see it works but zoom in and you&#39;ll see one plane has white lines.</p>
+<div class="threejs_center"><img src="resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
+
+<p>This is the same depth issue from before. That plane was drawn first
+so the plane behind is not drawn. There is no perfect solution.
+Adjust the <code>alphaTest</code> and/or turn off <code>transparent</code> to find a solution
+that fits your use case.</p>
+<p>The take way from this article is perfect transparency is hard. 
+There are issues and trade offs and workarounds.</p>
+<p>For example say you have a car.
+Cars usually have windshields on all 4 sides. If you want to avoid the sorting issues
+above you&#39;d have to make each window its own object so that three.js can
+sort the windows and draw them in the correct order.</p>
+<p>If you are making some plants or grass the alpha test solution is common.</p>
+<p>Which solution you pick depends on your needs. </p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-transparency.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-transparency.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-transparency.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Transparency';
+            var disqus_title = 'Three.js Transparency';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

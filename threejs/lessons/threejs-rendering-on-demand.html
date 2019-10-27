@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-rendering-on-demand.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How to use less energy." />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_en.jpg" />
+
+<meta property="og:title" content="Three.js Rendering on Demand" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_en.jpg" />
+<meta property="og:description" content="How to use less energy." />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Rendering on Demand" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html" />
+<meta name="twitter:description" content="How to use less energy." />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html",
+      "inLanguage":"en",
+      "name":"Three.js Rendering on Demand",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Rendering on Demand</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Rendering on Demand</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>The topic might be obvious to many people but just in case ... most Three.js
+examples render continuously. In other words they setup a
+<code>requestAnimationFrame</code> loop or &quot;<em>rAF loop</em>&quot; something like this</p>
+<pre class="prettyprint"><code class="lang-js">function render() {
+  ...
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p>For something that animates this makes sense but what about for something that
+does not animate? In that case rendering continuously is a waste of the devices
+power and if the user is on portable device it wastes the user&#39;s battery. </p>
+<p>The most obvious way to solve this is to render once at the start and then
+render only when something changes. Changes include textures or models finally
+loading, data arriving from some external source, the user adjusting a setting
+or the camera or giving other relevant input.</p>
+<p>Let&#39;s take an example from <a href="threejs-responsive.html">the article on responsiveness</a>
+and modify it to render on demand.</p>
+<p>First we&#39;ll add in the <code>OrbitControls</code> so there is something that could change
+that we can render in response to.</p>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
+</code></pre>
+<p>and set them up</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.z = 2;
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</code></pre>
+<p>Since we won&#39;t be animating the cubes anymore we no longer need to keep track of them</p>
+<pre class="prettyprint"><code class="lang-js">-const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
+-];
++makeInstance(geometry, 0x44aa88,  0);
++makeInstance(geometry, 0x8844aa, -2);
++makeInstance(geometry, 0xaa8844,  2);
+</code></pre>
+<p>We can remove the code to animate the cubes and the calls to <code>requestAnimationFrame</code></p>
+<pre class="prettyprint"><code class="lang-js">-function render(time) {
+-  time *= 0.001;
++function render() {
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+-  cubes.forEach((cube, ndx) =&gt; {
+-    const speed = 1 + ndx * .1;
+-    const rot = time * speed;
+-    cube.rotation.x = rot;
+-    cube.rotation.y = rot;
+-  });
+
+  renderer.render(scene, camera);
+
+-  requestAnimationFrame(render);
+}
+
+-requestAnimationFrame(render);
+</code></pre>
+<p>then we need to render once</p>
+<pre class="prettyprint"><code class="lang-js">render();
+</code></pre>
+<p>We need to render anytime the <code>OrbitControls</code> change the camera settings.
+Fortunately the <code>OrbitControls</code> dispatch a <code>change</code> event anytime something
+changes.</p>
+<pre class="prettyprint"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
+</code></pre>
+<p>We also need to handle the case where the user resizes the window. That was
+handled automatically before since we were rendering continuously but now what
+we are not we need to render when the window changes size.</p>
+<pre class="prettyprint"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
+</code></pre>
+<p>And with that we get something that renders on demand.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>The <code>OrbitControls</code> have options to add a kind of inertia to make them feel less
+stiff. We can enable this by setting the <code>enableDamping</code> property to true.</p>
+<pre class="prettyprint"><code class="lang-js">controls.enableDamping = true;
+</code></pre>
+<p>With <code>enableDamping</code> on we need to call <code>controls.update</code> in our render function
+so that the <code>OrbitControls</code> can continue to give us new camera settings as they
+smooth out the movement. But, that means we can&#39;t call <code>render</code> directly from
+the <code>change</code> event because we&#39;ll end up in an infinite loop. The controls will
+send us a <code>change</code> event and call <code>render</code>, <code>render</code> will call <code>controls.update</code>.
+<code>controls.update</code> will send another <code>change</code> event.</p>
+<p>We can fix that by using <code>requestAnimationFrame</code> to call <code>render</code> but we need to
+make sure we only ask for a new frame if one has not already been requested
+which we can do by keeping a variable that tracks if we&#39;ve already requested a frame.</p>
+<pre class="prettyprint"><code class="lang-js">+let renderRequested = false;
+
+function render() {
++  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  renderer.render(scene, camera);
+}
+render();
+
++function requestRenderIfNotRequested() {
++  if (!renderRequested) {
++    renderRequested = true;
++    requestAnimationFrame(render);
++  }
++}
+
+-controls.addEventListener(&#39;change&#39;, render);
++controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
+</code></pre>
+<p>We should probably also use <code>requestRenderIfNotRequested</code> for resizing as well</p>
+<pre class="prettyprint"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
++window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
+</code></pre>
+<p>It might be hard to see the difference. Try clicking on the example below and
+use the arrow keys to move around or dragging to spin. Then try clicking on the
+example above and do the same thing and you should be able to tell the
+difference. The one above snaps when you press an arrow key or drag, the one
+below slides.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Let&#39;s also add a simple dat.GUI GUI and make its changes render on demand.</p>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
++import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
+</code></pre>
+<p>Let&#39;s allow setting the color and x scale of each cube. To be able to set the
+color we&#39;ll use the <code>ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
+lights</a>.</p>
+<p>First we need to create a GUI</p>
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
+</code></pre>
+<p>and then for each cube we&#39;ll create a folder and add 2 controls, one for
+<code>material.color</code> and another for <code>cube.scale.x</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
++  const folder = gui.addFolder(`Cube${x}`);
++  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
++      .name(&#39;color&#39;)
++      .onChange(requestRenderIfNotRequested);
++  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
++      .name(&#39;scale x&#39;)
++      .onChange(requestRenderIfNotRequested);
++  folder.open();
+
+  return cube;
+}
+</code></pre>
+<p>You can see above dat.GUI controls have an <code>onChange</code> method that you can pass a
+callback to be called when the GUI changes a value. In our case we just need it
+to call <code>requestRenderIfNotRequested</code>. The call to <code>folder.open</code> makes the
+folder start expanded.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>I hope this gives some idea of how to make three.js render on demand instead of
+continuously. Apps/pages that render three.js on demand are not as common as
+most pages using three.js are either games or 3D animated art but examples of
+pages that might be better rendering on demand would be say a map viewer, a 3d
+editor, a 3d graph generator, a product catalog, etc...</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Rendering on Demand';
+            var disqus_title = 'Three.js Rendering on Demand';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

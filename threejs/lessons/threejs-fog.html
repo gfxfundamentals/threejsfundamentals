@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-fog.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Fog in Three.js" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_en.jpg" />
+
+<meta property="og:title" content="Three.js Fog" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_en.jpg" />
+<meta property="og:description" content="Fog in Three.js" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-fog.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Fog" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-fog.html" />
+<meta name="twitter:description" content="Fog in Three.js" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-fog.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-fog.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-fog.html",
+      "inLanguage":"en",
+      "name":"Three.js Fog",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-fog.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Fog</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-fog.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-fog.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fog.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Fog</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is part of a series of articles about three.js. The
+first article is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If
+you haven&#39;t read that yet and you&#39;re new to three.js you might want to
+consider starting there. If you haven&#39;t read about cameras you might
+want to start with <a href="threejs-cameras.html">this article</a>.</p>
+<p>Fog in a 3D engine is generally a way of fading to a specific color
+based on the distance from the camera. In three.js you add fog by
+creating <code>Fog</code> or <code>FogExp2</code> object and setting it on the scene&#39;s
+<a href="Scene.fog"><code>fog</code></a> property.</p>
+<p><code>Fog</code> lets you choose <code>near</code> and <code>far</code> settings which are distances
+from the camera. Anything closer than <code>near</code> is unaffected by fog.
+Anything further than <code>far</code> is completely the fog color. Parts between
+<code>near</code> and <code>far</code> fade from their material color to the fog color.</p>
+<p>There&#39;s also <code>FogExp2</code> which grows exponentially with distance from the camera.</p>
+<p>To use either type of fog you create one and and assign it to the scene as in</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;  // white
+  const near = 10;
+  const far = 100;
+  scene.fog = new THREE.Fog(color, near, far);
+}
+</code></pre>
+<p>or for <code>FogExp2</code> it would be</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;
+  const density = 0.1;
+  scene.fog = new THREE.FogExp2(color, density);
+}
+</code></pre>
+<p><code>FogExp2</code> is closer to reality but <code>Fog</code> is used
+more commonly since it lets you choose a place to apply
+the fog so you can decide to show a clear scene
+up to a certain distance and then fade out to some color
+past that distance.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fog"></div>
+    <div class="code">THREE.Fog</div>
+  </div>
+  <div>
+    <div data-diagram="fogExp2"></div>
+    <div class="code">THREE.FogExp2</div>
+  </div>
+</div>
+
+<p>It&#39;s important to note that the fog is applied to <em>things that are rendered</em>.
+It is part of the calculation of each pixel of the color of the object.
+What that means is if you want your scene to fade to a certain color you
+need to set the fog <strong>and</strong> the background color to the same color.
+The background color is set using the
+<a href="Scene.background"><code>scene.background</code></a>
+property. To pick a background color you attach a <code>THREE.Color</code> to it. For example</p>
+<pre class="prettyprint"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
+</code></pre>
+<div class="spread">
+  <div>
+    <div data-diagram="fogBlueBackgroundRed" class="border"></div>
+    <div class="code">fog blue, background red</div>
+  </div>
+  <div>
+    <div data-diagram="fogBlueBackgroundBlue" class="border"></div>
+    <div class="code">fog blue, background blue</div>
+  </div>
+</div>
+
+<p>Here is one of our previous examples with fog added. The only addition
+is right after setting up the scene we add the fog and set the scene&#39;s
+background color</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+
++{
++  const near = 1;
++  const far = 2;
++  const color = &#39;lightblue&#39;;
++  scene.fog = new THREE.Fog(color, near, far);
++  scene.background = new THREE.Color(color);
++}
+</code></pre>
+<p>In the example below the camera&#39;s <code>near</code> is 0.1 and its <code>far</code> is 5.
+The camera is at <code>z = 2</code>. The cubes are 1 unit large and at Z = 0.
+This means with a fog setting of <code>near = 1</code> and <code>far = 2</code> the cubes
+will fade out right around their center.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Let&#39;s add an interface so we can adjust the fog. Again we&#39;ll use
+<a href="https://github.com/dataarts/dat.gui">dat.GUI</a>. dat.GUI takes
+an object and a property and automagically makes an interface
+for that type of property. We could just simply let it manipulate
+the fog&#39;s <code>near</code> and <code>far</code> properties but it&#39;s invalid to have
+<code>near</code> be greater than <code>far</code> so let&#39;s make a helper so dat.GUI
+can manipulate a <code>near</code> and <code>far</code> property but we&#39;ll make sure <code>near</code>
+is less than or equal to <code>far</code> and <code>far</code> is greater than or equal <code>near</code>.</p>
+<pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
+// so when it manipulates near or far
+// near is never &gt; far and far is never &lt; near
+class FogGUIHelper {
+  constructor(fog) {
+    this.fog = fog;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
+}
+</code></pre>
+<p>We can then add it like this</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const near = 1;
+  const far = 2;
+  const color = &#39;lightblue&#39;;
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
++
++  const fogGUIHelper = new FogGUIHelper(scene.fog);
++  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
++  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
+}
+</code></pre>
+<p>The <code>near</code> and <code>far</code> parameters set the minimum and maximum values
+for adjusting the fog. They are set when we setup the camera.</p>
+<p>The <code>.listen()</code> at the end of the last 2 lines tells dat.GUI to <em>listen</em>
+for changes. That way when we change <code>near</code> because of an edit to <code>far</code>
+or we change <code>far</code> in response to an edit to <code>near</code> dat.GUI will update
+the other property&#39;s UI for us.</p>
+<p>It might also be nice to be able to change the fog color but like was
+mentioned above we need to keep both the fog color and the background
+color in sync. So, let&#39;s add another <em>virtual</em> property to our helper
+that will set both colors when dat.GUI manipulates it.</p>
+<p>dat.GUI can manipulate colors in 4 ways, as a CSS 6 digit hex string (eg: <code>#112233</code>). As an hue, saturation, value, object (eg: <code>{h: 60, s: 1, v: }</code>).
+As an RGB array (eg: <code>[255, 128, 64]</code>). Or, as an RGBA array (eg: <code>[127, 200, 75, 0.3]</code>).</p>
+<p>It&#39;s easiest for our purpose to use the hex string version since that way
+dat.GUI is only manipulating a single value. Fortunately <code>THREE.Color</code>
+as a <a href="Color.getHexString"><code>getHexString</code></a> method
+we get use to easily get such a string, we just have to prepend a &#39;#&#39; to the front.</p>
+<pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
+// so when it manipulates near or far
+// near is never &gt; far and far is never &lt; near
++// Also when dat.gui manipulates color we&#39;ll
++// update both the fog and background colors.
+class FogGUIHelper {
+*  constructor(fog, backgroundColor) {
+    this.fog = fog;
++    this.backgroundColor = backgroundColor;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
++  get color() {
++    return `#${this.fog.color.getHexString()}`;
++  }
++  set color(hexString) {
++    this.fog.color.set(hexString);
++    this.backgroundColor.set(hexString);
++  }
+}
+</code></pre>
+<p>We then call <code>gui.addColor</code> to add a color UI for our helper&#39;s virtual property.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const near = 1;
+  const far = 2;
+  const color = &#39;lightblue&#39;;
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
+
+*  const fogGUIHelper = new FogGUIHelper(scene.fog, scene.background);
+  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
+  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
++  gui.addColor(fogGUIHelper, &#39;color&#39;);
+}
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>You can see setting <code>near</code> to like 1.9 and <code>far</code> to 2.0 gives
+a very sharp transition between un-fogged and completely fogged.
+where as <code>near</code> = 1.1 and <code>far</code> = 2.9 should just about be
+the smoothest given our cubes are spinning 2 units away from the camera.</p>
+<p>One last thing, there is a boolean <a href="Material.fog"><code>fog</code></a>
+property on a material for whether or not objects rendered
+with that material are affected by fog. It defaults to <code>true</code>
+for most materials. As an example of why you might want
+to turn the fog off, imagine you&#39;re making a 3D vehicle
+simulator with a view from the driver&#39;s seat or cockpit.
+You probably want the fog off for everything inside the vehicle when
+viewing from inside the vehicle.</p>
+<p>A better example might be a house
+and thick fog outside house. Let&#39;s say the fog is set to start
+2 meters away (near = 2) and completely fogged out at 4 meters (far = 4).
+Rooms are longer than 2 meters and the house is probably longer
+than 4 meters so you need to set the materials for the inside
+of the house to not apply fog otherwise when standing inside the
+house looking outside the wall at the far end of the room will look
+like it&#39;s in the fog.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseAll" style="height: 300px;" class="border"></div>
+    <div class="code">fog: true, all</div>
+  </div>
+</div>
+
+<p>Notice the walls and ceiling at the far end of the room are getting fog applied.
+By turning fog off on the materials for the house we can fix that issue.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseInsideNoFog" style="height: 300px;" class="border"></div>
+    <div class="code">fog: true, only outside materials</div>
+  </div>
+</div>
+
+<p><canvas id="c"></canvas></p>
+<script type="module" src="resources/threejs-fog.js"></script>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-fog.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-fog.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fog.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Fog';
+            var disqus_title = 'Three.js Fog';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

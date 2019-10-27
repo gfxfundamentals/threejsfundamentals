@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-custom-geometry.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How to make your own geometry." />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_en.jpg" />
+
+<meta property="og:title" content="Three.js Custom Geometry" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_en.jpg" />
+<meta property="og:description" content="How to make your own geometry." />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Custom Geometry" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html" />
+<meta name="twitter:description" content="How to make your own geometry." />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html",
+      "inLanguage":"en",
+      "name":"Three.js Custom Geometry",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Custom Geometry</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-custom-geometry.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-custom-geometry.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-custom-geometry.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Custom Geometry</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>A <a href="threejs-primitives.html">previous article</a> gave a tour of
+the various built in primitives included in THREE.js. In this
+article we&#39;ll cover making our own geometry.</p>
+<p>Just to be clear, if you are serious about making 3D content,
+the most common way is to use a 3D modeling package like
+<a href="https://blender.org">Blender</a>,
+<a href="https://www.autodesk.com/products/maya/overview">Maya</a>,
+<a href="https://www.autodesk.com/products/3ds-max/overview">3D Studio Max</a>,
+<a href="https://www.maxon.net/en-us/">Cinema4D</a>, etc...
+You&#39;d build a model and then export to <a href="threejs-load-gltf.html">gLTF</a>
+or <a href="threejs-load-obj.html">.obj</a> and load them up.
+Whichever one you choose, expect to spend 2 or 3 weeks going through
+their respective tutorials as all of them have a learning curve
+to be useful.</p>
+<p>Still, there are times when we might want to generate our own
+3D geometry in code instead of using a modeling package.</p>
+<p>First let&#39;s just make a cube. Even though three.js already
+provides us with <code>BoxGeometry</code> and <code>BoxBufferGeometry</code> a
+cube is easy to understand so let&#39;s start there.</p>
+<p>There are 2 ways to make custom geometry in THREE.js. One
+is with the <code>Geometry</code> class, the other is <code>BufferGeometry</code>.
+Each has their advantages. <code>Geometry</code> is arguably easier to
+use but slower and uses more memory. For few 1000s triangles
+it&#39;s a great choice but for 10s of thousands of triangles
+it might be better to use <code>BufferGeometry</code>.</p>
+<p><code>BufferGeometry</code> is arguably harder to use but uses less
+memory and is faster. If quick rule of thumb might be
+if you&#39;re going to generate more than 10000 triangles
+consider using <code>BufferGeometry</code>.</p>
+<p>Note when I say <code>Geometry</code> is slower I mean it is slower to
+start and slower to modify but it is not slower to draw so
+if you&#39;re not planning on modifying your geometry then
+as long as it&#39;s not too large there will only be slightly more
+delay for your program to start using <code>Geometry</code> vs using
+<code>BufferGeometry</code>. We&#39;ll go over both eventually. For now
+though let&#39;s use geometry as it&#39;s easier to understand IMO.</p>
+<p>First let&#39;s make a cube with <code>Geometry</code>. We&#39;ll start
+with an example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
+<p>Let&#39;s remove the part that uses <code>BoxGeometry</code> and replace it with
+a <code>Geometry</code>.</p>
+<pre class="prettyprint"><code class="lang-js">-const boxWidth = 1;
+-const boxHeight = 1;
+-const boxDepth = 1;
+-const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
++const geometry = new THREE.Geometry();
+</code></pre>
+<p>Now let&#39;s add the 8 corners of a cube. Here are the 8 corners.</p>
+<div class="threejs_center"><img src="resources/cube-vertex-positions.svg" style="width: 500px"></div>
+
+<p>Centered around the origin we can add the vertex positions like this</p>
+<pre class="prettyprint"><code class="lang-js">const geometry = new THREE.Geometry();
++geometry.vertices.push(
++  new THREE.Vector3(-1, -1,  1),  // 0
++  new THREE.Vector3( 1, -1,  1),  // 1
++  new THREE.Vector3(-1,  1,  1),  // 2
++  new THREE.Vector3( 1,  1,  1),  // 3
++  new THREE.Vector3(-1, -1, -1),  // 4
++  new THREE.Vector3( 1, -1, -1),  // 5
++  new THREE.Vector3(-1,  1, -1),  // 6
++  new THREE.Vector3( 1,  1, -1),  // 7
++);
+</code></pre>
+<p>We then need to make triangles, 2 for each face of the cube</p>
+<div class="threejs_center"><img src="resources/cube-triangles.svg" style="width: 500px"></div>
+
+<p>We do that by creating <code>Face3</code> objects and specifying the indices
+of the 3 vertices that make up that face.</p>
+<p>The order we specify the vertices is important. To be pointing toward the
+outside of the cube they must be specified in a counter clockwise direction
+when that triangle is facing the camera.</p>
+<div class="threejs_center"><img src="resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
+
+<p>Following that pattern we can specify the 12 triangles that make
+the cube like this</p>
+<pre class="prettyprint"><code class="lang-js">geometry.faces.push(
+  // front
+  new THREE.Face3(0, 3, 2),
+  new THREE.Face3(0, 1, 3),
+  // right
+  new THREE.Face3(1, 7, 3),
+  new THREE.Face3(1, 5, 7),
+  // back
+  new THREE.Face3(5, 6, 7),
+  new THREE.Face3(5, 4, 6),
+  // left
+  new THREE.Face3(4, 2, 6),
+  new THREE.Face3(4, 0, 2),
+  // top
+  new THREE.Face3(2, 7, 6),
+  new THREE.Face3(2, 3, 7),
+  // bottom
+  new THREE.Face3(4, 1, 0),
+  new THREE.Face3(4, 5, 1),
+);
+</code></pre>
+<p>A few other minor changes to the original code and it should
+work.</p>
+<p>These cubes are twice as large as the <code>BoxGeometry</code> we were
+using before so let&#39;s move the camera back a little</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.z = 5;
+</code></pre>
+<p>and let&#39;s separate them a little more and I changed their colors just because</p>
+<pre class="prettyprint"><code class="lang-js">const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
++  makeInstance(geometry, 0x44FF44,  0),
++  makeInstance(geometry, 0x4444FF, -4),
++  makeInstance(geometry, 0xFF4444,  4),
+];
+</code></pre>
+<p>One last thing is we haven&#39;t added normals yet so we
+can&#39;t do any lighting. Let&#39;s change the material
+to something that doesn&#39;t need lights.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshBasicMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  ...
+</code></pre>
+<p>and we get cubes we made ourselves.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>We can specify a color per face by setting the <code>color</code> property of
+each face.</p>
+<pre class="prettyprint"><code class="lang-js">geometry.faces[ 0].color = geometry.faces[ 1].color = new THREE.Color(&#39;red&#39;);
+geometry.faces[ 2].color = geometry.faces[ 3].color = new THREE.Color(&#39;yellow&#39;);
+geometry.faces[ 4].color = geometry.faces[ 5].color = new THREE.Color(&#39;green&#39;);
+geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color(&#39;cyan&#39;);
+geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color(&#39;blue&#39;);
+geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magenta&#39;);
+</code></pre>
+<p>note we need to tell the material we want to use <code>FaceColors</code></p>
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color});
++const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-face-colors.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>We can instead set the color of each individual vertex by setting the <code>vertexColors</code>
+property to an array of the 3 colors for the 3 vertices.</p>
+<pre class="prettyprint"><code class="lang-js">geometry.faces.forEach((face, ndx) =&gt; {
+  face.vertexColors = [
+    (new THREE.Color()).setHSL(ndx / 12      , 1, 0.5),
+    (new THREE.Color()).setHSL(ndx / 12 + 0.1, 1, 0.5),
+    (new THREE.Color()).setHSL(ndx / 12 + 0.2, 1, 0.5),
+  ];
+});
+</code></pre>
+<p>and we need to tell the material to use vertex colors</p>
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
++const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-colors.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>To use lighting we need normals. Normals are vectors that specify direction.
+Just like the colors we can specify a normal for the face by setting the <code>normal</code>
+property on each face with</p>
+<pre class="prettyprint"><code class="lang-js">face.normal = new THREE.Vector3(...)
+</code></pre>
+<p>or we can specify a normal for each vertex by setting the <code>vertexNormals</code>
+property with something like</p>
+<pre class="prettyprint"><code class="lang-js">face.vertexNormals = [
+  new THREE.Vector3(...),
+  new THREE.Vector3(...),
+  new THREE.Vector3(...),
+]
+</code></pre>
+<p>but often it&#39;s much easier to just ask THREE.js to compute normals
+for us based on the positions we specified.</p>
+<p>For face normals we&#39;d call <code>Geometry.computeFaceNormals</code> as in</p>
+<pre class="prettyprint"><code class="lang-js">geometry.computeFaceNormals();
+</code></pre>
+<p>Removing the vertex color stuff and changing the material back to <code>MeshPhongMaterial</code></p>
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
++const material = new THREE.MeshPhongMaterial({color});
+</code></pre>
+<p>and now our cubes can be lit.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-normals.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-face-normals.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Using face normals will always give us a faceted look. We can use
+vertex normals for a smoother look by calling <code>Geometry.computeVertexNormals</code></p>
+<pre class="prettyprint"><code class="lang-js">-geometry.computeFaceNormals();
++geometry.computeVertexNormals();
+</code></pre>
+<p>Unfortunately a cube is not a good candidate for vertex normals since it
+means each vertex gets its normal from the
+normals of all the faces it shares.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-normals.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-normals.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Adding texture coordinates, sometimes called UVs, is done via an array of
+layers of parallel arrays to the <code>faces</code> array which is set via <code>Geometry.faceVertexUvs</code>.
+For our cube we could do something like</p>
+<pre class="prettyprint"><code class="lang-js">geometry.faceVertexUvs[0].push(
+  // front
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // right
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // back
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // left
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // top
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // bottom
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+);
+</code></pre>
+<p>It&#39;s important to notice <code>faceVertexUvs</code> is an array of layers. Each layer
+is another set of UV coordinates. By default there is one layer of UV coordinates,
+layer 0, so we just add our UVs to that layer.</p>
+<p>Let&#39;s <a href="threejs-textures.html">add a texture</a> to our material and switch back
+back to compute face normals</p>
+<pre class="prettyprint"><code class="lang-js">-geometry.computeVertexNormals();
++geometry.computeFaceNormals();
+
++const loader = new THREE.TextureLoader();
++const texture = loader.load(&#39;resources/images/star.png&#39;);
+
+function makeInstance(geometry, color, x) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshPhongMaterial({color, map: texture});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  ...
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-texcoords.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-texcoords.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Putting that all together, let&#39;s make a simple heightmap based
+terrain mesh.</p>
+<p>A heightmap based terrain is where you have a 2D array of heights
+that you apply them to a grid. An easy way to get a 2D array of heights
+is to draw them in an image editing program. Here&#39;s an image I drew.
+It&#39;s 64x64 pixels</p>
+<div class="threejs_center"><img src="../resources/images/heightmap-64x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+
+<p>We&#39;ll load that and then generate a heightmap mesh from it.
+We can use the <code>ImageLoader</code> to load the image.</p>
+<pre class="prettyprint"><code class="lang-js">const imgLoader = new THREE.ImageLoader();
+imgLoader.load(&#39;resources/images/heightmap-64x64.png&#39;, createHeightmap);
+
+function createHeightmap(image) {
+  // extract the data from the image by drawing it to a canvas
+  // and calling getImageData
+  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  const {width, height} = image;
+  ctx.canvas.width = width;
+  ctx.canvas.height = height;
+  ctx.drawImage(image, 0, 0);
+  const {data} = ctx.getImageData(0, 0, width, height);
+
+  const geometry = new THREE.Geometry();
+</code></pre>
+<p>We extracted the data from the image, now we&#39;ll make a grid of cells.
+The cells are the squares formed by the center points of each pixel
+from the image</p>
+<div class="threejs_center"><img src="resources/heightmap-points.svg" style="width: 500px"></div>
+
+<p>For each cell we&#39;ll generate 5 vertices. One for each corner of the cell
+and one at the center point of the cell with the average height of the 4
+corner heights.</p>
+<pre class="prettyprint"><code class="lang-js">const cellsAcross = width - 1;
+const cellsDeep = height - 1;
+for (let z = 0; z &lt; cellsDeep; ++z) {
+  for (let x = 0; x &lt; cellsAcross; ++x) {
+    // compute row offsets into the height data
+    // we multiply by 4 because the data is R,G,B,A but we
+    // only care about R
+    const base0 = (z * width + x) * 4;
+    const base1 = base0 + (width * 4);
+
+    // look up the height for the for points
+    // around this cell
+    const h00 = data[base0] / 32;
+    const h01 = data[base0 + 4] / 32;
+    const h10 = data[base1] / 32;
+    const h11 = data[base1 + 4] / 32;
+    // compute the average height
+    const hm = (h00 + h01 + h10 + h11) / 4;
+
+    // the corner positions
+    const x0 = x;
+    const x1 = x + 1;
+    const z0 = z;
+    const z1 = z + 1;
+
+    // remember the first index of these 5 vertices
+    const ndx = geometry.vertices.length;
+
+    // add the 4 corners for this cell and the midpoint
+    geometry.vertices.push(
+      new THREE.Vector3(x0, h00, z0),
+      new THREE.Vector3(x1, h01, z0),
+      new THREE.Vector3(x0, h10, z1),
+      new THREE.Vector3(x1, h11, z1),
+      new THREE.Vector3((x0 + x1) / 2, hm, (z0 + z1) / 2),
+    );
+</code></pre>
+<p>We&#39;ll then make 4 triangles from those 5 vertices</p>
+<div class="threejs_center"><img src="resources/heightmap-triangles.svg" style="width: 500px"></div>
+
+<pre class="prettyprint"><code class="lang-js">    // create 4 triangles
+    geometry.faces.push(
+      new THREE.Face3(ndx + 0, ndx + 4, ndx + 1),
+      new THREE.Face3(ndx + 1, ndx + 4, ndx + 3),
+      new THREE.Face3(ndx + 3, ndx + 4, ndx + 2),
+      new THREE.Face3(ndx + 2, ndx + 4, ndx + 0),
+    );
+
+    // add the texture coordinates for each vertex of each face
+    const u0 = x / cellsAcross;
+    const v0 = z / cellsAcross;
+    const u1 = (x + 1) / cellsDeep;
+    const v1 = (z + 1) / cellsDeep;
+    const um = (u0 + u1) / 2;
+    const vm = (v0 + v1) / 2;
+    geometry.faceVertexUvs[0].push(
+      [ new THREE.Vector2(u0, v0), new THREE.Vector2(um, vm), new THREE.Vector2(u1, v0) ],
+      [ new THREE.Vector2(u1, v0), new THREE.Vector2(um, vm), new THREE.Vector2(u1, v1) ],
+      [ new THREE.Vector2(u1, v1), new THREE.Vector2(um, vm), new THREE.Vector2(u0, v1) ],
+      [ new THREE.Vector2(u0, v1), new THREE.Vector2(um, vm), new THREE.Vector2(u0, v0) ],
+    );
+  }
+}
+</code></pre>
+<p>and finish it up</p>
+<pre class="prettyprint"><code class="lang-js">  geometry.computeFaceNormals();
+
+  // center the geometry
+  geometry.translate(width / -2, 0, height / -2);
+
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load(&#39;resources/images/star.png&#39;);
+
+  const material = new THREE.MeshPhongMaterial({color: &#39;green&#39;, map: texture});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+}
+</code></pre>
+<p>A few minor changes to make it easier to view.</p>
+<ul>
+<li>include the <code>OrbitControls</code></li>
+</ul>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
+</code></pre>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 100;
++const far = 200;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 5;
++camera.position.set(20, 20, 20);
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</code></pre>
+<p>add 2 lights</p>
+<pre class="prettyprint"><code class="lang-js">-{
++function addLight(...pos) {
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+-  light.position.set(-1, 2, 4\);
++  light.position.set(...pos);
+  scene.add(light);
+}
+
++addLight(-1, 2, 4);
++addLight(1, 2, -2);
+</code></pre>
+<p>and we deleted the code related to spinning the cubes.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-heightmap.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-heightmap.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>I hope that was a useful instruction to making your own
+geometry using <code>Geometry</code>.</p>
+<p>In <a href="threejs-custom-buffergeometry.html">another article</a> we&#39;ll go over <code>BufferGeometry</code>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-custom-geometry.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-custom-geometry.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-custom-geometry.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Custom Geometry';
+            var disqus_title = 'Three.js Custom Geometry';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

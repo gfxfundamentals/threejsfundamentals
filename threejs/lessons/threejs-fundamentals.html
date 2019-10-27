@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-fundamentals.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Your first Three.js lesson starting with the fundamentals" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fundamentals_en.jpg" />
+
+<meta property="og:title" content="Three.js Fundamentals" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fundamentals_en.jpg" />
+<meta property="og:description" content="Your first Three.js lesson starting with the fundamentals" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Fundamentals" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html" />
+<meta name="twitter:description" content="Your first Three.js lesson starting with the fundamentals" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fundamentals_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fundamentals_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html",
+      "inLanguage":"en",
+      "name":"Three.js Fundamentals",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Fundamentals</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-fundamentals.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-fundamentals.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fundamentals.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Fundamentals</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This is the first article in a series of articles about three.js.
+<a href="https://threejs.org">Three.js</a> is a 3D library that tries to make
+it as easy as possible to get 3D content on a webpage.</p>
+<p>Three.js is often confused with WebGL since more often than
+not, but not always, three.js uses WebGL to draw 3D.
+<a href="https://webglfundamentals.org">WebGL is a very low-level system that only draws points, lines, and triangles</a>.
+To do anything useful with WebGL generally requires quite a bit of
+code and that is where three.js comes in. It handles stuff
+like scenes, lights, shadows, materials, textures, 3d math, all things that you&#39;d
+have to write yourself if you were to use WebGL directly.</p>
+<p>These tutorials assume you already know JavaScript and, for the
+most part they will use ES6 style. <a href="threejs-prerequisites.html">See here for a
+terse list of things you&#39;re expected to already know</a>.
+Most browsers that support three.js are auto-updated so most users should
+be able to run this code. If you&#39;d like to make this code run
+on really old browsers look into a transpiler like <a href="https://babel.io">Babel</a>.
+Of course users running really old browsers probably have machines
+that can&#39;t run three.js.</p>
+<p>When learning most programming languages the first thing people
+do is make the computer print <code>&quot;Hello World!&quot;</code>. For 3D one
+of the most common first things to do is to make a 3D cube.
+So let&#39;s start with &quot;Hello Cube!&quot;</p>
+<p>The first thing we need is a <code>&lt;canvas&gt;</code> tag so</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Three.js will draw into that canvas so we need to look it up
+and pass it to three.js.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+import * as THREE from &#39;./resources/threejs/r108/build/three.module.js&#39;;
+
+function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas});
+  ...
+&lt;/script&gt;
+</code></pre>
+<p>It&#39;s important you put <code>type=&quot;module&quot;</code> in the script tag. This enables
+us to use the <code>import</code> keyword to load three.js. There are other ways
+to load three.js but as of r106 using modules is the recommended way.
+Modules have the advantage that they can easily import other modules
+they need. That saves us from having to manually load extra scripts
+they are dependent on.</p>
+<p>Note there are some esoteric details here. If you don&#39;t pass a canvas
+into three.js it will create one for you but then you have to add it
+to your document. Where to add it may change depending on your use case
+and you&#39;ll have to change your code so I find that passing a canvas
+to three.js feels a little more flexible. I can put the canvas anywhere
+and the code will find it where as if I had code to insert the canvas
+into to the document I&#39;d likely have to change that code if my use case
+changed.</p>
+<p>After we look up the canvas we create a <code>WebGLRenderer</code>. The renderer
+is the thing responsible for actually taking all the data you provide
+and rendering it to the canvas. In the past there have been other renderers
+like <code>CSSRenderer</code>, a <code>CanvasRenderer</code> and in the future there may be a
+<code>WebGL2Renderer</code> or <code>WebGPURenderer</code>. For now there&#39;s the <code>WebGLRenderer</code>
+that uses WebGL to render 3D to the canvas.</p>
+<p>Next up we need a camera.</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+</code></pre>
+<p><code>fov</code> is short for <code>field of view</code>. In this case 75 degrees in the vertical
+dimension. Note that most angles in three.js are in radians but for some
+reason the perspective camera takes degrees.</p>
+<p><code>aspect</code> is the display aspect of the canvas. We&#39;ll go over the details
+in another article but by default a canvas is 300x150 pixels which makes
+the aspect 300/150 or 2.</p>
+<p><code>near</code> and <code>far</code> represent the space in front of the camera
+that will be rendered. Anything before that range or after that range
+will be clipped (not drawn).</p>
+<p>Those 4 settings define a <em>&quot;frustum&quot;</em>. A <em>frustum</em> is the name of
+a 3d shape that is like a pyramid with the tip sliced off. In other
+words think of the word &quot;frustum&quot; as another 3D shape like sphere,
+cube, prism, frustum.</p>
+<p><img src="resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
+<p>The height of the near and far planes are determined by the field of view.
+The width of both planes is determined by the field of view and the aspect.</p>
+<p>Anything inside the defined frustum will be be drawn. Anything outside
+will not.</p>
+<p>The camera defaults to looking down the -Z axis with +Y up. We&#39;ll put our cube
+at the origin so we need to move the camera back a little from the origin
+in order to see anything.</p>
+<pre class="prettyprint"><code class="lang-js">camera.position.z = 2;
+</code></pre>
+<p>Here&#39;s what we&#39;re aiming for.</p>
+<p><img src="resources/scene-down.svg" width="500" class="threejs_center"/></p>
+<p>In the diagram above we can see our camera is at <code>z = 2</code>. It&#39;s looking
+down the -Z axis. Our frustum starts 0.1 units from the front of the camera
+and goes to 5 units in front of the camera. Because in this diagram we are looking down,
+the field of view is affected by the aspect. Our canvas is twice as wide
+as it is tall so across view the field of view will be much wider than
+our specified 75 degrees which is the vertical field of view.</p>
+<p>Next we make a <code>Scene</code>. A <code>Scene</code> in three.js is the root of a form of scene graph.
+Anything you want three.js to draw needs to be added to the scene. We&#39;ll
+cover more details of <a href="threejs-scenegraph.html">how scenes work in a future article</a>.</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+</code></pre>
+<p>Next up we create a <code>BoxGeometry</code> which contains the data for a box.
+Almost anything we want to display in Three.js needs geometry which defines
+the vertices that make up our 3D object.</p>
+<pre class="prettyprint"><code class="lang-js">const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+</code></pre>
+<p>We then create a basic material and set its color. Colors can
+be specified using standard CSS style 6 digit hex color values.</p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
+</code></pre>
+<p>We then create a <code>Mesh</code>. A <code>Mesh</code> in three represents the combination
+of a <code>Geometry</code> (the shape of the object) and a <code>Material</code> (how to draw
+the object, shiny or flat, what color, what texture(s) to apply. Etc.)
+as well as the position, orientation, and scale of that
+object in the scene.</p>
+<pre class="prettyprint"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+</code></pre>
+<p>And finally we add that mesh to the scene</p>
+<pre class="prettyprint"><code class="lang-js">scene.add(cube);
+</code></pre>
+<p>We can then render the scene by calling the renderer&#39;s render function
+and passing it the scene and the camera</p>
+<pre class="prettyprint"><code class="lang-js">renderer.render(scene, camera);
+</code></pre>
+<p>Here&#39;s a working example</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>It&#39;s kind of hard to tell that is a 3D cube since we&#39;re viewing
+it directly down the -Z axis and the cube itself is axis aligned
+so we&#39;re only seeing a single face.</p>
+<p>Let&#39;s animate it spinning and hopefully that will make
+it clear it&#39;s being drawn in 3D. To animate it we&#39;ll render inside a render loop using
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code>requestAnimationFrame</code></a>.</p>
+<p>Here&#39;s our loop</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;  // convert time to seconds
+
+  cube.rotation.x = time;
+  cube.rotation.y = time;
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p><code>requestAnimationFrame</code> is a request to the browser that you want to animate something.
+You pass it a function to be called. In our case that function is <code>render</code>. The browser
+will call your function and if you update anything related to the display of the
+page the browser will re-render the page. In our case we are calling three&#39;s
+<code>renderer.render</code> function which will draw our scene.</p>
+<p><code>requestAnimationFrame</code> passes the time since the page loaded to
+our function. That time is passed in milliseconds. I find it&#39;s much
+easier to work with seconds so here we&#39;re converting that to seconds.</p>
+<p>We then set the cube&#39;s X and Y rotation to the current time. These rotations
+are in <a href="https://en.wikipedia.org/wiki/Radian">radians</a>. There are 2 pi radians
+in a circle so our cube should turn around once on each axis in about 6.28
+seconds.</p>
+<p>We then render the scene and request another animation frame to continue
+our loop.</p>
+<p>Outside the loop we call <code>requestAnimationFrame</code> one time to start the loop.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-animation.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-animation.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>It&#39;s a little better but it&#39;s still hard to see the 3d. What would help is to
+add some lighting so let&#39;s add a light. There are many kinds of lights in
+three.js which we&#39;ll go over in <a href="threejs-lights.html">a future article</a>. For now let&#39;s create a directional light.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(-1, 2, 4);
+  scene.add(light);
+}
+</code></pre>
+<p>Directional lights have a position and a target. Both default to 0, 0, 0. In our
+case we&#39;re setting the light&#39;s position to -1, 2, 4 so it&#39;s slightly on the left,
+above, and behind our camera. The target is still 0, 0, 0 so it will shine
+toward the origin.</p>
+<p>We also need to change the material. The <code>MeshBasicMaterial</code> is not affected by
+lights. Let&#39;s change it to a <code>MeshPhongMaterial</code> which is affected by lights.</p>
+<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
++const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
+</code></pre>
+<p>And here it is working.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-light.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-light.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>It should now be pretty clearly 3D.</p>
+<p>Just for the fun of it let&#39;s add 2 more cubes.</p>
+<p>We&#39;ll use the same geometry for each cube but make a different
+material so each cube can be a different color.</p>
+<p>First we&#39;ll make a function that creates a new material
+with the specified color. Then it creates a mesh using
+the specified geometry and adds it to the scene and
+sets its X position.</p>
+<pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
+  return cube;
+}
+</code></pre>
+<p>Then we&#39;ll call it 3 times with 3 different colors and X positions
+saving the <code>Mesh</code> instances in an array.</p>
+<pre class="prettyprint"><code class="lang-js">const cubes = [
+  makeInstance(geometry, 0x44aa88,  0),
+  makeInstance(geometry, 0x8844aa, -2),
+  makeInstance(geometry, 0xaa8844,  2),
+];
+</code></pre>
+<p>Finally we&#39;ll spin all 3 cubes in our render function. We
+compute a slightly different rotation for each one.</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;  // convert time to seconds
+
+  cubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  ...
+</code></pre>
+<p>and here&#39;s that.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-3-cubes.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-3-cubes.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>If you compare it to the top down diagram above you can see
+it matches our expectations. With cubes at X = -2 and X = +2
+they are partially outside our frustum. They are also
+somewhat exaggeratedly warped since the field of view
+across the canvas is so extreme.</p>
+<p>I hope this short intro helps to get things started. <a href="threejs-responsive.html">Next up we&#39;ll cover
+making our code responsive so it is adaptable to multiple situations</a>.</p>
+<div class="threejs_bottombar">
+<h3>es6 modules, three.js, and folder structure</h3>
+<p>As of version r106 the preferred way to use three.js is via <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">es6 modules</a>.</p>
+<p>
+es6 modules can be loaded via the `import` keyword in a script
+or inline via a <code>&lt;script type="module"&gt;</code> tag. Here's an example of
+both
+</p>
+<pre class=prettyprint>
+&lt;script type="module"&gt;
+import * as THREE from './resources/threejs/r108/build/three.module.js';
+
+...
+
+&lt;/script&gt;
+</pre>
+<p>
+Paths must be absolute or relative. Relative paths always start with <code>./</code> or <code>../</code>
+which is different than other tags like <code>&lt;img&gt;</code> and <code>&lt;a&gt;</code>.
+</p>
+<p>
+References to the same script will only be loaded once as long as their absolute paths
+are exactly the same. For three.js this means it's required that you put all the examples
+libraries in the correct folder structure
+</p>
+<pre class="dos">
+someFolder
+ |
+ ├-build
+ | |
+ | +-three.module.js
+ |
+ +-examples
+   |
+   +-jsm
+     |
+     +-controls
+     | |
+     | +-OrbitControls.js
+     | +-TrackballControls.js
+     | +-...
+     |
+     +-loaders
+     | |
+     | +-GLTFLoader.js
+     | +-...
+     |
+     ...
+</pre>
+<p>
+The reason this folder structure is required is because the scripts in the
+examples like <a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code>OrbitControls.js</code></a>
+have hard coded relative paths like
+</p>
+<pre class="prettyprint">
+import * as THREE from '../../../build/three.module.js';
+</pre>
+<p>
+Using the same structure assures then when you import both three and one of the example
+libraries they'll both reference the same three.module.js file.
+</p>
+<pre class="prettyprint">
+import * as THREE from './someFolder/build/three.module.js';
+import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>This includes when using a CDN. Be sure your path to <code>three.modules.js</code> ends with
+<code>/build/three.modules.js</code>. For example</p>
+<pre class="prettyprint">
+import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
+import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>If you'd prefer the old <code>&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code> style
+you can check out <a href="https://r105.threejsfundamentals.org">an older version of this site</a>.
+Three.js has a policy of not worrying about backward compatibility. They expect you to use a specific
+version, as in you're expected to download the code and put it in your project. When upgrading to a newer version
+you can read the <a href="https://github.com/mrdoob/three.js/wiki/Migration-Guide">migration guide</a> to
+see what you need to change. It would be too much work to maintain both an es6 module and a class script
+version of this site so going forward this site will only show es6 module style. As stated elsewhere,
+to support legacy browsers look into a <a href="https://babeljs.io">transpiler</a>.</p>
+</div>
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-fundamentals.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-fundamentals.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fundamentals.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Fundamentals';
+            var disqus_title = 'Three.js Fundamentals';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

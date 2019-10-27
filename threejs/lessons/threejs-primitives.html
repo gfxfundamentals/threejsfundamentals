@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-primitives.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="A tour of three.js primitives." />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-primitives_en.jpg" />
+
+<meta property="og:title" content="Three.js Primitives" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-primitives_en.jpg" />
+<meta property="og:description" content="A tour of three.js primitives." />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Primitives" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html" />
+<meta name="twitter:description" content="A tour of three.js primitives." />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-primitives_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-primitives_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html",
+      "inLanguage":"en",
+      "name":"Three.js Primitives",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-primitives.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Primitives</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-primitives.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-primitives.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-primitives.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Primitives</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is one in a series of articles about three.js.
+The first article was <a href="threejs-fundamentals.html">about fundamentals</a>.
+If you haven&#39;t read that yet you might want to start there.</p>
+<p>Three.js has a large number of primitives. Primitives
+are generally 3D shapes that are generated at runtime
+with a bunch of parameters.</p>
+<p>It&#39;s common to use primitives for things like a sphere
+for a globe or a bunch of boxes to draw a 3D graph. It&#39;s
+especially common to use primitives to experiment
+and get started with 3D. For the majority of 3D apps
+it&#39;s more common to have an artist make 3D models
+in a 3D modeling program. Later in this series we&#39;ll
+cover making and loading data from several 3D modeling
+programs. For now let&#39;s go over some of the available
+primitives.</p>
+<div data-primitive="BoxBufferGeometry">A Box</div>
+<div data-primitive="CircleBufferGeometry">A flat circle</div>
+<div data-primitive="ConeBufferGeometry">A Cone</div>
+<div data-primitive="CylinderBufferGeometry">A Cylinder</div>
+<div data-primitive="DodecahedronBufferGeometry">A dodecahedron (12 sides)</div>
+<div data-primitive="ExtrudeBufferGeometry">An extruded 2d shape with optional bevelling.
+Here we are extruding a heart shape. Note this is the basis
+for <code>TextBufferGeometry</code> and <code>TextGeometry</code> respectively.</div>
+<div data-primitive="IcosahedronBufferGeometry">An icosahedron (20 sides)</div>
+<div data-primitive="LatheBufferGeometry">A shape generated by spinning a line. Examples would lamps, bowling pins, candles, candle holders, wine glasses, drinking glasses, etc... You provide the 2d silhouette as series of points and then tell three.js how many subdivisions to make as it spins the silhouette around an axis.</div>
+<div data-primitive="OctahedronBufferGeometry">An Octahedron (8 sides)</div>
+<div data-primitive="ParametricBufferGeometry">A surface generated by providing a function that takes a 2D point from a grid and returns the corresponding 3d point.</div>
+<div data-primitive="PlaneBufferGeometry">A 2D plane</div>
+<div data-primitive="PolyhedronBufferGeometry">Takes a set of triangles centered around a point and projects them onto a sphere</div>
+<div data-primitive="RingBufferGeometry">A 2D disc with a hole in the center</div>
+<div data-primitive="ShapeBufferGeometry">A 2D outline that gets triangulated</div>
+<div data-primitive="SphereBufferGeometry">A sphere</div>
+<div data-primitive="TetrahedronBufferGeometry">A tetrahedron (4 sides)</div>
+<div data-primitive="TextBufferGeometry">3D text generated from a 3D font and a string</div>
+<div data-primitive="TorusBufferGeometry">A torus (donut)</div>
+<div data-primitive="TorusKnotBufferGeometry">A torus knot</div>
+<div data-primitive="TubeBufferGeometry">A circle traced down a path</div>
+<div data-primitive="EdgesGeometry">A helper object that takes another geometry as input and generates edges only if the angle between faces is greater than some threshold. For example if you look at the box at the top it shows a line going through each face showing every triangle that makes the box. Using an <code>EdgesGeometry</code> instead the middle lines are removed.</div>
+<div data-primitive="WireframeGeometry">Generates geometry that contains one line segment (2 points) per edge in the given geometry. Without this you'd often be missing edges or get extra edges since WebGL generally requires 2 points per line segment. For example if all you had was a single triangle there would only be 3 points. If you tried to draw it using a material with <code>wireframe: true</code> you would only get a single line. Passing that triangle geometry to a <code>WireframeGeometry</code> will generate a new geometry that has 3 lines segments using 6 points..</div>
+
+<p>You might notice of most of them come in pairs of <code>Geometry</code>
+or <code>BufferGeometry</code>. The difference between the 2 types is effectively flexibility
+vs performance.</p>
+<p><code>BufferGeometry</code> based primitives are the performance oriented
+types. The vertices for the geometry are generated directly
+into an efficient typed array format ready to be uploaded to the GPU
+for rendering. This means they are faster to start up
+and take less memory but if you want to modify their
+data they take what is often considered more complex
+programming to manipulate.</p>
+<p><code>Geometry</code> based primitives are the more flexible, easier to manipulate
+type. They are built from JavaScript based classes like <code>Vector3</code> for
+3D points, <code>Face3</code> for triangles.
+They take quite a bit of memory and before they can be rendered three.js will need to
+convert them to something similar to the corresponding <code>BufferGeometry</code> representation.</p>
+<p>If you know you are not going to manipulate a primitive or
+if you&#39;re comfortable doing the math to manipulate their
+internals then it&#39;s best to go with the <code>BufferGeometry</code>
+based primitives. If on the other hand you want to change
+a few things before rendering you might find the <code>Geometry</code>
+based primitives easier to deal with.</p>
+<p>As an simple example a <code>BufferGeometry</code>
+can not have new vertices easily added. The number of vertices used is
+decided at creation time, storage is created, and then data for vertices
+are filled in. Whereas for <code>Geometry</code> you can add vertices as you go.</p>
+<p>We&#39;ll go over creating custom geometry in another article. For now
+let&#39;s make an example creating each type of primitive. We&#39;ll start
+with the <a href="threejs-responsive.html">examples from the previous article</a>.</p>
+<p>Near the top let&#39;s set a background color</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
++scene.background = new THREE.Color(0xAAAAAA);
+</code></pre>
+<p>This tells three.js to clear to lightish gray.</p>
+<p>The camera needs to change position so that we can see all the
+objects.</p>
+<pre class="prettyprint"><code class="lang-js">-const fov = 75;
++const fov = 40;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 1000;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.z = 120;
+</code></pre>
+<p>Let&#39;s add a function, <code>addObject</code>, that takes an x, y position and an <code>Object3D</code> and adds
+the object to the scene.</p>
+<pre class="prettyprint"><code class="lang-js">const objects = [];
+const spread = 15;
+
+function addObject(x, y, obj) {
+  obj.position.x = x * spread;
+  obj.position.y = y * spread;
+
+  scene.add(obj);
+  objects.push(obj);
+}
+</code></pre>
+<p>Let&#39;s also make a function to create a random colored material.
+We&#39;ll use a feature of <code>Color</code> that lets you set a color
+based on hue, saturation, and luminance.</p>
+<p><code>hue</code> goes from 0 to 1 around the color wheel with
+red at 0, green at .33 and blue at .66. <code>saturation</code>
+goes from 0 to 1 with 0 having no color and 1 being
+most saturated. <code>luminance</code> goes from 0 to 1
+with 0 being black, 1 being white and 0.5 being
+the maximum amount of color. In other words
+as <code>luminance</code> goes from 0.0 to 0.5 the color
+will go from black to <code>hue</code>. From 0.5 to 1.0
+the color will go from <code>hue</code> to white.</p>
+<pre class="prettyprint"><code class="lang-js">function createMaterial() {
+  const material = new THREE.MeshPhongMaterial({
+    side: THREE.DoubleSide,
+  });
+
+  const hue = Math.random();
+  const saturation = 1;
+  const luminance = .5;
+  material.color.setHSL(hue, saturation, luminance);
+
+  return material;
+}
+</code></pre>
+<p>We also passed <code>side: THREE.DoubleSide</code> to the material.
+This tells three to draw both sides of the triangles
+that make up a shape. For a solid shape like a sphere
+or a cube there&#39;s usually no reason to draw the
+back sides of triangles as they all face inside the
+shape. In our case though we are drawing a few things
+like the <code>PlaneBufferGeometry</code> and the <code>ShapeBufferGeometry</code>
+which are 2 dimensional and so have no inside. Without
+setting <code>side: THREE.DoubleSide</code> they would disappear
+when looking at their back sides.</p>
+<p>I should note that it&#39;s faster to draw when <strong>not</strong> setting
+<code>side: THREE.DoubleSide</code> so ideally we&#39;d set it only on
+the materials that really need it but in this case we
+are not drawing too much so there isn&#39;t much reason to
+worry about it.</p>
+<p>Let&#39;s make a function, <code>addSolidGeometry</code>, that
+we pass a geometry and it creates a random colored
+material via <code>createMaterial</code> and adds it to the scene
+via <code>addObject</code>.</p>
+<pre class="prettyprint"><code class="lang-js">function addSolidGeometry(x, y, geometry) {
+  const mesh = new THREE.Mesh(geometry, createMaterial());
+  addObject(x, y, mesh);
+}
+</code></pre>
+<p>Now we can use this for the majority of the primitives we create.
+For example creating a box</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const width = 8;
+  const height = 8;
+  const depth = 8;
+  addSolidGeometry(-2, -2, new THREE.BoxBufferGeometry(width, height, depth));
+}
+</code></pre>
+<p>If you look in the code below you&#39;ll see a similar section for each type of geometry.</p>
+<p>Here&#39;s the result:</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-primitives.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>There are a couple of notable exceptions to the pattern above.
+The biggest is probably the <code>TextBufferGeometry</code>. It needs to load
+3D font data before it can generate a mesh for the text.
+That data loads asynchronously so we need to wait for it
+to load before trying to create the geometry. By promisifiying 
+font loading we can make it mush easier.
+We create a <code>FontLoader</code> and then a function <code>loadFont</code> that returns
+a promise that on resolve will give us the font. We then create
+an <code>async</code> function called <code>doit</code> and load the font using <code>await</code>.
+And finally create the geometry and call <code>addObject</code> to add it the scene.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const loader = new THREE.FontLoader();
+  // promisify font loading
+  function loadFont(url) {
+    return new Promise((resolve, reject) =&gt; {
+      loader.load(url, resolve, undefined, reject);
+    });
+  }
+
+  async function doit() {
+    const font = await loadFont(&#39;resources/threejs/fonts/helvetiker_regular.typeface.json&#39;);  /* threejsfundamentals: url */
+    const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
+      font: font,
+      size: 3.0,
+      height: .2,
+      curveSegments: 12,
+      bevelEnabled: true,
+      bevelThickness: 0.15,
+      bevelSize: .3,
+      bevelSegments: 5,
+    });
+    const mesh = new THREE.Mesh(geometry, createMaterial());
+    geometry.computeBoundingBox();
+    geometry.boundingBox.getCenter(mesh.position).multiplyScalar(-1);
+
+    const parent = new THREE.Object3D();
+    parent.add(mesh);
+
+    addObject(-1, -1, parent);
+  }
+  doit();
+}
+</code></pre>
+<p>There&#39;s one other difference. We want to spin the text around its
+center but by default three.js creates the text such that its center of rotation
+is on the left edge. To work around this we can ask three.js to compute the bounding
+box of the geometry. We can then call the <code>getCenter</code> method
+of the bounding box and pass it our mesh&#39;s position object.
+<code>getCenter</code> copies the center of the box into the position.
+It also returns the position object so we can call <code>multiplyScalar(-1)</code>
+to position the entire object such that its center of rotation
+is at the center of the object.</p>
+<p>If we then just called <code>addSolidGeometry</code> like with previous
+examples it would set the position again which is
+no good. So, in this case we create an <code>Object3D</code> which
+is the standard node for the three.js scene graph. <code>Mesh</code>
+is inherited from <code>Object3D</code> as well. We&#39;ll cover <a href="threejs-scenegraph.html">how the scene graph
+works in another article</a>.
+For now it&#39;s enough to know that
+like DOM nodes, children are drawn relative to their parent.
+By making an <code>Object3D</code> and making our mesh a child of that
+we can position the <code>Object3D</code> wherever we want and still
+keep the center offset we set earlier.</p>
+<p>If we didn&#39;t do this the text would spin off center.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives-text.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-primitives-text.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Notice the one on the left is not spinning around its center
+whereas the one on the right is.</p>
+<p>The other exceptions are the 2 line based examples for <code>EdgesGeometry</code>
+and <code>WireframeGeometry</code>. Instead of calling <code>addSolidGeometry</code> they call
+<code>addLineGeometry</code> which looks like this</p>
+<pre class="prettyprint"><code class="lang-js">function addLineGeometry(x, y, geometry) {
+  const material = new THREE.LineBasicMaterial({color: 0x000000});
+  const mesh = new THREE.LineSegments(geometry, material);
+  addObject(x, y, mesh);
+}
+</code></pre>
+<p>It creates a black <code>LineBasicMaterial</code> and then creates a <code>LineSegments</code>
+object which is a wrapper for <code>Mesh</code> that helps three know you&#39;re rendering
+line segments (2 points per segment).</p>
+<p>Each of the primitives has several parameters you can pass on creation
+and it&#39;s best to <a href="https://threejs.org/docs/">look in the documentation</a> for all of them rather than
+repeat them here. You can also click the links above next to each shape
+to take you directly to the docs for that shape.</p>
+<p>There is one other pair of classes that doesn&#39;t really fit the patterns above. Those are
+the <code>PointsMaterial</code> and the <code>Points</code> class. <code>Points</code> is like <code>LineSegments</code> above in that it takes a
+a <code>Geometry</code> or <code>BufferGeometry</code> but draws points at each vertex instead of lines.
+To use it you also need to pass it a <code>PointsMaterial</code> which
+take a <a href="PointsMaterial.size"><code>size</code></a> for how large to make the points.</p>
+<pre class="prettyprint"><code class="lang-js">const radius = 7;
+const widthSegments = 12;
+const heightSegments = 8;
+const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+const material = new THREE.PointsMaterial({
+    color: &#39;red&#39;,
+    size: 0.2,     // in world units
+});
+const points = new THREE.Points(geometry, material);
+scene.add(points);
+</code></pre>
+<div class="spread">
+<div data-diagram="Points"></div>
+</div>
+
+<p>You can turn off <a href="PointsMaterial.sizeAttenuation"><code>sizeAttenuation</code></a> by setting it to false if you want the points to
+be the same size regardless of their distance from the camera.</p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.PointsMaterial({
+    color: &#39;red&#39;,
++    sizeAttenuation: false,
++    size: 3,       // in pixels
+-    size: 0.2,     // in world units
+});
+...
+</code></pre>
+<div class="spread">
+<div data-diagram="PointsUniformSize"></div>
+</div>
+
+<p>One other thing that&#39;s important to cover is that almost all shapes
+have various settings for how much to subdivide them. A good example
+might be the sphere geometries. Spheres take parameters for
+how many divisions to make around and how many top to bottom. For example</p>
+<div class="spread">
+<div data-diagram="SphereBufferGeometryLow"></div>
+<div data-diagram="SphereBufferGeometryMedium"></div>
+<div data-diagram="SphereBufferGeometryHigh"></div>
+</div>
+
+<p>The first sphere has 5 segments around and 3 high which is 15 segments
+or 30 triangles. The second sphere has 24 segments by 10. That&#39;s 240 segments
+or 480 triangles. The last one has 50 by 50 which is 2500 segments or 5000 triangles.</p>
+<p>It&#39;s up to you to decide how many subdivisions you need. It might
+look like you need a high number of segments but remove the lines
+and the flat shading and we get this</p>
+<div class="spread">
+<div data-diagram="SphereBufferGeometryLowSmooth"></div>
+<div data-diagram="SphereBufferGeometryMediumSmooth"></div>
+<div data-diagram="SphereBufferGeometryHighSmooth"></div>
+</div>
+
+<p>It&#39;s now not so clear that the one on the right with 5000 triangles
+is entirely better than the one in the middle with only 480.
+If you&#39;re only drawing a few spheres, like say a single globe for
+a map of the earth, then a single 10000 triangle sphere is not a bad
+choice. If on the other hand you&#39;re trying to draw 1000 spheres
+then 1000 spheres times 10000 triangles each is 10 million triangles.
+To animate smoothly you need the browser to draw at 60 frames per
+second so you&#39;d be asking the browser to draw 600 million triangles
+per second. That&#39;s a lot of computing.</p>
+<p>Sometimes it&#39;s easy to choose. For example you can also choose
+to subdivide a plane.</p>
+<div class="spread">
+<div data-diagram="PlaneBufferGeometryLow"></div>
+<div data-diagram="PlaneBufferGeometryHigh"></div>
+</div>
+
+<p>The plane on the left is 2 triangles. The plane on the right
+is 200 triangles. Unlike the sphere there is really no trade off in quality for most
+use cases of a plane. You&#39;d most likely only subdivide a plane
+if you expected to want to modify or warp it in some way. A box
+is similar.</p>
+<p>So, choose whatever is appropriate for your situation. The less
+subdivisions you choose the more likely things will run smoothly and the less
+memory they&#39;ll take. You&#39;ll have to decide for yourself what the correct
+tradeoff is for your particular situation.</p>
+<p>If none of the shapes above fit your use case you can load
+geometry for example from a <a href="threejs-load-obj.html">.obj file</a>
+or a <a href="threejs-load-gltf.html">.gltf file</a>. 
+You can also create your own <a href="threejs-custom-geometry.html">custom Geometry</a> 
+or <a href="threejs-custom-buffergeometry.html">custom BufferGeometry</a>.</p>
+<p>Next up let&#39;s go over <a href="threejs-scenegraph.html">how three&#39;s scene graph works and how
+to use it</a>.</p>
+<p><canvas id="c"></canvas></p>
+<p><link rel="stylesheet" href="resources/threejs-primitives.css"></p>
+<script type="module" src="resources/threejs-primitives.js"></script>
+
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-primitives.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-primitives.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-primitives.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Primitives';
+            var disqus_title = 'Three.js Primitives';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

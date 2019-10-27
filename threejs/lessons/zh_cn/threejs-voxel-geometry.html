@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following disclaimer
+      in the documentation and/or other materials provided with the
+      distribution.
+
+    * Neither the name of Google Inc. nor the names of their
+      contributors may be used to endorse or promote products derived from
+      this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta property="og:title" content="Three.js Voxel(Minecraft Like) Geometry" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta property="og:description" content="How to make voxel geometry like Minecraft" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-voxel-geometry.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Voxel(Minecraft Like) Geometry" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-voxel-geometry.html" />
+<meta name="twitter:description" content="How to make voxel geometry like Minecraft" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+
+
+<title>Three.js Voxel(Minecraft Like) Geometry</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-voxel-geometry.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-voxel-geometry.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-voxel-geometry.html" selected>中文</a>
+</select>
+
+
+    <a href="#toc">内容列表</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/zh_cn/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Voxel(Minecraft Like) Geometry</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Sorry this article has not been translated yet. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
+<p><a href="/threejs/lessons/threejs-voxel-geometry.html">Here&#39;s the original English article for now</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-voxel-geometry.html" >English</a>
+    <option value="/threejs/lessons/ru/threejs-voxel-geometry.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-voxel-geometry.html" selected>中文</a>
+</select>
+
+
+        <ul>  <li>基础</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-prerequisites.html">先决条件</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-setup.html">设置</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/zh_cn/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

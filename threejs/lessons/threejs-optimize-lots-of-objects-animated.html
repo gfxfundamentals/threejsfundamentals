@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-optimize-lots-of-objects-animated.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Animated merged objects with Morphtargets" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_en.jpg" />
+
+<meta property="og:title" content="Three.js Optimize Lots of Objects Animated" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_en.jpg" />
+<meta property="og:description" content="Animated merged objects with Morphtargets" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Optimize Lots of Objects Animated" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html" />
+<meta name="twitter:description" content="Animated merged objects with Morphtargets" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html",
+      "inLanguage":"en",
+      "name":"Three.js Optimize Lots of Objects Animated",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Optimize Lots of Objects Animated</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Optimize Lots of Objects Animated</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is a continuation of <a href="threejs-optimize-lots-of-objects.html">an article about optimizing lots of objects
+</a>. If you haven&#39;t read that
+yet please read it before proceeding. </p>
+<p>In the previous article we merged around 19000 cubes into a
+single geometry. This had the advantage that it optimized our drawing
+of 19000 cubes but it had the disadvantage of make it harder to
+move any individual cube.</p>
+<p>Depending on what we are trying to accomplish there are different solutions.
+In this case let&#39;s graph multiple sets of data and animate between the sets.</p>
+<p>The first thing we need to do is get multiple sets of data. Ideally we&#39;d
+probably pre-process data offline but in this case let&#39;s load 2 sets of
+data and generate 2 more</p>
+<p>Here&#39;s our old loading code</p>
+<pre class="prettyprint"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw-v4-basic-demographic-characteristics-rev10_a000_014_2010_1_deg_asc/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+  .then(parseData)
+  .then(addBoxes)
+  .then(render);
+</code></pre>
+<p>Let&#39;s change it to something like this</p>
+<pre class="prettyprint"><code class="lang-js">async function loadData(info) {
+  const text = await loadFile(info.url);
+  info.file = parseData(text);
+}
+
+async function loadAll() {
+  const fileInfos = [
+    {name: &#39;men&#39;,   hueRange: [0.7, 0.3], url: &#39;resources/data/gpw/gpw-v4-basic-demographic-characteristics-rev10_a000_014_2010_1_deg_asc/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39; },
+    {name: &#39;women&#39;, hueRange: [0.9, 1.1], url: &#39;resources/data/gpw/gpw-v4-basic-demographic-characteristics-rev10_a000_014_2010_1_deg_asc/gpw_v4_basic_demographic_characteristics_rev10_a000_014ft_2010_cntm_1_deg.asc&#39; },
+  ];
+
+  await Promise.all(fileInfos.map(loadData));
+
+  ...
+}
+loadAll();
+</code></pre>
+<p>The code above will load all the files in <code>fileInfos</code> and when done each object
+in <code>fileInfos</code> will have a <code>file</code> property with the loaded file. <code>name</code> and <code>hueRange</code>
+we&#39;ll use later. <code>name</code> will be for a UI field. <code>hueRange</code> will be used to
+choose a range of hues to map over.</p>
+<p>The two files above are apparently the number of men per area and the number of
+women per area as of 2010. Note, I have no idea if this data is correct but
+it&#39;s not important really. The important part is showing different sets
+of data.</p>
+<p>Let&#39;s generate 2 more sets of data. One being the places where the number
+men are greater than the number of women and visa versa, the places where
+the number of women are greater than the number of men. </p>
+<p>The first thing let&#39;s write a function that given a 2 dimensional array of
+of arrays like we had before will map over it to generate a new 2 dimensional
+array of arrays</p>
+<pre class="prettyprint"><code class="lang-js">function mapValues(data, fn) {
+  return data.map((row, rowNdx) =&gt; {
+    return row.map((value, colNdx) =&gt; {
+      return fn(value, rowNdx, colNdx);
+    });
+  });
+}
+</code></pre>
+<p>Like the normal <code>Array.map</code> function the <code>mapValues</code> function calls a function
+<code>fn</code> for each value in the array of arrays. It passes it the value and both the
+row and column indices.</p>
+<p>Now let&#39;s make some code to generate a new file that is a comparison between 2
+files</p>
+<pre class="prettyprint"><code class="lang-js">function makeDiffFile(baseFile, otherFile, compareFn) {
+  let min;
+  let max;
+  const baseData = baseFile.data;
+  const otherData = otherFile.data;
+  const data = mapValues(baseData, (base, rowNdx, colNdx) =&gt; {
+    const other = otherData[rowNdx][colNdx];
+      if (base === undefined || other === undefined) {
+        return undefined;
+      }
+      const value = compareFn(base, other);
+      min = Math.min(min === undefined ? value : min, value);
+      max = Math.max(max === undefined ? value : max, value);
+      return value;
+  });
+  // make a copy of baseFile and replace min, max, and data
+  // with the new data
+  return Object.assign({}, baseFile, {
+    min,
+    max,
+    data,
+  });
+}
+</code></pre>
+<p>The code above uses <code>mapValues</code> to generate a new set of data that is
+a comparison based on the <code>compareFn</code> function passed in. It also tracks
+the <code>min</code> and <code>max</code> comparison results. Finally it makes a new file with
+all the same properties as <code>baseFile</code> except with a new <code>min</code>, <code>max</code> and <code>data</code>.</p>
+<p>Then let&#39;s use that to make 2 new sets of data</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const menInfo = fileInfos[0];
+  const womenInfo = fileInfos[1];
+  const menFile = menInfo.file;
+  const womenFile = womenInfo.file;
+
+  function amountGreaterThan(a, b) {
+    return Math.max(a - b, 0);
+  }
+  fileInfos.push({
+    name: &#39;&gt;50%men&#39;,
+    hueRange: [0.6, 1.1],
+    file: makeDiffFile(menFile, womenFile, (men, women) =&gt; {
+      return amountGreaterThan(men, women);
+    }),
+  });
+  fileInfos.push({
+    name: &#39;&gt;50% women&#39;, 
+    hueRange: [0.0, 0.4],
+    file: makeDiffFile(womenFile, menFile, (women, men) =&gt; {
+      return amountGreaterThan(women, men);
+    }),
+  });
+}
+</code></pre>
+<p>Now let&#39;s generate a UI to select between these sets of data. First we need
+some UI html</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;ui&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>and some CSS to make it appear in the top left area</p>
+<pre class="prettyprint"><code class="lang-css">#ui {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
+#ui&gt;div {
+  font-size: 20pt;
+  padding: 1em;
+  display: inline-block;
+}
+#ui&gt;div.selected {
+  color: red;
+}
+</code></pre>
+<p>Then we can go over each file and generate a set of merged boxes per
+set of data and an element which when hovered over will show that set
+and hide all others.</p>
+<pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+    info.root.visible = visible;
+    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+  });
+  requestRenderIfNotRequested();
+}
+
+const uiElem = document.querySelector(&#39;#ui&#39;);
+fileInfos.forEach((info) =&gt; {
+  const boxes = addBoxes(info.file, info.hueRange);
+  info.root = boxes;
+  const div = document.createElement(&#39;div&#39;);
+  info.elem = div;
+  div.textContent = info.name;
+  uiElem.appendChild(div);
+  div.addEventListener(&#39;mouseover&#39;, () =&gt; {
+    showFileInfo(fileInfos, info);
+  });
+});
+// show the first set of data
+showFileInfo(fileInfos, fileInfos[0]);
+</code></pre>
+<p>The one more change we need from the previous example is we need to make
+<code>addBoxes</code> take a <code>hueRange</code></p>
+<pre class="prettyprint"><code class="lang-js">-function addBoxes(file) {
++function addBoxes(file, hueRange) {
+
+  ...
+
+    // compute a color
+-    const hue = THREE.Math.lerp(0.7, 0.3, amount);
++    const hue = THREE.Math.lerp(...hueRange, amount);
+
+  ...
+</code></pre>
+<p>and with that we should be able to show 4 sets of data. Hover the mouse over the labels
+or touch them to switch sets</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-multiple-data-sets.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-multiple-data-sets.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>Note, there are a few strange data points that really stick out. I wonder what&#39;s up
+with those!??! In any case how do we animate between these 4 sets of data.</p>
+<p>Lots of ideas.</p>
+<ul>
+<li><p>Just fade between them using <code>Material.opacity</code></p>
+<p>The problem with this solution is the cubes perfectly overlap which
+means there will be z-fighting issues. It&#39;s possible we could fix
+that by changing the depth function and using blending. We should
+probably look into it.</p>
+</li>
+<li><p>Scale up the set we want to see and scale down the other sets</p>
+<p>Because all the boxes have their origin at the center of the planet
+if we scale them below 1.0 they will sink into the planet. At first that
+sounds like a good idea but the issue is all the low height boxes
+will disappear almost immediately and not be replaced until the new
+data set scales up to 1.0. This makes the transition not very pleasant.
+We could maybe fix that with a fancy custom shader.</p>
+</li>
+<li><p>Use Morphtargets</p>
+<p>Morphtargets are a way were we supply multiple values for each vertex
+in the geometry and <em>morph</em> or lerp (linear interpolate) between them.
+Morphtargets are most commonly used for facial animation of 3D characters
+but that&#39;s not their only use.</p>
+</li>
+</ul>
+<p>Let&#39;s try morphtargets.</p>
+<p>We&#39;ll still make a geometry for each set of data but we&#39;ll then extract
+the <code>position</code> attribute from each one and use them as morphtargets.</p>
+<p>First let&#39;s change <code>addBoxes</code> to just make and return the merged geometry.</p>
+<pre class="prettyprint"><code class="lang-js">-function addBoxes(file, hueRange) {
++function makeBoxes(file, hueRange) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  ...
+
+-  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+-      geometries, false);
+-  const material = new THREE.MeshBasicMaterial({
+-    vertexColors: THREE.VertexColors,
+-  });
+-  const mesh = new THREE.Mesh(mergedGeometry, material);
+-  scene.add(mesh);
+-  return mesh;
++  return BufferGeometryUtils.mergeBufferGeometries(
++     geometries, false);
+}
+</code></pre>
+<p>There&#39;s one more thing we need to do here though. Morphtargets are required to
+all have exactly the same number of vertices. Vertex #123 in one target needs
+have a corresponding Vertex #123 in all other targets. But, as it is now
+different data sets might have some data points with no data so no box will be
+generated for that point which would mean no corresponding vertices for another
+set. So, we need to check across all data sets and either always generate
+something if there is data in any set or, generate nothing if there is data
+missing in any set. Let&#39;s do the latter.</p>
+<pre class="prettyprint"><code class="lang-js">+function dataMissingInAnySet(fileInfos, latNdx, lonNdx) {
++  for (const fileInfo of fileInfos) {
++    if (fileInfo.file.data[latNdx][lonNdx] === undefined) {
++      return true;
++    }
++  }
++  return false;
++}
+
+-function makeBoxes(file, hueRange) {
++function makeBoxes(file, hueRange, fileInfos) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  ...
+
+  const geometries = [];
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
++      if (dataMissingInAnySet(fileInfos, latNdx, lonNdx)) {
++        return;
++      }
+      const amount = (value - min) / range;
+
+  ...
+</code></pre>
+<p>Now we&#39;ll change the code that was calling <code>addBoxes</code> to use <code>makeBoxes</code>
+and setup morphtargets</p>
+<pre class="prettyprint"><code class="lang-js">+// make geometry for each data set
++const geometries = fileInfos.map((info) =&gt; {
++  return makeBoxes(info.file, info.hueRange, fileInfos);
++});
++
++// use the first geometry as the base
++// and add all the geometries as morphtargets
++const baseGeometry = geometries[0];
++baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
++  const attribute = geometry.getAttribute(&#39;position&#39;);
++  const name = `target${ndx}`;
++  attribute.name = name;
++  return attribute;
++});
++const material = new THREE.MeshBasicMaterial({
++  vertexColors: THREE.VertexColors,
++  morphTargets: true,
++});
++const mesh = new THREE.Mesh(baseGeometry, material);
++scene.add(mesh);
+
+const uiElem = document.querySelector(&#39;#ui&#39;);
+fileInfos.forEach((info) =&gt; {
+-  const boxes = addBoxes(info.file, info.hueRange);
+-  info.root = boxes;
+  const div = document.createElement(&#39;div&#39;);
+  info.elem = div;
+  div.textContent = info.name;
+  uiElem.appendChild(div);
+  function show() {
+    showFileInfo(fileInfos, info);
+  }
+  div.addEventListener(&#39;mouseover&#39;, show);
+  div.addEventListener(&#39;touchstart&#39;, show);
+});
+// show the first set of data
+showFileInfo(fileInfos, fileInfos[0]);
+</code></pre>
+<p>Above we make geometry for each data set, use the first one as the base,
+then get a <code>position</code> attribute from each geometry and add it as
+a morphtarget to the base geometry for <code>position</code>.</p>
+<p>Now we need to change how we&#39;re showing and hiding the various data sets.
+Instead of showing or hiding a mesh we need to change the influence of the
+morphtargets. For the data set we want to see we need to have an influence of 1
+and for all the ones we don&#39;t want to see to we need to have an influence of 0.</p>
+<p>We could just set them to 0 or 1 directly but if we did that we wouldn&#39;t see any
+animation, it would just snap which would be no different than what we already
+have. We could also write some custom animation code which would be easy but
+because the original webgl globe uses 
+<a href="https://github.com/tweenjs/tween.js/">an animation library</a> let&#39;s use the same one here.</p>
+<p>We need to include the library</p>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
+import {BufferGeometryUtils} from &#39;./resources/threejs/r108/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
++import {TWEEN} from &#39;./resources/threejs/r108/examples/jsm/libs/tween.min.js&#39;;
+</code></pre>
+<p>And then create a <code>Tween</code> to animate the influences.</p>
+<pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+-    info.root.visible = visible;
+    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
++    const targets = {};
++    fileInfos.forEach((info, i) =&gt; {
++      targets[i] = info === fileInfo ? 1 : 0;
++    });
++    const durationInMs = 1000;
++    new TWEEN.Tween(mesh.morphTargetInfluences)
++      .to(targets, durationInMs)
++      .start();
+  });
+  requestRenderIfNotRequested();
+}
+</code></pre>
+<p>We&#39;re also suppose to call <code>TWEEN.update</code> every frame inside our render loop
+but that points out a problem. &quot;tween.js&quot; is designed for continuous rendering
+but we are <a href="threejs-rendering-on-demand.html">rendering on demand</a>. We could
+switch to continuous rendering but it&#39;s sometimes nice to only render on demand
+as it well stop using the user&#39;s power when nothing is happening
+so let&#39;s see if we can make it animate on demand.</p>
+<p>We&#39;ll make a <code>TweenManager</code> to help. We&#39;ll use it to create the <code>Tween</code>s and
+track them. It will have an <code>update</code> method that will return <code>true</code>
+if we need to call it again and <code>false</code> if all the animations are finished.</p>
+<pre class="prettyprint"><code class="lang-js">class TweenManger {
+  constructor() {
+    this.numTweensRunning = 0;
+  }
+  _handleComplete() {
+    --this.numTweensRunning;
+    console.assert(this.numTweensRunning &gt;= 0);
+  }
+  createTween(targetObject) {
+    const self = this;
+    ++this.numTweensRunning;
+    let userCompleteFn = () =&gt; {};
+    // create a new tween and install our own onComplete callback
+    const tween = new TWEEN.Tween(targetObject).onComplete(function(...args) {
+      self._handleComplete();
+      userCompleteFn.call(this, ...args);
+    });
+    // replace the tween&#39;s onComplete function with our own
+    // so we can call the user&#39;s callback if they supply one.
+    tween.onComplete = (fn) =&gt; {
+      userCompleteFn = fn;
+      return tween;
+    };
+    return tween;
+  }
+  update() {
+    TWEEN.update();
+    return this.numTweensRunning &gt; 0;
+  }
+}
+</code></pre>
+<p>To use it we&#39;ll create one </p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas});
++  const tweenManager = new TweenManger();
+
+  ...
+</code></pre>
+<p>We&#39;ll use it to create our <code>Tween</code>s.</p>
+<pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+    const targets = {};
+    fileInfos.forEach((info, i) =&gt; {
+      targets[i] = info === fileInfo ? 1 : 0;
+    });
+    const durationInMs = 1000;
+-    new TWEEN.Tween(mesh.morphTargetInfluences)
++    tweenManager.createTween(mesh.morphTargetInfluences)
+      .to(targets, durationInMs)
+      .start();
+  });
+  requestRenderIfNotRequested();
+}
+</code></pre>
+<p>Then we&#39;ll update our render loop to update the tweens and keep rendering
+if there are still animations running.</p>
+<pre class="prettyprint"><code class="lang-js">function render() {
+  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
++  if (tweenManager.update()) {
++    requestRenderIfNotRequested();
++  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+render();
+</code></pre>
+<p>And with that we should be animating between data sets.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>That seems to work but unfortunately we lost the colors.</p>
+<p>Three.js does not support morphtarget colors and in fact this is an issue
+with the original <a href="https://github.com/dataarts/webgl-globe">webgl globe</a>.
+Basically it just makes colors for the first data set. Any other datasets
+use the same colors even if they are vastly different.</p>
+<p>Let&#39;s see if we can add support for morphing the colors. This might
+be brittle. The least brittle way would probably be to 100% write our own
+shaders but I think it would be useful to see how to modify the built
+in shaders.</p>
+<p>The first thing we need to do is make the code extract color a <code>BufferAttribute</code> from
+each data set&#39;s geometry.</p>
+<pre class="prettyprint"><code class="lang-js">// use the first geometry as the base
+// and add all the geometries as morphtargets
+const baseGeometry = geometries[0];
+baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
+  const attribute = geometry.getAttribute(&#39;position&#39;);
+  const name = `target${ndx}`;
+  attribute.name = name;
+  return attribute;
+});
++const colorAttributes = geometries.map((geometry, ndx) =&gt; {
++  const attribute = geometry.getAttribute(&#39;color&#39;);
++  const name = `morphColor${ndx}`;
++  attribute.name = `color${ndx}`;  // just for debugging
++  return {name, attribute};
++});
+const material = new THREE.MeshBasicMaterial({
+  vertexColors: THREE.VertexColors,
+  morphTargets: true,
+});
+</code></pre>
+<p>We then need to modify the three.js shader. Three.js materials have an
+<code>Material.onBeforeCompile</code> property we can assign a function. It gives us a
+chance to modify the material&#39;s shader before it is passed to WebGL. In fact the
+shader that is provided is actually a special three.js only syntax of shader
+that lists a bunch of shader <em>chunks</em> that three.js will substitute with the
+actual GLSL code for each chunk. Here is what the unmodified vertex shader code
+looks like as passed to <code>onBeforeCompile</code>.</p>
+<pre class="prettyprint"><code class="lang-glsl">#include &lt;common&gt;
+#include &lt;uv_pars_vertex&gt;
+#include &lt;uv2_pars_vertex&gt;
+#include &lt;envmap_pars_vertex&gt;
+#include &lt;color_pars_vertex&gt;
+#include &lt;fog_pars_vertex&gt;
+#include &lt;morphtarget_pars_vertex&gt;
+#include &lt;skinning_pars_vertex&gt;
+#include &lt;logdepthbuf_pars_vertex&gt;
+#include &lt;clipping_planes_pars_vertex&gt;
+void main() {
+    #include &lt;uv_vertex&gt;
+    #include &lt;uv2_vertex&gt;
+    #include &lt;color_vertex&gt;
+    #include &lt;skinbase_vertex&gt;
+    #ifdef USE_ENVMAP
+    #include &lt;beginnormal_vertex&gt;
+    #include &lt;morphnormal_vertex&gt;
+    #include &lt;skinnormal_vertex&gt;
+    #include &lt;defaultnormal_vertex&gt;
+    #endif
+    #include &lt;begin_vertex&gt;
+    #include &lt;morphtarget_vertex&gt;
+    #include &lt;skinning_vertex&gt;
+    #include &lt;project_vertex&gt;
+    #include &lt;logdepthbuf_vertex&gt;
+    #include &lt;worldpos_vertex&gt;
+    #include &lt;clipping_planes_vertex&gt;
+    #include &lt;envmap_vertex&gt;
+    #include &lt;fog_vertex&gt;
+}
+</code></pre>
+<p>Digging through the various chunks we want to replace
+the <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_pars_vertex.glsl.js"><code>morphtarget_pars_vertex</code> chunk</a>
+the <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphnormal_vertex.glsl.js"><code>morphnormal_vertex</code> chunk</a>
+the <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_vertex.glsl.js"><code>morphtarget_vertex</code> chunk</a>
+the <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_pars_vertex.glsl.js"><code>color_pars_vertex</code> chunk</a>
+and the <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js"><code>color_vertex</code> chunk</a></p>
+<p>To do that we&#39;ll make a simple array of replacements and apply them in <code>Material.onBeforeCompile</code></p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshBasicMaterial({
+  vertexColors: THREE.VertexColors,
+  morphTargets: true,
+});
++const vertexShaderReplacements = [
++  {
++    from: &#39;#include &lt;morphtarget_pars_vertex&gt;&#39;,
++    to: `
++      uniform float morphTargetInfluences[8];
++    `,
++  },
++  {
++    from: &#39;#include &lt;morphnormal_vertex&gt;&#39;,
++    to: `
++    `,
++  },
++  {
++    from: &#39;#include &lt;morphtarget_vertex&gt;&#39;,
++    to: `
++      transformed += (morphTarget0 - position) * morphTargetInfluences[0];
++      transformed += (morphTarget1 - position) * morphTargetInfluences[1];
++      transformed += (morphTarget2 - position) * morphTargetInfluences[2];
++      transformed += (morphTarget3 - position) * morphTargetInfluences[3];
++    `,
++  },
++  {
++    from: &#39;#include &lt;color_pars_vertex&gt;&#39;,
++    to: `
++      varying vec3 vColor;
++      attribute vec3 morphColor0;
++      attribute vec3 morphColor1;
++      attribute vec3 morphColor2;
++      attribute vec3 morphColor3;
++    `,
++  },
++  {
++    from: &#39;#include &lt;color_vertex&gt;&#39;,
++    to: `
++      vColor.xyz = morphColor0 * morphTargetInfluences[0] +
++                   morphColor1 * morphTargetInfluences[1] +
++                   morphColor2 * morphTargetInfluences[2] +
++                   morphColor3 * morphTargetInfluences[3];
++    `,
++  },
++];
++material.onBeforeCompile = (shader) =&gt; {
++  vertexShaderReplacements.forEach((rep) =&gt; {
++    shader.vertexShader = shader.vertexShader.replace(rep.from, rep.to);
++  });
++};
+</code></pre>
+<p>Three.js also sorts morphtargets and applies only the highest influences.
+This lets it allow many more morphtargets as long as only a few are used at
+a time. We need to figure out how it sorted the morphtargets and then set
+our color attributes to match. We can do this by first removing all our
+color attributes and then checking the <code>morphTarget</code> attributes and and
+seeing which <code>BufferAttribute</code> was assigned. Using the name of the
+<code>BufferAttribute</code> we can tell which corresponding color attribute needed.</p>
+<p>First we&#39;ll go change the names of the morphtarget <code>BufferAttributes</code> so they
+are easier to parse later</p>
+<pre class="prettyprint"><code class="lang-js">// use the first geometry as the base
+// and add all the geometries as morphtargets
+const baseGeometry = geometries[0];
+baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
+  const attribute = geometry.getAttribute(&#39;position&#39;);
+-  const name = `target${ndx}`;
++  // put the number in front so we can more easily parse it later
++  const name = `${ndx}target`;
+  attribute.name = name;
+  return attribute;
+});
+</code></pre>
+<p>Then we can setup the corresponding color attributes in
+<code>Object3D.onBeforeRender</code> which is a property of our <code>Mesh</code>. Three.js will call
+it just before rendering giving us a chance to fix things up.</p>
+<pre class="prettyprint"><code class="lang-js">const mesh = new THREE.Mesh(baseGeometry, material);
+scene.add(mesh);
++mesh.onBeforeRender = function(renderer, scene, camera, geometry) {
++  // remove all the color attributes
++  for (const {name} of colorAttributes) {
++    geometry.removeAttribute(name);
++  }
++
++  for (let i = 0; i &lt; colorAttributes.length; ++i) {
++    const attrib = geometry.getAttribute(`morphTarget${i}`);
++    if (!attrib) {
++      break;
++    }
++    // The name will be something like &quot;2target&quot; as we named it above
++    // where 2 is the index of the data set
++    const ndx = parseInt(attrib.name);
++    const name = `morphColor${i}`;
++    geometry.addAttribute(name, colorAttributes[ndx].attribute);
++  }
++};
+</code></pre>
+<p>And with that we should have the colors animating as well as the boxes.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets-w-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets-w-colors.html" target="_blank">click here to open in a separate window</a>
+</div>
+
+</p>
+<p>I hope going through this was helpful. Using morphtargets either through the
+services three.js provides or by writing custom shaders is a common technique to
+move lots of objects. As an example we could give every cube a random place in
+another target and morph from that to their first positions on the globe. That
+might be a cool way to introduce the globe.</p>
+<p>Next you might be interested in adding labels to a globe which is covered
+in <a href="threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a>.</p>
+<p>Note: We could try to just graph percent of men or percent of women or the raw
+difference but based on how we are displaying the info, cubes that grow from the
+surface of the earth, we&#39;d prefer most cubes to be low. If we used one of these
+other comparisons most cubes would be about 1/2 their maximum height which would
+not make a good visualization. Feel free to change the <code>amountGreaterThan</code> from
+<code>Math.max(a - b, 0)</code> to something like <code>(a - b)</code> &quot;raw difference&quot; or <code>a / (a +
+b)</code> &quot;percent&quot; and you&#39;ll see what I mean.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Optimize Lots of Objects Animated';
+            var disqus_title = 'Three.js Optimize Lots of Objects Animated';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+

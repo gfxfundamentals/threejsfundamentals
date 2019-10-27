@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/threejs-materials.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Materials in Three.js" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-materials_en.jpg" />
+
+<meta property="og:title" content="Three.js Materials" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-materials_en.jpg" />
+<meta property="og:description" content="Materials in Three.js" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-materials.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js Materials" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-materials.html" />
+<meta name="twitter:description" content="Materials in Three.js" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-materials_en.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-materials.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-materials_en.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-materials.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/threejs-materials.html",
+      "inLanguage":"en",
+      "name":"Three.js Materials",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-materials.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js Materials</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-materials.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-materials.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-materials.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table of Contents</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/">threejsfundamentals.org</a></h1>
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js Materials</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>This article is part of a series of articles about three.js. The
+first article is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If
+you haven&#39;t read that yet and you&#39;re new to three.js you might want to
+consider starting there.</p>
+<p>Three.js provides several types of materials.
+They define how objects will appear in the scene.
+Which materials you use really depends on what you&#39;re trying to
+accomplish.</p>
+<p>There are 2 ways to set most material properties. One at creation time which
+we&#39;ve seen before.</p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
+  color: 0xFF0000,    // red (can also use a CSS color string here)
+  flatShading: true,
+});
+</code></pre>
+<p>The other is after creation</p>
+<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial();
+material.color.setHSL(0, 1, .5);  // red
+material.flatShading = true;
+</code></pre>
+<p>note that properties of type <code>THREE.Color</code> have multiple ways to be set.</p>
+<pre class="prettyprint"><code class="lang-js">material.color.set(0x00FFFF);    // same as CSS&#39;s #RRGGBB style
+material.color.set(cssString);   // any CSS color, eg &#39;purple&#39;, &#39;#F32&#39;,
+                                 // &#39;rgb(255, 127, 64)&#39;,
+                                 // &#39;hsl(180, 50%, 25%)&#39;
+material.color.set(someColor)    // some other THREE.Color
+material.color.setHSL(h, s, l)   // where h, s, and l are 0 to 1
+material.color.setRGB(r, g, b)   // where r, g, and b are 0 to 1
+</code></pre>
+<p>And at creation time you can pass either a hex number or a CSS string</p>
+<pre class="prettyprint"><code class="lang-js">const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // red
+const m2 = new THREE.MeshBasicMaterial({color: &#39;red&#39;});            // red
+const m3 = new THREE.MeshBasicMaterial({color: &#39;#F00&#39;});           // red
+const m4 = new THREE.MeshBasicMaterial({color: &#39;rgb(255,0,0)&#39;});   // red
+const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // red
+</code></pre>
+<p>So let&#39;s go over three.js&#39;s set of materials.</p>
+<p>The <code>MeshBasicMaterial</code> is not affected by lights.
+The <code>MeshLambertMaterial</code> computes lighting only at the vertices vs the <code>MeshPhongMaterial</code> which computes lighting at every pixel. The <code>MeshPhongMaterial</code>
+also supports specular highlights.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshBasicMaterial" ></div>
+    <div class="code">Basic</div>
+  </div>
+  <div>
+    <div data-diagram="MeshLambertMaterial" ></div>
+    <div class="code">Lambert</div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterial" ></div>
+    <div class="code">Phong</div>
+  </div>
+</div>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshBasicMaterialLowPoly" ></div>
+  </div>
+  <div>
+    <div data-diagram="MeshLambertMaterialLowPoly" ></div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialLowPoly" ></div>
+  </div>
+</div>
+<div class="threejs_center code">low-poly models with same materials</div>
+
+<p>The <code>shininess</code> setting of the <code>MeshPhongMaterial</code> determines the <em>shininess</em> of the specular highlight. It defaults to 30.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshPhongMaterialShininess0" ></div>
+    <div class="code">shininess: 0</div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialShininess30" ></div>
+    <div class="code">shininess: 30</div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialShininess150" ></div>
+    <div class="code">shininess: 150</div>
+  </div>
+</div>
+
+<p>Note that setting the <code>emissive</code> property to a color on either a
+<code>MeshLambertMaterial</code> or a <code>MeshPhongMaterial</code> and setting the <code>color</code> to black
+(and <code>shininess</code> to 0 for phong) ends up looking just like the <code>MeshBasicMaterial</code>.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshBasicMaterialCompare" ></div>
+    <div class="code">
+      <div>Basic</div>
+      <div>color: 'purple'</div>
+    </div>
+  </div>
+  <div>
+    <div data-diagram="MeshLambertMaterialCompare" ></div>
+    <div class="code">
+      <div>Lambert</div>
+      <div>color: 'black'</div>
+      <div>emissive: 'purple'</div>
+    </div>
+  </div>
+  <div>
+    <div data-diagram="MeshPhongMaterialCompare" ></div>
+    <div class="code">
+      <div>Phong</div>
+      <div>color: 'black'</div>
+      <div>emissive: 'purple'</div>
+      <div>shininess: 0</div>
+    </div>
+  </div>
+</div>
+
+<p>Why have all 3 when <code>MeshPhongMaterial</code> can do the same things as <code>MeshBasicMaterial</code>
+and <code>MeshLambertMaterial</code>? The reason is the more sophisticated material
+takes more GPU power to draw. On a slower GPU like say a mobile phone
+you might want to reduce the GPU power needed to draw your scene by
+using one of the less complex materials. It also follows that if you
+don&#39;t need the extra features then use the simplest material. If you don&#39;t
+need the lighting and the specular highlight then use the <code>MeshBasicMaterial</code>.</p>
+<p>The <code>MeshToonMaterial</code> is similar to the <code>MeshPhongMaterial</code>
+with one big difference. Rather than shading smoothly it uses a gradient map
+(an X by 1 texture) to decide how to shade. The default uses a gradient map
+that is 70% brightness for the first 70% and 100% after but you can supply your
+own gradient map. This ends up giving a 2 tone look that looks like a cartoon.</p>
+<div class="spread">
+  <div data-diagram="MeshToonMaterial"></div>
+</div>
+
+<p>Next up there are 2 <em>physically based rendering</em> materials. Physically Based
+Rendering is often abbreviated PBR.</p>
+<p>The materials above use simple math to make materials that look 3D but they
+aren&#39;t what actually happens in real world. The 2 PBR materials use much more
+complex math to come close to what actually happens in the real world.</p>
+<p>The first one is <code>MeshStandardMaterial</code>. The biggest difference between
+<code>MeshPhongMaterial</code> and <code>MeshStandardMaterial</code> is it uses different parameters.
+<code>MeshPhongMaterial</code> had a <code>shininess</code> setting. <code>MeshStandardMaterial</code> has 2
+settings <code>roughness</code> and <code>metalness</code>.</p>
+<p>At a basic level <a href="MeshStandardMaterial.roughness"><code>roughness</code></a> is the opposite
+of <code>shininess</code>. Something that has a high roughness, like a baseball doesn&#39;t
+have hard reflections whereas something that&#39;s not rough, like a billiard ball,
+is very shiny. Roughness goes from 0 to 1.</p>
+<p>The other setting, <a href="MeshStandardMaterial.metalness"><code>metalness</code></a>, says
+how metal the material is. Metals behave differently than non-metals
+and so this setting goes from 0, not metal at all, to 1, 100% metal.</p>
+<p>Here&#39;s a quick sample of <code>MeshStandardMaterial</code> with <code>roughness</code> from 0 to 1
+across and <code>metalness</code> from 0 to 1 down.</p>
+<div data-diagram="MeshStandardMaterial" style="min-height: 400px"></div>
+
+<p>The <code>MeshPhysicalMaterial</code> is same as the <code>MeshStandardMaterial</code> but it
+adds a <code>clearcoat</code> parameter that goes from 0 to 1 for how much to
+apply a clearcoat gloss layer and a <code>clearCoatRoughness</code> parameter
+that specifies how rough the gloss layer is.</p>
+<p>Here&#39;s the same grid of <code>roughness</code> by <code>metalness</code> as above but with
+<code>clearcoat</code> and <code>clearCoatRoughness</code> settings.</p>
+<div data-diagram="MeshPhysicalMaterial" style="min-height: 400px"></div>
+
+<p>The various standard materials progress from fastest to slowest
+<code>MeshBasicMaterial</code> ➡ <code>MeshLambertMaterial</code> ➡ <code>MeshPhongMaterial</code> ➡
+<code>MeshStandardMaterial</code> ➡ <code>MeshPhysicalMaterial</code>. The slower materials
+can make more realistic looking scenes but you might need to design
+your code to use the faster materials on low powered or mobile machines.</p>
+<p>There are 3 materials that have special uses. <code>ShadowMaterial</code>
+is used to get the data created from shadows. We haven&#39;t
+covered shadows yet. When we do we&#39;ll use this material
+to take a peek at what&#39;s happening behind the scenes.</p>
+<p>The <code>MeshDepthMaterial</code> renders the depth of each pixel where
+pixels at negative <a href="PerspectiveCamera.near"><code>near</code></a> of the camera are 0 and negative <a href="PerspectiveCamera.far"><code>far</code></a> are 1. Certain special effects can use this data which we&#39;ll
+get into at another time.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshDepthMaterial"></div>
+  </div>
+</div>
+
+<p>The <code>MeshNormalMaterial</code> will show you the <em>normals</em> of geometry.
+<em>Normals</em> are the direction a particular triangle or pixel faces.
+<code>MeshNormalMaterial</code> draws the view space normals (the normals relative to the camera).
+<span class="color:red;">x is red</span>,
+<span class="color:green;">y is green</span>, and
+<span class="color:blue;">z is blue</span> so things facing
+to the right will be red, up will be green, and toward the screen will be blue.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="MeshNormalMaterial"></div>
+  </div>
+</div>
+
+<p><code>ShaderMaterial</code> is for making custom materials using the three.js shader
+system. <code>RawShaderMaterial</code> is for making entirely custom shaders with
+no help from three.js. Both of these topics are large and will be
+covered later.</p>
+<p>Most materials share a bunch of settings all defined by <code>Material</code>.
+<a href="Material">See the docs</a>
+for all of them but let&#39;s go over two of the most commonly used
+properties.</p>
+<p><a href="Material.flatShading"><code>flatShading</code></a>:
+whether or not the object looks faceted or smooth. default = <code>false</code>.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="smoothShading"></div>
+    <div class="code">flatShading: false</div>
+  </div>
+  <div>
+    <div data-diagram="flatShading"></div>
+    <div class="code">flatShading: true</div>
+  </div>
+</div>
+
+<p><a href="Material.side"><code>side</code></a>: which sides of triangles to show. The default is <code>THREE.FrontSide</code>.
+Other options are <code>THREE.BackSide</code> and <code>THREE.DoubleSide</code> (both sides).
+Most 3D objects drawn in three are probably opaque solids so the back sides
+(the sides facing inside the solid) do not need to be drawn. The most common
+reason to set <code>side</code> is for planes or other non-solid objects where it is
+common to see the back sides of triangles.</p>
+<p>Here are 6 planes drawn with <code>THREE.FrontSide</code> and <code>THREE.DoubleSide</code>.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="sideDefault" style="height: 250px;"></div>
+    <div class="code">side: THREE.FrontSide</div>
+  </div>
+  <div>
+    <div data-diagram="sideDouble" style="height: 250px;"></div>
+    <div class="code">side: THREE.DoubleSide</div>
+  </div>
+</div>
+
+<p>There&#39;s really a lot to consider with materials and we actually still
+have a bunch more to go. In particular we&#39;ve mostly ignored textures
+which open up a whole slew of options. Before we cover textures though
+we need to take a break and cover
+<a href="threejs-setup.html">setting up your development environment</a></p>
+<div class="threejs_bottombar">
+<h3>material.needsUpdate</h3>
+<p>
+This topic rarely affects most three.js apps but just as an FYI...
+Three.js applies material settings when a material is used where "used"
+means "something is rendered that uses the material". Some material settings are
+only applied once as changing them requires lots of work by three.js.
+In those cases you need to set <code>material.needsUpdate = true</code> to tell
+three.js to apply your material changes. The most common settings
+that require you to set <code>needsUpdate</code> if you change the settings after
+using the material are:
+</p>
+<ul>
+  <li><code>flatShading</code></li>
+  <li>adding or removing a texture
+    <p>
+    Changing a texture is ok, but if want to switch from using no texture
+    to using a texture or from using a texture to using no texture
+    then you need to set <code>needsUpdate = true</code>.
+    </p>
+    <p>In the case of going from texture to no-texture it is often
+    just better to use a 1x1 pixel white texture.</p>
+  </li>
+</ul>
+<p>As mentioned above most apps never run into these issues. Most apps
+do not switch between flat shaded and non flat shaded. Most apps also
+either use textures or a solid color for a given material, they rarely
+switch from using one to using the other.
+</p>
+</div>
+
+<p><canvas id="c"></canvas></p>
+<script type="module" src="resources/threejs-materials.js"></script>
+
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-materials.html" selected>English</a>
+    <option value="/threejs/lessons/ru/threejs-materials.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-materials.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Basics</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-fundamentals.html">Fundamentals</a></li>
+<li><a href="/threejs/lessons/threejs-responsive.html">Responsive Design</a></li>
+<li><a href="/threejs/lessons/threejs-prerequisites.html">Prerequisites</a></li>
+<li><a href="/threejs/lessons/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+        </ul>
+  <li>Optimization</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Tips</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Fundamentals</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Reference</li>
+        <ul>
+          <li><a href="/threejs/lessons/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">three.js docs</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Materials';
+            var disqus_title = 'Three.js Materials';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script src="//cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120733518-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120733518-1');
+</script>
+
+
+</html>
+
+
+
