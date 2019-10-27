@@ -25,7 +25,8 @@
     "jsdom": "^15.1.1",
     "load-grunt-tasks": "^5.0.0",
     "minami": "^1.2.3",
-    "semver": "^6.2.0"
+    "semver": "^6.2.0",
+    "three": "^0.109.0"
   },
   "scripts": {
     "build": "grunt",
