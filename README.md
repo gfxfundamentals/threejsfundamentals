@@ -111,7 +111,7 @@ This is template for the table of contents for the language.
 It is included on both the index and on each article. The only
 parts not auto-generated are the links ending links which
 you can translate if you want to.
-The build system will create a placeholder for every English article for which there is no corresponding article in that langauge. It will be filled the `missing` message from above.
+The build system will create a placeholder for every English article for which there is no corresponding article in that language. It will be filled the `missing` message from above.
 
 #### Translation notes
 
