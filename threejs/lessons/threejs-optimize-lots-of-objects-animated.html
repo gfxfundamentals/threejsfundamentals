@@ -444,10 +444,10 @@ have. We could also write some custom animation code which would be easy but
 because the original webgl globe uses 
 <a href="https://github.com/tweenjs/tween.js/">an animation library</a> let&#39;s use the same one here.</p>
 <p>We need to include the library</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
-import {BufferGeometryUtils} from &#39;./resources/threejs/r108/examples/jsm/utils/BufferGeometryUtils.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
-+import {TWEEN} from &#39;./resources/threejs/r108/examples/jsm/libs/tween.min.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
+import {BufferGeometryUtils} from &#39;./resources/threejs/r110/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
++import {TWEEN} from &#39;./resources/threejs/r110/examples/jsm/libs/tween.min.js&#39;;
 </code></pre>
 <p>And then create a <code>Tween</code> to animate the influences.</p>
 <pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest
@@ -719,7 +719,7 @@ scene.add(mesh);
 +mesh.onBeforeRender = function(renderer, scene, camera, geometry) {
 +  // remove all the color attributes
 +  for (const {name} of colorAttributes) {
-+    geometry.removeAttribute(name);
++    geometry.deleteAttribute(name);
 +  }
 +
 +  for (let i = 0; i &lt; colorAttributes.length; ++i) {
@@ -731,7 +731,7 @@ scene.add(mesh);
 +    // where 2 is the index of the data set
 +    const ndx = parseInt(attrib.name);
 +    const name = `morphColor${i}`;
-+    geometry.addAttribute(name, colorAttributes[ndx].attribute);
++    geometry.setAttribute(name, colorAttributes[ndx].attribute);
 +  }
 +};
 </code></pre>

@@ -141,8 +141,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 или <em>поворачивать</em> камеру вокруг некоторой точки. <code>OrbitControls</code> - это 
 дополнительные функции three.js, поэтому сначала нам нужно 
 включить их в нашу страницу.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r108/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <p>Теперь мы можем использовать их. Мы передаем в <code>OrbitControls</code> камеру для 
 управления и элемент DOM для получения входных событий</p>
@@ -505,8 +505,8 @@ scene.add(helper);
 }
 </code></pre>
 <p>Для использования <code>RectAreaLight</code> нам нужно включить некоторые дополнительные возможности three.js</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r108/build/three.module.js&#39;;
-+import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r108/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
++import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r110/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);

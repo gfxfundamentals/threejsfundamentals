@@ -20,8 +20,8 @@
     <canvas id="c"></canvas>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r108/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r108/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './resources/threejs/r110/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r110/examples/jsm/controls/OrbitControls.js';
 
 class VoxelWorld {
   constructor(options) {
@@ -259,13 +259,13 @@ function main() {
   const positionNumComponents = 3;
   const normalNumComponents = 3;
   const uvNumComponents = 2;
-  geometry.addAttribute(
+  geometry.setAttribute(
       'position',
       new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
-  geometry.addAttribute(
+  geometry.setAttribute(
       'normal',
       new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
-  geometry.addAttribute(
+  geometry.setAttribute(
       'uv',
       new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
   geometry.setIndex(indices);

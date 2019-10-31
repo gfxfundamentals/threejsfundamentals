@@ -495,7 +495,7 @@ geometry we might as well do it once instead of twice.</p>
 <code>BufferGeometryUtils.mergeBufferGeometries</code> which will combined all of
 them into a single mesh.</p>
 <p>We also need to include the <code>BufferGeometryUtils</code></p>
-<pre class="prettyprint"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r108/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r110/examples/jsm/utils/BufferGeometryUtils.js&#39;;
 </code></pre>
 <p>And now, at least on my machine, I get 60 frames per second</p>
 <p><div class="threejs_example_container">
@@ -556,7 +556,7 @@ data.forEach((row, latNdx) =&gt; {
 +
 +    const normalized = true;
 +    const colorAttrib = new THREE.BufferAttribute(colors, itemSize, normalized);
-+    geometry.addAttribute(&#39;color&#39;, colorAttrib);
++    geometry.setAttribute(&#39;color&#39;, colorAttrib);
 
     geometries.push(geometry);
   });
@@ -564,7 +564,7 @@ data.forEach((row, latNdx) =&gt; {
 </code></pre>
 <p>The code above looks up the number or vertices needed by getting the <code>position</code>
 attribute from the geometry. We then create a <code>Uint8Array</code> to put the colors in.
-It then adds that as an attribute by calling <code>geometry.addAttribute</code>.</p>
+It then adds that as an attribute by calling <code>geometry.setAttribute</code>.</p>
 <p>Lastly we need to tell three.js to use the vertex colors. </p>
 <pre class="prettyprint"><code class="lang-js">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
     geometries, false);
