@@ -4,7 +4,7 @@
   "description": "Some Three.js Tutorials",
   "main": "index.js",
   "threejsfundamentals": {
-    "threeVersion": 108
+    "threeVersion": 110
   },
   "dependencies": {},
   "devDependencies": {
@@ -26,7 +26,7 @@
     "load-grunt-tasks": "^5.0.0",
     "minami": "^1.2.3",
     "semver": "^6.2.0",
-    "three": "^0.109.0"
+    "three": "^0.110.0"
   },
   "scripts": {
     "build": "grunt",
