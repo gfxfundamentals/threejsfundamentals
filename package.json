@@ -21,7 +21,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^22.0.0",
-    "http-server": "^0.11.1",
+    "servez": "^1.0.6",
     "jsdom": "^15.2.0",
     "load-grunt-tasks": "^5.1.0",
     "minami": "^1.2.3",
@@ -31,7 +31,7 @@
   "scripts": {
     "build": "grunt",
     "watch": "grunt buildwatch",
-    "start": "http-server out",
+    "start": "servez out",
     "eslint": "grunt eslint",
     "pre-push": "grunt eslint",
     "bumpthree": "grunt bumpthree",
