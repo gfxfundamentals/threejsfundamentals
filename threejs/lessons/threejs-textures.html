@@ -612,10 +612,10 @@ gui.add(new StringToNumberHelper(texture, &#39;wrapS&#39;), &#39;value&#39;, wra
 gui.add(new StringToNumberHelper(texture, &#39;wrapT&#39;), &#39;value&#39;, wrapModes)
   .name(&#39;texture.wrapT&#39;)
   .onChange(updateTexture);
-gui.add(texture.repeat, &#39;x&#39;, 0, 5).name(&#39;texture.repeat.x&#39;);
-gui.add(texture.repeat, &#39;y&#39;, 0, 5).name(&#39;texture.repeat.y&#39;);
-gui.add(texture.offset, &#39;x&#39;, -2, 2).name(&#39;texture.offset.x&#39;);
-gui.add(texture.offset, &#39;y&#39;, -2, 2).name(&#39;texture.offset.y&#39;);
+gui.add(texture.repeat, &#39;x&#39;, 0, 5, .01).name(&#39;texture.repeat.x&#39;);
+gui.add(texture.repeat, &#39;y&#39;, 0, 5, .01).name(&#39;texture.repeat.y&#39;);
+gui.add(texture.offset, &#39;x&#39;, -2, 2, .01).name(&#39;texture.offset.x&#39;);
+gui.add(texture.offset, &#39;y&#39;, -2, 2, .01).name(&#39;texture.offset.y&#39;);
 gui.add(texture.center, &#39;x&#39;, -.5, 1.5, .01).name(&#39;texture.center.x&#39;);
 gui.add(texture.center, &#39;y&#39;, -.5, 1.5, .01).name(&#39;texture.center.y&#39;);
 gui.add(new DegRadHelper(texture, &#39;rotation&#39;), &#39;value&#39;, -360, 360)
