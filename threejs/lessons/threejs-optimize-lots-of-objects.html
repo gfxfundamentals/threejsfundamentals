@@ -326,7 +326,7 @@ function hsl(h, s, l) {
 }
 </code></pre>
 <p>And finally gluing it all together</p>
-<pre class="prettyprint"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw-v4-basic-demographic-characteristics-rev10_a000_014_2010_1_deg_asc/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
   .then(parseData)
   .then(drawData);
 </code></pre>
@@ -461,7 +461,7 @@ different offset around the globe. <code>latFudge</code> on the other hand I hav
 why it needs to be π * -0.135, that&#39;s just an amount that made the boxes line up
 with the texture.</p>
 <p>The last thing we need to do is call our loader</p>
-<pre class="prettyprint"><code>loadFile(&#39;resources/data/gpw/gpw-v4-basic-demographic-characteristics-rev10_a000_014_2010_1_deg_asc/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint"><code>loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
   .then(parseData)
 -  .then(drawData)
 +  .then(addBoxes)
