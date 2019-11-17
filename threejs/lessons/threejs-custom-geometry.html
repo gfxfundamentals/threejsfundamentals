@@ -479,13 +479,13 @@ terrain mesh.</p>
 <p>A heightmap based terrain is where you have a 2D array of heights
 that you apply them to a grid. An easy way to get a 2D array of heights
 is to draw them in an image editing program. Here&#39;s an image I drew.
-It&#39;s 64x64 pixels</p>
-<div class="threejs_center"><img src="../resources/images/heightmap-64x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+It&#39;s 96x64 pixels</p>
+<div class="threejs_center"><img src="../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 <p>We&#39;ll load that and then generate a heightmap mesh from it.
 We can use the <code>ImageLoader</code> to load the image.</p>
 <pre class="prettyprint"><code class="lang-js">const imgLoader = new THREE.ImageLoader();
-imgLoader.load(&#39;resources/images/heightmap-64x64.png&#39;, createHeightmap);
+imgLoader.load(&#39;resources/images/heightmap-96x64.png&#39;, createHeightmap);
 
 function createHeightmap(image) {
   // extract the data from the image by drawing it to a canvas
