@@ -287,10 +287,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre><p>Вот как мы её направили.</p>
 <p><img src="../resources/scene-down.svg" width="500" class="threejs_center"/></p>
 <p>На диаграмме выше мы видим, что наша камера находится в <code>z = 2</code>. И смотрит вниз по оси -Z. 
-Усеченная пирамида начинается с 0.1 единицы спереди камеры и до 5 единиц перед камерой.
- Our canvas is twice as wide
-as it is tall so across view the field of view will be much wider than
-our specified 75 degrees which is the vertical field of view.
+Усеченная пирамида начинается с 0.1 единицы спереди камеры и до 5 единиц перед камерой. 
 Поскольку на этой диаграмме мы смотрим вниз, поле зрения (fov) зависит от отношения 
 сторон (aspect). Так как ширина холста в 2 раза больще высоты, при просмотре поле обзора 
 будет намного шире, чем указанные нами 75 градусов, которые являются вертикальным 
