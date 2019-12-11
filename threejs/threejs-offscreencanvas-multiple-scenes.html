@@ -1,0 +1,292 @@
+<!-- Licensed under a BSD license. See license.html for license -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Three.js - Offscreen Canvas Multiple Scenes</title>
+    <style>
+    body {
+        margin: 0;
+    }
+    #c {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      display: block;
+      z-index: -1;
+    }
+    *[data-diagram] {
+      display: inline-block;
+      width: 5em;
+      height: 3em;
+    }
+    .left {
+      float: left;
+      margin-right: .25em;
+    }
+    .right {
+      float: right;
+      margin-left: .25em;
+    }
+    p {
+      margin: 1em auto;
+      max-width: 500px;
+      font-size: xx-large;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="c" tabindex="1"></canvas>
+    <p>
+      <span data-diagram="box" class="left"></span>
+      I love boxes. Presents come in boxes.
+      When I find a new box I'm always excited to find out what's inside.
+    </p>
+    <p>
+      <span data-diagram="pyramid" class="right"></span>
+      When I was a kid I dreamed of going on an expedition inside a pyramid
+      and finding a undiscovered tomb full of mummies and treasure.
+    </p>
+  </body>
+<script src="resources/threejs/r110/build/three.min.js"></script>
+<script src="resources/threejs/r110/examples/js/controls/TrackballControls.js"></script>
+<script src="shared-trackballcontrols-multiple-scenes.js"></script>
+<script>
+'use strict';  // eslint-disable-line
+
+/* global init */
+
+const mouseEventHandler = makeSendPropertiesHandler([
+  'ctrlKey',
+  'metaKey',
+  'shiftKey',
+  'button',
+  'clientX',
+  'clientY',
+  'pageX',
+  'pageY',
+]);
+const wheelEventHandlerImpl = makeSendPropertiesHandler([
+  'deltaX',
+  'deltaY',
+]);
+const keydownEventHandler = makeSendPropertiesHandler([
+  'ctrlKey',
+  'metaKey',
+  'shiftKey',
+  'keyCode',
+]);
+
+function wheelEventHandler(event, sendFn) {
+  event.preventDefault();
+  wheelEventHandlerImpl(event, sendFn);
+}
+
+function preventDefaultHandler(event) {
+  event.preventDefault();
+}
+
+function copyProperties(src, properties, dst) {
+  for (const name of properties) {
+      dst[name] = src[name];
+  }
+}
+
+function makeSendPropertiesHandler(properties) {
+  return function sendProperties(event, sendFn) {
+    const data = {type: event.type};
+    copyProperties(event, properties, data);
+    sendFn(data);
+  };
+}
+
+function touchEventHandler(event, sendFn) {
+  const touches = [];
+  const data = {type: event.type, touches};
+  for (let i = 0; i < event.touches.length; ++i) {
+    const touch = event.touches[i];
+    touches.push({
+      pageX: touch.pageX,
+      pageY: touch.pageY,
+    });
+  }
+  sendFn(data);
+}
+
+// The four arrow keys
+const orbitKeys = {
+  '37': true,  // left
+  '38': true,  // up
+  '39': true,  // right
+  '40': true,  // down
+};
+function filteredKeydownEventHandler(event, sendFn) {
+  const {keyCode} = event;
+  if (orbitKeys[keyCode]) {
+    event.preventDefault();
+    keydownEventHandler(event, sendFn);
+  }
+}
+
+let nextProxyId = 0;
+class ElementProxy {
+  constructor(element, worker, eventHandlers) {
+    this.id = nextProxyId++;
+    this.worker = worker;
+    const sendEvent = (data) => {
+      this.worker.postMessage({
+        type: 'event',
+        id: this.id,
+        data,
+      });
+    };
+
+    // register an id
+    worker.postMessage({
+      type: 'makeProxy',
+      id: this.id,
+    });
+    sendSize();
+    for (const [eventName, handler] of Object.entries(eventHandlers)) {
+      element.addEventListener(eventName, function(event) {
+        handler(event, sendEvent);
+      });
+    }
+
+    function sendSize() {
+      const rect = element.getBoundingClientRect();
+      sendEvent({
+        type: 'size',
+        left: rect.left,
+        top: rect.top,
+        width: element.clientWidth,
+        height: element.clientHeight,
+      });
+    }
+
+    // really need to use ResizeObserver
+    window.addEventListener('resize', sendSize);
+  }
+}
+
+function startWorker(canvas, sceneElementInfos) {
+  canvas.focus();
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker('offscreencanvas-worker-trackballcontrols-multiple-scenes.js');
+
+  const eventHandlers = {
+    contextmenu: preventDefaultHandler,
+    mousedown: mouseEventHandler,
+    mousemove: mouseEventHandler,
+    mouseup: mouseEventHandler,
+    touchstart: touchEventHandler,
+    touchmove: touchEventHandler,
+    touchend: touchEventHandler,
+    wheel: wheelEventHandler,
+    keydown: filteredKeydownEventHandler,
+  };
+
+  const proxy = new ElementProxy(canvas, worker, eventHandlers);
+
+  const elemProxyInfos = [];
+  sceneElementInfos.forEach((sceneElemInfo, ndx) => {
+    const {elem, sceneName} = sceneElemInfo;
+    sceneElemInfo.id = ndx;
+    const proxy = new ElementProxy(elem, worker, eventHandlers);
+    sceneElemInfo.proxy = proxy;
+    elemProxyInfos.push({
+      proxyId: proxy.id,
+      id: ndx,
+      sceneName,
+    });
+  });
+
+  worker.postMessage({
+    type: 'start',
+    canvas: offscreen,
+    canvasId: proxy.id,
+    elemProxyInfos,
+  }, [offscreen]);
+
+  console.log('using OffscreenCanvas');  /* eslint-disable-line no-console */
+  function update() {
+    const transform = `translateY(${window.scrollY}px)`;
+    canvas.style.transform = transform;
+    worker.postMessage({
+      type: 'updateVisibleAreas',
+      visibleAreas: getVisibleSceneAreas(sceneElementInfos, canvas),
+    });
+  }
+  update();
+  window.addEventListener('resize', update);
+  window.addEventListener('scroll', update);
+}
+
+function startMainPage(canvas, sceneElementInfos) {
+  sceneElementInfos.forEach((sceneElemInfo, ndx) => {
+    sceneElemInfo.id = ndx;
+  });
+  const api = init({canvas, sceneElementInfos});
+  function update() {
+    const transform = `translateY(${window.scrollY}px)`;
+    canvas.style.transform = transform;
+    api.updateVisibleSceneElements(getVisibleSceneAreas(sceneElementInfos, canvas));
+  }
+  update();
+  window.addEventListener('resize', update);
+  window.addEventListener('scroll', update);
+  console.log('using regular canvas');  /* eslint-disable-line no-console */
+}
+
+
+function getVisibleSceneAreas(sceneElementInfos, canvas) {
+  const visibleAreas = [];
+  sceneElementInfos.forEach(({elem, id}) => {
+    // get the viewport relative position opf this element
+    const rect = elem.getBoundingClientRect();
+    const {left, right, top, bottom, width, height} = rect;
+
+    const isOffscreen =
+        bottom < 0 ||
+        top > canvas.clientHeight ||
+        right < 0 ||
+        left > canvas.clientWidth;
+
+    if (!isOffscreen) {
+      const positiveYUpBottom = canvas.clientHeight - bottom;
+      visibleAreas.push({
+        id: id,
+        rect: {
+          left, right, top, bottom, positiveYUpBottom, width, height,
+        },
+      });
+    }
+  });
+  return visibleAreas;
+}
+
+
+function main() {  /* eslint consistent-return: 0 */
+  const canvas = document.querySelector('#c');
+
+  const sceneElementInfos = [...document.querySelectorAll('[data-diagram]')].map((elem) => {
+    return {
+      sceneName: elem.dataset.diagram,
+      elem,
+    };
+  });
+
+  if (canvas.transferControlToOffscreen) {
+    startWorker(canvas, sceneElementInfos);
+  } else {
+    startMainPage(canvas, sceneElementInfos);
+  }
+}
+
+main();
+</script>
+</html>
+

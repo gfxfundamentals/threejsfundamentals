@@ -124,6 +124,27 @@ function main() {
     addScene(elem, sceneRenderFunction);
   });
 
+  function getVisibleSceneAreas() {  // eslint-disable-line
+    const visibleAreas = [];
+    for (const elem of sceneElements) {
+      // get the viewport relative position opf this element
+      const rect = elem.getBoundingClientRect();
+      const {left, right, top, bottom, width, height} = rect;
+
+      const isOffscreen =
+          bottom < 0 ||
+          top > renderer.domElement.clientHeight ||
+          right < 0 ||
+          left > renderer.domElement.clientWidth;
+
+      if (!isOffscreen) {
+        const positiveYUpBottom = renderer.domElement.clientHeight - bottom;
+        visibleAreas.push({left, positiveYUpBottom, width, height});
+      }
+    }
+    return visibleAreas;
+  }
+
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
     const width = canvas.clientWidth;
