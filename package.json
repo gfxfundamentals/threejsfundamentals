@@ -4,7 +4,7 @@
   "description": "Some Three.js Tutorials",
   "main": "index.js",
   "threejsfundamentals": {
-    "threeVersion": 110
+    "threeVersion": 112
   },
   "dependencies": {},
   "devDependencies": {
@@ -21,12 +21,12 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^22.0.0",
-    "servez": "^1.0.6",
     "jsdom": "^15.2.0",
     "load-grunt-tasks": "^5.1.0",
     "minami": "^1.2.3",
     "semver": "^6.3.0",
-    "three": "^0.110.0"
+    "servez": "^1.0.6",
+    "three": "^0.112.1"
   },
   "scripts": {
     "build": "grunt",
