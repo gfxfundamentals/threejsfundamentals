@@ -225,8 +225,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 or <em>orbit</em> the camera around some point. The <code>OrbitControls</code> are
 an optional feature of three.js so first we need to include them
 in our page</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <p>Then we can use them. We pass the <code>OrbitControls</code> a camera to
 control and the DOM element to use to get input events</p>
@@ -595,9 +595,11 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
   scene.add(mesh);
 }
 </code></pre>
-<p>To use the <code>RectAreaLight</code> we need to include some extra three.js optional data</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-+import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r110/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
+<p>To use the <code>RectAreaLight</code> we need to include some extra three.js optional data and we&#39;ll
+include the <code>RectAreaLightHelper</code> to help us visualize the light</p>
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
++import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r112/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
++import {RectAreaLightHelper} from &#39;./resources/threejs/r112/examples/jsm/helpers/RectAreaLightHelper.js&#39;;
 </code></pre>
 <p>and we need to call <code>RectAreaLightUniformsLib.init</code></p>
 <pre class="prettyprint"><code class="lang-js">function main() {
@@ -617,7 +619,7 @@ light.position.set(0, 10, 0);
 +light.rotation.x = THREE.Math.degToRad(-90);
 scene.add(light);
 
-*const helper = new THREE.RectAreaLightHelper(light);
+*const helper = new RectAreaLightHelper(light);
 *light.add(helper);
 </code></pre>
 <p>One thing to notice is that unlike the <code>DirectionalLight</code> and the <code>SpotLight</code>, the
@@ -724,9 +726,9 @@ possible to achieve your goals.</p>
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>

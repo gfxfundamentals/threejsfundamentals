@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="keywords" content="webgl graphics three.js" />
 <meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-webvr-point-to-select_en.jpg" />
 
-<meta property="og:title" content="Three.js WebVR - 3DOF Point to Select" />
+<meta property="og:title" content="Three.js VR - 3DOF Point to Select" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-webvr-point-to-select_en.jpg" />
 <meta property="og:description" content="How to implement 3DOF Point to Select." />
@@ -51,7 +51,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js WebVR - 3DOF Point to Select" />
+<meta name="twitter:title" content="Three.js VR - 3DOF Point to Select" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-webvr-point-to-select.html" />
 <meta name="twitter:description" content="How to implement 3DOF Point to Select." />
 <meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-webvr-point-to-select_en.jpg" />
@@ -78,7 +78,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-webvr-point-to-select.html#webpage",
       "url":"https://threejsfundamentals.org/threejs/lessons/threejs-webvr-point-to-select.html",
       "inLanguage":"en",
-      "name":"Three.js WebVR - 3DOF Point to Select",
+      "name":"Three.js VR - 3DOF Point to Select",
       "keywords":"webgl graphics three.js programming",
       "isPartOf":{
         "@id":"https://threejsfundamentals.org/#website"
@@ -91,7 +91,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 </script>
 
-<title>Three.js WebVR - 3DOF Point to Select</title>
+<title>Three.js VR - 3DOF Point to Select</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
 <link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
@@ -201,7 +201,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js WebVR - 3DOF Point to Select</h1>
+    <h1>Three.js VR - 3DOF Point to Select</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
@@ -209,7 +209,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 device with a pointing device. Without one they won&#39;t work. See <a href="threejs-webvr.html">this article</a>
 as to why</strong></p>
 <p>In the <a href="threejs-webvr-look-to-select.html">previous article</a> we went over
-a very simple WebVR example where we let the user choose things by
+a very simple VR example where we let the user choose things by
 pointing via looking. In this article we will take it one step further
 and let the user choose with a pointing device </p>
 <p>Three.js makes is relatively easy by providing 2 controller objects in VR
@@ -245,7 +245,7 @@ and the their lines.</p>
 
     this.controllers = [];
     for (let i = 0; i &lt; 2; ++i) {
-      const controller = renderer.vr.getController(i);
+      const controller = renderer.xr.getController(i);
       scene.add(controller);
 
       const line = new THREE.Line(pointerGeometry);
@@ -279,7 +279,7 @@ we&#39;re not using the camera.</p>
 
     this.controllers = [];
     for (let i = 0; i &lt; 2; ++i) {
-      const controller = renderer.vr.getController(i);
+      const controller = renderer.xr.getController(i);
       scene.add(controller);
 
       const line = new THREE.Line(pointerGeometry);
@@ -365,7 +365,7 @@ as our own <code>select</code> event.</p>
 
     this.controllers = [];
     for (let i = 0; i &lt; 2; ++i) {
-      const controller = renderer.vr.getController(i);
+      const controller = renderer.xr.getController(i);
 +      controller.addEventListener(&#39;select&#39;, (event) =&gt; {
 +        const controller = event.target;
 +        const selectedObject = this.controllerToObjectMap.get(controller);
@@ -421,7 +421,7 @@ code out into a function so we can use it for more than one thing.</p>
 +    };
 
     for (let i = 0; i &lt; 2; ++i) {
-      const controller = renderer.vr.getController(i);
+      const controller = renderer.xr.getController(i);
 -      controller.addEventListener(&#39;select&#39;, (event) =&gt; {
 -        const controller = event.target;
 -        const selectedObject = this.controllerToObjectMap.get(event.target);
@@ -452,7 +452,7 @@ code out into a function so we can use it for more than one thing.</p>
     };
 
     for (let i = 0; i &lt; 2; ++i) {
-      const controller = renderer.vr.getController(i);
+      const controller = renderer.xr.getController(i);
       controller.addEventListener(&#39;select&#39;, selectListener);
       controller.addEventListener(&#39;selectstart&#39;, selectListener);
 
@@ -482,7 +482,7 @@ when you user lets of the button on the controller.</p>
 +    };
 
     for (let i = 0; i &lt; 2; ++i) {
-      const controller = renderer.vr.getController(i);
+      const controller = renderer.xr.getController(i);
       controller.addEventListener(&#39;select&#39;, selectListener);
       controller.addEventListener(&#39;selectstart&#39;, selectListener);
 +      controller.addEventListener(&#39;selectend&#39;, endListener);
@@ -531,9 +531,9 @@ the selected objects. These functions let us change the parent
 of an object without changing its orientation and position in the
 scene. </p>
 <p>We need to include them.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-import {WEBVR} from &#39;./resources/threejs/r110/examples/jsm/vr/WebVR.js&#39;;
-+import {SceneUtils} from &#39;./resources/threejs/r110/examples/jsm/utils/SceneUtils.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
+import {VRButton} from &#39;./resources/threejs/r112/examples/jsm/webxr/VRButton.js&#39;;
++import {SceneUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/SceneUtils.js&#39;;
 </code></pre>
 <p>And with that we should be able to move the objects around with a 6DOF
 controller or at least change their orientation with a 3DOF controller</p>
@@ -586,9 +586,9 @@ in three.js</p>
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>
@@ -651,8 +651,8 @@ in three.js</p>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
-            var disqus_identifier = 'Three.js WebVR - 3DOF Point to Select';
-            var disqus_title = 'Three.js WebVR - 3DOF Point to Select';
+            var disqus_identifier = 'Three.js VR - 3DOF Point to Select';
+            var disqus_title = 'Three.js VR - 3DOF Point to Select';
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {

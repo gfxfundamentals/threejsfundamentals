@@ -404,10 +404,10 @@ we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there&#39;s a utility function,
 <code>SkeletonUtils.clone</code> we can use to do this. So, first we need to include
 the utils.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
-import {GLTFLoader} from &#39;./resources/threejs/r110/examples/jsm/loaders/GLTFLoader.js&#39;;
-+import {SkeletonUtils} from &#39;./resources/threejs/r110/examples/jsm/utils/SkeletonUtils.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
+import {GLTFLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/GLTFLoader.js&#39;;
++import {SkeletonUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/SkeletonUtils.js&#39;;
 </code></pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint"><code class="lang-js">function init() {
@@ -1694,10 +1694,10 @@ class StateDisplayHelper extends Component {
 </code></pre>
 <p>While we&#39;re at it lets make it so we can turn them on/off using dat.GUI like
 we&#39;ve used else where</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
-import {GLTFLoader} from &#39;./resources/threejs/r110/examples/jsm/loaders/GLTFLoader.js&#39;;
-import {SkeletonUtils} from &#39;./resources/threejs/r110/examples/jsm/utils/SkeletonUtils.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
+import {GLTFLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/GLTFLoader.js&#39;;
+import {SkeletonUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/SkeletonUtils.js&#39;;
 +import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const gui = new GUI();
@@ -2142,9 +2142,9 @@ If you make a cool game post a link in the comments below.</p>
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>

@@ -41,7 +41,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="keywords" content="webgl graphics three.js" />
 <meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-webvr-look-to-select_en.jpg" />
 
-<meta property="og:title" content="Three.js WebVR - Look to Select" />
+<meta property="og:title" content="Three.js VR - Look to Select" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-webvr-look-to-select_en.jpg" />
 <meta property="og:description" content="How to implement Look to Select." />
@@ -51,7 +51,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js WebVR - Look to Select" />
+<meta name="twitter:title" content="Three.js VR - Look to Select" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/threejs-webvr-look-to-select.html" />
 <meta name="twitter:description" content="How to implement Look to Select." />
 <meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-webvr-look-to-select_en.jpg" />
@@ -78,7 +78,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       "@id":"https://threejsfundamentals.org/threejs/lessons/threejs-webvr-look-to-select.html#webpage",
       "url":"https://threejsfundamentals.org/threejs/lessons/threejs-webvr-look-to-select.html",
       "inLanguage":"en",
-      "name":"Three.js WebVR - Look to Select",
+      "name":"Three.js VR - Look to Select",
       "keywords":"webgl graphics three.js programming",
       "isPartOf":{
         "@id":"https://threejsfundamentals.org/#website"
@@ -91,7 +91,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 </script>
 
-<title>Three.js WebVR - Look to Select</title>
+<title>Three.js VR - Look to Select</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
 <link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
@@ -201,7 +201,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js WebVR - Look to Select</h1>
+    <h1>Three.js VR - Look to Select</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
@@ -209,7 +209,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 device. Without one they won&#39;t work. See <a href="threejs-webvr.html">previous article</a>
 as to why</strong></p>
 <p>In the <a href="threejs-webvr.html">previous article</a> we went over
-a very simple WebVR example using three.js and we discussed
+a very simple VR example using three.js and we discussed
 the various kinds of VR systems.</p>
 <p>The simplest and possibly most common is the Google Cardboard style of VR which
 is basically a phone put into a $5 - $50 face mask. This kind of VR has no
@@ -284,7 +284,7 @@ to convey that the user must keep looking and for how long.</p>
 <p>One easy way we could do that is to make a 2 color texture
 and use a texture offset to slide the texture across a model.</p>
 <p>Let&#39;s do this by itself to see it work before we add it to
-the WebVR example.</p>
+the VR example.</p>
 <p>First we make an <code>OrthographicCamera</code></p>
 <pre class="prettyprint"><code class="lang-js">const left = -2;    // Use values for left
 const right = 2;    // right, top and bottom
@@ -435,7 +435,7 @@ with a <code>MeshBasicMaterial</code> it will look exactly like a ring and the
 texture coordinates go around the ring so it works for our needs.</p>
 </li>
 </ul>
-<p>Let&#39;s integrate it with our WebVR code above. </p>
+<p>Let&#39;s integrate it with our VR code above. </p>
 <pre class="prettyprint"><code class="lang-js">class PickHelper {
 -  constructor() {
 +  constructor(camera) {
@@ -619,6 +619,7 @@ that object and un-hide its partner.</p>
 <p>I hope this example gave some ideas of how to implement a &quot;look to select&quot;
 type of Google Cardboard level UX. Sliding textures using texture coordinates
 offsets is also a commonly useful technique.</p>
+<p>Next up <a href="threejs-webvr-point-to-select.html">let&#39;s allow the user that has a VR controller to point at and move things</a>.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -658,9 +659,9 @@ offsets is also a commonly useful technique.</p>
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>
@@ -723,8 +724,8 @@ offsets is also a commonly useful technique.</p>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
-            var disqus_identifier = 'Three.js WebVR - Look to Select';
-            var disqus_title = 'Three.js WebVR - Look to Select';
+            var disqus_identifier = 'Three.js VR - Look to Select';
+            var disqus_title = 'Three.js VR - Look to Select';
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {

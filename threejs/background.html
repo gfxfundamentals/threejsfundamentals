@@ -22,9 +22,9 @@
     <canvas id="c"></canvas>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r110/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r110/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from './resources/threejs/r110/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from './resources/threejs/r112/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r112/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from './resources/threejs/r112/examples/jsm/loaders/GLTFLoader.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -52,8 +52,7 @@ function main() {
     controls.update();
   }
 
-  renderer.gammaInput = true;
-  renderer.gammaOutput = true;
+  renderer.outputEncoding = THREE.GammaEncoding;
   renderer.shadowMap.enabled = true;
 
   const hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.6);

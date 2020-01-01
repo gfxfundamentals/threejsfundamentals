@@ -528,10 +528,10 @@ have. We could also write some custom animation code which would be easy but
 because the original webgl globe uses 
 <a href="https://github.com/tweenjs/tween.js/">an animation library</a> let&#39;s use the same one here.</p>
 <p>We need to include the library</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-import {BufferGeometryUtils} from &#39;./resources/threejs/r110/examples/jsm/utils/BufferGeometryUtils.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
-+import {TWEEN} from &#39;./resources/threejs/r110/examples/jsm/libs/tween.min.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
+import {BufferGeometryUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
++import {TWEEN} from &#39;./resources/threejs/r112/examples/jsm/libs/tween.min.js&#39;;
 </code></pre>
 <p>And then create a <code>Tween</code> to animate the influences.</p>
 <pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest
@@ -879,9 +879,9 @@ b)</code> &quot;percent&quot; and you&#39;ll see what I mean.</p>
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>

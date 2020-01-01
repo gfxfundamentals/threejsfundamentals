@@ -286,10 +286,10 @@ objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, 
 </code></pre>
 <p>I kept the auto framing code as before</p>
 <p>We also need to include the <code>GLTFLoader</code> and we can get rid of the <code>OBJLoader2</code>.</p>
-<pre class="prettyprint"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r110/examples/jsm/loaders/LoaderSupport.js&#39;;
--import {OBJLoader2} from &#39;./resources/threejs/r110/examples/jsm/loaders/OBJLoader2.js&#39;;
--import {MTLLoader} from &#39;./resources/threejs/r110/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {GLTFLoader} from &#39;./resources/threejs/r110/examples/jsm/loaders/GLTFLoader.js&#39;;
+<pre class="prettyprint"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r112/examples/jsm/loaders/LoaderSupport.js&#39;;
+-import {OBJLoader2} from &#39;./resources/threejs/r112/examples/jsm/loaders/OBJLoader2.js&#39;;
+-import {MTLLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/MTLLoader.js&#39;;
++import {GLTFLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/GLTFLoader.js&#39;;
 </code></pre>
 <p>And running that we get</p>
 <p><div class="threejs_example_container">
@@ -909,9 +909,9 @@ whatever tool we&#39;re using to create the data into our app.</p>
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>

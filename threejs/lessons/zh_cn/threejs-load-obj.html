@@ -223,7 +223,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>让我们一起来尝试将它展示出来。</p>
 <p>基于<a href="threejs-lights.html">光线文章</a>中的定向光线（<code>DirectionalLight</code>）示例，结合半球光线（<code>HemisphereLight</code>）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。</p>
 <p>第一件要做的事就是将<code>OBJLoader2</code>添加到代码中。</p>
-<pre class="prettyprint"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r110/examples/jsm/loaders/OBJLoader2.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r112/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
 <p>然后创建<code>OBJLoader2</code>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
 <pre class="prettyprint"><code class="lang-js">{
@@ -289,11 +289,11 @@ map_Ns windmill_001_base_SPEC.jpg
 
 <p>现在.MTL文件就能加载到这些纹理。</p>
 <p>首先要引用 <code>MTLLoader</code> 和 <code>MtlObjBridge</code>;</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r110/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r110/examples/jsm/controls/OrbitControls.js&#39;;
-import {OBJLoader2} from &#39;./resources/threejs/r110/examples/jsm/loaders/OBJLoader2.js&#39;;
-+import {MTLLoader} from &#39;./resources/threejs/r110/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {MtlObjBridge} from &#39;./resources/threejs/r110/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
+import {OBJLoader2} from &#39;./resources/threejs/r112/examples/jsm/loaders/OBJLoader2.js&#39;;
++import {MTLLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/MTLLoader.js&#39;;
++import {MtlObjBridge} from &#39;./resources/threejs/r112/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
 <p>然后我们先加载.MTL文件，在它加载完材质后利用<code>MtlObjBridge</code>将材质传给<code>OBJLoader2</code>，再加载.OBJ文件。</p>
 <pre class="prettyprint"><code class="lang-js">{
@@ -691,9 +691,9 @@ Three.js一般是以Y为上（up）。有些建模包默认是Z为上，有些�
         </ul>
   <li>WebVR</li>
         <ul>
-          <li><a href="/threejs/lessons/zh_cn/threejs-webvr.html">WebVR - Basics</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-webvr-look-to-select.html">WebVR - Look To Select</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-webvr-point-to-select.html">WebVR - Point To Select</a></li>
+          <li><a href="/threejs/lessons/zh_cn/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
         </ul>
   <li>Optimization</li>
         <ul>
