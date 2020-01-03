@@ -220,51 +220,21 @@ iPhone with a <a href="https://apps.apple.com/us/app/webxr-viewer/id1295998056">
 covered in <a href="threejs-setup.html">the article on setting up</a>. </p>
 <p>If the device you are using to view VR is not the same computer you&#39;re running
 on you need to serve your webpage via https or else the browser will not allow using
-the WebXR API. Setting up https is a complicated topic but there is a relatively
-simple service with a free level that will make this issue easy called &quot;<a href="https://ngrok.com/">ngrok</a>&quot;.</p>
-<p>Here are the steps to use it. </p>
-<ol>
-<li><p><a href="https://ngrok.com/download">Download ngrok</a></p>
-</li>
-<li><p><a href="https://dashboard.ngrok.com/signup">Create an ngrok account</a></p>
-</li>
-<li><p>Look up your authtoken</p>
-<p> You can find it by clicking &quot;auth&quot; on the left</p>
-<p> <img src="resources/images/ngrok-auth.png" style="width: 996px;"></p>
-</li>
-<li><p>Run the ngrok authtoken command.</p>
-<p> In a command line / terminal run the ngrok authtoken command.</p>
-<pre class="prettyprint"><code> ./ngrok authtoken yourngroktokengoeshere
-</code></pre><p> Replace <code>yourngrontokengoeshere</code> with the token you looked up step 3.
- Note: If you&#39;re in Windows you will type <code>ngrok</code> instead of <code>./ngrok</code></p>
-</li>
-<li><p>Run your web server and note the port number</p>
-<p>Run your server as shown in <a href="threejs-setup.html">the setup article</a>. Note the
-port the server is running on. If you use the same server mentioned in
-<a href="threejs-setup.html">that article</a> the port will probably be 8080</p>
-</li>
-<li><p>Run the ngrok http command</p>
-<pre class="prettyprint"><code> ./ngrok http 8080
-</code></pre><p> Replace your 8080 with the port your webserver is running on</p>
-</li>
-</ol>
-<p>Once you do this you should see something like</p>
-<pre class="prettyprint"><code>ngrok by @inconshreveable     
+the WebXR API. The server mentioned in <a href="threejs-setup.html">the article on setting up</a>
+called <a href="https://greggman.github.io/servez">Servez</a> has an option to use https. 
+Check it and start the server. </p>
+<div class="threejs_center"><img src="resources/images/servez-https.png" class="nobg" style="width: 912px;"></div>
 
-(Ctrl+C to quit)
+<p>The note the URLs. You need the one that is your computer&#39;s local ipaddress.
+It will usually start with <code>192</code>, <code>172</code> or <code>10</code>. Type that full address, including the <code>https://</code> part
+into your VR device&#39;s browser. Note: Your computer and your VR device need to be on the same local network
+or WiFi and you probably need to be on a home network. note: Many cafes are setup to disallow this kind of
+machine to machine connection.</p>
+<p>You&#39;ll be greeted with an error something like the one below. Click &quot;advanced&quot; and then click
+<em>proceed</em>.</p>
+<div class="threejs_center"><img src="resources/images/https-warning.gif"></div>
 
-Session Status                online
-Account                       Gregg Tavares (Plan: Free)
-Version                       2.3.35
-Region                        United States (us)
-Web Interface                 http://127.0.0.1:4040
-Forwarding                    http://6a4db28f.ngrok.io -&gt; http://localhost:8080
-Forwarding                    https://6a4db28f.ngrok.io -&gt; http://localhost:8080
-
-Connections                   ttl     opn     rt1     rt5     p50     p90
-                              120     0       0.00    0.00    3.84    5.18
-</code></pre><p>You can now connect your VR device&#39;s browser to the https url shown.
-<strong>BE SURE TO TYPE <code>https://</code> in front of the url!</strong></p>
+<p>Now you can run your examples.</p>
 <p>If you&#39;re really going to do WebVR development another thing you should learn about is
 <a href="https://developers.google.com/web/tools/chrome-devtools/remote-debugging/">remote debugging</a>
 so that you can see console warnings, errors, and of course actually 
