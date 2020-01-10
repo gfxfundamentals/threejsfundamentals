@@ -509,8 +509,7 @@ event we&#39;ll put it back in the scene.</p>
 +      object: selectedObject,
 +      parent: selectedObject.parent,
 +    });
-+    SceneUtils.detach(selectedObject, selectedObject.parent, scene);
-+    SceneUtils.attach(selectedObject, scene, controller);
++    controller.attach(selectedObject);
 +  }
 +});
 +
@@ -519,22 +518,16 @@ event we&#39;ll put it back in the scene.</p>
 +  const selection = controllerToSelection.get(controller);
 +  if (selection) {
 +    controllerToSelection.delete(controller);
-+    SceneUtils.detach(selection.object, controller, scene);
-+    SceneUtils.attach(selection.object, scene, selection.parent);
++    selection.parent.attach(selection.object);
 +  }
 +});
 </code></pre>
 <p>When an object is selected we save off that object and its
 original parent. When the user is done we can put the object back.</p>
-<p>We use the <code>SceneUtils.detach</code> and <code>SceneUtils.attach</code> to re-parent
+<p>We use the <code>Object3D.attach</code> to re-parent
 the selected objects. These functions let us change the parent
 of an object without changing its orientation and position in the
 scene. </p>
-<p>We need to include them.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
-import {VRButton} from &#39;./resources/threejs/r112/examples/jsm/webxr/VRButton.js&#39;;
-+import {SceneUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/SceneUtils.js&#39;;
-</code></pre>
 <p>And with that we should be able to move the objects around with a 6DOF
 controller or at least change their orientation with a 3DOF controller</p>
 <p><div class="threejs_example_container">
