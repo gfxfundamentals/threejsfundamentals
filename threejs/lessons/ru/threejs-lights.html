@@ -526,7 +526,7 @@ scene.add(light.target);
 +const helper = new THREE.SpotLightHelper(light);
 scene.add(helper);
 </code></pre>
-<p>Угол конуса прожектора задается с помощью свойства <a href="Spotlight.angle"><code>angle</code></a> 
+<p>Угол конуса прожектора задается с помощью свойства <a href="SpotLight.angle"><code>angle</code></a> 
 в радианах. Мы будем использовать наш <code>DegRadHelper</code> из 
 <a href="threejs-textures.html">статьи про текстуры</a> для представления пользовательского интерфейса в градусах..</p>
 <pre class="prettyprint"><code class="lang-js">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(updateLight);

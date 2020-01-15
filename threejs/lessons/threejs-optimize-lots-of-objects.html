@@ -217,7 +217,7 @@ is to merge meshes.</p>
 re-create the <a href="https://globe.chromeexperiments.com/">WebGL Globe</a>.</p>
 <p>The first thing we need to do is get some data. The WebGL Globe said the data
 they use comes from <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>. Checking out
-the site I saw there was <a href="http://sedac.ciesin.columbia.edu/data/set/gpw-v4-basic-demographic-characteristics-rev10">demographic data in a grid
+the site I saw there was <a href="https://beta.sedac.ciesin.columbia.edu/data/set/gpw-v4-basic-demographic-characteristics-rev10">demographic data in a grid
 format</a>.
 I downloaded the data at 60 minute resolution. Then I took a look at the data</p>
 <p>It looks like this</p>
@@ -427,7 +427,7 @@ didn&#39;t do this it would scale from the center but we want them to grow away 
 </div>
 
 <p>Of course we could also solve that by parenting the box to more <code>THREE.Object3D</code>
-objects like we covered in <a href="threejs-scenegraphs.html">scene graphs</a> but the more
+objects like we covered in <a href="threejs-scenegraph.html">scene graphs</a> but the more
 nodes we add to a scene graph the slower it gets.</p>
 <p>We also setup this small hierarchy of nodes of <code>lonHelper</code>, <code>latHelper</code>, and
 <code>positionHelper</code>. We use these objects to compute a position around the sphere
