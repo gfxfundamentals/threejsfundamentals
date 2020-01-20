@@ -262,10 +262,11 @@ of other objects in the scene.</p>
 </li>
 <li><p><code>Material</code> objects represent
 <a href="threejs-materials.html">the surface properties used to draw the geometry</a>
-including things like the color, how shiny it is. A <code>Material</code> can also
-reference one or more <code>Texture</code> objects.</p>
+including things like the color and how shiny it is. A <code>Material</code> can also
+reference one or more <code>Texture</code> objects which can be used, for example, 
+to wrap an image onto the surface of the geometry.</p>
 </li>
-<li><p><code>Texture</code> objects generally represent 2D images either <a href="threejs-textures.html">loaded from image files</a>,
+<li><p><code>Texture</code> objects generally represent images either <a href="threejs-textures.html">loaded from image files</a>,
 <a href="threejs-canvas-textures.html">generated from a canvas</a> or <a href="threejs-rendertargets.html">rendered from another scene</a>.</p>
 </li>
 </ul>
@@ -289,7 +290,7 @@ they are dependent on.</p>
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;/body&gt;
 </code></pre>
-<p>Three.js will draw into that canvas so we need to look it up.</p>
+<p>We will ask three.js to draw into that canvas so we need to look it up.</p>
 <pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 import * as THREE from &#39;./resources/threejs/r112/build/three.module.js&#39;;
 
