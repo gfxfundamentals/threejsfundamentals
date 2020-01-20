@@ -235,15 +235,43 @@ a small three.js app</p>
 
 <p>Things to notice about the diagram above.</p>
 <ul>
+<li><p>There is a <code>Renderer</code>. This is arguably the main object of three.js. You pass a
+<code>Scene</code> and a <code>Camera</code> to a <code>Renderer</code> and it renders (draws) the portion of
+the 3D scene that is inside the <em>frustum</em> of the camera as a 2D image to a
+canvas.</p>
+</li>
+<li><p>There is a <a href="threejs-scenegraph.html">scenegraph</a> which is a tree like
+structure, consisting of various objects like a <code>Scene</code> object, multiple
+<code>Mesh</code> objects, <code>Light</code> objects, <code>Group</code>, <code>Object3D</code>, and <code>Camera</code> objects. A
+<code>Scene</code> object defines the root of the scenegraph and contains properties like
+the background color and fog. These objects define a hierarchical parent/child
+tree like structure and represent where objects appear and how they are
+oriented. Children are positioned and oriented relative to their parent. For
+example the wheels on a car might children of the car so that moving and
+orienting the car&#39;s object automatically moves the wheels. You can read more
+about this in <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
+<p>Note in the diagram <code>Camera</code> is half in half out of the scenegraph. This is to
+represent that in three.js, unlike the other objects, a <code>Camera</code> does not have
+to be in the scenegraph to function. Just like other objects, a <code>Camera</code>, as a
+child of some other object, will move and orient relative to its parent object.
+There is an example of putting multiple <code>Camera</code> objects in a scenegraph at
+the end of <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
+</li>
+<li><p><code>Mesh</code> objects represent drawing a specific <code>Geometry</code> with a specific
+ <code>Material</code>. Both <code>Material</code> objects and <code>Geometry</code> objects can be used by
+ multiple <code>Mesh</code> objects. For example to draw 2 blue cubes in different
+ locations we could need 2 <code>Mesh</code> objects to represent the position and
+ orientation of each cube. We would only need 1 <code>Geometry</code> to hold the vertex
+ data for a cube and we would only need 1 <code>Material</code> to specify the color
+ blue. Both <code>Mesh</code> objects could reference the same<code>Geometry</code> object and the
+ same <code>Material</code> object.</p>
+</li>
 <li><p><code>Geometry</code> objects represent the vertex data of some piece of geometry like
- a sphere, cube, plane, dog, cat, human, tree, building, etc...</p>
-<p> three.js provides many kinds of built in
+ a sphere, cube, plane, dog, cat, human, tree, building, etc...
+ Three.js provides many kinds of built in
  <a href="threejs-primitives.html">geometry primitives</a>. You can also
  <a href="threejs-custom-geometry.html">create custom geometry</a> as well as
  <a href="threejs-load-obj.html">load geometry from files</a>.</p>
-</li>
-<li><p><code>Texture</code> objects generally represent images either <a href="threejs-textures.html">loaded from image files</a>,
-<a href="threejs-canvas-textures.html">generated from a canvas</a> or <a href="threejs-rendertargets.html">rendered from another scene</a>.</p>
 </li>
 <li><p><code>Material</code> objects represent
 <a href="threejs-materials.html">the surface properties used to draw geometry</a>
@@ -251,33 +279,10 @@ including things like the color to use and how shiny it is. A <code>Material</co
 reference one or more <code>Texture</code> objects which can be used, for example, 
 to wrap an image onto the surface of a geometry.</p>
 </li>
+<li><p><code>Texture</code> objects generally represent images either <a href="threejs-textures.html">loaded from image files</a>,
+<a href="threejs-canvas-textures.html">generated from a canvas</a> or <a href="threejs-rendertargets.html">rendered from another scene</a>.</p>
+</li>
 <li><p><code>Light</code> objects represent <a href="threejs-lights.html">different kinds of lights</a>.</p>
-</li>
-<li><p><code>Mesh</code> objects represent drawing a specific <code>Geometry</code> with a specific <code>Material</code>.
- Both <code>Material</code> objects and <code>Geometry</code> objects can be used by multiple
- <code>Mesh</code> objects. For example to draw 2 blue cubes in different locations
- we could need 2 <code>Mesh</code> objects to represent the position and orientation
- of each cube. We would only need 1 <code>Geometry</code> to hold the vertex data for
- a cube and we would only need 1 <code>Material</code> to specify the color blue.
- Both <code>Mesh</code> objects could reference the same<code>Geometry</code> object and the
- same <code>Material</code> object.</p>
-</li>
-<li><p>There is a <a href="threejs-scenegraph.html">scenegraph</a> consisting of various objects
-including a <code>Scene</code> at the root, multiple <code>Mesh</code> objects, <code>Light</code> objects,
-<code>Group</code> and <code>Object3D</code> objects, etc... These objects define a hierarchical
-relationship and represent where objects appear and how they are oriented. You
-can read more about this in <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
-<p>Note that <code>Camera</code> is half in half out of the scenegraph. This is because in
-three.js a <code>Camera</code> does not have to be in the scenegraph to function. The
-advantage to putting it in the scenegraph is you&#39;d get all the benefits of the
-scenegraph itself letting you more easily position <code>Camera</code> objects relative to the
-motion of other objects in the scene. There is an example of putting cameras
-in the scenegraph at the end of <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
-</li>
-<li><p>There is a <code>Renderer</code></p>
-<p>This is arguably the main object of three.js. You pass a <code>Scene</code> and a
-<code>Camera</code> to a <code>Renderer</code> and it renders (draws) the portion of the 3D scene
-that is inside the <em>frustum</em> of the camera as a 2D image to a canvas.</p>
 </li>
 </ul>
 <p>Given all of that we&#39;re going to make the smallest <em>&quot;Hello Cube&quot;</em> setup
