@@ -227,20 +227,55 @@ that can&#39;t run three.js.</p>
 do is make the computer print <code>&quot;Hello World!&quot;</code>. For 3D one
 of the most common first things to do is to make a 3D cube.
 So let&#39;s start with &quot;Hello Cube!&quot;</p>
-<p>The first thing we need is a <code>&lt;canvas&gt;</code> tag so</p>
-<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
-  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
-&lt;/body&gt;
-</code></pre>
-<p>Three.js will draw into that canvas so we need to look it up
-and pass it to three.js.</p>
+<p>Before we get started let&#39;s try to give you an idea of the structure
+of a three.js app. A three.js app requires you to create a bunch of
+objects and connect them together. Here&#39;s a diagram that represents
+a small three.js app</p>
+<div class="threejs_center"><img src="resources/images/threejs-structure.svg" style="width: 768px;"></div>
+
+<p>Things to notice about the diagram above.</p>
+<ul>
+<li><p>There is a <code>Renderer</code></p>
+<p>This is arguably the main object of three.js. You pass a <code>Renderer</code> a <code>Scene</code>
+and a <code>Camera</code> and it renders (draws) the portion of the scene that is inside the 
+<em>frustum</em> of the camera as a 2D image canvas.</p>
+</li>
+<li><p>There is a <a href="threejs-scenegraph.html">scenegraph</a> consisting of various objects
+including a <code>Scene</code> at the root, multiple <code>Mesh</code> objects, <code>Light</code> objects,
+<code>Group</code> and <code>Object3D</code> objects, etc... These objects define a hierarchical
+relationship and represent where objects appear and how they are oriented. You
+can read more about this in <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
+<p>Note that <code>Camera</code> is half in half out of the scenegraph. This is because in three.js a
+<code>Camera</code> does not have to be in the scenegraph to function. The advantage to
+putting it in the scenegraph is you&#39;d get all the benefits of the scenegraph
+itself letting you more easily put <code>Camera</code> objects relative to the motion
+of other objects in the scene.</p>
+</li>
+<li><p><code>Mesh</code> objects each reference a <code>Geometry</code> and a <code>Material</code>. Both <code>Material</code>
+ objects and <code>Geometry</code> objects can be shared.</p>
+</li>
+<li><p><code>Geometry</code> objects represent the vertex data of some piece of geometry.</p>
+<p> three.js provides many kinds of built in
+ <a href="threejs-primitives.html">geometry primitives</a>. You can also
+ <a href="threejs-custom-geometry.html">create custom geometry</a> as well as
+ <a href="threejs-load-obj.html">load geometry from files</a>.</p>
+</li>
+<li><p><code>Material</code> objects represent
+<a href="threejs-materials.html">the surface properties used to draw the geometry</a>
+including things like the color, how shiny it is. A <code>Material</code> can also
+reference one or more <code>Texture</code> objects.</p>
+</li>
+<li><p><code>Texture</code> objects generally represent 2D images either <a href="threejs-textures.html">loaded from image files</a>,
+<a href="threejs-canvas-textures.html">generated from a canvas</a> or <a href="threejs-rendertargets.html">rendered from another scene</a>.</p>
+</li>
+</ul>
+<p>Given all of that we&#39;re going to make the smallest <em>&quot;Hello Cube&quot;</em> setup
+that looks like this</p>
+<div class="threejs_center"><img src="resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
+
+<p>First let&#39;s load three.js</p>
 <pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 import * as THREE from &#39;./resources/threejs/r112/build/three.module.js&#39;;
-
-function main() {
-  const canvas = document.querySelector(&#39;#c&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas});
-  ...
 &lt;/script&gt;
 </code></pre>
 <p>It&#39;s important you put <code>type=&quot;module&quot;</code> in the script tag. This enables
@@ -249,6 +284,27 @@ to load three.js but as of r106 using modules is the recommended way.
 Modules have the advantage that they can easily import other modules
 they need. That saves us from having to manually load extra scripts
 they are dependent on.</p>
+<p>Next we need is a <code>&lt;canvas&gt;</code> tag so</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+&lt;/body&gt;
+</code></pre>
+<p>Three.js will draw into that canvas so we need to look it up.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+import * as THREE from &#39;./resources/threejs/r112/build/three.module.js&#39;;
+
++function main() {
++  const canvas = document.querySelector(&#39;#c&#39;);
++  const renderer = new THREE.WebGLRenderer({canvas});
++  ...
+&lt;/script&gt;
+</code></pre>
+<p>After we look up the canvas we create a <code>WebGLRenderer</code>. The renderer
+is the thing responsible for actually taking all the data you provide
+and rendering it to the canvas. In the past there have been other renderers
+like <code>CSSRenderer</code>, a <code>CanvasRenderer</code> and in the future there may be a
+<code>WebGL2Renderer</code> or <code>WebGPURenderer</code>. For now there&#39;s the <code>WebGLRenderer</code>
+that uses WebGL to render 3D to the canvas.</p>
 <p>Note there are some esoteric details here. If you don&#39;t pass a canvas
 into three.js it will create one for you but then you have to add it
 to your document. Where to add it may change depending on your use case
@@ -257,13 +313,7 @@ to three.js feels a little more flexible. I can put the canvas anywhere
 and the code will find it where as if I had code to insert the canvas
 into to the document I&#39;d likely have to change that code if my use case
 changed.</p>
-<p>After we look up the canvas we create a <code>WebGLRenderer</code>. The renderer
-is the thing responsible for actually taking all the data you provide
-and rendering it to the canvas. In the past there have been other renderers
-like <code>CSSRenderer</code>, a <code>CanvasRenderer</code> and in the future there may be a
-<code>WebGL2Renderer</code> or <code>WebGPURenderer</code>. For now there&#39;s the <code>WebGLRenderer</code>
-that uses WebGL to render 3D to the canvas.</p>
-<p>Next up we need a camera.</p>
+<p>Next up we need a camera. We&#39;ll create a <code>PerspectiveCamera</code>.</p>
 <pre class="prettyprint"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
@@ -274,8 +324,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 dimension. Note that most angles in three.js are in radians but for some
 reason the perspective camera takes degrees.</p>
 <p><code>aspect</code> is the display aspect of the canvas. We&#39;ll go over the details
-in another article but by default a canvas is 300x150 pixels which makes
-the aspect 300/150 or 2.</p>
+<a href="threejs-responsive.html">in another article</a> but by default a canvas i
+ 300x150 pixels which makes the aspect 300/150 or 2.</p>
 <p><code>near</code> and <code>far</code> represent the space in front of the camera
 that will be rendered. Anything before that range or after that range
 will be clipped (not drawn).</p>
@@ -399,6 +449,9 @@ lights. Let&#39;s change it to a <code>MeshPhongMaterial</code> which is affecte
 <pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
 +const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 </code></pre>
+<p>Here is our new program structure</p>
+<div class="threejs_center"><img src="resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
+
 <p>And here it is working.</p>
 <p><div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-light.html"></iframe></div>
@@ -459,6 +512,12 @@ it matches our expectations. With cubes at X = -2 and X = +2
 they are partially outside our frustum. They are also
 somewhat exaggeratedly warped since the field of view
 across the canvas is so extreme.</p>
+<p>Our program now has this structure</p>
+<div class="threejs_center"><img src="resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
+
+<p>As you can see we have 3 <code>Mesh</code> objects each referencing the same <code>BoxGeometry</code>.
+Each <code>Mesh</code> references a unique <code>MeshPhongMaterial</code> so that each cube can have
+a different color.</p>
 <p>I hope this short intro helps to get things started. <a href="threejs-responsive.html">Next up we&#39;ll cover
 making our code responsive so it is adaptable to multiple situations</a>.</p>
 <div class="threejs_bottombar">
