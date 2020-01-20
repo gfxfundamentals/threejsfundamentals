@@ -245,29 +245,34 @@ including a <code>Scene</code> at the root, multiple <code>Mesh</code> objects, 
 <code>Group</code> and <code>Object3D</code> objects, etc... These objects define a hierarchical
 relationship and represent where objects appear and how they are oriented. You
 can read more about this in <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
-<p>Note that <code>Camera</code> is half in half out of the scenegraph. This is because in three.js a
-<code>Camera</code> does not have to be in the scenegraph to function. The advantage to
-putting it in the scenegraph is you&#39;d get all the benefits of the scenegraph
-itself letting you more easily put <code>Camera</code> objects relative to the motion
-of other objects in the scene.</p>
+<p>Note that <code>Camera</code> is half in half out of the scenegraph. This is because in
+three.js a <code>Camera</code> does not have to be in the scenegraph to function. The
+advantage to putting it in the scenegraph is you&#39;d get all the benefits of the
+scenegraph itself letting you more easily put <code>Camera</code> objects relative to the
+motion of other objects in the scene. There is an example of putting cameras
+in the scenegraph at the end of <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
 </li>
-<li><p><code>Mesh</code> objects each reference a <code>Geometry</code> and a <code>Material</code>. Both <code>Material</code>
- objects and <code>Geometry</code> objects can be shared.</p>
+<li><p><code>Mesh</code> objects represent drawing a specific <code>Geometry</code> with a specific <code>Material</code>.
+ Both <code>Material</code> objects and <code>Geometry</code> objects can be used by multiple
+ <code>Mesh</code> objects.</p>
 </li>
-<li><p><code>Geometry</code> objects represent the vertex data of some piece of geometry.</p>
+<li><p><code>Geometry</code> objects represent the vertex data of some piece of geometry like
+ a sphere, cube, plane, dog, cat, human, tree, building, etc...</p>
 <p> three.js provides many kinds of built in
  <a href="threejs-primitives.html">geometry primitives</a>. You can also
  <a href="threejs-custom-geometry.html">create custom geometry</a> as well as
  <a href="threejs-load-obj.html">load geometry from files</a>.</p>
 </li>
 <li><p><code>Material</code> objects represent
-<a href="threejs-materials.html">the surface properties used to draw the geometry</a>
-including things like the color and how shiny it is. A <code>Material</code> can also
+<a href="threejs-materials.html">the surface properties used to draw geometry</a>
+including things like the color to use and how shiny it is. A <code>Material</code> can also
 reference one or more <code>Texture</code> objects which can be used, for example, 
 to wrap an image onto the surface of the geometry.</p>
 </li>
 <li><p><code>Texture</code> objects generally represent images either <a href="threejs-textures.html">loaded from image files</a>,
 <a href="threejs-canvas-textures.html">generated from a canvas</a> or <a href="threejs-rendertargets.html">rendered from another scene</a>.</p>
+</li>
+<li><p><code>Light</code> objects represent <a href="threejs-lights.html">different kinds of lights</a>.</p>
 </li>
 </ul>
 <p>Given all of that we&#39;re going to make the smallest <em>&quot;Hello Cube&quot;</em> setup
