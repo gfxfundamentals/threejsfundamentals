@@ -554,7 +554,7 @@ JavaScript文件的顶部来告诉eslint<code>THREE</code>的存在。</p>
 
   function addScript(src, fn) {
     const script = document.createElement('script');
-    const firstScript = document.getElementsByTag('script')[0];
+    const firstScript = document.getElementsByTagName('script')[0];
     script.async = true;
     script.defer = true;
     if (fn) {

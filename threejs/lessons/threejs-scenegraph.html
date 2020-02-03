@@ -775,7 +775,7 @@ body would be very complicated but using a scene graph it becomes much easier.</
 
   function addScript(src, fn) {
     const script = document.createElement('script');
-    const firstScript = document.getElementsByTag('script')[0];
+    const firstScript = document.getElementsByTagName('script')[0];
     script.async = true;
     script.defer = true;
     if (fn) {
