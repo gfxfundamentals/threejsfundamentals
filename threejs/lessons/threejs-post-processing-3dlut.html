@@ -206,8 +206,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <div class="lesson">
     <div class="lesson-main">
       <p>In the last article we went over <a href="threejs-post-processing.html">post processing</a>.
-On of the common ways to post process is called a LUT or 3DLUT. LUT stands for LookUp Table. A 3DLUT is therefore a 3 dimensional look up table.</p>
-<p>How it works is we make a cube of colors. Then we index the cube using the colors of our source image. For each pixel in the original image we look up a position in the cube based on the red, green, and blue colors of the original pixel. The value we pull put of the 3DLUT is the new color.</p>
+One of the common ways to post process is called a LUT or 3DLUT. LUT stands for LookUp Table. A 3DLUT is therefore a 3 dimensional look up table.</p>
+<p>How it works is we make a cube of colors. Then we index the cube using the colors of our source image. For each pixel in the original image we look up a position in the cube based on the red, green, and blue colors of the original pixel. The value we pull out of the 3DLUT is the new color.</p>
 <p>In Javascript we might do it like this. Imagine the colors are specified in integers from 0 to 255 and we have a large 3 dimensional array 256x256x256 in size. Then for to translate a color through the look up table</p>
 <pre class="prettyprint"><code>const newColor = lut[origColor.red][origColor.green][origColor.bue]
 </code></pre><p>Of course a 256x256x256 array would be rather large but as we pointed out in <a href="threejs-textures.html">the article on textures</a> textures are referenced from values of 0.0 to 1.0 regardless of the dimensions of the texture.</p>
@@ -238,7 +238,7 @@ On of the common ways to post process is called a LUT or 3DLUT. LUT stands for L
 </div>
 
 </p>
-<p>Now that we have a scene we need a 3DLUT. The simplest 3DLUT is a 2x2x2 identity LUT where <em>identity</em> means nothing happens. It&#39;s like multiplying by 1 or doing nothign, even though we&#39;re looking up colors in the LUT each color in maps to the same color out.</p>
+<p>Now that we have a scene we need a 3DLUT. The simplest 3DLUT is a 2x2x2 identity LUT where <em>identity</em> means nothing happens. It&#39;s like multiplying by 1 or doing nothing, even though we&#39;re looking up colors in the LUT each color in maps to the same color out.</p>
 <div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
 
 <p>WebGL1 doesn&#39;t support 3D textures so we&#39;ll use 4x2 2D texture and treat it as a 3D texture inside a custom shader where each slice of the cube is spread out horizontally across the texture.</p>
