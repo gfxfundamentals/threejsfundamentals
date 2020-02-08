@@ -360,7 +360,7 @@ using a <code>RenderTarget</code>. We covered rendering to a <code>RenderTarget<
 in <a href="threejs-rendertargets.html">the article on render targets</a>.</p>
 <pre class="prettyprint"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
-  const halfFovY = THREE.Math.degToRad(camera.fov * .5);
+  const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
   const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
 
   camera.position.copy(boxCenter);

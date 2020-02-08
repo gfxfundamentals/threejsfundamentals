@@ -520,9 +520,9 @@ the <code>getVoxel</code> function. Let&#39;s start with just one hard coded cel
 +      return 0;
 +    }
 +    const {cellSize} = this;
-+    const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
-+    const voxelY = THREE.Math.euclideanModulo(y, cellSize) | 0;
-+    const voxelZ = THREE.Math.euclideanModulo(z, cellSize) | 0;
++    const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
++    const voxelY = THREE.MathUtils.euclideanModulo(y, cellSize) | 0;
++    const voxelZ = THREE.MathUtils.euclideanModulo(z, cellSize) | 0;
 +    const voxelOffset = voxelY * cellSize * cellSize +
 +                        voxelZ * cellSize +
 +                        voxelX;
@@ -556,9 +556,9 @@ so we can set some data.</p>
 +      return;  // TODO: add a new cell?
 +    }
 +    const {cellSize} = this;
-+    const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
-+    const voxelY = THREE.Math.euclideanModulo(y, cellSize) | 0;
-+    const voxelZ = THREE.Math.euclideanModulo(z, cellSize) | 0;
++    const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
++    const voxelY = THREE.MathUtils.euclideanModulo(y, cellSize) | 0;
++    const voxelZ = THREE.MathUtils.euclideanModulo(z, cellSize) | 0;
 +    const voxelOffset = voxelY * cellSize * cellSize +
 +                        voxelZ * cellSize +
 +                        voxelX;
@@ -570,9 +570,9 @@ so we can set some data.</p>
       return 0;
     }
     const {cellSize} = this;
-    const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
-    const voxelY = THREE.Math.euclideanModulo(y, cellSize) | 0;
-    const voxelZ = THREE.Math.euclideanModulo(z, cellSize) | 0;
+    const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
+    const voxelY = THREE.MathUtils.euclideanModulo(y, cellSize) | 0;
+    const voxelZ = THREE.MathUtils.euclideanModulo(z, cellSize) | 0;
     const voxelOffset = voxelY * cellSize * cellSize +
                         voxelZ * cellSize +
                         voxelX;
@@ -602,9 +602,9 @@ so we can set some data.</p>
   }
 +  computeVoxelOffset(x, y, z) {
 +    const {cellSize, cellSliceSize} = this;
-+    const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
-+    const voxelY = THREE.Math.euclideanModulo(y, cellSize) | 0;
-+    const voxelZ = THREE.Math.euclideanModulo(z, cellSize) | 0;
++    const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
++    const voxelY = THREE.MathUtils.euclideanModulo(y, cellSize) | 0;
++    const voxelZ = THREE.MathUtils.euclideanModulo(z, cellSize) | 0;
 +    return voxelY * cellSliceSize +
 +           voxelZ * cellSize +
 +           voxelX;
@@ -615,9 +615,9 @@ so we can set some data.</p>
       return;  // TODO: add a new cell?
     }
 -    const {cellSize} = this;
--    const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
--    const voxelY = THREE.Math.euclideanModulo(y, cellSize) | 0;
--    const voxelZ = THREE.Math.euclideanModulo(z, cellSize) | 0;
+-    const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
+-    const voxelY = THREE.MathUtils.euclideanModulo(y, cellSize) | 0;
+-    const voxelZ = THREE.MathUtils.euclideanModulo(z, cellSize) | 0;
 -    const voxelOffset = voxelY * cellSize * cellSize +
 -                        voxelZ * cellSize +
 -                        voxelX;
@@ -630,9 +630,9 @@ so we can set some data.</p>
       return 0;
     }
 -    const {cellSize} = this;
--    const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
--    const voxelY = THREE.Math.euclideanModulo(y, cellSize) | 0;
--    const voxelZ = THREE.Math.euclideanModulo(z, cellSize) | 0;
+-    const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
+-    const voxelY = THREE.MathUtils.euclideanModulo(y, cellSize) | 0;
+-    const voxelZ = THREE.MathUtils.euclideanModulo(z, cellSize) | 0;
 -    const voxelOffset = voxelY * cellSize * cellSize +
 -                        voxelZ * cellSize +
 -                        voxelX;
@@ -1212,7 +1212,7 @@ function updateVoxelGeometry(x, y, z) {
 }
 </code></pre>
 <p>I thought about checking for adjacent cells like </p>
-<pre class="prettyprint"><code class="lang-js">const voxelX = THREE.Math.euclideanModulo(x, cellSize) | 0;
+<pre class="prettyprint"><code class="lang-js">const voxelX = THREE.MathUtils.euclideanModulo(x, cellSize) | 0;
 if (voxelX === 0) {
   // update cell to the left
 } else if (voxelX === cellSize - 1) {

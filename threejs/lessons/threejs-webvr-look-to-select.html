@@ -361,7 +361,7 @@ scene.add(cursor);
 +  const fromEnd = 2;
 +  const toStart = -0.5;
 +  const toEnd = 0.5;
-+  cursorTexture.offset.x = THREE.Math.mapLinear(
++  cursorTexture.offset.x = THREE.MathUtils.mapLinear(
 +      time % 2,
 +      fromStart, fromEnd,
 +      toStart, toEnd);
@@ -369,7 +369,7 @@ scene.add(cursor);
   renderer.render(scene, camera);
 }
 </code></pre>
-<p><code>THREE.Math.mapLinear</code> takes a value that goes between <code>fromStart</code> and <code>fromEnd</code>
+<p><code>THREE.MathUtils.mapLinear</code> takes a value that goes between <code>fromStart</code> and <code>fromEnd</code>
 and maps it to a value between <code>toStart</code> and <code>toEnd</code>. In the case above we&#39;re
 taking <code>time % 2</code> which means a value that goes from 0 to 2 and maps
 that to a value that goes from -0.5 to 0.5</p>
@@ -525,7 +525,7 @@ texture coordinates go around the ring so it works for our needs.</p>
 +    const fromEnd = this.selectDuration;
 +    const toStart = -0.5;
 +    const toEnd = 0.5;
-+    this.cursorTexture.offset.x = THREE.Math.mapLinear(
++    this.cursorTexture.offset.x = THREE.MathUtils.mapLinear(
 +        this.selectTimer,
 +        fromStart, fromEnd,
 +        toStart, toEnd);

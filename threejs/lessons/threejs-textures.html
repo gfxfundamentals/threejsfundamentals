@@ -633,7 +633,7 @@ It defaults to 0,0 which rotates from the bottom left corner. Like offset
 these units are in texture size so setting them to <code>.5, .5</code> would rotate
 around the center of the texture.</p>
 <pre class="prettyprint"><code class="lang-js">someTexture.center.set(.5, .5);
-someTexture.rotation = THREE.Math.degToRad(45);
+someTexture.rotation = THREE.MathUtils.degToRad(45);
 </code></pre>
 <p>Let&#39;s modify the top sample above to play with these values</p>
 <p>First we&#39;ll keep a reference to the texture so we can manipulate it</p>
@@ -655,10 +655,10 @@ but that will set a property in radians.</p>
     this.prop = prop;
   }
   get value() {
-    return THREE.Math.radToDeg(this.obj[this.prop]);
+    return THREE.MathUtils.radToDeg(this.obj[this.prop]);
   }
   set value(v) {
-    this.obj[this.prop] = THREE.Math.degToRad(v);
+    this.obj[this.prop] = THREE.MathUtils.degToRad(v);
   }
 }
 </code></pre>

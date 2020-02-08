@@ -625,7 +625,7 @@ someTexture.offset.set(xOffset, yOffset);`
 вращается из нижнего левого угла. Подобно смещению, эти единицы имеют размер текстуры, 
 поэтому установка их <code>.5, .5</code> будет вращаться вокруг центра текстуры.</p>
 <pre class="prettyprint"><code class="lang-js">someTexture.center.set(.5, .5);
-someTexture.rotation = THREE.Math.degToRad(45);
+someTexture.rotation = THREE.MathUtils.degToRad(45);
 </code></pre>
 <p>Давайте изменим верхний пример выше, чтобы играть с этими значениями</p>
 <p>Сначала мы сохраним ссылку на текстуру, чтобы мы могли манипулировать ею</p>
@@ -648,10 +648,10 @@ const material = new THREE.MeshBasicMaterial({
     this.prop = prop;
   }
   get value() {
-    return THREE.Math.radToDeg(this.obj[this.prop]);
+    return THREE.MathUtils.radToDeg(this.obj[this.prop]);
   }
   set value(v) {
-    this.obj[this.prop] = THREE.Math.degToRad(v);
+    this.obj[this.prop] = THREE.MathUtils.degToRad(v);
   }
 }
 </code></pre>

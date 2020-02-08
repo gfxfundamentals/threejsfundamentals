@@ -409,10 +409,10 @@ we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there&#39;s a utility function,
 <code>SkeletonUtils.clone</code> we can use to do this. So, first we need to include
 the utils.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
-import {GLTFLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/GLTFLoader.js&#39;;
-+import {SkeletonUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/SkeletonUtils.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r113/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r113/examples/jsm/controls/OrbitControls.js&#39;;
+import {GLTFLoader} from &#39;./resources/threejs/r113/examples/jsm/loaders/GLTFLoader.js&#39;;
++import {SkeletonUtils} from &#39;./resources/threejs/r113/examples/jsm/utils/SkeletonUtils.js&#39;;
 </code></pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint"><code class="lang-js">function init() {
@@ -1085,7 +1085,7 @@ gameobject with a component to manage a frustum.</p>
     this.projScreenMatrix.multiplyMatrices(
         camera.projectionMatrix,
         camera.matrixWorldInverse);
-    this.frustum.setFromMatrix(this.projScreenMatrix);
+    this.frustum.setFromProjectionMatrix(this.projScreenMatrix);
   }
 }
 </code></pre>
@@ -1448,7 +1448,7 @@ const aimTowardAndGetDistance = function() {
     // make sure we don&#39;t turn faster than maxTurn
     const deltaRotation = minMagnitude(deltaRot, maxTurn);
     // keep rotation between 0 and Math.PI * 2
-    source.rotation.y = THREE.Math.euclideanModulo(
+    source.rotation.y = THREE.MathUtils.euclideanModulo(
         source.rotation.y + deltaRotation, Math.PI * 2);
     // return the distance to the target
     return delta.length();
@@ -1693,17 +1693,17 @@ class StateDisplayHelper extends Component {
   }
   update() {
     this.fsm.update();
-+    const dir = THREE.Math.radToDeg(this.gameObject.transform.rotation.y);
++    const dir = THREE.MathUtils.radToDeg(this.gameObject.transform.rotation.y);
 +    this.helper.setState(`${this.fsm.state}:${dir.toFixed(0)}`);
   }
 }
 </code></pre>
 <p>While we&#39;re at it lets make it so we can turn them on/off using dat.GUI like
 we&#39;ve used else where</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
-import {GLTFLoader} from &#39;./resources/threejs/r112/examples/jsm/loaders/GLTFLoader.js&#39;;
-import {SkeletonUtils} from &#39;./resources/threejs/r112/examples/jsm/utils/SkeletonUtils.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r113/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r113/examples/jsm/controls/OrbitControls.js&#39;;
+import {GLTFLoader} from &#39;./resources/threejs/r113/examples/jsm/loaders/GLTFLoader.js&#39;;
+import {SkeletonUtils} from &#39;./resources/threejs/r113/examples/jsm/utils/SkeletonUtils.js&#39;;
 +import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const gui = new GUI();

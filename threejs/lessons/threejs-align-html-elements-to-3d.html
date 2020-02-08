@@ -231,8 +231,8 @@ by styled with CSS. It can also be selected by the user as it is actual text. </
 <p>Let&#39;s start simple. We&#39;ll make a 3D scene with a few primitives and then add a label to each primitive. We&#39;ll start
 with an example from <a href="threejs-responsive.html">the article on responsive pages</a> </p>
 <p>We&#39;ll add some <code>OrbitControls</code> like we did in <a href="threejs-lights.html">the article on lighting</a>.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r113/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r113/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 0, 0);
@@ -461,7 +461,7 @@ someMesh.updateMatrixWorld();
 
 viewProjection.multiplyMatrices(
     camera.projectionMatrix, camera.matrixWorldInverse);
-frustum.setFromMatrix(viewProjection);
+frustum.setFromProjectionMatrix(viewProjection);
 const inFrustum = frustum.contains(someMesh));
 </code></pre>
 <p>Our current overlapping solution has similar issues. Picking is slow. We could
@@ -605,8 +605,8 @@ for (const countryInfo of countryInfos) {
   const {lat, lon, name} = countryInfo;
 
   // adjust the helpers to point to the latitude and longitude
-  lonHelper.rotation.y = THREE.Math.degToRad(lon) + lonFudge;
-  latHelper.rotation.x = THREE.Math.degToRad(lat) + latFudge;
+  lonHelper.rotation.y = THREE.MathUtils.degToRad(lon) + lonFudge;
+  latHelper.rotation.x = THREE.MathUtils.degToRad(lat) + latFudge;
 
   // get the position of the lat/lon
   positionHelper.updateWorldMatrix(true, false);
@@ -791,8 +791,8 @@ for (const countryInfo of countryInfos) {
   const {lat, lon, min, max, name} = countryInfo;
 
   // adjust the helpers to point to the latitude and longitude
-  lonHelper.rotation.y = THREE.Math.degToRad(lon) + lonFudge;
-  latHelper.rotation.x = THREE.Math.degToRad(lat) + latFudge;
+  lonHelper.rotation.y = THREE.MathUtils.degToRad(lon) + lonFudge;
+  latHelper.rotation.x = THREE.MathUtils.degToRad(lat) + latFudge;
 
   // get the position of the lat/lon
   positionHelper.updateWorldMatrix(true, false);
@@ -834,8 +834,8 @@ for (const countryInfo of countryInfos) {
 </code></pre>
 <p>Finally, since I&#39;m not sure what good values are for these settings lets
 add a GUI so we can play with them</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r112/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r112/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r113/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r113/examples/jsm/controls/OrbitControls.js&#39;;
 +import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const settings = {
