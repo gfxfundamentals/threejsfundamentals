@@ -528,10 +528,10 @@ have. We could also write some custom animation code which would be easy but
 because the original webgl globe uses 
 <a href="https://github.com/tweenjs/tween.js/">an animation library</a> let&#39;s use the same one here.</p>
 <p>We need to include the library</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r113/build/three.module.js&#39;;
-import {BufferGeometryUtils} from &#39;./resources/threejs/r113/examples/jsm/utils/BufferGeometryUtils.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r113/examples/jsm/controls/OrbitControls.js&#39;;
-+import {TWEEN} from &#39;./resources/threejs/r113/examples/jsm/libs/tween.min.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r114/build/three.module.js&#39;;
+import {BufferGeometryUtils} from &#39;./resources/threejs/r114/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r114/examples/jsm/controls/OrbitControls.js&#39;;
++import {TWEEN} from &#39;./resources/threejs/r114/examples/jsm/libs/tween.min.js&#39;;
 </code></pre>
 <p>And then create a <code>Tween</code> to animate the influences.</p>
 <pre class="prettyprint"><code class="lang-js">// show the selected data, hide the rest
