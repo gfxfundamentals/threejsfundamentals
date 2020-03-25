@@ -340,8 +340,8 @@ before with a few minor changes.</p>
 function getCanvasRelativePosition(event) {
   const rect = canvas.getBoundingClientRect();
   return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top,
+    x: (event.clientX - rect.left) * canvas.width  / rect.width,
+    y: (event.clientY - rect.top ) * canvas.height / rect.height,
   };
 }
 
@@ -674,8 +674,8 @@ is selected</p>
 <pre class="prettyprint"><code class="lang-js">function getCanvasRelativePosition(event) {
   const rect = canvas.getBoundingClientRect();
   return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top,
+    x: (event.clientX - rect.left) * canvas.width  / rect.width,
+    y: (event.clientY - rect.top ) * canvas.height / rect.height,
   };
 }
 
@@ -743,8 +743,8 @@ to drag the globe.</p>
 function getCanvasRelativePosition(event) {
   const rect = canvas.getBoundingClientRect();
   return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top,
+    x: (event.clientX - rect.left) * canvas.width  / rect.width,
+    y: (event.clientY - rect.top ) * canvas.height / rect.height,
   };
 }
 
