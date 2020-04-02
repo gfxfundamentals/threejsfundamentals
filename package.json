@@ -4,7 +4,7 @@
   "description": "Some Three.js Tutorials",
   "main": "index.js",
   "threejsfundamentals": {
-    "threeVersion": 114
+    "threeVersion": 115
   },
   "dependencies": {},
   "devDependencies": {
@@ -26,7 +26,7 @@
     "minami": "^1.2.3",
     "semver": "^6.3.0",
     "servez": "^1.5.0",
-    "three": "^0.114.0"
+    "three": "^0.115.0"
   },
   "scripts": {
     "build": "grunt",
@@ -35,7 +35,7 @@
     "eslint": "grunt eslint",
     "pre-push": "grunt eslint",
     "bumpthree": "grunt bumpthree",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "check-all-the-errors --follow-links=both --output=threejsfundamentals.check.json out \"*.html\""
   },
   "repository": {
     "type": "git",

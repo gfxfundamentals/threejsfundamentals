@@ -278,10 +278,10 @@ composer.addPass(filmPass);
 true to tell it to render to the canvas. Without setting this it would instead
 render to the next render target.</p>
 <p>To use these classes we need to import a bunch of scripts.</p>
-<pre class="prettyprint"><code class="lang-js">import {EffectComposer} from &#39;./resources/threejs/r114/examples/jsm/postprocessing/EffectComposer.js&#39;;
-import {RenderPass} from &#39;./resources/threejs/r114/examples/jsm/postprocessing/RenderPass.js&#39;;
-import {BloomPass} from &#39;./resources/threejs/r114/examples/jsm/postprocessing/BloomPass.js&#39;;
-import {FilmPass} from &#39;./resources/threejs/r114/examples/jsm/postprocessing/FilmPass.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import {EffectComposer} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/EffectComposer.js&#39;;
+import {RenderPass} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/RenderPass.js&#39;;
+import {BloomPass} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/BloomPass.js&#39;;
+import {FilmPass} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/FilmPass.js&#39;;
 </code></pre>
 <p>For pretty much any post processing <code>EffectComposer.js</code>, and <code>RenderPass.js</code>
 are required.</p>
@@ -409,7 +409,7 @@ result by a color. </p>
       vec4 previousPassColor = texture2D(tDiffuse, vUv);
       gl_FragColor = vec4(
           previousPassColor.rgb * color,
-          previousPassColor.w);
+          previousPassColor.a);
     }
   `,
 };
@@ -421,7 +421,7 @@ pass&#39;s result texture so we pretty much always need that. We then declare
 is pretty much standard and rarely needs to be changed. Without going into too
 many details (see articles linked above) the variables <code>uv</code>, <code>projectionMatrix</code>,
 <code>modelViewMatrix</code> and <code>position</code> are all magically added by THREE.js.</p>
-<p>Finally we create a fragment shader. In it we get get pixel color from the
+<p>Finally we create a fragment shader. In it we get a pixel color from the
 previous pass with this line</p>
 <pre class="prettyprint"><code class="lang-glsl">vec4 previousPassColor = texture2D(tDiffuse, vUv);
 </code></pre>

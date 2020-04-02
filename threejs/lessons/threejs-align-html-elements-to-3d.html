@@ -231,8 +231,8 @@ by styled with CSS. It can also be selected by the user as it is actual text. </
 <p>Let&#39;s start simple. We&#39;ll make a 3D scene with a few primitives and then add a label to each primitive. We&#39;ll start
 with an example from <a href="threejs-responsive.html">the article on responsive pages</a> </p>
 <p>We&#39;ll add some <code>OrbitControls</code> like we did in <a href="threejs-lights.html">the article on lighting</a>.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r114/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r114/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 0, 0);
@@ -834,8 +834,8 @@ for (const countryInfo of countryInfos) {
 </code></pre>
 <p>Finally, since I&#39;m not sure what good values are for these settings lets
 add a GUI so we can play with them</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r114/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r114/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 +import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint"><code class="lang-js">+const settings = {

@@ -220,7 +220,7 @@ most part they will use ES6 style. <a href="threejs-prerequisites.html">See here
 terse list of things you&#39;re expected to already know</a>.
 Most browsers that support three.js are auto-updated so most users should
 be able to run this code. If you&#39;d like to make this code run
-on really old browsers look into a transpiler like <a href="https://babel.io">Babel</a>.
+on really old browsers look into a transpiler like <a href="https://babeljs.io">Babel</a>.
 Of course users running really old browsers probably have machines
 that can&#39;t run three.js.</p>
 <p>When learning most programming languages the first thing people
@@ -291,7 +291,7 @@ that looks like this</p>
 
 <p>First let&#39;s load three.js</p>
 <pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
-import * as THREE from &#39;./resources/threejs/r114/build/three.module.js&#39;;
+import * as THREE from &#39;./resources/threejs/r115/build/three.module.js&#39;;
 &lt;/script&gt;
 </code></pre>
 <p>It&#39;s important you put <code>type=&quot;module&quot;</code> in the script tag. This enables
@@ -307,7 +307,7 @@ they are dependent on.</p>
 </code></pre>
 <p>We will ask three.js to draw into that canvas so we need to look it up.</p>
 <pre class="prettyprint"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
-import * as THREE from &#39;./resources/threejs/r114/build/three.module.js&#39;;
+import * as THREE from &#39;./resources/threejs/r115/build/three.module.js&#39;;
 
 +function main() {
 +  const canvas = document.querySelector(&#39;#c&#39;);
@@ -546,7 +546,7 @@ both
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r114/build/three.module.js';
+import * as THREE from './resources/threejs/r115/build/three.module.js';
 
 ...
 
