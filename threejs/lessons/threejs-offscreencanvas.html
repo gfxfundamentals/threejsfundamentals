@@ -1185,8 +1185,8 @@ unless we fork the OrbitControls. In any case <code>window</code> doesn&#39;t ex
 <p>They also also add <code>mousemove</code> and <code>mouseup</code> events to the <code>document</code>
 to handle mouse capture (when the mouse goes outside the window) but
 like <code>window</code> there is no <code>document</code> in a worker.</p>
-<p>Further the compare <code>document</code> to the element we pass into <code>OrbitControls</code>
-and expect them to not be equal.</p>
+<p>Further the code compares <code>document</code> to the element we pass into <code>OrbitControls</code>
+and expects them to not be equal.</p>
 <p>We can solve all of these with a few quick hacks. In our worker
 code we&#39;ll re-use our proxy for all 3 problems.</p>
 <pre class="prettyprint"><code class="lang-js">function start(data) {
@@ -1208,7 +1208,7 @@ matches their expectations.</p>
 <code>ElementProxy</code> runs on the main page and forwards DOM events 
 to <code>ElementProxyReceiver</code> in the worker which
 masquerades as an <code>HTMLElement</code> that we can use both with the
-<code>OrbitControls</code> and with our own.</p>
+<code>OrbitControls</code> and with our own code.</p>
 <p>The final thing is our fallback when we are not using OffscreenCanvas.
 All we have to do is pass the canvas itself as our <code>inputElement</code>.</p>
 <pre class="prettyprint"><code class="lang-js">function startMainPage(canvas) {
