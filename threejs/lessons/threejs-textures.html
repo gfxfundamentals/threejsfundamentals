@@ -465,7 +465,7 @@ for non-image data like normal maps, and other kinds of non-image maps which we&
 less memory than a PNG in WebGL. See above.</p>
 <h2 id="-a-name-filtering-and-mips-a-filtering-and-mips"><a name="filtering-and-mips"></a> Filtering and Mips</h2>
 <p>Let&#39;s apply this 16x16 texture</p>
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="border" align="center"></div>
+<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
 
 <p>To a cube</p>
 <div class="spread"><div data-diagram="filterCube"></div></div>
@@ -486,7 +486,7 @@ using mipmaps.</p>
 mip where the pixels have been blended to make the next smaller mip. Mips are created
 until we get all the way to a 1x1 pixel mip. For the image above all of the mips would
 end up being something like this</p>
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" align="center"></div>
+<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 <p>Now, when the cube is drawn so small that it&#39;s only 1 or 2 pixels large the GPU can choose
 to use just the smallest or next to smallest mip level to decide what color to make the
