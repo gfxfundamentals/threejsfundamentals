@@ -96,7 +96,7 @@ So now we just need to start changing the `main` we pasted into
 The first thing we need to do is include THREE.js into our worker.
 
 ```js
-importScripts('resources/threejs/r114/build/three.min.js');
+importScripts('resources/threejs/r115/build/three.min.js');
 ```
 
 Then instead of looking up the canvas from the DOM we'll receive it from the
@@ -294,7 +294,7 @@ HTML file.
 
 /* global importScripts, init, state */
 
-importScripts('resources/threejs/r114/build/three.min.js');
+importScripts('resources/threejs/r115/build/three.min.js');
 +importScripts('shared-cubes.js');
 
 function size(data) {
@@ -322,7 +322,7 @@ note we include `shared-cubes.js` which is all our three.js code
 Similarly we need to include three.js and  `shared-cubes.js` in the main page
 
 ```html
-<script src="resources/threejs/r114/build/three.min.js"></script>
+<script src="resources/threejs/r115/build/three.min.js"></script>
 <script src="shared-cubes.js"><script>
 ```
 We can remove the HTML and CSS we added previously
@@ -614,7 +614,7 @@ of the DOM events they use. Maybe we could pass in our own
 object that has the same API surface as a DOM element. 
 We only need to support the features the OrbitControls need.
 
-Digging through the [OrbitControls source code](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r114/examples/js/controls/OrbitControls.js)
+Digging through the [OrbitControls source code](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r115/examples/js/controls/OrbitControls.js)
 it looks like we need to handle the following events.
 
 * contextmenu
@@ -732,8 +732,8 @@ We also need to actually add the `OrbitControls` to the top of
 the script
 
 ```js
-importScripts('resources/threejs/r114/build/three.min/js');
-+importScripts('resources/threejs/r114/examples/js/controls/OrbitControls.js');
+importScripts('resources/threejs/r115/build/three.min/js');
++importScripts('resources/threejs/r115/examples/js/controls/OrbitControls.js');
 *importScripts('shared-orbitcontrols.js');
 ```
 
@@ -1125,8 +1125,8 @@ They also also add `mousemove` and `mouseup` events to the `document`
 to handle mouse capture (when the mouse goes outside the window) but
 like `window` there is no `document` in a worker.
 
-Further the compare `document` to the element we pass into `OrbitControls`
-and expect them to not be equal.
+Further the code compares `document` to the element we pass into `OrbitControls`
+and expects them to not be equal.
 
 We can solve all of these with a few quick hacks. In our worker
 code we'll re-use our proxy for all 3 problems.
@@ -1153,7 +1153,7 @@ I know that was kind of hard to follow. The short version is:
 `ElementProxy` runs on the main page and forwards DOM events 
 to `ElementProxyReceiver` in the worker which
 masquerades as an `HTMLElement` that we can use both with the
-`OrbitControls` and with our own.
+`OrbitControls` and with our own code.
 
 The final thing is our fallback when we are not using OffscreenCanvas.
 All we have to do is pass the canvas itself as our `inputElement`.

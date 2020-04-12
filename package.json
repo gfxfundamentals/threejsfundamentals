@@ -4,7 +4,7 @@
   "description": "Some Three.js Tutorials",
   "main": "index.js",
   "threejsfundamentals": {
-    "threeVersion": 114
+    "threeVersion": 115
   },
   "dependencies": {},
   "devDependencies": {
@@ -15,18 +15,18 @@
     "eslint-plugin-one-variable-per-var": "0.0.3",
     "eslint-plugin-optional-comma-spacing": "0.0.4",
     "eslint-plugin-require-trailing-comma": "0.0.1",
-    "grunt": "^1.0.4",
+    "grunt": "^1.1.0",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^22.0.0",
-    "jsdom": "^15.2.0",
+    "jsdom": "^16.2.2",
     "load-grunt-tasks": "^5.1.0",
     "minami": "^1.2.3",
-    "semver": "^6.3.0",
-    "servez": "^1.5.0",
-    "three": "^0.114.0"
+    "semver": "^7.1.3",
+    "servez": "^1.6.0",
+    "three": "^0.115.0"
   },
   "scripts": {
     "build": "grunt",
@@ -35,7 +35,7 @@
     "eslint": "grunt eslint",
     "pre-push": "grunt eslint",
     "bumpthree": "grunt bumpthree",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "check-all-the-errors --follow-links=both --output=threejsfundamentals.check.json out \"*.html\""
   },
   "repository": {
     "type": "git",

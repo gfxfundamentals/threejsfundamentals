@@ -107,10 +107,10 @@ render to the next render target.
 To use these classes we need to import a bunch of scripts.
 
 ```js
-import {EffectComposer} from './resources/threejs/r114/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from './resources/threejs/r114/examples/jsm/postprocessing/RenderPass.js';
-import {BloomPass} from './resources/threejs/r114/examples/jsm/postprocessing/BloomPass.js';
-import {FilmPass} from './resources/threejs/r114/examples/jsm/postprocessing/FilmPass.js';
+import {EffectComposer} from './resources/threejs/r115/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from './resources/threejs/r115/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from './resources/threejs/r115/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from './resources/threejs/r115/examples/jsm/postprocessing/FilmPass.js';
 ```
 
 For pretty much any post processing `EffectComposer.js`, and `RenderPass.js`
@@ -260,7 +260,7 @@ const colorShader = {
       vec4 previousPassColor = texture2D(tDiffuse, vUv);
       gl_FragColor = vec4(
           previousPassColor.rgb * color,
-          previousPassColor.w);
+          previousPassColor.a);
     }
   `,
 };
@@ -275,7 +275,7 @@ is pretty much standard and rarely needs to be changed. Without going into too
 many details (see articles linked above) the variables `uv`, `projectionMatrix`,
 `modelViewMatrix` and `position` are all magically added by THREE.js.
 
-Finally we create a fragment shader. In it we get get pixel color from the
+Finally we create a fragment shader. In it we get a pixel color from the
 previous pass with this line
 
 ```glsl
