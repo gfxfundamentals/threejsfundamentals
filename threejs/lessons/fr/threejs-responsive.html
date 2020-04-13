@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/fr/threejs-responsive.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Comment rendre three.js adaptable à des affichages de taille différente." />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg" />
+
+<meta property="og:title" content="Design réactif et Three.js" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg" />
+<meta property="og:description" content="Comment rendre three.js adaptable à des affichages de taille différente." />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Design réactif et Three.js" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html" />
+<meta name="twitter:description" content="Comment rendre three.js adaptable à des affichages de taille différente." />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html",
+      "inLanguage":"fr",
+      "name":"Design réactif et Three.js",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Design réactif et Three.js</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-responsive.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-responsive.html" selected>Français</a>
+    <option value="/threejs/lessons/ru/threejs-responsive.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-responsive.html" >中文</a>
+</select>
+
+
+    <a href="#toc">Table des matières</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/fr/">threejsfundamentals.org</a></h1>
+<style>
+#forkongithub a {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(150px) rotate(45deg) translate(10px,70px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+    pointer-events: auto;
+}
+#forkongithub a:hover {
+    background: #c11;
+    color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+#forkongithub{
+    z-index: 9999;
+    /* needed for firefox */
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+}
+#forkongithub svg{
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+@media (max-width: 900px) {
+    #forkongithub a{
+        line-height: 1.2rem;
+    }
+}
+@media (max-width: 700px) {
+  #forkongithub {
+    display: none;
+  }
+}
+@media (max-width: 410px) {
+    #forkongithub a{
+        font-size: 0.7rem;
+        transform: translateX(150px) rotate(45deg) translate(20px,40px);
+    }
+}
+
+</style>
+<div id="forkongithub"><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+    </g>
+</svg>
+</a></div>
+
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Design réactif et Three.js</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>Ceci est le second article dans une série à propos de three.js.
+Le premier était <a href="threejs-fundamentals.html">à propos des principes de base</a>.
+Si vous ne l&#39;avez pas encore lu, vous voudrez peut-être commencer par là.</p>
+<p>Cet article indique comment rendre votre application three.js adaptable
+à n&#39;importe quelle situation. Rendre une page web adaptable (<em>responsive</em>)
+se réfère généralement à faire en sorte que la page s&#39;affiche de manière
+appropriée sur des affichages de taille différente, des ordinateurs de bureau
+aux <em>smart-phones</em>, en passant par les tablettes.</p>
+<p>Concernant three.js, il y a d&#39;ailleurs davantage de situations à traiter.
+Par exemple, un éditeur 3D avec des contrôles à gauche, droite, en haut ou
+en bas est quelque chose que nous voudrions gérer. Un schéma interactif 
+au milieu d&#39;un document en est un autre exemple.</p>
+<p>Le dernier exemple que nous avions utilisé est un canevas sans CSS et 
+sans taille :</p>
+<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>Ce canevas a par défaut une taille de 300x150 pixels CSS.
+Dans le navigateur, la manière recommandée de fixer la taille
+de quelque chose est d&#39;utiliser CSS.</p>
+<p>Paramétrons le canevas pour occuper complètement la page en ajoutant 
+du CSS</p>
+<pre class="prettyprint"><code class="lang-html">&lt;style&gt;
+html, body {
+   margin: 0;
+   height: 100%;
+}
+#c {
+   width: 100%;
+   height: 100%;
+   display: block;
+}
+&lt;/style&gt;
+</code></pre>
+<p>En HTML, la balise <em>body</em> a une marge fixée à 5 pixels par défaut donc
+la changer à 0 la retire. Modifier la hauteur de <em>html</em> et <em>body</em> à 100%
+leur fait occuper toute la fenêtre. Sinon, ils ne sont seulement aussi large 
+que leur contenu.</p>
+<p>Ensuite, nous faisons en sort que l&#39;élément  <code>id=c</code> fasse 
+100% de la taille de son conteneur qui, dans ce cas, est le corps du document.</p>
+<p>Finalement, nous le passons du mode <code>display</code> à celui de <code>block</code>.
+Le mode par défaut d&#39;affichage d&#39;un canevas est <code>inline</code>, ce qui implique
+que des espaces peuvent y être ajoutés à l&#39;affichage.
+En passant le canevas à <code>block</code>, ce problème est supprimé.</p>
+<p>Voici le résultat</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-no-resize.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-no-resize.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+</p>
+<p>Le canevas, comme nous le voyons, remplit maintenant la page mais il y a 2
+problèmes. Tout d&#39;abord, nos cubes sont étirés et ressemblent à des boîtes, trop
+hautes et trop larges. Ouvrez l&#39;exemple dans sa propre fenêtre et 
+redimensionnez la, vous verrez comment les cubes se retrouvent déformés 
+en hauteur et en largeur.</p>
+<p><img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg"></p>
+<p>Le second problème est qu&#39;ils semblent affichés en basse résolution ou 
+à la fois flous et pixellisés. Si vous étirez beaucoup la fenêtre, vous verrez
+pleinement le problème.</p>
+<p><img src="../resources/images/resize-low-res.png" class="threejs_center nobg"></p>
+<p>Tout d&#39;abord, nous allons résoudre le problème d&#39;étirement.
+Pour cela, nous devons calquer l&#39;aspect de la caméra sur celui
+de la taille d&#39;affichage du canevas. Nous pouvons le faire 
+en utilisant les propriétés <code>clientWidth</code> et <code>clientHeight</code> du canevas.</p>
+<p>Nous mettons alors notre boucle de rendu comme cela :</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
++  const canvas = renderer.domElement;
++  camera.aspect = canvas.clientWidth / canvas.clientHeight;
++  camera.updateProjectionMatrix();
+
+  ...
+</code></pre>
+<p>A présent les cubes ne devraient plus être déformés.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-update-camera.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-update-camera.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+</p>
+<p>Ouvrez l&#39;exemple dans une fenêtre séparée et redimensionnez là.
+Vous devriez voir que les cubes ne sont plus étirés, que ce soit 
+en hauteur ou en largeur.
+Ils restent corrects quelque soit l&#39;aspect de la taille de la fenêtre.</p>
+<p><img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg"></p>
+<p>Maintenant résolvons le problème de la pixellisation.</p>
+<p>Les éléments de type <em>canvas</em> ont deux tailles. La première
+est celle du canevas affiché dans la page. C&#39;est ce que nous paramétrons avec le CSS. 
+L&#39;autre taille est le nombre de pixels dont est constitué le canevas lui-même. 
+Ceci n&#39;est pas différent d&#39;une image. 
+Par exemple, nous pouvons avoir une image de taille 128x64 et, en utilisant le CSS, 
+nous pouvons l&#39;afficher avec une taille de 400x200.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
+</code></pre>
+<p>La taille interne d&#39;un canevas, sa résolution, est souvent appelé sa taille de tampon
+de dessin (<em>drawingbuffer</em>). Dans three.js, nous pouvons ajuster cette taille 
+de canevas en appelant <code>renderer.setSize</code>.
+Quelle taille devons nous choisir ? La réponse la plus évident est &quot;la même taille que
+celle d&#39;affichage du canevas&quot;. A nouveau, pour le faire, nous pouvons avoir recours
+au propriétés <code>clientWidth</code> et <code>clientHeight</code>.</p>
+<p>Ecrivons une fonction qui vérifie si le canevas du <em>renderer</em> est ou non à la taille
+qui est affiché et l&#39;ajuste en conséquence.</p>
+<pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+</code></pre>
+<p>Remarquez que nous vérifions sur le canevas a réellement besoin d&#39;être redimensionné.
+Le redimensionnement est une partie intéressante de la spécification du canevas 
+et il est mieux de ne pas lui donner à nouveau la même taille s&#39;il est déjà
+à la dimension que nous voulons.</p>
+<p>Une fois que nous savons si le redimensionnement est nécessaire ou non, nous 
+appelons <code>renderer.setSize</code> et lui passons les nouvelles largeur et hauteur.
+Il est important de passer <code>false</code> en troisième. 
+<code>render.setSize</code> modifie par défaut la taille du canevas CSS, mais ce n&#39;est
+pas ce que nous voulons. Nous souhaitons que le navigateur continue à fonctionner
+comme pour les autres éléments, qui est d&#39;utiliser CSS pour déterminer la 
+taille d&#39;affichage d&#39;un élément. Nous ne voulons pas que les canevas utilisés
+par three aient un comportement différent des autres éléments.</p>
+<p>Remarquez que notre fonction renvoie <em>true</em> si le canevas a été redimensionné.
+Nous pouvons l&#39;utiliser pour vérifier si d&#39;autre choses doivent être mises à jour.
+Modifions à présent notre boucle de rendu pour utiliser la nouvelle fonction :</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
++  if (resizeRendererToDisplaySize(renderer)) {
++    const canvas = renderer.domElement;
++    camera.aspect = canvas.clientWidth / canvas.clientHeight;
++    camera.updateProjectionMatrix();
++  }
+
+  ...
+</code></pre>
+<p>Puisque l&#39;aspect ne change que si la taille d&#39;affichage du canevas change,
+nous ne modifions l&#39;aspect de la caméra que si <code>resizeRendererToDisplaySize</code>
+retourne <code>true</code>.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+</p>
+<p>Le rendu devrait à présent être avec une résolution qui correspond à
+la taille d&#39;affichage du canevas.</p>
+<p>Afin de comprendre pourquoi il faut laisser CSS gérer le redimensionnement,
+prenons notre code et mettons le dans un <a href="../../threejs-responsive.js">fichier <code>.js</code> séparé</a>.</p>
+<p>Voici donc quelques autres exemples où nous avons laissé CSS choisir la taille et remarquez que nous n&#39;avons
+eu aucun code à modifier pour qu&#39;ils fonctionnent.</p>
+<p>Mettons nos cubes au milieu d&#39;un paragraphe de texte.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-paragraph.html&startPane=html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-paragraph.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+</p>
+<p>et voici notre même code utilisé dans un éditeur
+où la zone de contrôle à droite peut être redimensionnée.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-editor.html&startPane=html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-editor.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+</p>
+<p>Le point important à remarquer est que le code n&#39;est pas modifié, seulement
+le HTML et le CSS.</p>
+<h2 id="g-rer-les-affichages-hd-dpi">Gérer les affichages HD-DPI</h2>
+<p>HD-DPI est l&#39;acronyme pour <em>high-density dot per inch</em>,
+autrement dit, les écrans à haute densité d&#39;affichage.
+C&#39;est le cas de la plupart des Macs, des machines sous Windows
+ainsi que des smartphones.</p>
+<p>La façon dont cela fonctionne dans le navigateur est 
+qu&#39;il utilise les pixels CSS pour mettre à jour la taille 
+qui est supposée être la même quelque soit la résolution de 
+l&#39;affichage. Le navigateur effectue le rendu du texte avec davantage
+de détails mais la même taille physique.</p>
+<p>Il y a plusieurs façons de gérer les HD-DPI avec three.js.</p>
+<p>La première façon est de ne rien faire de spécial. Cela 
+est, de manière discutable, le plus commun. Effectuer le 
+rendu de graphismes 3D prend beaucoup de puissance de calcul GPU
+(<em>Graphics Processing Units</em>, les processeurs dédiés de carte graphique).
+Les GPUs mobiles ont moins de puissance que les ordinateurs de bureau,
+du moins en 2018, et pourtant les téléphones mobules ont des affichages
+haute résolution. Le haut de gamme actuel pour les smartphones a un ratio
+HD-DPI de 3x, ce qui signifie que pour chaque pixel d&#39;un affichage non HD-DPI,
+ces téléphones ont 9 pixels. Il y a donc 9 fois plus de travail
+pour le rendu.</p>
+<p>Calculer pour 9 pixels nécessite des ressources donc, si 
+nous laissons le code comme cela, nous calculerons pour 1 pixel
+et le navigateur le dessinera avec 3 fois sa taille (3 x 3 = 9 pixels).</p>
+<p>Pour toute application three.js lourde, c&#39;est probablement ce que vous 
+voulez sinon vous risquez d&#39;avoir un taux de rafraîssement faible (<em>framerate</em>).</p>
+<p>Ceci étant dit, si vous préférez effectuer le rendu à la résolution de l&#39;appareil,
+voici quelques façons de le faire en three.js.</p>
+<p>La première est d&#39;indiquer à three.js le facteur de multiplication de la résolution
+en utilisant <code>renderer.setPixelRatio</code>. Nous pouvons demander au navigateur ce 
+facteur entre les pixels CSS et les pixels du périphérique et les passer à three.js</p>
+<pre class="prettyprint"><code> renderer.setPixelRatio(window.devicePixelRatio);
+</code></pre><p>Après cela, tout appel à <code>renderer.setSize</code> va automatiquement
+utiliser la taille que vous avez demandée, multipliée par le 
+ratio que vous avez demandé.
+<strong>Ceci est fortement DÉCONSEILLÉ</strong>. Voir ci-dessous.</p>
+<p>L&#39;autre façon est de le faire par soi-même quand on redimensionne le canevas.</p>
+<pre class="prettyprint"><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
+      const canvas = renderer.domElement;
+      const pixelRatio = window.devicePixelRatio;
+      const width  = canvas.clientWidth  * pixelRatio | 0;
+      const height = canvas.clientHeight * pixelRatio | 0;
+      const needResize = canvas.width !== width || canvas.height !== height;
+      if (needResize) {
+        renderer.setSize(width, height, false);
+      }
+      return needResize;
+    }
+</code></pre>
+<p>Cette seconde façon est objectivement meilleure. Pourquoi ? Parce que cela signifie
+que nous avons ce que nous avons demandé. Il y a plusieurs cas où,
+quand on utilise three.js, nous avons besoin de savoir la taille effective
+du tampon d&#39;affichage du canevas. Par exemple, quand on réalise un filtre de
+post-processing, ou si nous faisons un <em>shader</em> qui accède à <code>gl_FragCoord</code>, 
+si nous sommes en train de faire une capture d&#39;écran, ou en train de lire les pixels
+pour une sélection par GPU, pour dessiner dans un canevas 2D, etc...
+Il y a plusieurs cas où, si nous utilisons <code>setPixelRatio</code> alors notre
+taille effective est différente de la taille que nous avons demandé et nous 
+aurons alors à deviner quand utiliser la taille demandée ou la taille utilisée
+par three.js. 
+En le faisant par soi-même, nous savons toujours que la taille utilisée
+est celle que nous avons demandé. Il n&#39;y a aucun cas où cela se fait tout 
+seul autrement.</p>
+<p>Voici un exemple utilisant le code vu plus haut.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-hd-dpi.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-hd-dpi.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+</p>
+<p>Cela devrait être difficile de voir la différence, mais si vous avez 
+un affichage HD-DPI et que vous comparez cet exemple aux autres plus
+haut, vous devriez remarquer que les arêtes sont plus vives. </p>
+<p>Cet article a couvert un sujet très basique mais fondamental. 
+Ensuite, nous allons rapidement 
+<a href="threejs-primitives.html">passer en revue les primitives de base proposées par three.js</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-responsive.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-responsive.html" selected>Français</a>
+    <option value="/threejs/lessons/ru/threejs-responsive.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-responsive.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Bases</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-fundamentals.html">Principes de base</a></li>
+<li><a href="/threejs/lessons/fr/threejs-responsive.html">Design réactif</a></li>
+<li><a href="/threejs/lessons/fr/threejs-prerequisites.html">Pré-requis</a></li>
+<li><a href="/threejs/lessons/fr/threejs-setup.html">Setup</a></li>
+        </ul>
+  <li>Principes de base</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-primitives.html">Primitives</a></li>
+<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/fr/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/fr/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/fr/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/fr/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/fr/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/fr/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/fr/threejs-rendertargets.html">Render Targets</a></li>
+<li><a href="/threejs/lessons/fr/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/fr/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+        </ul>
+  <li>Сonseils</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/fr/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/fr/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/fr/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/fr/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/fr/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/fr/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/fr/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>Optimisation</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/fr/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>Solutions</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/fr/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/fr/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/fr/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/fr/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/fr/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/fr/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/fr/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/fr/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/fr/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/fr/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/fr/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/fr/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/fr/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/fr/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/fr/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>WebVR</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/fr/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/fr/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
+        </ul>
+  <li>Référence</li>
+        <ul>
+          <li><a href="/threejs/lessons/fr/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
+  <li><a href="https://threejs.org">three.js</a></li>
+  <li><a href="https://threejs.org/docs/">documentation three.js</a></li>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Questions ? <a href="http://stackoverflow.com/questions/tagged/three.js">Les poser sur stackoverflow</a>.</div>
+        <div>Problèmes / bug ? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Les reporter sur github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Design réactif et Three.js';
+            var disqus_title = 'Design réactif et Three.js';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script>
+(function() {
+  if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+      return;
+  }
+
+  function addScript(src, fn) {
+    const script = document.createElement('script');
+    const firstScript = document.getElementsByTagName('script')[0];
+    script.async = true;
+    script.defer = true;
+    if (fn) {
+      script.addEventListener('load', fn);
+    }
+    script.src = src;
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }
+
+  addScript('//cdn.webglstats.com/stat.js');
+  addScript('https://www.googletagmanager.com/gtag/js?id=UA-120733518-1', () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-120733518-1');
+  });
+}());
+</script>
+
+
+</html>
+
+
+
