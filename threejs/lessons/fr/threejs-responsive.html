@@ -206,27 +206,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>Ceci est le second article dans une série à propos de three.js.
-Le premier était <a href="threejs-fundamentals.html">à propos des principes de base</a>.
-Si vous ne l&#39;avez pas encore lu, vous voudrez peut-être commencer par là.</p>
-<p>Cet article indique comment rendre votre application three.js adaptable
+      <p>Ceci est le second article dans une série traitant de three.js.
+Le premier traitait <a href="threejs-fundamentals.html">des principes de base</a>.
+Si vous ne l&#39;avez pas encore lu, vous deviriez peut-être commencer par le lire.</p>
+<p>Ce présent article explique comment rendre votre application three.js adaptable
 à n&#39;importe quelle situation. Rendre une page web adaptable (<em>responsive</em>)
 se réfère généralement à faire en sorte que la page s&#39;affiche de manière
 appropriée sur des affichages de taille différente, des ordinateurs de bureau
 aux <em>smart-phones</em>, en passant par les tablettes.</p>
 <p>Concernant three.js, il y a d&#39;ailleurs davantage de situations à traiter.
 Par exemple, un éditeur 3D avec des contrôles à gauche, droite, en haut ou
-en bas est quelque chose que nous voudrions gérer. Un schéma interactif 
+en bas est quelque chose que nous voudrions gérer. Un schéma interactif
 au milieu d&#39;un document en est un autre exemple.</p>
-<p>Le dernier exemple que nous avions utilisé est un canevas sans CSS et 
+<p>Le dernier exemple que nous avions utilisé est un canevas sans CSS et
 sans taille :</p>
 <pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 </code></pre>
 <p>Ce canevas a par défaut une taille de 300x150 pixels CSS.
 Dans le navigateur, la manière recommandée de fixer la taille
 de quelque chose est d&#39;utiliser CSS.</p>
-<p>Paramétrons le canevas pour occuper complètement la page en ajoutant 
-du CSS</p>
+<p>Paramétrons le canevas pour occuper complètement la page en ajoutant
+du CSS :</p>
 <pre class="prettyprint"><code class="lang-html">&lt;style&gt;
 html, body {
    margin: 0;
@@ -241,34 +241,34 @@ html, body {
 </code></pre>
 <p>En HTML, la balise <em>body</em> a une marge fixée à 5 pixels par défaut donc
 la changer à 0 la retire. Modifier la hauteur de <em>html</em> et <em>body</em> à 100%
-leur fait occuper toute la fenêtre. Sinon, ils ne sont seulement aussi large 
+leur fait occuper toute la fenêtre. Sinon, ils ne sont seulement aussi large
 que leur contenu.</p>
-<p>Ensuite, nous faisons en sort que l&#39;élément  <code>id=c</code> fasse 
+<p>Ensuite, nous faisons en sorte que l&#39;élément <code>id=c</code> fasse
 100% de la taille de son conteneur qui, dans ce cas, est le corps du document.</p>
 <p>Finalement, nous le passons du mode <code>display</code> à celui de <code>block</code>.
 Le mode par défaut d&#39;affichage d&#39;un canevas est <code>inline</code>, ce qui implique
 que des espaces peuvent y être ajoutés à l&#39;affichage.
 En passant le canevas à <code>block</code>, ce problème est supprimé.</p>
-<p>Voici le résultat</p>
+<p>Voici le résultat :</p>
 <p><div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-no-resize.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-no-resize.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
 
 </p>
-<p>Le canevas, comme nous le voyons, remplit maintenant la page mais il y a 2
-problèmes. Tout d&#39;abord, nos cubes sont étirés et ressemblent à des boîtes, trop
-hautes et trop larges. Ouvrez l&#39;exemple dans sa propre fenêtre et 
-redimensionnez la, vous verrez comment les cubes se retrouvent déformés 
+<p>Le canevas, comme nous le voyons, remplit maintenant la page mais il y a deux
+problèmes. Tout d&#39;abord, nos cubes sont étirés et ressemblent à des boîtes trop
+hautes et trop larges. Ouvrez l&#39;exemple dans sa propre fenêtre et
+redimensionnez la, vous verrez comment les cubes s&#39;en trouvent déformés
 en hauteur et en largeur.</p>
 <p><img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg"></p>
-<p>Le second problème est qu&#39;ils semblent affichés en basse résolution ou 
+<p>Le second problème est qu&#39;ils semblent affichés en basse résolution ou
 à la fois flous et pixellisés. Si vous étirez beaucoup la fenêtre, vous verrez
 pleinement le problème.</p>
 <p><img src="../resources/images/resize-low-res.png" class="threejs_center nobg"></p>
 <p>Tout d&#39;abord, nous allons résoudre le problème d&#39;étirement.
 Pour cela, nous devons calquer l&#39;aspect de la caméra sur celui
-de la taille d&#39;affichage du canevas. Nous pouvons le faire 
+de la taille d&#39;affichage du canevas. Nous pouvons le faire
 en utilisant les propriétés <code>clientWidth</code> et <code>clientHeight</code> du canevas.</p>
 <p>Nous mettons alors notre boucle de rendu comme cela :</p>
 <pre class="prettyprint"><code class="lang-js">function render(time) {
@@ -288,27 +288,27 @@ en utilisant les propriétés <code>clientWidth</code> et <code>clientHeight</co
 
 </p>
 <p>Ouvrez l&#39;exemple dans une fenêtre séparée et redimensionnez là.
-Vous devriez voir que les cubes ne sont plus étirés, que ce soit 
+Vous devriez voir que les cubes ne sont plus étirés, que ce soit
 en hauteur ou en largeur.
 Ils restent corrects quelque soit l&#39;aspect de la taille de la fenêtre.</p>
 <p><img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg"></p>
 <p>Maintenant résolvons le problème de la pixellisation.</p>
 <p>Les éléments de type <em>canvas</em> ont deux tailles. La première
-est celle du canevas affiché dans la page. C&#39;est ce que nous paramétrons avec le CSS. 
-L&#39;autre taille est le nombre de pixels dont est constitué le canevas lui-même. 
-Ceci n&#39;est pas différent d&#39;une image. 
-Par exemple, nous pouvons avoir une image de taille 128x64 et, en utilisant le CSS, 
+est celle du canevas affiché dans la page. C&#39;est ce que nous paramétrons avec le CSS.
+L&#39;autre taille est le nombre de pixels dont est constitué le canevas lui-même.
+Ceci n&#39;est pas différent d&#39;une image.
+Par exemple, nous pouvons avoir une image de taille 128x64 et, en utilisant le CSS,
 nous pouvons l&#39;afficher avec une taille de 400x200.</p>
 <pre class="prettyprint"><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
 </code></pre>
-<p>La taille interne d&#39;un canevas, sa résolution, est souvent appelé sa taille de tampon
-de dessin (<em>drawingbuffer</em>). Dans three.js, nous pouvons ajuster cette taille 
+<p>La taille interne d&#39;un canevas, sa résolution, est souvent appelée sa taille de tampon
+de dessin (<em>drawingbuffer</em>). Dans three.js, nous pouvons ajuster cette taille
 de canevas en appelant <code>renderer.setSize</code>.
-Quelle taille devons nous choisir ? La réponse la plus évident est &quot;la même taille que
+Quelle taille devons nous choisir ? La réponse la plus évidente est &quot;la même taille que
 celle d&#39;affichage du canevas&quot;. A nouveau, pour le faire, nous pouvons avoir recours
 au propriétés <code>clientWidth</code> et <code>clientHeight</code>.</p>
 <p>Ecrivons une fonction qui vérifie si le canevas du <em>renderer</em> est ou non à la taille
-qui est affiché et l&#39;ajuste en conséquence.</p>
+qui est affichée et l&#39;ajuste en conséquence.</p>
 <pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
@@ -321,15 +321,15 @@ qui est affiché et l&#39;ajuste en conséquence.</p>
 }
 </code></pre>
 <p>Remarquez que nous vérifions sur le canevas a réellement besoin d&#39;être redimensionné.
-Le redimensionnement est une partie intéressante de la spécification du canevas 
+Le redimensionnement est une partie intéressante de la spécification du canevas
 et il est mieux de ne pas lui donner à nouveau la même taille s&#39;il est déjà
 à la dimension que nous voulons.</p>
-<p>Une fois que nous savons si le redimensionnement est nécessaire ou non, nous 
+<p>Une fois que nous savons si le redimensionnement est nécessaire ou non, nous
 appelons <code>renderer.setSize</code> et lui passons les nouvelles largeur et hauteur.
-Il est important de passer <code>false</code> en troisième. 
+Il est important de passer <code>false</code> en troisième.
 <code>render.setSize</code> modifie par défaut la taille du canevas CSS, mais ce n&#39;est
 pas ce que nous voulons. Nous souhaitons que le navigateur continue à fonctionner
-comme pour les autres éléments, qui est d&#39;utiliser CSS pour déterminer la 
+comme pour les autres éléments, qui est d&#39;utiliser CSS pour déterminer la
 taille d&#39;affichage d&#39;un élément. Nous ne voulons pas que les canevas utilisés
 par three aient un comportement différent des autres éléments.</p>
 <p>Remarquez que notre fonction renvoie <em>true</em> si le canevas a été redimensionné.
@@ -383,35 +383,35 @@ le HTML et le CSS.</p>
 autrement dit, les écrans à haute densité d&#39;affichage.
 C&#39;est le cas de la plupart des Macs, des machines sous Windows
 ainsi que des smartphones.</p>
-<p>La façon dont cela fonctionne dans le navigateur est 
-qu&#39;il utilise les pixels CSS pour mettre à jour la taille 
-qui est supposée être la même quelque soit la résolution de 
+<p>La façon dont cela fonctionne dans le navigateur est
+qu&#39;il utilise les pixels CSS pour mettre à jour la taille
+qui est supposée être la même quelque soit la résolution de
 l&#39;affichage. Le navigateur effectue le rendu du texte avec davantage
 de détails mais la même taille physique.</p>
 <p>Il y a plusieurs façons de gérer les HD-DPI avec three.js.</p>
-<p>La première façon est de ne rien faire de spécial. Cela 
-est, de manière discutable, le plus commun. Effectuer le 
+<p>La première façon est de ne rien faire de spécial. Cela
+est, de manière discutable, le plus commun. Effectuer le
 rendu de graphismes 3D prend beaucoup de puissance de calcul GPU
 (<em>Graphics Processing Units</em>, les processeurs dédiés de carte graphique).
 Les GPUs mobiles ont moins de puissance que les ordinateurs de bureau,
-du moins en 2018, et pourtant les téléphones mobules ont des affichages
+du moins en 2018, et pourtant les téléphones mobiles ont des affichages
 haute résolution. Le haut de gamme actuel pour les smartphones a un ratio
 HD-DPI de 3x, ce qui signifie que pour chaque pixel d&#39;un affichage non HD-DPI,
 ces téléphones ont 9 pixels. Il y a donc 9 fois plus de travail
 pour le rendu.</p>
-<p>Calculer pour 9 pixels nécessite des ressources donc, si 
+<p>Calculer pour 9 pixels nécessite des ressources donc, si
 nous laissons le code comme cela, nous calculerons pour 1 pixel
 et le navigateur le dessinera avec 3 fois sa taille (3 x 3 = 9 pixels).</p>
-<p>Pour toute application three.js lourde, c&#39;est probablement ce que vous 
-voulez sinon vous risquez d&#39;avoir un taux de rafraîssement faible (<em>framerate</em>).</p>
+<p>Pour toute application three.js lourde, c&#39;est probablement ce que vous
+voulez sinon vous risquez d&#39;avoir un taux de rafraîchissement faible (<em>framerate</em>).</p>
 <p>Ceci étant dit, si vous préférez effectuer le rendu à la résolution de l&#39;appareil,
 voici quelques façons de le faire en three.js.</p>
 <p>La première est d&#39;indiquer à three.js le facteur de multiplication de la résolution
-en utilisant <code>renderer.setPixelRatio</code>. Nous pouvons demander au navigateur ce 
+en utilisant <code>renderer.setPixelRatio</code>. Nous pouvons demander au navigateur ce
 facteur entre les pixels CSS et les pixels du périphérique et les passer à three.js</p>
 <pre class="prettyprint"><code> renderer.setPixelRatio(window.devicePixelRatio);
 </code></pre><p>Après cela, tout appel à <code>renderer.setSize</code> va automatiquement
-utiliser la taille que vous avez demandée, multipliée par le 
+utiliser la taille que vous avez demandée, multipliée par le
 ratio que vous avez demandé.
 <strong>Ceci est fortement DÉCONSEILLÉ</strong>. Voir ci-dessous.</p>
 <p>L&#39;autre façon est de le faire par soi-même quand on redimensionne le canevas.</p>
@@ -431,15 +431,15 @@ ratio que vous avez demandé.
 que nous avons ce que nous avons demandé. Il y a plusieurs cas où,
 quand on utilise three.js, nous avons besoin de savoir la taille effective
 du tampon d&#39;affichage du canevas. Par exemple, quand on réalise un filtre de
-post-processing, ou si nous faisons un <em>shader</em> qui accède à <code>gl_FragCoord</code>, 
+post-processing, ou si nous faisons un <em>shader</em> qui accède à <code>gl_FragCoord</code>,
 si nous sommes en train de faire une capture d&#39;écran, ou en train de lire les pixels
 pour une sélection par GPU, pour dessiner dans un canevas 2D, etc...
 Il y a plusieurs cas où, si nous utilisons <code>setPixelRatio</code> alors notre
-taille effective est différente de la taille que nous avons demandé et nous 
+taille effective est différente de la taille que nous avons demandé et nous
 aurons alors à deviner quand utiliser la taille demandée ou la taille utilisée
-par three.js. 
+par three.js.
 En le faisant par soi-même, nous savons toujours que la taille utilisée
-est celle que nous avons demandé. Il n&#39;y a aucun cas où cela se fait tout 
+est celle que nous avons demandé. Il n&#39;y a aucun cas où cela se fait tout
 seul autrement.</p>
 <p>Voici un exemple utilisant le code vu plus haut.</p>
 <p><div class="threejs_example_container">
@@ -448,11 +448,11 @@ seul autrement.</p>
 </div>
 
 </p>
-<p>Cela devrait être difficile de voir la différence, mais si vous avez 
+<p>Cela devrait être difficile de voir la différence, mais si vous avez
 un affichage HD-DPI et que vous comparez cet exemple aux autres plus
-haut, vous devriez remarquer que les arêtes sont plus vives. </p>
-<p>Cet article a couvert un sujet très basique mais fondamental. 
-Ensuite, nous allons rapidement 
+haut, vous devriez remarquer que les arêtes sont plus vives.</p>
+<p>Cet article a couvert un sujet très basique mais fondamental.
+Ensuite, nous allons rapidement
 <a href="threejs-primitives.html">passer en revue les primitives de base proposées par three.js</a>.</p>
 
     </div>
