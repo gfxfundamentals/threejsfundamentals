@@ -426,7 +426,7 @@ while the rest of the page scrolled over it. <code>position: absolute</code> wil
 
 <h2 id="making-it-more-generic">Making it more Generic</h2>
 <p>Now that we&#39;ve gotten multiple scenes working let&#39;s make this just slightly more generic.</p>
-<p>We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are aware they are being rendered in some smaller space.</p>
+<p>We could make it so the main render function, the one managing the canvas, just has a list of elements and their associated render function. For each element it would check if the element is on screen and if so call the corresponding render function. In this way we&#39;d have a generic system where individual scenes aren&#39;t really aware they are being rendered in some smaller space.</p>
 <p>Here&#39;s the main render function</p>
 <pre class="prettyprint"><code class="lang-js">const sceneElements = [];
 function addScene(elem, fn) {
@@ -508,7 +508,7 @@ function render(time) {
   });
 }
 </code></pre>
-<p>With that we no longer needed <code>sceneInfo1</code> and <code>sceneInfo2</code> and the code that was rotating the meshes is now specific to each scene.</p>
+<p>With that we no longer need <code>sceneInfo1</code> and <code>sceneInfo2</code> and the code that was rotating the meshes is now specific to each scene.</p>
 <p><div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-generic.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-generic.html" target="_blank">click here to open in a separate window</a>
