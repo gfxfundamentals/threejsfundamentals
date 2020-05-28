@@ -225,7 +225,10 @@ rtCamera.position.z = 2;
 const rtScene = new THREE.Scene();
 rtScene.background = new THREE.Color(&#39;red&#39;);
 </code></pre>
-<p>Notice we set the aspect to the aspect for the render target, not the canvas.</p>
+<p>Notice we set the aspect to the aspect for the render target, not the canvas.
+The correct aspect to use depends on what we are rendering for. In this case
+we&#39;ll use the render target&#39;s texture on the side of a cube. Since faces of
+the cube are square we want an aspect of 1.0.</p>
 <p>We fill the scene with stuff. In this case we&#39;re using the light and the 3 cubes <a href="threejs-responsive.html">from the previous article</a>.</p>
 <pre class="prettyprint"><code class="lang-js">{
   const color = 0xFFFFFF;
@@ -300,30 +303,36 @@ scene.add(cube);
 </div>
 
 </p>
-<p>The cube is red because we set the <code>background</code> of the <code>rtScene</code> to red so the render target&#39;s texture is being cleared to red.</p>
-<p>Render target are used for all kinds of things. Shadows use a render target. <a href="threejs-picking.html">Picking can use a render target</a>. Various kinds of <a href="threejs-post-processing.html">post processing effects</a> require a render target. Rendering a rear view mirror in a car or a live view on a monitor inside a 3D scene might use a render target.</p>
+<p>The cube is red because we set the <code>background</code> of the <code>rtScene</code> to red so the
+render target&#39;s texture is being cleared to red.</p>
+<p>Render targets are used for all kinds of things. <a href="threejs-shadows.html">Shadows</a> use render targets.
+<a href="threejs-picking.html">Picking can use a render target</a>. Various kinds of
+<a href="threejs-post-processing.html">post processing effects</a> require render targets.
+Rendering a rear view mirror in a car or a live view on a monitor inside a 3D
+scene might use a render target.</p>
 <p>A few notes about using <code>WebGLRenderTarget</code>.</p>
 <ul>
 <li><p>By default <code>WebGLRenderTarget</code> creates 2 textures. A color texture and a depth/stencil texture. If you don&#39;t need the depth or stencil textures you can request to not create them by passing in options. Example:</p>
-<pre class="prettyprint"><code>  const rt = new THREE.WebGLRenderTarget(width, height, {
+<pre class="prettyprint"><code class="lang-js">  const rt = new THREE.WebGLRenderTarget(width, height, {
     depthBuffer: false,
     stencilBuffer: false,
   });
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>You might need to change the size of a render target</p>
 <p>In the example above we make a render target of a fixed size, 512x512. For things like post processing you generally need to make a render target the same size as your canvas. In our code that would mean when we change the canvas size we would also update both the render target size and the camera we&#39;re using when rendering to the render target. Example:</p>
-<pre class="prettyprint"><code>  function render(time) {
-    time *= 0.001;
+<pre class="prettyprint"><code>function render(time) {
+  time *= 0.001;
 
-    if (resizeRendererToDisplaySize(renderer)) {
-      const canvas = renderer.domElement;
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
 
-  +    renderTarget.setSize(canvas.width, canvas.height);
-  +    rtCamera.aspect = camera.aspect;
-  +    rtCamera.updateProjectionMatrix();
-    }
++    renderTarget.setSize(canvas.width, canvas.height);
++    rtCamera.aspect = camera.aspect;
++    rtCamera.updateProjectionMatrix();
+}
 </code></pre></li>
 </ul>
 
