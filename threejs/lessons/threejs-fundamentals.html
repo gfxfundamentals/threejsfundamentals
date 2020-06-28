@@ -248,7 +248,7 @@ structure, consisting of various objects like a <code>Scene</code> object, multi
 the background color and fog. These objects define a hierarchical parent/child
 tree like structure and represent where objects appear and how they are
 oriented. Children are positioned and oriented relative to their parent. For
-example the wheels on a car might children of the car so that moving and
+example the wheels on a car might be children of the car so that moving and
 orienting the car&#39;s object automatically moves the wheels. You can read more
 about this in <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
 <p>Note in the diagram <code>Camera</code> is half in half out of the scenegraph. This is to
@@ -341,7 +341,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 dimension. Note that most angles in three.js are in radians but for some
 reason the perspective camera takes degrees.</p>
 <p><code>aspect</code> is the display aspect of the canvas. We&#39;ll go over the details
-<a href="threejs-responsive.html">in another article</a> but by default a canvas i
+<a href="threejs-responsive.html">in another article</a> but by default a canvas is
  300x150 pixels which makes the aspect 300/150 or 2.</p>
 <p><code>near</code> and <code>far</code> represent the space in front of the camera
 that will be rendered. Anything before that range or after that range
@@ -617,6 +617,7 @@ see what you need to change. It would be too much work to maintain both an es6 m
 version of this site so going forward this site will only show es6 module style. As stated elsewhere,
 to support legacy browsers look into a <a href="https://babeljs.io">transpiler</a>.</p>
 </div>
+
     </div>
     <div class="lesson-sidebar">
         <select class="language">
