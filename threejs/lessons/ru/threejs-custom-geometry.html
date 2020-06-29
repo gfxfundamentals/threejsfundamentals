@@ -240,7 +240,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Затем нам нужно сделать треугольники, по 2 на каждую грань куба</p>
 <div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
-<p>Мы делаем это, создавая объекты Face3 и определяя индексы 3 вершин, которые составляют это лицо. </p>
+<p>Мы делаем это, создавая объекты Face3 и определяя индексы 3 вершин, которые составляют эту грань.</p>
 <p>Порядок, в котором мы указываем вершины, важен. Чтобы указывать на внешнюю сторону куба, они должны быть указаны в направлении против часовой стрелки, когда этот треугольник направлен на камеру. </p>
 <div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
@@ -304,7 +304,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </div>
 
 </p>
-<p>Мы можем указать цвет для каждого лица, установив свойство color каждой стороны. </p>
+<p>Мы можем указать цвет для каждой грани, установив свойство color каждой стороны.</p>
 <pre class="prettyprint"><code class="lang-js">geometry.faces[ 0].color = geometry.faces[ 1].color = new THREE.Color(&#39;red&#39;);
 geometry.faces[ 2].color = geometry.faces[ 3].color = new THREE.Color(&#39;yellow&#39;);
 geometry.faces[ 4].color = geometry.faces[ 5].color = new THREE.Color(&#39;green&#39;);
@@ -341,7 +341,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
 </div>
 
 </p>
-<p>Чтобы использовать освещение, нам нужны нормали. Нормали - это векторы, которые определяют направление. Так же, как цвета, мы можем указать нормаль для лица, установив свойство normal для каждой стороны с помощью </p>
+<p>Чтобы использовать освещение, нам нужны нормали. Нормали - это векторы, которые определяют направление. Так же, как цвета, мы можем указать нормаль для грани, установив свойство normal для каждой стороны с помощью</p>
 <pre class="prettyprint"><code class="lang-js">face.normal = new THREE.Vector3(...)
 </code></pre>
 <p>или мы можем указать нормаль для каждой вершины, установив для свойства vertexNormals что-то вроде </p>
@@ -352,7 +352,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
 ]
 </code></pre>
 <p>но часто гораздо проще просто попросить THREE.js вычислить для нас нормали на основе указанных позиций. </p>
-<p>Для нормалей лица мы бы назвали Geometry.computeFaceNormals как в </p>
+<p>Для нормалей грани мы бы назвали Geometry.computeFaceNormals как в</p>
 <pre class="prettyprint"><code class="lang-js">geometry.computeFaceNormals();
 </code></pre>
 <p>Удаление цвета вершин и изменение материала обратно на MeshPhongMaterial</p>
