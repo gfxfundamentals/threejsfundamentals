@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Основы three.js</title>
-    <updated>2020-06-30T16:15:15.000Z</updated>
+    <updated>2020-06-30T16:16:17.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -11,6 +11,18 @@
     <link rel="alternate" href="http://threejsfundamentals.org/"/>
     <subtitle>Изучение Three.js с нуля.</subtitle>
     <logo>https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Three.js Custom BufferGeometry]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html">
+        </link>
+        <updated>2020-06-30T16:16:17.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-06-30T16:16:17.000Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Shadows]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-shadows.html</id>

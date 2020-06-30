@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-custom-buffergeometry.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,10 +36,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Создание собственной геометрии BufferGeometry." />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ru.jpg" />
+
 <meta property="og:title" content="Three.js Custom BufferGeometry" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to make your own BufferGeometry." />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ru.jpg" />
+<meta property="og:description" content="Создание собственной геометрии BufferGeometry." />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -48,12 +53,48 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:domain" content="threejsfundamentals.org" />
 <meta name="twitter:title" content="Three.js Custom BufferGeometry" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html" />
-<meta name="twitter:description" content="How to make your own BufferGeometry." />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="Создание собственной геометрии BufferGeometry." />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ru.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ru.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html",
+      "inLanguage":"ru",
+      "name":"Three.js Custom BufferGeometry",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
 <title>Three.js Custom BufferGeometry</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -165,8 +206,401 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-custom-buffergeometry.html">А пока можете почитать статью на английском языке</a>.</p>
+      <p>В <a href="threejs-custom-geometry.html">предыдущей статье</a> рассказывалось, как использовать <code>Geometry</code>. Эта статья о <code>BufferGeometry</code>. <code>BufferGeometry</code> обычно быстрее запускается и использует меньше памяти, но может быть сложнее в настройке. </p>
+<p>В <a href="threejs-custom-geometry.html">статье о Geometry</a> мы рассказали, что для использования <code>Geometry</code> вы предоставляете массив вершин <code>Vector3</code> (позиций). 
+Затем вы создаете объекты <code>Face3</code>, определяя по индексу 3 вершины, которые составляют каждый треугольник фигуры, которую вы делаете.
+Для каждого <code>Face3</code> вы можете указать либо нормаль грани, либо нормали для каждой отдельной вершины грани. 
+Вы также можете указать цвет грани или отдельные цвета вершин. Наконец, вы можете создать параллельный массив массивов текстурных координат (UV), 
+один массив для каждой грани, содержащий массив UV, один для каждой вершины грани. </p>
+<div class="threejs_center"><img src="../resources/threejs-geometry.svg" style="width: 700px"></div>
+
+<p><code>BufferGeometry</code> с другой стороны использует названный <code>BufferAttributes</code>. 
+Каждый атрибут <code>BufferAttribute</code> представляет собой массив данных одного типа: позиции, нормали, цвета и ультрафиолетовые лучи. 
+Вместе добавленные атрибуты <code>BufferAttributes</code> представляют параллельные массивы всех данных для каждой вершины. </p>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
+
+<p>Вы можете видеть, что у нас есть 4 атрибута: <code>position</code>, <code>normal</code>, <code>color</code>, <code>uv</code>. 
+Они представляют параллельные массивы, что означает, что N-й набор данных в каждом атрибуте принадлежит одной и той же вершине. 
+Вершина с индексом = 4 подсвечивается, чтобы показать, что параллельные данные по всем атрибутам определяют одну вершину. </p>
+<p>Это поднимает точку, вот схема куба с одним выделенным углом. </p>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
+
+<p>Думая об этом, один угол нуждается в разной нормали для каждой грани куба. 
+Для каждой стороны тоже нужны разные ультрафиолеты. Это указывает на самую большую разницу между <code>Geometry</code> и <code>BufferGeometry</code>. Ничего общего с <code>BufferGeometry</code>.
+Одна вершина - это комбинация всех ее частей. Если вершина нуждается в какой-либо части, то она должна быть другой. </p>
+<p>Правда в том, что когда вы используете <code>Geometry</code> three.js преобразует его в этот формат. 
+Вот откуда появляется дополнительная память и время при использовании <code>Geometry</code>. 
+Дополнительная память для всех объектов <code>Vector3s</code>, <code>Vector2s</code>, <code>Face3s</code> и массива, а затем дополнительное время для преобразования всех этих данных
+в параллельные массивы в форме атрибутов <code>BufferAttributes</code>, как указано выше. 
+Иногда это облегчает использование Geometry. С <code>BufferGeometry</code> мы можем предоставить данные, уже преобразованные в этот формат. </p>
+<p>В качестве простого примера давайте сделаем куб, используя <code>BufferGeometry</code>.
+Куб интересен тем, что кажется, что он разделяет вершины в углах, но на самом деле это не так. В нашем примере мы перечислим все вершины со всеми их данными,
+а затем преобразуем эти данные в параллельные массивы и, наконец, используем их для создания атрибутов <code>Buffer</code> и добавления их в <code>BufferGeometry</code>. </p>
+<p>Начиная с примера координат текстуры из предыдущей статьи, мы удалили весь код, связанный с настройкой <code>Geometry</code>. 
+Затем мы перечисляем все данные, необходимые для куба. Помните еще раз, что если вершина имеет какие-либо уникальные части, она должна быть отдельной вершиной. 
+Для создания куба необходимо 36 вершин. 2 треугольника на грань, 3 вершины на треугольник, 6 граней = 36 вершин. </p>
+<pre class="prettyprint"><code class="lang-js">const vertices = [
+  // front
+  { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 1], },
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 0], },
+
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 0], },
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 1], },
+  { pos: [ 1,  1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  // right
+  { pos: [ 1, -1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 1], },
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 0], },
+
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 0], },
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 1], },
+  { pos: [ 1,  1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  // back
+  { pos: [ 1, -1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 1], },
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 0], },
+
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 0], },
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 1], },
+  { pos: [-1,  1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  // left
+  { pos: [-1, -1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 1], },
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 0], },
+
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 0], },
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 1], },
+  { pos: [-1,  1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  // top
+  { pos: [ 1,  1, -1], norm: [ 0,  1,  0], uv: [0, 1], },
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 1], },
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 0], },
+
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 0], },
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 1], },
+  { pos: [-1,  1,  1], norm: [ 0,  1,  0], uv: [1, 0], },
+  // bottom
+  { pos: [ 1, -1,  1], norm: [ 0, -1,  0], uv: [0, 1], },
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 1], },
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 0], },
+
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 0], },
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 1], },
+  { pos: [-1, -1, -1], norm: [ 0, -1,  0], uv: [1, 0], },
+];
+</code></pre>
+<p>Затем мы можем перевести все это в 3 параллельных массива </p>
+<pre class="prettyprint"><code class="lang-js">const positions = [];
+const normals = [];
+const uvs = [];
+for (const vertex of vertices) {
+  positions.push(...vertex.pos);
+  normals.push(...vertex.norm);
+  uvs.push(...vertex.uv);
+}
+</code></pre>
+<p>Наконец, мы можем создать <code>BufferGeometry</code>, а затем <code>BufferAttribute</code> для каждого массива и добавить его в <code>BufferGeometry</code>.</p>
+<pre class="prettyprint"><code class="lang-js">  const geometry = new THREE.BufferGeometry();
+  const positionNumComponents = 3;
+  const normalNumComponents = 3;
+  const uvNumComponents = 2;
+  geometry.setAttribute(
+      &#39;position&#39;,
+      new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
+  geometry.setAttribute(
+      &#39;normal&#39;,
+      new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
+  geometry.setAttribute(
+      &#39;uv&#39;,
+      new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
+</code></pre>
+<p>Обратите внимание, что имена являются значительными. Вы должны назвать свои атрибуты именами, которые соответствуют ожиданиям three.js 
+(если вы не создаете пользовательский шейдер). В этом случае <code>position</code>, <code>normal</code> и <code>uv</code>. Если вы хотите цвета вершин, назовите свой атрибут <code>color</code>. </p>
+<p>Выше мы создали 3 собственных массива JavaScript, <code>positions</code>, <code>normals</code>  и <code>uvs</code> . Затем мы конвертируем их в 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>
+типа Float32Array. Атрибут <code>BufferAttribute</code> требует TypedArray, а не собственного массива. Атрибут <code>BufferAttribute</code> также требует, чтобы вы указали,
+сколько компонентов в каждой вершине. Для позиций и нормалей у нас есть 3 компонента на вершину, x, y и z. Для UV у нас есть 2, u и v. </p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Это много данных. Небольшая вещь, которую мы можем сделать, это использовать индексы для ссылки на вершины. 
+Оглядываясь назад на данные нашего куба, каждая грань состоит из 2 треугольников с 3 вершинами в каждом, всего 6 вершин, но 2 из этих вершин абсолютно одинаковы; 
+Та же самая position, та же самая normal, и та же самая uv. 
+Таким образом, мы можем удалить совпадающие вершины и затем ссылаться на них по индексу. Сначала мы удаляем совпадающие вершины. </p>
+<pre class="prettyprint"><code class="lang-js">const vertices = [
+  // front
+  { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 1], }, // 0
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 1], }, // 1
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 0], }, // 2
+-
+-  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 0], },
+-  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 1], },
+  { pos: [ 1,  1,  1], norm: [ 0,  0,  1], uv: [1, 0], }, // 3
+  // right
+  { pos: [ 1, -1,  1], norm: [ 1,  0,  0], uv: [0, 1], }, // 4
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 1], }, // 5
+-
+-  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 0], },
+-  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 1], },
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 0], }, // 6
+  { pos: [ 1,  1, -1], norm: [ 1,  0,  0], uv: [1, 0], }, // 7
+  // back
+  { pos: [ 1, -1, -1], norm: [ 0,  0, -1], uv: [0, 1], }, // 8
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 1], }, // 9
+-
+-  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 0], },
+-  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 1], },
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 0], }, // 10
+  { pos: [-1,  1, -1], norm: [ 0,  0, -1], uv: [1, 0], }, // 11
+  // left
+  { pos: [-1, -1, -1], norm: [-1,  0,  0], uv: [0, 1], }, // 12
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 1], }, // 13
+-
+-  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 0], },
+-  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 1], },
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 0], }, // 14
+  { pos: [-1,  1,  1], norm: [-1,  0,  0], uv: [1, 0], }, // 15
+  // top
+  { pos: [ 1,  1, -1], norm: [ 0,  1,  0], uv: [0, 1], }, // 16
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 1], }, // 17
+-
+-  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 0], },
+-  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 1], },
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 0], }, // 18
+  { pos: [-1,  1,  1], norm: [ 0,  1,  0], uv: [1, 0], }, // 19
+  // bottom
+  { pos: [ 1, -1,  1], norm: [ 0, -1,  0], uv: [0, 1], }, // 20
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 1], }, // 21
+-
+-  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 0], },
+-  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 1], },
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 0], }, // 22
+  { pos: [-1, -1, -1], norm: [ 0, -1,  0], uv: [1, 0], }, // 23
+];
+</code></pre>
+<p>Итак, теперь у нас есть 24 уникальные вершины. 
+Затем мы указываем 36 индексов для 36 вершин, которые нам нужно нарисовать, чтобы сделать 12 треугольников, вызывая <code>BufferGeometry.setIndex</code> с массивом индексов. </p>
+<pre class="prettyprint"><code class="lang-js">geometry.setAttribute(
+    &#39;position&#39;,
+    new THREE.BufferAttribute(positions, positionNumComponents));
+geometry.setAttribute(
+    &#39;normal&#39;,
+    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setAttribute(
+    &#39;uv&#39;,
+    new THREE.BufferAttribute(uvs, uvNumComponents));
+
++geometry.setIndex([
++   0,  1,  2,   2,  1,  3,  // front
++   4,  5,  6,   6,  5,  7,  // right
++   8,  9, 10,  10,  9, 11,  // back
++  12, 13, 14,  14, 13, 15,  // left
++  16, 17, 18,  18, 17, 19,  // top
++  20, 21, 22,  22, 21, 23,  // bottom
++]);
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube-indexed.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube-indexed.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Как и в <code>Geometry</code>, в <code>BufferGeometry</code> есть метод <a href="BufferGeometry.computeVertexNormals"><code>computeVertexNormals</code></a> для вычисления нормалей,
+если вы их не предоставляете. В отличие от версии <code>Geometry</code> той же функции, 
+поскольку позиции не могут быть общими, если любая другая часть вершины отличается, результаты вызова <code>computeVertexNormals</code> будут другими. </p>
+<div class="spread">
+  <div>
+    <div data-diagram="bufferGeometryCylinder"></div>
+    <div class="code">BufferGeometry</div>
+  </div>
+  <div>
+    <div data-diagram="geometryCylinder"></div>
+    <div class="code">Geometry</div>
+  </div>
+</div>
+
+<p>Вот 2 цилиндра, где нормали были созданы с использованием <code>computeVertexNormals</code>. 
+Если вы посмотрите внимательно, на левом цилиндре есть шов. Это связано с тем, 
+что нет возможности совместно использовать вершины в начале и конце цилиндра, так как они требуют разных UV.
+Просто небольшая вещь, чтобы быть в курсе. 
+Решение состоит в том, чтобы предоставить свои собственные normals. </p>
+<p>Мы также можем использовать <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>
+с самого начала вместо собственных массивов JavaScript. Недостатком TypedArrays является то, что вы должны указать их размер заранее.
+Конечно, это не так уж сложно, но с помощью собственных массивов мы можем просто <code>push</code> значения в них и посмотреть, 
+какого размера они заканчиваются, проверив их <code>length</code> в конце.
+В TypedArrays нет функции push, поэтому нам нужно вести собственную бухгалтерию при добавлении значений к ним. </p>
+<p>В этом примере узнать длину заранее довольно просто, так как для начала мы используем большой блок статических данных. </p>
+<pre class="prettyprint"><code class="lang-js">-const positions = [];
+-const normals = [];
+-const uvs = [];
++const numVertices = vertices.length;
++const positionNumComponents = 3;
++const normalNumComponents = 3;
++const uvNumComponents = 2;
++const positions = new Float32Array(numVertices * positionNumComponents);
++const normals = new Float32Array(numVertices * normalNumComponents);
++const uvs = new Float32Array(numVertices * uvNumComponents);
++let posNdx = 0;
++let nrmNdx = 0;
++let uvNdx = 0;
+for (const vertex of vertices) {
+-  positions.push(...vertex.pos);
+-  normals.push(...vertex.norm);
+-  uvs.push(...vertex.uv);
++  positions.set(vertex.pos, posNdx);
++  normals.set(vertex.norm, nrmNdx);
++  uvs.set(vertex.uv, uvNdx);
++  posNdx += positionNumComponents;
++  nrmNdx += normalNumComponents;
++  uvNdx += uvNumComponents;
+}
+
+geometry.setAttribute(
+    &#39;position&#39;,
+-    new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
++    new THREE.BufferAttribute(positions, positionNumComponents));
+geometry.setAttribute(
+    &#39;normal&#39;,
+-    new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
++    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setAttribute(
+    &#39;uv&#39;,
+-    new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
++    new THREE.BufferAttribute(uvs, uvNumComponents));
+
+geometry.setIndex([
+   0,  1,  2,   2,  1,  3,  // front
+   4,  5,  6,   6,  5,  7,  // right
+   8,  9, 10,  10,  9, 11,  // back
+  12, 13, 14,  14, 13, 15,  // left
+  16, 17, 18,  18, 17, 19,  // top
+  20, 21, 22,  22, 21, 23,  // bottom
+]);
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube-typedarrays.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube-typedarrays.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Хорошая причина использовать typedarrays - если вы хотите динамически обновлять любую часть вершин. </p>
+<p>Я не мог придумать действительно хороший пример динамического обновления вершин,
+поэтому я решил создать сферу и переместить каждый четырехугольник внутрь и наружу от центра. Надеюсь, это полезный пример. </p>
+<p>Вот код для генерации позиций и индексов для сферы. Код разделяет вершины внутри четырехугольника, 
+но не разделяет вершины между четырьмя, потому что мы хотим иметь возможность перемещать каждый четырёхугольник по отдельности. </p>
+<p>Поскольку я ленивый, я использовал небольшую иерархию из 3 объектов Object3D для вычисления точек сферы. Как это работает, объясняется в
+<a href="threejs-optimize-lots-of-objects.html">статье об оптимизации множества объектов. </a>.</p>
+<pre class="prettyprint"><code class="lang-js">function makeSpherePositions(segmentsAround, segmentsDown) {
+  const numVertices = segmentsAround * segmentsDown * 6;
+  const numComponents = 3;
+  const positions = new Float32Array(numVertices * numComponents);
+  const indices = [];
+
+  const longHelper = new THREE.Object3D();
+  const latHelper = new THREE.Object3D();
+  const pointHelper = new THREE.Object3D();
+  longHelper.add(latHelper);
+  latHelper.add(pointHelper);
+  pointHelper.position.z = 1;
+  const temp = new THREE.Vector3();
+
+  function getPoint(lat, long) {
+    latHelper.rotation.x = lat;
+    longHelper.rotation.y = long;
+    longHelper.updateMatrixWorld(true);
+    return pointHelper.getWorldPosition(temp).toArray();
+  }
+
+  let posNdx = 0;
+  let ndx = 0;
+  for (let down = 0; down &lt; segmentsDown; ++down) {
+    const v0 = down / segmentsDown;
+    const v1 = (down + 1) / segmentsDown;
+    const lat0 = (v0 - 0.5) * Math.PI;
+    const lat1 = (v1 - 0.5) * Math.PI;
+
+    for (let across = 0; across &lt; segmentsAround; ++across) {
+      const u0 = across / segmentsAround;
+      const u1 = (across + 1) / segmentsAround;
+      const long0 = u0 * Math.PI * 2;
+      const long1 = u1 * Math.PI * 2;
+
+      positions.set(getPoint(lat0, long0), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat1, long0), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat0, long1), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat1, long1), posNdx);  posNdx += numComponents;
+
+      indices.push(
+        ndx, ndx + 1, ndx + 2,
+        ndx + 2, ndx + 1, ndx + 3,
+      );
+      ndx += 4;
+    }
+  }
+  return {positions, indices};
+}
+</code></pre>
+<p>Затем мы можем вызвать это так</p>
+<pre class="prettyprint"><code class="lang-js">const segmentsAround = 24;
+const segmentsDown = 16;
+const {positions, indices} = makeSpherePositions(segmentsAround, segmentsDown);
+</code></pre>
+<p>Поскольку возвращаемые позиции являются позициями единичных сфер, 
+они являются точно такими же значениями, которые нам нужны для нормалей, поэтому мы можем просто дублировать их для нормалей. </p>
+<pre class="prettyprint"><code class="lang-js">const normals = positions.slice();
+</code></pre>
+<p>И тогда мы устанавливаем атрибуты, как раньше</p>
+<pre class="prettyprint"><code class="lang-js">const geometry = new THREE.BufferGeometry();
+const positionNumComponents = 3;
+const normalNumComponents = 3;
+
++const positionAttribute = new THREE.BufferAttribute(positions, positionNumComponents);
++positionAttribute.setUsage(THREE.DynamicDrawUsage);
+geometry.setAttribute(
+    &#39;position&#39;,
++    positionAttribute);
+geometry.setAttribute(
+    &#39;normal&#39;,
+    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setIndex(indices);
+</code></pre>
+<p>Я выделил несколько различий. Мы сохраняем ссылку на атрибут позиции.
+Мы также отмечаем его как динамический. Это намек на THREE.js, что мы будем часто менять содержимое атрибута. </p>
+<p>В нашем цикле рендеринга мы обновляем позиции на основе их нормалей каждый кадр.</p>
+<pre class="prettyprint"><code class="lang-js">const temp = new THREE.Vector3();
+
+...
+
+for (let i = 0; i &lt; positions.length; i += 3) {
+  const quad = (i / 12 | 0);
+  const ringId = quad / segmentsAround | 0;
+  const ringQuadId = quad % segmentsAround;
+  const ringU = ringQuadId / segmentsAround;
+  const angle = ringU * Math.PI * 2;
+  temp.fromArray(normals, i);
+  temp.multiplyScalar(THREE.MathUtils.lerp(1, 1.4, Math.sin(time + ringId + angle) * .5 + .5));
+  temp.toArray(positions, i);
+}
+positionAttribute.needsUpdate = true;
+</code></pre>
+<p>И мы устанавливаем <code>positionAttribute.needsUpdate</code>, чтобы THREE.js указывал использовать наши изменения.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-dynamic.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-dynamic.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Я надеюсь, что это были полезные примеры того, как использовать
+<code>BufferGeometry</code> напрямую для создания собственной геометрии и как динамически 
+обновлять содержимое <code>BufferAttribute</code>. То, что вы используете, <code>Geometry</code> или <code>BufferGeometry</code>, 
+действительно зависит от ваших потребностей. </p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
+
 
     </div>
     <div class="lesson-sidebar">
@@ -178,7 +612,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>Введение</li>
+        <div id="toc">
+          <ul>  <li>Введение</li>
         <ul>
           <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
 <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
@@ -251,6 +686,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Custom BufferGeometry';
+            var disqus_title = 'Three.js Custom BufferGeometry';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
