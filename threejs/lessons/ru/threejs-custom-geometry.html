@@ -206,15 +206,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>В предыдущей статье рассказывалось о различных встроенных примитивах, включенных в THREE.js. В этой статье мы рассмотрим создание нашей собственной геометрии. </p>
-<p>Просто для ясности, если вы серьезно относитесь к созданию 3D-контента, наиболее распространенный способ - использовать пакет 3D-моделирования, такой как Blender, Maya, 3D Studio Max, Cinema4D и т. Д. Вы создадите модель, а затем экспортируете в gLTF или .obj и загрузите их. Какой бы вариант вы ни выбрали, рассчитывайте потратить 2 или 3 недели на изучение соответствующих учебных пособий, поскольку все они имеют полезную кривую обучения. </p>
+      <p>В <a href="threejs-primitives.html">предыдущей статье</a> рассказывалось о различных встроенных примитивах, включенных в THREE.js. В этой статье мы рассмотрим создание нашей собственной геометрии. </p>
+<p>Просто для ясности, если вы серьезно относитесь к созданию 3D-контента, наиболее распространенный способ - использовать пакет 3D-моделирования, такой как <a href="https://blender.org">Blender</a>,
+<a href="https://www.autodesk.com/products/maya/overview">Maya</a>,
+<a href="https://www.autodesk.com/products/3ds-max/overview">3D Studio Max</a>,
+<a href="https://www.maxon.net/en-us/">Cinema4D</a> и т. д. 
+Вы создадите модель, а затем экспортируете в <a href="threejs-load-gltf.html">gLTF</a> или <a href="threejs-load-obj.html">.obj</a> и загрузите их. 
+Какой бы вариант вы ни выбрали, рассчитывайте потратить 2 или 3 недели на изучение соответствующих учебных пособий, поскольку все они имеют полезную кривую обучения. </p>
 <p>Тем не менее, бывают случаи, когда мы можем захотеть сгенерировать нашу собственную трехмерную геометрию в коде вместо использования пакета моделирования. </p>
-<p>Сначала давайте просто сделаем куб. Хотя Three.js уже предоставляет нам BoxGeometry и BoxBufferGeometry, куб легко понять, поэтому давайте начнем с него. </p>
-<p>Есть два способа сделать пользовательскую геометрию в THREE.js. Один с классом Geometry, другой - BufferGeometry. У каждого есть свои преимущества. Геометрия, возможно, проще в использовании, но медленнее и использует больше памяти. Для нескольких тысяч треугольников это отличный выбор, но для десятков тысяч треугольников может быть лучше использовать BufferGeometry. </p>
-<p>BufferGeometry, возможно, сложнее в использовании, но использует меньше памяти и работает быстрее. Если вы хотите сгенерировать более 10000 треугольников, подумайте об использовании BufferGeometry. </p>
-<p>Заметьте, когда я говорю, что Geometry медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но рисовать она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать Geometry против BufferGeometry. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
-<p>Сначала давайте сделаем куб с Geometry. Начнем с примера из статьи об отзывчивости. </p>
-<p>Давайте удалим код, который использует BoxGeometry, и заменим ее на Geometry. </p>
+<p>Сначала давайте просто сделаем куб. Хотя Three.js уже предоставляет нам <code>BoxGeometry</code> и <code>BoxBufferGeometry</code>, куб легко понять, поэтому давайте начнем с него. </p>
+<p>Есть два способа сделать пользовательскую геометрию в THREE.js. Один с классом <code>Geometry</code>, другой - <code>BufferGeometry</code>. У каждого есть свои преимущества. <code>Geometry</code>, возможно, проще в использовании, но медленнее и использует больше памяти. Для нескольких тысяч треугольников это отличный выбор, но для десятков тысяч треугольников может быть лучше использовать <code>BufferGeometry</code>. </p>
+<p><code>BufferGeometry</code>, возможно, сложнее в использовании, но использует меньше памяти и работает быстрее. Если вы хотите сгенерировать более 10000 треугольников, подумайте об использовании <code>BufferGeometry</code>. </p>
+<p>Заметьте, когда я говорю, что <code>Geometry</code> медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но рисовать она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать <code>Geometry</code> против <code>BufferGeometry</code>. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
+<p>Сначала давайте сделаем куб с <code>Geometry</code>. Начнем с примера из <a href="threejs-responsive.html">статьи об отзывчивости</a>. </p>
+<p>Давайте удалим код, который использует <code>BoxGeometry</code>, и заменим ее на <code>Geometry</code>. </p>
 <pre class="prettyprint"><code class="lang-js">-const boxWidth = 1;
 -const boxHeight = 1;
 -const boxDepth = 1;
@@ -240,7 +245,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Затем нам нужно сделать треугольники, по 2 на каждую грань куба</p>
 <div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
-<p>Мы делаем это, создавая объекты Face3 и определяя индексы 3 вершин, которые составляют эту грань.</p>
+<p>Мы делаем это, создавая объекты <code>Face3</code> и определяя индексы 3 вершин, которые составляют эту грань.</p>
 <p>Порядок, в котором мы указываем вершины, важен. Чтобы указывать на внешнюю сторону куба, они должны быть указаны в направлении против часовой стрелки, когда этот треугольник направлен на камеру. </p>
 <div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
@@ -267,7 +272,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 );
 </code></pre>
 <p>Несколько других мелких изменений в оригинальном коде, и он должен работать. </p>
-<p>Эти кубики в два раза больше, чем BoxGeometry, которую мы использовали раньше, поэтому давайте немного переместим камеру назад </p>
+<p>Эти кубики в два раза больше, чем <code>BoxGeometry</code>, которую мы использовали раньше, поэтому давайте немного переместим камеру назад </p>
 <pre class="prettyprint"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
@@ -287,7 +292,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +  makeInstance(geometry, 0xFF4444,  4),
 ];
 </code></pre>
-<p>И последнее, что мы еще не добавили нормалей, поэтому мы не можем включить освещение. Давайте изменим материал на то, что не нуждается в освещении. </p>
+<p>И последнее, что мы еще не добавили это нормалей, поэтому мы не можем включить освещение. Давайте изменим материал на то, что не нуждается в освещении. </p>
 <pre class="prettyprint"><code class="lang-js">function makeInstance(geometry, color, x) {
 -  const material = new THREE.MeshPhongMaterial({color});
 +  const material = new THREE.MeshBasicMaterial({color});
@@ -304,7 +309,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </div>
 
 </p>
-<p>Мы можем указать цвет для каждой грани, установив свойство color каждой стороны.</p>
+<p>Мы можем указать цвет для каждой грани, установив свойство <code>color</code> каждой стороны.</p>
 <pre class="prettyprint"><code class="lang-js">geometry.faces[ 0].color = geometry.faces[ 1].color = new THREE.Color(&#39;red&#39;);
 geometry.faces[ 2].color = geometry.faces[ 3].color = new THREE.Color(&#39;yellow&#39;);
 geometry.faces[ 4].color = geometry.faces[ 5].color = new THREE.Color(&#39;green&#39;);
@@ -312,7 +317,7 @@ geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color(&#39;cyan&
 geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color(&#39;blue&#39;);
 geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magenta&#39;);
 </code></pre>
-<p>обратите внимание, что мы должны рассказать материал, который мы хотим использовать FaceColors</p>
+<p>обратите внимание, что мы должны рассказать материал, который мы хотим использовать <code>FaceColors</code></p>
 <pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color});
 +const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
 </code></pre>
@@ -322,7 +327,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
 </div>
 
 </p>
-<p>Вместо этого мы можем установить цвет каждой отдельной вершины, установив для свойства vertexColors массив из 3 цветов для 3 вершин. </p>
+<p>Вместо этого мы можем установить цвет каждой отдельной вершины, установив для свойства <code>vertexColors</code> массив из 3 цветов для 3 вершин. </p>
 <pre class="prettyprint"><code class="lang-js">geometry.faces.forEach((face, ndx) =&gt; {
   face.vertexColors = [
     (new THREE.Color()).setHSL(ndx / 12      , 1, 0.5),
@@ -341,10 +346,10 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
 </div>
 
 </p>
-<p>Чтобы использовать освещение, нам нужны нормали. Нормали - это векторы, которые определяют направление. Так же, как цвета, мы можем указать нормаль для грани, установив свойство normal для каждой стороны с помощью</p>
+<p>Чтобы использовать освещение, нам нужны нормали. Нормали - это векторы, которые определяют направление. Так же, как цвета, мы можем указать нормаль для грани, установив свойство <code>normal</code> для каждой стороны с помощью</p>
 <pre class="prettyprint"><code class="lang-js">face.normal = new THREE.Vector3(...)
 </code></pre>
-<p>или мы можем указать нормаль для каждой вершины, установив для свойства vertexNormals что-то вроде </p>
+<p>или мы можем указать нормаль для каждой вершины, установив для свойства <code>vertexNormals</code> что-то вроде </p>
 <pre class="prettyprint"><code class="lang-js">face.vertexNormals = [
   new THREE.Vector3(...),
   new THREE.Vector3(...),
@@ -352,10 +357,10 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
 ]
 </code></pre>
 <p>но часто гораздо проще просто попросить THREE.js вычислить для нас нормали на основе указанных позиций. </p>
-<p>Для нормалей грани мы бы назвали Geometry.computeFaceNormals как в</p>
+<p>Для нормалей грани мы бы назвали <code>Geometry.computeFaceNormals</code> как в</p>
 <pre class="prettyprint"><code class="lang-js">geometry.computeFaceNormals();
 </code></pre>
-<p>Удаление цвета вершин и изменение материала обратно на MeshPhongMaterial</p>
+<p>Удаление цвета вершин и изменение материала обратно на <code>MeshPhongMaterial</code></p>
 <pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
 +const material = new THREE.MeshPhongMaterial({color});
 </code></pre>
@@ -366,18 +371,18 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
 </div>
 
 </p>
-<p>Использование нормалей сторон всегда даст нам граненый взгляд. Мы можем использовать нормали вершин для более гладкого вида, вызывая Geometry.computeVertexNormals </p>
+<p>Использование нормалей сторон всегда даст нам граненый взгляд. Мы можем использовать нормали вершин для более гладкого вида, вызывая <code>Geometry.computeVertexNormals</code> </p>
 <pre class="prettyprint"><code class="lang-js">-geometry.computeFaceNormals();
 +geometry.computeVertexNormals();
 </code></pre>
-<p>К сожалению, куб не является хорошим кандидатом для нормалей вершин, поскольку это означает, что каждая вершина получает свою нормаль от нормалей всех граней, которые она разделяет.</p>
+<p>К сожалению, куб не является хорошим выбором для нормалей вершин, поскольку это означает, что каждая вершина получает свою нормаль от нормалей всех граней, которые она разделяет.</p>
 <p><div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-normals.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-normals.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
-<p>Добавление текстурных координат, иногда называемых UV, выполняется через массив слоев параллельных массивов в массив faces , который устанавливается через Geometry.faceVertexUvs. Для нашего куба мы могли бы сделать что-то вроде</p>
+<p>Добавление текстурных координат, иногда называемых UV, выполняется через массив слоев параллельных массивов в массив <code>faces</code> , который устанавливается через <code>Geometry.faceVertexUvs</code>. Для нашего куба мы могли бы сделать что-то вроде</p>
 <pre class="prettyprint"><code class="lang-js">geometry.faceVertexUvs[0].push(
   // front
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
@@ -399,7 +404,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
 );
 </code></pre>
-<p>Важно отметить, что faceVertexUvs - это массив слоев. Каждый слой представляет собой другой набор координат UV. По умолчанию есть один слой координат UV, слой 0, поэтому мы просто добавляем наши UV в этот слой. </p>
+<p>Важно отметить, что <code>faceVertexUvs</code> - это массив слоев. Каждый слой представляет собой другой набор координат UV. По умолчанию есть один слой координат UV, слой 0, поэтому мы просто добавляем наши UV в этот слой. </p>
 <p>Давайте добавим текстуру к нашему материалу и переключимся обратно, чтобы вычислить нормали стороны </p>
 <pre class="prettyprint"><code class="lang-js">-geometry.computeVertexNormals();
 +geometry.computeFaceNormals();
@@ -426,7 +431,7 @@ function makeInstance(geometry, color, x) {
 <p>Ландшафт на основе карты высот - это то место, где у вас есть двумерный массив высот, который вы применяете к сетке. Простой способ получить двумерный массив высот - нарисовать их в программе для редактирования изображений. Вот изображение, которое я нарисовал. Это 96x64 пикселей </p>
 <div class="threejs_center"><img src="../../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
-<p>Мы загрузим это и затем сгенерируем из него сетку карты высот. Мы можем использовать ImageLoader для загрузки изображения. </p>
+<p>Мы загрузим это и затем сгенерируем из него сетку карты высот. Мы можем использовать <code>ImageLoader</code> для загрузки изображения. </p>
 <pre class="prettyprint"><code class="lang-js">const imgLoader = new THREE.ImageLoader();
 imgLoader.load(&#39;resources/images/heightmap-96x64.png&#39;, createHeightmap);
 
@@ -526,7 +531,7 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
 }
 </code></pre>
 <p>Несколько небольших изменений, чтобы было удобнее просматривать. 
-включить OrbitControls </p>
+включим <code>OrbitControls</code> </p>
 <ul>
 <li>include the <code>OrbitControls</code></li>
 </ul>
@@ -567,9 +572,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </div>
 
 </p>
-<p>Я надеюсь, что это была полезная инструкция для создания вашей собственной геометрии с использованием Geometry. 
-В другой статье мы рассмотрим BufferGeometry. </p>
-<p>In <a href="threejs-custom-buffergeometry.html">another article</a> we&#39;ll go over <code>BufferGeometry</code>.</p>
+<p>Я надеюсь, что это была полезная инструкция для создания вашей собственной геометрии с использованием <code>Geometry</code>. 
+В другой статье мы рассмотрим <code>BufferGeometry</code>. </p>
+<p>В <a href="threejs-custom-buffergeometry.html">другой статье</a> мы рассмотрим <code>BufferGeometry</code>. </p>
 
     </div>
     <div class="lesson-sidebar">
