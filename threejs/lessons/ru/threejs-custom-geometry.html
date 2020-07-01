@@ -217,7 +217,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Сначала давайте просто сделаем куб. Хотя Three.js уже предоставляет нам <code>BoxGeometry</code> и <code>BoxBufferGeometry</code>, куб легко понять, поэтому давайте начнем с него. </p>
 <p>Есть два способа сделать пользовательскую геометрию в THREE.js. Один с классом <code>Geometry</code>, другой - <code>BufferGeometry</code>. У каждого есть свои преимущества. <code>Geometry</code>, возможно, проще в использовании, но медленнее и использует больше памяти. Для нескольких тысяч треугольников это отличный выбор, но для десятков тысяч треугольников может быть лучше использовать <code>BufferGeometry</code>. </p>
 <p><code>BufferGeometry</code>, возможно, сложнее в использовании, но использует меньше памяти и работает быстрее. Если вы хотите сгенерировать более 10000 треугольников, подумайте об использовании <code>BufferGeometry</code>. </p>
-<p>Заметьте, когда я говорю, что <code>Geometry</code> медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но рисовать она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать <code>Geometry</code> против <code>BufferGeometry</code>. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
+<p>Заметьте, когда я говорю, что <code>Geometry</code> медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но отрисовывается она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать <code>Geometry</code> против <code>BufferGeometry</code>. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
 <p>Сначала давайте сделаем куб с <code>Geometry</code>. Начнем с примера из <a href="threejs-responsive.html">статьи об отзывчивости</a>. </p>
 <p>Давайте удалим код, который использует <code>BoxGeometry</code>, и заменим ее на <code>Geometry</code>. </p>
 <pre class="prettyprint"><code class="lang-js">-const boxWidth = 1;
@@ -317,7 +317,7 @@ geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color(&#39;cyan&
 geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color(&#39;blue&#39;);
 geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magenta&#39;);
 </code></pre>
-<p>обратите внимание, что мы должны рассказать материал, который мы хотим использовать <code>FaceColors</code></p>
+<p>обратите внимание, что мы должны указать материал, который мы хотим использовать <code>FaceColors</code></p>
 <pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color});
 +const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
 </code></pre>
@@ -533,7 +533,7 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
 <p>Несколько небольших изменений, чтобы было удобнее просматривать. 
 включим <code>OrbitControls</code> </p>
 <ul>
-<li>include the <code>OrbitControls</code></li>
+<li>добавим <code>OrbitControls</code></li>
 </ul>
 <pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 +import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
@@ -565,7 +565,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +addLight(-1, 2, 4);
 +addLight(1, 2, -2);
 </code></pre>
-<p>и мы удалили код, связанный с вращением кубов.
+<p>и мы удалим код, связанный с вращением кубов.
 <div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-heightmap.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-heightmap.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
