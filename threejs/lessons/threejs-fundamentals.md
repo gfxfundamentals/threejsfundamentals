@@ -49,7 +49,7 @@ Things to notice about the diagram above.
   the background color and fog. These objects define a hierarchical parent/child
   tree like structure and represent where objects appear and how they are
   oriented. Children are positioned and oriented relative to their parent. For
-  example the wheels on a car might children of the car so that moving and
+  example the wheels on a car might be children of the car so that moving and
   orienting the car's object automatically moves the wheels. You can read more
   about this in [the article on scenegraphs](threejs-scenegraph.html).
 
@@ -159,7 +159,7 @@ dimension. Note that most angles in three.js are in radians but for some
 reason the perspective camera takes degrees.
 
 `aspect` is the display aspect of the canvas. We'll go over the details
-[in another article](threejs-responsive.html) but by default a canvas i
+[in another article](threejs-responsive.html) but by default a canvas is
  300x150 pixels which makes the aspect 300/150 or 2.
 
 `near` and `far` represent the space in front of the camera
