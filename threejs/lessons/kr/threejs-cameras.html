@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/kr/threejs-cameras.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Three.js의 카메라에 대해 알아봅니다" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-cameras_ko.jpg" />
+
+<meta property="og:title" content="Three.js 카메라" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-cameras_ko.jpg" />
+<meta property="og:description" content="Three.js의 카메라에 대해 알아봅니다" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js 카메라" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html" />
+<meta name="twitter:description" content="Three.js의 카메라에 대해 알아봅니다" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-cameras_ko.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-cameras_ko.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html",
+      "inLanguage":"ko",
+      "name":"Three.js 카메라",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 카메라</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-cameras.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-cameras.html" >Français</a>
+    <option value="/threejs/lessons/kr/threejs-cameras.html" selected>한국어</a>
+    <option value="/threejs/lessons/ru/threejs-cameras.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-cameras.html" >中文</a>
+</select>
+
+
+    <a href="#toc">목차</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/kr/">threejsfundamentals.org</a></h1>
+<style>
+#forkongithub a {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(150px) rotate(45deg) translate(10px,70px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+    pointer-events: auto;
+}
+#forkongithub a:hover {
+    background: #c11;
+    color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+#forkongithub{
+    z-index: 9999;
+    /* needed for firefox */
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+}
+#forkongithub svg{
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+@media (max-width: 900px) {
+    #forkongithub a{
+        line-height: 1.2rem;
+    }
+}
+@media (max-width: 700px) {
+  #forkongithub {
+    display: none;
+  }
+}
+@media (max-width: 410px) {
+    #forkongithub a{
+        font-size: 0.7rem;
+        transform: translateX(150px) rotate(45deg) translate(20px,40px);
+    }
+}
+
+</style>
+<div id="forkongithub"><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+    </g>
+</svg>
+</a></div>
+
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js 카메라</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>※ 이 글은 Three.js의 튜토리얼 시리즈로서,
+먼저 <a href="threejs-fundamentals.html">Three.js의 기본 구조에 관한 글</a>을
+읽고 오길 권장합니다.</p>
+<p>이번 장에서는 카메라(cameras)에 대해 알아보겠습니다. <a href="threejs-fundamentals.html">첫 번째 장</a>에서
+일부 다루긴 했지만, 중요 요소인 만큼 더 자세히 살펴볼 필요가 있습니다.</p>
+<p>Three.js에서 가장 자주 사용하는 카메라는 여태까지 썼던 <code>PerspectiveCamera</code>(원근 카메라)입니다.
+이 카메라는 멀리 있는 물체를 가까이 있는 것보다 상대적으로 작게 보이도록 해주죠.</p>
+<p><code>PerspectiveCamera</code>는 <em>절두체(frustum)</em>를 만듭니다. <a href="https://ko.wikipedia.org/wiki/%EC%A0%88%EB%91%90%EC%B2%B4">절두체(frustum)는 입체(보통 원뿔이나 각뿔)를
+절단하는 하나나 두 평행면 사이의 부분</a>을
+의미하죠. 여기서 입체란 정육면체, 원뿔, 구, 원통, 절두체 등의 3D 요소입니다.</p>
+<div class="spread">
+  <div><div data-diagram="shapeCube"></div><div>정육면체(cube)</div></div>
+  <div><div data-diagram="shapeCone"></div><div>원뿔(cone)</div></div>
+  <div><div data-diagram="shapeSphere"></div><div>구(sphere)</div></div>
+  <div><div data-diagram="shapeCylinder"></div><div>원통(cylinder)</div></div>
+  <div><div data-diagram="shapeFrustum"></div><div>절두체(frustum)</div></div>
+</div>
+
+<p>이걸 굳이 언급하는 이유는 글을 쓰는 저도 몇 년 동안 이를 몰랐기 때문입니다. 책이든 인터넷 글이든,
+<em>절두체</em>라는 단어를 봤다면 눈이 뒤집어졌을 겁니다. 입체의 이름을 알면 이해하기도, 기억하기도 훨씬
+쉽죠 &#128517;.</p>
+<p><code>PerspectiveCamera</code>는 4가지 속성을 바탕으로 절두체를 만듭니다. <code>near</code>는 절두체가 어디서 시작할지
+결정하는 속성이고, <code>far</code>는 절두체의 끝입니다. <code>fov</code>는 시아갹(field of view)으로, <code>near</code>와 카메라의
+거리에 따라 절두체의 높이를 계산해 적용합니다. <code>aspect</code>는 절두체의 너비에 관여하는 비율으로, 절두체의
+너비는 절두체의 높이에 이 비율을 곱한 값입니다.</p>
+<p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
+<p><a href="threejs-lights.html">이전 장</a>에서 썼던 바닥면, 구체, 정육면체로 이루어진 예제를 다시 사용해
+카메라의 속성을 조정할 수 있도록 만들겠습니다.</p>
+<p><code>near</code> 속성은 항상 <code>far</code> 속성보다 커야하니, 이를 제어할 <code>MinMaxGUIHelper</code> 헬퍼 클래스를
+만들겠습니다. 이 클래스는 dat.GUI가 제어할 <code>min</code>과 <code>max</code> 속성이 있고, dat.GUI가 이를 조정할
+때 지정한 두 가지 속성을 동시에 변경합니다.</p>
+<pre class="prettyprint"><code class="lang-js">class MinMaxGUIHelper {
+  constructor(obj, minProp, maxProp, minDif) {
+    this.obj = obj;
+    this.minProp = minProp;
+    this.maxProp = maxProp;
+    this.minDif = minDif;
+  }
+  get min() {
+    return this.obj[this.minProp];
+  }
+  set min(v) {
+    this.obj[this.minProp] = v;
+    this.obj[this.maxProp] = Math.max(this.obj[this.maxProp], v + this.minDif);
+  }
+  get max() {
+    return this.obj[this.maxProp];
+  }
+  set max(v) {
+    this.obj[this.maxProp] = v;
+    this.min = this.min;  // min setter로 작동
+  }
+}
+</code></pre>
+<p>이제 GUI를 만들어보죠.</p>
+<pre class="prettyprint"><code class="lang-js">function updateCamera() {
+  camera.updateProjectionMatrix();
+}
+
+const gui = new GUI();
+gui.add(camera, &#39;fov&#39;, 1, 180).onChange(updateCamera);
+const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39;, 0.1);
+gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
+gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChange(updateCamera);
+</code></pre>
+<p>카메라의 속성을 변경할 때마다 카메라의 <a href="PerspectiveCamera.updateProjectionMatrix"><code>updateProjectionMatrix</code></a>
+메서드를 호출해야 하므로, <code>updateCamera</code>라는 함수를 만들어 값이 변경될 때마다 함수를 호출하도록
+합니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-perspective.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-perspective.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>값을 조정하며 카메라가 어떤 식으로 작동하는지 확인해보세요. <code>aspect</code>는 창의 비율을 그대로 사용하도록
+설정되어 있으므로, 이를 바꾸고 싶다면 예제를 새 창에서 열어 코드를 직접 수정해야 합니다.</p>
+<p>아직도 카메라가 어떤 식으로 작동하는지 보기 어려운가요? 까짓것 그럼 카메라를 하나 더 만들어보죠.
+하나는 위의 예제와 같은 방식의 카메라이고, 다른 하나는 이 카메라의 시야와 절두체를 렌더링해
+카메라가 어떻게 움직이는지 관찰할 수 있도록 만들겠습니다.</p>
+<p>Three.js의 가위 함수(scissor function)을 이용하면 쉽습니다. 가위 함수를 사용해 양쪽에
+장면 두 개, 카메라 두 개를 렌더링하겠습니다.</p>
+<p>먼저 HTML과 CSS로 양쪽에 div 요소를 배치합니다. 이러면 각각의 카메라에 <code>OrbitControls</code>를
+두어 이벤트 처리하기도 훨씬 간단합니다.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div class=&quot;split&quot;&gt;
++     &lt;div id=&quot;view1&quot; tabindex=&quot;1&quot;&gt;&lt;/div&gt;
++     &lt;div id=&quot;view2&quot; tabindex=&quot;2&quot;&gt;&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>CSS로 두 div 요소가 canvas 위 양쪽에 자리하게 합니다.</p>
+<pre class="prettyprint"><code class="lang-css">.split {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.split &gt; div {
+  width: 100%;
+  height: 100%;
+}
+</code></pre>
+<p>카메라의 절두체를 시각화할 <code>CameraHelper</code>를 추가합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
+
+...
+
+scene.add(cameraHelper);
+</code></pre>
+<p>다음으로 두 div 요소를 참조합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;);
+const view2Elem = document.querySelector(&#39;#view2&#39;);
+</code></pre>
+<p>그리고 기존 <code>OrbitControls</code>가 왼쪽 div 요소의 이벤트에만 반응하도록 설정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">-const controls = new OrbitControls(camera, canvas);
++const controls = new OrbitControls(camera, view1Elem);
+</code></pre>
+<p>다음으로 <code>PerspectiveCamera</code>와 두 번째 <code>OrbitControls</code>를 추가합니다. 이 <code>OrbitControls</code>를
+두 번째 카메라에 종속시키고, 오른쪽 div 요소의 이벤트에만 반응하도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
+  60,  // 시야각(fov)
+  2,   // 비율(aspect)
+  0.1, // near
+  500, // far
+);
+camera2.position.set(40, 10, 30);
+camera2.lookAt(0, 5, 0);
+
+const controls2 = new OrbitControls(camera2, view2Elem);
+controls2.target.set(0, 5, 0);
+controls2.update();
+</code></pre>
+<p>끝으로 가위 함수를 사용해 화면을 분할하겠습니다. 카메라 각각의 시점에 따라
+장면을 canvas의 양쪽에 나눠 렌더링하게끔 할 것입니다.</p>
+<p>아래의 함수는 canvas 위에 덮어 씌운 요소의 사각 좌표(rectangle)를 구합니다.
+그리고 해당 사각 좌표로 <code>renderer</code>의 화면(viewport)과 가위(scissor)의 값을
+정의한 뒤, 사각 좌표의 가로세로 비율을 반환합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function setScissorForElement(elem) {
+  const canvasRect = canvas.getBoundingClientRect();
+  const elemRect = elem.getBoundingClientRect();
+
+  // canvas에 대응하는 사각형을 구하기
+  const right = Math.min(elemRect.right, canvasRect.right) - canvasRect.left;
+  const left = Math.max(0, elemRect.left - canvasRect.left);
+  const bottom = Math.min(elemRect.bottom, canvasRect.bottom) - canvasRect.top;
+  const top = Math.max(0, elemRect.top - canvasRect.top);
+
+  const width = Math.min(canvasRect.width, right - left);
+  const height = Math.min(canvasRect.height, bottom - top);
+
+  // canvas의 일부분만 렌더링하도록 scissor 적용
+  const positiveYUpBottom = canvasRect.height - bottom;
+  renderer.setScissor(left, positiveYUpBottom, width, height);
+  renderer.setViewport(left, positiveYUpBottom, width, height);
+
+  // 비율 반환
+  return width / height;
+}
+</code></pre>
+<p>이제 이 함수를 사용해 <code>render</code> 함수에서 장면을 두 번 렌더링할 수 있습니다.</p>
+<pre class="prettyprint"><code class="lang-js">  function render() {
+
+-    if (resizeRendererToDisplaySize(renderer)) {
+-      const canvas = renderer.domElement;
+-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+-      camera.updateProjectionMatrix();
+-    }
+
++    resizeRendererToDisplaySize(renderer);
++
++    // 가위 활성화
++    renderer.setScissorTest(true);
++
++    // 기존 화면 렌더링
++    {
++      const aspect = setScissorForElement(view1Elem);
++
++      // 비율에 따라 카메라 조정
++      camera.aspect = aspect;
++      camera.updateProjectionMatrix();
++      cameraHelper.update();
++
++      // 기존 화면에서 가이드라인(CameraHelper)이 노출되지 않도록 설정
++      cameraHelper.visible = false;
++
++      scene.background.set(0x000000);
++
++      // 렌더링
++      renderer.render(scene, camera);
++    }
++
++    // 두 번째 카메라 렌더링
++    {
++      const aspect = setScissorForElement(view2Elem);
++
++      // 비율에 따라 카메라 조정
++      camera2.aspect = aspect;
++      camera2.updateProjectionMatrix();
++
++      // 가이드라인 활성화
++      cameraHelper.visible = true;
++
++      scene.background.set(0x000040);
++
++      renderer.render(scene, camera2);
++    }
+
+-    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>위 예제에서는 분할된 두 화면을 구별하기 쉽두록 두 번째 화면의 배경을 진한
+파란색으로 칠했습니다.</p>
+<p>또한 <code>render</code> 함수 안에서 모든 것을 처리하기에, <code>updateCamera</code> 함수도
+제거하였습니다.</p>
+<pre class="prettyprint"><code class="lang-js">-function updateCamera() {
+-  camera.updateProjectionMatrix();
+-}
+
+const gui = new GUI();
+-gui.add(camera, &#39;fov&#39;, 1, 180).onChange(updateCamera);
++gui.add(camera, &#39;fov&#39;, 1, 180);
+const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39;, 0.1);
+-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
+-gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChange(updateCamera);
++gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;);
++gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;);
+</code></pre>
+<p>이제 두 번째 화면에서 첫 번째 카메라의 절두체를 확인할 수 있습니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-perspective-2-scenes.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-perspective-2-scenes.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>왼쪽은 기존의 화면과 같고 오른쪽에 왼쪽 카메라의 절두체가 보입니다.
+패널에서 <code>near</code>, <code>far</code>, <code>fov</code> 값을 조정하거나 마우스로 화면을 움직여보면,
+오른쪽 화면의 절두체 안에 있는 물체만 왼쪽 화면에 노출됨을 확인할 수
+있을 겁니다.</p>
+<p>누군가 이렇게 물을지도 모르겠네요. 그냥 <code>near</code>를 0.0000000001로 설정하고 <code>far</code>를
+10000000000000로 설정해버리면요? 이러면 모든 게 항상 다 보이지 않나요? 이유를
+설명하자면, GPU는 어떤 물체가 앞에 있거나 다른 물체의 뒤에 있을 때만 정밀도가
+높기 때문입니다. 정밀도는 일정량이 <code>near</code>와 <code>far</code> 사이에 퍼져 있는데, 기본적으로
+카메라에 가까울 수록 정밀도가 높고 멀수록 정밀도가 낮아집니다.</p>
+<p>현상을 직접 확인해보죠. 위의 예제를 수정해 20개의 구체를 한 줄로 세우겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const sphereRadius = 3;
+  const sphereWidthDivisions = 32;
+  const sphereHeightDivisions = 16;
+  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const numSpheres = 20;
+  for (let i = 0; i &lt; numSpheres; ++i) {
+    const sphereMat = new THREE.MeshPhongMaterial();
+    sphereMat.color.setHSL(i * .73, 1, 0.5);
+    const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+    mesh.position.set(-sphereRadius - 1, sphereRadius + 2, i * sphereRadius * -2.2);
+    scene.add(mesh);
+  }
+}
+</code></pre>
+<p><code>near</code> 속성을 0.00001로 설정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const fov = 45;
+const aspect = 2;  // canvas 기본값
+-const near = 0.1;
++const near = 0.00001;
+const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+</code></pre>
+<p>그리고 기존의 GUI 코드를 수정해 0.00001의 작은 단위도 설정할 수 있도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
++gui.add(minMaxGUIHelper, &#39;min&#39;, 0.00001, 50, 0.00001).name(&#39;near&#39;).onChange(updateCamera);
+</code></pre>
+<p>어떤 결과가 나올 것 같나요?</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-z-fighting.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-z-fighting.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>이는 <em>z-파이팅(z-fighting, Stitching)</em>의 한 예입니다. 컴퓨터의 GPU가 어떤 픽셀이
+앞이고 어떤 픽셀을 뒤로 보내야할지 결정할 정밀도가 모자를 때 발생하는 현상이죠.</p>
+<p>위 예제가 어떻게 해도 정상적으로 보인다면, 아래 이미지를 보기 바랍니다.</p>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
+
+<p>한 가지 해결책은 Three.js에게 픽셀의 앞 뒤를 결정할 때 다른 방법을 쓰도록 설정하는
+것입니다. <code>WebGLRenderer</code>를 생성할 때 <code>logarithmicDepthBuffer</code> 속성을 활성화해주면
+되죠.</p>
+<pre class="prettyprint"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas});
++const renderer = new THREE.WebGLRenderer({
++  canvas,
++  logarithmicDepthBuffer: true,
++});
+</code></pre>
+<p>대게의 경우 정상적으로 보일 겁니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-logarithmic-depth-buffer.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-logarithmic-depth-buffer.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>문제가 그대로라면 <em>이 해결책을 쓸 수 없는 건가?</em>라는 의문에 빠질 수 있습니다.
+이 해결책이 먹히지 않은 이유는 일부 GPU만 이 기능을 지원하기 때문이죠. 2018년
+9월 기준으로 거의 모든 데스크탑 GPU가 이 기능을 지원하나, 모바일 기기는 대부분
+이 기능을 지원하지 않습니다.</p>
+<p>이 기능을 쓰지 말아야 하는 또 다른 이유는, 이 기능이 일반적인 해결책보다 훨씬
+성능이 나쁘기 때문입니다.</p>
+<p>게다가 이 기능을 활성화해도, <code>near</code>를 더 작게, <code>far</code>를 더 멀게 설정하다보면
+결국 같은 현상을 만나게 될 겁니다.</p>
+<p>이는 항상 <code>near</code>와 <code>far</code>를 설정하는데 많은 공을 들여야 한다는 의미입니다.
+<code>near</code>는 대상이 보이는 한 가장 멀게, <code>far</code>도 대상이 보이는 한 카메라와 가장
+가깝게 설정하는 것이 좋죠. 만약 거대한 공간을 렌더링하는 경우, 예를 들어 사람의
+속눈썹과 50km 떨어진 산을 동시에 보이게 하려면 다른 해결책-나중에 다룰지도 모르는-을
+찾아야 합니다. 당장은 <code>near</code>와 <code>far</code>를 적절하게 설정하는 게 중요하다는 것만
+알아둡시다.</p>
+<p>두 번째로 자주 사용하는 카메라는 <code>OrthographicCamera</code>(정사영 카메라)입니다.
+절두체 대신 <code>left</code>, <code>right</code>, <code>top</code>, <code>bottom</code>, <code>near</code>, <code>far</code>로 육면체를
+정의해 사용하죠. 육면체로 화면을 투사하기에 원근 효과가 없습니다.</p>
+<p>2분할 화면 예제를 수정해 첫 번째 화면을 <code>OrthographicCamera</code>로 바꾸겠습니다.</p>
+<p>먼저 <code>OrthographicCamera</code>를 만들어보죠.</p>
+<pre class="prettyprint"><code class="lang-js">const left = -1;
+const right = 1;
+const top = 1;
+const bottom = -1;
+const near = 5;
+const far = 50;
+const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
+camera.zoom = 0.2;
+</code></pre>
+<p>먼저 <code>left</code>와 <code>bottom</code>을 -1로, <code>right</code>와 <code>top</code>을 1로 설정했습니다. 이러면 육면체는
+기본적으로 너비 2칸, 높이 2칸이 되겠죠. 그리고 육면체의 비율을 조정해 <code>left</code>와 <code>top</code>의
+값을 조정할 수 있도록, <code>zoom</code> 속성을 이용해 카메라에 보이는 범위를 조정할 수 있도록
+했습니다.</p>
+<p>다음으로 <code>zoom</code> 속성을 조정할 GUI를 추가합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
++gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
+</code></pre>
+<p><code>listen</code> 메서드를 호출하면 dat.GUI가 변화를 감지합니다. 이렇게 한 이유는 <code>OrbitControls</code>이
+마우스 휠 스크롤을 감지해 <code>zoom</code> 속성을 변경하기 때문이죠.</p>
+<p>끝으로 왼쪽 화면을 렌더링할 때 <code>OrthographicCamera</code>를 업데이트하도록 설정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const aspect = setScissorForElement(view1Elem);
+
+  // 요소의 비율에 맞춰 카메라 업데이트
+-  camera.aspect = aspect;
++  camera.left   = -aspect;
++  camera.right  =  aspect;
+  camera.updateProjectionMatrix();
+  cameraHelper.update();
+
+  // 기존 화면에서 가이드라인(CameraHelper)이 노출되지 않도록 설정
+  cameraHelper.visible = false;
+
+  scene.background.set(0x000000);
+  renderer.render(scene, camera);
+}
+</code></pre>
+<p>이제 <code>OrthographicCamera</code>가 어떻게 작동하는지 확인할 차례입니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-orthographic-2-scenes.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-orthographic-2-scenes.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>Three.js에서 <code>OrthographicCamera</code>는 주로 2D 요소를 표현하기 위해 사용합니다.
+카메라에 얼마나 많은 요소를 보여줄지만 결정하면 되죠. 만약 canvas의 1픽셀을
+카메라의 한 칸과 같은 크기로 지정하고 싶다면...</p>
+<p>중점을 장면의 중심에 두고 1 픽셀을 Three.js의 한 칸으로 만들 수 있습니다.</p>
+<pre class="prettyprint"><code class="lang-js">camera.left = -canvas.width / 2;
+camera.right = canvas.width / 2;
+camera.top = canvas.height / 2;
+camera.bottom = -canvas.height / 2;
+camera.near = -1;
+camera.far = 1;
+camera.zoom = 1;
+</code></pre>
+<p>2D canvas처럼 중점을 상단 왼쪽에 두려면 다음과 같이 설정할 수 있죠.</p>
+<pre class="prettyprint"><code class="lang-js">camera.left = 0;
+camera.right = canvas.width;
+camera.top = 0;
+camera.bottom = canvas.height;
+camera.near = -1;
+camera.far = 1;
+camera.zoom = 1;
+</code></pre>
+<p>중점이 상단 왼쪽에 있을 경우의 좌표는 2D canvas처럼 0, 0입니다.</p>
+<p>한 번 만들어보죠! 먼저 카메라를 설정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const left = 0;
+const right = 300;  // canvas 기본 크기
+const top = 0;
+const bottom = 150;  // canvas 기본 크기
+const near = -1;
+const far = 1;
+const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
+camera.zoom = 1;
+</code></pre>
+<p>다음으로 평면(plane) 6개를 만들어 각각 다른 텍스처를 적용하겠습니다.
+각 평면마다 <code>THREE.Object3D</code> 인스턴스를 만들어 평면의 부모로 설정합니다.
+이러면 중점을 0, 0, 상단 좌측으로 지정해 좌표를 지정하기가 쉽습니다.</p>
+<pre class="prettyprint"><code class="lang-js">const loader = new THREE.TextureLoader();
+const textures = [
+  loader.load(&#39;resources/images/flower-1.jpg&#39;),
+  loader.load(&#39;resources/images/flower-2.jpg&#39;),
+  loader.load(&#39;resources/images/flower-3.jpg&#39;),
+  loader.load(&#39;resources/images/flower-4.jpg&#39;),
+  loader.load(&#39;resources/images/flower-5.jpg&#39;),
+  loader.load(&#39;resources/images/flower-6.jpg&#39;),
+];
+const planeSize = 256;
+const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const planes = textures.map((texture) =&gt; {
+  const planePivot = new THREE.Object3D();
+  scene.add(planePivot);
+  texture.magFilter = THREE.NearestFilter;
+  const planeMat = new THREE.MeshBasicMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+  });
+  const mesh = new THREE.Mesh(planeGeo, planeMat);
+  planePivot.add(mesh);
+  // 평면을 움직여 상단 좌측이 중점이 되도록 설정
+  mesh.position.set(planeSize / 2, planeSize / 2, 0);
+  return planePivot;
+});
+</code></pre>
+<p>그리고 <code>render</code> 함수 안에 canvas의 사이즈가 변경되었을 때 카메라를 업데이트하는
+코드를 추가합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function render() {
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    camera.right = canvas.width;
+    camera.bottom = canvas.height;
+    camera.updateProjectionMatrix();
+  }
+
+  ...
+</code></pre>
+<p><code>planes</code>는 <code>THREE.Mesh</code>, 평면의 배열입니다. 시간값을 기반으로 이 평면이 따로
+움직이도록 하겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;  // 초 단위로 변경
+
+  ...
+
+  const xRange = Math.max(20, canvas.width - planeSize) * 2;
+  const yRange = Math.max(20, canvas.height - planeSize) * 2;
+
+  planes.forEach((plane, ndx) =&gt; {
+    const speed = 180;
+    const t = time * speed + ndx * 300;
+    const xt = t % xRange;
+    const yt = t % yRange;
+
+    const x = xt &lt; xRange / 2 ? xt : xRange - xt;
+    const y = yt &lt; yRange / 2 ? yt : yRange - yt;
+
+    plane.position.set(x, y, 0);
+  });
+
+  renderer.render(scene, camera);
+</code></pre>
+<p>이미지가 완벽하게 가장자리에서 튕기는 것을 확인할 수 있을 겁니다. 2D canvas에서
+픽셀값을 이용해 구현할 때와 같은 방식이죠.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-orthographic-canvas-top-left-origin.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-orthographic-canvas-top-left-origin.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p><code>OrthographicCamera</code>는 게임 엔진 에디터 등에서처럼 3D 모델링 결과물의 상, 하, 좌, 우,
+앞, 뒤를 렌더링할 때도 사용합니다.</p>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
+
+<p>위 스크린샷의 1개의 화면만 원근(perspective) 카메라이고 나머지 3개는 정사영(orthographic)
+카메라입니다.</p>
+<p>여기까지 카메라의 기초에 대해 살펴보았습니다. 카메라를 움직이는 방법에 대해서는 다른
+글에서 좀 더 상세히 설명할 거예요. 다음은 장에서는 <a href="threejs-shadows.html">그림자(shadows)</a>에
+대해 먼저 살펴보겠습니다.</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-cameras.js"></script>
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-cameras.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-cameras.html" >Français</a>
+    <option value="/threejs/lessons/kr/threejs-cameras.html" selected>한국어</a>
+    <option value="/threejs/lessons/ru/threejs-cameras.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-cameras.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Three.js란?</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-fundamentals.html">Three.js란?</a></li>
+<li><a href="/threejs/lessons/kr/threejs-responsive.html">반응형 디자인</a></li>
+<li><a href="/threejs/lessons/kr/threejs-prerequisites.html">먼저 알아야 할 것들</a></li>
+<li><a href="/threejs/lessons/kr/threejs-setup.html">개발 환경</a></li>
+        </ul>
+  <li>기본 구조</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-primitives.html">원시 모델</a></li>
+<li><a href="/threejs/lessons/kr/threejs-scenegraph.html">씬 그래프</a></li>
+<li><a href="/threejs/lessons/kr/threejs-materials.html">재질(Materials)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-textures.html">텍스처(Textures)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-lights.html">조명(Lights)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cameras.html">카메라(Cameras)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
+<li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
+        </ul>
+  <li>팁</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/kr/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/kr/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>최적화하기</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/kr/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>활용하기</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/kr/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/kr/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/kr/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/kr/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/kr/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/kr/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/kr/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>웹VR</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/kr/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/kr/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
+        </ul>
+  <li>레퍼런스</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li>바로가기</li>
+  <ul>
+    <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">Github</a></li>
+    <li><a href="https://threejs.org">Three.js</a></li>
+    <li><a href="https://threejs.org/docs/">Three.js docs</a></li>
+  </ul>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>
+      <a href="http://stackoverflow.com/questions/tagged/three.js">Stackoverflow</a>
+      /
+      <a href="http://github.com/greggman/threefundamentals/issues">Github</a>
+    </div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 카메라';
+            var disqus_title = 'Three.js 카메라';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script>
+(function() {
+  if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+      return;
+  }
+
+  function addScript(src, fn) {
+    const script = document.createElement('script');
+    const firstScript = document.getElementsByTagName('script')[0];
+    script.async = true;
+    script.defer = true;
+    if (fn) {
+      script.addEventListener('load', fn);
+    }
+    script.src = src;
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }
+
+  addScript('//cdn.webglstats.com/stat.js');
+  addScript('https://www.googletagmanager.com/gtag/js?id=UA-120733518-1', () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-120733518-1');
+  });
+}());
+</script>
+
+
+</html>
+
+
+

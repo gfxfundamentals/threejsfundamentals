@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/kr/threejs-fog.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Three.js의 안개에 대해 알아봅니다" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ko.jpg" />
+
+<meta property="og:title" content="Three.js 안개" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ko.jpg" />
+<meta property="og:description" content="Three.js의 안개에 대해 알아봅니다" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js 안개" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html" />
+<meta name="twitter:description" content="Three.js의 안개에 대해 알아봅니다" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ko.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ko.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html",
+      "inLanguage":"ko",
+      "name":"Three.js 안개",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 안개</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-fog.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-fog.html" >Français</a>
+    <option value="/threejs/lessons/kr/threejs-fog.html" selected>한국어</a>
+    <option value="/threejs/lessons/ru/threejs-fog.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fog.html" >中文</a>
+</select>
+
+
+    <a href="#toc">목차</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/kr/">threejsfundamentals.org</a></h1>
+<style>
+#forkongithub a {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(150px) rotate(45deg) translate(10px,70px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+    pointer-events: auto;
+}
+#forkongithub a:hover {
+    background: #c11;
+    color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+#forkongithub{
+    z-index: 9999;
+    /* needed for firefox */
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+}
+#forkongithub svg{
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+@media (max-width: 900px) {
+    #forkongithub a{
+        line-height: 1.2rem;
+    }
+}
+@media (max-width: 700px) {
+  #forkongithub {
+    display: none;
+  }
+}
+@media (max-width: 410px) {
+    #forkongithub a{
+        font-size: 0.7rem;
+        transform: translateX(150px) rotate(45deg) translate(20px,40px);
+    }
+}
+
+</style>
+<div id="forkongithub"><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+    </g>
+</svg>
+</a></div>
+
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js 안개</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>※ 이 글은 Three.js의 튜토리얼 시리즈로서,
+먼저 <a href="threejs-fundamentals.html">Three.js의 기본 구조에 관한 글</a>을
+읽고 오길 권장합니다.</p>
+<p>※ 카메라에 대해 잘 모른다면, 먼저 <a href="threejs-cameras.html">카메라에 관한 글</a>을
+먼저 읽기 바랍니다.</p>
+<p>3D 엔진에서 안개란, 일반적으로 카메라로부터의 거리에 따라 특정 색상으로
+점차 변화하는 것을 말합니다. Three.js에서는 <code>Fog</code>나 <code>FogExp2</code> 객체를
+생성한 뒤, 장면(scene)의 <a href="Scene.fog"><code>fog</code></a> 속성에 지정해 안개를 사용합니다.</p>
+<p><code>Fog</code>는 인자로 <code>near</code>와 <code>far</code>값을 받는데, 이는 카메라로부터의 거리값입니다.
+<code>near</code>값보다 가까운 공간은 안개의 영향이 전혀 없고, <code>far</code>값보다 먼 공간은
+완전히 안개에 뒤덮입니다. <code>near</code>와 <code>far</code> 사이의 공간에 있는 물체 또는 물체의
+일부는 점차 안개의 색으로 변화하죠.</p>
+<p><code>FogExp2</code>는 카메라에서 멀어질수록 안개의 강도가 강해집니다.</p>
+<p>두 가지 안개 모두 마찬가지로, 안개를 사용하려면 장면의 속성에 지정해야 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;  // 하양
+  const near = 10;
+  const far = 100;
+  scene.fog = new THREE.Fog(color, near, far);
+}
+</code></pre>
+<p><code>FogExp2</code>의 경우는 다음처럼 쓸 수 있죠.</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;
+  const density = 0.1;
+  scene.fog = new THREE.FogExp2(color, density);
+}
+</code></pre>
+<p><code>FogExp2</code>가 더 현실적이긴 하나, 보통 안개의 범위를 특정하기 쉬운
+<code>Fog</code>를 더 많이 사용합니다.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fog"></div>
+    <div class="code">THREE.Fog</div>
+  </div>
+  <div>
+    <div data-diagram="fogExp2"></div>
+    <div class="code">THREE.FogExp2</div>
+  </div>
+</div>
+
+<p>한 가지 알아둬야 하는 건 안개는 <em>렌더링되는 물체</em>라는 점입니다.
+안개는 물체의 픽셀을 렌더링할 때 같이 렌더링되는데, 이 말은 장면에
+특정 색상의 안개 효과를 주려면 안개와 배경색 <strong>둘 다</strong> 같은 색으로
+지정해야 한다는 겁니다. 배경색은 <a href="Scene.background"><code>scene.background</code></a>
+속성을 <code>THREE.Color</code> 인스턴스로 지정해 바꿀 수 있습니다.</p>
+<pre class="prettyprint"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // 빨강
+</code></pre>
+<div class="spread">
+  <div>
+    <div data-diagram="fogBlueBackgroundRed" style="height:300px" class="border"></div>
+    <div class="code">파란 안개, 빨간 배경</div>
+  </div>
+  <div>
+    <div data-diagram="fogBlueBackgroundBlue" style="height:300px" class="border"></div>
+    <div class="code">파란 안개, 파란 배경</div>
+  </div>
+</div>
+
+<p>아래는 이전에 사용했던 예제에 안개를 추가한 것입니다. 장면을 생성한 뒤
+안개를 추가하고, 장면의 배경색을 바꾸기만 했죠.</p>
+<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+
++{
++  const near = 1;
++  const far = 2;
++  const color = &#39;lightblue&#39;;
++  scene.fog = new THREE.Fog(color, near, far);
++  scene.background = new THREE.Color(color);
++}
+</code></pre>
+<p>아래 예제의 카메라는 <code>near</code>값이 0.1, <code>far</code>값이 5입니다. 카메라의 위치는
+<code>z = 2</code>이죠. 정육면체의 크기는 1칸이고, z축의 원점에 있습니다. 여기서
+안개를 <code>near = 1</code>, <code>far = 2</code>로 설정하면 정육면체가 중간부터 사라지기
+시작하겠죠.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>인터페이스를 추가해 안개를 조정할 수 있도록 하겠습니다. 이번에도 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>를
+사용할 거예요. dat.GUI는 객체와 객체의 속성 키값을 받아 자동으로 인터페이스를
+생성합니다. 단순히 안개의 <code>near</code>와 <code>far</code> 제어하도록 설정할 수도 있지만, <code>near</code>값이
+<code>far</code>값보다 큰 경우는 없기에 헬퍼를 만들어 <code>near</code>값을 항상 <code>far</code>보다 같거나
+작게, <code>far</code>값을 항상 <code>near</code>보다 같거나 크게 설정하도록 하겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">/**
+ * 이 클래스의 인스턴스를 dat.GUI에 넘겨
+ * near나 far 속성을 조정할 때 항상
+ * near는 never &gt;= far, far는 never &lt;= near가 되도록 합니다
+ **/
+class FogGUIHelper {
+  constructor(fog) {
+    this.fog = fog;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
+}
+</code></pre>
+<p>방금 만든 클래스를 아래처럼 활용합니다.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const near = 1;
+  const far = 2;
+  const color = &#39;lightblue&#39;;
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
++
++  const fogGUIHelper = new FogGUIHelper(scene.fog);
++  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
++  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
+}
+</code></pre>
+<p><code>near</code>와 <code>far</code> 인자는 각 안개 속성의 최솟값과 최댓값입니다.</p>
+<p>마지막 2줄의 <code>.listen()</code> 메서드를 호출하면 dat.GUI가 변화를 <em>감지</em>합니다.
+<code>near</code> 속성을 바꿀 때 동시에 <code>far</code> 속성을 재할당하고, <code>far</code> 속성을 바꿀 때도
+동시에 <code>near</code>를 재할당하는데, 이 메서드를 호출하면 조작한 속성 외의 다른
+속성의 변화도 UI에 업데이트됩니다.</p>
+<p>여기에 안개의 색까지 조정할 수 있으면 금상첨화겠네요. 하지만 아까 설명했듯
+안개의 색을 바꾸려면 배경색도 같이 바꿔야 합니다. 헬퍼 클래스에 <em>가상</em> 속성을
+하나 만들어 dat.GUI가 이 속성을 변경할 때 배경색과 안개색을 같은 값으로
+바꿔주면 어떨까요?</p>
+<p>dat.GUI의 색상 타입은 4가지입니다. 하나는 CSS의 6자리 16진수 문자열(hex string, 예: <code>#f8f8f8</code>)이고,
+하나는 hue(색상), saturation(채도), value 객체(예: <code>{ h: 60, s: 1, v: 0 }</code>),
+하나는 RGB 배열(예: <code>[ 255, 128, 64 ]</code>) 또는 RGBA 색상 배열(예: <code>[ 127, 200, 75, 0.3 ]</code>)이죠.</p>
+<p><code>dat.GUI</code>가 하나의 값만 조작하도록 하는 게 제일 간단하니, 16진수 문자열을 사용하겠습니다.
+다행히 <code>THREE.Color</code>에는 <a href="Color.getHexString"><code>getHexString</code></a> 메서드가 있어 색상을
+문자열로 쉽게 바꿀 수 있죠. 앞에 &#39;#&#39;만 덧붙이면 됩니다.</p>
+<pre class="prettyprint"><code class="lang-js">/**
+ * 이 클래스의 인스턴스를 dat.GUI에 넘겨
+ * near나 far 속성을 조정할 때 항상
+ * near는 never &gt;= far, far는 never &lt;= near가 되도록 합니다
+ **/
++// 또 dat.GUI가 color 속성을 조작할 때 안개와 배경색을 동시에 변경합니다
+class FogGUIHelper {
+*  constructor(fog, backgroundColor) {
+    this.fog = fog;
++    this.backgroundColor = backgroundColor;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
++  get color() {
++    return `#${this.fog.color.getHexString()}`;
++  }
++  set color(hexString) {
++    this.fog.color.set(hexString);
++    this.backgroundColor.set(hexString);
++  }
+}
+</code></pre>
+<p>이번에는 <code>gui.addColor</code> 메서드를 호출합니다. 색상 UI를 생성하는 메서드로,
+방금 추가한 가상 속성을 조작하도록 설정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const near = 1;
+  const far = 2;
+  const color = &#39;lightblue&#39;;
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
+
+*  const fogGUIHelper = new FogGUIHelper(scene.fog, scene.background);
+  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
+  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
++  gui.addColor(fogGUIHelper, &#39;color&#39;);
+}
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p><code>near</code>를 1.9 정도, <code>far</code>를 2.0 정도로 설정하면 안개의 경계가 굉장히
+선명해질 겁니다. 정육면체들이 카메라에서 2칸 떨어져 있으므로 <code>near</code>를
+1.1, <code>far</code>를 2.9 정도로 설정하면 경계가 가장 부드러운 것이라고 할 수
+있죠.</p>
+<p>추가로 재질(material)에는 불린 타입의 <a href="Material.fog"><code>fog</code></a> 속성이 있습니다.
+해당 재질로 렌더링되는 물체가 안개의 영향을 받을지의 여부를 결정하는 속성이죠.
+&quot;안개 효과를 없애버리면 그만 아닌가?&quot; 생각할 수 있지만, 3D 운전 시뮬레이터를
+만드는 경우를 상상해봅시다. 차 밖은 안개가 자욱하더라도 차 안에서 볼 때 차 내부는
+깔끔해야 할 수도 있죠.</p>
+<p>안개가 짙은 날, 집 안에서 창 밖을 바라보는 장면이 더 와닿을지도 모르겠네요.
+안개가 카메라로부터 2미터 이후부터 끼기 시작하고(near = 2), 4미터 이후에는
+완전히 안개에 덮히도록(far = 4) 설정합니다. 방은 2미터이고, 집은 최소 4미터입니다.
+여기서 집 안의 재질이 안개의 영향을 받도록 놔둔다면 방 끝에서 창 밖을 바라볼
+때 방 안도 안개가 낀 것처럼 보이겠죠.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseAll" style="height: 300px;" class="border"></div>
+    <div class="code">모든 재질의 fog: true</div>
+  </div>
+</div>
+
+<p>방 끝 쪽 천장과 벽에 안개가 낀 것이 보일 겁니다. 집 내부 재질의 fog 옵션을 끄면
+안개를 없앨 수 있죠.</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseInsideNoFog" style="height: 300px;" class="border"></div>
+    <div class="code">집 밖 물체의 재질만 fog: true</div>
+  </div>
+</div>
+
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-fog.js"></script>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-fog.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-fog.html" >Français</a>
+    <option value="/threejs/lessons/kr/threejs-fog.html" selected>한국어</a>
+    <option value="/threejs/lessons/ru/threejs-fog.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-fog.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Three.js란?</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-fundamentals.html">Three.js란?</a></li>
+<li><a href="/threejs/lessons/kr/threejs-responsive.html">반응형 디자인</a></li>
+<li><a href="/threejs/lessons/kr/threejs-prerequisites.html">먼저 알아야 할 것들</a></li>
+<li><a href="/threejs/lessons/kr/threejs-setup.html">개발 환경</a></li>
+        </ul>
+  <li>기본 구조</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-primitives.html">원시 모델</a></li>
+<li><a href="/threejs/lessons/kr/threejs-scenegraph.html">씬 그래프</a></li>
+<li><a href="/threejs/lessons/kr/threejs-materials.html">재질(Materials)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-textures.html">텍스처(Textures)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-lights.html">조명(Lights)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cameras.html">카메라(Cameras)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
+<li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
+        </ul>
+  <li>팁</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/kr/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/kr/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>최적화하기</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/kr/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>활용하기</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/kr/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/kr/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/kr/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/kr/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/kr/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/kr/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/kr/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>웹VR</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/kr/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/kr/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
+        </ul>
+  <li>레퍼런스</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li>바로가기</li>
+  <ul>
+    <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">Github</a></li>
+    <li><a href="https://threejs.org">Three.js</a></li>
+    <li><a href="https://threejs.org/docs/">Three.js docs</a></li>
+  </ul>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>
+      <a href="http://stackoverflow.com/questions/tagged/three.js">Stackoverflow</a>
+      /
+      <a href="http://github.com/greggman/threefundamentals/issues">Github</a>
+    </div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 안개';
+            var disqus_title = 'Three.js 안개';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script>
+(function() {
+  if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+      return;
+  }
+
+  function addScript(src, fn) {
+    const script = document.createElement('script');
+    const firstScript = document.getElementsByTagName('script')[0];
+    script.async = true;
+    script.defer = true;
+    if (fn) {
+      script.addEventListener('load', fn);
+    }
+    script.src = src;
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }
+
+  addScript('//cdn.webglstats.com/stat.js');
+  addScript('https://www.googletagmanager.com/gtag/js?id=UA-120733518-1', () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-120733518-1');
+  });
+}());
+</script>
+
+
+</html>
+
+
+

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<!-- this file is auto-generated from threejs/lessons/kr/threejs-scenegraph.md. Do not edited directly -->
+<!--
+Copyright 2018, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
+
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="씬 그래프와 그 사용법" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_ko.jpg" />
+
+<meta property="og:title" content="Three.js의 씬 그래프" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_ko.jpg" />
+<meta property="og:description" content="씬 그래프와 그 사용법" />
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@greggman" />
+<meta name="twitter:creator" content="@greggman" />
+<meta name="twitter:domain" content="threejsfundamentals.org" />
+<meta name="twitter:title" content="Three.js의 씬 그래프" />
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html" />
+<meta name="twitter:description" content="씬 그래프와 그 사용법" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_ko.jpg" />
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_ko.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html",
+      "inLanguage":"ko",
+      "name":"Three.js의 씬 그래프",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js의 씬 그래프</title>
+<link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+</head>
+<body>
+<div class="threejs_navbar">
+  <div>
+    <select class="language">
+    <option value="/threejs/lessons/threejs-scenegraph.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-scenegraph.html" >Français</a>
+    <option value="/threejs/lessons/kr/threejs-scenegraph.html" selected>한국어</a>
+    <option value="/threejs/lessons/ru/threejs-scenegraph.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-scenegraph.html" >中文</a>
+</select>
+
+
+    <a href="#toc">목차</a>
+  </div>
+</div>
+<div class="threejs_header">
+  <h1><a href="/threejs/lessons/kr/">threejsfundamentals.org</a></h1>
+<style>
+#forkongithub a {
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    font-family: arial,sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 0.9rem;
+    line-height: 2rem;
+    position: relative;
+    transition: 0.5s;
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(150px) rotate(45deg) translate(10px,70px);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+    pointer-events: auto;
+}
+#forkongithub a:hover {
+    background: #c11;
+    color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    height: 1px;
+    background: #fff;
+}
+#forkongithub a::after {
+    bottom: 1px;
+    top: auto;
+}
+
+#forkongithub{
+    z-index: 9999;
+    /* needed for firefox */
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
+}
+#forkongithub svg{
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+@media (max-width: 900px) {
+    #forkongithub a{
+        line-height: 1.2rem;
+    }
+}
+@media (max-width: 700px) {
+  #forkongithub {
+    display: none;
+  }
+}
+@media (max-width: 410px) {
+    #forkongithub a{
+        font-size: 0.7rem;
+        transform: translateX(150px) rotate(45deg) translate(20px,40px);
+    }
+}
+
+</style>
+<div id="forkongithub"><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+    </g>
+</svg>
+</a></div>
+
+</div>
+
+
+<div class="container">
+  <div class="lesson-title">
+    <h1>Three.js의 씬 그래프</h1>
+  </div>
+  <div class="lesson">
+    <div class="lesson-main">
+      <p>※ 이 글은 Three.js의 튜토리얼 시리즈로서,
+먼저 <a href="threejs-fundamentals.html">Three.js의 기본 구조에 관한 글</a>을
+읽고 오길 권장합니다.</p>
+<p>Three.js에서 가장 중요한 것은 무엇보다 씬 그래프(scene graph)입니다.
+3D 엔진에서 씬 그래프란 요소(node)의 계층 구조를 그림으로 나타낸 것으로,
+여기서 각 요소는 각각의 &quot;지역 공간(local space)&quot;을 가리킵니다.</p>
+<p><img src="../resources/images/scenegraph-generic.svg" align="center"></p>
+<p>예시가 다소 추상적이니 좀 더 이해하기 쉬운 걸 예로 들어보겠습니다.</p>
+<p>태양계, 그 중에서도 태양, 지구, 달이 적당하겠네요.</p>
+<p><img src="../resources/images/scenegraph-solarsystem.svg" align="center"></p>
+<p>지구는 태양을 중심으로 공전합니다. 달은 지구를 중심으로 공전하죠.
+달의 공전 궤도는 원과 유사합니다. 달의 관점에서 달은 지구의 &quot;지역
+공간&quot; 안에서 공전하는 셈이죠. 태양이 봤을 때 달은 취한 사람처럼
+스피로그래프(spirograph, 용수철 모양의 그래프)를 그리며 돌지만,
+달은 그저 지구의 &quot;지역 공간&quot;을 도는 것에만 집중할 뿐입니다.</p>
+<p><div class="threejs_diagram_container">
+  <iframe class="threejs_diagram " style="width: 400px; height: 300px;" src="/threejs/lessons/resources/moon-orbit.html"></iframe>
+</div>
+
+</p>
+<p>좀 더 가까운 예를 들어보죠. 우리는 지구에서 살지만 지구의 자전이나
+자전축, 태양을 공전하는 일은 크게 신경쓰지 않습니다. 이건 지구의
+일이니까요. 우리가 걷거나, 뭔가를 타고 이동하거나 수영하거나 달리거나
+하는 일들은 지구의 일과는 무관해 보입니다. 그래서 옛날 사람들은 지구가
+공전, 자전한다는 사실을 쉽게 받아들이지 못했죠. 우리가 걷든, 헤엄을
+치든, 우리의 삶은 지구의 &quot;지역 공간&quot; 안에서 이루어집니다. 태양에서
+봤을 때 여러분은 지구를 시속 약 1,600km로 돌고 태양의 주위를 시속 약
+107,800km로 도는 셈이지만, 우리는 이렇게 빨리 움직이기 위해 따로
+노력할 필요가 없습니다. 달과 마찬가지로 우리가 신경써야 하는 건 지구의
+&quot;지역 공간&quot; 뿐이죠.</p>
+<p>이제 위 예제를 Three.js로 하나씩 구현해볼 겁니다. 먼저 중점에
+태양의 역할을 할 구체를 하나 놓는 것으로 시작하죠.</p>
+<p>※ 앞으로 설명할 예제는 씬 그래프를 설명하기 위해 태양, 지구, 달을
+활용합니다. 실제 태양, 지구, 달의 운행을 구현하려면 물리를 사용해야
+하지만, 목적이 씬 그래프이니 씬 그래프로 실제 운행을 모방할 것입니다.</p>
+<pre class="prettyprint"><code class="lang-js">// 회전값을 업데이트할 객체들
+const objects = [];
+
+// 하나의 geometry로 모든 태양, 지구, 달을 생성
+const radius = 1;
+const widthSegments = 6;
+const heightSegments = 6;
+const sphereGeometry = new THREE.SphereBufferGeometry(
+    radius, widthSegments, heightSegments);
+
+const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xFFFF00});
+const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+sunMesh.scale.set(5, 5, 5);  // 태양의 크기를 키움
+scene.add(sunMesh);
+objects.push(sunMesh);
+</code></pre>
+<p>예제에서는 로우-폴리(low poly) 구체를 사용할 겁니다. 적도를 중심으로
+딱 6분할만 한 구체이죠. 이렇게 하면 자전 운동을 쉽게 확인할 수 있습니다.</p>
+<p>같은 구체를 재활용할 것이므로 태양의 <code>mesh</code>를 5배로 설정해줍니다.</p>
+<p>다음으로 <code>MeshPhongMaterial</code>의 <code>emissive(방사성)</code> 속성(property)을
+노랑으로 지정합니다. 퐁-메터리얼의 <code>emissive</code> 속성은 빛을 반사하지 않는
+표면 색상으로, 대신 광원에 해당 색상이 더해집니다.</p>
+<p>씬 가운데에 단방향 조명(single point light)도 하나 넣습니다. 조명에
+대해서는 나중에 자세히 다루기로 하고, 지금은 한 점에서 발산하는 광원
+정도로 알아둡시다.</p>
+<pre class="prettyprint"><code class="lang-js">{
+  const color = 0xFFFFFF;
+  const intensity = 3;
+  const light = new THREE.PointLight(color, intensity);
+  scene.add(light);
+}
+</code></pre>
+<p>예제를 쉽게 확인하기 위해 카메라를 중점 바로 위에서 아래로 내려다보게
+설치합니다. 카메라의 시점을 바꾸는 가장 간단한 방법은 <code>lookAt</code> 메서드를
+활용하는 것으로, 이 메서드는 카메라가 넘겨받은 좌표를 바라보게끔 회전시켜줍니다.
+하지만 이전에 먼저 카메라에게 어떤 방향이 위인지 알려줘야 합니다. 대부분의
+경우 양의 y(positive y) 방향을 위로 설정하면 되지만, 예제의 경우 위에서
+아래를 내려다 볼 것이므로 양의 z 방향이 위가 됩니다.</p>
+<pre class="prettyprint"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.set(0, 50, 0);
+camera.up.set(0, 0, 1);
+camera.lookAt(0, 0, 0);
+</code></pre>
+<p>이전 예제처럼 렌더링 루프에서 <code>objects</code> 배열의 모든 객체를 회전시키겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">objects.forEach((obj) =&gt; {
+  obj.rotation.y = time;
+});
+</code></pre>
+<p><code>sunMesh</code>를 <code>objects</code> 배열 안에 넣어놨으므로 태양 모델이 회전하는 것을
+확인할 수 있습니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>다음으로 지구를 추가하겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+earthMesh.position.x = 10;
+scene.add(earthMesh);
+objects.push(earthMesh);
+</code></pre>
+<p>지구는 푸른색을 사용했으나, 약간의 <em>방사성(emissive)</em> 파랑을 섞어
+검은 배경에서 잘 보이도록 만들었습니다.</p>
+<p>그리고 이전에 썼던 <code>sphereGeometry</code>와 방금 만든 <code>earthMaterial</code>을
+이용해 <code>earthMesh</code>를 만들고, 태양의 10칸 옆에 위치하도록 설정한 뒤
+씬에 추가했습니다. 마지막으로 <code>objects</code> 배열에 추가했으므로, 지구도
+태양과 마찬가지로 자전하게 됩니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>하지만 지구가 태양의 주위를 돌진 않습니다. 지구를 바로 씬에 추가하는
+대신, 태양의 자식으로 추가하면...</p>
+<pre class="prettyprint"><code class="lang-js">-scene.add(earthMesh);
++sunMesh.add(earthMesh);
+</code></pre>
+<p>...</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>뭔가 이상합니다. 왜 지구의 크기와 태양의 크기가 같고 또 왜 저렇게
+멀리 떨어졌을까요? 기존 카메라로는 지구가 보이지 않아 카메라의 위치도
+150칸 위로 옮겼습니다.</p>
+<p>방금 우리는 <code>earthMesh</code>를 <code>sunMesh</code>의 자식으로 추가했습니다. 이전에
+<code>sunMesh</code>를 만들 때 <code>sunMesh.scale.set(5, 5, 5)</code>라는 코드로 크기를
+5배로 설정했죠. 이는 <code>sunMesh</code>의 &quot;지역 공간&quot; 자체를 5배 키우겠다는
+의미입니다. 그래서 지구의 크기도 5배가 되었고, 거리(<code>earthMesh.position.x = 10</code>)도
+5배로 적용된 것이죠.</p>
+<p>현재 예제의 씬 그래프는 다음과 같습니다.</p>
+<p><img src="../resources/images/scenegraph-sun-earth.svg" align="center"></p>
+<p>이를 해결하기 위해 빈 씬 그래프 요소를 하나 추가합니다. 그리고 태양과
+지구 둘 다 이 요소의 자식으로 추가할 겁니다.</p>
+<pre class="prettyprint"><code class="lang-js">+const solarSystem = new THREE.Object3D();
++scene.add(solarSystem);
++objects.push(solarSystem);
+
+const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xFFFF00});
+const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+sunMesh.scale.set(5, 5, 5);
+-scene.add(sunMesh);
++solarSystem.add(sunMesh);
+objects.push(sunMesh);
+
+const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+earthMesh.position.x = 10;
+-sunMesh.add(earthMesh);
++solarSystem.add(earthMesh);
+objects.push(earthMesh);
+</code></pre>
+<p>여기서는 <code>Object3D</code>를 생성했습니다. <code>Object3D</code>는 <code>Mesh</code>와 마찬가지로
+씬 그래프의 한 요소지만, <code>material</code>이나 <code>geometry</code>가 없다는 점이 다릅니다.
+그저 하나의 빈 &quot;지역 공간&quot;인 셈이죠.</p>
+<p>이제 씬 그래프는 다음과 같습니다.</p>
+<p><img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center"></p>
+<p><code>sunMesh</code>와 <code>earthMesh</code>는 <code>solarSystem</code>의 자식입니다. 이 3 객체는 각각
+회전하죠. 이제 <code>earthMesh</code>는 <code>sunMesh</code>의 자식이 아니므로 5배 커지지도
+않았습니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit-fixed.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit-fixed.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>훨씬 낫네요. 지구는 태양보다 작고 태양을 공전하는 동시에 자전까지 합니다.</p>
+<p>같은 패턴으로 달도 추가해봅시다.</p>
+<pre class="prettyprint"><code class="lang-js">+const earthOrbit = new THREE.Object3D();
++earthOrbit.position.x = 10;
++solarSystem.add(earthOrbit);
++objects.push(earthOrbit);
+
+const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+-solarSystem.add(earthMesh);
++earthOrbit.add(earthMesh);
+objects.push(earthMesh);
+
++const moonOrbit = new THREE.Object3D();
++moonOrbit.position.x = 2;
++earthOrbit.add(moonOrbit);
+
++const moonMaterial = new THREE.MeshPhongMaterial({color: 0x888888, emissive: 0x222222});
++const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
++moonMesh.scale.set(.5, .5, .5);
++moonOrbit.add(moonMesh);
++objects.push(moonMesh);
+</code></pre>
+<p>이전처럼 <code>Object3D</code>를 이용해 <code>eathOrbit</code> &quot;지역 공간&quot;을 만들고 거기에
+<code>earthMesh</code>와 <code>moonMesh</code>를 추가했습니다. 씬 그래프는 다음과 같죠.</p>
+<p><img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center"></p>
+<p>그리고 결과물입니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>처음에 봤던 예제처럼 달이 스피로그래프를 그리며 돌지만, 복잡한 수학적
+연산이 하나도 들어가지 않았습니다. 우리가 한 건 씬 그래프에게 그 연산을
+대신 맡긴 것 뿐이죠.</p>
+<p>때론 씬 그래프의 요소를 시각화하는 것이 도움이 될 때도 있습니다.
+Three.js는 유용한.. 음... 그러니까 이 <del>거시기</del>를 도와줄
+헬퍼 클래스가 있습니다.</p>
+<p>그 중 하나는 <code>AxesHelper</code>로, 이 클래스는 지역
+<span style="color:red">X</span>,
+<span style="color:green">Y</span>,
+<span style="color:blue">Z</span> 축을 표시해줍니다.
+한 번 여태까지 만든 요소에 모두 추가해보죠.</p>
+<pre class="prettyprint"><code class="lang-js">// AxesHelper 클래스를 각 요소에 지정
+objects.forEach((node) =&gt; {
+  const axes = new THREE.AxesHelper();
+  axes.material.depthTest = false;
+  axes.renderOrder = 1;
+  node.add(axes);
+});
+</code></pre>
+<p>우리는 축이 구체 내부에 있더라도 전부 보이길 원하므로, 각 축의 <code>depthTest</code>를
+<code>false</code>로 설정합니다. 이러면 Three.js는 어떤 물체 뒤에 있는 요소를 그릴지
+말지 검사하는 과정을 생략하므로, 어떤 방향에서라도 축을 볼 수 있습니다. 그리고
+<code>renderOrder</code>를 1로 설정(기본값은 0)해 구체를 전부 렌더링한 후 축을 렌더링하도록
+합니다. 그렇지 않으면 축을 그린 후 구체가 그려져 보이지 않을 수도 있으니까요.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p><span style="color:red">x축(빨강)</span> 그리고
+<span style="color:blue">z축(파랑)</span> 축이 보이나요? 카메라가 바로 위에서
+아래를 내려다 보고, 각 물체도 y축을 따라 회전하므로 <span style="color:green">y축(초록)</span>은
+보여도 거의 점처럼 보일 겁니다.</p>
+<p>몇몇 축은 2개의 축이 겹쳐져 구별이 어려울 수 있습니다. <code>sunMesh</code>와 <code>solarSystem</code>,
+<code>earthMesh</code>와 <code>earthOrbit</code>이 같은 위치에 있기 때문이죠. 각 노드의 축을 켜고
+끌 수 있는 간단한 컨트롤 패널을 한 번 만들어보죠. 동시에 다른 헬퍼 클래스인
+<code>GridHelper</code>도 추가해보겠습니다. <code>GridHelper</code>는 X, Z축으로 2D 격자(grid)를
+만다는 클래스로, 기본값은 10x10 칸입니다.</p>
+<p>또 Three.js와 함께 사용하기로 유명한 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>도
+사용할 겁니다. dat.GUI는 UI 라이브러리로, 객체와 속성 이름을 넘겨받고, 해당 속성의
+타입을 기반으로 속성값을 UI로 조정할 수 있게 해줍니다.</p>
+<p>각 요소에 <code>GirdHelper</code>와 <code>AxesHelper</code>를 추가하겠습니다. 각 노드에 헬퍼를
+추가하기 위해 각 노드의 이름이 필요하니, 기존 렌더링 루프를 제거하고 특정
+함수를 호출하게 변경하겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">-// add an AxesHelper to each node
+-objects.forEach((node) =&gt; {
+-  const axes = new THREE.AxesHelper();
+-  axes.material.depthTest = false;
+-  axes.renderOrder = 1;
+-  node.add(axes);
+-});
+
++function makeAxisGrid(node, label, units) {
++  const helper = new AxisGridHelper(node, units);
++  gui.add(helper, &#39;visible&#39;).name(label);
++}
++
++makeAxisGrid(solarSystem, &#39;solarSystem&#39;, 25);
++makeAxisGrid(sunMesh, &#39;sunMesh&#39;);
++makeAxisGrid(earthOrbit, &#39;earthOrbit&#39;);
++makeAxisGrid(earthMesh, &#39;earthMesh&#39;);
++makeAxisGrid(moonMesh, &#39;moonMesh&#39;);
+</code></pre>
+<p><code>makeAxisGrid</code> 함수는 나중에 만들 <code>AxisGridHelper</code>를 생성하여
+dat.GUI에 붙이는 역할을 합니다. 예제에서는 체크박스를 만들 것이므로,
+<code>boolean</code> 타입으로 속성을 지정해주겠습니다. 또 하나의 속성가 바뀔 때
+축과 격자가 동시에 나타나고 사라지게 할 것이니 getter와 setter가
+있는 간단한 클래스를 하나 만들겠습니다. 이러면 dat.GUI가 하나의
+속성을 바꿀 때 요소의 <code>AxesHelper</code>와 <code>GridHelper</code>의 속성을
+동시에 조작할 수 있죠.</p>
+<pre class="prettyprint"><code class="lang-js">/* 
+ * 축과 격자를 동시에 켜고 끕니다
+ * dat.GUI가 체크박스를 만들게 하려면 boolean 타입의
+ * 속성을 지정해줘야 하므로, `visible` 속성에
+ * getter와 setter를 지정해 dat.GUI가 이 속성을
+ * 바라보도록 합니다
+ */
+class AxisGridHelper {
+  constructor(node, units = 10) {
+    const axes = new THREE.AxesHelper();
+    axes.material.depthTest = false;
+    axes.renderOrder = 2;  // 격자 다음에 렌더링
+    node.add(axes);
+
+    const grid = new THREE.GridHelper(units, units);
+    grid.material.depthTest = false;
+    grid.renderOrder = 1;
+    node.add(grid);
+
+    this.grid = grid;
+    this.axes = axes;
+    this.visible = false;
+  }
+  get visible() {
+    return this._visible;
+  }
+  set visible(v) {
+    this._visible = v;
+    this.grid.visible = v;
+    this.axes.visible = v;
+  }
+}
+</code></pre>
+<p>격자가 축을 가릴 수 있으니, <code>AxesHelper</code>의 <code>renderOrder</code>를
+2로 설정하고 <code>GridHelper</code>를 2로 설정해 축을 격자 다음에
+렌더링하도록 합니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes-grids.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes-grids.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p><code>solarSystem</code>을 체크하면 위에서 설정했듯 지구가 정확히 중앙으로부터
+10칸 떨어진 것을 확인할 수 있습니다. 지구가 <code>solarSystem</code> &quot;지역 공간&quot;
+안에 있는 것도 확인할 수 있죠. <code>earthOrbit</code>을 켜면 달도 마찬가지로
+<code>earthOrbit</code>의 &quot;지역 공간&quot;의 중심으로부터 정확히 2칸 떨어진 것을
+확인할 수 있을 겁니다.</p>
+<p>씬 그래프의 다른 예시로 자동차를 들 수 있습니다.</p>
+<p><img src="../resources/images/scenegraph-car.svg" align="center"></p>
+<p>차체(Car body)를 움직이면 바퀴(wheel)도 같이 움직입니다. 차체가
+바퀴와는 별도로 튀게 하려면(서스펜션. 역주) 차체와 바퀴를 하나의
+차체의 &quot;프레임&quot; 요소의 자식으로 설정할 수 있죠.</p>
+<p>다른 예로 게임 속 인간형 캐릭터를 한 번 봅시다.</p>
+<p><img src="../resources/images/scenegraph-human.svg" align="center"></p>
+<p>인간형 캐릭터의 씬 그래프는 꽤 복잡하네요. 위 씬 그래프는 상당히 축소된
+버젼인데도 말이죠. 좀 더 세세하게 만든다면 손가락 하나하나(최소한 28마디)와
+발가락 하나하나(또 다른 28마디), 얼굴과 턱, 눈 등등으로 나눠야 합니다.</p>
+<p>약간 복잡한 씬 그래프를 만들어 봅시다. 탱크가 좋겠네요. 바퀴와 6개와
+포탑으로 이루어진 간단한 탱크입니다. 또 탱크의 주위를 돌아다니는 구체를
+하나 만들어 탱크가 그 구체를 조준하도록 해보겠습니다.</p>
+<p>아래는 예제를 구현하기 위한 씬 그래프입니다. <code>mesh</code>는 녹색으로 칠했고,
+<code>Object3D</code>는 청색, 광원은 갈색, 카메라는 보라색으로 칠했습니다. 하나의
+카메라는 씬 그래프에 포함하지 않았습니다.</p>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+
+<p>모든 요소를 어떻게 설정했는지 코드를 하나씩 살펴보죠.</p>
+<p>탱크가 조준할 목표를 만들기 위해 먼저 위 예제의 <code>earthOrbit</code>과 유사한
+<code>targetOrbit</code>(<code>Object3D</code>)을 만듭니다. 그리고 <code>targetOrbit</code>의 상대 좌표를 넘겨줄
+<code>targetElevation</code>(<code>Object3D</code>)을 만들어 <code>targetOrbit</code>의 자식으로 추가한 뒤,
+또 다른 <code>Object3D</code>, <code>targetBob</code>을 만들어 <code>targetElevation</code>의 자식으로 추가합니다.
+이 <code>targetBob</code>은 위아래로 보빙(bob은 낙시찌, 권투에서 bobbing은 몸을 숙이는 동작을 말함. 역주)하는
+역할을 할 겁니다. 마지막으로 색이 색이 바뀌는 동시에 회전할 <code>targetMesh</code> 육면체를
+만듭니다.</p>
+<pre class="prettyprint"><code class="lang-js">// 움직이는 목표
+targetOrbit.rotation.y = time * .27;
+targetBob.position.y = Math.sin(time * 2) * 4;
+targetMesh.rotation.x = time * 7;
+targetMesh.rotation.y = time * 13;
+targetMaterial.emissive.setHSL(time * 10 % 1, 1, .25);
+targetMaterial.color.setHSL(time * 10 % 1, 1, .25);
+</code></pre>
+<p>탱크는 먼저 <code>tank</code>라는 이름으로 다른 요소를 감쌀 <code>Object3D</code>를 하나 생성합니다.
+예제에서는 커브에 따라 위치값을 반환받을 수 있는 <code>SplineCurve</code>를 이용하겠습니다.
+0.0은 커브의 시작점이고, 1.0은 커브의 끝점으로, 먼저 탱크의 위치를 넘겨주어 탱크의
+다음 위치를 정한 뒤(아래 <code>tankPosition</code>. 역주), 커브의 다음 값을 받아 탱크가 어디를
+바라봐야할지 구합니다(아래 <code>tankTarget</code>. 역주). 그리고 구한 값을 <code>Object3D.lookAt</code>
+메서드에 넘겨주어 탱크가 그 방향을 바라보도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const tankPosition = new THREE.Vector2();
+const tankTarget = new THREE.Vector2();
+
+...
+
+// move tank
+const tankTime = time * .05;
+curve.getPointAt(tankTime % 1, tankPosition);
+curve.getPointAt((tankTime + 0.01) % 1, tankTarget);
+tank.position.set(tankPosition.x, 0, tankPosition.y);
+tank.lookAt(tankTarget.x, 0, tankTarget.y);
+</code></pre>
+<p>그 다음 탱크의 포탑을 탱크의 자식으로 지정해서 탱크를 따라 움직이게 합니다.
+그리고 목표물의 전역 위치값(global position)을 구한 뒤 <code>Object3D.lookAt</code>
+메서드를 이용, 포탑이 목표물을 조준하게 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const targetPosition = new THREE.Vector3();
+
+...
+
+// 목표를 조준하도록
+targetMesh.getWorldPosition(targetPosition);
+turretPivot.lookAt(targetPosition);
+</code></pre>
+<p><code>turretCamera</code>를 <code>turretMesh</code>의 자식으로 지정해 포탑과 함께 카메라가
+움직이도록 설정합니다. 또 카메라도 목표물을 바라보게 변경합니다.</p>
+<pre class="prettyprint"><code class="lang-js">// 포탑 카메라가 목표물을 바라보도록
+turretCamera.lookAt(targetPosition);
+</code></pre>
+<p><code>targetCameraPivot</code>은 <code>targetBob</code>의 자식으로 지정해 목표물과 함께
+돌아다니도록 하고, 탱크의 뒤쪽을 바라보도록 합니다. 이는 <code>targetCamera</code>가
+목표물의 위치에서 살짝 벗어나게 하기 위함으로, 만약 카메라를 <code>targetBob</code>의
+자식으로 바로 추가한다면 목표물 안에서 탱크를 보게 될 겁니다.</p>
+<pre class="prettyprint"><code class="lang-js">// targetCameraPivot이 탱크를 바라보도록
+tank.getWorldPosition(targetPosition);
+targetCameraPivot.lookAt(targetPosition);
+</code></pre>
+<p>다음으로 바퀴를 회전시킵니다.</p>
+<pre class="prettyprint"><code class="lang-js">wheelMeshes.forEach((obj) =&gt; {
+  obj.rotation.x = time * 3;
+});
+</code></pre>
+<p>그리고 카메라를 간단한 설명과 함께 배열로 묶은 뒤,</p>
+<pre class="prettyprint"><code class="lang-js">const cameras = [
+  { cam: camera, desc: &#39;detached camera&#39;, },
+  { cam: turretCamera, desc: &#39;on turret looking at target&#39;, },
+  { cam: targetCamera, desc: &#39;near target looking at tank&#39;, },
+  { cam: tankCamera, desc: &#39;above back of tank&#39;, },
+];
+
+const infoElem = document.querySelector(&#39;#info&#39;);
+</code></pre>
+<p>시간에 따라 카메라를 변경하도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const camera = cameras[time * .25 % cameras.length | 0];
+infoElem.textContent = camera.desc;
+</code></pre>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-tank.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-tank.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>자, 이번 장은 여기까지입니다. 이 글이 씬 그래프가 어떻게 작동하는지,
+어떻게 사용해야할지 감을 잡는 데 도움이 되었으면 좋겠네요. <code>Object3D</code>
+요소를 만들어 부모로 만드는 것은 Three.js 뿐만 아니라 다른 3D 엔진을
+쓸 때도 중요한 요소입니다. 뭔가를 만들다보면 종종 복잡한 수학이 필요한
+것처럼 느껴질 수 있는데, 이때 씬 그래프를 사용하지 않는다면 달의 궤도를
+계산하거나 자동차 바퀴의 위치를 계산하는 건 굉장히 복잡할 겁니다. 씬
+그래프를 적절히 활용하면 이런 복잡한 동작을 더 쉽게 구현할 수 있죠.</p>
+<p><a href="threejs-materials.html">다음 장에서는 <code>재질(material)</code>에 대해 알아보겠습니다</a>.</p>
+
+    </div>
+    <div class="lesson-sidebar">
+        <select class="language">
+    <option value="/threejs/lessons/threejs-scenegraph.html" >English</a>
+    <option value="/threejs/lessons/fr/threejs-scenegraph.html" >Français</a>
+    <option value="/threejs/lessons/kr/threejs-scenegraph.html" selected>한국어</a>
+    <option value="/threejs/lessons/ru/threejs-scenegraph.html" >Русский</a>
+    <option value="/threejs/lessons/zh_cn/threejs-scenegraph.html" >中文</a>
+</select>
+
+
+        <div id="toc">
+          <ul>  <li>Three.js란?</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-fundamentals.html">Three.js란?</a></li>
+<li><a href="/threejs/lessons/kr/threejs-responsive.html">반응형 디자인</a></li>
+<li><a href="/threejs/lessons/kr/threejs-prerequisites.html">먼저 알아야 할 것들</a></li>
+<li><a href="/threejs/lessons/kr/threejs-setup.html">개발 환경</a></li>
+        </ul>
+  <li>기본 구조</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-primitives.html">원시 모델</a></li>
+<li><a href="/threejs/lessons/kr/threejs-scenegraph.html">씬 그래프</a></li>
+<li><a href="/threejs/lessons/kr/threejs-materials.html">재질(Materials)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-textures.html">텍스처(Textures)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-lights.html">조명(Lights)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cameras.html">카메라(Cameras)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
+<li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
+        </ul>
+  <li>팁</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+<li><a href="/threejs/lessons/kr/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
+<li><a href="/threejs/lessons/kr/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#screenshot">Taking a screenshot</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
+<li><a href="/threejs/lessons/kr/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+        </ul>
+  <li>최적화하기</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/kr/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+        </ul>
+  <li>활용하기</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-load-obj.html">Load an .OBJ file</a></li>
+<li><a href="/threejs/lessons/kr/threejs-load-gltf.html">Load a .GLTF file</a></li>
+<li><a href="/threejs/lessons/kr/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/kr/threejs-transparency.html">How to Draw Transparent Objects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
+<li><a href="/threejs/lessons/kr/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing.html">Post Processing</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
+<li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
+<li><a href="/threejs/lessons/kr/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
+<li><a href="/threejs/lessons/kr/threejs-billboards.html">Billboards and Facades</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cleanup.html">Freeing Resources</a></li>
+<li><a href="/threejs/lessons/kr/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
+<li><a href="/threejs/lessons/kr/threejs-game.html">Start making a Game.</a></li>
+        </ul>
+  <li>웹VR</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-webvr.html">VR - Basics</a></li>
+<li><a href="/threejs/lessons/kr/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
+<li><a href="/threejs/lessons/kr/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
+        </ul>
+  <li>레퍼런스</li>
+        <ul>
+          <li><a href="/threejs/lessons/kr/threejs-material-table.html">Material Table</a></li>
+        </ul></ul>
+<ul>
+  <li>바로가기</li>
+  <ul>
+    <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">Github</a></li>
+    <li><a href="https://threejs.org">Three.js</a></li>
+    <li><a href="https://threejs.org/docs/">Three.js docs</a></li>
+  </ul>
+</ul>
+
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>
+      <a href="http://stackoverflow.com/questions/tagged/three.js">Stackoverflow</a>
+      /
+      <a href="http://github.com/greggman/threefundamentals/issues">Github</a>
+    </div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js의 씬 그래프';
+            var disqus_title = 'Three.js의 씬 그래프';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </div>
+</div>
+</body>
+<script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
+<script src="/threejs/lessons/resources/prettify.js"></script>
+<script src="/threejs/lessons/resources/lesson.js"></script>
+<script>
+(function() {
+  if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+      return;
+  }
+
+  function addScript(src, fn) {
+    const script = document.createElement('script');
+    const firstScript = document.getElementsByTagName('script')[0];
+    script.async = true;
+    script.defer = true;
+    if (fn) {
+      script.addEventListener('load', fn);
+    }
+    script.src = src;
+    firstScript.parentNode.insertBefore(script, firstScript);
+  }
+
+  addScript('//cdn.webglstats.com/stat.js');
+  addScript('https://www.googletagmanager.com/gtag/js?id=UA-120733518-1', () => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-120733518-1');
+  });
+}());
+</script>
+
+
+</html>
+
+
+
