@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-debugging-glsl.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,67 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Debugging Three.js - GLSL" />
+
+<meta name="description" content="Отладка шейдеров GLSL" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ru.jpg" />
+
+<meta property="og:title" content="Отладка Three.js - GLSL" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to debug GLSL Shaders" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ru.jpg" />
+<meta property="og:description" content="Отладка шейдеров GLSL" />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Debugging Three.js - GLSL" />
+<meta name="twitter:title" content="Отладка Three.js - GLSL" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html" />
-<meta name="twitter:description" content="How to debug GLSL Shaders" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="Отладка шейдеров GLSL" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ru.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ru.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html",
+      "inLanguage":"ru",
+      "name":"Отладка Three.js - GLSL",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
-<title>Debugging Three.js - GLSL</title>
+<title>Отладка Three.js - GLSL</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css" />
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -162,12 +205,70 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Debugging Three.js - GLSL</h1>
+    <h1>Отладка Three.js - GLSL</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-debugging-glsl.html">А пока можете почитать статью на английском языке</a>.</p>
+      <p>Этот сайт пока не учит GLSL так же, как не учит JavaScript. Это действительно большие темы. Если вы хотите изучать GLSL, рассмотрите
+<a href="https://webglfundamentals.org">эти статьи</a> в качестве отправной точки.</p>
+<p>Если вы уже знаете GLSL, вот несколько советов по отладке.</p>
+<p>Когда я делаю новый шейдер GLSL, и вообще ничего не появляется, первое, что я делаю,
+это изменяю фрагментный шейдер, чтобы он возвращал сплошной цвет. Например, в самом низу шейдера я мог бы поставить </p>
+<pre class="prettyprint"><code class="lang-glsl">void main() {
+
+  ...
+
+  gl_FragColor = vec4(1, 0, 0, 1);  // red
+}
+</code></pre>
+<p>Если я вижу объект, который пытался нарисовать, то я знаю, что проблема связана с моим фрагментным шейдером. 
+Это может быть что-то вроде плохих текстур, неинициализированной униформы,
+униформы с неправильными значениями, но, по крайней мере, у меня есть направление, чтобы посмотреть. </p>
+<p>Чтобы проверить некоторые из них, я мог бы начать пытаться сделать некоторые из входных данных. 
+Например, если я использую нормали в фрагментном шейдере, я мог бы добавить </p>
+<pre class="prettyprint"><code class="lang-glsl">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
+</code></pre>
+<p>Нормали переходят от -1 к +1, поэтому, умножив на 0,5 и добавив 0,5, 
+мы получим значения, которые идут от 0,0 до 1,0, что делает их полезными для цветов. </p>
+<p>Попробуйте это с некоторыми вещами, которые, как вы знаете, работают, и вы начнете понимать, как обычно выглядят нормали.
+Если ваши нормали не выглядят нормально, то у вас есть ключ к пониманию, где искать.
+Если вы манипулируете нормалями в шейдере фрагментов, вы можете использовать ту же технику, чтобы нарисовать результат этой манипуляции. </p>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+
+<p>Точно так же, если мы используем текстуры, будут координаты текстуры, и мы можем нарисовать их чем-то вроде </p>
+<pre class="prettyprint"><code class="lang-glsl">gl_FragColor = vec4(fract(vUv), 0, 1);
+</code></pre>
+<p><code>fract</code> есть в случае, если мы используем текстурные координаты, которые выходят за пределы диапазона от 0 до 1.
+Это часто встречается, если для <code>texture.repeat</code> установлено значение больше 1. </p>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+
+<p>Вы можете делать подобные вещи для всех значений в вашем фрагментном шейдере.
+Выясните, каким может быть их диапазон, добавьте код для установки <code>gl_FragColor</code> с диапазоном от 0,0 до 1,0. </p>
+<p>Чтобы проверить текстуры, попробуйте <code>CanvasTexture</code> или <code>DataTexture</code>, которые, как вы знаете, работают. </p>
+<p>И наоборот, если после установки <code>gl_FragColor</code> на красный я все еще ничего не вижу, 
+у меня есть подсказка, моя проблема может быть в направлении вещей, связанных с вершинным шейдером. 
+Некоторые матрицы могут быть неправильными, или мои атрибуты могут содержать неверные данные или неправильно настроены. </p>
+<p>Я бы сначала посмотрел на матрицы. Я мог бы поставить точку останова сразу после моего вызова <code>renderer.render(scene, camera)</code>,
+а затем начать расширять объекты в инспекторе. Матрица мира и проекционная матрица камеры, по крайней мере, не полны <code>NaN</code>? 
+Расширяя сцену и глядя на ее <code>children</code>, я бы проверил, что мировые матрицы выглядят разумно (без <code>NaN</code>) и последние 4 значения каждой матрицы выглядят разумно для моей сцены. 
+Если я ожидаю, что моя сцена будет иметь размеры 50x50x50 единиц, а некоторые матрицы показывают 552352623.123, то явно что-то не так. </p>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
+
+<p>Как и в случае с фрагментным шейдером, мы также можем рисовать значения из вершинного шейдера, передавая их фрагментному шейдеру. 
+Объявите переменные в обоих и передайте значение, которое вы не уверены, правильно. Фактически, если мой шейдер использует нормали, 
+я изменю фрагментный шейдер так, чтобы он отображался так, как указано выше, а затем просто установите для <code>vNormal</code> значение, которое я хочу отобразить,
+но масштабировать, чтобы значения изменялись от 0,0 до 1,0. Затем я смотрю на результаты и проверяю, соответствуют ли они моим ожиданиям. </p>
+<p>Еще одна полезная вещь - использовать более простой шейдер. 
+Можете ли вы нарисовать свои данные с помощью <code>MeshBasicMaterial</code>? 
+Если вы можете тогда попробуйте и убедитесь, что он показывает, как ожидалось. </p>
+<p>Если нет, то какой самый простой вершинный шейдер, который позволит вам визуализировать вашу геометрию? Обычно это так же просто, как </p>
+<pre class="prettyprint"><code class="lang-glsl">gl_Position = projection * modelView * vec4(position.xyz, 1);
+</code></pre>
+<p>Если это работает, начните добавлять изменения постепенно.</p>
+<p>Еще одна вещь, которую вы можете сделать, это использовать расширение
+<a href="https://chrome.google.com/webstore/detail/shader-editor/ggeaidddejpbakgafapihjbgdlbbbpob?hl=en">Shader Editor для Chrome</a>
+или аналогичное для других браузеров. Это отличный способ посмотреть, как работают другие шейдеры. Это также хорошо,
+поскольку вы можете внести некоторые из предложенных выше изменений во время работы кода. </p>
 
     </div>
     <div class="lesson-sidebar">
@@ -180,7 +281,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>Введение</li>
+        <div id="toc">
+          <ul>  <li>Введение</li>
         <ul>
           <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
 <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
@@ -205,7 +307,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <ul>
           <li><a href="/threejs/lessons/ru/threejs-rendering-on-demand.html">Рендеринг по требованию</a></li>
 <li><a href="/threejs/lessons/ru/threejs-debugging-javascript.html">Отладка JavaScript</a></li>
-<li><a href="/threejs/lessons/ru/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/ru/threejs-debugging-glsl.html">Отладка GLSL</a></li>
 <li><a href="/threejs/lessons/ru/threejs-tips.html#screenshot">Taking a screenshot</a></li>
 <li><a href="/threejs/lessons/ru/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
 <li><a href="/threejs/lessons/ru/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
@@ -253,6 +355,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Отладка Three.js - GLSL';
+            var disqus_title = 'Отладка Three.js - GLSL';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
