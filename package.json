@@ -21,6 +21,7 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^23.0.0",
+    "ld-check-dependencies": "^1.1.0",
     "load-grunt-tasks": "^5.1.0",
     "minami": "^1.2.3",
     "semver": "^7.3.2",
@@ -28,11 +29,12 @@
     "three": "^0.115.0"
   },
   "scripts": {
-    "build": "grunt",
-    "watch": "grunt buildwatch",
+    "build": "ld-check-dependencies && grunt",
+    "build-ci": "grunt",
+    "watch": "ld-check-dependencies && grunt buildwatch",
     "start": "servez out",
-    "eslint": "grunt eslint",
-    "pre-push": "grunt eslint",
+    "eslint": "ld-check-dependencies && grunt eslint",
+    "pre-push": "ld-check-dependencies && grunt eslint",
     "bumpthree": "grunt bumpthree",
     "test": "check-all-the-errors --follow-links=both --output=threejsfundamentals.check.json out \"*.html\""
   },
