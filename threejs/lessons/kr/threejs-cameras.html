@@ -237,7 +237,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
 <p><a href="threejs-lights.html">이전 장</a>에서 썼던 바닥면, 구체, 정육면체로 이루어진 예제를 다시 사용해
 카메라의 속성을 조정할 수 있도록 만들겠습니다.</p>
-<p><code>near</code> 속성은 항상 <code>far</code> 속성보다 커야하니, 이를 제어할 <code>MinMaxGUIHelper</code> 헬퍼 클래스를
+<p><code>near</code> 속성은 항상 <code>far</code> 속성보다 커야 하니, 이를 제어할 <code>MinMaxGUIHelper</code> 헬퍼 클래스를
 만들겠습니다. 이 클래스는 dat.GUI가 제어할 <code>min</code>과 <code>max</code> 속성이 있고, dat.GUI가 이를 조정할
 때 지정한 두 가지 속성을 동시에 변경합니다.</p>
 <pre class="prettyprint"><code class="lang-js">class MinMaxGUIHelper {

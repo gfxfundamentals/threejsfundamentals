@@ -216,7 +216,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 재질이란, 물체가 씬(scene)에 어떤 식으로 나타날지를 결정하는 요소로서,
 어떤 재질을 사용할지는 전적으로 상황에 따라 판단해야 합니다.</p>
 <p>재질의 속성(property)를 정하는 방법은 크게 두 가지로 나뉩니다. 하나는
-이전에 보았든 생성자를 호출할 때 값을 넘겨주는 것이고,</p>
+이전처럼 생성자를 호출할 때 값을 넘겨주는 것이고,</p>
 <pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
   color: 0xFF0000,    // 빨강 (CSS처럼 문자열로 넘겨줄 수도 있음. &quot;#ff0000&quot;)
   flatShading: true,
@@ -370,11 +370,11 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
 <p>여태까지 살펴본 Three.js의 기본 재질을 성능이 빠른 것부터 나열하면,</p>
 <p><code>MeshBasicMaterial</code> ➡ <code>MeshLambertMaterial</code> ➡ <code>MeshPhongMaterial</code> ➡
 <code>MeshStandardMaterial</code> ➡ <code>MeshPhysicalMaterial</code></p>
-<p>입니다. 성능에 부담이
+<p>입니다. 성능 부담이
 클수록 더 현실적인 결과물을 얻을 수 있지만, 저사양 지원을 위해서는 코드
-최적화에 그만큼 신경을 써야합니다.</p>
+최적화에 그만큼 신경을 써야 합니다.</p>
 <p>또 특수한 경우에 사용하는 세 가지 재질이 있습니다. <code>ShadowMaterial</code>은
-그림자로부터 데이터를 가져오는데 사용하죠. 아직 그림자에 대해서는 다루지
+그림자로부터 데이터를 가져오는 데 사용하죠. 아직 그림자에 대해서는 다루지
 않았지만, 그림자에 대해서 살펴볼 때 씬 뒤에서 무슨 일이 일어나는지
 자세히 살펴볼 것입니다.</p>
 <p><code>MeshDepthMaterial</code>은 각 픽셀의 깊이를 렌더링합니다. 카메라의 마이너스
