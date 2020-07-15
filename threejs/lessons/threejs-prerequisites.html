@@ -338,8 +338,8 @@ are used fairly extensively in modern JavaScript.</p>
    },
  };
 </code></pre>
-<h3 id="use-the-spread-operator-">Use the spread operator <code>...</code></h3>
-<p>The spread operator has a ton of uses. Example</p>
+<h3 id="use-the-rest-parameter-and-the-spread-operator-">Use the rest parameter and the spread operator <code>...</code></h3>
+<p>The rest parameter can be used to consume any number of parameters. Example</p>
 <pre class="prettyprint"><code class="lang-js"> function log(className, ...args) {
    const elem = document.createElement(&#39;div&#39;);
    elem.className = className;
@@ -347,9 +347,13 @@ are used fairly extensively in modern JavaScript.</p>
    document.body.appendChild(elem);
  }
 </code></pre>
-<p>Another example</p>
+<p>The spread operator can be used to expand an iterable into arguments, or copy an array</p>
 <pre class="prettyprint"><code class="lang-js">const position = [1, 2, 3];
 somemesh.position.set(...position);
+
+const copiedPositionArray = [...position]
+copiedPositionArray.push(4) // [1,2,3,4] 
+console.log(position) // [1,2,3] position is unaffected
 </code></pre>
 <h3 id="use-class-">Use <code>class</code></h3>
 <p>The syntax for making class like objects pre ES5 was unfamiliar to most
