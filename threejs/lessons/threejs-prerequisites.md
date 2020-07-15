@@ -186,7 +186,7 @@ new code
  };
 ```
 
-### Use the rest parameter or the spread operator `...`
+### Use the rest parameter and the spread operator `...`
 
 The rest parameter can be used to consume any number of parameters. Example
 
