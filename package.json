@@ -30,6 +30,7 @@
   },
   "scripts": {
     "build": "ld-check-dependencies && grunt",
+    "build-ci": "grunt",
     "watch": "ld-check-dependencies && grunt buildwatch",
     "start": "servez out",
     "eslint": "ld-check-dependencies && grunt eslint",
