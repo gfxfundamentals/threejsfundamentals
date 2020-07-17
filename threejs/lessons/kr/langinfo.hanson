@@ -1,7 +1,6 @@
 {
   language: '한국어',
   langCode: 'ko',
-  baseDirname: 'kr',
   defaultExampleCaption: "새 탭에서 보기",
   title: 'Three.js 튜토리얼',
   description: 'Three.js 입문자를 위한 튜토리얼',
