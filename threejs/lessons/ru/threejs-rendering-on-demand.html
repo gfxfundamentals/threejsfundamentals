@@ -297,13 +297,7 @@ camera.position.z = 2;
 Мы можем включить это, установив для свойства <code>enableDamping</code> значение true. </p>
 <pre class="prettyprint"><code class="lang-js">controls.enableDamping = true;
 </code></pre>
-<p>With <code>enableDamping</code> on we need to call <code>controls.update</code> in our render function
-so that the <code>OrbitControls</code> can continue to give us new camera settings as they
-smooth out the movement. But, that means we can&#39;t call <code>render</code> directly from
-the <code>change</code> event because we&#39;ll end up in an infinite loop. The controls will
-send us a <code>change</code> event and call <code>render</code>, <code>render</code> will call <code>controls.update</code>.
-<code>controls.update</code> will send another <code>change</code> event.</p>
-<p>С включенной функцией <code>enableDamping</code> нам нужно вызвать <code>Control.update</code> в нашей функции рендеринга, 
+<p>С включенной функцией <code>enableDamping</code> нам нужно вызвать <code>controls.update</code> в нашей функции рендеринга, 
 чтобы <code>OrbitControls</code> продолжал предоставлять нам новые настройки камеры, поскольку они сглаживают движение. 
 Но это означает, что мы не можем вызвать <code>render</code> напрямую из события <code>change</code>, потому что мы окажемся в бесконечном цикле. 
 Элементы управления отправят нам событие <code>change</code> и вызовут <code>render</code>, <code>render</code> вызовет <code>controls.update</code>.
@@ -342,7 +336,7 @@ render();
 <p>Может быть трудно увидеть разницу. Попробуйте нажать на приведенный ниже пример и использовать
 клавиши со стрелками для перемещения или перетаскивать для вращения. 
 Затем попробуйте нажать на приведенный выше пример и сделайте то же самое, и вы сможете увидеть разницу. 
-В приведенный выше примере при нажатии клавиши со стрелкой или перетаскивании мышью, кубики проскальзывают. </p>
+В приведенном примере при нажатии клавиши со стрелкой или перетаскивании мышью, кубики проскальзывают. </p>
 <p><div class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
