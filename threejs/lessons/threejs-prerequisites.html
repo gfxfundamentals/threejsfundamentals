@@ -311,11 +311,36 @@ are used fairly extensively in modern JavaScript.</p>
 <h3 id="use-destructuring">Use destructuring</h3>
 <p>Assume an object <code>const dims = {width: 300, height: 150}</code></p>
 <p>old code</p>
-<pre class="prettyprint"><code> const width = dims.width;
- const height = dims.height;
-</code></pre><p>new code</p>
-<pre class="prettyprint"><code> const {width, height} = dims;
-</code></pre><h3 id="use-object-declaration-short-cuts">Use object declaration short cuts</h3>
+<pre class="prettyprint"><code class="lang-js">const width = dims.width;
+const height = dims.height;
+</code></pre>
+<p>new code</p>
+<pre class="prettyprint"><code class="lang-js">const {width, height} = dims;
+</code></pre>
+<p>Destructuring works with arrays too. Assume an array <code>const position = [1, 2, 3, 4]</code>;</p>
+<p>old code</p>
+<pre class="prettyprint"><code class="lang-js">const x = position[2];
+const y = position[1];
+</code></pre>
+<p>new code</p>
+<pre class="prettyprint"><code class="lang-js">const [x, y] = position;
+</code></pre>
+<p>Destructuring also works in function arguments</p>
+<pre class="prettyprint"><code class="lang-js">const dims = {width: 300, height: 150};
+const position = [1, 2, 3, 4];
+
+function distFromOrig([x, y]) {
+  return Math.sqrt(x * x + y * y);
+}
+
+const dist = distFromOrig(position);  // dist = 2.236...
+
+function area({width, height}) {
+  return width * height;
+}
+const a = area(dims);  // a = 45000
+</code></pre>
+<h3 id="use-object-declaration-short-cuts">Use object declaration short cuts</h3>
 <p>old code</p>
 <pre class="prettyprint"><code class="lang-js"> const width = 300;
  const height = 150;
@@ -343,19 +368,24 @@ are used fairly extensively in modern JavaScript.</p>
 <pre class="prettyprint"><code class="lang-js"> function log(className, ...args) {
    const elem = document.createElement(&#39;div&#39;);
    elem.className = className;
-   elem.textContent = [...args].join(&#39; &#39;);
+   elem.textContent = args.join(&#39; &#39;);
    document.body.appendChild(elem);
  }
 </code></pre>
-<p>The spread operator can be used to expand an iterable into arguments, or copy an array</p>
+<p>The spread operator can be used to expand an iterable into arguments</p>
 <pre class="prettyprint"><code class="lang-js">const position = [1, 2, 3];
-somemesh.position.set(...position);
-
-const copiedPositionArray = [...position]
-copiedPositionArray.push(4) // [1,2,3,4] 
-console.log(position) // [1,2,3] position is unaffected
+someMesh.position.set(...position);
 </code></pre>
-<h3 id="use-class-">Use <code>class</code></h3>
+<p>or copy an array</p>
+<pre class="prettyprint"><code class="lang-js">const copiedPositionArray = [...position];
+copiedPositionArray.push(4); // [1,2,3,4] 
+console.log(position); // [1,2,3] position is unaffected
+</code></pre>
+<p>or to merge objects</p>
+<pre class="prettyprint"><code>const a = {abc: 123};
+const b = {def: 456};
+const c = {...a, ...b};  // c is now {abc: 123, def: 456}
+</code></pre><h3 id="use-class-">Use <code>class</code></h3>
 <p>The syntax for making class like objects pre ES5 was unfamiliar to most
 programmers. As of ES5 you can now <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">use the <code>class</code>
 keyword</a>
@@ -371,12 +401,13 @@ of ES5 makes them much easier than pre ES5.</p>
   // use texture
 });
 </code></pre>
-<p>Arrow functions bind <code>this</code>. </p>
+<p>Arrow functions bind <code>this</code> of the context in which you create the arrow function.</p>
 <pre class="prettyprint"><code class="lang-js">const foo = (args) =&gt; {/* code */};
 </code></pre>
 <p>is a shortcut for</p>
 <pre class="prettyprint"><code class="lang-js">const foo = (function(args) {/* code */}).bind(this));
 </code></pre>
+<p>See link above for more info on <code>this</code>.</p>
 <h3 id="promises-as-well-as-async-await">Promises as well as async/await</h3>
 <p>Promises help with asynchronous code. Async/await help
 use promises.</p>
@@ -418,7 +449,7 @@ JavaScript are all lowerCasedCamelCase. Constructors, the names of classes are
 CapitalizedCamelCase. If you follow this rule you code will match most other
 JavaScript. Many <a href="https://eslint.org">linters</a>, programs that check for obvious errors in your code,
 will point out errors if you use the wrong case since by following the convention
-above they know these are wrong</p>
+above they can know when you&#39;re using something incorrectly.</p>
 <pre class="prettyprint"><code class="lang-js">const v = new vector(); // clearly an error if all classes start with a capital letter
 const v = Vector();     // clearly an error if all functions start with a lowercase latter.
 </code></pre>
