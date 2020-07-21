@@ -583,7 +583,7 @@ function render(time) {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
-  addScene(elem, sceneRenderFunction());
+  addScene(elem, sceneRenderFunction);
 });
 </code></pre>
 <p>No change to the visuals but the code is even more generic.</p>
