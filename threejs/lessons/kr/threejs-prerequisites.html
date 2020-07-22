@@ -311,11 +311,37 @@ console.log(g());  // 456 출력
 <p><code>const dims = { width: 300, height: 150 }</code>. 이런 객체가 있다고 해보죠. 객체의
 각 속성을 별도의 변수에 할당하고자 합니다.</p>
 <p>기존 방법</p>
-<pre class="prettyprint"><code> const width = dims.width;
- const height = dims.height;
-</code></pre><p>새로운 방법</p>
-<pre class="prettyprint"><code> const { width, height } = dims;
-</code></pre><h3 id="-">객체 선언 시 축약 문법 사용</h3>
+<pre class="prettyprint"><code class="lang-js">const width = dims.width;
+const height = dims.height;
+</code></pre>
+<p>새로운 방법</p>
+<pre class="prettyprint"><code class="lang-js">const { width, height } = dims;
+</code></pre>
+<p>구조분해할당은 배열에도 적용할 수 있습니다. <code>const position = [1, 2, 3, 4]</code>.
+이런 배열이 있다고 해보죠.</p>
+<p>기존 방법</p>
+<pre class="prettyprint"><code class="lang-js">const x = position[2];
+const y = position[1];
+</code></pre>
+<p>새로운 방법</p>
+<pre class="prettyprint"><code class="lang-js">const [ , y, x ] = position;
+</code></pre>
+<p>또한 매개변수에도 구조분해할당을 적용할 수 있습니다.</p>
+<pre class="prettyprint"><code class="lang-js">const dims = { width: 300, height: 150 };
+const position = [1, 2, 3, 4];
+
+function distFromOrig([x, y]) {
+  return Math.sqrt(x * x + y * y);
+}
+
+const dist = distFromOrig(position);  // dist = 2.236...
+
+function area({ width, height }) {
+  return width * height;
+}
+const a = area(dims);  // a = 45000
+</code></pre>
+<h3 id="-">객체 선언 시 축약 문법 사용</h3>
 <p>기존 방법</p>
 <pre class="prettyprint"><code class="lang-js"> const width = 300;
  const height = 150;
@@ -343,7 +369,7 @@ console.log(g());  // 456 출력
 <pre class="prettyprint"><code class="lang-js"> function log(className, ...args) {
    const elem = document.createElement(&#39;div&#39;);
    elem.className = className;
-   elem.textContent = [...args].join(&#39; &#39;);
+   elem.textContent = args.join(&#39; &#39;);
    document.body.appendChild(elem);
  }
 </code></pre>
@@ -351,7 +377,16 @@ console.log(g());  // 456 출력
 <pre class="prettyprint"><code class="lang-js">const position = [1, 2, 3];
 somemesh.position.set(...position);
 </code></pre>
-<h3 id="-class-"><code>class</code> 사용하기</h3>
+<p>배열을 얕은 복사할 때 사용할 수도 있고</p>
+<pre class="prettyprint"><code class="lang-js">const copiedPositionArray = [...position];
+copiedPositionArray.push(4); // [1,2,3,4] 
+console.log(position); // [1,2,3] 기존 배열은 영향을 받지 않음
+</code></pre>
+<p>객체를 합칠 때도 사용할 수 있죠.</p>
+<pre class="prettyprint"><code>const a = { abc: 123 };
+const b = { def: 456 };
+const c = { ...a, ...b };  // c = { abc: 123, def: 456 }
+</code></pre><h3 id="-class-"><code>class</code> 사용하기</h3>
 <p>ES5 이하의 문법으로 클래스 스타일의 객체를 만드는 방법은 다른 개발자들에게 낯선 요소
 중 하나였습니다. ES2015부터는 C++/C#/Java 등 다른 객체지향 언어처럼 <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes"><code>class</code> 키워드를 사용</a>해
 클래스를 생성할 수 있습니다.</p>
@@ -491,7 +526,7 @@ VSCode는 ESLint를 통해 변수의 값이 지정되지 않은 경우 경고를
         </ul>
   <li>팁</li>
         <ul>
-          <li><a href="/threejs/lessons/kr/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+          <li><a href="/threejs/lessons/kr/threejs-rendering-on-demand.html">불필요한 렌더링 없애기</a></li>
 <li><a href="/threejs/lessons/kr/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
 <li><a href="/threejs/lessons/kr/threejs-debugging-glsl.html">Debugging GLSL</a></li>
 <li><a href="/threejs/lessons/kr/threejs-tips.html#screenshot">Taking a screenshot</a></li>
@@ -511,11 +546,11 @@ VSCode는 ESLint를 통해 변수의 값이 지정되지 않은 경우 경고를
           <li><a href="/threejs/lessons/kr/threejs-load-obj.html">.OBJ 파일 불러오기</a></li>
 <li><a href="/threejs/lessons/kr/threejs-load-gltf.html">.GLTF 파일 불러오기</a></li>
 <li><a href="/threejs/lessons/kr/threejs-backgrounds.html">배경, 하늘 상자 추가하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-transparency.html">How to Draw Transparent Objects</a></li>
-<li><a href="/threejs/lessons/kr/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
-<li><a href="/threejs/lessons/kr/threejs-picking.html">Picking Objects with the mouse</a></li>
-<li><a href="/threejs/lessons/kr/threejs-post-processing.html">Post Processing</a></li>
-<li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
+<li><a href="/threejs/lessons/kr/threejs-transparency.html">물체의 투명도 설정하기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-multiple-scenes.html">다중 캔버스, 다중 장면 만들기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-picking.html">물체를 마우스로 피킹하기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing.html">후처리</a></li>
+<li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">LUT 파일로 후처리 효과 적용하기</a></li>
 <li><a href="/threejs/lessons/kr/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
 <li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
 <li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
