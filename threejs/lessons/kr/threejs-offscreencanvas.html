@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/kr/threejs-offscreencanvas.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,10 +36,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Three.js에서 웹 워커를 활용하는 법을 알아봅니다" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-offscreencanvas_ko.jpg" />
+
 <meta property="og:title" content="Three.js OffscreenCanvas" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to use three.js in a web worker" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-offscreencanvas_ko.jpg" />
+<meta property="og:description" content="Three.js에서 웹 워커를 활용하는 법을 알아봅니다" />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -48,12 +53,51 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:domain" content="threejsfundamentals.org" />
 <meta name="twitter:title" content="Three.js OffscreenCanvas" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html" />
-<meta name="twitter:description" content="How to use three.js in a web worker" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="Three.js에서 웹 워커를 활용하는 법을 알아봅니다" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-offscreencanvas_ko.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-offscreencanvas_ko.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html",
+      "inLanguage":"ko",
+      "name":"Three.js OffscreenCanvas",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
 <title>Three.js OffscreenCanvas</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css" />
+<link rel="stylesheet" href="/threejs/lessons/kr/lang.css" />
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -167,8 +211,909 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>아직 번역을 완료하지 못한 문서입니다. <a href="https://github.com/gfxfundamentals/threejsfundamentals">한국어 번역에 동참</a>해주세요! 😄</p>
-<p><a href="/threejs/lessons/threejs-offscreencanvas.html">영문으로 볼래요</a>.</p>
+      <p><a href="https://developer.mozilla.org/ko/docs/Web/API/OffscreenCanvas"><code>OffscreenCanvas</code></a>는 비교적 최근 도입된 브라우저 API로 아직 크로미움 기반 브라우저에서만 사용가능하지만, 갈수록 대부분의 브라우저에서 이 API를 사용할 수 있을 겁니다. <code>OffscreenCanvas</code>를 이용하면 <a href="https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API">웹 워커(Web Worker)</a>에서 캔버스를 렌더링해 복잡한 3D 장면 등의 무거운 작업을 별도 프로세스에서 처리할 수 있습니다. 이러면 무거운 작업을 처리할 때 브라우저가 덜 버벅이도록 할 수 있죠. 또한 데이터도 워커에서 불러와 처리하므로 페이지 초기 로드 시 버벅임을 훨씬 줄일 수 있습니다.</p>
+<p>OffscreenCanvas의 문제점 중 하나는 웹 워커가 아직 ES 모듈(import, export 키워드 등)을 지원하지 않는다는 겁니다. 때문에 다른 예제와 달리 이 글에서는 클래스 스크립트 방식을 사용할 겁니다.</p>
+<p>사용법은 꽤나 직관적입니다. 먼저 <a href="threejs-responsive.html">반응형 디자인에 관한 글</a>에서 썼던 예제를 가져오도록 하죠.</p>
+<p>이 사이트 대부분의 예제는 스크립트를 해당 HTML 파일에 인라인으로 작성했습니다. 반면에 워커는 일반적으로 별도의 스크립트 파일로 분리해 작성합니다.</p>
+<p>이 글에서는 <code>offscreencanvas-cubes.js</code>라는 별도 파일을 만들어 <a href="threejs-responsive.html">반응형 디자인에서 가져온 예제</a>의 자바스크립트 코드를 전부 복사해 넣을 겁니다. 그런 다음 바꿔야할 부분을 바꿔보도록 하죠.</p>
+<p>하지만 여전히 HTML 파일에 약간의 자바스크립트 코드가 필요합니다. 캔버스 요소를 참조하고 <code>canvas.transferControlToOffscreen</code> 메서드를 호출해 캔버스의 제어권을 <code>offscreen</code>에 넘겨줍니다.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const offscreen = canvas.transferControlToOffscreen();
+
+  ...
+</code></pre>
+<p>그리고 <code>new Worker(워커 스크립트 경로)</code>로 워커를 생성한 뒤, 워커에 <code>offscreen</code> 객체를 넘깁니다.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-cubes.js&#39;);
+  worker.postMessage({ type: &#39;main&#39;, canvas: offscreen }, [ offscreen ]);
+}
+main();
+</code></pre>
+<p>스크립트를 따로 써야 하는 이유는 워커 안에서는 <code>DOM</code>에 접근할 수 없기 때문입니다. HTML 요소를 참조하거나 DOM 요소의 이벤트를 받을 수도 없죠. 일반적으로 메시지 이벤트를 통해서만 다른 스크립트와 통신할 수 있습니다.</p>
+<p>워커에 메시지를 보내려면 <a href="https://developer.mozilla.org/ko/docs/Web/API/Worker/postMessage"><code>worker.postMessage</code></a>에 하나 또는 두 개의 인자를 넘겨주어 호출하면 됩니다. 첫 번째 인자는 워커에 전달할 객체로, 이 객체는 그대로 전달되지 않고 <a href="https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API/Structured_clone_algorithm">복사됩니다</a>. 두 번째 인자는 옵션으로 첫 번째 인자 중 그대로 <em>전달하기</em> 원하는 객체를 배열로 지정합니다. 여기에 지정한 객체는 복사되지 않죠. 그대로 워커에 <em>전달되지만</em> 객체를 보낸 스크립트에서는 더 이상 사용이 불가능해집니다. 이것도 모든 객체를 전달할 수 있는 게 아니라 특정 타입의 객체만을 전달할 수 있죠. 당연하게도 이 중에는 <code>OffscreenCanvas</code>도 있습니다. 정리하자면 <code>offscreen</code> 객체를 전달하고 나면 이 객체는 이 스크립트에서 더 이상 쓸모가 없어집니다.</p>
+<p>워커의 <code>message</code> 이벤트를 이용하면 메시지를 받을 수 있습니다. <code>postMessage</code>에서 넘긴 객체는 <code>event.data</code>에 담겨 리스너에 전달되죠. 아까 위 코드에서는 <code>type: &#39;main&#39;</code> 속성을 객체에 선언해 워커에 넘겨줬습니다. 이 <code>type</code> 속성으로 워커 내에 다른 함수를 호출하도록 해봅시다. 이러면 메인 스크립트에서 워커 내의 함수를 호출하기가 훨씬 쉬워질 겁니다.</p>
+<pre class="prettyprint"><code class="lang-js">const handlers = {
+  main,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p><code>type</code> 값을 통해 호출할 함수를 찾고, 함수가 있다면 메인 스크립트에서 넘어온 <code>data</code>를 인자로 넘겨 호출하도록 했습니다.</p>
+<p>이제 <a href="threejs-responsive.html">반응형 디자인에 관한 글</a>에서 가져온 예제의 <code>main</code> 함수를 수정해야 합니다.</p>
+<p>물론 그전에 먼저 Three.js를 <code>offscreencanvas-cubes.js</code>에 불러와야겠죠.</p>
+<pre class="prettyprint"><code class="lang-js">importScripts(&#39;resources/threejs/r115/build/three.min.js&#39;);
+</code></pre>
+<p>DOM에서 캔버스에 접근하는 대신 이벤트의 <code>data</code>에서 캔버스를 받습니다.</p>
+<pre class="prettyprint"><code class="lang-js">-function main() {
+-  const canvas = document.querySelector(&#39;#c&#39;);
++function main(data) {
++  const { canvas } = data;
+  const renderer = new THREE.WebGLRenderer({ canvas });
+
+  ...
+</code></pre>
+<p>워커에서는 DOM에 접근할 수 없다고 했었죠. 마찬가지로 DOM 속성인 <code>canvas.clientWidth</code>나 <code>canvas.clientHeight</code>에도 접근할 수 없습니다. <code>resizeRendererToDisplaySize</code>를 그대로 사용할 수 없는 것이죠.</p>
+<pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+</code></pre>
+<p>대신 캔버스 크기가 변경될 때마다 워커에 메시지를 보낼 겁니다. 워커에 전역 변수를 하나 생성해 여기에 width와 height 값을 지정하도록 하죠.</p>
+<pre class="prettyprint"><code class="lang-js">const state = {
+  width: 300,  // 캔버스 기본값
+  height: 150,  // 캔버스 기본값
+};
+</code></pre>
+<p>그리고 <code>size</code>라는 함수를 만들어 해당 값을 업데이트하도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">+function size(data) {
++  state.width = data.width;
++  state.height = data.height;
++}
+
+const handlers = {
+  main,
++  size,
+};
+</code></pre>
+<p><code>resizeRendererToDisplaySize</code>가 <code>state.width</code>와 <code>state.height</code>를 쓰도록 변경합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+-  const width = canvas.clientWidth;
+-  const height = canvas.clientHeight;
++  const width = state.width;
++  const height = state.height;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+</code></pre>
+<p>마찬가지로 종횡비를 계산하는 코드도 DOM 속성 대신 <code>state</code>를 쓰도록 변경합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
++    camera.aspect = state.width / state.height;
+    camera.updateProjectionMatrix();
+  }
+
+  ...
+</code></pre>
+<p>메인 스크립트로 돌아와 페이지 크기가 바뀔 때마다 워커의 <code>size</code> 함수를 실행하도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+worker.postMessage({ type: &#39;main&#39;, canvas: offscreen }, [ offscreen ]);
+
++function sendSize() {
++  worker.postMessage({
++    type: &#39;size&#39;,
++    width: canvas.clientWidth,
++    height: canvas.clientHeight,
++  });
++}
++
++window.addEventListener(&#39;resize&#39;, sendSize);
++sendSize();
+</code></pre>
+<p>또한 직접 호출해 최초에 한 번 값을 보내도록 합니다.</p>
+<p>여러분의 브라우저가 <code>OffscreenCanvas</code>를 완벽히 지원한다면 이제 문제 없이 작동할 겁니다. 그렇게 많이 바꾼 것이 없는데도 말이죠. 혹시 모르니 브라우저가 <code>OffscreenCanvas</code>를 지원하지 않을 경우 에러 메시지를 보여주도록 하겠습니다. 먼저 에러 메시지를 표시할 HTML을 작성합니다.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;noOffscreenCanvas&quot; style=&quot;display:none;&quot;&gt;
++    &lt;div&gt;no OffscreenCanvas support&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>간단한 스타일도 넣어주도록 하죠.</p>
+<pre class="prettyprint"><code class="lang-css">#noOffscreenCanvas {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: red;
+    color: white;
+}
+</code></pre>
+<p>그리고 캔버스 요소에 <code>transferControlToOffscreen</code> 메서드가 있는지 확인해 <code>OffscreenCanvas</code>의 지원 여부를 확인합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
++  if (!canvas.transferControlToOffscreen) {
++    canvas.style.display = &#39;none&#39;;
++    document.querySelector(&#39;#noOffscreenCanvas&#39;).style.display = &#39;&#39;;
++    return;
++  }
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+  worker.postMessage({ type: &#39;main&#39;, canvas: offscreen }, [ offscreen ]);
+
+  ...
+</code></pre>
+<p>브라우저가 <code>OffscreenCanvas</code>를 지원한다면 문제 없이 작동할 겁니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>하지만 현재 모든 브라우저가 <code>OffscreenCanvas</code>를 지원하는 것은 아닙니다. <code>OffscreenCanvas</code>를 지원할 경우에만 워커를 사용하도록 하고, 그렇지 않을 경우에는 기존처럼 메인 스크립트에서 렌더링을 처리하도록 하겠습니다.</p>
+<blockquote>
+<p>OffscreenCanvas를 단순히 페이지를 반응형으로 만드는 데 사용하는 건 의미없어 보일 수 있습니다. 메인 스크립트에서 반응형을 처리할 때보다 워커에서 처리할 때 오히려 작업이 더 많이 들 수 있거든요. 하지만 메인 스크립트만 사용할 때보다 워커를 사용할 때 자원을 더 넉넉하게 활용할 수 있다는 건 분명합니다. 전적으로 여러분이 상황에 따라 결정할 문제라는 것이죠.</p>
+</blockquote>
+<p>먼저 Three.js 관련 코드를 분리해 워커 관련 코드와 그렇지 않은 코드로 나눠야 합니다. 같은 코드를 메인 스크립트와 워커에서 모두 쓸 수 있도록 말이죠. 아래와 같이 3개의 파일로 나뉠 겁니다.</p>
+<ol>
+<li><p>html 파일.</p>
+<p><code>threejs-offscreencanvas-w-fallback.html</code></p>
+</li>
+<li><p>three.js 관련 자바스크립트 파일.</p>
+<p><code>shared-cubes.js</code></p>
+</li>
+<li><p>워커용 스크립트</p>
+<p><code>offscreencanvas-worker-cubes.js</code></p>
+</li>
+</ol>
+<p><code>shared-cubes.js</code>와 <code>offscreencanvas-worker-cubes.js</code>는 단순히 이전 <code>offscreencanvas-cubes.js</code> 파일을 쪼갠 것입니다. 메인 HTML 파일에 <code>main</code>이라는 함수가 있어 <code>main</code> 함수만 <code>init</code>으로 바꿨죠.</p>
+<p><code>offscreencanvas-worker-cubes.js</code>의 구조는 아주 단순합니다.</p>
+<pre class="prettyprint"><code class="lang-js">&#39;use strict&#39;;
+
+/* global importScripts, init, state */
+
+importScripts(&#39;resources/threejs/r115/build/three.min.js&#39;);
++importScripts(&#39;shared-cubes.js&#39;);
+
+function size(data) {
+  state.width = data.width;
+  state.height = data.height;
+}
+
+const handlers = {
+-  main,
++  init,
+  size,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p>위 코드에서는 Three.js 관련 스크립트인 <code>shared-cubes.js</code>를 불러왔습니다.</p>
+<p>메인 페이지에서도 마찬가지로 Three.js와 <code>shared-cubes.js</code>를 추가합니다.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;script src=&quot;resources/threejs/r115/build/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;shared-cubes.js&quot;&gt;&lt;script&gt;
+</code></pre>
+<p>이전에 추가했던 에러 메시지용 HTML과 CSS를 제거합니다.</p>
+<pre class="prettyprint"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+-  &lt;div id=&quot;noOffscreenCanvas&quot; style=&quot;display:none;&quot;&gt;
+-    &lt;div&gt;no OffscreenCanvas support&lt;/div&gt;
+-  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre class="prettyprint"><code class="lang-css">-#noOffscreenCanvas {
+-    display: flex;
+-    width: 100vw;
+-    height: 100vh;
+-    align-items: center;
+-    justify-content: center;
+-    background: red;
+-    color: white;
+-}
+</code></pre>
+<p>그리고 <code>OffscreenCanvas</code>의 지원 여부에 따라 다른 함수를 실행하도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+-  if (!canvas.transferControlToOffscreen) {
+-    canvas.style.display = &#39;none&#39;;
+-    document.querySelector(&#39;#noOffscreenCanvas&#39;).style.display = &#39;&#39;;
+-    return;
+-  }
+-  const offscreen = canvas.transferControlToOffscreen();
+-  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+-  worker.postMessage({ type: &#39;main&#39;, canvas: offscreen }, [ offscreen ]);
++  if (canvas.transferControlToOffscreen) {
++    startWorker(canvas);
++  } else {
++    startMainPage(canvas);
++  }
+  ...
+</code></pre>
+<p>워커를 만들기 위해 사용했던 코드를 전부 <code>startWorker</code> 함수로 옮깁니다.</p>
+<pre class="prettyprint"><code class="lang-js">function startWorker(canvas) {
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-worker-cubes.js&#39;);
+  worker.postMessage({type: &#39;init&#39;, canvas: offscreen}, [offscreen]);
+
+  function sendSize() {
+    worker.postMessage({
+      type: &#39;size&#39;,
+      width: canvas.clientWidth,
+      height: canvas.clientHeight,
+    });
+  }
+
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using OffscreenCanvas&#39;);
+}
+</code></pre>
+<p>워커를 사용할 수 없는 경우 다음과 같이 실행합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function startMainPage(canvas) {
+  init({ canvas });
+
+  function sendSize() {
+    state.width = canvas.clientWidth;
+    state.height = canvas.clientHeight;
+  }
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using regular canvas&#39;);
+}
+</code></pre>
+<p>이제 <code>OffscreenCanvas를</code> 지원하는 경우에만 <code>OffscreenCanvas</code>를 사용하고, 지원하지 않는 경우에는 메인 스레드에서 직접 렌더링합니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas-w-fallback.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas-w-fallback.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>어떤가요? 생각했던 것보다 쉽지 않나요? 여기에 피킹(picking)을 추가해봅시다. <a href="threejs-picking.html">피킹에 관한 글</a>의 <code>RayCaster</code> 예제에서 코드 일부를 가져오도록 하겠습니다.</p>
+<p>먼저 <code>shared-cube.js</code>의 코드를 <code>shared-picking.js</code>로 복사한 뒤, 피킹 예제에서 <code>PickHelper</code>를 가져옵니다.</p>
+<pre class="prettyprint"><code class="lang-js">class PickHelper {
+  constructor() {
+    this.raycaster = new THREE.Raycaster();
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(normalizedPosition, scene, camera, time) {
+    // 이미 다른 물체를 피킹했다면 색을 복원합니다
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
+    // 절두체 안에 광선을 쏩니다
+    this.raycaster.setFromCamera(normalizedPosition, camera);
+    // 광선과 교차하는 물체들을 배열로 만듭니다
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+    if (intersectedObjects.length) {
+      // 첫 번째 물체가 제일 가까우므로 해당 물체를 고릅니다
+      this.pickedObject = intersectedObjects[0].object;
+      // 기존 색을 저장해둡니다
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // emissive 색을 빨강/노랑으로 빛나게 만듭니다
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+
+const pickPosition = { x: 0, y: 0 };
+const pickHelper = new PickHelper();
+</code></pre>
+<p><code>pickPosition</code>은 마우스 포인터의 좌표를 기록하는 역할입니다. 이벤트를 통해 해당 속성을 업데이트하도록 했었죠.</p>
+<pre class="prettyprint"><code class="lang-js">function getCanvasRelativePosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (event.clientX - rect.left) * canvas.width  / rect.width,
+    y: (event.clientY - rect.top ) * canvas.height / rect.height,
+  };
+}
+
+function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+  pickPosition.x = (pos.x / canvas.width ) *  2 - 1;
+  pickPosition.y = (pos.y / canvas.height) * -2 + 1;  // Y축을 뒤집었음
+}
+window.addEventListener(&#39;mousemove&#39;, setPickPosition);
+</code></pre>
+<p>워커는 포인터 좌표에 직접 접근할 수 없기에, 반응형 처리에 사용했던 코드처럼 포인터 좌표를 메시지로 보내야 합니다. 먼저 <code>size</code> 함수와 마찬가지로 <code>mouse</code> 함수를 만들어 <code>pickPosition</code>을 업데이트하도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function size(data) {
+  state.width = data.width;
+  state.height = data.height;
+}
+
++function mouse(data) {
++  pickPosition.x = data.x;
++  pickPosition.y = data.y;
++}
+
+const handlers = {
+  init,
++  mouse,
+  size,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p>그리고 메인 페이지에 분기 함수를 만들어 워커 또는 메인 페이지로 좌표 데이터를 보내도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">+let sendMouse;
+
+function startWorker(canvas) {
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-worker-picking.js&#39;);
+  worker.postMessage({ type: &#39;init&#39;, canvas: offscreen }, [ offscreen ]);
+
++  sendMouse = (x, y) =&gt; {
++    worker.postMessage({
++      type: &#39;mouse&#39;,
++      x,
++      y,
++    });
++  };
+
+  function sendSize() {
+    worker.postMessage({
+      type: &#39;size&#39;,
+      width: canvas.clientWidth,
+      height: canvas.clientHeight,
+    });
+  }
+
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using OffscreenCanvas&#39;);  /* eslint-disable-line no-console */
+}
+
+function startMainPage(canvas) {
+  init({ canvas });
+
++  sendMouse = (x, y) =&gt; {
++    pickPosition.x = x;
++    pickPosition.y = y;
++  };
+
+  function sendSize() {
+    state.width = canvas.clientWidth;
+    state.height = canvas.clientHeight;
+  }
+  window.addEventListener(&#39;resize&#39;, sendSize);
+  sendSize();
+
+  console.log(&#39;using regular canvas&#39;);  /* eslint-disable-line no-console */
+}
+</code></pre>
+<p>다음으로 마우스 이벤트 관련 코드를 메인 페이지로 옮긴 뒤 <code>sendMouse</code> 함수를 쓰도록 수정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+-  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+-  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // Y축을 뒤집었음
++  sendMouse(
++      (pos.x / canvas.clientWidth ) *  2 - 1,
++      (pos.y / canvas.clientHeight) * -2 + 1);  // Y축을 뒤집었음
+}
+
+function clearPickPosition() {
+  /**
+   * 마우스의 경우는 항상 위치가 있어 그다지 큰
+   * 상관이 없지만, 터치 같은 경우 사용자가 손가락을
+   * 떼면 피킹을 멈춰야 합니다. 지금은 일단 어떤 것도
+   * 선택할 수 없는 값으로 지정해두었습니다
+   **/
+-  pickPosition.x = -100000;
+-  pickPosition.y = -100000;
++  sendMouse(-100000, -100000);
+}
+window.addEventListener(&#39;mousemove&#39;, setPickPosition);
+window.addEventListener(&#39;mouseout&#39;, clearPickPosition);
+window.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
+
+window.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
+  event.preventDefault(); // 스크롤 이벤트 방지
+  setPickPosition(event.touches[0]);
+}, { passive: false });
+
+window.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
+  setPickPosition(event.touches[0]);
+});
+
+window.addEventListener(&#39;touchend&#39;, clearPickPosition);
+</code></pre>
+<p>이제 <code>OffscreenCanvas</code>에서도 피킹이 정상적으로 작동할 겁니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas-w-picking.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas-w-picking.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>좀 더 욕심을 내 <code>OrbitControls</code>까지 추가해봅시다. <code>OrbitControls</code>는 DOM에 꽤 다양하게 접근하기에 처리해줘야 할 것이 좀 많습니다. 제대로 작동하려면 마우스 이벤트, 터치 이벤트, 키보드 이벤트를 모두 처리해줘야 하죠.</p>
+<p>여태까지는 전역 <code>state</code> 객체를 사용했지만, <code>OrbitControls</code>의 경우는 객체 속성이 너무 많아 그걸 전부 다 하드 코딩하는 건 너무 번거롭습니다. <code>OrbitControls</code>는 필요한 DOM 이벤트의 대부분을 인자로 받는 HTML 요소에 바인딩합니다. 이를 이용해 DOM 요소와 같은 구조의 객체를 넘겨준다면 어떨까요? <code>OrbitControls</code>에 필요한 기능만 살려서 말이죠.</p>
+<p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r115/examples/js/controls/OrbitControls.js"><code>OrbitControls</code>의 소스 코드</a>를 분석해보니 아래의 이벤트만 지원하면 될 듯합니다.</p>
+<ul>
+<li>contextmenu</li>
+<li>mousedown</li>
+<li>mousemove</li>
+<li>mouseup</li>
+<li>touchstart</li>
+<li>touchmove</li>
+<li>touchend</li>
+<li>wheel</li>
+<li>keydown</li>
+</ul>
+<p>마우스 이벤트 중 <code>OrbitControls</code>가 사용하는 속성은 <code>ctrlKey</code>, <code>metaKey</code>, <code>shiftKey</code>, <code>button</code>, <code>clientX</code>, <code>clientY</code>, <code>pageX</code>, <code>pageY</code>이고,</p>
+<p>keydown 이벤트의 경우는 <code>ctrlKey</code>, <code>metaKey</code>, <code>shiftKey</code>, <code>keyCode</code> 속성,</p>
+<p>wheel 이벤트는 <code>deltaY</code> 속성만,</p>
+<p>터치 이벤트의 경우는 <code>touches</code> 속성의 <code>pageX</code>, <code>pageY</code> 속성이 필요하네요.</p>
+<p>이를 처리할 경유(proxy) 객체를 한 쌍 만들어봅시다. 한쪽은 메인 페이지에서 위 이벤트를 받아 필요한 속성을 워커에 넘겨주는 역할을 할 겁니다. 그리고 다른 한쪽은 워커 안에서 이 이벤트를 받아 <code>OrbitControls</code>에 넘겨줄 겁니다. 이벤트 객체가 DOM 이벤트와 같은 구조이기에 <code>OrbitControls</code>는 이 이벤트가 DOM 이벤트가 아니란 걸 눈치채지 못하겠죠.</p>
+<p>아래는 워커 안의 코드입니다.</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
+  handleEvent(data) {
+    this.dispatchEvent(data);
+  }
+}
+</code></pre>
+<p>위 코드는 단순히 메시지를 받았을 때 그걸 다시 내보내는(dispatch) 역할을 합니다. 부모 클래스인 <code>EventDispatcher</code>는 DOM 요소처럼 <code>addEventListener</code>나 <code>removeEventListener</code> 메서드를 제공하기에 HTML 요소 대신 이 클래스의 인스턴스를 넘겨줘도 문제없이 작동할 겁니다.</p>
+<p><code>ElementProxyReceiver</code>는 하나의 요소만 대신할 수 있습니다. 예제의 경우 하나만 필요하기는 하나 나중에 캔버스를 여러 개 사용할 수도 있으니 여러 <code>ElementProxyReceiver</code>를 관리하는 클래스를 만들겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">class ProxyManager {
+  constructor() {
+    this.targets = {};
+    this.handleEvent = this.handleEvent.bind(this);
+  }
+  makeProxy(data) {
+    const { id } = data;
+    const proxy = new ElementProxyReceiver();
+    this.targets[id] = proxy;
+  }
+  getProxy(id) {
+    return this.targets[id];
+  }
+  handleEvent(data) {
+    this.targets[data.id].handleEvent(data.data);
+  }
+}
+</code></pre>
+<p><code>ProxyManager</code>의 인스턴스를 만들고 id값과 함께 <code>makeProxy</code> 메서드를 호출하면 해당 id에만 응답하는 <code>ElementProxyReceiver</code>가 생성됩니다.</p>
+<p>이제 이 클래스를 기존 워커 코드와 연동해봅시다.</p>
+<pre class="prettyprint"><code class="lang-js">const proxyManager = new ProxyManager();
+
+function start(data) {
+  const proxy = proxyManager.getProxy(data.canvasId);
+  init({
+    canvas: data.canvas,
+    inputElement: proxy,
+  });
+}
+
+function makeProxy(data) {
+  proxyManager.makeProxy(data);
+}
+
+...
+
+const handlers = {
+-  init,
+-  mouse,
++  start,
++  makeProxy,
++  event: proxyManager.handleEvent,
+   size,
+};
+
+self.onmessage = function(e) {
+  const fn = handlers[e.data.type];
+  if (!fn) {
+    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+  }
+  fn(e.data);
+};
+</code></pre>
+<p><code>OrbitControls</code> 모듈도 불러와야겠죠.</p>
+<pre class="prettyprint"><code class="lang-js">importScripts(&#39;resources/threejs/r115/build/three.min/js&#39;);
++importScripts(&#39;resources/threejs/r115/examples/js/controls/OrbitControls.js&#39;);
+*importScripts(&#39;shared-orbitcontrols.js&#39;);
+</code></pre>
+<p>그리고 공통 Three.js 코드를 아래와 같이 수정합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function init(data) {
+-  const { canvas } = data;
++  const { canvas, inputElement } = data;
+  const renderer = new THREE.WebGLRenderer({ canvas });
+
++  const controls = new OrbitControls(camera, inputElement);
++  controls.target.set(0, 0, 0);
++  controls.update();
+</code></pre>
+<p>위 코드에서는 이전과 달리 <code>inputElement</code>로 경유 객체를 <code>OrbitControls</code>에 넘겨줬습니다.</p>
+<p>하는 김에 피킹 이벤트도 경유 객체를 사용하도록 바꿉니다.</p>
+<pre class="prettyprint"><code class="lang-js">function getCanvasRelativePosition(event) {
+-  const rect = canvas.getBoundingClientRect();
++  const rect = inputElement.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+  };
+}
+
+function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+-  sendMouse(
+-      (pos.x / canvas.clientWidth ) *  2 - 1,
+-      (pos.y / canvas.clientHeight) * -2 + 1);  // Y축을 뒤집었음
++  pickPosition.x = (pos.x / inputElement.clientWidth ) *  2 - 1;
++  pickPosition.y = (pos.y / inputElement.clientHeight) * -2 + 1;  // Y축을 뒤집었음
+}
+
+function clearPickPosition() {
+  /**
+   * 마우스의 경우는 항상 위치가 있어 그다지 큰
+   * 상관이 없지만, 터치 같은 경우 사용자가 손가락을
+   * 떼면 피킹을 멈춰야 합니다. 지금은 일단 어떤 것도
+   * 선택할 수 없는 값으로 지정해두었습니다
+   **/
+-  sendMouse(-100000, -100000);
++  pickPosition.x = -100000;
++  pickPosition.y = -100000;
+}
+
+*inputElement.addEventListener(&#39;mousemove&#39;, setPickPosition);
+*inputElement.addEventListener(&#39;mouseout&#39;, clearPickPosition);
+*inputElement.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
+
+*inputElement.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
+  event.preventDefault(); // 스크롤 이벤트 방지
+  setPickPosition(event.touches[0]);
+}, { passive: false });
+
+*inputElement.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
+  setPickPosition(event.touches[0]);
+});
+
+*inputElement.addEventListener(&#39;touchend&#39;, clearPickPosition);
+</code></pre>
+<p>메인 페이지에서 위에 열거한 모든 이벤트가 워커로 메시지를 보내도록 합니다.</p>
+<pre class="prettyprint"><code class="lang-js">let nextProxyId = 0;
+class ElementProxy {
+  constructor(element, worker, eventHandlers) {
+    this.id = nextProxyId++;
+    this.worker = worker;
+    const sendEvent = (data) =&gt; {
+      this.worker.postMessage({
+        type: &#39;event&#39;,
+        id: this.id,
+        data,
+      });
+    };
+
+    // id를 등록합니다.
+    worker.postMessage({
+      type: &#39;makeProxy&#39;,
+      id: this.id,
+    });
+    for (const [eventName, handler] of Object.entries(eventHandlers)) {
+      element.addEventListener(eventName, function(event) {
+        handler(event, sendEvent);
+      });
+    }
+  }
+}
+</code></pre>
+<p><code>ElementProxy</code>는 이벤트를 우회할 요소(element)를 인자로 받습니다. 그리고 고유 id를 생성해 워커에 <code>makeProxy</code> 메시지로 id를 등록합니다. 그러면 아까 만들었듯 워커는 이 id에 새로운 <code>ElementProxyReceiver</code>를 생성하겠죠.</p>
+<p>다음으로 이벤트를 처리할 핸들러 맵(<code>eventHandlers</code>)을 만듭니다. 이러면 해당 이벤트가 발생했을 때만 워커에 메시지를 보낼 수 있죠.</p>
+<p>워커를 생성할 때 <code>ElementProxy</code>에 이 핸들러 맵을 넘겨 새 우회 요소를 생성합니다.</p>
+<pre class="prettyprint"><code class="lang-js">function startWorker(canvas) {
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = new Worker(&#39;offscreencanvas-worker-orbitcontrols.js&#39;);
+
++  const eventHandlers = {
++    contextmenu: preventDefaultHandler,
++    mousedown: mouseEventHandler,
++    mousemove: mouseEventHandler,
++    mouseup: mouseEventHandler,
++    touchstart: touchEventHandler,
++    touchmove: touchEventHandler,
++    touchend: touchEventHandler,
++    wheel: wheelEventHandler,
++    keydown: filteredKeydownEventHandler,
++  };
++  const proxy = new ElementProxy(canvas, worker, eventHandlers);
+  worker.postMessage({
+    type: &#39;start&#39;,
+    canvas: offscreen,
++    canvasId: proxy.id,
+  }, [ offscreen ]);
+  console.log(&#39;using OffscreenCanvas&#39;);  /* eslint-disable-line no-console */
+}
+</code></pre>
+<p>핸들러 맵의 핸들러는 넘겨 받은 이벤트의 속성 중 넘겨 받은 키 배열에 해당하는 속성만 복사합니다. 그리고 <code>ElementProxy</code>에서 넘겨 받은 <code>sendEvent</code> 함수를 복사한 데이터와 함께 호출하죠. 그러면 <code>sendEvent</code> 함수는 해당하는 id와 데이터를 워커에 보냅니다.</p>
+<pre class="prettyprint"><code class="lang-js">const mouseEventHandler = makeSendPropertiesHandler([
+  &#39;ctrlKey&#39;,
+  &#39;metaKey&#39;,
+  &#39;shiftKey&#39;,
+  &#39;button&#39;,
+  &#39;clientX&#39;,
+  &#39;clientY&#39;,
+  &#39;pageX&#39;,
+  &#39;pageY&#39;,
+]);
+const wheelEventHandlerImpl = makeSendPropertiesHandler([
+  &#39;deltaX&#39;,
+  &#39;deltaY&#39;,
+]);
+const keydownEventHandler = makeSendPropertiesHandler([
+  &#39;ctrlKey&#39;,
+  &#39;metaKey&#39;,
+  &#39;shiftKey&#39;,
+  &#39;keyCode&#39;,
+]);
+
+function wheelEventHandler(event, sendFn) {
+  event.preventDefault();
+  wheelEventHandlerImpl(event, sendFn);
+}
+
+function preventDefaultHandler(event) {
+  event.preventDefault();
+}
+
+function copyProperties(src, properties, dst) {
+  for (const name of properties) {
+    dst[name] = src[name];
+  }
+}
+
+function makeSendPropertiesHandler(properties) {
+  return function sendProperties(event, sendFn) {
+    const data = { type: event.type };
+    copyProperties(event, properties, data);
+    sendFn(data);
+  };
+}
+
+function touchEventHandler(event, sendFn) {
+  const touches = [];
+  const data = { type: event.type, touches };
+  for (let i = 0; i &lt; event.touches.length; ++i) {
+    const touch = event.touches[i];
+    touches.push({
+      pageX: touch.pageX,
+      pageY: touch.pageY,
+    });
+  }
+  sendFn(data);
+}
+
+// 키보드의 화살표 키
+const orbitKeys = {
+  &#39;37&#39;: true,  // 왼쪽
+  &#39;38&#39;: true,  // 위쪽
+  &#39;39&#39;: true,  // 오른쪽
+  &#39;40&#39;: true,  // 아래쪽
+};
+function filteredKeydownEventHandler(event, sendFn) {
+  const { keyCode } = event;
+  if (orbitKeys[keyCode]) {
+    event.preventDefault();
+    keydownEventHandler(event, sendFn);
+  }
+}
+</code></pre>
+<p>거의 다 된 듯합니다. 하지만 실제로 예제를 실행해보니 아직 처리해줘야 할 것들이 몇 개 더 있네요.</p>
+<p><code>OrbitControls</code>는 <code>element.focus</code> 메서드를 호출합니다. 이는 워커에서 그다지 쓸모가 없으니 빈 함수로 대체하겠습니다.</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
+  handleEvent(data) {
+    this.dispatchEvent(data);
+  }
++  focus() {
++    // 빈 함수(no-operation)
++  }
+}
+</code></pre>
+<p><code>event.preventDefault</code>와 <code>event.stopPropagation</code>도 사용합니다. 이는 이미 메인 페이지에서 처리했으니 이 역시 빈 함수로 대체합니다.</p>
+<pre class="prettyprint"><code class="lang-js">+function noop() {
++}
+
+class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
+  handleEvent(data) {
++    data.preventDefault = noop;
++    data.stopPropagation = noop;
+    this.dispatchEvent(data);
+  }
+  focus() {
+    // 빈 함수(no-operation)
+  }
+}
+</code></pre>
+<p>또 <code>clientWidth</code>와 <code>clientHeight</code>도 사용합니다. 이전에는 캔버스의 크기값을 따로 넘겨줬었는데, 경유 객체들이 이 값도 주고받도록 수정하겠습니다.</p>
+<p>워커의 경우 다음처럼 코드를 추가합니다.</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+  constructor() {
+    super();
+  }
++  get clientWidth() {
++    return this.width;
++  }
++  get clientHeight() {
++    return this.height;
++  }
++  getBoundingClientRect() {
++    return {
++      left: this.left,
++      top: this.top,
++      width: this.width,
++      height: this.height,
++      right: this.left + this.width,
++      bottom: this.top + this.height,
++    };
++  }
+  handleEvent(data) {
++    if (data.type === &#39;size&#39;) {
++      this.left = data.left;
++      this.top = data.top;
++      this.width = data.width;
++      this.height = data.height;
++      return;
++    }
+    data.preventDefault = noop;
+    data.stopPropagation = noop;
+    this.dispatchEvent(data);
+  }
+  focus() {
+    // 빈 함수(no-operation)
+  }
+}
+</code></pre>
+<p>이제 메인 페이지에서 캔버스의 크기와 위치 좌표를 넘겨줘야 합니다. 하나 언급하고 싶은 건 예제에서는 캔버스의 크기가 바뀌는 경우만 가정했지, 캔버스가 움직이는 경우는 가정하지 않았다는 점입니다. 캔버스가 움직이는 경우를 처리하려면 캔버스가 움직였을 때 <code>sendSize</code>를 호출하면 됩니다.</p>
+<pre class="prettyprint"><code class="lang-js">class ElementProxy {
+  constructor(element, worker, eventHandlers) {
+    this.id = nextProxyId++;
+    this.worker = worker;
+    const sendEvent = (data) =&gt; {
+      this.worker.postMessage({
+        type: &#39;event&#39;,
+        id: this.id,
+        data,
+      });
+    };
+
+    // id를 등록합니다.
+    worker.postMessage({
+      type: &#39;makeProxy&#39;,
+      id: this.id,
+    });
++    sendSize();
+    for (const [eventName, handler] of Object.entries(eventHandlers)) {
+      element.addEventListener(eventName, function(event) {
+        handler(event, sendEvent);
+      });
+    }
+
++    function sendSize() {
++      const rect = element.getBoundingClientRect();
++      sendEvent({
++        type: &#39;size&#39;,
++        left: rect.left,
++        top: rect.top,
++        width: element.clientWidth,
++        height: element.clientHeight,
++      });
++    }
++
++    window.addEventListener(&#39;resize&#39;, sendSize);
+  }
+}
+</code></pre>
+<p>이제 공통 Three.js 코드에서 <code>state</code> 전역 변수를 쓰지 않으니 삭제합니다.</p>
+<pre class="prettyprint"><code class="lang-js">-const state = {
+-  width: 300,   // 캔버스 기본값
+-  height: 150,  // 캔버스 기본값
+-};
+
+...
+
+function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+-  const width = state.width;
+-  const height = state.height;
++  const width = inputElement.clientWidth;
++  const height = inputElement.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+
+function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+-    camera.aspect = state.width / state.height;
++    camera.aspect = inputElement.clientWidth / inputElement.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  ...
+</code></pre>
+<p><code>OrbitControls</code>는 키보드 이벤트를 감지하기 위해 <code>window</code>에 이벤트 리스너를 바인딩합니다. 이게 좋은 방식인지는 모르겠지만, 소스 코드를 직접 수정하지 않는 한 이 동작을 고칠 수는 없습니다. 워커에는 <code>window</code> 객체가 존재하지 않거든요.</p>
+<p>또 <code>document</code>의 <code>mousemove</code>와 <code>mouseup</code> 이벤트도 사용합니다. 이는 마우스가 창 밖으로 나간다든가 하는 경우에도 마우스의 움직임을 감지하기 위한 것이지만, <code>window</code>와 마찬가지로 워커에는 <code>document</code> 객체가 없습니다.</p>
+<p>거기다 <code>OrbitControls</code>에 넘겨준 요소가 <code>document</code>와 일치하는지의 여부도 검사합니다.</p>
+<p>이 문제는 간단한 편법(hack)을 써 해결할 수 있습니다. 다시 한 번 워커의 경유 객체를 이용하도록 하죠.</p>
+<pre class="prettyprint"><code class="lang-js">function start(data) {
+  const proxy = proxyManager.getProxy(data.canvasId);
++  self.window = proxy;  // HACK!
++  self.document = {  // HACK!
++    addEventListener: proxy.addEventListener.bind(proxy),
++    removeEventListener: proxy.removeEventListener.bind(proxy),
++  };
+  init({
+    canvas: data.canvas,
+    inputElement: proxy,
+  });
+}
+</code></pre>
+<p>이러면 <code>OrbitControls</code>가 에러를 던지지 않을 겁니다.</p>
+<p>예제가 복잡해 이해하기 어려웠을 수 있습니다. 동작을 요약하자면 <code>ElementProxy</code>가 메인 페이지의 DOM 이벤트를 워커의 <code>ElementProxyReceiver</code>에 넘기고, <code>ElementProxyReceiver</code>는 <code>HTMLElement</code>를 가장해 <code>OrbitControls</code>와 공통 코드에서 쓸 수 있는 대체 DOM 요소로 기능합니다.</p>
+<p>마지막으로 <code>OffscreenCanvas</code>를 지원하지 않는 경우의 예외 코드만 수정해주면 끝입니다. 간단히 <code>inputElement</code>에 캔버스 요소자체를 넘겨주기만 하면 되죠.</p>
+<pre class="prettyprint"><code class="lang-js">function startMainPage(canvas) {
+-  init({ canvas });
++  init({ canvas, inputElement: canvas });
+  console.log(&#39;using regular canvas&#39;);
+}
+</code></pre>
+<p>이제 <code>OffscreenCanvas</code>에서도 <code>OrbitControls</code>가 잘 작동합니다.</p>
+<p><div class="threejs_example_container">
+  <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-offscreencanvas-w-orbitcontrols.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-offscreencanvas-w-orbitcontrols.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>아마 이 예제가 이 시리즈를 통틀어 가장 복잡한 예제일 겁니다. 각 예제마다 HTML 파일, 워커 파일, 공통 Three.js 코드 파일, 이렇게 파일 3개가 서로 연동되니 그럴만 하죠.</p>
+<p>이 글이 너무 어렵게 느껴지지 않았다면 좋겠습니다. 또한 Three.js에서 OffscreenCanvas와 웹 워커를 활용하는 좋은 예가 되었길 바랍니다.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +1127,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>Three.js란?</li>
+        <div id="toc">
+          <ul>  <li>Three.js란?</li>
         <ul>
           <li><a href="/threejs/lessons/kr/threejs-fundamentals.html">Three.js란?</a></li>
 <li><a href="/threejs/lessons/kr/threejs-responsive.html">반응형 디자인</a></li>
@@ -216,9 +1162,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>최적화하기</li>
         <ul>
-          <li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
-<li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
-<li><a href="/threejs/lessons/kr/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
+          <li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">요소가 많을 때 최적화하는 방법</a></li>
+<li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">애니메이션 요소가 많을 때 최적화하는 방법</a></li>
+<li><a href="/threejs/lessons/kr/threejs-offscreencanvas.html">웹 워커에서 OffscreenCanvas 사용하기</a></li>
         </ul>
   <li>활용하기</li>
         <ul>
@@ -258,6 +1204,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </ul>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>
+      <a href="http://stackoverflow.com/questions/tagged/three.js">Stackoverflow</a>
+      /
+      <a href="http://github.com/greggman/threefundamentals/issues">Github</a>
+    </div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js OffscreenCanvas';
+            var disqus_title = 'Three.js OffscreenCanvas';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
