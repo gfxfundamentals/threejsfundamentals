@@ -217,7 +217,7 @@ yet and you&#39;re new to three.js you might want to consider starting there. </
 each with pluses and minuses.</p>
 <ul>
 <li><p>Use 3D text</p>
-<p>If you look at the <a href="threejs-primitives.html">primitives article</a> you&#39;ll see <code translate="no">TextBufferGeometry</code> which
+<p>If you look at the <a href="threejs-primitives.html">primitives article</a> you&#39;ll see <code class="notranslate" translate="no">TextBufferGeometry</code> which
 makes 3D text. This might be useful for flying logos but probably not so useful for stats, info,
 or labelling lots of things.</p>
 </li>
@@ -235,16 +235,16 @@ by styled with CSS. It can also be selected by the user as it is actual text. </
 <p>This article will cover this last approach.</p>
 <p>Let&#39;s start simple. We&#39;ll make a 3D scene with a few primitives and then add a label to each primitive. We&#39;ll start
 with an example from <a href="threejs-responsive.html">the article on responsive pages</a> </p>
-<p>We&#39;ll add some <code translate="no">OrbitControls</code> like we did in <a href="threejs-lights.html">the article on lighting</a>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<p>We&#39;ll add some <code class="notranslate" translate="no">OrbitControls</code> like we did in <a href="threejs-lights.html">the article on lighting</a>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 +import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
-<pre class="prettyprint" translate="no"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 0, 0);
 controls.update();
 </code></pre>
 <p>We need to provide an HTML element to contain our label elements</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;body&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
 -  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +  &lt;div id=&quot;container&quot;&gt;
 +    &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
@@ -252,9 +252,9 @@ controls.update();
 +  &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
-<p>By putting both the canvas and the <code translate="no">&lt;div id=&quot;labels&quot;&gt;</code> inside a
+<p>By putting both the canvas and the <code class="notranslate" translate="no">&lt;div id=&quot;labels&quot;&gt;</code> inside a
 parent container we can make them overlap with this CSS</p>
-<pre class="prettyprint" translate="no"><code class="lang-css">#c {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c {
 -    width: 100vw;
 -    height: 100vh;
 +    width: 100%;  /* let our container decide our size */
@@ -275,7 +275,7 @@ parent container we can make them overlap with this CSS</p>
 +}
 </code></pre>
 <p>let&#39;s also add some CSS for the labels themselves</p>
-<pre class="prettyprint" translate="no"><code class="lang-css">#labels&gt;div {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#labels&gt;div {
   position: absolute;  /* let us position them inside the container */
   left: 0;             /* make their default position the top left of the container */
   top: 0;
@@ -297,9 +297,9 @@ parent container we can make them overlap with this CSS</p>
 }
 </code></pre>
 <p>Now into our code we don&#39;t have to add too much. We had a function
-<code translate="no">makeInstance</code> that we used to generate cubes. Let&#39;s make it
+<code class="notranslate" translate="no">makeInstance</code> that we used to generate cubes. Let&#39;s make it
 so it also adds a label element.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">+const labelContainerElem = document.querySelector(&#39;#labels&#39;);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const labelContainerElem = document.querySelector(&#39;#labels&#39;);
 
 -function makeInstance(geometry, color, x) {
 +function makeInstance(geometry, color, x, name) {
@@ -318,10 +318,10 @@ so it also adds a label element.</p>
 +  return {cube, elem};
 }
 </code></pre>
-<p>As you can see we&#39;re adding a <code translate="no">&lt;div&gt;</code> to the container, one for each cube. We&#39;re
-also returning an object with both the <code translate="no">cube</code> and the <code translate="no">elem</code> for the label.</p>
+<p>As you can see we&#39;re adding a <code class="notranslate" translate="no">&lt;div&gt;</code> to the container, one for each cube. We&#39;re
+also returning an object with both the <code class="notranslate" translate="no">cube</code> and the <code class="notranslate" translate="no">elem</code> for the label.</p>
 <p>Calling it we need to provide a name for each</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cubes = [
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -331,7 +331,7 @@ also returning an object with both the <code translate="no">cube</code> and the 
 ];
 </code></pre>
 <p>What remains is positioning the label elements at render time</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
 
 ...
 
@@ -361,7 +361,7 @@ also returning an object with both the <code translate="no">cube</code> and the 
 });
 </code></pre>
 <p>And with that we have labels aligned to their corresponding objects.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -377,9 +377,9 @@ the frustum the labels will still appear.</p>
 <p>A possible solution to the problem of overlapping objects is to use
 the <a href="threejs-picking.html">picking code from the article on picking</a>.
 We&#39;ll pass in the position of the object on the screen and then
-ask the <code translate="no">RayCaster</code> to tell us which objects were intersected.
+ask the <code class="notranslate" translate="no">RayCaster</code> to tell us which objects were intersected.
 If our object is not the first one then we are not in the front.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
 +const raycaster = new THREE.Raycaster();
 
 ...
@@ -425,16 +425,16 @@ cubes.forEach((cubeInfo, ndx) =&gt; {
 </code></pre>
 <p>This handles overlapping.</p>
 <p>To handle going outside the frustum we can add this check if the origin of
-the object is outside the frustum by checking <code translate="no">tempV.z</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-  if (!show) {
+the object is outside the frustum by checking <code class="notranslate" translate="no">tempV.z</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-  if (!show) {
 +  if (!show || Math.abs(tempV.z) &gt; 1) {
     // hide the label
     elem.style.display = &#39;none&#39;;
 </code></pre>
-<p>This <em>kind of</em> works because the normalized coordinates we computed include a <code translate="no">z</code>
-value that goes from -1 when at the <code translate="no">near</code> part of our camera frustum to +1 when
-at the <code translate="no">far</code> part of our camera frustum.</p>
-<p><div translate="no" class="threejs_example_container">
+<p>This <em>kind of</em> works because the normalized coordinates we computed include a <code class="notranslate" translate="no">z</code>
+value that goes from -1 when at the <code class="notranslate" translate="no">near</code> part of our camera frustum to +1 when
+at the <code class="notranslate" translate="no">far</code> part of our camera frustum.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d-w-hiding.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d-w-hiding.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -447,7 +447,7 @@ or not. Unfortunate that check is slow. For 3 cubes it will not be a problem
 but for many objects it might be.</p>
 <p>Three.js provides some functions to check if an object&#39;s bounding sphere is
 in a frustum</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">// at init time
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// at init time
 const frustum = new THREE.Frustum();
 const viewProjection = new THREE.Matrix4();
 
@@ -475,7 +475,7 @@ article</a> but that is also not free. Which solution you
 chose depends on your needs.</p>
 <p>Another issue is the order the labels appear. If we change the code to have
 longer labels</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cubes = [
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0, &#39;Aqua&#39;),
 -  makeInstance(geometry, 0x8844aa, -2, &#39;Purple&#39;),
 -  makeInstance(geometry, 0xaa8844,  2, &#39;Gold&#39;),
@@ -485,17 +485,17 @@ longer labels</p>
 ];
 </code></pre>
 <p>and set the CSS so these don&#39;t wrap</p>
-<pre class="prettyprint" translate="no"><code class="lang-css">#labels&gt;div {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#labels&gt;div {
 +  white-space: nowrap;
 </code></pre>
 <p>Then we can run into this issue</p>
 <div class="threejs_center"><img src="resources/images/label-sorting-issue.png" style="width: 401px;"></div>
 
 <p>You can see above the purple box is in the back but its label is in front of the aqua box.</p>
-<p>We can fix this by setting the <code translate="no">zIndex</code> of each element. The projected position has a <code translate="no">z</code> value
-that goes from -1 in front to positive 1 in back. <code translate="no">zIndex</code> is required to be an integer and goes the
-opposite direction meaning for <code translate="no">zIndex</code> greater values are in front so the following code should work.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">// convert the normalized position to CSS coordinates
+<p>We can fix this by setting the <code class="notranslate" translate="no">zIndex</code> of each element. The projected position has a <code class="notranslate" translate="no">z</code> value
+that goes from -1 in front to positive 1 in back. <code class="notranslate" translate="no">zIndex</code> is required to be an integer and goes the
+opposite direction meaning for <code class="notranslate" translate="no">zIndex</code> greater values are in front so the following code should work.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// convert the normalized position to CSS coordinates
 const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
 const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
 
@@ -508,8 +508,8 @@ elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
 <p>Because of the way the projected z value works we need to pick a large number to spread out the values
 otherwise many will have the same value. To make sure the labels don&#39;t overlap with other parts of
 the page we can tell the browser to create a new <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context">stacking context</a>
-by setting the <code translate="no">z-index</code> of the container of the labels</p>
-<pre class="prettyprint" translate="no"><code class="lang-css">#labels {
+by setting the <code class="notranslate" translate="no">z-index</code> of the container of the labels</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#labels {
   position: absolute;  /* let us position ourself inside the container */
 +  z-index: 0;          /* make a new stacking context so children don&#39;t sort with rest of page */
   left: 0;             /* make our position the top left of the container */
@@ -519,7 +519,7 @@ by setting the <code translate="no">z-index</code> of the container of the label
 }
 </code></pre>
 <p>and now the labels should always be in the correct order.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d-w-sorting.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d-w-sorting.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -536,7 +536,7 @@ of the countries and their locations.</p>
 <div class="threejs_center"><img src="../resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
 
 <p>The JSON data is an array of entries something like this</p>
-<pre class="prettyprint" translate="no"><code class="lang-json">[
+<pre class="prettyprint notranslate" translate="no"><code class="lang-json">[
   {
     &quot;name&quot;: &quot;Algeria&quot;,
     &quot;min&quot;: [
@@ -562,7 +562,7 @@ objects</a> though we are not drawing lots
 of objects we&#39;ll be using the same solutions for <a href="threejs-rendering-on-demand.html">rendering on
 demand</a>.</p>
 <p>The first thing is to make a sphere and use the outline texture.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const loader = new THREE.TextureLoader();
   const texture = loader.load(&#39;resources/data/world/country-outlines-4k.png&#39;, render);
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
@@ -571,13 +571,13 @@ demand</a>.</p>
 }
 </code></pre>
 <p>Then let&#39;s load the JSON file by first making a loader</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">async function loadJSON(url) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadJSON(url) {
   const req = await fetch(url);
   return req.json();
 }
 </code></pre>
 <p>and then calling it</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">let countryInfos;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">let countryInfos;
 async function loadCountryData() {
   countryInfos = await loadJSON(&#39;resources/data/world/country-info.json&#39;);
      ...
@@ -591,7 +591,7 @@ loadCountryData();
 we had setup a small scene graph of helper objects to make it easy to 
 compute latitude and longitude positions on our globe. See that article 
 for an explanation of how they work.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lonFudge = Math.PI * 1.5;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lonFudge = Math.PI * 1.5;
 const latFudge = Math.PI;
 // these helpers will make it easy to position the boxes
 // We can rotate the lon helper on its Y axis to the longitude
@@ -605,7 +605,7 @@ positionHelper.position.z = 1;
 latHelper.add(positionHelper);
 </code></pre>
 <p>We&#39;ll use that to compute a position for each label</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const labelParentElem = document.querySelector(&#39;#labels&#39;);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const labelParentElem = document.querySelector(&#39;#labels&#39;);
 for (const countryInfo of countryInfos) {
   const {lat, lon, name} = countryInfo;
 
@@ -626,13 +626,13 @@ for (const countryInfo of countryInfos) {
   countryInfo.elem = elem;
 </code></pre>
 <p>The code above looks very similar to the code we wrote for making cube labels
-making an element per label. When we&#39;re done we have an array, <code translate="no">countryInfos</code>,
-with one entry for each country to which we&#39;ve added an <code translate="no">elem</code> property for
-the label element for that country and a <code translate="no">position</code> with its position on the
+making an element per label. When we&#39;re done we have an array, <code class="notranslate" translate="no">countryInfos</code>,
+with one entry for each country to which we&#39;ve added an <code class="notranslate" translate="no">elem</code> property for
+the label element for that country and a <code class="notranslate" translate="no">position</code> with its position on the
 globe.</p>
 <p>Just like we did for the cubes we need to update the position of the
 labels and render time.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
 
 function updateLabels() {
   // exit if we have not yet loaded the JSON file
@@ -664,8 +664,8 @@ function updateLabels() {
 <p>You can see the code above is substantially similar to the cube example before.
 The only major difference is we pre-computed the label positions at init time.
 We can do this because the globe never moves. Only our camera moves.</p>
-<p>Lastly we need to call <code translate="no">updateLabels</code> in our render loop</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render() {
+<p>Lastly we need to call <code class="notranslate" translate="no">updateLabels</code> in our render loop</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
   renderRequested = false;
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -682,7 +682,7 @@ We can do this because the globe never moves. Only our camera moves.</p>
 }
 </code></pre>
 <p>And this is what we get</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-elements-to-3d-globe-too-many-labels.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-elements-to-3d-globe-too-many-labels.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -696,13 +696,13 @@ We can do this because the globe never moves. Only our camera moves.</p>
 <li><p>There are too many labels.</p>
 </li>
 </ol>
-<p>For issue #1 we can&#39;t really use the <code translate="no">RayCaster</code> like we did above as there is
+<p>For issue #1 we can&#39;t really use the <code class="notranslate" translate="no">RayCaster</code> like we did above as there is
 nothing to intersect except the sphere. Instead what we can do is check if that
 particular country is facing away from us or not. This works because the label
 positions are around a sphere. In fact we&#39;re using a unit sphere, a sphere with
 a radius of 1.0. That means the positions are already unit directions making
 the math relatively easy.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const tempV = new THREE.Vector3();
 +const cameraToPoint = new THREE.Vector3();
 +const cameraPosition = new THREE.Vector3();
 +const normalMatrix = new THREE.Matrix3();
@@ -791,7 +791,7 @@ The data we&#39;re loading contains min and max values for the area a
 country covers. From that we can compute an area and then use that
 area to decide whether or not to display the country.</p>
 <p>At init time let&#39;s compute the area</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const labelParentElem = document.querySelector(&#39;#labels&#39;);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const labelParentElem = document.querySelector(&#39;#labels&#39;);
 for (const countryInfo of countryInfos) {
   const {lat, lon, min, max, name} = countryInfo;
 
@@ -820,7 +820,7 @@ for (const countryInfo of countryInfos) {
 </code></pre>
 <p>Then at render time let&#39;s use the area to decide to display the label
 or not</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">+const large = 20 * 20;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const large = 20 * 20;
 const maxVisibleDot = 0.2;
 // get a matrix that represents a relative orientation of the camera
 normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
@@ -839,11 +839,11 @@ for (const countryInfo of countryInfos) {
 </code></pre>
 <p>Finally, since I&#39;m not sure what good values are for these settings lets
 add a GUI so we can play with them</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 +import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
-<pre class="prettyprint" translate="no"><code class="lang-js">+const settings = {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const settings = {
 +  minArea: 20,
 +  maxVisibleDot: -0.2,
 +};
@@ -875,15 +875,15 @@ function updateLabels() {
     }
 </code></pre>
 <p>and here&#39;s the result</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-elements-to-3d-globe.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-elements-to-3d-globe.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
 <p>You can see as you rotate the earth labels that go behind disappear.
-Adjust the <code translate="no">minVisibleDot</code> to see the cutoff change.
-You can also adjust the <code translate="no">minArea</code> value to see larger or smaller countries
+Adjust the <code class="notranslate" translate="no">minVisibleDot</code> to see the cutoff change.
+You can also adjust the <code class="notranslate" translate="no">minArea</code> value to see larger or smaller countries
 appear.</p>
 <p>The more I worked on this the more I realized just how much
 work is put into Google Maps. They have also have to decide which labels to

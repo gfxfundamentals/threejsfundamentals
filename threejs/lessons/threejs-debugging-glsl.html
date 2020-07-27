@@ -217,7 +217,7 @@ Those are really large topics. If you want to learn GLSL consider checking out
 <p>When I&#39;m making a new GLSL shader and nothing appears generally
 the first thing I do is change the fragment shader to return a solid
 color. For example at the very bottom of the shader I might put</p>
-<pre class="prettyprint" translate="no"><code class="lang-glsl">void main() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">void main() {
 
   ...
 
@@ -231,7 +231,7 @@ I have a direction to look.</p>
 <p>To test some of those I might start trying to draw some of the inputs.
 For example if I&#39;m using normals in the fragment shader then I might
 add</p>
-<pre class="prettyprint" translate="no"><code class="lang-glsl">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
 </code></pre>
 <p>Normals go from -1 to +1 so by multiplying by 0.5 and adding 0.5 we get
 values that go from 0.0 to 1.0 which makes them useful for colors.</p>
@@ -244,27 +244,27 @@ result of that manipulation.</p>
 
 <p>Similarly if we&#39;re using textures there will be texture coordinates and we
 can draw them with something like</p>
-<pre class="prettyprint" translate="no"><code class="lang-glsl">gl_FragColor = vec4(fract(vUv), 0, 1);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(fract(vUv), 0, 1);
 </code></pre>
-<p>The <code translate="no">fract</code> is there in case we&#39;re using texture coordinates that go outside
-the 0 to 1 range. This is common if <code translate="no">texture.repeat</code> is set to something greater
+<p>The <code class="notranslate" translate="no">fract</code> is there in case we&#39;re using texture coordinates that go outside
+the 0 to 1 range. This is common if <code class="notranslate" translate="no">texture.repeat</code> is set to something greater
 than 1.</p>
 <div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 <p>You can do similar things for all values in your fragment shader. Figure out
-what their range is likely to be, add some code to set <code translate="no">gl_FragColor</code> with
+what their range is likely to be, add some code to set <code class="notranslate" translate="no">gl_FragColor</code> with
 that range scaled to 0.0 to 1.0</p>
-<p>To check textures try a <code translate="no">CanvasTexture</code> or a <code translate="no">DataTexture</code> that you 
+<p>To check textures try a <code class="notranslate" translate="no">CanvasTexture</code> or a <code class="notranslate" translate="no">DataTexture</code> that you 
 know works.</p>
-<p>Conversely, if after setting <code translate="no">gl_FragColor</code> to red I still see nothing
+<p>Conversely, if after setting <code class="notranslate" translate="no">gl_FragColor</code> to red I still see nothing
 then I have a hint my issue might be in the direction of the things
 related to the vertex shader. Some matrices might be wrong or my
 attributes might have bad data or be setup incorrectly.</p>
 <p>I&#39;d first look at the matrices. I might put a breakpoint right after
-my call to <code translate="no">renderer.render(scene, camera)</code> and then start expanding
+my call to <code class="notranslate" translate="no">renderer.render(scene, camera)</code> and then start expanding
 things in the inspector. Is the camera&#39;s world matrix and projection
-matrix at least not full of <code translate="no">NaN</code>s? Expanding the scene and looking
-at its <code translate="no">children</code> I&#39;d check that the world matrices look reasonable (no <code translate="no">NaN</code>s)
+matrix at least not full of <code class="notranslate" translate="no">NaN</code>s? Expanding the scene and looking
+at its <code class="notranslate" translate="no">children</code> I&#39;d check that the world matrices look reasonable (no <code class="notranslate" translate="no">NaN</code>s)
 and last 4 values of each matrix look reasonable for my scene. If I 
 expect my scene to be 50x50x50 units and some matrix shows 552352623.123 
 clearly something is wrong there.</p>
@@ -274,15 +274,15 @@ clearly something is wrong there.</p>
 vertex shader by passing them to the fragment shader. Declare a varying
 in both and pass the value you&#39;re not sure is correct. In fact if my
 shader use using normals I&#39;ll change the fragment shader to display them
-like is mentioned above and then just set <code translate="no">vNormal</code> to the value I want 
+like is mentioned above and then just set <code class="notranslate" translate="no">vNormal</code> to the value I want 
 to display but scaled so the values go from 0.0 to 1.0. I then look at the
 results and see if they fit my expectations.</p>
 <p>Another good thing to do is use a simpler shader. Can you draw your data
-with <code translate="no">MeshBasicMaterial</code>? If you can then try it and make sure it shows
+with <code class="notranslate" translate="no">MeshBasicMaterial</code>? If you can then try it and make sure it shows
 up as expected.</p>
 <p>If not what&#39;s the simplest vertex shader that will let you visualize your
 geometry? Usually it&#39;s as simple as</p>
-<pre class="prettyprint" translate="no"><code class="lang-glsl">gl_Position = projection * modelView * vec4(position.xyz, 1);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_Position = projection * modelView * vec4(position.xyz, 1);
 </code></pre>
 <p>If that works start adding in your changes a little at a time.</p>
 <p>Yet another thing you can do is use the

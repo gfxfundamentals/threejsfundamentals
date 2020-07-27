@@ -215,9 +215,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Если вы её еще не читали, советую вам сделать это.</p>
 <p>Давайте поговорим о камерах в three.js. Мы рассмотрели некоторые из них в <a href="threejs-fundamentals.html">первой статье</a> 
 , но мы расскажем здесь об этом более подробно.</p>
-<p>Самая распространенная камера в Three.js и та, которую мы использовали до этого момента, - <code translate="no">PerspectiveCamera</code>. 
+<p>Самая распространенная камера в Three.js и та, которую мы использовали до этого момента, - <code class="notranslate" translate="no">PerspectiveCamera</code>. 
 Она дает трехмерный вид, где вещи на расстоянии кажутся меньше, чем вещи рядом.</p>
-<p><code translate="no">PerspectiveCamera</code> определяет <em>frustum</em>. <a href="https://ru.wikipedia.org/wiki/Усечённая_пирамида"><em>Frustum</em> - усеченная пирамида, твердое тело</a>. 
+<p><code class="notranslate" translate="no">PerspectiveCamera</code> определяет <em>frustum</em>. <a href="https://ru.wikipedia.org/wiki/Усечённая_пирамида"><em>Frustum</em> - усеченная пирамида, твердое тело</a>. 
 Под твердым телом я подразумеваю, например, куб, конус, сферу, 
 цилиндр и усеченный конус - все названия различных видов твердых тел.</p>
 <div class="spread">
@@ -231,19 +231,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Я только указываю на это, потому что я не знал это в течение многих лет. 
 Если в какой-нибудь книге или на веб странице будет упоминание <em>frustum</em> я закатывал глаза. 
 Понимание того, что это название сплошной формы, сделало эти описания внезапно более понятными &#128517;</p>
-<p>A <code translate="no">PerspectiveCamera</code>определяет свой frustum на основе 4 свойств. <code translate="no">near</code> определяет, 
-где начинается фронт усечения. <code translate="no">far</code> определяет, где он заканчивается. <code translate="no">fov</code>поле обзора 
+<p>A <code class="notranslate" translate="no">PerspectiveCamera</code>определяет свой frustum на основе 4 свойств. <code class="notranslate" translate="no">near</code> определяет, 
+где начинается фронт усечения. <code class="notranslate" translate="no">far</code> определяет, где он заканчивается. <code class="notranslate" translate="no">fov</code>поле обзора 
 определяет высоту передней и задней частей усеченного конуса, вычисляя правильную высоту, 
-чтобы получить указанное поле обзора в <code translate="no">near</code> единицах измерения от камеры. <code translate="no">aspect</code> определяет, 
+чтобы получить указанное поле обзора в <code class="notranslate" translate="no">near</code> единицах измерения от камеры. <code class="notranslate" translate="no">aspect</code> определяет, 
 насколько широким передние и задняя часть усеченного есть. Ширина усеченного конуса - 
 это просто высота, умноженная на aspect.</p>
 <p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
 <p>Давайте используем сцену из <a href="threejs-lights.html">предыдущей статьи</a> которая имеет плоскость 
 земли, сферу и куб, и сделаем так, чтобы мы могли регулировать настройки камеры</p>
-<p>Для этого мы сделаем <code translate="no">MinMaxGUIHelper</code> для параметров <code translate="no">near</code> и <code translate="no">far</code>, так чтобы <code translate="no">far</code> 
-всегда был больше, чем <code translate="no">near</code>. У него будут свойства <code translate="no">min</code> и <code translate="no">max</code>, которые dat.GUI будет 
+<p>Для этого мы сделаем <code class="notranslate" translate="no">MinMaxGUIHelper</code> для параметров <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>, так чтобы <code class="notranslate" translate="no">far</code> 
+всегда был больше, чем <code class="notranslate" translate="no">near</code>. У него будут свойства <code class="notranslate" translate="no">min</code> и <code class="notranslate" translate="no">max</code>, которые dat.GUI будет 
 настраивать. После настройки они установят 2 свойства, которые мы указываем.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">class MinMaxGUIHelper {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class MinMaxGUIHelper {
   constructor(obj, minProp, maxProp, minDif) {
     this.obj = obj;
     this.minProp = minProp;
@@ -267,7 +267,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 </code></pre>
 <p>Теперь мы можем настроить наш графический интерфейс следующим образом</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function updateCamera() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
@@ -278,16 +278,16 @@ gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onCha
 gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChange(updateCamera);
 </code></pre>
 <p>Каждый раз, когда меняются настройки камеры, нам нужно вызывать функцию камеры 
-<a href="PerspectiveCamera.updateProjectionMatrix"><code translate="no">updateProjectionMatrix</code></a> поэтому мы сделали 
-функцию <code translate="no">updateCamera</code> передав ее в dat.GUI, чтобы вызывать ее, когда что-то меняется.</p>
-<p><div translate="no" class="threejs_example_container">
+<a href="PerspectiveCamera.updateProjectionMatrix"><code class="notranslate" translate="no">updateProjectionMatrix</code></a> поэтому мы сделали 
+функцию <code class="notranslate" translate="no">updateCamera</code> передав ее в dat.GUI, чтобы вызывать ее, когда что-то меняется.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-perspective.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-perspective.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
 <p>Вы можете просто значения и посмотреть, как они работают. Обратите внимание, что мы не делали 
-<code translate="no">aspect</code> сеттер, так как aspect взят из размера окна, поэтому, если вы хотите настроить aspect, 
+<code class="notranslate" translate="no">aspect</code> сеттер, так как aspect взят из размера окна, поэтому, если вы хотите настроить aspect, 
 откройте пример в новом окне, а затем измените размер окна.</p>
 <p>Тем не менее, я думаю, что это немного трудно увидеть, поэтому давайте изменим пример, чтобы он имел 2 камеры. 
 Один покажет нашу сцену, как мы видим ее выше, другой покажет другую камеру, смотрящую на сцену, 
@@ -295,8 +295,8 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
 <p>Для этого мы можем использовать функцию ножниц (scissor) Three.js. Давайте изменим это, чтобы 
 нарисовать 2 сцены с 2 камерами рядом, используя функцию scissor</p>
 <p>Для начала давайте используем HTML и CSS, чтобы определить 2 элемента рядом друг с другом. 
-Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные <code translate="no">OrbitControls</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;body&gt;
+Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные <code class="notranslate" translate="no">OrbitControls</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +  &lt;div class=&quot;split&quot;&gt;
 +     &lt;div id=&quot;view1&quot; tabindex=&quot;1&quot;&gt;&lt;/div&gt;
@@ -306,7 +306,7 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
 </code></pre>
 <p>Для начала давайте используем HTML и CSS, чтобы расположить 2 элемента рядом друг с другом. 
 Это также поможет нам с событиями, так что обе камеры могут иметь свои собственные</p>
-<pre class="prettyprint" translate="no"><code class="lang-css">.split {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">.split {
   position: absolute;
   left: 0;
   top: 0;
@@ -319,26 +319,26 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
   height: 100%;
 }
 </code></pre>
-<p>Затем в нашем коде мы добавим <code translate="no">CameraHelper</code>. <code translate="no">CameraHelper</code> рисует frustum для <code translate="no">Camera</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
+<p>Затем в нашем коде мы добавим <code class="notranslate" translate="no">CameraHelper</code>. <code class="notranslate" translate="no">CameraHelper</code> рисует frustum для <code class="notranslate" translate="no">Camera</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
 
 ...
 
 scene.add(cameraHelper);
 </code></pre>
 <p>Теперь давайте посмотрим на 2 элемента view.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;); 
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;); 
 const view2Elem = document.querySelector(&#39;#view2&#39;);
 </code></pre>
-<p>И мы установим нашу существующую <code translate="no">OrbitControls</code> так, чтобы она отвечала 
+<p>И мы установим нашу существующую <code class="notranslate" translate="no">OrbitControls</code> так, чтобы она отвечала 
 только за первый элемент представления.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const controls = new OrbitControls(camera, canvas);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const controls = new OrbitControls(camera, canvas);
 +const controls = new OrbitControls(camera, view1Elem);
 </code></pre>
-<p>Создадим вторую <code translate="no">PerspectiveCamera</code> и вторую <code translate="no">OrbitControls</code>.
-Вторая <code translate="no">OrbitControls</code> привязана ко второй камере и получает 
+<p>Создадим вторую <code class="notranslate" translate="no">PerspectiveCamera</code> и вторую <code class="notranslate" translate="no">OrbitControls</code>.
+Вторая <code class="notranslate" translate="no">OrbitControls</code> привязана ко второй камере и получает 
 ввод от второго элемента view.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
   60,  // fov
   2,   // aspect
   0.1, // near
@@ -356,7 +356,7 @@ controls2.update();
 <p>Вот функция, которая для данного элемента будет вычислять прямоугольник этого 
 элемента, который перекрывает холст. Затем он установит плоскость отсечения (scissor) и область 
 просмотра (fov) в этот прямоугольник и вернет aspect для этого размера.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function setScissorForElement(elem) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function setScissorForElement(elem) {
   const canvasRect = canvas.getBoundingClientRect();
   const elemRect = elem.getBoundingClientRect();
 
@@ -377,8 +377,8 @@ controls2.update();
   return width / height;
 }
 </code></pre>
-<p>И теперь мы можем использовать эту функцию, чтобы нарисовать сцену дважды в нашей функции <code translate="no">render</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">  function render() {
+<p>И теперь мы можем использовать эту функцию, чтобы нарисовать сцену дважды в нашей функции <code class="notranslate" translate="no">render</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">  function render() {
 
 -    if (resizeRendererToDisplaySize(renderer)) {
 -      const canvas = renderer.domElement;
@@ -435,8 +435,8 @@ controls2.update();
 </code></pre>
 <p>Приведенный выше код устанавливает цвет фона сцены при рендеринге 
 второго представления темно-синим, чтобы было проще различать два представления.</p>
-<p>Мы также можем удалить наш <code translate="no">updateCamera</code> код, так как мы обновляем все в функции <code translate="no">render</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-function updateCamera() {
+<p>Мы также можем удалить наш <code class="notranslate" translate="no">updateCamera</code> код, так как мы обновляем все в функции <code class="notranslate" translate="no">render</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function updateCamera() {
 -  camera.updateProjectionMatrix();
 -}
 
@@ -450,7 +450,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
 +gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;);
 </code></pre>
 <p>И теперь вы можете использовать один вид, чтобы увидеть frustum другого.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-perspective-2-scenes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-perspective-2-scenes.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -458,21 +458,21 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
 </p>
 <p>Слева вы можете увидеть исходный вид, а справа вы можете увидеть вид, 
 показывающий frustum камеры слева. Можно настроить 
-<code translate="no">near</code>, <code translate="no">far</code>, <code translate="no">fov</code> и перемещать камеру с помощью мыши. Вы можете увидеть, 
+<code class="notranslate" translate="no">near</code>, <code class="notranslate" translate="no">far</code>, <code class="notranslate" translate="no">fov</code> и перемещать камеру с помощью мыши. Вы можете увидеть, 
 как то, что внутри frustum, показаное справа, появляется на сцене слева.</p>
-<p>Отрегулируйте <code translate="no">near</code> примерно до 20, и вы легко увидите, как передние 
+<p>Отрегулируйте <code class="notranslate" translate="no">near</code> примерно до 20, и вы легко увидите, как передние 
 объекты исчезают, поскольку их больше нет в усеченном конусе. 
-Отрегулируйте <code translate="no">far</code> ниже примерно 35, и вы начнете видеть, 
+Отрегулируйте <code class="notranslate" translate="no">far</code> ниже примерно 35, и вы начнете видеть, 
 что наземная плоскость исчезает, поскольку она больше не находится 
 в не усеченной области.</p>
-<p>Возникает вопрос, почему бы просто не установить <code translate="no">near</code> значение 0,0000000001 и <code translate="no">far</code>
+<p>Возникает вопрос, почему бы просто не установить <code class="notranslate" translate="no">near</code> значение 0,0000000001 и <code class="notranslate" translate="no">far</code>
 10000000000000 или что-то в этом роде, чтобы вы могли видеть все? Причина в том, что 
 ваш GPU имеет столько точности, чтобы решить, находится ли что-то впереди или 
 позади чего-то другого. Эта точность распределена между
-<code translate="no">near</code> и <code translate="no">far</code>. Хуже того, по умолчанию точность закрытия камеры детализирована (резкое отсечение), 
-а точность далеко от камеры - конечна. <code translate="no">near</code> медленно расширяется по мере приближения <code translate="no">far</code>.</p>
+<code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>. Хуже того, по умолчанию точность закрытия камеры детализирована (резкое отсечение), 
+а точность далеко от камеры - конечна. <code class="notranslate" translate="no">near</code> медленно расширяется по мере приближения <code class="notranslate" translate="no">far</code>.</p>
 <p>Начиная с верхнего примера, давайте изменим код, вставив 20 сфер в ряд.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
@@ -487,8 +487,8 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
   }
 }
 </code></pre>
-<p>и давайте установим <code translate="no">near</code> = 0.00001</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const fov = 45;
+<p>и давайте установим <code class="notranslate" translate="no">near</code> = 0.00001</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 45;
 const aspect = 2;  // the canvas default
 -const near = 0.1;
 +const near = 0.00001;
@@ -497,11 +497,11 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre>
 <p>Нам также нужно немного подправить код графического интерфейса, 
 чтобы позволить 0.00001, если значение редактируется</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
 +gui.add(minMaxGUIHelper, &#39;min&#39;, 0.00001, 50, 0.00001).name(&#39;near&#39;).onChange(updateCamera);
 </code></pre>
 <p>Как ты думаешь, что произойдет?</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-z-fighting.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-z-fighting.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -514,15 +514,15 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 <p>Одно из решений состоит в том, чтобы указать использование three.js другому методу для вычисления того, 
 какие пиксели находятся спереди, а какие - сзади. Мы можем сделать это, включив,
-<code translate="no">logarithmicDepthBuffer</code> когда мы создаем <code translate="no">WebGLRenderer</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas});
+<code class="notranslate" translate="no">logarithmicDepthBuffer</code> когда мы создаем <code class="notranslate" translate="no">WebGLRenderer</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas});
 +const renderer = new THREE.WebGLRenderer({
 +  canvas,
 +  logarithmicDepthBuffer: true,
 +});
 </code></pre>
 <p>и с этим это может работать</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-logarithmic-depth-buffer.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-logarithmic-depth-buffer.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -535,26 +535,26 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 делают большинство настольных компьютеров.</p>
 <p>Другая причина не выбирать это решение - оно может быть значительно медленнее, 
 чем стандартное решение.</p>
-<p>Даже при таком решении разрешение все еще ограничено. Сделайте <code translate="no">near</code> еще меньше или 
-<code translate="no">far</code> больше, и вы в конечном итоге столкнетесь с теми же проблемами.</p>
-<p>Это означает, что вы всегда должны прилагать усилия к тому, чтобы выбрать параметр <code translate="no">near</code>
-и <code translate="no">far</code>, которые соответствуют вашему варианту использования. 
-Установите <code translate="no">near</code> как можно дальше от камеры, чтобы все не исчезло. 
-Установите <code translate="no">far</code> как можно ближе к камере, чтобы все не исчезло. Если вы пытаетесь 
+<p>Даже при таком решении разрешение все еще ограничено. Сделайте <code class="notranslate" translate="no">near</code> еще меньше или 
+<code class="notranslate" translate="no">far</code> больше, и вы в конечном итоге столкнетесь с теми же проблемами.</p>
+<p>Это означает, что вы всегда должны прилагать усилия к тому, чтобы выбрать параметр <code class="notranslate" translate="no">near</code>
+и <code class="notranslate" translate="no">far</code>, которые соответствуют вашему варианту использования. 
+Установите <code class="notranslate" translate="no">near</code> как можно дальше от камеры, чтобы все не исчезло. 
+Установите <code class="notranslate" translate="no">far</code> как можно ближе к камере, чтобы все не исчезло. Если вы пытаетесь 
 нарисовать гигантскую сцену и показать крупным планом чье-то лицо, чтобы вы 
 могли видеть их ресницы, в то время как на заднем плане вы можете видеть весь 
 путь в горы на расстоянии 50 километров, тогда вам нужно будет найти другое 
 креативные решения, которые, возможно, мы рассмотрим позже. На данный момент, 
 просто знайте, что вы должны позаботиться о том, чтобы выбрать подходящие 
-<code translate="no">near</code> и <code translate="no">far</code> для ваших нужд.</p>
-<p>2-ая ​​самая распространенная камера - <code translate="no">OrthographicCamera</code>. Вместо того, 
+<code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> для ваших нужд.</p>
+<p>2-ая ​​самая распространенная камера - <code class="notranslate" translate="no">OrthographicCamera</code>. Вместо того, 
 чтобы указать frustum он указывает прямоугольный паралелепипед (box) 
-с параметрами <code translate="no">left</code>, <code translate="no">right</code>, <code translate="no">top</code>, <code translate="no">bottom</code>, <code translate="no">near</code>, и <code translate="no">far</code>. 
+с параметрами <code class="notranslate" translate="no">left</code>, <code class="notranslate" translate="no">right</code>, <code class="notranslate" translate="no">top</code>, <code class="notranslate" translate="no">bottom</code>, <code class="notranslate" translate="no">near</code>, и <code class="notranslate" translate="no">far</code>. 
 Поскольку он проецирует box, перспективы нет.</p>
-<p>Давайте изменим приведенный выше пример 2 для использования <code translate="no">OrthographicCamera</code> 
+<p>Давайте изменим приведенный выше пример 2 для использования <code class="notranslate" translate="no">OrthographicCamera</code> 
 в первом представлении.</p>
-<p>Сначала давайте настроим <code translate="no">OrthographicCamera</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const left = -1;
+<p>Сначала давайте настроим <code class="notranslate" translate="no">OrthographicCamera</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const left = -1;
 const right = 1;
 const top = 1;
 const bottom = -1;
@@ -563,20 +563,20 @@ const far = 50;
 const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
 camera.zoom = 0.2;
 </code></pre>
-<p>Мы устанавливаем <code translate="no">left</code> и <code translate="no">bottom</code> = -1 и <code translate="no">right</code> и <code translate="no">top</code> = 1. Это сделало бы 
-прямоугольник шириной 2 единицы и высотой 2 единицы, но мы собираемся отрегулировать <code translate="no">left</code> и <code translate="no">top</code> 
+<p>Мы устанавливаем <code class="notranslate" translate="no">left</code> и <code class="notranslate" translate="no">bottom</code> = -1 и <code class="notranslate" translate="no">right</code> и <code class="notranslate" translate="no">top</code> = 1. Это сделало бы 
+прямоугольник шириной 2 единицы и высотой 2 единицы, но мы собираемся отрегулировать <code class="notranslate" translate="no">left</code> и <code class="notranslate" translate="no">top</code> 
 в соответствии со отношением сторон прямоугольника, к которому мы рисуем. 
-Мы будем использовать свойство <code translate="no">zoom</code>, чтобы упростить настройку количества единиц, отображаемых камерой.</p>
-<p>Давайте добавим настройки GUI для <code translate="no">zoom</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const gui = new GUI();
+Мы будем использовать свойство <code class="notranslate" translate="no">zoom</code>, чтобы упростить настройку количества единиц, отображаемых камерой.</p>
+<p>Давайте добавим настройки GUI для <code class="notranslate" translate="no">zoom</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
 +gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
 </code></pre>
-<p>Вызовем <code translate="no">listen</code> говорящий dat.GUI следить за изменениями. 
-Потому что <code translate="no">OrbitControls</code> также может управлять масштабированием. 
-Например, колесо прокрутки на мыши будет масштабироваться с помощью <code translate="no">OrbitControls</code>.</p>
+<p>Вызовем <code class="notranslate" translate="no">listen</code> говорящий dat.GUI следить за изменениями. 
+Потому что <code class="notranslate" translate="no">OrbitControls</code> также может управлять масштабированием. 
+Например, колесо прокрутки на мыши будет масштабироваться с помощью <code class="notranslate" translate="no">OrbitControls</code>.</p>
 <p>Наконец, нам просто нужно изменить часть, которая отображает левую сторону, 
-чтобы обновить <code translate="no">OrthographicCamera</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+чтобы обновить <code class="notranslate" translate="no">OrthographicCamera</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const aspect = setScissorForElement(view1Elem);
 
   // обновить камеру для этого соотношения сторон
@@ -593,19 +593,19 @@ camera.zoom = 0.2;
   renderer.render(scene, camera);
 }
 </code></pre>
-<p>и теперь вы можете увидеть <code translate="no">OrthographicCamera</code> в работе.</p>
-<p><div translate="no" class="threejs_example_container">
+<p>и теперь вы можете увидеть <code class="notranslate" translate="no">OrthographicCamera</code> в работе.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-orthographic-2-scenes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-orthographic-2-scenes.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
-<p><code translate="no">OrthographicCamera</code> чаще всего используется для рисования 2D-объектов. 
+<p><code class="notranslate" translate="no">OrthographicCamera</code> чаще всего используется для рисования 2D-объектов. 
 Вы решаете, сколько единиц вы хотите, чтобы камера показывала. Например, 
 если вы хотите, чтобы один пиксель холста соответствовал одному элементу 
 камеры, вы можете сделать что-то вроде:</p>
 <p>Поместить начало координат в центр и иметь 1 пиксель = 1 единицу three.js что-то вроде:</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">camera.left = -canvas.width / 2;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">camera.left = -canvas.width / 2;
 camera.right = canvas.width / 2;
 camera.top = canvas.heigth / 2;
 camera.bottom = -canvas.height / 2;
@@ -615,7 +615,7 @@ camera.zoom = 1;
 </code></pre>
 <p>Или, если бы мы хотели, чтобы источник находился в верхнем левом углу, 
 как 2D-холст, мы могли бы использовать это</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">camera.left = 0;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">camera.left = 0;
 camera.right = canvas.width;
 camera.top = 0;
 camera.bottom = canvas.height;
@@ -625,7 +625,7 @@ camera.zoom = 1;
 </code></pre>
 <p>В этом случае верхний левый угол будет 0,0, как 2D холст</p>
 <p>Давай попробуем! Сначала давайте настроим камеру</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const left = 0;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const left = 0;
 const right = 300;  // default canvas size
 const top = 0;
 const bottom = 150;  // default canvas size
@@ -635,9 +635,9 @@ const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far)
 camera.zoom = 1;
 </code></pre>
 <p>Затем давайте загрузим 6 текстур и сделаем 6 плоскостей, по одной на каждую текстуру. 
-Мы будем привязывать каждую плоскость к <code translate="no">THREE.Object3D</code> чтобы было легче сместить плоскость, 
+Мы будем привязывать каждую плоскость к <code class="notranslate" translate="no">THREE.Object3D</code> чтобы было легче сместить плоскость, 
 чтобы ее центр находился в ее верхнем левом углу.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const loader = new THREE.TextureLoader();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const loader = new THREE.TextureLoader();
 const textures = [
   loader.load(&#39;../resources/images/flower-1.jpg&#39;),
   loader.load(&#39;../resources/images/flower-2.jpg&#39;),
@@ -664,7 +664,7 @@ const planes = textures.map((texture) =&gt; {
 });
 </code></pre>
 <p>и нам нужно обновить камеру, если размер холста изменится.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
 
   if (resizeRendererToDisplaySize(renderer)) {
     camera.right = canvas.width;
@@ -674,9 +674,9 @@ const planes = textures.map((texture) =&gt; {
 
   ...
 </code></pre>
-<p><code translate="no">planes</code> - массив <code translate="no">THREE.Mesh</code>, по одному для каждой плоскости. 
+<p><code class="notranslate" translate="no">planes</code> - массив <code class="notranslate" translate="no">THREE.Mesh</code>, по одному для каждой плоскости. 
 Давайте переместим их в зависимости от времени.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;  // конвертировать в секунды; 
 
   ...
@@ -709,13 +709,13 @@ const planes = textures.map((texture) =&gt; {
 </code></pre>
 <p>И вы можете видеть, как изображения отскакивают от пикселей идеально по краям холста, 
 используя пиксельную математику, как 2D холст</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-orthographic-canvas-top-left-origin.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-orthographic-canvas-top-left-origin.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
-<p>Другое распространенное использование <code translate="no">OrthographicCamera</code> для рисования - это отображение вверх, 
+<p>Другое распространенное использование <code class="notranslate" translate="no">OrthographicCamera</code> для рисования - это отображение вверх, 
 вниз, влево, вправо, спереди, сзади программ трехмерного моделирования или редактора игрового движка.</p>
 <div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 

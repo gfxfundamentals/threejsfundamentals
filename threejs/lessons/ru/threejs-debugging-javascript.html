@@ -223,11 +223,11 @@ THREE.js, а скорее об отладке JavaScript в целом.
 <a href="https://developer.mozilla.org/en-US/docs/Tools">Firefox</a>, 
 <a href="https://developer.apple.com/safari/tools/">Safari</a>, 
 <a href="https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide">Edge</a>.</p>
-<p>В Chrome вы можете кликнуть значок <code translate="no">⋮</code> , выбрать More Tools-&gt;Developer Tools
+<p>В Chrome вы можете кликнуть значок <code class="notranslate" translate="no">⋮</code> , выбрать More Tools-&gt;Developer Tools
 чтобы перейти к инструментам разработчика. Сочетание клавиш также показано там. </p>
 <div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
 
-<p>В Firefox вы кликаете значок <code translate="no">☰</code> , выбираете &quot;Web Developer&quot;, затем выбираете
+<p>В Firefox вы кликаете значок <code class="notranslate" translate="no">☰</code> , выбираете &quot;Web Developer&quot;, затем выбираете
 &quot;Toggle Tools&quot;</p>
 <div class="threejs_center"><img class="border" src="../resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
 
@@ -266,11 +266,11 @@ THREE.js, а скорее об отладке JavaScript в целом.
 <div class="threejs_center"><img class="border" src="../resources/images/devtools-errors.jpg" style="width: 779px"></div>
 
 <p>Я неправильно написал «three» как «threee» </p>
-<p>Вы также можете распечатать свою собственную информацию на консоли с помощью <code translate="no">console.log</code>, как в</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">console.log(someObject.position.x, someObject.position.y, someObject.position.z);
+<p>Вы также можете распечатать свою собственную информацию на консоли с помощью <code class="notranslate" translate="no">console.log</code>, как в</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">console.log(someObject.position.x, someObject.position.y, someObject.position.z);
 </code></pre>
 <p>Даже круче, если вы регистрируете объект, вы можете инспектировать его. Например, если мы регистрируем объект корневой сцены из <a href="threejs-load-gltf.html">статьи gLTF</a></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">  {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">  {
     const gltfLoader = new GLTFLoader();
     gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
       const root = gltf.scene;
@@ -280,11 +280,11 @@ THREE.js, а скорее об отладке JavaScript в целом.
 <p>Затем мы можем развернуть этот объект в консоли JavaScript </p>
 <div class="threejs_center"><img class="border" src="../resources/images/devtools-console-object.gif"></div>
 
-<p>Вы также можете использовать <code translate="no">console.error</code>, который сообщает, что сообщение красным цветом включает в себя трассировку стека.</p>
+<p>Вы также можете использовать <code class="notranslate" translate="no">console.error</code>, который сообщает, что сообщение красным цветом включает в себя трассировку стека.</p>
 <h2 id="-">Поместить данные на экран</h2>
-<p>Другой очевидный, но часто упускаемый из виду способ - добавить теги <code translate="no">&lt;div&gt;</code> или <code translate="no">&lt;pre&gt;</code> и поместить в них данные. </p>
+<p>Другой очевидный, но часто упускаемый из виду способ - добавить теги <code class="notranslate" translate="no">&lt;div&gt;</code> или <code class="notranslate" translate="no">&lt;pre&gt;</code> и поместить в них данные. </p>
 <p>Самый очевидный способ - сделать некоторые элементы HTML </p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +&lt;div id=&quot;debug&quot;&gt;
 +  &lt;div&gt;x:&lt;span id=&quot;x&quot;&gt;&lt;/span&gt;&lt;/div&gt;
 +  &lt;div&gt;y:&lt;span id=&quot;y&quot;&gt;&lt;/span&gt;&lt;/div&gt;
@@ -292,7 +292,7 @@ THREE.js, а скорее об отладке JavaScript в целом.
 +&lt;/div&gt;
 </code></pre>
 <p>Разместите стиле вверху холста. (при условии, что ваш холст заполняет страницу)</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;style&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;style&gt;
 #debug {
   position: absolute;
   left: 1em;
@@ -305,7 +305,7 @@ THREE.js, а скорее об отладке JavaScript в целом.
 &lt;/style&gt;
 </code></pre>
 <p>А затем найдите элементы и настройте их содержимое.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">// at init time
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// at init time
 const xElem = document.querySelector(&#39;#x&#39;);
 const yElem = document.querySelector(&#39;#y&#39;);
 const zElem = document.querySelector(&#39;#z&#39;);
@@ -316,7 +316,7 @@ yElem.textContent = someObject.position.y.toFixed(3);
 zElem.textContent = someObject.position.z.toFixed(3);
 </code></pre>
 <p>Это более полезно для значений в реальном времени</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debug-js-html-elements.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-debug-js-html-elements.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -329,13 +329,13 @@ zElem.textContent = someObject.position.z.toFixed(3);
 вызывает некоторую функцию для добавления данных в этот буфер каждый кадр. 
 Это гораздо меньше работы, чем создание элемента на часть данных выше. </p>
 <p>Например, давайте изменим HTML сверху только на это</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;div id=&quot;debug&quot;&gt;
   &lt;pre&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </code></pre>
 <p>И давайте создадим простой класс для управления этим <em>буфером очистки</em>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">class ClearingLogger {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class ClearingLogger {
   constructor(elem) {
     this.elem = elem;
     this.lines = [];
@@ -353,7 +353,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 создает сетку, которая движется в произвольном направлении в течение 2 секунд.
 Мы начнем с одного из примеров из статьи о  <a href="threejs-responsive.html">том, как сделать вещи отзывчивыми</a></p>
 <p>Вот код, который добавляет новую сетку каждый раз, когда мы щелкаем мышью</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry();
 const material = new THREE.MeshBasicMaterial({color: &#39;red&#39;});
 
 const things = [];
@@ -379,7 +379,7 @@ function createThing() {
 canvas.addEventListener(&#39;click&#39;, createThing);
 </code></pre>
 <p>А вот код, который перемещает созданные нами meshes, регистрирует их и удаляет их, когда у них заканчивается таймер </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const logger = new ClearingLogger(document.querySelector(&#39;#debug pre&#39;));
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const logger = new ClearingLogger(document.querySelector(&#39;#debug pre&#39;));
 
 let then = 0;
 function render(now) {
@@ -416,7 +416,7 @@ function render(now) {
 }
 </code></pre>
 <p>Теперь кликните мышкой в примере ниже. </p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debug-js-clearing-logger.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-debug-js-clearing-logger.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -424,11 +424,11 @@ function render(now) {
 </p>
 <h2 id="-">Параметры запроса</h2>
 <p>Следует также помнить, что на веб-страницах могут передаваться данные либо через параметры запроса, либо через привязку, иногда называемую поиском и хэшем.</p>
-<pre class="prettyprint" translate="no"><code translate="no">https://domain/path/?query#anchor
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">https://domain/path/?query#anchor
 </code></pre><p>Вы можете использовать это, чтобы сделать функции необязательными или передать параметры.</p>
-<p>Например, давайте возьмем предыдущий пример и сделаем так, чтобы материал отладки отображался только в том случае, если мы добавили <code translate="no">?debug=true</code> в URL.</p>
+<p>Например, давайте возьмем предыдущий пример и сделаем так, чтобы материал отладки отображался только в том случае, если мы добавили <code class="notranslate" translate="no">?debug=true</code> в URL.</p>
 <p>Сначала нам нужен код для разбора строки запроса</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">/**
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">/**
   * Returns the query parameters as a key/value object. 
   * Example: If the query parameters are
   *
@@ -447,13 +447,13 @@ function getQuery() {
 }
 </code></pre>
 <p>Тогда мы можем сделать элемент отладки скрытым по умолчанию</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +&lt;div id=&quot;debug&quot; style=&quot;display: none;&quot;&gt;
   &lt;pre&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Затем в коде мы читаем параметры и выбираем не скрывать отладочную информацию тогда и только тогда, когда передается <code translate="no">?debug=true</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const query = getQuery();
+<p>Затем в коде мы читаем параметры и выбираем не скрывать отладочную информацию тогда и только тогда, когда передается <code class="notranslate" translate="no">?debug=true</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const query = getQuery();
 const debug = query.debug === &#39;true&#39;;
 const logger = debug
    ? new ClearingLogger(document.querySelector(&#39;#debug pre&#39;))
@@ -462,8 +462,8 @@ if (debug) {
   document.querySelector(&#39;#debug&#39;).style.display = &#39;&#39;;
 }
 </code></pre>
-<p>Мы также создали <code translate="no">DummyLogger</code>, который ничего не делает, и решили использовать его, если <code translate="no">?debug=true</code> не был передан. </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">class DummyLogger {
+<p>Мы также создали <code class="notranslate" translate="no">DummyLogger</code>, который ничего не делает, и решили использовать его, если <code class="notranslate" translate="no">?debug=true</code> не был передан. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class DummyLogger {
   log() {}
   render() {}
 }
@@ -473,8 +473,8 @@ if (debug) {
 <p>отладочной информации нет, но если мы используем этот URL:</p>
 <p><a target="_blank" href="../../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a></p>
 <p>есть отладочная информация..</p>
-<p>Несколько параметров можно передать, разделив их символом  &#39;&amp;&#39; как в <code translate="no">somepage.html?someparam=somevalue&amp;someotherparam=someothervalue</code>. 
-Используя такие параметры, мы можем передавать все виды опций. Может быть <code translate="no">speed=0.01</code> чтобы замедлить наше приложение для облегчения понимания чего-либо, или <code translate="no">showHelpers=true</code>
+<p>Несколько параметров можно передать, разделив их символом  &#39;&amp;&#39; как в <code class="notranslate" translate="no">somepage.html?someparam=somevalue&amp;someotherparam=someothervalue</code>. 
+Используя такие параметры, мы можем передавать все виды опций. Может быть <code class="notranslate" translate="no">speed=0.01</code> чтобы замедлить наше приложение для облегчения понимания чего-либо, или <code class="notranslate" translate="no">showHelpers=true</code>
 для того, чтобы добавлять или нет помощников, которые показывают свет, тень или усечение камеры, рассматриваемые в других уроках. </p>
 <h2 id="-">Научитесь пользоваться отладчиком</h2>
 <p>В каждом браузере есть отладчик, в котором вы можете останавливать
@@ -485,41 +485,41 @@ if (debug) {
 <li><a href="https://javascript.info/debugging-chrome">Debugging in Chrome</a></li>
 <li><a href="https://hackernoon.com/tips-and-tricks-for-debugging-in-chrome-developer-tools-458ade27c7ab">Tips and Tricks for Debugging in Chrome Developer Tools</a></li>
 </ul>
-<h2 id="-nan-">Проверьте <code translate="no">NaN</code> в отладчике или в другом месте</h2>
-<p><code translate="no">NaN</code> это сокращение от Not A Number. 
+<h2 id="-nan-">Проверьте <code class="notranslate" translate="no">NaN</code> в отладчике или в другом месте</h2>
+<p><code class="notranslate" translate="no">NaN</code> это сокращение от Not A Number. 
 Это то, что JavaScript будет назначать в качестве значения, когда вы делаете что-то, что не имеет смысла математически. </p>
 <p>В качестве простого примера</p>
 <div class="threejs_center"><img class="border" src="../resources/images/nan-banana.png" style="width: 180px;"></div>
 
 
 <p>Часто, когда я что-то делаю и на экране ничего не появляется,
-я проверяю некоторые значения, и если я вижу <code translate="no">NaN</code>, имеет место быть, чтобы начать поиск. </p>
+я проверяю некоторые значения, и если я вижу <code class="notranslate" translate="no">NaN</code>, имеет место быть, чтобы начать поиск. </p>
 <p>В качестве примера, когда я впервые начал создавать путь для
-<a href="threejs-load-gltf.html">статьи о загрузке файлов gLTF</a> я сделал кривую, используя класс <code translate="no">SplineCurve</code>, который создает 2D-кривую. </p>
+<a href="threejs-load-gltf.html">статьи о загрузке файлов gLTF</a> я сделал кривую, используя класс <code class="notranslate" translate="no">SplineCurve</code>, который создает 2D-кривую. </p>
 <p>Затем я использовал эту кривую, чтобы двигать автомобили</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">curve.getPointAt(zeroToOnePointOnCurve, car.position);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">curve.getPointAt(zeroToOnePointOnCurve, car.position);
 </code></pre>
-<p>Внутренне <code translate="no">curve.getPointAt</code> вызывает функцию <code translate="no">set</code> для объекта, переданного в качестве второго аргумента.
-В этом случае вторым аргументом является <code translate="no">car.position</code>, который является <code translate="no">Vector3</code>. 
- Функция <code translate="no">set</code> в <code translate="no">Vector3</code> требует 3 аргумента, x, y и z, но <code translate="no">SplineCurve</code> является 2D-кривой и поэтому вызывает <code translate="no">car.position.set</code> только с x и y. </p>
-<p>В результате <code translate="no">car.position.set</code> устанавливает x в x, y в y, а z в <code translate="no">undefined</code>.</p>
-<p>Беглый взгляд в отладчике <code translate="no">matrixWorld</code> автомобиля
-показал множество значений <code translate="no">NaN</code>. </p>
+<p>Внутренне <code class="notranslate" translate="no">curve.getPointAt</code> вызывает функцию <code class="notranslate" translate="no">set</code> для объекта, переданного в качестве второго аргумента.
+В этом случае вторым аргументом является <code class="notranslate" translate="no">car.position</code>, который является <code class="notranslate" translate="no">Vector3</code>. 
+ Функция <code class="notranslate" translate="no">set</code> в <code class="notranslate" translate="no">Vector3</code> требует 3 аргумента, x, y и z, но <code class="notranslate" translate="no">SplineCurve</code> является 2D-кривой и поэтому вызывает <code class="notranslate" translate="no">car.position.set</code> только с x и y. </p>
+<p>В результате <code class="notranslate" translate="no">car.position.set</code> устанавливает x в x, y в y, а z в <code class="notranslate" translate="no">undefined</code>.</p>
+<p>Беглый взгляд в отладчике <code class="notranslate" translate="no">matrixWorld</code> автомобиля
+показал множество значений <code class="notranslate" translate="no">NaN</code>. </p>
 <div class="threejs_center"><img class="border" src="../resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
-<p>Видя, что в матрице присутствуют <code translate="no">NaN</code> можно предположить что-то вроде <code translate="no">position</code>,
-<code translate="no">rotation</code>, <code translate="no">scale</code> или какой-либо другой функции, которая влияет на то, что в матрице содержались неверные данные.
+<p>Видя, что в матрице присутствуют <code class="notranslate" translate="no">NaN</code> можно предположить что-то вроде <code class="notranslate" translate="no">position</code>,
+<code class="notranslate" translate="no">rotation</code>, <code class="notranslate" translate="no">scale</code> или какой-либо другой функции, которая влияет на то, что в матрице содержались неверные данные.
 Работая в обратном направлении, было легко отследить проблему. </p>
-<p>В верхней части <code translate="no">NaN</code> есть также <code translate="no">Infinity</code>, что является аналогичным признаком того, что где-то есть математическая ошибка. </p>
+<p>В верхней части <code class="notranslate" translate="no">NaN</code> есть также <code class="notranslate" translate="no">Infinity</code>, что является аналогичным признаком того, что где-то есть математическая ошибка. </p>
 <h2 id="-">Смотри в коде!</h2>
 <p>THREE.js является открытым исходным кодом. Не бойтесь заглянуть внутрь кода! Вы можете заглянуть внутрь на  <a href="https://github.com/mrdoob/three.js">github</a>.
 Вы также можете заглянуть внутрь, войдя в функции в отладчике. 
-Когда вы сделаете это, рассмотрите возможность использования <code translate="no">three.js</code> вместо более распространенного <code translate="no">three.min.js</code>. 
-<code translate="no">three.min.js</code> - уменьшенная, сжатая и поэтому уменьшенная для загрузки версия. <code translate="no">three.js</code> - более крупная, но более простая в отладке версия. 
-Я часто переключаю свой код на использование <code translate="no">three.js</code>, чтобы пройтись по коду и посмотреть, что происходит. </p>
-<h2 id="-requestanimationframe-">Поместите <code translate="no">requestAnimationFrame</code> внизу вашей функции рендеринга.</h2>
+Когда вы сделаете это, рассмотрите возможность использования <code class="notranslate" translate="no">three.js</code> вместо более распространенного <code class="notranslate" translate="no">three.min.js</code>. 
+<code class="notranslate" translate="no">three.min.js</code> - уменьшенная, сжатая и поэтому уменьшенная для загрузки версия. <code class="notranslate" translate="no">three.js</code> - более крупная, но более простая в отладке версия. 
+Я часто переключаю свой код на использование <code class="notranslate" translate="no">three.js</code>, чтобы пройтись по коду и посмотреть, что происходит. </p>
+<h2 id="-requestanimationframe-">Поместите <code class="notranslate" translate="no">requestAnimationFrame</code> внизу вашей функции рендеринга.</h2>
 <p>Я часто вижу эту закономерность</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
    requestAnimationFrame(render);
 
    // -- do stuff --
@@ -528,8 +528,8 @@ if (debug) {
 }
 requestAnimationFrame(render);
 </code></pre>
-<p>Я бы предложил поместить вызов <code translate="no">requestAnimationFrame</code> внизу, как в</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render() {
+<p>Я бы предложил поместить вызов <code class="notranslate" translate="no">requestAnimationFrame</code> внизу, как в</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
    // -- do stuff --
 
    renderer.render(scene, camera);
@@ -539,7 +539,7 @@ requestAnimationFrame(render);
 requestAnimationFrame(render);
 </code></pre>
 <p>Основная причина в том, что ваш код остановится – возникновение ошибки. 
-Помещение <code translate="no">requestAnimationFrame</code> вверху означает, что ваш код будет продолжать работать, 
+Помещение <code class="notranslate" translate="no">requestAnimationFrame</code> вверху означает, что ваш код будет продолжать работать, 
 даже если у вас есть ошибка, так как вы уже запросили другой кадр.  Лучше найти эти ошибки, чем игнорировать их.
 Они могут быть причиной того, что что-то не появляется так, как вы ожидаете, но если ваш код не остановится, вы можете даже не заметить. </p>
 <h2 id="-">Проверьте свои единицы!</h2>
@@ -568,21 +568,21 @@ requestAnimationFrame(render);
 <li>Code to move the cars along paths</li>
 </ol>
 <p>Это довольно много. Если ваш вопрос касается только пути, вы можете удалить большую часть HTML, 
-так как вам нужен только тег <code translate="no">&lt;canvas&gt;</code> и <code translate="no">&lt;script&gt;</code> для THREE.js. Вы можете удалить CSS и код изменения размера.
+так как вам нужен только тег <code class="notranslate" translate="no">&lt;canvas&gt;</code> и <code class="notranslate" translate="no">&lt;script&gt;</code> для THREE.js. Вы можете удалить CSS и код изменения размера.
 Вы можете удалить код .GLTF, потому что вам нужен только путь.
-Вы можете удалить источники света и тени с помощью <code translate="no">MeshBasicMaterial</code>. 
-Вы, конечно, можете удалить код <code translate="no">DAT.gui</code>. Код создает плоскость с текстурой. Было бы проще использовать <code translate="no">GridHelper</code>. 
+Вы можете удалить источники света и тени с помощью <code class="notranslate" translate="no">MeshBasicMaterial</code>. 
+Вы, конечно, можете удалить код <code class="notranslate" translate="no">DAT.gui</code>. Код создает плоскость с текстурой. Было бы проще использовать <code class="notranslate" translate="no">GridHelper</code>. 
 Наконец, если наш вопрос касается перемещения объектов по пути,
 мы могли бы просто использовать кубы на пути вместо загруженных моделей автомобилей. </p>
 <p>Вот более минимальный пример, учитывающий все вышеперечисленное. Он сократился с 271 строки до 135. 
 Мы могли бы подумать об уменьшении его еще больше, упрощая наш путь. Возможно, путь с 3 или 4 точками будет работать так же хорошо, как и наш путь с 21 точкой. </p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-debugging-mcve.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-debugging-mcve.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
-<p>Я сохранил <code translate="no">OrbitController</code> только потому, что полезно перемещать камеру и выяснять, что происходит, но в зависимости от вашей проблемы вы также можете удалить это.</p>
+<p>Я сохранил <code class="notranslate" translate="no">OrbitController</code> только потому, что полезно перемещать камеру и выяснять, что происходит, но в зависимости от вашей проблемы вы также можете удалить это.</p>
 <p>Лучшее в создании MCVE - это то, что мы часто решаем нашу собственную проблему. Процесс удаления всего, что не нужно, и делая наименьший пример, мы решаем проблему, чем наоборот. </p>
 <p>Вдобавок ко всему, с уважением относимся к тому времени, за которое люди будут смотреть на ваш код в Stack Overflow. 
 Делая минимальный пример, вы облегчаете им задачу. Вы также будете учиться в процессе. </p>
@@ -594,24 +594,24 @@ requestAnimationFrame(render);
 <a href="https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/">редактора фрагментов</a>.
 Просто не забудьте попытаться удалить части, не относящиеся к вашей проблеме, и постарайтесь сделать свой код минимально необходимым. </p>
 <p>Следуйте этим советам, и у вас будет гораздо больше шансов получить помощь по вашей проблеме.</p>
-<h2 id="-meshbasicmaterial-">Используйте <code translate="no">MeshBasicMaterial</code></h2>
-<p>Поскольку <code translate="no">MeshBasicMaterial</code> не использует источники света, это один из способов устранения причин, по которым что-то может не отображаться. 
-Если ваши объекты отображаются с использованием <code translate="no">MeshBasicMaterial</code>, но не с какими-либо материалами, которые вы использовали, то вы знаете,
+<h2 id="-meshbasicmaterial-">Используйте <code class="notranslate" translate="no">MeshBasicMaterial</code></h2>
+<p>Поскольку <code class="notranslate" translate="no">MeshBasicMaterial</code> не использует источники света, это один из способов устранения причин, по которым что-то может не отображаться. 
+Если ваши объекты отображаются с использованием <code class="notranslate" translate="no">MeshBasicMaterial</code>, но не с какими-либо материалами, которые вы использовали, то вы знаете,
 что проблема, скорее всего, связана с материалами или источниками света, а не с какой-либо другой частью кода. </p>
-<h2 id="-near-far-">Проверьте <code translate="no">near</code> и <code translate="no">far</code> настройки вашей камеры</h2>
-<p><code translate="no">PerspectiveCamera</code> имеет ближние и дальние настройки, которые описаны в 
+<h2 id="-near-far-">Проверьте <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> настройки вашей камеры</h2>
+<p><code class="notranslate" translate="no">PerspectiveCamera</code> имеет ближние и дальние настройки, которые описаны в 
 <a href="threejs-cameras.html">статье о камерах</a>. Убедитесь, что они установлены в соответствии с пространством, в котором находятся ваши объекты.
-Возможно, даже просто <em>временно</em> установите для них что-то большое, например, <code translate="no">near</code> = 0,001 и <code translate="no">far</code> = 1000000.
+Возможно, даже просто <em>временно</em> установите для них что-то большое, например, <code class="notranslate" translate="no">near</code> = 0,001 и <code class="notranslate" translate="no">far</code> = 1000000.
 Скорее всего, у вас возникнут проблемы с разрешением по глубине, но вы по крайней мере сможете увидеть ваши объекты, если они находятся перед камерой. </p>
 <h2 id="-">Проверьте вашу сцену перед камерой</h2>
 <p>Иногда вещи не появляются, потому что они не перед камерой.Если ваша камера не управляема попробуйте добавить управление камерой,
-как <code translate="no">OrbitControlle</code>r так что вы можете посмотреть вокруг и найти вашу сцену.  Или, попробовать кадрирование сцены, используя код, который транслируется в <a href="threejs-load-obj.html">этой статье</a>.
-Этот код находит размер части сцены, а затем перемещает камеру и регулирует <code translate="no">near</code> и <code translate="no">far</code> настройки, чтобы сделать его видимым. Затем можно заглянуть в
-отладчик или добавить некоторые в <code translate="no">console.log</code> сообщения для печати размера и центра сцены.</p>
+как <code class="notranslate" translate="no">OrbitControlle</code>r так что вы можете посмотреть вокруг и найти вашу сцену.  Или, попробовать кадрирование сцены, используя код, который транслируется в <a href="threejs-load-obj.html">этой статье</a>.
+Этот код находит размер части сцены, а затем перемещает камеру и регулирует <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> настройки, чтобы сделать его видимым. Затем можно заглянуть в
+отладчик или добавить некоторые в <code class="notranslate" translate="no">console.log</code> сообщения для печати размера и центра сцены.</p>
 <h2 id="-">Поставь что-нибудь перед сценой камеры</h2>
 <p>Это просто еще один способ сказать, если все остальное терпит неудачу начнем с того, что работает, а потом потихоньку будем добавлять код обратно. 
 Если вы получаете пустой экран, то попробуйте поместить что-то прямо перед камерой. Сделать сферу или поле, дать ему простой материал,
-как <code translate="no">MeshBasicMaterial</code> и убедитесь, что вы можете сделать это на экране. 
+как <code class="notranslate" translate="no">MeshBasicMaterial</code> и убедитесь, что вы можете сделать это на экране. 
 Затем начать добавлять код немного назад во времени и тестирования.
 В конце концов вы либо найдёте вашу ошибку, или вы найдете пути её решения. </p>
 <hr>

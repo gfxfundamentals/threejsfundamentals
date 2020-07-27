@@ -217,15 +217,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>※ 카메라에 대해 잘 모른다면, 먼저 <a href="threejs-cameras.html">카메라에 관한 글</a>을
 먼저 읽기 바랍니다.</p>
 <p>3D 엔진에서 안개란, 일반적으로 카메라로부터의 거리에 따라 특정 색상으로
-점차 변화하는 것을 말합니다. Three.js에서는 <code translate="no">Fog</code>나 <code translate="no">FogExp2</code> 객체를
-생성한 뒤, 장면(scene)의 <a href="Scene.fog"><code translate="no">fog</code></a> 속성에 지정해 안개를 사용합니다.</p>
-<p><code translate="no">Fog</code>는 인자로 <code translate="no">near</code>와 <code translate="no">far</code>값을 받는데, 이는 카메라로부터의 거리값입니다.
-<code translate="no">near</code>값보다 가까운 공간은 안개의 영향이 전혀 없고, <code translate="no">far</code>값보다 먼 공간은
-완전히 안개에 뒤덮입니다. <code translate="no">near</code>와 <code translate="no">far</code> 사이의 공간에 있는 물체 또는 물체의
+점차 변화하는 것을 말합니다. Three.js에서는 <code class="notranslate" translate="no">Fog</code>나 <code class="notranslate" translate="no">FogExp2</code> 객체를
+생성한 뒤, 장면(scene)의 <a href="Scene.fog"><code class="notranslate" translate="no">fog</code></a> 속성에 지정해 안개를 사용합니다.</p>
+<p><code class="notranslate" translate="no">Fog</code>는 인자로 <code class="notranslate" translate="no">near</code>와 <code class="notranslate" translate="no">far</code>값을 받는데, 이는 카메라로부터의 거리값입니다.
+<code class="notranslate" translate="no">near</code>값보다 가까운 공간은 안개의 영향이 전혀 없고, <code class="notranslate" translate="no">far</code>값보다 먼 공간은
+완전히 안개에 뒤덮입니다. <code class="notranslate" translate="no">near</code>와 <code class="notranslate" translate="no">far</code> 사이의 공간에 있는 물체 또는 물체의
 일부는 점차 안개의 색으로 변화하죠.</p>
-<p><code translate="no">FogExp2</code>는 카메라에서 멀어질수록 안개의 강도가 강해집니다.</p>
+<p><code class="notranslate" translate="no">FogExp2</code>는 카메라에서 멀어질수록 안개의 강도가 강해집니다.</p>
 <p>두 가지 안개 모두 마찬가지로, 안개를 사용하려면 장면의 속성에 지정해야 합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;  // 하양
   const near = 10;
@@ -233,16 +233,16 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   scene.fog = new THREE.Fog(color, near, far);
 }
 </code></pre>
-<p><code translate="no">FogExp2</code>의 경우는 다음처럼 쓸 수 있죠.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<p><code class="notranslate" translate="no">FogExp2</code>의 경우는 다음처럼 쓸 수 있죠.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;
   const density = 0.1;
   scene.fog = new THREE.FogExp2(color, density);
 }
 </code></pre>
-<p><code translate="no">FogExp2</code>가 더 현실적이긴 하나, 보통 안개의 범위를 특정하기 쉬운
-<code translate="no">Fog</code>를 더 많이 사용합니다.</p>
+<p><code class="notranslate" translate="no">FogExp2</code>가 더 현실적이긴 하나, 보통 안개의 범위를 특정하기 쉬운
+<code class="notranslate" translate="no">Fog</code>를 더 많이 사용합니다.</p>
 <div class="spread">
   <div>
     <div data-diagram="fog"></div>
@@ -257,9 +257,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>한 가지 알아둬야 하는 건 안개는 <em>렌더링되는 물체</em>라는 점입니다.
 안개는 물체의 픽셀을 렌더링할 때 같이 렌더링되는데, 이 말은 장면에
 특정 색상의 안개 효과를 주려면 안개와 배경색 <strong>둘 다</strong> 같은 색으로
-지정해야 한다는 겁니다. 배경색은 <a href="Scene.background"><code translate="no">scene.background</code></a>
-속성을 <code translate="no">THREE.Color</code> 인스턴스로 지정해 바꿀 수 있습니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // 빨강
+지정해야 한다는 겁니다. 배경색은 <a href="Scene.background"><code class="notranslate" translate="no">scene.background</code></a>
+속성을 <code class="notranslate" translate="no">THREE.Color</code> 인스턴스로 지정해 바꿀 수 있습니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // 빨강
 </code></pre>
 <div class="spread">
   <div>
@@ -274,7 +274,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>아래는 이전에 사용했던 예제에 안개를 추가한 것입니다. 장면을 생성한 뒤
 안개를 추가하고, 장면의 배경색을 바꾸기만 했죠.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 
 +{
 +  const near = 1;
@@ -284,11 +284,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 +  scene.background = new THREE.Color(color);
 +}
 </code></pre>
-<p>아래 예제의 카메라는 <code translate="no">near</code>값이 0.1, <code translate="no">far</code>값이 5입니다. 카메라의 위치는
-<code translate="no">z = 2</code>이죠. 정육면체의 크기는 1칸이고, z축의 원점에 있습니다. 여기서
-안개를 <code translate="no">near = 1</code>, <code translate="no">far = 2</code>로 설정하면 정육면체가 중간부터 사라지기
+<p>아래 예제의 카메라는 <code class="notranslate" translate="no">near</code>값이 0.1, <code class="notranslate" translate="no">far</code>값이 5입니다. 카메라의 위치는
+<code class="notranslate" translate="no">z = 2</code>이죠. 정육면체의 크기는 1칸이고, z축의 원점에 있습니다. 여기서
+안개를 <code class="notranslate" translate="no">near = 1</code>, <code class="notranslate" translate="no">far = 2</code>로 설정하면 정육면체가 중간부터 사라지기
 시작하겠죠.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">새 탭에서 보기</a>
 </div>
@@ -296,10 +296,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </p>
 <p>인터페이스를 추가해 안개를 조정할 수 있도록 하겠습니다. 이번에도 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>를
 사용할 거예요. dat.GUI는 객체와 객체의 속성 키값을 받아 자동으로 인터페이스를
-생성합니다. 단순히 안개의 <code translate="no">near</code>와 <code translate="no">far</code> 제어하도록 설정할 수도 있지만, <code translate="no">near</code>값이
-<code translate="no">far</code>값보다 큰 경우는 없기에 헬퍼를 만들어 <code translate="no">near</code>값을 항상 <code translate="no">far</code>보다 같거나
-작게, <code translate="no">far</code>값을 항상 <code translate="no">near</code>보다 같거나 크게 설정하도록 하겠습니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">/**
+생성합니다. 단순히 안개의 <code class="notranslate" translate="no">near</code>와 <code class="notranslate" translate="no">far</code> 제어하도록 설정할 수도 있지만, <code class="notranslate" translate="no">near</code>값이
+<code class="notranslate" translate="no">far</code>값보다 큰 경우는 없기에 헬퍼를 만들어 <code class="notranslate" translate="no">near</code>값을 항상 <code class="notranslate" translate="no">far</code>보다 같거나
+작게, <code class="notranslate" translate="no">far</code>값을 항상 <code class="notranslate" translate="no">near</code>보다 같거나 크게 설정하도록 하겠습니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">/**
  * 이 클래스의 인스턴스를 dat.GUI에 넘겨
  * near나 far 속성을 조정할 때 항상
  * near는 never &gt;= far, far는 never &lt;= near가 되도록 합니다
@@ -325,7 +325,7 @@ class FogGUIHelper {
 }
 </code></pre>
 <p>방금 만든 클래스를 아래처럼 활용합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -337,22 +337,22 @@ class FogGUIHelper {
 +  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
 }
 </code></pre>
-<p><code translate="no">near</code>와 <code translate="no">far</code> 인자는 각 안개 속성의 최솟값과 최댓값입니다.</p>
-<p>마지막 2줄의 <code translate="no">.listen()</code> 메서드를 호출하면 dat.GUI가 변화를 <em>감지</em>합니다.
-<code translate="no">near</code> 속성을 바꿀 때 동시에 <code translate="no">far</code> 속성을 재할당하고, <code translate="no">far</code> 속성을 바꿀 때도
-동시에 <code translate="no">near</code>를 재할당하는데, 이 메서드를 호출하면 조작한 속성 외의 다른
+<p><code class="notranslate" translate="no">near</code>와 <code class="notranslate" translate="no">far</code> 인자는 각 안개 속성의 최솟값과 최댓값입니다.</p>
+<p>마지막 2줄의 <code class="notranslate" translate="no">.listen()</code> 메서드를 호출하면 dat.GUI가 변화를 <em>감지</em>합니다.
+<code class="notranslate" translate="no">near</code> 속성을 바꿀 때 동시에 <code class="notranslate" translate="no">far</code> 속성을 재할당하고, <code class="notranslate" translate="no">far</code> 속성을 바꿀 때도
+동시에 <code class="notranslate" translate="no">near</code>를 재할당하는데, 이 메서드를 호출하면 조작한 속성 외의 다른
 속성의 변화도 UI에 업데이트됩니다.</p>
 <p>여기에 안개의 색까지 조정할 수 있으면 금상첨화겠네요. 하지만 아까 설명했듯
 안개의 색을 바꾸려면 배경색도 같이 바꿔야 합니다. 헬퍼 클래스에 <em>가상</em> 속성을
 하나 만들어 dat.GUI가 이 속성을 변경할 때 배경색과 안개색을 같은 값으로
 바꿔주면 어떨까요?</p>
-<p>dat.GUI의 색상 타입은 4가지입니다. 하나는 CSS의 6자리 16진수 문자열(hex string, 예: <code translate="no">#f8f8f8</code>)이고,
-하나는 hue(색상), saturation(채도), value 객체(예: <code translate="no">{ h: 60, s: 1, v: 0 }</code>),
-하나는 RGB 배열(예: <code translate="no">[ 255, 128, 64 ]</code>) 또는 RGBA 색상 배열(예: <code translate="no">[ 127, 200, 75, 0.3 ]</code>)이죠.</p>
-<p><code translate="no">dat.GUI</code>가 하나의 값만 조작하도록 하는 게 제일 간단하니, 16진수 문자열을 사용하겠습니다.
-다행히 <code translate="no">THREE.Color</code>에는 <a href="Color.getHexString"><code translate="no">getHexString</code></a> 메서드가 있어 색상을
+<p>dat.GUI의 색상 타입은 4가지입니다. 하나는 CSS의 6자리 16진수 문자열(hex string, 예: <code class="notranslate" translate="no">#f8f8f8</code>)이고,
+하나는 hue(색상), saturation(채도), value 객체(예: <code class="notranslate" translate="no">{ h: 60, s: 1, v: 0 }</code>),
+하나는 RGB 배열(예: <code class="notranslate" translate="no">[ 255, 128, 64 ]</code>) 또는 RGBA 색상 배열(예: <code class="notranslate" translate="no">[ 127, 200, 75, 0.3 ]</code>)이죠.</p>
+<p><code class="notranslate" translate="no">dat.GUI</code>가 하나의 값만 조작하도록 하는 게 제일 간단하니, 16진수 문자열을 사용하겠습니다.
+다행히 <code class="notranslate" translate="no">THREE.Color</code>에는 <a href="Color.getHexString"><code class="notranslate" translate="no">getHexString</code></a> 메서드가 있어 색상을
 문자열로 쉽게 바꿀 수 있죠. 앞에 &#39;#&#39;만 덧붙이면 됩니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">/**
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">/**
  * 이 클래스의 인스턴스를 dat.GUI에 넘겨
  * near나 far 속성을 조정할 때 항상
  * near는 never &gt;= far, far는 never &lt;= near가 되도록 합니다
@@ -386,9 +386,9 @@ class FogGUIHelper {
 +  }
 }
 </code></pre>
-<p>이번에는 <code translate="no">gui.addColor</code> 메서드를 호출합니다. 색상 UI를 생성하는 메서드로,
+<p>이번에는 <code class="notranslate" translate="no">gui.addColor</code> 메서드를 호출합니다. 색상 UI를 생성하는 메서드로,
 방금 추가한 가상 속성을 조작하도록 설정합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -401,17 +401,17 @@ class FogGUIHelper {
 +  gui.addColor(fogGUIHelper, &#39;color&#39;);
 }
 </code></pre>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">새 탭에서 보기</a>
 </div>
 
 </p>
-<p><code translate="no">near</code>를 1.9 정도, <code translate="no">far</code>를 2.0 정도로 설정하면 안개의 경계가 굉장히
-선명해질 겁니다. 정육면체들이 카메라에서 2칸 떨어져 있으므로 <code translate="no">near</code>를
-1.1, <code translate="no">far</code>를 2.9 정도로 설정하면 경계가 가장 부드러운 것이라고 할 수
+<p><code class="notranslate" translate="no">near</code>를 1.9 정도, <code class="notranslate" translate="no">far</code>를 2.0 정도로 설정하면 안개의 경계가 굉장히
+선명해질 겁니다. 정육면체들이 카메라에서 2칸 떨어져 있으므로 <code class="notranslate" translate="no">near</code>를
+1.1, <code class="notranslate" translate="no">far</code>를 2.9 정도로 설정하면 경계가 가장 부드러운 것이라고 할 수
 있죠.</p>
-<p>추가로 재질(material)에는 불린 타입의 <a href="Material.fog"><code translate="no">fog</code></a> 속성이 있습니다.
+<p>추가로 재질(material)에는 불린 타입의 <a href="Material.fog"><code class="notranslate" translate="no">fog</code></a> 속성이 있습니다.
 해당 재질로 렌더링되는 물체가 안개의 영향을 받을지의 여부를 결정하는 속성이죠.
 &quot;안개 효과를 없애버리면 그만 아닌가?&quot; 생각할 수 있지만, 3D 운전 시뮬레이터를
 만드는 경우를 상상해봅시다. 차 밖은 안개가 자욱하더라도 차 안에서 볼 때 차 내부는

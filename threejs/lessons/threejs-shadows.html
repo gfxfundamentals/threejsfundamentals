@@ -248,12 +248,12 @@ draw it above the ground below your object.</p>
 
 <p>We&#39;ll use some of the code from <a href="threejs-cameras.html">the previous article</a>.</p>
 <p>Let&#39;s set the background color to white.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;white&#39;);
 </code></pre>
 <p>Then we&#39;ll setup the same checkerboard ground but this time it&#39;s using
-a <code translate="no">MeshBasicMaterial</code> as we don&#39;t need lighting for the ground.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">+const loader = new THREE.TextureLoader();
+a <code class="notranslate" translate="no">MeshBasicMaterial</code> as we don&#39;t need lighting for the ground.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const loader = new THREE.TextureLoader();
 
 {
   const planeSize = 40;
@@ -277,36 +277,36 @@ a <code translate="no">MeshBasicMaterial</code> as we don&#39;t need lighting fo
   scene.add(mesh);
 }
 </code></pre>
-<p>Note we&#39;re setting the color to <code translate="no">1.5, 1.5, 1.5</code>. This will multiply the checkerboard
+<p>Note we&#39;re setting the color to <code class="notranslate" translate="no">1.5, 1.5, 1.5</code>. This will multiply the checkerboard
 texture&#39;s colors by 1.5, 1.5, 1.5. Since the texture&#39;s colors are 0x808080 and 0xC0C0C0
 which is medium gray and light gray, multiplying them by 1.5 will give us a white and
 light grey checkerboard.</p>
 <p>Let&#39;s load the shadow texture</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const shadowTexture = loader.load(&#39;resources/images/roundshadow.png&#39;);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const shadowTexture = loader.load(&#39;resources/images/roundshadow.png&#39;);
 </code></pre>
 <p>and make an array to remember each sphere and associated objects.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const sphereShadowBases = [];
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sphereShadowBases = [];
 </code></pre>
 <p>Then we&#39;ll make a sphere geometry</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const sphereRadius = 1;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sphereRadius = 1;
 const sphereWidthDivisions = 32;
 const sphereHeightDivisions = 16;
 const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 </code></pre>
 <p>And a plane geometry for the fake shadow</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const planeSize = 1;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const planeSize = 1;
 const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
 </code></pre>
-<p>Now we&#39;ll make a bunch of spheres. For each sphere we&#39;ll create a <code translate="no">base</code>
-<code translate="no">THREE.Object3D</code> and we&#39;ll make both the shadow plane mesh and the sphere mesh
+<p>Now we&#39;ll make a bunch of spheres. For each sphere we&#39;ll create a <code class="notranslate" translate="no">base</code>
+<code class="notranslate" translate="no">THREE.Object3D</code> and we&#39;ll make both the shadow plane mesh and the sphere mesh
 children of the base. That way if we move the base both the sphere and the shadow
 will move. We need to put the shadow slightly above the ground to prevent z-fighting.
-We also set <code translate="no">depthWrite</code> to false so that the shadows don&#39;t mess each other up.
+We also set <code class="notranslate" translate="no">depthWrite</code> to false so that the shadows don&#39;t mess each other up.
 We&#39;ll go over both of these issues in <a href="threejs-transparency.html">another article</a>.
-The shadow is a <code translate="no">MeshBasicMaterial</code> because it doesn&#39;t need lighting.</p>
+The shadow is a <code class="notranslate" translate="no">MeshBasicMaterial</code> because it doesn&#39;t need lighting.</p>
 <p>We make each sphere a different hue and then save off the base, the sphere mesh,
 the shadow mesh and the initial y position of each sphere.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const numSpheres = 15;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const numSpheres = 15;
 for (let i = 0; i &lt; numSpheres; ++i) {
   // make a base for the shadow and the sphere
   // so they move together.
@@ -341,9 +341,9 @@ for (let i = 0; i &lt; numSpheres; ++i) {
   sphereShadowBases.push({base, sphereMesh, shadowMesh, y: sphereMesh.position.y});
 }
 </code></pre>
-<p>We setup 2 lights. One is a <code translate="no">HemisphereLight</code> with the intensity set to 2 to really
+<p>We setup 2 lights. One is a <code class="notranslate" translate="no">HemisphereLight</code> with the intensity set to 2 to really
 brighten things up.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const skyColor = 0xB1E1FF;  // light blue
   const groundColor = 0xB97A20;  // brownish orange
   const intensity = 2;
@@ -351,8 +351,8 @@ brighten things up.</p>
   scene.add(light);
 }
 </code></pre>
-<p>The other is a <code translate="no">DirectionalLight</code> so the spheres get some definition</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<p>The other is a <code class="notranslate" translate="no">DirectionalLight</code> so the spheres get some definition</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -364,10 +364,10 @@ brighten things up.</p>
 </code></pre>
 <p>It would render as is but let&#39;s animate there spheres.
 For each sphere, shadow, base set we move the base in the xz plane, we
-move the sphere up and down using <code translate="no">Math.abs(Math.sin(time))</code>
+move the sphere up and down using <code class="notranslate" translate="no">Math.abs(Math.sin(time))</code>
 which gives us a bouncy animation. And, we also set the shadow material&#39;s
 opacity so that as each sphere goes higher its shadow fades out.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;  // convert to seconds
 
   ...
@@ -396,7 +396,7 @@ opacity so that as each sphere goes higher its shadow fades out.</p>
   ...
 </code></pre>
 <p>And here&#39;s 15 kind of bouncing balls.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-fake.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-fake.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -409,26 +409,26 @@ of shadow is <a href="https://www.google.com/search?tbm=isch&amp;q=animal+crossi
 where you can see each character has a simple round shadow. It&#39;s effective and cheap.
 <a href="https://www.google.com/search?q=monument+valley+screenshots&amp;tbm=isch">Monument Valley</a>
 appears to also use this kind of shadow for the main character.</p>
-<p>So, moving on to shadow maps, there are 3 lights which can cast shadows. The <code translate="no">DirectionalLight</code>,
-the <code translate="no">PointLight</code>, and the <code translate="no">SpotLight</code>.</p>
-<p>Let&#39;s start with the <code translate="no">DirectionalLight</code> with the helper example from <a href="threejs-lights.html">the lights article</a>.</p>
+<p>So, moving on to shadow maps, there are 3 lights which can cast shadows. The <code class="notranslate" translate="no">DirectionalLight</code>,
+the <code class="notranslate" translate="no">PointLight</code>, and the <code class="notranslate" translate="no">SpotLight</code>.</p>
+<p>Let&#39;s start with the <code class="notranslate" translate="no">DirectionalLight</code> with the helper example from <a href="threejs-lights.html">the lights article</a>.</p>
 <p>The first thing we need to do is turn on shadows in the renderer.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.shadowMap.enabled = true;
 </code></pre>
 <p>Then we also need to tell the light to cast a shadow</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const light = new THREE.DirectionalLight(color, intensity);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const light = new THREE.DirectionalLight(color, intensity);
 +light.castShadow = true;
 </code></pre>
 <p>We also need to go to each mesh in the scene and decide if it should
 both cast shadows and/or receive shadows.</p>
 <p>Let&#39;s make the plane (the ground) only receive shadows since we don&#39;t
 really care what happens underneath.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const mesh = new THREE.Mesh(planeGeo, planeMat);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const mesh = new THREE.Mesh(planeGeo, planeMat);
 mesh.receiveShadow = true;
 </code></pre>
 <p>For the cube and the sphere let&#39;s have them both receive and cast shadows</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const mesh = new THREE.Mesh(cubeGeo, cubeMat);
 mesh.castShadow = true;
 mesh.receiveShadow = true;
 
@@ -439,7 +439,7 @@ mesh.castShadow = true;
 mesh.receiveShadow = true;
 </code></pre>
 <p>And then we run it.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -447,17 +447,17 @@ mesh.receiveShadow = true;
 </p>
 <p>What happened? Why are parts of the shadows missing?</p>
 <p>The reason is shadow maps are created by rendering the scene from the point
-of view of the light. In this case there is a camera at the <code translate="no">DirectionalLight</code>
+of view of the light. In this case there is a camera at the <code class="notranslate" translate="no">DirectionalLight</code>
 that is looking at its target. Just like <a href="threejs-cameras.html">the camera&#39;s we previously covered</a>
 the light&#39;s shadow camera defines an area inside of which
 the shadows get rendered. In the example above that area is too small.</p>
 <p>In order to visualize that area we can get the light&#39;s shadow camera and add
-a <code translate="no">CameraHelper</code> to the scene.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
+a <code class="notranslate" translate="no">CameraHelper</code> to the scene.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
 scene.add(cameraHelper);
 </code></pre>
 <p>And now you can see the area for which shadows are cast and received.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-helper.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-helper.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -467,17 +467,17 @@ scene.add(cameraHelper);
 what&#39;s inside the light&#39;s shadow camera box is where shadows are drawn.</p>
 <p>We can adjust the size of that box by adjusting the light&#39;s shadow camera.</p>
 <p>Let&#39;s add some GUI setting to adjust the light&#39;s shadow camera box. Since a
-<code translate="no">DirectionalLight</code> represents light all going in a parallel direction, the
-<code translate="no">DirectionalLight</code> uses an <code translate="no">OrthographicCamera</code> for its shadow camera.
-We went over how an <code translate="no">OrthographicCamera</code> works in <a href="threejs-cameras.html">the previous article about cameras</a>.</p>
-<p>Recall an <code translate="no">OrthographicCamera</code> defines
-its box or <em>view frustum</em> by its <code translate="no">left</code>, <code translate="no">right</code>, <code translate="no">top</code>, <code translate="no">bottom</code>, <code translate="no">near</code>, <code translate="no">far</code>,
-and <code translate="no">zoom</code> properties.</p>
-<p>Again let&#39;s make a helper class for the dat.GUI. We&#39;ll make a <code translate="no">DimensionGUIHelper</code>
+<code class="notranslate" translate="no">DirectionalLight</code> represents light all going in a parallel direction, the
+<code class="notranslate" translate="no">DirectionalLight</code> uses an <code class="notranslate" translate="no">OrthographicCamera</code> for its shadow camera.
+We went over how an <code class="notranslate" translate="no">OrthographicCamera</code> works in <a href="threejs-cameras.html">the previous article about cameras</a>.</p>
+<p>Recall an <code class="notranslate" translate="no">OrthographicCamera</code> defines
+its box or <em>view frustum</em> by its <code class="notranslate" translate="no">left</code>, <code class="notranslate" translate="no">right</code>, <code class="notranslate" translate="no">top</code>, <code class="notranslate" translate="no">bottom</code>, <code class="notranslate" translate="no">near</code>, <code class="notranslate" translate="no">far</code>,
+and <code class="notranslate" translate="no">zoom</code> properties.</p>
+<p>Again let&#39;s make a helper class for the dat.GUI. We&#39;ll make a <code class="notranslate" translate="no">DimensionGUIHelper</code>
 that we&#39;ll pass an object and 2 properties. It will present one property that dat.GUI
 can adjust and in response will set the two properties one positive and one negative.
-We can use this to set <code translate="no">left</code> and <code translate="no">right</code> as <code translate="no">width</code> and <code translate="no">up</code> and <code translate="no">down</code> as <code translate="no">height</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">class DimensionGUIHelper {
+We can use this to set <code class="notranslate" translate="no">left</code> and <code class="notranslate" translate="no">right</code> as <code class="notranslate" translate="no">width</code> and <code class="notranslate" translate="no">up</code> and <code class="notranslate" translate="no">down</code> as <code class="notranslate" translate="no">height</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class DimensionGUIHelper {
   constructor(obj, minProp, maxProp) {
     this.obj = obj;
     this.minProp = minProp;
@@ -492,9 +492,9 @@ We can use this to set <code translate="no">left</code> and <code translate="no"
   }
 }
 </code></pre>
-<p>We&#39;ll also use the <code translate="no">MinMaxGUIHelper</code> we created in the <a href="threejs-cameras.html">camera article</a>
-to adjust <code translate="no">near</code> and <code translate="no">far</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const gui = new GUI();
+<p>We&#39;ll also use the <code class="notranslate" translate="no">MinMaxGUIHelper</code> we created in the <a href="threejs-cameras.html">camera article</a>
+to adjust <code class="notranslate" translate="no">near</code> and <code class="notranslate" translate="no">far</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
 gui.addColor(new ColorGUIHelper(light, &#39;color&#39;), &#39;value&#39;).name(&#39;color&#39;);
 gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +{
@@ -512,10 +512,10 @@ gui.add(light, &#39;intensity&#39;, 0, 2, 0.01);
 +  folder.add(light.shadow.camera, &#39;zoom&#39;, 0.01, 1.5, 0.01).onChange(updateCamera);
 +}
 </code></pre>
-<p>We tell the GUI to call our <code translate="no">updateCamera</code> function anytime anything changes.
+<p>We tell the GUI to call our <code class="notranslate" translate="no">updateCamera</code> function anytime anything changes.
 Let&#39;s write that function to update the light, the helper for the light, the
 light&#39;s shadow camera, and the helper showing the light&#39;s shadow camera.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function updateCamera() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateCamera() {
   // update the light target&#39;s matrixWorld because it&#39;s needed by the helper
   light.target.updateMatrixWorld();
   helper.update();
@@ -527,16 +527,16 @@ light&#39;s shadow camera, and the helper showing the light&#39;s shadow camera.
 updateCamera();
 </code></pre>
 <p>And now that we&#39;ve given the light&#39;s shadow camera a GUI we can play with the values.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-gui.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Set the <code translate="no">width</code> and <code translate="no">height</code> to about 30 and you can see the shadows are correct
+<p>Set the <code class="notranslate" translate="no">width</code> and <code class="notranslate" translate="no">height</code> to about 30 and you can see the shadows are correct
 and the areas that need to be in shadow for this scene are entirely covered.</p>
-<p>But this brings up the question, why not just set <code translate="no">width</code> and <code translate="no">height</code> to some
-giant numbers to just cover everything? Set the <code translate="no">width</code> and <code translate="no">height</code> to 100
+<p>But this brings up the question, why not just set <code class="notranslate" translate="no">width</code> and <code class="notranslate" translate="no">height</code> to some
+giant numbers to just cover everything? Set the <code class="notranslate" translate="no">width</code> and <code class="notranslate" translate="no">height</code> to 100
 and you might see something like this</p>
 <div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
@@ -546,26 +546,26 @@ Shadow maps are textures the shadows get drawn into.
 Those textures have a size. The shadow camera&#39;s area we set above is stretched
 across that size. That means the larger area you set, the more blocky your shadows will
 be.</p>
-<p>You can set the resolution of the shadow map&#39;s texture by setting <code translate="no">light.shadow.mapSize.width</code>
-and <code translate="no">light.shadow.mapSize.height</code>. They default to 512x512.
+<p>You can set the resolution of the shadow map&#39;s texture by setting <code class="notranslate" translate="no">light.shadow.mapSize.width</code>
+and <code class="notranslate" translate="no">light.shadow.mapSize.height</code>. They default to 512x512.
 The larger you make them the more memory they take and the slower they are to compute so you want
 to set them as small as you can and still make your scene work. The same is true with the
 light&#39;s shadow camera area. Smaller means better looking shadows so make the area as small as you
 can and still cover your scene. Be aware that each user&#39;s machine has a maximum texture size
-allowed which is available on the renderer as <a href="WebGLRenderer.capabilities"><code translate="no">renderer.capabilities.maxTextureSize</code></a>.</p>
+allowed which is available on the renderer as <a href="WebGLRenderer.capabilities"><code class="notranslate" translate="no">renderer.capabilities.maxTextureSize</code></a>.</p>
 <!--
 Ok but what about `near` and `far` I hear you thinking. Can we set `near` to 0.00001 and far to `100000000`
 -->
-<p>Switching to the <code translate="no">SpotLight</code> the light&#39;s shadow camera becomes a <code translate="no">PerspectiveCamera</code>. Unlike the <code translate="no">DirectionalLight</code>&#39;s shadow camera
-where we could manually set most its settings, <code translate="no">SpotLight</code>&#39;s shadow camera is controlled by the <code translate="no">SpotLight</code> itself. The <code translate="no">fov</code> for the shadow
-camera is directly connected to the <code translate="no">SpotLight</code>&#39;s <code translate="no">angle</code> setting.
-The <code translate="no">aspect</code> is set automatically based on the size of the shadow map.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const light = new THREE.DirectionalLight(color, intensity);
+<p>Switching to the <code class="notranslate" translate="no">SpotLight</code> the light&#39;s shadow camera becomes a <code class="notranslate" translate="no">PerspectiveCamera</code>. Unlike the <code class="notranslate" translate="no">DirectionalLight</code>&#39;s shadow camera
+where we could manually set most its settings, <code class="notranslate" translate="no">SpotLight</code>&#39;s shadow camera is controlled by the <code class="notranslate" translate="no">SpotLight</code> itself. The <code class="notranslate" translate="no">fov</code> for the shadow
+camera is directly connected to the <code class="notranslate" translate="no">SpotLight</code>&#39;s <code class="notranslate" translate="no">angle</code> setting.
+The <code class="notranslate" translate="no">aspect</code> is set automatically based on the size of the shadow map.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const light = new THREE.DirectionalLight(color, intensity);
 +const light = new THREE.SpotLight(color, intensity);
 </code></pre>
-<p>and we added back in the <code translate="no">penumbra</code> and <code translate="no">angle</code> settings
+<p>and we added back in the <code class="notranslate" translate="no">penumbra</code> and <code class="notranslate" translate="no">angle</code> settings
 from our <a href="threejs-lights.html">article about lights</a>.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-spot-light-with-camera-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-spot-light-with-camera-gui.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -581,26 +581,26 @@ div class="threejs_center"><img src="resources/images/low-res-shadow-map-spotlig
 You can increase the size of the shadow map as mentioned above. You can
 also blur the result
 
-<div translate="no" class="threejs_example_container">
+<div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-spot-light-with-shadow-radius"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-spot-light-with-shadow-radius" target="_blank">click here to open in a separate window</a>
 </div>
 
 
 -->
-<p>And finally there&#39;s shadows with a <code translate="no">PointLight</code>. Since a <code translate="no">PointLight</code>
-shines in all directions the only relevant settings are <code translate="no">near</code> and <code translate="no">far</code>.
-Otherwise the <code translate="no">PointLight</code> shadow is effectively 6 <code translate="no">SpotLight</code> shadows
+<p>And finally there&#39;s shadows with a <code class="notranslate" translate="no">PointLight</code>. Since a <code class="notranslate" translate="no">PointLight</code>
+shines in all directions the only relevant settings are <code class="notranslate" translate="no">near</code> and <code class="notranslate" translate="no">far</code>.
+Otherwise the <code class="notranslate" translate="no">PointLight</code> shadow is effectively 6 <code class="notranslate" translate="no">SpotLight</code> shadows
 each one pointing to the face of a cube around the light. This means
-<code translate="no">PointLight</code> shadows are much slower since the entire scene must be
+<code class="notranslate" translate="no">PointLight</code> shadows are much slower since the entire scene must be
 drawn 6 times, one for each direction.</p>
 <p>Let&#39;s put a box around our scene so we can see shadows on the walls
-and ceiling. We&#39;ll set the material&#39;s <code translate="no">side</code> property to <code translate="no">THREE.BackSide</code>
+and ceiling. We&#39;ll set the material&#39;s <code class="notranslate" translate="no">side</code> property to <code class="notranslate" translate="no">THREE.BackSide</code>
 so we render the inside of the box instead of the outside. Like the floor
 we&#39;ll set it only to receive shadows. Also we&#39;ll set the position of the
 box so its bottom is slightly below the floor so the floor and the bottom
 of the box don&#39;t z-fight.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const cubeSize = 30;
   const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({
@@ -613,8 +613,8 @@ of the box don&#39;t z-fight.</p>
   scene.add(mesh);
 }
 </code></pre>
-<p>And of course we need to switch the light to a <code translate="no">PointLight</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const light = new THREE.SpotLight(color, intensity);
+<p>And of course we need to switch the light to a <code class="notranslate" translate="no">PointLight</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const light = new THREE.SpotLight(color, intensity);
 +const light = new THREE.PointLight(color, intensity);
 
 ....
@@ -623,17 +623,17 @@ of the box don&#39;t z-fight.</p>
 +const helper = new THREE.PointLightHelper(light);
 +scene.add(helper);
 </code></pre>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-point-light.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-point-light.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Use the <code translate="no">position</code> GUI settings to move the light around
+<p>Use the <code class="notranslate" translate="no">position</code> GUI settings to move the light around
 and you&#39;ll see the shadows fall on all the walls. You can
-also adjust <code translate="no">near</code> and <code translate="no">far</code> settings and see just like
-the other shadows when things are closer than <code translate="no">near</code> they
-no longer receive a shadow and they are further than <code translate="no">far</code>
+also adjust <code class="notranslate" translate="no">near</code> and <code class="notranslate" translate="no">far</code> settings and see just like
+the other shadows when things are closer than <code class="notranslate" translate="no">near</code> they
+no longer receive a shadow and they are further than <code class="notranslate" translate="no">far</code>
 they are always in shadow.</p>
 <!--
 self shadow, shadow acne

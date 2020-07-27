@@ -214,14 +214,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Если вы еще не читали их, и вы новичок в three.js, возможно, вы захотите начать с них. 
 Если вы еще не читали о камерах, вы можете начать с <a href="threejs-cameras.html">этой статьи</a>.</p>
 <p>Туман в 3D-движке - это, как правило, способ затухания до определенного цвета в зависимости от расстояния до камеры. 
-В three.js вы добавляете туман, создавая объект <code translate="no">Fog</code> или <code translate="no">FogExp2</code> и устанавливая его в свойстве сцены 
-<a href="Scene.fog"><code translate="no">fog</code></a>.</p>
-<p><code translate="no">Fog</code>  позволяет выбирать <code translate="no">near</code> и <code translate="no">far</code> настройки, которые находятся на расстоянии от камеры. 
-Все, что <code translate="no">near</code>  не подвержено влиянию тумана. 
-Все, что <code translate="no">far</code>  - это цвет тумана. Части между <code translate="no">near</code> и <code translate="no">far</code>  переходят от их материального цвета к цвету тумана. </p>
-<p>Есть также <code translate="no">FogExp2</code>, который растет экспоненциально с расстоянием от камеры.</p>
+В three.js вы добавляете туман, создавая объект <code class="notranslate" translate="no">Fog</code> или <code class="notranslate" translate="no">FogExp2</code> и устанавливая его в свойстве сцены 
+<a href="Scene.fog"><code class="notranslate" translate="no">fog</code></a>.</p>
+<p><code class="notranslate" translate="no">Fog</code>  позволяет выбирать <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> настройки, которые находятся на расстоянии от камеры. 
+Все, что <code class="notranslate" translate="no">near</code>  не подвержено влиянию тумана. 
+Все, что <code class="notranslate" translate="no">far</code>  - это цвет тумана. Части между <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>  переходят от их материального цвета к цвету тумана. </p>
+<p>Есть также <code class="notranslate" translate="no">FogExp2</code>, который растет экспоненциально с расстоянием от камеры.</p>
 <p>Чтобы использовать любой тип тумана, вы создаете его и назначаете его сцене, как в </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;  // white
   const near = 10;
@@ -229,15 +229,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   scene.fog = new THREE.Fog(color, near, far);
 }
 </code></pre>
-<p>или для <code translate="no">FogExp2</code> это будет</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<p>или для <code class="notranslate" translate="no">FogExp2</code> это будет</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;
   const density = 0.1;
   scene.fog = new THREE.FogExp2(color, density);
 }
 </code></pre>
-<p><code translate="no">FogExp2</code> ближе к реальности, но <code translate="no">Fog</code> используется чаще, поскольку он позволяет вам выбрать место для нанесения тумана, 
+<p><code class="notranslate" translate="no">FogExp2</code> ближе к реальности, но <code class="notranslate" translate="no">Fog</code> используется чаще, поскольку он позволяет вам выбрать место для нанесения тумана, 
 чтобы вы могли решить показать чистую сцену на определенном расстоянии, а затем исчезновение до некоторого цвета за этим расстоянием. </p>
 <div class="spread">
   <div>
@@ -253,8 +253,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Важно отметить, что туман применяется к <em>вещам, которые отображаются</em>.
 Это часть расчета каждого пикселя цвета объекта.
  Это означает, что если вы хотите, чтобы ваша сцена стала блеклой, вам нужно установить туман  <strong>и</strong> цвет фона на один и тот же цвет.
-Цвет фона устанавливается с помощью свойства <a href="Scene.background"><code translate="no">scene.background</code></a>. Чтобы выбрать цвет фона, вы прикрепляете к нему <code translate="no">THREE.Color</code>. Например </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
+Цвет фона устанавливается с помощью свойства <a href="Scene.background"><code class="notranslate" translate="no">scene.background</code></a>. Чтобы выбрать цвет фона, вы прикрепляете к нему <code class="notranslate" translate="no">THREE.Color</code>. Например </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
 </code></pre>
 <div class="spread">
   <div>
@@ -269,7 +269,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>Вот один из наших предыдущих примеров с добавленным туманом.
 Единственное добавление - сразу после настройки сцены мы добавляем туман и устанавливаем цвет фона сцены </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 
 +{
 +  const near = 1;
@@ -279,10 +279,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 +  scene.background = new THREE.Color(color);
 +}
 </code></pre>
-<p>В приведенном ниже примере <code translate="no">near</code> камеры равен 0,1, а <code translate="no">far</code> - 5. Камера находится в точке <code translate="no">z = 2</code>. 
-Кубики имеют размер 1 и имеют значение <code translate="no">z = 0</code>. 
-Это означает, что при настройке тумана <code translate="no">near = 1</code> и <code translate="no">far = 2</code> кубики исчезнут прямо вокруг их центра. </p>
-<p><div translate="no" class="threejs_example_container">
+<p>В приведенном ниже примере <code class="notranslate" translate="no">near</code> камеры равен 0,1, а <code class="notranslate" translate="no">far</code> - 5. Камера находится в точке <code class="notranslate" translate="no">z = 2</code>. 
+Кубики имеют размер 1 и имеют значение <code class="notranslate" translate="no">z = 0</code>. 
+Это означает, что при настройке тумана <code class="notranslate" translate="no">near = 1</code> и <code class="notranslate" translate="no">far = 2</code> кубики исчезнут прямо вокруг их центра. </p>
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -290,10 +290,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </p>
 <p>Давайте добавим интерфейс, чтобы мы могли настроить туман. Мы снова будем использовать
 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>. dat.GUI принимает объект и свойство и автоматически создает интерфейс для этого типа свойства.
-Мы могли бы просто позволить ему манипулировать свойствами <code translate="no">near</code> и <code translate="no">far</code> тумана, но недопустимо иметь <code translate="no">near</code> больше, чем <code translate="no">far</code>, поэтому давайте создадим помощник, 
-чтобы dat.GUI мог манипулировать свойством <code translate="no">near</code> и <code translate="no">far</code>, 
-но мы убедимся, что <code translate="no">near</code> меньше или равно <code translate="no">far</code> и <code translate="no">far</code> больше или равно <code translate="no">near</code>. </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
+Мы могли бы просто позволить ему манипулировать свойствами <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> тумана, но недопустимо иметь <code class="notranslate" translate="no">near</code> больше, чем <code class="notranslate" translate="no">far</code>, поэтому давайте создадим помощник, 
+чтобы dat.GUI мог манипулировать свойством <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>, 
+но мы убедимся, что <code class="notranslate" translate="no">near</code> меньше или равно <code class="notranslate" translate="no">far</code> и <code class="notranslate" translate="no">far</code> больше или равно <code class="notranslate" translate="no">near</code>. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 class FogGUIHelper {
@@ -317,7 +317,7 @@ class FogGUIHelper {
 }
 </code></pre>
 <p>Затем мы можем добавить это так</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -329,18 +329,18 @@ class FogGUIHelper {
 +  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
 }
 </code></pre>
-<p>Параметры <code translate="no">near</code> и <code translate="no">far</code> задают минимальные и максимальные значения для регулировки тумана. Они устанавливаются при настройке камеры. </p>
-<p><code translate="no">.Listen ()</code> в конце последних 2 строк указывает dat.GUI <em>прослушивать</em>
-изменения. Таким образом, когда мы меняем <code translate="no">near</code> на <code translate="no">far</code> или мы меняем <code translate="no">far</code> на <code translate="no">near</code> dat.GUI обновит интерфейс другого свойства для нас. </p>
+<p>Параметры <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> задают минимальные и максимальные значения для регулировки тумана. Они устанавливаются при настройке камеры. </p>
+<p><code class="notranslate" translate="no">.Listen ()</code> в конце последних 2 строк указывает dat.GUI <em>прослушивать</em>
+изменения. Таким образом, когда мы меняем <code class="notranslate" translate="no">near</code> на <code class="notranslate" translate="no">far</code> или мы меняем <code class="notranslate" translate="no">far</code> на <code class="notranslate" translate="no">near</code> dat.GUI обновит интерфейс другого свойства для нас. </p>
 <p>Также было бы неплохо иметь возможность изменить цвет тумана, но, как было упомянуто выше, нам нужно синхронизировать цвет тумана и цвет фона. 
 Итак, давайте добавим еще одно <em>виртуальное</em> свойство в наш помощник, который будет устанавливать оба цвета, когда dat.GUI манипулирует им. </p>
-<p>dat.GUI может манипулировать цветами 4 способами, как шестнадцатеричная строка из 6 цифр CSS (например: <code translate="no"># 112233</code>). 
-Как тон, насыщенность, яркость объекта (например: <code translate="no">{h: 60, s: 1, v:}</code>). 
-Как массив RGB (например: <code translate="no">[255, 128, 64]</code>). Или как массив RGBA (например: <code translate="no">[127, 200, 75, 0.3]</code>). </p>
+<p>dat.GUI может манипулировать цветами 4 способами, как шестнадцатеричная строка из 6 цифр CSS (например: <code class="notranslate" translate="no"># 112233</code>). 
+Как тон, насыщенность, яркость объекта (например: <code class="notranslate" translate="no">{h: 60, s: 1, v:}</code>). 
+Как массив RGB (например: <code class="notranslate" translate="no">[255, 128, 64]</code>). Или как массив RGBA (например: <code class="notranslate" translate="no">[127, 200, 75, 0.3]</code>). </p>
 <p>Для нашей цели проще всего использовать шестнадцатеричную версию, поскольку таким образом dat.GUI манипулирует только одним значением. 
-К счастью, <code translate="no">THREE.Color</code> как метод <a href="Color.getHexString"><code translate="no">getHexString</code></a>
-который мы используем, чтобы легко получить такую cтроку - нам просто нужно добавить <code translate="no">«#»</code> вперед. </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
+К счастью, <code class="notranslate" translate="no">THREE.Color</code> как метод <a href="Color.getHexString"><code class="notranslate" translate="no">getHexString</code></a>
+который мы используем, чтобы легко получить такую cтроку - нам просто нужно добавить <code class="notranslate" translate="no">«#»</code> вперед. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 +// Also when dat.gui manipulates color we&#39;ll
@@ -373,8 +373,8 @@ class FogGUIHelper {
 +  }
 }
 </code></pre>
-<p>Затем мы вызываем <code translate="no">gui.addColor</code>, чтобы добавить интерфейс цвета для виртуального свойства нашего помощника.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<p>Затем мы вызываем <code class="notranslate" translate="no">gui.addColor</code>, чтобы добавить интерфейс цвета для виртуального свойства нашего помощника.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -387,17 +387,17 @@ class FogGUIHelper {
 +  gui.addColor(fogGUIHelper, &#39;color&#39;);
 }
 </code></pre>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
-<p>Вы можете видеть <code translate="no">near</code> до 1,9, а <code translate="no">far</code> до 2,0 дает очень резкий переход между незатуманенным и полностью затуманенным. 
-где <code translate="no">near</code> = 1,1 и <code translate="no">far</code> = 2,9 должны быть примерно самыми гладкими, учитывая, что наши кубики вращаются на 2 единицы от камеры. </p>
-<p>И последнее: на материале существует логическое свойство <a href="Material.fog"><code translate="no">fog</code></a>,
+<p>Вы можете видеть <code class="notranslate" translate="no">near</code> до 1,9, а <code class="notranslate" translate="no">far</code> до 2,0 дает очень резкий переход между незатуманенным и полностью затуманенным. 
+где <code class="notranslate" translate="no">near</code> = 1,1 и <code class="notranslate" translate="no">far</code> = 2,9 должны быть примерно самыми гладкими, учитывая, что наши кубики вращаются на 2 единицы от камеры. </p>
+<p>И последнее: на материале существует логическое свойство <a href="Material.fog"><code class="notranslate" translate="no">fog</code></a>,
 определяющее, влияет ли туман на объекты, созданные с этим материалом. 
-По умолчанию это <code translate="no">true</code> для большинства материалов. В качестве примера того, почему вы можете захотеть отключить туман, представьте, 
+По умолчанию это <code class="notranslate" translate="no">true</code> для большинства материалов. В качестве примера того, почему вы можете захотеть отключить туман, представьте, 
 что вы делаете 3D-симулятор автомобиля с видом с места водителя или из кабины.
 Вы, вероятно, хотите, чтобы тумана не было внутри, если смотреть изнутри автомобиля. </p>
 <p>Лучшим примером может быть дом и густой туман вне дома. Допустим, туман установлен на расстоянии 2 метра ( near = 2) и полностью затуманен на 4 метра ( far = 4). 

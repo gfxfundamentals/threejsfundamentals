@@ -215,7 +215,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Three.js에서 단순한 배경을 넣는 건 CSS만큼이나 쉽습니다. <a href="threejs-responsive.html">반응형 디자인에 관한
 글</a>의 예제에서 2가지만 바꿔주면 되죠.</p>
 <p>먼저 CSS로 canvas에 배경을 추가합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;style&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;style&gt;
 body {
     margin: 0;
 }
@@ -228,9 +228,9 @@ body {
 }
 &lt;/style&gt;
 </code></pre>
-<p>그리고 <code translate="no">WebGLRenderer</code>에 <code translate="no">alpha</code> 옵션을 켜 아무것도 없는 공간은 투명하게
+<p>그리고 <code class="notranslate" translate="no">WebGLRenderer</code>에 <code class="notranslate" translate="no">alpha</code> 옵션을 켜 아무것도 없는 공간은 투명하게
 보이도록 설정합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function main() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
 -  const renderer = new THREE.WebGLRenderer({canvas});
 +  const renderer = new THREE.WebGLRenderer({
@@ -239,7 +239,7 @@ body {
 +  });
 </code></pre>
 <p>간단하지 않나요?</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-css.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-css.html" target="_blank">새 탭에서 보기</a>
 </div>
@@ -248,19 +248,19 @@ body {
 <p>배경이 <a href="threejs-post-processing.html">후처리 효과</a>의 영향을 받게 하려면
 Three.js로 배경을 렌더링해야 합니다.</p>
 <p>간단히 장면의 배경에 텍스처를 입혀주기만 하면 되죠.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const loader = new THREE.TextureLoader();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const loader = new THREE.TextureLoader();
 const bgTexture = loader.load(&#39;resources/images/daikanyama.jpg&#39;);
 scene.background = bgTexture;
 </code></pre>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-scene-background.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-scene-background.html" target="_blank">새 탭에서 보기</a>
 </div>
 
 </p>
 <p>배경이 지정되긴 했지만, 화면에 맞춰 늘어났네요.</p>
-<p>이미지의 일부만 보이도록 <code translate="no">repeat</code>과 <code translate="no">offset</code> 속성을 조정해 문제를 해결해봅시다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<p>이미지의 일부만 보이도록 <code class="notranslate" translate="no">repeat</code>과 <code class="notranslate" translate="no">offset</code> 속성을 조정해 문제를 해결해봅시다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
 
    ...
 +  /**
@@ -287,7 +287,7 @@ scene.background = bgTexture;
 </code></pre>
 <p>이제 Three.js가 배경을 렌더링합니다. 그냥 보기에 CSS와 큰 차이는 없지만,
 <a href="threejs-post-processing.html">후처리 효과</a>의 영향을 받는다는 점이 다릅니다.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-scene-background-fixed-aspect.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-scene-background-fixed-aspect.html" target="_blank">새 탭에서 보기</a>
 </div>
@@ -300,10 +300,10 @@ scene.background = bgTexture;
 구현합니다. 각 면에 수평선처럼 보이는 이미지를 텍스처로 배치하는 거죠(텍스처
 좌표를 이용해). 하늘 구체(sky sphere)나 하늘 돔(sky dom)도 자주 사용하는
 방식입니다. 다시 말해 육면체나 구체를 만들고, <a href="threejs-textures.html">텍스처를 입힌</a>
-뒤, 바깥 면이 아닌 안쪽 면을 렌더링하도록 <code translate="no">THREE.BackSide</code> 값을 넣어주면
+뒤, 바깥 면이 아닌 안쪽 면을 렌더링하도록 <code class="notranslate" translate="no">THREE.BackSide</code> 값을 넣어주면
 됩니다. 그리고 바로 장면(scene)에 추가하거나, 하늘 상자/구체/돔을 담당할
 장면 하나, 다른 요소를 담당할 장면 하나 이렇게 총 2개를 만들 수도 있죠.
-<code translate="no">OrthographicCamera</code>를 쓸 필요는 없으니 <code translate="no">PerspectiveCamera</code>를 그대로
+<code class="notranslate" translate="no">OrthographicCamera</code>를 쓸 필요는 없으니 <code class="notranslate" translate="no">PerspectiveCamera</code>를 그대로
 사용하면 됩니다.</p>
 <p>다른 방법 중 하나는 <em>큐브맵(Cubemap)</em>입니다. 큐브맵은 정육면체의 한 면 당
 하나, 총 6개의 면을 가진 텍스처로, 텍스처 좌표 대신 중앙에서 바깥쪽을 가리키는
@@ -321,8 +321,8 @@ scene.background = bgTexture;
   <img src="../../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
 </div>
 
-<p>이들을 <code translate="no">CubeTextureLoader</code>로 불러와 장면의 배경으로 설정합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<p>이들을 <code class="notranslate" translate="no">CubeTextureLoader</code>로 불러와 장면의 배경으로 설정합니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
     &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
@@ -336,7 +336,7 @@ scene.background = bgTexture;
 }
 </code></pre>
 <p>이 텍스처는 별도 조정이 필요 없으니 위에서 작성했던 코드를 삭제합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
 
    ...
 
@@ -363,9 +363,9 @@ scene.background = bgTexture;
 }
 </code></pre>
 <p>카메라도 조작이 가능하도록 만듭니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
-<pre class="prettyprint" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
 const aspect = 2;  // canvas 기본값
 const near = 0.1;
 -const far = 5;
@@ -379,7 +379,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +controls.update();
 </code></pre>
 <p>예제를 드래그하면 큐브맵이 주위를 둘러싼 게 보일 겁니다.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-cubemap.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-cubemap.html" target="_blank">새 탭에서 보기</a>
 </div>
@@ -391,11 +391,11 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 가져온 사진입니다.</p>
 <div class="threejs_center"><img src="../../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
 
-<p>등장방형도법을 사용하려면 몇 가지를 추가해야 합니다. 별도의 <code translate="no">Scene</code>과
-<code translate="no">BoxBufferGeometry</code>를 만들고, 내장 쉐이더를 이용해 <code translate="no">ShaderMaterial</code>를
+<p>등장방형도법을 사용하려면 몇 가지를 추가해야 합니다. 별도의 <code class="notranslate" translate="no">Scene</code>과
+<code class="notranslate" translate="no">BoxBufferGeometry</code>를 만들고, 내장 쉐이더를 이용해 <code class="notranslate" translate="no">ShaderMaterial</code>를
 만듭니다. 만든 요소들은 기존 장면을 렌더링하기 전 배경을 렌더링할 때
 사용할 겁니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const bgScene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const bgScene = new THREE.Scene();
 let bgMesh;
 {
   const loader = new THREE.TextureLoader();
@@ -417,13 +417,13 @@ let bgMesh;
   bgScene.add(bgMesh);
 }
 </code></pre>
-<p>상자(BoxBufferGeometry)는 카메라의 <code translate="no">near</code>보다는 커야 하나, 동시에 <code translate="no">far</code>보다는
+<p>상자(BoxBufferGeometry)는 카메라의 <code class="notranslate" translate="no">near</code>보다는 커야 하나, 동시에 <code class="notranslate" translate="no">far</code>보다는
 작아야 합니다.</p>
-<p>또 상자의 안이 보여야 하니 <code translate="no">side: THREE.BackSide</code>로 설정하고, 깊이에 관한
-연산을 하지 않도록 <code translate="no">depthWrite: false</code>로 설정합니다.</p>
+<p>또 상자의 안이 보여야 하니 <code class="notranslate" translate="no">side: THREE.BackSide</code>로 설정하고, 깊이에 관한
+연산을 하지 않도록 <code class="notranslate" translate="no">depthWrite: false</code>로 설정합니다.</p>
 <p>렌더링 시 배경 상자와 기존 카메라가 같은 위치에 있도록 설정하고, 배경용 장면을
 렌더링합니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time)
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time)
 
     /* ... */
 
@@ -431,14 +431,14 @@ let bgMesh;
 +    renderer.render(bgScene, bgCamera);
     renderer.render(scene, camera);
 </code></pre>
-<p>Three.js는 기본적으로 <code translate="no">renderer.render</code> 메서드를 호출 할 때마다 canvas를
-초기화합니다. 예제의 경우 <code translate="no">renderer.render</code>를 2번 호출하므로, 만약 설정을
+<p>Three.js는 기본적으로 <code class="notranslate" translate="no">renderer.render</code> 메서드를 호출 할 때마다 canvas를
+초기화합니다. 예제의 경우 <code class="notranslate" translate="no">renderer.render</code>를 2번 호출하므로, 만약 설정을
 바꾸지 않으면 첫 결과물을 초기화할 테니 배경이 제대로 보이지 않겠죠. 설정을
-끄려면 <code translate="no">renderer.autoClearColor = false</code>를 설정하면 됩니다.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const renderer = new THREE.WebGLRenderer({ canvas });
+끄려면 <code class="notranslate" translate="no">renderer.autoClearColor = false</code>를 설정하면 됩니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const renderer = new THREE.WebGLRenderer({ canvas });
 +renderer.autoClearColor = false;
 </code></pre>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-equirectangularmap.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-equirectangularmap.html" target="_blank">새 탭에서 보기</a>
 </div>

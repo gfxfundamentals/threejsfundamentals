@@ -231,7 +231,7 @@ Check it and start the server. </p>
 <div class="threejs_center"><img src="resources/images/servez-https.png" class="nobg" style="width: 912px;"></div>
 
 <p>The note the URLs. You need the one that is your computer&#39;s local ipaddress.
-It will usually start with <code translate="no">192</code>, <code translate="no">172</code> or <code translate="no">10</code>. Type that full address, including the <code translate="no">https://</code> part
+It will usually start with <code class="notranslate" translate="no">192</code>, <code class="notranslate" translate="no">172</code> or <code class="notranslate" translate="no">10</code>. Type that full address, including the <code class="notranslate" translate="no">https://</code> part
 into your VR device&#39;s browser. Note: Your computer and your VR device need to be on the same local network
 or WiFi and you probably need to be on a home network. note: Many cafes are setup to disallow this kind of
 machine to machine connection.</p>
@@ -248,22 +248,22 @@ so that you can see console warnings, errors, and of course actually
 this site.</p>
 <p>The first thing we need to do is include the VR support after
 including three.js</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 +import {VRButton} from &#39;./resources/threejs/r115/examples/jsm/webxr/VRButton.js&#39;;
 </code></pre>
 <p>Then we need to enable three.js&#39;s WebXR support and add its
 VR button to our page</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function main() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const renderer = new THREE.WebGLRenderer({canvas});
 +  renderer.xr.enabled = true;
 +  document.body.appendChild(VRButton.createButton(renderer));
 </code></pre>
 <p>We need to let three.js run our render loop. Until now we have used a
-<code translate="no">requestAnimationFrame</code> loop but to support VR we need to let three.js handle
+<code class="notranslate" translate="no">requestAnimationFrame</code> loop but to support VR we need to let three.js handle
 our render loop for us. We can do that by calling
-<code translate="no">WebGLRenderer.setAnimationLoop</code> and passing a function to call for the loop.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<code class="notranslate" translate="no">WebGLRenderer.setAnimationLoop</code> and passing a function to call for the loop.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -289,18 +289,18 @@ our render loop for us. We can do that by calling
 </code></pre>
 <p>There is one more detail. We should probably set a camera height
 that&#39;s kind of average for a standing user.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +camera.position.set(0, 1.6, 0);
 </code></pre>
 <p>and move the cubes up to be in front of the camera</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 cube.position.x = x;
 +cube.position.y = 1.6;
 +cube.position.z = -2;
 </code></pre>
-<p>We set them to <code translate="no">z = -2</code> since the camera will now be at <code translate="no">z = 0</code> and
+<p>We set them to <code class="notranslate" translate="no">z = -2</code> since the camera will now be at <code class="notranslate" translate="no">z = 0</code> and
 camera defaults to looking down the -z axis.</p>
 <p>This brings up an extremely important point. <strong>Units in VR are in meters</strong>.
 In other words <strong>One Unit = One Meter</strong>. This means the camera is 1.6 meters above 0.
@@ -310,7 +310,7 @@ user <em>in the real world</em>. That means we need the units used in three.js t
 the user&#39;s own movements.</p>
 <p>And with that we should get 3 spinning cubes in front
 of the camera with a button to enter VR.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-basic.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-basic.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -320,7 +320,7 @@ of the camera with a button to enter VR.</p>
 room for reference so let&#39;s add a simple grid cubemap like we covered in
 <a href="threejs-backgrounds.html">the article on backgrounds</a>. We&#39;ll just use the same grid
 texture for each side of the cube which will give as a grid room.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 +{
 +  const loader = new THREE.CubeTextureLoader();
 +  const texture = loader.load([
@@ -335,7 +335,7 @@ texture for each side of the cube which will give as a grid room.</p>
 +}
 </code></pre>
 <p>That&#39;s better.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-basic-w-background.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-basic-w-background.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -426,9 +426,9 @@ the Oculus Rift and Quest, and I believe all of the Windows MR devices.</p>
 </ol>
 <p>With all that covered I don&#39;t for sure know which devices will work with WebXR.
 I&#39;m 99% sure that most Android phones will work when running Chrome. You may
-need to turn on WebXR support in <a href="about:flags"><code translate="no">about:flags</code></a>. I also know Google
+need to turn on WebXR support in <a href="about:flags"><code class="notranslate" translate="no">about:flags</code></a>. I also know Google
 Daydream will also work and similarly you need to enable WebXR support in
-<a href="about:flags"><code translate="no">about:flags</code></a>. Oculus Rift, Vive, and Vive Pro will work via
+<a href="about:flags"><code class="notranslate" translate="no">about:flags</code></a>. Oculus Rift, Vive, and Vive Pro will work via
 Chrome or Firefox. I&#39;m less sure about Oculus Go and Oculus Quest as both of
 them use custom OSes but according to the internet they both appear to work.</p>
 <p>Okay, after that long detour about VR Devices and WebXR
@@ -438,7 +438,7 @@ there&#39;s some things to cover</p>
 <p>AFAICT, at least as of r112, there is no easy way to support
 both VR and non-VR modes with three.js. Ideally
 if not in VR mode you&#39;d be able to control the camera using
-whatever means you want, for example the <code translate="no">OrbitControls</code>,
+whatever means you want, for example the <code class="notranslate" translate="no">OrbitControls</code>,
 and you&#39;d get some kind of event when switching into and
 out of VR mode so that you could turn the controls on/off.</p>
 </li>
@@ -446,9 +446,9 @@ out of VR mode so that you could turn the controls on/off.</p>
 <p>If three.js adds some support to do both I&#39;ll try to update
 this article. Until then you might need 2 versions of your 
 site OR pass in a flag in the URL, something like</p>
-<pre class="prettyprint" translate="no"><code translate="no">https://mysite.com/mycooldemo?allowvr=true
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">https://mysite.com/mycooldemo?allowvr=true
 </code></pre><p>Then we could add some links in to switch modes</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;body&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 +  &lt;div class=&quot;mode&quot;&gt;
 +    &lt;a href=&quot;?allowvr=true&quot; id=&quot;vr&quot;&gt;Allow VR&lt;/a&gt;
@@ -457,7 +457,7 @@ site OR pass in a flag in the URL, something like</p>
 &lt;/body&gt;
 </code></pre>
 <p>and some CSS to position them</p>
-<pre class="prettyprint" translate="no"><code class="lang-css">body {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">body {
     margin: 0;
 }
 #c {
@@ -472,7 +472,7 @@ site OR pass in a flag in the URL, something like</p>
 +}
 </code></pre>
 <p>in your code you could use that parameter like this</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function main() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const renderer = new THREE.WebGLRenderer({canvas});
 -  renderer.xr.enabled = true;

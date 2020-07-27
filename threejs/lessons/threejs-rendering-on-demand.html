@@ -212,8 +212,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <div class="lesson-main">
       <p>The topic might be obvious to many people but just in case ... most Three.js
 examples render continuously. In other words they setup a
-<code translate="no">requestAnimationFrame</code> loop or &quot;<em>rAF loop</em>&quot; something like this</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render() {
+<code class="notranslate" translate="no">requestAnimationFrame</code> loop or &quot;<em>rAF loop</em>&quot; something like this</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
   ...
   requestAnimationFrame(render);
 }
@@ -228,13 +228,13 @@ loading, data arriving from some external source, the user adjusting a setting
 or the camera or giving other relevant input.</p>
 <p>Let&#39;s take an example from <a href="threejs-responsive.html">the article on responsiveness</a>
 and modify it to render on demand.</p>
-<p>First we&#39;ll add in the <code translate="no">OrbitControls</code> so there is something that could change
+<p>First we&#39;ll add in the <code class="notranslate" translate="no">OrbitControls</code> so there is something that could change
 that we can render in response to.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 +import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <p>and set them up</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
@@ -246,7 +246,7 @@ camera.position.z = 2;
 +controls.update();
 </code></pre>
 <p>Since we won&#39;t be animating the cubes anymore we no longer need to keep track of them</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const cubes = [
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -255,8 +255,8 @@ camera.position.z = 2;
 +makeInstance(geometry, 0x8844aa, -2);
 +makeInstance(geometry, 0xaa8844,  2);
 </code></pre>
-<p>We can remove the code to animate the cubes and the calls to <code translate="no">requestAnimationFrame</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-function render(time) {
+<p>We can remove the code to animate the cubes and the calls to <code class="notranslate" translate="no">requestAnimationFrame</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function render(time) {
 -  time *= 0.001;
 +function render() {
 
@@ -281,39 +281,39 @@ camera.position.z = 2;
 -requestAnimationFrame(render);
 </code></pre>
 <p>then we need to render once</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">render();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">render();
 </code></pre>
-<p>We need to render anytime the <code translate="no">OrbitControls</code> change the camera settings.
-Fortunately the <code translate="no">OrbitControls</code> dispatch a <code translate="no">change</code> event anytime something
+<p>We need to render anytime the <code class="notranslate" translate="no">OrbitControls</code> change the camera settings.
+Fortunately the <code class="notranslate" translate="no">OrbitControls</code> dispatch a <code class="notranslate" translate="no">change</code> event anytime something
 changes.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
 </code></pre>
 <p>We also need to handle the case where the user resizes the window. That was
 handled automatically before since we were rendering continuously but now what
 we are not we need to render when the window changes size.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
 </code></pre>
 <p>And with that we get something that renders on demand.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>The <code translate="no">OrbitControls</code> have options to add a kind of inertia to make them feel less
-stiff. We can enable this by setting the <code translate="no">enableDamping</code> property to true.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">controls.enableDamping = true;
+<p>The <code class="notranslate" translate="no">OrbitControls</code> have options to add a kind of inertia to make them feel less
+stiff. We can enable this by setting the <code class="notranslate" translate="no">enableDamping</code> property to true.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.enableDamping = true;
 </code></pre>
-<p>With <code translate="no">enableDamping</code> on we need to call <code translate="no">controls.update</code> in our render function
-so that the <code translate="no">OrbitControls</code> can continue to give us new camera settings as they
-smooth out the movement. But, that means we can&#39;t call <code translate="no">render</code> directly from
-the <code translate="no">change</code> event because we&#39;ll end up in an infinite loop. The controls will
-send us a <code translate="no">change</code> event and call <code translate="no">render</code>, <code translate="no">render</code> will call <code translate="no">controls.update</code>.
-<code translate="no">controls.update</code> will send another <code translate="no">change</code> event.</p>
-<p>We can fix that by using <code translate="no">requestAnimationFrame</code> to call <code translate="no">render</code> but we need to
+<p>With <code class="notranslate" translate="no">enableDamping</code> on we need to call <code class="notranslate" translate="no">controls.update</code> in our render function
+so that the <code class="notranslate" translate="no">OrbitControls</code> can continue to give us new camera settings as they
+smooth out the movement. But, that means we can&#39;t call <code class="notranslate" translate="no">render</code> directly from
+the <code class="notranslate" translate="no">change</code> event because we&#39;ll end up in an infinite loop. The controls will
+send us a <code class="notranslate" translate="no">change</code> event and call <code class="notranslate" translate="no">render</code>, <code class="notranslate" translate="no">render</code> will call <code class="notranslate" translate="no">controls.update</code>.
+<code class="notranslate" translate="no">controls.update</code> will send another <code class="notranslate" translate="no">change</code> event.</p>
+<p>We can fix that by using <code class="notranslate" translate="no">requestAnimationFrame</code> to call <code class="notranslate" translate="no">render</code> but we need to
 make sure we only ask for a new frame if one has not already been requested
 which we can do by keeping a variable that tracks if we&#39;ve already requested a frame.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">+let renderRequested = false;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+let renderRequested = false;
 
 function render() {
 +  renderRequested = false;
@@ -338,8 +338,8 @@ render();
 -controls.addEventListener(&#39;change&#39;, render);
 +controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
 </code></pre>
-<p>We should probably also use <code translate="no">requestRenderIfNotRequested</code> for resizing as well</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
+<p>We should probably also use <code class="notranslate" translate="no">requestRenderIfNotRequested</code> for resizing as well</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
 +window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
 </code></pre>
 <p>It might be hard to see the difference. Try clicking on the example below and
@@ -347,26 +347,26 @@ use the arrow keys to move around or dragging to spin. Then try clicking on the
 example above and do the same thing and you should be able to tell the
 difference. The one above snaps when you press an arrow key or drag, the one
 below slides.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
 <p>Let&#39;s also add a simple dat.GUI GUI and make its changes render on demand.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 +import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <p>Let&#39;s allow setting the color and x scale of each cube. To be able to set the
-color we&#39;ll use the <code translate="no">ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
+color we&#39;ll use the <code class="notranslate" translate="no">ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
 lights</a>.</p>
 <p>First we need to create a GUI</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const gui = new GUI();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
 </code></pre>
 <p>and then for each cube we&#39;ll create a folder and add 2 controls, one for
-<code translate="no">material.color</code> and another for <code translate="no">cube.scale.x</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+<code class="notranslate" translate="no">material.color</code> and another for <code class="notranslate" translate="no">cube.scale.x</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -386,11 +386,11 @@ lights</a>.</p>
   return cube;
 }
 </code></pre>
-<p>You can see above dat.GUI controls have an <code translate="no">onChange</code> method that you can pass a
+<p>You can see above dat.GUI controls have an <code class="notranslate" translate="no">onChange</code> method that you can pass a
 callback to be called when the GUI changes a value. In our case we just need it
-to call <code translate="no">requestRenderIfNotRequested</code>. The call to <code translate="no">folder.open</code> makes the
+to call <code class="notranslate" translate="no">requestRenderIfNotRequested</code>. The call to <code class="notranslate" translate="no">folder.open</code> makes the
 folder start expanded.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">click here to open in a separate window</a>
 </div>

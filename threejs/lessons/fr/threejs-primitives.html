@@ -235,7 +235,7 @@ utiliser en fonction de vos besoins.</p>
 <div id="Diagram-ConeBufferGeometry" data-primitive="ConeBufferGeometry">Un Cône</div>
 <div id="Diagram-CylinderBufferGeometry" data-primitive="CylinderBufferGeometry">Un Cylindre</div>
 <div id="Diagram-DodecahedronBufferGeometry" data-primitive="DodecahedronBufferGeometry">Un Dodécaèdre (12 côtés)</div>
-<div id="Diagram-ExtrudeBufferGeometry" data-primitive="ExtrudeBufferGeometry">Une forme 2D extrudée avec un biseautage optionnel. Ici, nous extrudons une forme de cœur. Notez qu'il s'agit du principe de fonctionnement pour les <code translate="no">TextBufferGeometry</code> et les <code translate="no">TextGeometry</code>.</div>
+<div id="Diagram-ExtrudeBufferGeometry" data-primitive="ExtrudeBufferGeometry">Une forme 2D extrudée avec un biseautage optionnel. Ici, nous extrudons une forme de cœur. Notez qu'il s'agit du principe de fonctionnement pour les <code class="notranslate" translate="no">TextBufferGeometry</code> et les <code class="notranslate" translate="no">TextGeometry</code>.</div>
 <div id="Diagram-IcosahedronBufferGeometry" data-primitive="IcosahedronBufferGeometry">Un Icosaèdre (20 côtés)</div>
 <div id="Diagram-LatheBufferGeometry" data-primitive="LatheBufferGeometry">Une forme généré par la rotation d'une ligne pour, par exemple, dessiner une lampe, une quille, bougies, bougeoirs, verres à vin, verres à boire, etc. Vous fournissez une silhouette en deux dimensions comme une série de points et vous indiquez ensuite à three.js combien de subdivisions sont nécessaires en faisant tourner la silhouette autour d'un axe.</div>
 <div id="Diagram-OctahedronBufferGeometry" data-primitive="OctahedronBufferGeometry">Un Octaèdre (8 côtés)</div>
@@ -254,51 +254,51 @@ utiliser en fonction de vos besoins.</p>
 géométrie en entrée et génère des arêtes que si l'angle entre les faces est supérieur à un certain
 seuil. Par exemple, si vous regardez en haut de la boîte, elle montre une ligne passant par chaque
 face et montrant chaque triangle qui forme la boîte. Si vous utilisez une
-<code translate="no">EdgesGeometry</code> les lignes du milieu sont supprimées. Ajustez le "thresholdAngle"
+<code class="notranslate" translate="no">EdgesGeometry</code> les lignes du milieu sont supprimées. Ajustez le "thresholdAngle"
 ci-dessous et vous verrez les arêtes en dessous de ce seuil disparatre.</div>
 <div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">Génère une géométrie qui
 contient un segment de droite (2 points) par arête dans la géométrie donnée. Sans cela, il vous
 manquerait souvent des arêtes ou vous obtiendriez des arêtes supplémentaires puisque WebGL exige
 généralement 2 points par segment de ligne. Par exemple, si vous n'aviez d'un seul triangle, il
 n'y aurait que 3 points. Si vous essayez de le dessiner en utilisant un matériau avec
-<code translate="no">wireframe: true</code> vous n'obtiendrez qu'une seule ligne. Si vous passez cette géométrie
-triangulaire à un <code translate="no">WireframeGeometry</code> vous obtenez une nouvelle géométrie qui comporte
+<code class="notranslate" translate="no">wireframe: true</code> vous n'obtiendrez qu'une seule ligne. Si vous passez cette géométrie
+triangulaire à un <code class="notranslate" translate="no">WireframeGeometry</code> vous obtenez une nouvelle géométrie qui comporte
 3 segments de lignes utilisant 6 points.</div>
 
-<p>Vous remarquerez que la plupart d&#39;entre eux proviennent soit du type <code translate="no">Geometry</code> soit
-du type <code translate="no">BufferGeometry</code>. Le choix entre ces deux types est question de compromis entre flexibilité et performance.</p>
-<p>Le choix des primitives basées sur le type <code translate="no">BufferGeometry</code> s&#39;oriente sur le critère de la performance. Les
+<p>Vous remarquerez que la plupart d&#39;entre eux proviennent soit du type <code class="notranslate" translate="no">Geometry</code> soit
+du type <code class="notranslate" translate="no">BufferGeometry</code>. Le choix entre ces deux types est question de compromis entre flexibilité et performance.</p>
+<p>Le choix des primitives basées sur le type <code class="notranslate" translate="no">BufferGeometry</code> s&#39;oriente sur le critère de la performance. Les
 sommets de la géométrie sont générés directement dans un format de tableau typé efficace, prêt à
 être envoyé au GPU pour le rendu. Cela signifie qu&#39;ils sont plus rapides à démarrer et prennent
 moins de mémoire, mais si vous voulez modifier leurs données, ils nécessitent ce qui est souvent
 considéré comme une programmation plus ardue.</p>
-<p>Le choix des primitives basées sur le type <code translate="no">Geometry</code> s&#39;oriente sur le critère de la flexiblité car elles sont les plus faciles à manipuler.
-Elles sont construites à partir de classes JavaScript comme <code translate="no">Vector3</code> pour les points 3D et <code translate="no">Face3</code>
+<p>Le choix des primitives basées sur le type <code class="notranslate" translate="no">Geometry</code> s&#39;oriente sur le critère de la flexiblité car elles sont les plus faciles à manipuler.
+Elles sont construites à partir de classes JavaScript comme <code class="notranslate" translate="no">Vector3</code> pour les points 3D et <code class="notranslate" translate="no">Face3</code>
 pour les triangles.
 Elles demandent beaucoup de mémoire et avant de pouvoir être rendues à l&#39;écran, three.js devra les convertir
-en une représentation correspondante à <code translate="no">BufferGeometry</code>.</p>
+en une représentation correspondante à <code class="notranslate" translate="no">BufferGeometry</code>.</p>
 <p>Si vous savez que vous n&#39;allez pas manipuler une primitive
 ou si vous êtes à l&#39;aise pour appliquer des calculs modifiant
 leurs données internes, alors il est préférable d&#39;opter pour les primitives
-basées sur <code translate="no">BufferGeometry</code>. Si, par contre, vous
+basées sur <code class="notranslate" translate="no">BufferGeometry</code>. Si, par contre, vous
 souhaitez modifier certaines choses avant le rendu, vous trouverez
-peut-être les primitives basées sur la <code translate="no">Geometry</code> plus faciles à manipuler.</p>
-<p>Pour prendre un exemple simple, une <code translate="no">BufferGeometry</code> ne peut pas facilement
+peut-être les primitives basées sur la <code class="notranslate" translate="no">Geometry</code> plus faciles à manipuler.</p>
+<p>Pour prendre un exemple simple, une <code class="notranslate" translate="no">BufferGeometry</code> ne peut pas facilement
 avoir de nouveaux sommets ajoutés. Le nombre de sommets utilisés
 est décidé au moment de la création, le stockage est créé, puis les données
-relatives aux sommets sont fournies. Alors que pour <code translate="no">Geometry</code>, vous
+relatives aux sommets sont fournies. Alors que pour <code class="notranslate" translate="no">Geometry</code>, vous
 pouvez ajouter des sommets au fur et à mesure.</p>
 <p>Nous reviendrons sur la création de géométrie personnalisée dans
 <a href="threejs-custom-geometry.html">un autre article</a>. Pour l&#39;instant,
 faisons un exemple en créant chaque type de primitive. Nous
 commencerons par les <a href="threejs-responsive.html">exemples vus dans l&#39;article précédent</a>.</p>
 <p>Mais tout d&#39;abord, définissons un couleur de fond :</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(0xAAAAAA);
 </code></pre>
 <p>Cela indique à three.js d&#39;utiliser un fond gris clair.</p>
 <p>La caméra doit changer de position pour que nous puissions voir tous les objets.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const fov = 75;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const fov = 75;
 +const fov = 40; // champ de vue (field of view)
 const aspect = 2;
 const near = 0.1; // distance minimum
@@ -308,9 +308,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 -camera.position.z = 2;
 +camera.position.z = 120;
 </code></pre>
-<p>Ajoutons une fonction, <code translate="no">addObject</code>, qui prend une position x, y et un <code translate="no">Object3D</code>
+<p>Ajoutons une fonction, <code class="notranslate" translate="no">addObject</code>, qui prend une position x, y et un <code class="notranslate" translate="no">Object3D</code>
 et ajoute l&#39;objet à la scène.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const objects = [];
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const objects = [];
 const spread = 15;
 
 function addObject (x, y, obj) {
@@ -322,16 +322,16 @@ function addObject (x, y, obj) {
 }
 </code></pre>
 <p>Faisons aussi une fonction pour créer un matériau coloré aléatoire.
-Nous utiliserons une fonction de <code translate="no">Color</code> qui vous permet de définir
+Nous utiliserons une fonction de <code class="notranslate" translate="no">Color</code> qui vous permet de définir
 une couleur en fonction de la teinte, de la saturation et de la luminosité.</p>
-<p>La <code translate="no">hue</code> (teinte) va de 0 à 1 autour de la roue des couleurs avec
-le rouge à 0, le vert à 0,33 et le bleu à 0,66. La <code translate="no">saturation</code>
-va de 0 à 1,0 n&#39;ayant pat de couleur et 1 étant saturé. La <code translate="no">luminance</code>
+<p>La <code class="notranslate" translate="no">hue</code> (teinte) va de 0 à 1 autour de la roue des couleurs avec
+le rouge à 0, le vert à 0,33 et le bleu à 0,66. La <code class="notranslate" translate="no">saturation</code>
+va de 0 à 1,0 n&#39;ayant pat de couleur et 1 étant saturé. La <code class="notranslate" translate="no">luminance</code>
 (luminosité) va de 0 à 1, 0 étant le noir, 1 le blanc et 0,5 la
 quantité maximale de la couleur En d&#39;autres termes, lorsque la
-<code translate="no">luminance</code> va de 0,0 à 0,5, la couleur passe du noir à la <code translate="no">hue</code>.
-De 0,5 à 1,0 la couleur passe de la <code translate="no">hue</code> au blanc.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function createMaterial () {
+<code class="notranslate" translate="no">luminance</code> va de 0,0 à 0,5, la couleur passe du noir à la <code class="notranslate" translate="no">hue</code>.
+De 0,5 à 1,0 la couleur passe de la <code class="notranslate" translate="no">hue</code> au blanc.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function createMaterial () {
   const material = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide,
   });
@@ -344,32 +344,32 @@ De 0,5 à 1,0 la couleur passe de la <code translate="no">hue</code> au blanc.</
   return material;
 }
 </code></pre>
-<p>Nous avons également passé <code translate="no">side: THREE.DoubleSide</code> au matériau.
+<p>Nous avons également passé <code class="notranslate" translate="no">side: THREE.DoubleSide</code> au matériau.
 Cela indique à three de dessiner les deux côtés des triangles
 qui constituent une forme. Pour un solide comme une sphère
 ou un cube, il n&#39;y a généralement pas de raison de dessiner les
 côtés arrières des triangles car ils sont tous tournés ver l&#39;intérieur
 de la forme. Dans notre cas, cependant, nous dessinons des objets
-comme la <code translate="no">PlaneBufferGeometry</code> ou la <code translate="no">ShapeBufferGeometry</code>
+comme la <code class="notranslate" translate="no">PlaneBufferGeometry</code> ou la <code class="notranslate" translate="no">ShapeBufferGeometry</code>
 qui sont bidimensionnnels et n&#39;ont donc pas d&#39;intérieur.
-Sans le paramètre <code translate="no">side: THREE.DoubleSide</code> elle disparaîtraient
+Sans le paramètre <code class="notranslate" translate="no">side: THREE.DoubleSide</code> elle disparaîtraient
 quand on regarderait leur dos.</p>
 <p>Notons qu&#39;il est plus rapide de dessiner quand on ne met <strong>pas</strong>
-<code translate="no">side: THREE.DoubleSide</code>, donc l&#39;idéal serait de ne le mettre que sur
+<code class="notranslate" translate="no">side: THREE.DoubleSide</code>, donc l&#39;idéal serait de ne le mettre que sur
 les matériaux qui en ont vraiment besoin, mais pour cet exemple, nous
 dessinons peu d&#39;objets, donc il n&#39;y a pas de raisons de s&#39;en inquiéter.</p>
-<p>Faisons une fonction, <code translate="no">addSolidGeometry</code>, qui
+<p>Faisons une fonction, <code class="notranslate" translate="no">addSolidGeometry</code>, qui
 reçoit une géométrie et crée un matériau coloré
-aléatoire via <code translate="no">createMaterial</code> et l&#39;ajoute à la
-scène via <code translate="no">addObject</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function addSolidGeometry(x, y, geometry) {
+aléatoire via <code class="notranslate" translate="no">createMaterial</code> et l&#39;ajoute à la
+scène via <code class="notranslate" translate="no">addObject</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addSolidGeometry(x, y, geometry) {
   const mesh = new THREE.Mesh(geometry, createMaterial());
   addObject(x, y, mesh);
 }
 </code></pre>
 <p>Nous pouvons maintenant l&#39;utiliser pour la majorité des primitives que nous créons.
 Par exemple, la création d&#39;une boîte :</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const width = 8; // largeur
   const height = 8; // hauteur
   const depth = 8; // profondeur
@@ -378,23 +378,23 @@ Par exemple, la création d&#39;une boîte :</p>
 </code></pre>
 <p>Si vous regardez dans le code ci-dessous, vous verrez une section similaire pour chaque type de géométrie.</p>
 <p>Voici le résultat :</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-primitives.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
 
 </p>
 <p>Il y a quelques exceptions notables au modèle ci-dessus.
-La plus grande est probablement le <code translate="no">TextBufferGeometry</code>. Il doit charger
+La plus grande est probablement le <code class="notranslate" translate="no">TextBufferGeometry</code>. Il doit charger
 des données de police en 3D avant de pouvoir générer un maillage pour le texte.
 Ces données se chargent de manière asynchrone, nous devons donc attendre
 qu&#39;elles soient chargées avant d&#39;essayer de créer la géométrie. En &quot;promettant&quot;
 le chargement des polices, nous pouvons faciliter la tâche.
-Une créons un <code translate="no">FontLoader</code> et une fonction <code translate="no">loadFont</code> qui retourne
+Une créons un <code class="notranslate" translate="no">FontLoader</code> et une fonction <code class="notranslate" translate="no">loadFont</code> qui retourne
 une promesse, qui une fois résolue, nous donnera la police. Nous créons
-une fonction <code translate="no">async</code> appelée <code translate="no">doit</code> (fais le) et chargeons la police en utilisant <code translate="no">await</code> (attends).
-Et enfin, nous créons la géométrie et appelons <code translate="no">addObject</code> pour l&#39;ajouter à la scène.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+une fonction <code class="notranslate" translate="no">async</code> appelée <code class="notranslate" translate="no">doit</code> (fais le) et chargeons la police en utilisant <code class="notranslate" translate="no">await</code> (attends).
+Et enfin, nous créons la géométrie et appelons <code class="notranslate" translate="no">addObject</code> pour l&#39;ajouter à la scène.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const loader = new THREE.FontLoader();
   // promisify font loading
   function loadFont(url) {
@@ -431,26 +431,26 @@ Et enfin, nous créons la géométrie et appelons <code translate="no">addObject
 centre, mais par défaut three.js crée le texte de tel sorte que son centre de rotation
 se trouve sur le bord gauche. Pour contourner ce problème, nous pouvons demander à
 three.js de calculer une boite englobant la géométrie.
-Nous pouvons alors appeler la méthode <code translate="no">getCenter</code> de cette boite
+Nous pouvons alors appeler la méthode <code class="notranslate" translate="no">getCenter</code> de cette boite
 et lui passer la position du maillage de notre objet. La méthode
-<code translate="no">getCenter</code> copie le centre de la boite dans la position.
+<code class="notranslate" translate="no">getCenter</code> copie le centre de la boite dans la position.
 Elle renvoie également l&#39;objet position afin que nous puissions appeler
-<code translate="no">multiplyScalar(-1)</code> pour positionner l&#39;objet entier de tel sorte que son
+<code class="notranslate" translate="no">multiplyScalar(-1)</code> pour positionner l&#39;objet entier de tel sorte que son
 centre de rotation soit positioné au centre de l&#39;objet.</p>
-<p>Si nous appelons juste <code translate="no">addSolidGeometry</code> comme dans les
+<p>Si nous appelons juste <code class="notranslate" translate="no">addSolidGeometry</code> comme dans les
 exemples précédents, il s&#39;établirait une position
-qui ne serait pas correcte. Donc, dans ce cas, nous créons un <code translate="no">Object3D</code>
-qui est un nœud standard pour les scènes three.js. <code translate="no">Mesh</code>
-hérite également de <code translate="no">Object3D</code> (confère l&#39;article
+qui ne serait pas correcte. Donc, dans ce cas, nous créons un <code class="notranslate" translate="no">Object3D</code>
+qui est un nœud standard pour les scènes three.js. <code class="notranslate" translate="no">Mesh</code>
+hérite également de <code class="notranslate" translate="no">Object3D</code> (confère l&#39;article
 <a href="threejs-scenegraph.html">comment un graphe de scène fonctionne</a>).
 Pour l&#39;instant, il suffit de savoir que,
 comme les nœuds DOM, les enfants sont placés de façon relative par rapport à leur parent.
-En créant un <code translate="no">Object3D</code> et en faisant de notre maillage (mesh) un
-enfant de celui-ci nous pouvons positionner l&#39;<code translate="no">Object3D</code> où nous
+En créant un <code class="notranslate" translate="no">Object3D</code> et en faisant de notre maillage (mesh) un
+enfant de celui-ci nous pouvons positionner l&#39;<code class="notranslate" translate="no">Object3D</code> où nous
 voulons tout en conservant le décalage central que nous avons
 fixé précédemment.</p>
 <p>Si nous ne faisions pas cela, le texte serait alors décentré !</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives-text.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-primitives-text.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
@@ -458,17 +458,17 @@ fixé précédemment.</p>
 </p>
 <p>Notons que celui de gauche ne tourne pas autour de son centre
 alors que celui de droite le fait.</p>
-<p>Les autres exceptions sont les exemples de 2 lignes pour la <code translate="no">EdgesGeometry</code>
-et la <code translate="no">WireframeGeometry</code>. Au lieu d&#39;appeler <code translate="no">addSolidGeometry</code> ils appellent
-<code translate="no">addLineGeometry</code> dont le code ressemble à :</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function addLineGeometry(x, y, geometry) {
+<p>Les autres exceptions sont les exemples de 2 lignes pour la <code class="notranslate" translate="no">EdgesGeometry</code>
+et la <code class="notranslate" translate="no">WireframeGeometry</code>. Au lieu d&#39;appeler <code class="notranslate" translate="no">addSolidGeometry</code> ils appellent
+<code class="notranslate" translate="no">addLineGeometry</code> dont le code ressemble à :</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addLineGeometry(x, y, geometry) {
   const material = new THREE.LineBasicMaterial({color: 0x000000});
   const mesh = new THREE.LineSegments(geometry, material);
   addObject(x, y, mesh);
 }
 </code></pre>
-<p>Cette fonction crée un <code translate="no">LineBasicMaterial</code> noir et crée ensuite un objet <code translate="no">LineSegments</code>
-qui est enveloppé par le <code translate="no">Mesh</code> qui permet à three de savoir que vous
+<p>Cette fonction crée un <code class="notranslate" translate="no">LineBasicMaterial</code> noir et crée ensuite un objet <code class="notranslate" translate="no">LineSegments</code>
+qui est enveloppé par le <code class="notranslate" translate="no">Mesh</code> qui permet à three de savoir que vous
 affichez des segments de droite (2 points par segment).</p>
 <p>Chacune des primitives a plusieurs paramètres que vous pouvez passer à la création
 et il est préférable que vous <a href="https://threejs.org/docs/">regardez la documentation</a>
@@ -476,12 +476,12 @@ de tous ces paramètres par vous même plutôt que de la répéter dans ce docum
 Vous pouvez également cliquer sur les liens ci-dessus à côté de chaque
 forme pour accéder directement à la documentation correspondante.</p>
 <p>Il y a une paire de classe qui ne correspond pas vraiment aux modèles ci-dessus. Il s&#39;agit des
-classes <code translate="no">PointsMaterial</code> et  <code translate="no">Points</code>. Les <code translate="no">Points</code> sont comme les <code translate="no">LineSegments</code> ci-dessus en
-ce sens qu&#39;ils prennent une <code translate="no">Geometry</code> ou une <code translate="no">BufferGeometry</code> mais dessinent des points à chaque
+classes <code class="notranslate" translate="no">PointsMaterial</code> et  <code class="notranslate" translate="no">Points</code>. Les <code class="notranslate" translate="no">Points</code> sont comme les <code class="notranslate" translate="no">LineSegments</code> ci-dessus en
+ce sens qu&#39;ils prennent une <code class="notranslate" translate="no">Geometry</code> ou une <code class="notranslate" translate="no">BufferGeometry</code> mais dessinent des points à chaque
 sommet au lieu de lignes.
-Pour l&#39;utiliser, vous devez également lui passer un <code translate="no">PointsMaterial</code> qui
-prend une taille (<a href="PointsMaterial.size"><code translate="no">size</code></a>) pour la grosseur des points.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const radius = 7; // rayon
+Pour l&#39;utiliser, vous devez également lui passer un <code class="notranslate" translate="no">PointsMaterial</code> qui
+prend une taille (<a href="PointsMaterial.size"><code class="notranslate" translate="no">size</code></a>) pour la grosseur des points.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const radius = 7; // rayon
 const widthSegments = 12;
 const heightSegments = 8;
 const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
@@ -496,10 +496,10 @@ scene.add(points);
 <div data-diagram="Points"></div>
 </div>
 
-<p>Vous pouvez désactiver l&#39;option <a href="PointsMaterial.sizeAttenuation"><code translate="no">sizeAttenuation</code></a> en la réglant
+<p>Vous pouvez désactiver l&#39;option <a href="PointsMaterial.sizeAttenuation"><code class="notranslate" translate="no">sizeAttenuation</code></a> en la réglant
 sur &quot;false&quot; si vous souhaitez que les points soient de la même taille quelle que soit leur
 distance par rapport à la caméra.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const material = new THREE.PointsMaterial({
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.PointsMaterial({
     color: &#39;red&#39;,
 +    sizeAttenuation: false,
 +    size: 3, // en pixels

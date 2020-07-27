@@ -222,16 +222,16 @@ three.jsを使わない場合、WebGLで何か便利な事を行うには通常�
 three.jsがサポートするほとんどのブラウザは自動更新されるため、ほとんどのユーザーはこのコードを実行できます。
 古いブラウザーで実行したい場合は、<a href="https://babel.io">Babel</a> のようなトランスパイラーを調べて下さい。
 もちろん、本当に古いブラウザを実行しているユーザーはthree.jsを実行できないマシンを持っている可能性があります。</p>
-<p>ほとんどのプログラミング言語を学ぶ時、最初にする事は <code translate="no">&quot;Hello World!&quot;</code> を表示する事です。
+<p>ほとんどのプログラミング言語を学ぶ時、最初にする事は <code class="notranslate" translate="no">&quot;Hello World!&quot;</code> を表示する事です。
 3Dで最初に行う最も一般的な事の1つは、3Dキューブを作成する事です。
 それでは &quot;Hello Cube!&quot; から始めましょう。</p>
-<p>最初に必要なのは <code translate="no">&lt;canvas&gt;</code> タグです。</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;body&gt;
+<p>最初に必要なのは <code class="notranslate" translate="no">&lt;canvas&gt;</code> タグです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;/body&gt;
 </code></pre>
 <p>Three.jsはcanvasに描画するため、canvasをthree.jsに渡す必要があります。</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 import * as THREE from &#39;./resources/threejs/r110/build/three.module.js&#39;;
 
 function main() {
@@ -240,8 +240,8 @@ function main() {
   ...
 &lt;/script&gt;
 </code></pre>
-<p>scriptタグに <code translate="no">type=&quot;module&quot;</code> を含めることが重要です。
-これにより <code translate="no">import</code> キーワードを使用してthree.jsを読み込む事ができます。
+<p>scriptタグに <code class="notranslate" translate="no">type=&quot;module&quot;</code> を含めることが重要です。
+これにより <code class="notranslate" translate="no">import</code> キーワードを使用してthree.jsを読み込む事ができます。
 three.jsを読み込む方法は他にもありますが、r106の時点ではモジュールを使用する事をお勧めします。
 モジュールには、必要な他のモジュールを簡単にインポートできるという利点があります。
 これにより、依存している追加のスクリプトを手動で読み込む必要がなくなります。</p>
@@ -251,22 +251,22 @@ canvasを追加する場所は、ユースケースに応じて変わる可能�
 また、コードを変更する必要があるため、canvasをthree.jsに渡す事は少し柔軟性があると感じます。
 canvasをどこにでも配置でき、コードを見つける事ができます。
 canvasをdocumentに挿入するコードがあるかのように、ユースケースが変更された場合、そのコードを変更する必要があります。</p>
-<p>canvasを検索した後、<code translate="no">WebGLRenderer</code> を作成します。
+<p>canvasを検索した後、<code class="notranslate" translate="no">WebGLRenderer</code> を作成します。
 rendererは提供された全てのデータを取得し、canvasにレンダリングします。
-過去に <code translate="no">CSSRenderer</code> や <code translate="no">CanvasRenderer</code> のような他のレンダラーがありましたが、将来的には <code translate="no">WebGL2Renderer</code> または <code translate="no">WebGPURenderer</code> があるかもしれません。</p>
-<p>今はWebGLを使用して3Dをcanvasにレンダリングする <code translate="no">WebGLRenderer</code> があります。</p>
+過去に <code class="notranslate" translate="no">CSSRenderer</code> や <code class="notranslate" translate="no">CanvasRenderer</code> のような他のレンダラーがありましたが、将来的には <code class="notranslate" translate="no">WebGL2Renderer</code> または <code class="notranslate" translate="no">WebGPURenderer</code> があるかもしれません。</p>
+<p>今はWebGLを使用して3Dをcanvasにレンダリングする <code class="notranslate" translate="no">WebGLRenderer</code> があります。</p>
 <p>次はカメラが必要です。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre>
-<p><code translate="no">fov</code> は <code translate="no">field of view</code> の略です。この場合、垂直方向に75度を表します。
+<p><code class="notranslate" translate="no">fov</code> は <code class="notranslate" translate="no">field of view</code> の略です。この場合、垂直方向に75度を表します。
 three.jsのほとんどの角度はラジアン単位ですが、いくつかの理由でパースペクティブカメラは角度を設定します。</p>
-<p><code translate="no">aspect</code> はcanvasの表示アスペクトです。
+<p><code class="notranslate" translate="no">aspect</code> はcanvasの表示アスペクトです。
 別の記事で詳細を説明しますが、デフォルト値はcanvasは300x150ピクセルで、アスペクトは300/150、または2になります。
-<code translate="no">near</code> と <code translate="no">far</code> は、レンダリングされるカメラの前のスペースを表します。
+<code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> は、レンダリングされるカメラの前のスペースを表します。
 その範囲の前またはその範囲の後はクリップされます（描画されません）。</p>
 <p>これらの4つの設定は <em>&quot;錐台&quot;</em> を定義します。
 <em>錐台</em> は、先端が切り取られたピラミッドのような3D形状の名前です。
@@ -277,53 +277,53 @@ three.jsのほとんどの角度はラジアン単位ですが、いくつかの
 <p>定義された錐台内のすべてが描画されます。錐台外は何も描画しません。</p>
 <p>カメラはデフォルトで、Yを上にして-Z軸を見下ろします。
 立方体を原点に配置するので、カメラを原点から少し後ろに動かし、何かを見えるようにする必要があります。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">camera.position.z = 2;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">camera.position.z = 2;
 </code></pre>
 <p>以下が私たちが目指しているものです。</p>
 <p><img src="../resources/scene-down.svg" width="500" class="threejs_center"/></p>
-<p>上の図では、カメラが <code translate="no">z = 2</code> にある事がわかります。
+<p>上の図では、カメラが <code class="notranslate" translate="no">z = 2</code> にある事がわかります。
 -Z軸を見下ろしています。
 錐台は、カメラの正面から0.1単位で開始し、カメラの正面の5単位に移動します。
 この図では見下ろしているため、視野はアスペクトの影響を受けます。
 canvasは高さの2倍の幅であるため、ビュー全体で視野は垂直方向の視野である指定された75度よりもはるかに広くなります。</p>
-<p>次は <code translate="no">Scene</code> を作成します。
-three.jsの <code translate="no">Scene</code> は、シーングラフのフォームのルートです。
+<p>次は <code class="notranslate" translate="no">Scene</code> を作成します。
+three.jsの <code class="notranslate" translate="no">Scene</code> は、シーングラフのフォームのルートです。
 three.jsで描画するものはすべてシーンに追加する必要があります。
 <a href="threejs-scenegraph.html">Sceneの仕組みの詳細</a>は、今後の記事で説明します。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 </code></pre>
-<p>次はボックスのデータが含まれている <code translate="no">BoxGeometry</code> を作成します。
+<p>次はボックスのデータが含まれている <code class="notranslate" translate="no">BoxGeometry</code> を作成します。
 Three.jsで表示するほとんど全てのものには、3Dオブジェクトを構成する頂点を定義するジオメトリが必要です。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const boxWidth = 1;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 </code></pre>
 <p>基本的なマテリアルを作成し、色を設定します。
 色は標準のCSSスタイルの6桁の16進数の色値を使用して指定できます。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </code></pre>
-<p>次に <code translate="no">Mesh</code> を作成します。 <code translate="no">Mesh</code> は <code translate="no">Geometry</code> (オブジェクトの形状)と <code translate="no">Material</code> （オブジェクトの描画方法、光沢または平坦、適用する色、適用するテクステャなど）を組み合わせます。
+<p>次に <code class="notranslate" translate="no">Mesh</code> を作成します。 <code class="notranslate" translate="no">Mesh</code> は <code class="notranslate" translate="no">Geometry</code> (オブジェクトの形状)と <code class="notranslate" translate="no">Material</code> （オブジェクトの描画方法、光沢または平坦、適用する色、適用するテクステャなど）を組み合わせます。
 シーン内のオブジェクトの位置、方向、スケールと同様です。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
 </code></pre>
 <p>最後にメッシュをシーンに追加します。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">scene.add(cube);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">scene.add(cube);
 </code></pre>
 <p>次にレンダラーの描画関数にシーンとカメラに渡し、シーンをレンダリングします。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">renderer.render(scene, camera);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">renderer.render(scene, camera);
 </code></pre>
 <p>これが実際の例です。</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
 </p>
 <p>私たちの視点からは、これを3Dキューブと言うのは少し難しいです。Z軸がマイナス値で奥にあり、1つの面しか見ていません。</p>
-<p>回転アニメーションさせて、3Dキューブで描画されている事を明らかにします。アニメーションさせるには <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code translate="no">requestAnimationFrame</code></a> を使用しループ処理内で描画します。</p>
+<p>回転アニメーションさせて、3Dキューブで描画されている事を明らかにします。アニメーションさせるには <a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code class="notranslate" translate="no">requestAnimationFrame</code></a> を使用しループ処理内で描画します。</p>
 <p>これがループです。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;  // convert time to seconds
 
   cube.rotation.x = time;
@@ -335,18 +335,18 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 }
 requestAnimationFrame(render);
 </code></pre>
-<p><code translate="no">requestAnimationFrame</code> は、何かをアニメーションさせたい時に使います。
-これに呼び出される関数を渡します。今回渡す関数は <code translate="no">render</code> です。
+<p><code class="notranslate" translate="no">requestAnimationFrame</code> は、何かをアニメーションさせたい時に使います。
+これに呼び出される関数を渡します。今回渡す関数は <code class="notranslate" translate="no">render</code> です。
 関数を呼び出し、表示に関連する何かを更新するとブラウザがページを再描画します。
-私たちの場合、three.jsの <code translate="no">renderer.render</code> 関数を呼び出しシーンを描画します。
-<code translate="no">requestAnimationFrame</code> は、ページがロードされて渡した関数が呼ばれるまで少し時間がかかります。その時間はミリ秒単位です。
+私たちの場合、three.jsの <code class="notranslate" translate="no">renderer.render</code> 関数を呼び出しシーンを描画します。
+<code class="notranslate" translate="no">requestAnimationFrame</code> は、ページがロードされて渡した関数が呼ばれるまで少し時間がかかります。その時間はミリ秒単位です。
 秒に変換する方が簡単に扱えるため、ここではミリ秒を秒に変換します。</p>
 <p>次にキューブのXとY回転に現在の時間を設定します。
 回転は <a href="https://en.wikipedia.org/wiki/Radian">ラジアン</a> 単位です。
 円の中に2πのラジアンがあります。キューブは1秒間に約6.28ごと各軸で1回転します。</p>
 <p>シーンをレンダリングし、別のアニメーションフレームをループし続けます。
-ループの外側で <code translate="no">requestAnimationFrame</code> を1回呼び出してループを開始します。</p>
-<p><div translate="no" class="threejs_example_container">
+ループの外側で <code class="notranslate" translate="no">requestAnimationFrame</code> を1回呼び出してループを開始します。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-animation.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-animation.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
@@ -355,7 +355,7 @@ requestAnimationFrame(render);
 <p>少し良くなりましたが、まだ3Dには見えません。3Dに見えるようにいくつか光源を追加します。つまり、ライトを追加しましょう。
 three.jsには <a href="threejs-lights.html">今後の記事</a> で紹介する多くの種類のライトがあります。
 とりあえずディレクショナルライトを作成しましょう。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -366,12 +366,12 @@ three.jsには <a href="threejs-lights.html">今後の記事</a> で紹介する
 <p>ディレクショナルライトは位置とターゲットを持っています。どちらもデフォルト値は 0, 0, 0 です。
 今回はライトの位置を -1、2、4 に設定しているため、カメラの後ろの少し左上側にあります。
 ターゲットはまだ 0, 0, 0 なので原点に向かって輝きます。</p>
-<p>また、マテリアルを変更する必要があります。<code translate="no">MeshBasicMaterial</code> はライトの影響を受けません。ライトの影響をうける <code translate="no">MeshPhongMaterial</code> に変更してみましょう。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
+<p>また、マテリアルを変更する必要があります。<code class="notranslate" translate="no">MeshBasicMaterial</code> はライトの影響を受けません。ライトの影響をうける <code class="notranslate" translate="no">MeshPhongMaterial</code> に変更してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
 +const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 </code></pre>
 <p>そして、ここで動作しています。</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-light.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-light.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
@@ -382,7 +382,7 @@ three.jsには <a href="threejs-lights.html">今後の記事</a> で紹介する
 <p>各キューブに同じジオメトリを使用しますが、キューブごとに異なるカラーが適用できるため、異なるマテリアルを作成します。</p>
 <p>最初に、指定した色で新しいマテリアルを作成する関数を作ります。
 次に、指定したジオメトリをシーンに追加し、X位置を設定したメッシュを作成します。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -393,8 +393,8 @@ three.jsには <a href="threejs-lights.html">今後の記事</a> で紹介する
   return cube;
 }
 </code></pre>
-<p>次に、異なる色とX位置を指定した <code translate="no">Mesh</code> インスタンスを配列に保存する関数を3回呼び出します。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cubes = [
+<p>次に、異なる色とX位置を指定した <code class="notranslate" translate="no">Mesh</code> インスタンスを配列に保存する関数を3回呼び出します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cubes = [
   makeInstance(geometry, 0x44aa88,  0),
   makeInstance(geometry, 0x8844aa, -2),
   makeInstance(geometry, 0xaa8844,  2),
@@ -402,7 +402,7 @@ three.jsには <a href="threejs-lights.html">今後の記事</a> で紹介する
 </code></pre>
 <p>最後に、描画関数の中でで3つのキューブすべてを回転します。
 それぞれにわずかに異なる回転を計算し適用します。</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;  // convert time to seconds
 
   cubes.forEach((cube, ndx) =&gt; {
@@ -415,7 +415,7 @@ three.jsには <a href="threejs-lights.html">今後の記事</a> で紹介する
   ...
 </code></pre>
 <p>それがここにあります。</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-3-cubes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-3-cubes.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
@@ -431,8 +431,8 @@ X = -2 および X = +2の場合、キューブは部分的に錐台の外側に
 <p>バージョンr106以降でthree.jsを使用する好ましい方法は
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">es6モジュール</a>です。</p>
 <p>
-es6モジュールはスクリプトのロードに <code translate="no">import</code> を使う事ができます。
-また、HTMLのインラインに <code translate="no">&lt;script type="module"&gt;</code> タグが使えます。
+es6モジュールはスクリプトのロードに <code class="notranslate" translate="no">import</code> を使う事ができます。
+また、HTMLのインラインに <code class="notranslate" translate="no">&lt;script type="module"&gt;</code> タグが使えます。
 両方とも以下に例を示します。
 </p>
 <pre class=prettyprint>
@@ -445,8 +445,8 @@ import * as THREE from './resources/threejs/r110/build/three.module.js';
 </pre>
 <p>
 パスは絶対パス、または相対パスでなければなりません。
-相対パスは常に <code translate="no">./</code> または <code translate="no">../</code> から始まり、
-<code translate="no">&lt;img&gt;</code> や <code translate="no">&lt;a&gt;</code> など他のタグと異なります。
+相対パスは常に <code class="notranslate" translate="no">./</code> または <code class="notranslate" translate="no">../</code> から始まり、
+<code class="notranslate" translate="no">&lt;img&gt;</code> や <code class="notranslate" translate="no">&lt;a&gt;</code> など他のタグと異なります。
 </p>
 <p>
 同じスクリプトへの参照は、絶対パスである限り一度だけロードされます。
@@ -477,7 +477,7 @@ someFolder
      ...
 </pre>
 <p>
-このフォルダー構造が必要な理由は、 <a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code translate="no">OrbitControls.js</code></a> のようなexamplesのスクリプトには相対パスがハードコーディングされてるからです。
+このフォルダー構造が必要な理由は、 <a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls.js</code></a> のようなexamplesのスクリプトには相対パスがハードコーディングされてるからです。
 </p>
 <pre class="prettyprint">
 import * as THREE from '../../../build/three.module.js';
@@ -489,12 +489,12 @@ import * as THREE from '../../../build/three.module.js';
 import * as THREE from './someFolder/build/three.module.js';
 import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>これにはCDNを使用する場合も含まれます。 <code translate="no">three.modules.js</code> のパスが <code translate="no">/build/three.modules.js</code> のようになってる事を確認して下さい。例えば</p>
+<p>これにはCDNを使用する場合も含まれます。 <code class="notranslate" translate="no">three.modules.js</code> のパスが <code class="notranslate" translate="no">/build/three.modules.js</code> のようになってる事を確認して下さい。例えば</p>
 <pre class="prettyprint">
 import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
 import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>古い書き方を好む場合は <code translate="no">&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code> 
+<p>古い書き方を好む場合は <code class="notranslate" translate="no">&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code> 
 <a href="https://r105.threejsfundamentals.org">このサイトの古いバージョン</a> このサイトの古いバージョンをチェックアウトできます。
 Three.jsには、下位互換性を心配しないというポリシーがあります。
 あなたが特定のバージョンを使い、コードをダウンロードしてプロジェクトに入れる事を期待しています。

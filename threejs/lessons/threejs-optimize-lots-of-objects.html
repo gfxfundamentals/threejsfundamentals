@@ -214,7 +214,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 is <a href="threejs-fundamentals.html">three.js fundamentals</a>. If you haven&#39;t read that
 yet and you&#39;re new to three.js you might want to consider starting there. </p>
 <p>There are many ways to optimize things for three.js. One way is often referred
-to as <em>merging geometry</em>. Every <code translate="no">Mesh</code> you create and three.js represents 1 or
+to as <em>merging geometry</em>. Every <code class="notranslate" translate="no">Mesh</code> you create and three.js represents 1 or
 more requests by the system to draw something. Drawing 2 things has more
 overhead than drawing 1 even if the results are the same so one way to optimize
 is to merge meshes.</p>
@@ -226,7 +226,7 @@ the site I saw there was <a href="https://beta.sedac.ciesin.columbia.edu/data/se
 format</a>.
 I downloaded the data at 60 minute resolution. Then I took a look at the data</p>
 <p>It looks like this</p>
-<pre class="prettyprint" translate="no"><code class="lang-txt"> ncols         360
+<pre class="prettyprint notranslate" translate="no"><code class="lang-txt"> ncols         360
  nrows         145
  xllcorner     -180
  yllcorner     -60
@@ -253,14 +253,14 @@ I downloaded the data at 60 minute resolution. Then I took a look at the data</p
 per grid point, one line for each row of data points.</p>
 <p>To make sure we understand the data let&#39;s try to plot it in 2D.</p>
 <p>First some code to load the text file</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">async function loadFile(url) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadFile(url) {
   const req = await fetch(url);
   return req.text();
 }
 </code></pre>
-<p>The code above returns a <code translate="no">Promise</code> with the contents of the file at <code translate="no">url</code>;</p>
+<p>The code above returns a <code class="notranslate" translate="no">Promise</code> with the contents of the file at <code class="notranslate" translate="no">url</code>;</p>
 <p>Then we need some code to parse the file</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function parseData(text) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function parseData(text) {
   const data = [];
   const settings = {data};
   let max;
@@ -290,10 +290,10 @@ per grid point, one line for each row of data points.</p>
 }
 </code></pre>
 <p>The code above returns an object with all the key/value pairs from the file as
-well as a <code translate="no">data</code> property with all the data in one large array and the <code translate="no">min</code> and
-<code translate="no">max</code> values found in the data.</p>
+well as a <code class="notranslate" translate="no">data</code> property with all the data in one large array and the <code class="notranslate" translate="no">min</code> and
+<code class="notranslate" translate="no">max</code> values found in the data.</p>
 <p>Then we need some code to draw that data</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function drawData(file) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function drawData(file) {
   const {min, max, data} = file;
   const range = max - min;
   const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
@@ -331,12 +331,12 @@ function hsl(h, s, l) {
 }
 </code></pre>
 <p>And finally gluing it all together</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
   .then(parseData)
   .then(drawData);
 </code></pre>
 <p>Gives us this result</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fgpw-data-viewer.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../gpw-data-viewer.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -350,7 +350,7 @@ file.</p>
 <div class="threejs_center"><img src="../resources/images/world.jpg" style="width: 600px"></div>
 
 <p>And the code to set it up.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const loader = new THREE.TextureLoader();
   const texture = loader.load(&#39;resources/images/world.jpg&#39;, render);
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
@@ -358,12 +358,12 @@ file.</p>
   scene.add(new THREE.Mesh(geometry, material));
 }
 </code></pre>
-<p>Notice the call to <code translate="no">render</code> when the texture has finished loading. We need this
+<p>Notice the call to <code class="notranslate" translate="no">render</code> when the texture has finished loading. We need this
 because we&#39;re <a href="threejs-rendering-on-demand.html">rendering on demand</a> instead of
 continuously so we need to render once when the texture is loaded.</p>
 <p>Then we need to change the code that drew a dot per data point above to instead
 make a box per data point.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function addBoxes(file) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
   const {min, max, data} = file;
   const range = max - min;
 
@@ -431,49 +431,49 @@ didn&#39;t do this it would scale from the center but we want them to grow away 
   </div>
 </div>
 
-<p>Of course we could also solve that by parenting the box to more <code translate="no">THREE.Object3D</code>
+<p>Of course we could also solve that by parenting the box to more <code class="notranslate" translate="no">THREE.Object3D</code>
 objects like we covered in <a href="threejs-scenegraph.html">scene graphs</a> but the more
 nodes we add to a scene graph the slower it gets.</p>
-<p>We also setup this small hierarchy of nodes of <code translate="no">lonHelper</code>, <code translate="no">latHelper</code>, and
-<code translate="no">positionHelper</code>. We use these objects to compute a position around the sphere
+<p>We also setup this small hierarchy of nodes of <code class="notranslate" translate="no">lonHelper</code>, <code class="notranslate" translate="no">latHelper</code>, and
+<code class="notranslate" translate="no">positionHelper</code>. We use these objects to compute a position around the sphere
 were to place the box. </p>
 <div class="spread">
   <div data-diagram="lonLatPos" style="width: 600px; height: 400px;"></div>
 </div>
 
-<p>Above the <span style="color: green;">green bar</span> represents <code translate="no">lonHelper</code> and
+<p>Above the <span style="color: green;">green bar</span> represents <code class="notranslate" translate="no">lonHelper</code> and
 is used to rotate toward longitude on the equator. The <span style="color: blue;">
-blue bar</span> represents <code translate="no">latHelper</code> which is used to rotate to a
+blue bar</span> represents <code class="notranslate" translate="no">latHelper</code> which is used to rotate to a
 latitude above or below the equator. The <span style="color: red;">red
-sphere</span> represents the offset that that <code translate="no">positionHelper</code> provides.</p>
+sphere</span> represents the offset that that <code class="notranslate" translate="no">positionHelper</code> provides.</p>
 <p>We could do all of the math manually to figure out positions on the globe but
 doing it this way leaves most of the math to the library itself so we don&#39;t need
 to deal with.</p>
-<p>For each data point we create a <code translate="no">MeshBasicMaterial</code> and a <code translate="no">Mesh</code> and then we ask
-for the world matrix of the <code translate="no">positionHelper</code> and apply that to the new <code translate="no">Mesh</code>.
+<p>For each data point we create a <code class="notranslate" translate="no">MeshBasicMaterial</code> and a <code class="notranslate" translate="no">Mesh</code> and then we ask
+for the world matrix of the <code class="notranslate" translate="no">positionHelper</code> and apply that to the new <code class="notranslate" translate="no">Mesh</code>.
 Finally we scale the mesh at its new position.</p>
-<p>Like above, we could also have created a <code translate="no">latHelper</code>, <code translate="no">lonHelper</code>, and
-<code translate="no">positionHelper</code> for every new box but that would be even slower.</p>
+<p>Like above, we could also have created a <code class="notranslate" translate="no">latHelper</code>, <code class="notranslate" translate="no">lonHelper</code>, and
+<code class="notranslate" translate="no">positionHelper</code> for every new box but that would be even slower.</p>
 <p>There are up to 360x145 boxes we&#39;re going to create. That&#39;s up to 52000 boxes.
 Because some data points are marked as &quot;NO_DATA&quot; the actual number of boxes
 we&#39;re going to create is around 19000. If we added 3 extra helper objects per
 box that would be nearly 80000 scene graph nodes that THREE.js would have to
 compute positions for. By instead using one set of helpers to just position the
 meshes we save around 60000 operations.</p>
-<p>A note about <code translate="no">lonFudge</code> and <code translate="no">latFudge</code>. <code translate="no">lonFudge</code> is π/2 which is a quarter of a turn.
+<p>A note about <code class="notranslate" translate="no">lonFudge</code> and <code class="notranslate" translate="no">latFudge</code>. <code class="notranslate" translate="no">lonFudge</code> is π/2 which is a quarter of a turn.
 That makes sense. It just means the texture or texture coordinates start at a
-different offset around the globe. <code translate="no">latFudge</code> on the other hand I have no idea
+different offset around the globe. <code class="notranslate" translate="no">latFudge</code> on the other hand I have no idea
 why it needs to be π * -0.135, that&#39;s just an amount that made the boxes line up
 with the texture.</p>
 <p>The last thing we need to do is call our loader</p>
-<pre class="prettyprint" translate="no"><code translate="no">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
   .then(parseData)
 -  .then(drawData)
 +  .then(addBoxes)
 +  .then(render);
 </code></pre><p>Once the data has finished loading and parsing then we need to render at least
 once since we&#39;re <a href="threejs-rendering-on-demand.html">rendering on demand</a>.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-slow.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-slow.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -495,7 +495,7 @@ which would make it even worse. We&#39;d better look into optimizing.</p>
 We&#39;re currently drawing around 19000 boxes. By merging them into a single
 geometry we&#39;d remove 18999 operations.</p>
 <p>Here&#39;s the new code to merge the boxes into a single geometry.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function addBoxes(file) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
   const {min, max, data} = file;
   const range = max - min;
 
@@ -576,18 +576,18 @@ geometry we&#39;d remove 18999 operations.</p>
 }
 </code></pre>
 <p>Above we removed the code that was changing the box geometry&#39;s center point and
-are instead doing it by adding an <code translate="no">originHelper</code>. Before we were using the same
+are instead doing it by adding an <code class="notranslate" translate="no">originHelper</code>. Before we were using the same
 geometry 19000 times. This time we are creating new geometry for every single
-box and since we are going to use <code translate="no">applyMatrix</code> to move the vertices of each box
+box and since we are going to use <code class="notranslate" translate="no">applyMatrix</code> to move the vertices of each box
 geometry we might as well do it once instead of twice.</p>
 <p>At the end we pass an array of all the geometries to
-<code translate="no">BufferGeometryUtils.mergeBufferGeometries</code> which will combined all of
+<code class="notranslate" translate="no">BufferGeometryUtils.mergeBufferGeometries</code> which will combined all of
 them into a single mesh.</p>
-<p>We also need to include the <code translate="no">BufferGeometryUtils</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r115/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+<p>We also need to include the <code class="notranslate" translate="no">BufferGeometryUtils</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r115/examples/jsm/utils/BufferGeometryUtils.js&#39;;
 </code></pre>
 <p>And now, at least on my machine, I get 60 frames per second</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -598,7 +598,7 @@ only get one color where as before we had a different color on each box. We can
 fix that by using vertex colors.</p>
 <p>Vertex colors add a color per vertex. By setting all the colors of each vertex
 of each box to specific colors every box will have a different color.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">+const color = new THREE.Color();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const color = new THREE.Color();
 
 const lonFudge = Math.PI * .5;
 const latFudge = Math.PI * -0.135;
@@ -651,11 +651,11 @@ data.forEach((row, latNdx) =&gt; {
   });
 });
 </code></pre>
-<p>The code above looks up the number or vertices needed by getting the <code translate="no">position</code>
-attribute from the geometry. We then create a <code translate="no">Uint8Array</code> to put the colors in.
-It then adds that as an attribute by calling <code translate="no">geometry.setAttribute</code>.</p>
+<p>The code above looks up the number or vertices needed by getting the <code class="notranslate" translate="no">position</code>
+attribute from the geometry. We then create a <code class="notranslate" translate="no">Uint8Array</code> to put the colors in.
+It then adds that as an attribute by calling <code class="notranslate" translate="no">geometry.setAttribute</code>.</p>
 <p>Lastly we need to tell three.js to use the vertex colors. </p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
     geometries, false);
 -const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
 +const material = new THREE.MeshBasicMaterial({
@@ -665,7 +665,7 @@ const mesh = new THREE.Mesh(mergedGeometry, material);
 scene.add(mesh);
 </code></pre>
 <p>And with that we get our colors back</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged-vertexcolors.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged-vertexcolors.html" target="_blank">click here to open in a separate window</a>
 </div>

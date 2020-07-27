@@ -214,7 +214,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 One of the common ways to post process is called a LUT or 3DLUT. LUT stands for LookUp Table. A 3DLUT is therefore a 3 dimensional look up table.</p>
 <p>How it works is we make a cube of colors. Then we index the cube using the colors of our source image. For each pixel in the original image we look up a position in the cube based on the red, green, and blue colors of the original pixel. The value we pull out of the 3DLUT is the new color.</p>
 <p>In Javascript we might do it like this. Imagine the colors are specified in integers from 0 to 255 and we have a large 3 dimensional array 256x256x256 in size. Then for to translate a color through the look up table</p>
-<pre class="prettyprint" translate="no"><code translate="no">const newColor = lut[origColor.red][origColor.green][origColor.bue]
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">const newColor = lut[origColor.red][origColor.green][origColor.bue]
 </code></pre><p>Of course a 256x256x256 array would be rather large but as we pointed out in <a href="threejs-textures.html">the article on textures</a> textures are referenced from values of 0.0 to 1.0 regardless of the dimensions of the texture.</p>
 <p>Let&#39;s imagine an 8x8x8 cube.</p>
 <div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
@@ -237,7 +237,7 @@ One of the common ways to post process is called a LUT or 3DLUT. LUT stands for 
 <p>Using this techinque by supplying a different lookup table we can apply all kinds of effects. Basically any effect that can be computed based only on a single color input. Those effects include adjusting hue, contrast, saturation, color cast, tint, brightness, exposure, levels, curves, posterize, shadows, highlghts, and many others. Even better they can all be combined into a single look up table.</p>
 <p>To use it we need a scene to apply it to. Let&#39;s throw together a quick scene. We&#39;ll start with a glTF file and display it like we covered in <a href="threejs-load-gltf.html">the article on loading a glTF</a>. The model we&#39;re loading is <a href="https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee">this model</a> by <a href="https://sketchfab.com/sarath.irn.kat005">The Ice Wolves</a>. It uses no lights so I removed the lights.</p>
 <p>We&#39;ll also add a background image like we covered in <a href="threejs-backgrounds.html">backgrounds and skyboxs</a>.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut-prep.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut-prep.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -248,7 +248,7 @@ One of the common ways to post process is called a LUT or 3DLUT. LUT stands for 
 
 <p>WebGL1 doesn&#39;t support 3D textures so we&#39;ll use 4x2 2D texture and treat it as a 3D texture inside a custom shader where each slice of the cube is spread out horizontally across the texture.</p>
 <p>Here&#39;s the code to make 4x2 2D texture with the colors required for an identity LUT.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const makeIdentityLutTexture = function() {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const makeIdentityLutTexture = function() {
   const identityLUT = new Uint8Array([
       0,   0,   0, 255,  // black
     255,   0,   0, 255,  // red
@@ -271,13 +271,13 @@ One of the common ways to post process is called a LUT or 3DLUT. LUT stands for 
 }();
 </code></pre>
 <p>Let&#39;s make 2 of them, one filtered and one not</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutTextures = [
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutTextures = [
   { name: &#39;identity&#39;, size: 2, texture: makeIdentityLutTexture(THREE.LinearFilter) },
   { name: &#39;identity not filtered&#39;, size: 2, texture: makeIdentityLutTexture(THREE.NearestFilter) },
 ];
 </code></pre>
 <p>Taking the example using a custom shader from <a href="threejs-post-processing.html">the article on post processing</a> lets use these 2 custom shaders instead.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutShader = {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutShader = {
   uniforms: {
     tDiffuse: { value: null },
     lutMap:  { value: null },
@@ -341,22 +341,22 @@ const lutNearestShader = {
 };
 </code></pre>
 <p>You can see in the fragment shader there is this line</p>
-<pre class="prettyprint" translate="no"><code class="lang-glsl">#define FILTER_LUT true
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">#define FILTER_LUT true
 </code></pre>
 <p>To generate the second shader we comment out that line.</p>
 <p>Then we use them to make 2 custom effects</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const effectLUT = new THREE.ShaderPass(lutShader);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const effectLUT = new THREE.ShaderPass(lutShader);
 effectLUT.renderToScreen = true;
 const effectLUTNearest = new THREE.ShaderPass(lutNearestShader);
 effectLUTNearest.renderToScreen = true;
 </code></pre>
-<p>Translating our existing code that draws the background as a separate scene we a <code translate="no">RenderPass</code> for both the scene drawing the glTF and the scene drawing the background.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const renderModel = new THREE.RenderPass(scene, camera);
+<p>Translating our existing code that draws the background as a separate scene we a <code class="notranslate" translate="no">RenderPass</code> for both the scene drawing the glTF and the scene drawing the background.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const renderModel = new THREE.RenderPass(scene, camera);
 renderModel.clear = false;  // so we don&#39;t clear out the background
 const renderBG = new THREE.RenderPass(sceneBG, cameraBG);
 </code></pre>
-<p>and we can setup our <code translate="no">EffectComposer</code> to use all the passes</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const rtParameters = {
+<p>and we can setup our <code class="notranslate" translate="no">EffectComposer</code> to use all the passes</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const rtParameters = {
   minFilter: THREE.LinearFilter,
   magFilter: THREE.LinearFilter,
   format: THREE.RGBFormat,
@@ -369,7 +369,7 @@ composer.addPass(effectLUT);
 composer.addPass(effectLUTNearest);
 </code></pre>
 <p>Let&#39;s make some GUI code to select one lut or the other</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutNameIndexMap = {};
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutNameIndexMap = {};
 lutTextures.forEach((info, ndx) =&gt; {
   lutNameIndexMap[info.name] = ndx;
 });
@@ -380,8 +380,8 @@ const lutSettings = {
 const gui = new GUI({ width: 300 });
 gui.add(lutSettings, &#39;lut&#39;, lutNameIndexMap);
 </code></pre>
-<p>The last thing to do is turn on one effect or the other, depending on whether or not we want filtering, set the effect to use the selected texture, and render via the <code translate="no">EffectComposer</code></p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutInfo = lutTextures[lutSettings.lut];
+<p>The last thing to do is turn on one effect or the other, depending on whether or not we want filtering, set the effect to use the selected texture, and render via the <code class="notranslate" translate="no">EffectComposer</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutInfo = lutTextures[lutSettings.lut];
 
 const effect = lutInfo.filter ? effectLUT : effectLUTNearest;
 effectLUT.enabled = lutInfo.filter;
@@ -394,7 +394,7 @@ effect.uniforms.lutMapSize.value = lutInfo.size;
 composer.render(delta);
 </code></pre>
 <p>Given it&#39;s the identity 3DLUT nothing changes</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut-identity.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut-identity.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -406,7 +406,7 @@ composer.render(delta);
 <p>Why does this happen? Because with filtering on, the GPU linearly interpolates between the colors. With filtering off it does no interpolation so looking up colors in the 3DLUT only gives one of the exact colors in the 3DLUT.</p>
 <p>So how do we go about making more interesting 3DLUTs?</p>
 <p>First decide on the resolution of the table you want and generate the slices of the lookup cube using a simple script.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 
 function drawColorCubeImage(ctx, size) {
   const canvas = ctx.canvas;
@@ -431,10 +431,10 @@ function drawColorCubeImage(ctx, size) {
 drawColorCubeImage(ctx, 8);
 </code></pre>
 <p>and we need a canvas </p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;canvas&gt;&lt;/canvas&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas&gt;&lt;/canvas&gt;
 </code></pre>
 <p>then we can generate a identity 3d lookup table for any size.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2F3dlut-base-cube-maker.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../3dlut-base-cube-maker.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -444,7 +444,7 @@ drawColorCubeImage(ctx, 8);
 <p>Let&#39;s set the size to 16 and then click save the file which gives us this file.</p>
 <div class="threejs_center"><img src="resources/images/identity-lut-s16.png"></div>
 
-<p>We also need to capture an image of the thing we want to apply the LUT to, in this case the scene we created above before applying any effects. Note that normally we could right click on the scene above and pick &quot;Save As...&quot; but the <code translate="no">OrbitControls</code> might be preventing right clicking depending on your OS. In my case I used my OSes screen capture feature to get a screenshot.</p>
+<p>We also need to capture an image of the thing we want to apply the LUT to, in this case the scene we created above before applying any effects. Note that normally we could right click on the scene above and pick &quot;Save As...&quot; but the <code class="notranslate" translate="no">OrbitControls</code> might be preventing right clicking depending on your OS. In my case I used my OSes screen capture feature to get a screenshot.</p>
 <div class="threejs_center"><img src="resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
 
 <p>We then go it into an image editor, in my case Photoshop, load up the sample image, and paste the 3DLUT in the top left corner</p>
@@ -461,9 +461,9 @@ separately and then copying and pasting it into the screen capture worked.</p>
 
 <p>After we&#39;ve adjusted the image to our liking you can see the 3DLUT slices we placed in the top left corner have the same adjustments applied.</p>
 <p>Okay but how do we use it?</p>
-<p>First I saved it as a png <code translate="no">3dlut-red-only-s16.png</code>. To save memory we could have cropped it to just the 16x256 top left corner of the LUT table but just for fun we&#39;ll crop it after loading. The good thing about using this method is we can get some idea of the effective of the LUT just by looking at the .png file. The bad thing is of course wasted bandwidth.</p>
-<p>Here&#39;s some code to load it. The code starts with an identity lut so the texture is usable immediately. It then loads the image, copies out only the 3DLUT part into a canvas, gets the data from the canvas, set it on the texture and sets <code translate="no">needsUpdate</code> to true to tell THREE.js to get the new data.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const makeLUTTexture = function() {
+<p>First I saved it as a png <code class="notranslate" translate="no">3dlut-red-only-s16.png</code>. To save memory we could have cropped it to just the 16x256 top left corner of the LUT table but just for fun we&#39;ll crop it after loading. The good thing about using this method is we can get some idea of the effective of the LUT just by looking at the .png file. The bad thing is of course wasted bandwidth.</p>
+<p>Here&#39;s some code to load it. The code starts with an identity lut so the texture is usable immediately. It then loads the image, copies out only the 3DLUT part into a canvas, gets the data from the canvas, set it on the texture and sets <code class="notranslate" translate="no">needsUpdate</code> to true to tell THREE.js to get the new data.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const makeLUTTexture = function() {
   const imgLoader = new THREE.ImageLoader();
   const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 
@@ -500,7 +500,7 @@ separately and then copying and pasting it into the screen capture worked.</p>
 }();
 </code></pre>
 <p>Let&#39;s use it to load the lut png we just created.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutTextures = [
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutTextures = [
   { name: &#39;identity&#39;,           size: 2, filter: true , },
   { name: &#39;identity no filter&#39;, size: 2, filter: false, },
 +  { name: &#39;custom&#39;,          url: &#39;resources/images/lut/3dlut-red-only-s16.png&#39; },
@@ -528,7 +528,7 @@ separately and then copying and pasting it into the screen capture worked.</p>
 </code></pre>
 <p>Above you can see we encoded the size of the LUT into the end of the filename. This makes it easier to pass around LUTs as pngs.</p>
 <p>While we&#39;re at it lets add a bunch more existing lut png files.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutTextures = [
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutTextures = [
   { name: &#39;identity&#39;,           size: 2, filter: true , },
   { name: &#39;identity no filter&#39;, size: 2, filter: false, },
   { name: &#39;custom&#39;,          url: &#39;resources/images/lut/3dlut-red-only-s16.png&#39; },
@@ -559,7 +559,7 @@ separately and then copying and pasting it into the screen capture worked.</p>
 ];
 </code></pre>
 <p>And here&#39;s a bunch of luts to choose from.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -569,11 +569,11 @@ separately and then copying and pasting it into the screen capture worked.</p>
 <p>I wrote a quick loader. Unfortunately there&#39;s 4 variations of the format but I could only find examples of 1 variation so I couldn&#39;t easily test that all variations work.</p>
 <p>I also write a quick drag and drop library. Let&#39;s use both to make it so you can drag and drop an Adobe LUT file to see it take affect.</p>
 <p>First we need the 2 libraries</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">import * as lutParser from &#39;./resources/lut-reader.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as lutParser from &#39;./resources/lut-reader.js&#39;;
 import * as dragAndDrop from &#39;./resources/drag-and-drop.js&#39;;
 </code></pre>
 <p>Then we can use them like this</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">dragAndDrop.setup({msg: &#39;Drop LUT File here&#39;});
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">dragAndDrop.setup({msg: &#39;Drop LUT File here&#39;});
 dragAndDrop.onDropFile(readLUTFile);
 
 function readLUTFile(file) {
@@ -602,7 +602,7 @@ function readLUTFile(file) {
 }
 </code></pre>
 <p>and we need to make the GUI update to include the new file(s)</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const lutSettings = {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const lutSettings = {
   lut: lutNameIndexMap.thermal,
 };
 const gui = new GUI({ width: 300 });
@@ -619,7 +619,7 @@ function updateGUI() {
 updateGUI();
 </code></pre>
 <p>so you should be able to <a href="https://www.google.com/search?q=lut+files">download an Adobe LUT</a> and then drag and drop it on the example below.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-3dlut-w-loader.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-3dlut-w-loader.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -627,7 +627,7 @@ updateGUI();
 </p>
 <p>Note that Adobe LUTs are not designed for online usage. They are large files. You can convert them to smaller files and save as our PNG format by dragging and dropping on the sample below, choosing a size and clicking &quot;Save...&quot;.</p>
 <p>The sample below is just a modification of the code above. We only draw the background picture, no glTF file. That picture is the an identity lut image created from the script above. We then use the effect to apply whatever LUT file is loaded so the result is the image we&#39;d need to reproduce the LUT file as a PNG.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-adobe-lut-to-png-converter.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-adobe-lut-to-png-converter.html" target="_blank">click here to open in a separate window</a>
 </div>

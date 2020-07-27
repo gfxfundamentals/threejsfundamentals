@@ -231,7 +231,7 @@ Bien sûr, les utilisateurs exécutant de très vieux navigateurs ont probableme
 des machines incapables de faire tourner three.js.</p>
 <p>Lors de l&#39;apprentissage de la plupart des langages de programmation,
 la première tâche que les gens font est de faire afficher à l&#39;ordinateur
-<code translate="no">&quot;Hello World!&quot;</code>. Pour la programmation 3D, l&#39;équivalent est de faire afficher
+<code class="notranslate" translate="no">&quot;Hello World!&quot;</code>. Pour la programmation 3D, l&#39;équivalent est de faire afficher
 un cube en 3D. Donc, nous commencerons par &quot;Hello Cube!&quot;.</p>
 <p>Avant de débuter, nous allons tenter de vous donner un idée de la structure
 d&#39;une application three.js. Elle requiert de créer un ensemble d&#39;objets
@@ -241,53 +241,53 @@ three.js de petite taille:</p>
 
 <p>Voici ce qui est à remarquer dans le diagramme ci-dessus :</p>
 <ul>
-<li><p>Il y a un <code translate="no">Renderer</code>. C&#39;est sans doute l&#39;objet principal de three.js. Vous passez
-une <code translate="no">Scene</code> et une <code translate="no">Camera</code> à un <code translate="no">Renderer</code> et il effectue le rendu (dessine) de la
+<li><p>Il y a un <code class="notranslate" translate="no">Renderer</code>. C&#39;est sans doute l&#39;objet principal de three.js. Vous passez
+une <code class="notranslate" translate="no">Scene</code> et une <code class="notranslate" translate="no">Camera</code> à un <code class="notranslate" translate="no">Renderer</code> et il effectue le rendu (dessine) de la
 partie de la scène 3D qui est à l&#39;intérieur de l&#39;espace visible (en réalité une pyramide tronquée ou <em>frustum</em>)
 de la caméra dans une image 2D affichée dans un canevas (<em>canvas</em>).</p>
 </li>
 <li><p>Il y a un <a href="threejs-scenegraph.html">graphe de scène</a> qui est une structure arborescente,
-constituée de divers objets tel qu&#39;un objet <code translate="no">Scene</code>, de multiple maillages (<code translate="no">Mesh</code>),
-des lumières (<code translate="no">Light</code>), des groupes (<code translate="no">Group</code>), des objets 3D <code translate="no">Object3D</code> et des objets <code translate="no">Camera</code>.
-Un objet <code translate="no">Scene</code> définit la racine d&#39;un graphe de scène et contient des propriétés telles que
+constituée de divers objets tel qu&#39;un objet <code class="notranslate" translate="no">Scene</code>, de multiple maillages (<code class="notranslate" translate="no">Mesh</code>),
+des lumières (<code class="notranslate" translate="no">Light</code>), des groupes (<code class="notranslate" translate="no">Group</code>), des objets 3D <code class="notranslate" translate="no">Object3D</code> et des objets <code class="notranslate" translate="no">Camera</code>.
+Un objet <code class="notranslate" translate="no">Scene</code> définit la racine d&#39;un graphe de scène et contient des propriétés telles que
 la couleur d&#39;arrière plan et le brouillard. L&#39;ensemble de ces objets définissent une structure
 hiérarchique de type parent/enfant, arborescente, et indique où les objets apparaissent et
 comment ils sont orientés. Les enfants sont positionnés et orientés par rapport à leur parent.
 Par exemple, les roues d&#39;une voiture sont les enfants du châssis impliquant que si l&#39;on déplace
 ou oriente la voiture, les roues suiveront automatiquement son déplacement. Plus de
 détails sont donnés dans <a href="threejs-scenegraph.html">l&#39;article sur les graphes de scène</a>.</p>
-<p>Il est à noter sur que ce diagramme <code translate="no">Camera</code> est patiellement placée dans le graphe de scène.
-Cela permet d&#39;attirer l&#39;attention qu&#39;en three.js, contrairement aux autres objets, une <code translate="no">Camera</code> ne doit
-pas forcément faire partie du graphe de scène pour être opérationnelle. Une <code translate="no">Camera</code>, de la même
+<p>Il est à noter sur que ce diagramme <code class="notranslate" translate="no">Camera</code> est patiellement placée dans le graphe de scène.
+Cela permet d&#39;attirer l&#39;attention qu&#39;en three.js, contrairement aux autres objets, une <code class="notranslate" translate="no">Camera</code> ne doit
+pas forcément faire partie du graphe de scène pour être opérationnelle. Une <code class="notranslate" translate="no">Camera</code>, de la même
 façon que les autres objets, enfant d&#39;un autre objet, se déplace et s&#39;oriente par rapport à son
 objet parent. A la fin de <a href="threejs-scenegraph.html">l&#39;article sur les graphes de scène</a>, l&#39;inclusion
-de multiples objets <code translate="no">Camera</code> dans un unique graphe de scène est donné en exemple.</p>
+de multiples objets <code class="notranslate" translate="no">Camera</code> dans un unique graphe de scène est donné en exemple.</p>
 </li>
-<li><p>Les objets de type <code translate="no">Mesh</code> représentent une géométrie (<code translate="no">Geometry</code>) liée à un matériau (<code translate="no">Material</code>)
-spécifique. Les objets <code translate="no">Material</code> et <code translate="no">Geometry</code> peuvent être liés à plusieurs objets <code translate="no">Mesh</code>
+<li><p>Les objets de type <code class="notranslate" translate="no">Mesh</code> représentent une géométrie (<code class="notranslate" translate="no">Geometry</code>) liée à un matériau (<code class="notranslate" translate="no">Material</code>)
+spécifique. Les objets <code class="notranslate" translate="no">Material</code> et <code class="notranslate" translate="no">Geometry</code> peuvent être liés à plusieurs objets <code class="notranslate" translate="no">Mesh</code>
 simultanément. Par exemple, pour dessiner deux cubes bleus à des positions différentes, nous
-pouvons soit utiliser deux objets <code translate="no">Mesh</code> pour spécifier les positions et orientations de
-chaque cube; soit nous pouvons utiliser seulement une géométrie unique (<code translate="no">Geometry</code>) pour décrire les
-données spatiales du cube et un matériau unique (<code translate="no">Material</code>) pour spécifier la couleur bleue.
-Les deux objets <code translate="no">Mesh</code> peuvent ainsi référencer les mêmes objets <code translate="no">Geometry</code> et <code translate="no">Material</code>.</p>
+pouvons soit utiliser deux objets <code class="notranslate" translate="no">Mesh</code> pour spécifier les positions et orientations de
+chaque cube; soit nous pouvons utiliser seulement une géométrie unique (<code class="notranslate" translate="no">Geometry</code>) pour décrire les
+données spatiales du cube et un matériau unique (<code class="notranslate" translate="no">Material</code>) pour spécifier la couleur bleue.
+Les deux objets <code class="notranslate" translate="no">Mesh</code> peuvent ainsi référencer les mêmes objets <code class="notranslate" translate="no">Geometry</code> et <code class="notranslate" translate="no">Material</code>.</p>
 </li>
-<li><p>Les objets <code translate="no">Geometry</code> représentent les données associées aux sommets d&#39;une géométrie telle qu&#39;une
+<li><p>Les objets <code class="notranslate" translate="no">Geometry</code> représentent les données associées aux sommets d&#39;une géométrie telle qu&#39;une
 sphère, un cube, un avion, un chien, un chat, un humain, un arbre, un bâtiment, etc...
 Three.js fournit plusieurs types intégrés de <a href="threejs-primitives.html">primitives géométriques</a>.
 Vous pouvez aussi <a href="threejs-custom-geometry.html">créer vos propres géométries</a> ou
 <a href="threejs-load-obj.html">charger des géométries à partir d&#39;un fichier</a>.</p>
 </li>
-<li><p>Les objets <code translate="no">Material</code> représentent les
+<li><p>Les objets <code class="notranslate" translate="no">Material</code> représentent les
 <a href="threejs-materials.html">propriétés de surface utilisées pour dessiner la géométrie</a>
-telles que la couleur à utiliser ou le pouvoir réfléchissant (brillance). Un matériau (<code translate="no">Material</code>)
-peut aussi se référer à un ou plusieurs objets <code translate="no">Texture</code> dont l&#39;utilité est, par exemple, de plaquer
+telles que la couleur à utiliser ou le pouvoir réfléchissant (brillance). Un matériau (<code class="notranslate" translate="no">Material</code>)
+peut aussi se référer à un ou plusieurs objets <code class="notranslate" translate="no">Texture</code> dont l&#39;utilité est, par exemple, de plaquer
 une image sur la surface d&#39;un géométrie.</p>
 </li>
-<li><p>Les objets <code translate="no">Texture</code> représentent généralement des images soit <a href="threejs-textures.html">chargées de fichiers image</a>,
+<li><p>Les objets <code class="notranslate" translate="no">Texture</code> représentent généralement des images soit <a href="threejs-textures.html">chargées de fichiers image</a>,
 soit <a href="threejs-canvas-textures.html">générées par le biais d&#39;un canevas</a> ou
 <a href="threejs-rendertargets.html">résultent du rendu d&#39;une autre scène</a>.</p>
 </li>
-<li><p>Les objets <code translate="no">Light</code> représentent <a href="threejs-lights.html">différentes sortent de lumière</a>.</p>
+<li><p>Les objets <code class="notranslate" translate="no">Light</code> représentent <a href="threejs-lights.html">différentes sortent de lumière</a>.</p>
 </li>
 </ul>
 <p>Maintenant que tout cela a été défini, nous allons présenter un exemple de type <em>&quot;Hello Cube&quot;</em> utilisant un
@@ -295,24 +295,24 @@ nombre minimum d&#39;élements three.js :</p>
 <div class="threejs_center"><img src="../resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
 
 <p>Tout d&#39;abord, chargeons three.js :</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 import * as THREE from &#39;./resources/threejs/r114/build/three.module.js&#39;;
 &lt;/script&gt;
 </code></pre>
-<p>Il est important d&#39;écrire <code translate="no">type=&quot;module&quot;</code> dans la balise script.
-Cela nous autorise l&#39;utilisation du mot-clé <code translate="no">import</code> pour charger three.js.
+<p>Il est important d&#39;écrire <code class="notranslate" translate="no">type=&quot;module&quot;</code> dans la balise script.
+Cela nous autorise l&#39;utilisation du mot-clé <code class="notranslate" translate="no">import</code> pour charger three.js.
 Il y a d&#39;autres manières de le réaliser, mais depuis la version 106 (r106),
 l&#39;utilisation des modules est recommandée. Ils ont l&#39;avantage de pouvoir
 facilement importer les autres modules dont ils ont besoin. Cela nous
 épargne d&#39;avoir à charger à la main les scripts supplémentaires dont ils dépendent.</p>
-<p>Ensuite, nous avons besoin d&#39;une balise <code translate="no">&lt;canvas&gt;</code> :</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;body&gt;
+<p>Ensuite, nous avons besoin d&#39;une balise <code class="notranslate" translate="no">&lt;canvas&gt;</code> :</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;/body&gt;
 </code></pre>
 <p>Nous allons demander à three.js de dessiner dans ce canevas donc nous devons le rechercher
 dans le document html :</p>
-<pre class="prettyprint" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 import * as THREE from &#39;./resources/threejs/r114/build/three.module.js&#39;;
 
 +function main() {
@@ -321,11 +321,11 @@ import * as THREE from &#39;./resources/threejs/r114/build/three.module.js&#39;;
 +  ...
 &lt;/script&gt;
 </code></pre>
-<p>Après la recherche du canevas, nous créons un <code translate="no">WebGLRenderer</code>. Le <em>renderer</em>
+<p>Après la recherche du canevas, nous créons un <code class="notranslate" translate="no">WebGLRenderer</code>. Le <em>renderer</em>
 a pour mission de charger les données fournies et d&#39;en effectuer le rendu
 dans le canevas. Par le passé, il y a eu aussi d&#39;autre <em>renderers</em> tels que
-<code translate="no">CSSRenderer</code> ou <code translate="no">CanvasRenderer</code> et, dans le futur, il pourrait y avoir un
-<code translate="no">WebGL2Renderer</code> ou <code translate="no">WebGPURenderer</code>. Pour le moment, il y a un <code translate="no">WebGLRenderer</code>
+<code class="notranslate" translate="no">CSSRenderer</code> ou <code class="notranslate" translate="no">CanvasRenderer</code> et, dans le futur, il pourrait y avoir un
+<code class="notranslate" translate="no">WebGL2Renderer</code> ou <code class="notranslate" translate="no">WebGPURenderer</code>. Pour le moment, il y a un <code class="notranslate" translate="no">WebGLRenderer</code>
 qui utiliser WebGL pour effectuer une rendu 3D dans le canevas.</p>
 <p>Notez qu&#39;il y a quelques détails ésotériques ici. Si vous ne passez pas un
 canevas à three.js, il va en créer un pour vous mais vous aurez à l&#39;ajouter
@@ -334,21 +334,21 @@ au document. Où l&#39;ajouter peut dépendre de contexte d&#39;utilisation et v
 plus flexible. Nous pouvons mettre le canevas n&#39;importe où et le code le retrouvera.
 Dans le cas contraire, nous aurons à coder où insérer le canevas, ce qui amènera
 probablement à changer le code si le contexte d&#39;utilisation change.</p>
-<p>Ensuite, nous avons besoin d&#39;une caméra. Nous créerons une <code translate="no">PerspectiveCamera</code>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const fov = 75;
+<p>Ensuite, nous avons besoin d&#39;une caméra. Nous créerons une <code class="notranslate" translate="no">PerspectiveCamera</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
 const aspect = 2;  // valeur par défaut du canevas
 const near = 0.1;
 const far = 5;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </code></pre>
-<p><code translate="no">fov</code> est le raccourci pour <code translate="no">field of view</code> ou champ de vision.
+<p><code class="notranslate" translate="no">fov</code> est le raccourci pour <code class="notranslate" translate="no">field of view</code> ou champ de vision.
 Dans ce cas, 75 degrés d&#39;ouverture verticale. Il est à noter que
 la plupart des angles dans three.js sont exprimés en radians à l&#39;exception
 de la caméra perspective.</p>
-<p><code translate="no">aspect</code> est l&#39;aspect de l&#39;affichage dans le canevas. Cela sera détaillé
+<p><code class="notranslate" translate="no">aspect</code> est l&#39;aspect de l&#39;affichage dans le canevas. Cela sera détaillé
 <a href="threejs-responsive.html">dans un autre article</a>. Toutefois, par défaut,
 un canevas est de taille 300x150 pixels ce qui lui confère l&#39;aspect 300/150 ou 2.</p>
-<p><code translate="no">near</code> et <code translate="no">far</code> délimitent la portion de l&#39;espace devant la caméra dont
+<p><code class="notranslate" translate="no">near</code> et <code class="notranslate" translate="no">far</code> délimitent la portion de l&#39;espace devant la caméra dont
 le rendu est effectué. Tout ce qui est avant ou après est découpé (<em>clipped</em>),
 donc non dessiné.</p>
 <p>Ces 4 paramètres définissent une pyramide tronquée ou <em>&quot;frustum&quot;</em>.
@@ -361,48 +361,48 @@ par le champ de vue. La largeur est fixée par le champ de vue et l&#39;aspect.<
 <p>La caméra regarde par défaut suivant l&#39;axe -Z, +Y pointant le haut.
 Nous mettons notre cube à l&#39;origine donc nous devons déplacer la caméra de l&#39;origine légèrement vers son arrière
 pour voir quelque chose.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">camera.position.z = 2;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">camera.position.z = 2;
 </code></pre>
 <p>Voici ce que nous voudrions voir :</p>
 <p><img src="../resources/scene-down.svg" width="500" class="threejs_center"/></p>
 <p>Dans le schéma ci-dessous, nous pouvons voir que notre caméra est placée
-en <code translate="no">z = 2</code>. Elle regarde le long de la direction -Z.
+en <code class="notranslate" translate="no">z = 2</code>. Elle regarde le long de la direction -Z.
 Notre <em>frustum</em> démarre à 0.1 unités de la caméra et s&#39;étend jusqu&#39;à 5 unités devant elle.
 Comme le schéma est vu du haut, le champ de vue est affecté par l&#39;aspect.
 Notre canvas est deux fois plus large que haut donc le champ de vue horizontal
 est plus grand que les 75 degrés spécifié pour le champ vertical.</p>
-<p>Ensuite, nous créons une <code translate="no">Scene</code>. Dans three.js, une <code translate="no">Scene</code> est la racine
+<p>Ensuite, nous créons une <code class="notranslate" translate="no">Scene</code>. Dans three.js, une <code class="notranslate" translate="no">Scene</code> est la racine
 du graphe de scène. Tout ce que nous voulons que three.js dessine doit être ajouté
 à la scène. Cela sera davantage détaillé dans <a href="threejs-scenegraph.html">un futur article sur le fonctionnement des scènes</a>.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 </code></pre>
-<p>Ensuite nous créons une géométrie de type <code translate="no">BoxGeometry</code> qui contient les données pour un parallélépipède.
+<p>Ensuite nous créons une géométrie de type <code class="notranslate" translate="no">BoxGeometry</code> qui contient les données pour un parallélépipède.
 Quasiment tout ce que nous souhaitons afficher avec Three.js nécessite une
 géométrie qui définit les sommets qui composent nos objets 3D.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const boxWidth = 1;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 </code></pre>
 <p>Puis nous créons un matériau basique et fixons sa couleur.
 Elle peut être spécifiée au format hexadécimal (6 chiffres) du standard CSS.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </code></pre>
-<p>Nous créons ensuite un maillage (<code translate="no">Mesh</code>). Dans three.js, il représente la combinaison
-d&#39;une <code translate="no">Geometry</code> (forme de l&#39;objet) et d&#39;un matériau (<code translate="no">Material</code> - aspect
+<p>Nous créons ensuite un maillage (<code class="notranslate" translate="no">Mesh</code>). Dans three.js, il représente la combinaison
+d&#39;une <code class="notranslate" translate="no">Geometry</code> (forme de l&#39;objet) et d&#39;un matériau (<code class="notranslate" translate="no">Material</code> - aspect
 d&#39;un objet, brillant ou plat, quelle couleur, quelle texture appliquer, etc.)
 ainsi que la position, l&#39;orientation et l&#39;échelle de l&#39;objet dans la scène.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
 </code></pre>
 <p>Finalement, nous ajoutons le maillage à la scène.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">scene.add(cube);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">scene.add(cube);
 </code></pre>
 <p>Nous alors effectuer le rendu de la scène en appelant la fonction <em>render</em> du <em>renderer</em>
 et en lui passant la scène et la caméra.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">renderer.render(scene, camera);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">renderer.render(scene, camera);
 </code></pre>
 <p>Voici un exemple fonctionnel :</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
@@ -414,9 +414,9 @@ Nous n&#39;en voyons donc qu&#39;une face.</p>
 <p>Nous nous proposons de l&#39;animer en le faisant tourner et cela fera clairement
 apparaître qu&#39;il est dessiné en 3D. Pour l&#39;animation, nous effectuerons son rendu
 dans une boucle de rendu en utilisant
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code translate="no">requestAnimationFrame</code></a>.</p>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame"><code class="notranslate" translate="no">requestAnimationFrame</code></a>.</p>
 <p>Voici notre boucle :</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;  // convertis le temps en secondes
 
   cube.rotation.x = time;
@@ -428,13 +428,13 @@ dans une boucle de rendu en utilisant
 }
 requestAnimationFrame(render);
 </code></pre>
-<p><code translate="no">requestAnimationFrame</code> est une requête auprès du navigateur dans le cas où vous
+<p><code class="notranslate" translate="no">requestAnimationFrame</code> est une requête auprès du navigateur dans le cas où vous
 voulez animer quelque chose. Nous lui passons une fonction à appeler.
-Dans notre cas, c&#39;est la fonction <code translate="no">render</code>. Le navigateur appellera cette fonction
+Dans notre cas, c&#39;est la fonction <code class="notranslate" translate="no">render</code>. Le navigateur appellera cette fonction
 et, si nous mettons à jour l&#39;affichage de la page, le navigateur refera le rendu
-de la page. Dans notre cas, nous appelons la fonction <code translate="no">renderer.render</code> de three
+de la page. Dans notre cas, nous appelons la fonction <code class="notranslate" translate="no">renderer.render</code> de three
 qui dessinera notre scène.</p>
-<p><code translate="no">requestAnimationFrame</code> passe à notre fonction le temps depuis lequel la page est chargée.
+<p><code class="notranslate" translate="no">requestAnimationFrame</code> passe à notre fonction le temps depuis lequel la page est chargée.
 Il est mesuré en millisecondes. Il est parfois plus facile de travailler
 avec des secondes. C&#39;est pourquoi, nous l&#39;avons converti.</p>
 <p>A présent, nous appliquons sur le cube des rotations le long des axes X et Y en fonction du temps écoulé.
@@ -443,8 +443,8 @@ Sachant que 2 pi radians fait faire un tour complet, notre cube effectuera une r
 sur chaque axe en à peu près 6.28 secondes.</p>
 <p>Nous effectuons alors le rendu de la scène et
 demandons une autre image pour l&#39;animation afin de poursuivre notre boucle.</p>
-<p>A l&#39;extérieur de la boucle, nous appelons <code translate="no">requestAnimationFrame</code> une première fois pour activer la boucle.</p>
-<p><div translate="no" class="threejs_example_container">
+<p>A l&#39;extérieur de la boucle, nous appelons <code class="notranslate" translate="no">requestAnimationFrame</code> une première fois pour activer la boucle.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-animation.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-animation.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
@@ -454,7 +454,7 @@ demandons une autre image pour l&#39;animation afin de poursuivre notre boucle.<
 Ce qui aiderait serait d&#39;ajouter de la lumière.
 Three.js propose plusieurs type de lumière que nous détaillerons dans
 <a href="threejs-lights.html">un futur article</a>. Pour le moment, créons une lumière directionnelle.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -466,16 +466,16 @@ Three.js propose plusieurs type de lumière que nous détaillerons dans
 Dans notre cas, nous positionnons la lumière en -1, 2, 4, de manière à ce qu&#39;elle soit légèrement
 sur la gauche, au dessus et derrière notre caméra. La cible est toujours 0, 0, 0 donc elle va
 éclairer vers l&#39;origine.</p>
-<p>Nous avons également besoin de changer le matériau car <code translate="no">MeshBasicMaterial</code> ne s&#39;applique pas aux
-lumières. Nous le remplaçons par un <code translate="no">MeshPhongMaterial</code> qui est affecté par les sources lumineuses.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // cyan
+<p>Nous avons également besoin de changer le matériau car <code class="notranslate" translate="no">MeshBasicMaterial</code> ne s&#39;applique pas aux
+lumières. Nous le remplaçons par un <code class="notranslate" translate="no">MeshPhongMaterial</code> qui est affecté par les sources lumineuses.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // cyan
 +const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // cyan
 </code></pre>
 <p>Voici à présent la nouvelle structure de notre programme :</p>
 <div class="threejs_center"><img src="../resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
 
 <p>Et voici son fonctionnement :</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-light.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-with-light.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
@@ -488,7 +488,7 @@ de sorte que chacun d&#39;eux soit affecté d&#39;une couleur différente.</p>
 <p>Tout d&#39;abord, nous définissons une fonction qui crée une nouveau matériau
 avec la couleur spécifiée. Ensuite, elle créé un maillage à partir de la
 géométrie spécifiée, l&#39;ajoute à la scène et change sa position en X.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -500,8 +500,8 @@ géométrie spécifiée, l&#39;ajoute à la scène et change sa position en X.</
 }
 </code></pre>
 <p>Ensuite, nous l&#39;appellerons à 3 reprises avec 3 différentes couleurs
-et positions en X, puis nous conserverons ces instances de <code translate="no">Mesh</code> dans un tableau.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">const cubes = [
+et positions en X, puis nous conserverons ces instances de <code class="notranslate" translate="no">Mesh</code> dans un tableau.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cubes = [
   makeInstance(geometry, 0x44aa88,  0),
   makeInstance(geometry, 0x8844aa, -2),
   makeInstance(geometry, 0xaa8844,  2),
@@ -509,7 +509,7 @@ et positions en X, puis nous conserverons ces instances de <code translate="no">
 </code></pre>
 <p>Enfin, nous ferons tourner ces 3 cubes dans notre fonction de rendu.
 Nous calculons une rotation légèrement différente pour chacun d&#39;eux.</p>
-<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;  // conversion du temps en secondes
 
   cubes.forEach((cube, ndx) =&gt; {
@@ -522,7 +522,7 @@ Nous calculons une rotation légèrement différente pour chacun d&#39;eux.</p>
   ...
 </code></pre>
 <p>et voilà le résultat.</p>
-<p><div translate="no" class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-3-cubes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fundamentals-3-cubes.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
 </div>
@@ -536,8 +536,8 @@ canevas est extrême.</p>
 <p>A présent, notre programme est schématisé par la figure suivante :</p>
 <div class="threejs_center"><img src="../resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
 
-<p>Comme nous pouvons le constater, nous avons 3 objets de type <code translate="no">Mesh</code>, chacun référençant
-la même <code translate="no">BoxGeometry</code>. Chaque <code translate="no">Mesh</code> référence également un <code translate="no">MeshPhongMaterial</code> unique
+<p>Comme nous pouvons le constater, nous avons 3 objets de type <code class="notranslate" translate="no">Mesh</code>, chacun référençant
+la même <code class="notranslate" translate="no">BoxGeometry</code>. Chaque <code class="notranslate" translate="no">Mesh</code> référence également un <code class="notranslate" translate="no">MeshPhongMaterial</code> unique
 de sorte que chaque cube possède une couleur différente.</p>
 <p>Nous espérons que cette courte introduction vous aide à débuter.
 <a href="threejs-responsive.html">La prochaine étape consiste à  rendre notre code réactif et donc adaptable à de multiples situations</a>.</p>
@@ -545,8 +545,8 @@ de sorte que chaque cube possède une couleur différente.</p>
 <h3>es6 modules, three.js et structure de dossiers</h3>
 <p>Depuis la version 106 (r106), l'utilisation de three.js privilégie les <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">modules es6</a>.</p>
 <p>
-Ils sont chargés via le mot-clé <code translate="no">import</code> dans un script ou en ligne
-par le biais d'une balise <code translate="no">&lt;script type="module"&gt;</code>. Voici un exemple d'utilisation avec les deux :
+Ils sont chargés via le mot-clé <code class="notranslate" translate="no">import</code> dans un script ou en ligne
+par le biais d'une balise <code class="notranslate" translate="no">&lt;script type="module"&gt;</code>. Voici un exemple d'utilisation avec les deux :
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
@@ -558,8 +558,8 @@ import * as THREE from './resources/threejs/r114/build/three.module.js';
 </pre>
 <p>
 Les chemins doivent être absolus ou relatifs. Un chemin relatif commencent toujours par
-<code translate="no">./</code> ou par <code translate="no">../</code>,
-ce qui est différent des autres balises telles que <code translate="no">&lt;img&gt;</code> et <code translate="no">&lt;a&gt;</code>.
+<code class="notranslate" translate="no">./</code> ou par <code class="notranslate" translate="no">../</code>,
+ce qui est différent des autres balises telles que <code class="notranslate" translate="no">&lt;img&gt;</code> et <code class="notranslate" translate="no">&lt;a&gt;</code>.
 </p>
 <p>
 Les références à un même script ne seront chargées qu'une seule fois à partir du
@@ -593,7 +593,7 @@ unDossier
 </pre>
 <p>
 La raison nécessitant cette structuration des dossiers est parce que les scripts
-des exemples tels que <a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code translate="no">OrbitControls.js</code></a>
+des exemples tels que <a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls.js</code></a>
 ont des chemins relatifs tels que :
 </p>
 <pre class="prettyprint">
@@ -608,13 +608,13 @@ three.module.js.
 import * as THREE from './someFolder/build/three.module.js';
 import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>Cela est valable aussi lors de l'utilisation d'un CDN. Assurez vous que vos chemins versThis includes when using a CDN. Be  <code translate="no">three.modules.js</code> terminent par
-<code translate="no">/build/three.modules.js</code>. Par exemple :</p>
+<p>Cela est valable aussi lors de l'utilisation d'un CDN. Assurez vous que vos chemins versThis includes when using a CDN. Be  <code class="notranslate" translate="no">three.modules.js</code> terminent par
+<code class="notranslate" translate="no">/build/three.modules.js</code>. Par exemple :</p>
 <pre class="prettyprint">
 import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
 import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>Si vous préférez la vieille manière <code translate="no">&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code>,
+<p>Si vous préférez la vieille manière <code class="notranslate" translate="no">&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code>,
 vous pouvez consulter <a href="https://r105.threejsfundamentals.org">une version plus ancienne de ce site</a>.
 Three.js a pour politique de ne pas s'embarrasser avec la rétro compatibilité.
 Cela suppose que vous utilisez une version spécifique de la bibliothèque que vous aurez téléchargé et
