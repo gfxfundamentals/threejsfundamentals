@@ -258,12 +258,12 @@ even lower the resolution but 217k seems good enough for now.</p>
 <p>So let&#39;s try using it for picking countries.</p>
 <p>Grabbing code from the <a href="threejs-picking.html">gpu picking example</a> we need
 a scene for picking.</p>
-<pre class="prettyprint"><code class="lang-js">const pickingScene = new THREE.Scene();
+<pre class="prettyprint" translate="no"><code class="lang-js">const pickingScene = new THREE.Scene();
 pickingScene.background = new THREE.Color(0);
 </code></pre>
 <p>and we need to add the globe with the our index texture to the
 picking scene.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const loader = new THREE.TextureLoader();
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
 
@@ -279,9 +279,9 @@ picking scene.</p>
   scene.add(new THREE.Mesh(geometry, material));
 }
 </code></pre>
-<p>Then let&#39;s copy over the <code>GPUPickingHelper</code> class we used
+<p>Then let&#39;s copy over the <code translate="no">GPUPickingHelper</code> class we used
 before with a few minor changes.</p>
-<pre class="prettyprint"><code class="lang-js">class GPUPickHelper {
+<pre class="prettyprint" translate="no"><code class="lang-js">class GPUPickHelper {
   constructor() {
     // create a 1x1 pixel render target
     this.pickingTexture = new THREE.WebGLRenderTarget(1, 1);
@@ -340,7 +340,7 @@ before with a few minor changes.</p>
 }
 </code></pre>
 <p>Now we can use that to pick countries.</p>
-<pre class="prettyprint"><code class="lang-js">const pickHelper = new GPUPickHelper();
+<pre class="prettyprint" translate="no"><code class="lang-js">const pickHelper = new GPUPickHelper();
 
 function getCanvasRelativePosition(event) {
   const rect = canvas.getBoundingClientRect();
@@ -398,12 +398,12 @@ canvas.addEventListener(&#39;touchend&#39;, () =&gt; {
   pickCountry(lastTouch);
 });
 </code></pre>
-<p>The code above sets/unsets the <code>selected</code> property on
-the array of countries. If <code>shift</code> or <code>ctrl</code> or <code>cmd</code>
+<p>The code above sets/unsets the <code translate="no">selected</code> property on
+the array of countries. If <code translate="no">shift</code> or <code translate="no">ctrl</code> or <code translate="no">cmd</code>
 is pressed then you can select more than one country.</p>
 <p>All that&#39;s left is showing the selected countries. For now
 let&#39;s just update the labels.</p>
-<pre class="prettyprint"><code class="lang-js">function updateLabels() {
+<pre class="prettyprint" translate="no"><code class="lang-js">function updateLabels() {
   // exit if we have not loaded the data yet
   if (!countryInfos) {
     return;
@@ -429,7 +429,7 @@ let&#39;s just update the labels.</p>
     ...
 </code></pre>
 <p>and with that we should be able to pick countries</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-indexed-textures-picking.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-indexed-textures-picking.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -450,7 +450,7 @@ into a palette. So for example a value
 of 3 in the image means &quot;display color 3&quot;. What color color#3 is is
 defined somewhere else called a &quot;palette&quot;.</p>
 <p>In JavaScript you can think of it like this</p>
-<pre class="prettyprint"><code class="lang-js">const face7x7PixelImageData = [
+<pre class="prettyprint" translate="no"><code class="lang-js">const face7x7PixelImageData = [
   0, 1, 1, 1, 1, 1, 0,
   1, 0, 0, 0, 0, 0, 1, 
   1, 0, 2, 0, 2, 0, 1,
@@ -482,9 +482,9 @@ Let&#39;s modify the default shaders in three.js.
 That way we can use lighting and other features if we want.</p>
 <p>Like we covered in <a href="threejs-optimize-lots-of-objects-animated.html">the article on animating lots of objects</a>
 we can modify the default shaders by adding a function to a material&#39;s
-<code>onBeforeCompile</code> property.</p>
+<code translate="no">onBeforeCompile</code> property.</p>
 <p>The default fragment shader looks something like this before compiling.</p>
-<pre class="prettyprint"><code class="lang-glsl">#include &lt;common&gt;
+<pre class="prettyprint" translate="no"><code class="lang-glsl">#include &lt;common&gt;
 #include &lt;color_pars_fragment&gt;
 #include &lt;uv_pars_fragment&gt;
 #include &lt;uv2_pars_fragment&gt;
@@ -524,16 +524,16 @@ void main() {
 }
 </code></pre>
 <p><a href="https://github.com/mrdoob/three.js/tree/dev/src/renderers/shaders/ShaderChunk">Digging through all those snippets</a>
-we find that three.js uses a variable called <code>diffuseColor</code> to manage the 
-base material color. It sets this in the <code>&lt;color_fragment&gt;</code> <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_fragment.glsl.js">snippet</a>
+we find that three.js uses a variable called <code translate="no">diffuseColor</code> to manage the 
+base material color. It sets this in the <code translate="no">&lt;color_fragment&gt;</code> <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_fragment.glsl.js">snippet</a>
 so we should be able to modify it after that point.</p>
-<p><code>diffuseColor</code> at that point in the shader should already be the color from 
+<p><code translate="no">diffuseColor</code> at that point in the shader should already be the color from 
 our outline texture so we can look up the color from a palette texture 
 and mix them for the final result.</p>
 <p>Like we <a href="threejs-optimize-lots-of-objects-animated.html">did before</a> we&#39;ll make an array
 of search and replacement strings and apply them to the shader in 
-<code>Material.onBeforeCompile</code>.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<code translate="no">Material.onBeforeCompile</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const loader = new THREE.TextureLoader();
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
 
@@ -580,11 +580,11 @@ of search and replacement strings and apply them to the shader in
   scene.add(new THREE.Mesh(geometry, material));
 }
 </code></pre>
-<p>Above can see above we add 3 uniforms, <code>indexTexture</code>, <code>paletteTexture</code>,
-and <code>paletteTextureWidth</code>. We get a color from the <code>indexTexture</code>
-and convert it to an index. <code>vUv</code> is the texture coordinates provided by 
+<p>Above can see above we add 3 uniforms, <code translate="no">indexTexture</code>, <code translate="no">paletteTexture</code>,
+and <code translate="no">paletteTextureWidth</code>. We get a color from the <code translate="no">indexTexture</code>
+and convert it to an index. <code translate="no">vUv</code> is the texture coordinates provided by 
 three.js. We then use that index to get a color out of the palette texture.
-We then mix the result with the current <code>diffuseColor</code>. The <code>diffuseColor</code>
+We then mix the result with the current <code translate="no">diffuseColor</code>. The <code translate="no">diffuseColor</code>
 at this point is our black and white outline texture so if we add the 2 colors
 we&#39;ll get white outlines. If we subtract the current diffuse color we&#39;ll get
 black outlines.</p>
@@ -597,7 +597,7 @@ list of countries loads to get an exact number or look it up.
 There&#39;s not much harm in just picking some larger number so
 let&#39;s choose 512.</p>
 <p>Here&#39;s the code to create the palette texture</p>
-<pre class="prettyprint"><code class="lang-js">const maxNumCountries = 512;
+<pre class="prettyprint" translate="no"><code class="lang-js">const maxNumCountries = 512;
 const paletteTextureWidth = maxNumCountries;
 const paletteTextureHeight = 1;
 const palette = new Uint8Array(paletteTextureWidth * 3);
@@ -606,11 +606,11 @@ const paletteTexture = new THREE.DataTexture(
 paletteTexture.minFilter = THREE.NearestFilter;
 paletteTexture.magFilter = THREE.NearestFilter;
 </code></pre>
-<p>A <code>DataTexture</code> let&#39;s us give a texture raw data. In this case
+<p>A <code translate="no">DataTexture</code> let&#39;s us give a texture raw data. In this case
 we&#39;re giving it 512 RGB colors, 3 bytes each where each byte is
 red, green, and blue respectively using values that go from 0 to 255.</p>
 <p>Let&#39;s fill it with random colors just to see it work</p>
-<pre class="prettyprint"><code class="lang-js">for (let i = 1; i &lt; palette.length; ++i) {
+<pre class="prettyprint" translate="no"><code class="lang-js">for (let i = 1; i &lt; palette.length; ++i) {
   palette[i] = Math.random() * 256;
 }
 // set the ocean color (index #0)
@@ -618,10 +618,10 @@ palette.set([100, 200, 255], 0);
 paletteTexture.needsUpdate = true;
 </code></pre>
 <p>Anytime we want three.js to update the palette texture with
-the contents of the <code>palette</code> array we need to set <code>paletteTexture.needsUpdate</code>
-to <code>true</code>.</p>
+the contents of the <code translate="no">palette</code> array we need to set <code translate="no">paletteTexture.needsUpdate</code>
+to <code translate="no">true</code>.</p>
 <p>And then we still need to set the uniforms on the material.</p>
-<pre class="prettyprint"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+<pre class="prettyprint" translate="no"><code class="lang-js">const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
 const material = new THREE.MeshBasicMaterial({map: texture});
 material.onBeforeCompile = function(shader) {
   fragmentShaderReplacements.forEach((rep) =&gt; {
@@ -634,7 +634,7 @@ material.onBeforeCompile = function(shader) {
 scene.add(new THREE.Mesh(geometry, material));
 </code></pre>
 <p>and with that we get randomly colored countries.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-indexed-textures-random-colors.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-indexed-textures-random-colors.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -644,17 +644,17 @@ scene.add(new THREE.Mesh(geometry, material));
 let&#39;s manipulate the palette for highlighting.</p>
 <p>First let&#39;s make function that will let us pass in a three.js
 style color and give us values we can put in the palette texture.</p>
-<pre class="prettyprint"><code class="lang-js">const tempColor = new THREE.Color();
+<pre class="prettyprint" translate="no"><code class="lang-js">const tempColor = new THREE.Color();
 function get255BasedColor(color) {
   tempColor.set(color);
   return tempColor.toArray().map(v =&gt; v * 255);
 }
 </code></pre>
-<p>Calling it like this <code>color = get255BasedColor(&#39;red&#39;)</code> will
-return an array like <code>[255, 0, 0]</code>.</p>
+<p>Calling it like this <code translate="no">color = get255BasedColor(&#39;red&#39;)</code> will
+return an array like <code translate="no">[255, 0, 0]</code>.</p>
 <p>Next let&#39;s use it to make a few colors and fill out the
 palette.</p>
-<pre class="prettyprint"><code class="lang-js">const selectedColor = get255BasedColor(&#39;red&#39;);
+<pre class="prettyprint" translate="no"><code class="lang-js">const selectedColor = get255BasedColor(&#39;red&#39;);
 const unselectedColor = get255BasedColor(&#39;#444&#39;);
 const oceanColor = get255BasedColor(&#39;rgb(100,200,255)&#39;);
 resetPalette();
@@ -676,7 +676,7 @@ function resetPalette() {
 </code></pre>
 <p>Now let&#39;s use those functions to update the palette when a country
 is selected</p>
-<pre class="prettyprint"><code class="lang-js">function getCanvasRelativePosition(event) {
+<pre class="prettyprint" translate="no"><code class="lang-js">function getCanvasRelativePosition(event) {
   const rect = canvas.getBoundingClientRect();
   return {
     x: (event.clientX - rect.left) * canvas.width  / rect.width,
@@ -717,7 +717,7 @@ function unselectAllCountries() {
 }
 </code></pre>
 <p>and we that we should be able to highlight 1 or more countries.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-indexed-textures-picking-and-highlighting.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-indexed-textures-picking-and-highlighting.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -733,7 +733,7 @@ Another is did the user actually move the mouse. If the
 time is short or if they didn&#39;t move the mouse then it
 was probably a click. Otherwise they were probably trying
 to drag the globe.</p>
-<pre class="prettyprint"><code class="lang-js">+const maxClickTimeMs = 200;
+<pre class="prettyprint" translate="no"><code class="lang-js">+const maxClickTimeMs = 200;
 +const maxMoveDeltaSq = 5 * 5;
 +const startPosition = {};
 +let startTimeMs;
@@ -815,7 +815,7 @@ canvas.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
 });
 </code></pre>
 <p>and with those changes it <em>seems</em> like it works to me.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-indexed-textures-picking-debounced.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-indexed-textures-picking-debounced.html" target="_blank">click here to open in a separate window</a>
 </div>

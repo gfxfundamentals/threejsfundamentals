@@ -220,12 +220,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 具有控件的三维编辑器是我们可能需要处理的。文档中部的在线例子
 是我们要处理的另一个例子。</p>
 <p>上一个例子中我们使用了一个没有设置css和尺寸的canvas。</p>
-<pre class="prettyprint"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 </code></pre>
 <p>那个canvas默认300x150像素。</p>
 <p>在web平台推荐使用css来设置物体的尺寸。</p>
 <p>我们通过添加CSS来让canvas填充整个页面。</p>
-<pre class="prettyprint"><code class="lang-html">&lt;style&gt;
+<pre class="prettyprint" translate="no"><code class="lang-html">&lt;style&gt;
 html, body {
    margin: 0;
    height: 100%;
@@ -240,12 +240,12 @@ html, body {
 <p>HTML中的body默认有5个像素的margin值所以设置margin为0来移除margin值。
 设置html和body的高度为100%让他们充满整个窗口。不然的话他们的大小只会
 和填充他们的内容一样。</p>
-<p>然后我们让<code>id=c</code>的元素的尺寸是容器的100%这里是body标签。  </p>
-<p>最后我们设置它的<code>display</code>为<code>block</code>。canvas的display默认为
-<code>inline</code>。行内元素的末尾会有空格。
+<p>然后我们让<code translate="no">id=c</code>的元素的尺寸是容器的100%这里是body标签。  </p>
+<p>最后我们设置它的<code translate="no">display</code>为<code translate="no">block</code>。canvas的display默认为
+<code translate="no">inline</code>。行内元素的末尾会有空格。
 通过设置canvas为块级元素就能消除这个空格。</p>
 <p>这里是结果。</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-no-resize.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-no-resize.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -260,9 +260,9 @@ html, body {
 将窗口拉伸的非常大你就能看到问题。</p>
 <p><img src="../resources/images/resize-low-res.png" class="threejs_center nobg"></p>
 <p>我们先解决拉伸的问题。为此我们要将相机的aspect设置为canvas的宽高比。
-我们可以通过canvas的<code>clientWidth</code>和<code>clientHeight</code>属性来实现。</p>
+我们可以通过canvas的<code translate="no">clientWidth</code>和<code translate="no">clientHeight</code>属性来实现。</p>
 <p>我们需要将渲染循环变成这样。</p>
-<pre class="prettyprint"><code class="lang-js">function render(time) {
+<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;
 
 +  const canvas = renderer.domElement;
@@ -272,7 +272,7 @@ html, body {
   ...
 </code></pre>
 <p>现在立方体应该不会变形了。</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-update-camera.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-update-camera.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -287,15 +287,15 @@ html, body {
 canvas本身像素的数量。这和图片一样。
 比如我们有一个128x64像素的图片然后我们可以通过CSS让它显示为
 400x200像素。</p>
-<pre class="prettyprint"><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
+<pre class="prettyprint" translate="no"><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
 </code></pre>
 <p>一个canvas的内部尺寸，它的分辨率，通常被叫做drawingbuffer尺寸。
-在three.js中我们可以通过调用<code>renderer.setSize</code>来设置canvas的drawingbuffer。
+在three.js中我们可以通过调用<code translate="no">renderer.setSize</code>来设置canvas的drawingbuffer。
 我们应该选择什么尺寸? 最显而易见的是&quot;和canvas的显示尺寸一样&quot;。
-再一次，我们可以使用canvas的<code>clientWidth</code>和<code>clientHeight</code>属性。</p>
+再一次，我们可以使用canvas的<code translate="no">clientWidth</code>和<code translate="no">clientHeight</code>属性。</p>
 <p>我们写一个函数来检查渲染器的canvas尺寸是不是和canvas的显示尺寸不一样
 如果不一样就设置它。</p>
-<pre class="prettyprint"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+<pre class="prettyprint" translate="no"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
@@ -308,15 +308,15 @@ canvas本身像素的数量。这和图片一样。
 </code></pre>
 <p>注意我们检查了canvas是否真的需要调整大小。 
 调整画布大小是canvas规范的一个有趣部分，如果它已经是我们想要的大小，最好不要设置相同的大小.</p>
-<p>一旦我们知道了是否需要调整大小我们就调用<code>renderer.setSize</code>然后
-传入新的宽高。在末尾传入<code>false</code>很重要。
-<code>render.setSize</code>默认会设置canvas的CSS尺寸但这并不是我们想要的。
+<p>一旦我们知道了是否需要调整大小我们就调用<code translate="no">renderer.setSize</code>然后
+传入新的宽高。在末尾传入<code translate="no">false</code>很重要。
+<code translate="no">render.setSize</code>默认会设置canvas的CSS尺寸但这并不是我们想要的。
 我们希望浏览器能继续工作就像其他使用CSS来定义尺寸的其他元素。我们不希望
 three.js使用canvas和其他元素不一样。</p>
 <p>注意如果我们的canvas大小被调整了那函数会返回true。我们可以利用
 这个来检查是否有其他的东西应该更新。我们修改渲染循环
 来使用我们的新函数。</p>
-<pre class="prettyprint"><code class="lang-js">function render(time) {
+<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;
 
 +  if (resizeRendererToDisplaySize(renderer)) {
@@ -328,8 +328,8 @@ three.js使用canvas和其他元素不一样。</p>
   ...
 </code></pre>
 <p>因为只有canvas的显示尺寸变化时aspect值才变化所以我们
-只在<code>resizeRendererToDisplaySize</code>函数返回<code>true</code>时才设置摄像机的aspect。</p>
-<p><div class="threejs_example_container">
+只在<code translate="no">resizeRendererToDisplaySize</code>函数返回<code translate="no">true</code>时才设置摄像机的aspect。</p>
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -337,18 +337,18 @@ three.js使用canvas和其他元素不一样。</p>
 </p>
 <p>现在渲染的分辨率应该是和canvas的显示尺寸一样的。</p>
 <p>为了说清楚让CSS处理调整尺寸我们将代码
-放进<a href="../../threejs-responsive.js">separate <code>.js</code> file</a>。
+放进<a href="../../threejs-responsive.js">separate <code translate="no">.js</code> file</a>。
 这里还有一些例子我们让CSS决定尺寸的大小并且注意我们并没有改变任何
 代码来让他们工作。</p>
 <p>我们将立方体放在文字段落的中间。</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-paragraph.html&startPane=html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-paragraph.html" target="_blank">点击在新标签页中打开</a>
 </div>
 
 </p>
 <p>这是我们在编辑器样式布局中使用的相同代码，右侧的控制区域可以调整大小。</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-editor.html&startPane=html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-editor.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -370,11 +370,11 @@ three.js使用canvas和其他元素不一样。</p>
 <p>尽管如此如果你确实想用设备的分辨率来渲染，three.js中有两种方法来实现。</p>
 <p>一种是使用renderer.setPixelRatio来告诉three.js分辨率的倍数。
 访问浏览器从CSS像素到设备像素的倍数然后传给three.js。</p>
-<pre class="prettyprint"><code> renderer.setPixelRatio(window.devicePixelRatio);
-</code></pre><p>之后任何对<code>renderer.setSize</code>的调用都会神奇地使用您请求的大小乘以您传入的像素比例.
+<pre class="prettyprint" translate="no"><code translate="no"> renderer.setPixelRatio(window.devicePixelRatio);
+</code></pre><p>之后任何对<code translate="no">renderer.setSize</code>的调用都会神奇地使用您请求的大小乘以您传入的像素比例.
 <strong>强烈不建议这样</strong>。 看下面。</p>
 <p>另一种方法是在调整canvas的大小时自己处理。</p>
-<pre class="prettyprint"><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
+<pre class="prettyprint" translate="no"><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
       const width = canvas.clientWidth * pixelRatio | 0;
@@ -393,7 +393,7 @@ three.js使用canvas和其他元素不一样。</p>
 通过我们自己处理我们会一直知道使用的尺寸是不是我们需要的。
 幕后并没有什么特殊的魔法发生。</p>
 <p>这是一个使用上面代码的例子。</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-hd-dpi.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-hd-dpi.html" target="_blank">点击在新标签页中打开</a>
 </div>

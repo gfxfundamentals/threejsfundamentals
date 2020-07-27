@@ -219,29 +219,29 @@ pointing via looking. In this article we will take it one step further
 and let the user choose with a pointing device </p>
 <p>Three.js makes is relatively easy by providing 2 controller objects in VR
 and tries to handle both cases of a single 3DOF controller and two 6DOF
-controllers. Each of the controllers are <code>Object3D</code> objects which give
+controllers. Each of the controllers are <code translate="no">Object3D</code> objects which give
 the orientation and position of that controller. They also provide 
-<code>selectstart</code>, <code>select</code> and <code>selectend</code> events when the user starts pressing,
+<code translate="no">selectstart</code>, <code translate="no">select</code> and <code translate="no">selectend</code> events when the user starts pressing,
 is pressing, and stops pressing (ends) the &quot;main&quot; button on the controller.</p>
 <p>Starting with the last example from <a href="threejs-webvr-look-to-select.html">the previous article</a>
-let&#39;s change the <code>PickHelper</code> into a <code>ControllerPickHelper</code>.</p>
-<p>Our new implementation will emit a <code>select</code> event that gives us the object that was picked
+let&#39;s change the <code translate="no">PickHelper</code> into a <code translate="no">ControllerPickHelper</code>.</p>
+<p>Our new implementation will emit a <code translate="no">select</code> event that gives us the object that was picked
 so to use it we&#39;ll just need to do this.</p>
-<pre class="prettyprint"><code class="lang-js">const pickHelper = new ControllerPickHelper(scene);
+<pre class="prettyprint" translate="no"><code class="lang-js">const pickHelper = new ControllerPickHelper(scene);
 pickHelper.addEventListener(&#39;select&#39;, (event) =&gt; {
   event.selectedObject.visible = false;
   const partnerObject = meshToMeshMap.get(event.selectedObject);
   partnerObject.visible = true;
 });
 </code></pre>
-<p>Remember from our previous code <code>meshToMeshMap</code> maps our boxes and spheres to
-each other so if we have one we can look up its partner through <code>meshToMeshMap</code> 
+<p>Remember from our previous code <code translate="no">meshToMeshMap</code> maps our boxes and spheres to
+each other so if we have one we can look up its partner through <code translate="no">meshToMeshMap</code> 
 so here we&#39;re just hiding the selected object and un-hiding its partner.</p>
-<p>As for the actual implementation of <code>ControllerPickHelper</code>, first we need
+<p>As for the actual implementation of <code translate="no">ControllerPickHelper</code>, first we need
 to add the VR controller objects to the scene and to those add some 3D lines
 we can use to display where the user is pointing. We save off both the controllers
 and the their lines.</p>
-<pre class="prettyprint"><code class="lang-js">class ControllerPickHelper {
+<pre class="prettyprint" translate="no"><code class="lang-js">class ControllerPickHelper {
   constructor(scene) {
     const pointerGeometry = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(0, 0, 0),
@@ -270,7 +270,7 @@ into the screen. In <a href="threejs-webvr-look-to-select.html">the previous art
 were picking based on which way the user is looking so again that comes from the
 camera. This time though we&#39;re picking from the position of the controllers so
 we&#39;re not using the camera.</p>
-<pre class="prettyprint"><code class="lang-js">class ControllerPickHelper {
+<pre class="prettyprint" translate="no"><code class="lang-js">class ControllerPickHelper {
   constructor(scene) {
 +    this.raycaster = new THREE.Raycaster();
 +    this.objectToColorMap = new Map();
@@ -324,13 +324,13 @@ we&#39;re not using the camera.</p>
 +  }
 }
 </code></pre>
-<p>Like before we use a <code>Raycaster</code> but this time we take the ray from the controller.
-Our previous <code>PickHelper</code> there was only one thing picking but here we have up to 2
+<p>Like before we use a <code translate="no">Raycaster</code> but this time we take the ray from the controller.
+Our previous <code translate="no">PickHelper</code> there was only one thing picking but here we have up to 2
 controllers, one for each hand. We save off which object each controller is
-looking at in <code>controllerToObjectMap</code>. We also save off the original emissive color in
-<code>objectToColorMap</code> and we make the line long enough to touch whatever it&#39;s pointing at.</p>
+looking at in <code translate="no">controllerToObjectMap</code>. We also save off the original emissive color in
+<code translate="no">objectToColorMap</code> and we make the line long enough to touch whatever it&#39;s pointing at.</p>
 <p>We need to add some code to reset these settings every frame.</p>
-<pre class="prettyprint"><code class="lang-js">class ControllerPickHelper {
+<pre class="prettyprint" translate="no"><code class="lang-js">class ControllerPickHelper {
 
   ...
 
@@ -349,12 +349,12 @@ looking at in <code>controllerToObjectMap</code>. We also save off the original 
 
 }
 </code></pre>
-<p>Next we want to emit a <code>select</code> event when the user clicks the controller.
-To do that we can extend three.js&#39;s <code>EventDispatcher</code> and then we&#39;ll check
-when we get a <code>select</code> event from the controller, then if that controller
+<p>Next we want to emit a <code translate="no">select</code> event when the user clicks the controller.
+To do that we can extend three.js&#39;s <code translate="no">EventDispatcher</code> and then we&#39;ll check
+when we get a <code translate="no">select</code> event from the controller, then if that controller
 is pointing at something we emit what that controller is pointing at
-as our own <code>select</code> event.</p>
-<pre class="prettyprint"><code class="lang-js">-class ControllerPickHelper {
+as our own <code translate="no">select</code> event.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">-class ControllerPickHelper {
 +class ControllerPickHelper extends THREE.EventDispatcher {
   constructor(scene) {
 +    super();
@@ -388,8 +388,8 @@ as our own <code>select</code> event.</p>
   }
 }
 </code></pre>
-<p>All that is left is to call <code>update</code> in our render loop</p>
-<pre class="prettyprint"><code class="lang-js">function render(time) {
+<p>All that is left is to call <code translate="no">update</code> in our render loop</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
 
   ...
 
@@ -400,7 +400,7 @@ as our own <code>select</code> event.</p>
 </code></pre>
 <p>and assuming you have a VR device with a controller you should
 be able to use the controllers to pick things.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-point-to-select.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-point-to-select.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -409,7 +409,7 @@ be able to use the controllers to pick things.</p>
 <p>And what if we wanted to be able to move the objects?</p>
 <p>That&#39;s relatively easy. Let&#39;s move our controller &#39;select&#39; listener
 code out into a function so we can use it for more than one thing.</p>
-<pre class="prettyprint"><code class="lang-js">class ControllerPickHelper extends THREE.EventDispatcher {
+<pre class="prettyprint" translate="no"><code class="lang-js">class ControllerPickHelper extends THREE.EventDispatcher {
   constructor(scene) {
     super();
 
@@ -438,8 +438,8 @@ code out into a function so we can use it for more than one thing.</p>
 
        ...
 </code></pre>
-<p>Then let&#39;s use it for both <code>selectstart</code> and <code>select</code></p>
-<pre class="prettyprint"><code class="lang-js">class ControllerPickHelper extends THREE.EventDispatcher {
+<p>Then let&#39;s use it for both <code translate="no">selectstart</code> and <code translate="no">select</code></p>
+<pre class="prettyprint" translate="no"><code class="lang-js">class ControllerPickHelper extends THREE.EventDispatcher {
   constructor(scene) {
     super();
 
@@ -463,9 +463,9 @@ code out into a function so we can use it for more than one thing.</p>
 
        ...
 </code></pre>
-<p>and let&#39;s also pass on the <code>selectend</code> event which three.js sends out
+<p>and let&#39;s also pass on the <code translate="no">selectend</code> event which three.js sends out
 when you user lets of the button on the controller.</p>
-<pre class="prettyprint"><code class="lang-js">class ControllerPickHelper extends THREE.EventDispatcher {
+<pre class="prettyprint" translate="no"><code class="lang-js">class ControllerPickHelper extends THREE.EventDispatcher {
   constructor(scene) {
     super();
 
@@ -494,11 +494,11 @@ when you user lets of the button on the controller.</p>
 
        ...
 </code></pre>
-<p>Now let&#39;s change the code so when we get a <code>selectstart</code> event we&#39;ll
+<p>Now let&#39;s change the code so when we get a <code translate="no">selectstart</code> event we&#39;ll
 remove the selected object from the scene and make it a child of the controller.
-This means it will move with the controller. When we get a <code>selectend</code>
+This means it will move with the controller. When we get a <code translate="no">selectend</code>
 event we&#39;ll put it back in the scene.</p>
-<pre class="prettyprint"><code class="lang-js">const pickHelper = new ControllerPickHelper(scene);
+<pre class="prettyprint" translate="no"><code class="lang-js">const pickHelper = new ControllerPickHelper(scene);
 -pickHelper.addEventListener(&#39;select&#39;, (event) =&gt; {
 -  event.selectedObject.visible = false;
 -  const partnerObject = meshToMeshMap.get(event.selectedObject);
@@ -529,19 +529,19 @@ event we&#39;ll put it back in the scene.</p>
 </code></pre>
 <p>When an object is selected we save off that object and its
 original parent. When the user is done we can put the object back.</p>
-<p>We use the <code>Object3D.attach</code> to re-parent
+<p>We use the <code translate="no">Object3D.attach</code> to re-parent
 the selected objects. These functions let us change the parent
 of an object without changing its orientation and position in the
 scene. </p>
 <p>And with that we should be able to move the objects around with a 6DOF
 controller or at least change their orientation with a 3DOF controller</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-webvr-point-to-select-w-move.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-webvr-point-to-select-w-move.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>To be honest I&#39;m not 100% sure this <code>ControllerPickHelper</code> is
+<p>To be honest I&#39;m not 100% sure this <code translate="no">ControllerPickHelper</code> is
 the best way to organize the code but it&#39;s useful to demonstrating
 the various parts of getting something simple working in VR
 in three.js</p>

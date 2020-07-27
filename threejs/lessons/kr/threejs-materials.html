@@ -219,19 +219,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 어떤 재질을 사용할지는 전적으로 상황에 따라 판단해야 합니다.</p>
 <p>재질의 속성(property)를 정하는 방법은 크게 두 가지로 나뉩니다. 하나는
 이전처럼 생성자를 호출할 때 값을 넘겨주는 것이고,</p>
-<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
+<pre class="prettyprint" translate="no"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
   color: 0xFF0000,    // 빨강 (CSS처럼 문자열로 넘겨줄 수도 있음. &quot;#ff0000&quot;)
   flatShading: true,
 });
 </code></pre>
 <p>다른 하나는 생성한 뒤에 바꾸는 것이죠.</p>
-<pre class="prettyprint"><code class="lang-js">const material = new THREE.MeshPhongMaterial();
+<pre class="prettyprint" translate="no"><code class="lang-js">const material = new THREE.MeshPhongMaterial();
 material.color.setHSL(0, 1, .5);  // 빨강
 material.flatShading = true;
 </code></pre>
 <p>물론 HSL 색상 모델 외에 rgb, hex 등 다양한 방법으로 색을 지정할
 수 있습니다.</p>
-<pre class="prettyprint"><code class="lang-js">material.color.set(0x00FFFF);    // CSS의 #RRGGBB 형식
+<pre class="prettyprint" translate="no"><code class="lang-js">material.color.set(0x00FFFF);    // CSS의 #RRGGBB 형식
 material.color.set(cssString);   /* CSS 색상 문자열, 예를 들어 &#39;purple&#39;, &#39;#F32&#39;,
                                   * &#39;rgb(255, 127, 64)&#39;,
                                   * &#39;hsl(180, 50%, 25%)&#39; 등
@@ -241,16 +241,16 @@ material.color.setHSL(h, s, l)   // hsl 색상, 0부터 1까지
 material.color.setRGB(r, g, b)   // rgb 색상, 0부터 1까지
 </code></pre>
 <p>생성시에도 hex 값 또는 CSS 문자열을 전달해도 됩니다.</p>
-<pre class="prettyprint"><code class="lang-js">const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // 빨강
+<pre class="prettyprint" translate="no"><code class="lang-js">const m1 = new THREE.MeshBasicMaterial({color: 0xFF0000});         // 빨강
 const m2 = new THREE.MeshBasicMaterial({color: &#39;red&#39;});            // 빨강
 const m3 = new THREE.MeshBasicMaterial({color: &#39;#F00&#39;});           // 빨강
 const m4 = new THREE.MeshBasicMaterial({color: &#39;rgb(255,0,0)&#39;});   // 빨강
 const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // 빨강
 </code></pre>
 <p>이제 Three.js의 기본 재질을 살펴보겠습니다.</p>
-<p><code>MeshBasicMaterial</code>은 광원의 영향을 받지 않습니다. <code>MeshLambertMaterial</code>은
-정점에서만 광원을 계산하고, <code>MeshPhongMaterial</code>은 픽셀 하나하나 전부 광원을
-계산합니다. 뿐만 아니라 <code>MeshPhongMaterial</code>은 반사점(specular highlights, 물체가 조명을 받을 때 물체에 나타나는 밝은 점. 역주)도
+<p><code translate="no">MeshBasicMaterial</code>은 광원의 영향을 받지 않습니다. <code translate="no">MeshLambertMaterial</code>은
+정점에서만 광원을 계산하고, <code translate="no">MeshPhongMaterial</code>은 픽셀 하나하나 전부 광원을
+계산합니다. 뿐만 아니라 <code translate="no">MeshPhongMaterial</code>은 반사점(specular highlights, 물체가 조명을 받을 때 물체에 나타나는 밝은 점. 역주)도
 지원합니다.</p>
 <div class="spread">
   <div>
@@ -279,7 +279,7 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
 </div>
 <div class="threejs_center code">같은 모델을 로우-폴리(low poly) 모델로 바꾼 것</div>
 
-<p><code>MeshPhongMaterial</code>의 <code>shininess</code> 속성으로 반사점의 <em>밝기</em>를 조절할 수
+<p><code translate="no">MeshPhongMaterial</code>의 <code translate="no">shininess</code> 속성으로 반사점의 <em>밝기</em>를 조절할 수
 있습니다(기본값 30).</p>
 <div class="spread">
   <div>
@@ -296,9 +296,9 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
   </div>
 </div>
 
-<p>만약 <code>MeshLambertMaterial</code>이나 <code>MeshPhongMaterial</code>의 <code>emissive</code> 속성에
-색상값을 지정하고, (<code>MeshPhongMaterial</code>은 <code>shininess</code>도 0으로 지정해야함)
-<code>color</code> 속성을 검정으로 지정하면 <code>MeshBasicMaterial</code>과 마찬가지로 입체감이
+<p>만약 <code translate="no">MeshLambertMaterial</code>이나 <code translate="no">MeshPhongMaterial</code>의 <code translate="no">emissive</code> 속성에
+색상값을 지정하고, (<code translate="no">MeshPhongMaterial</code>은 <code translate="no">shininess</code>도 0으로 지정해야함)
+<code translate="no">color</code> 속성을 검정으로 지정하면 <code translate="no">MeshBasicMaterial</code>과 마찬가지로 입체감이
 사라집니다.</p>
 <div class="spread">
   <div>
@@ -327,16 +327,16 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
   </div>
 </div>
 
-<p>왜 <code>MeshPhongMaterial</code>로 <code>MeshBasicMaterial</code>과 <code>MeshLambertMaterial</code>을
+<p>왜 <code translate="no">MeshPhongMaterial</code>로 <code translate="no">MeshBasicMaterial</code>과 <code translate="no">MeshLambertMaterial</code>을
 구현할 수 있는데 3가지로 분리해 놓았을까요? 이미 감을 잡으셨겠지만, 재질이
 정교할수록 GPU의 부담이 커지기 때문입니다. GPU 성능이 낮은 저사양 기기에서는
 덜 정교한 재질을 씀으로써 GPU의 부담을 줄일 수 있죠. 또한 복잡한 표현이 필요
-없다면 더 간단한 재질을, 광원 효과가 아예 필요 없다면 <code>MeshBasicMaterial</code>을
+없다면 더 간단한 재질을, 광원 효과가 아예 필요 없다면 <code translate="no">MeshBasicMaterial</code>을
 사용하는 것이 좋습니다.</p>
-<p><code>MeshToonMaterial</code>은 <code>MeshPhongMaterial</code>과 유사하나, 큰 차이점이 하나 있습니다.
-부드럽게 쉐이딩(shading)하는 대신, <code>MeshToonMaterial</code>은 그라디언트 맵(gradient map)을
-사용합니다. 기본적으로 <code>MeshToonMaterial</code>은 처음 70%까지는 밝고 다음 100%까지는
-어두운 그라디언트 맵을 사용하나, 그라디언트 맵을 직접 지정해 줄 수도 있죠. <code>MeshToonMaterial</code>로
+<p><code translate="no">MeshToonMaterial</code>은 <code translate="no">MeshPhongMaterial</code>과 유사하나, 큰 차이점이 하나 있습니다.
+부드럽게 쉐이딩(shading)하는 대신, <code translate="no">MeshToonMaterial</code>은 그라디언트 맵(gradient map)을
+사용합니다. 기본적으로 <code translate="no">MeshToonMaterial</code>은 처음 70%까지는 밝고 다음 100%까지는
+어두운 그라디언트 맵을 사용하나, 그라디언트 맵을 직접 지정해 줄 수도 있죠. <code translate="no">MeshToonMaterial</code>로
 만든 물체는 투톤을 띄어 카툰 느낌을 줍니다.</p>
 <div class="spread">
   <div data-diagram="MeshToonMaterial"></div>
@@ -347,41 +347,41 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
 <p>위에서 살펴본 재질들은 재질을 3D처럼 보이게 하기 위해 간단한 수학을 사용하나,
 이는 실제 세계와는 다릅니다. 이 두 가지 PBR 재질은 실제 세계에서처럼 물체를
 구현하기 위해 훨씬 복잡한 수학을 사용하죠.</p>
-<p>첫 번째는 <code>MeshStandardMaterial</code>입니다.<code>MeshPhongMaterial</code>과 <code>MeshStandardMaterial</code>의
-가장 큰 차이점은 사용하는 속성이 다르다는 점입니다. <code>MeshPhongMaterial</code>은
-<code>shininess</code>를 사용하지만, <code>MeshStandardMaterial</code>은 <code>roughness</code>와 <code>metalness</code>
+<p>첫 번째는 <code translate="no">MeshStandardMaterial</code>입니다.<code translate="no">MeshPhongMaterial</code>과 <code translate="no">MeshStandardMaterial</code>의
+가장 큰 차이점은 사용하는 속성이 다르다는 점입니다. <code translate="no">MeshPhongMaterial</code>은
+<code translate="no">shininess</code>를 사용하지만, <code translate="no">MeshStandardMaterial</code>은 <code translate="no">roughness</code>와 <code translate="no">metalness</code>
 두 가지 속성을 사용합니다.</p>
-<p><a href="MeshStandardMaterial.roughness"><code>roughness</code></a>는 <code>roughness</code>는
-0부터 1까지의 숫자값으로, <code>shininess</code>의 반대입니다. 높은 <code>roughness</code>를
+<p><a href="MeshStandardMaterial.roughness"><code translate="no">roughness</code></a>는 <code translate="no">roughness</code>는
+0부터 1까지의 숫자값으로, <code translate="no">shininess</code>의 반대입니다. 높은 <code translate="no">roughness</code>를
 가진 물체, 예를 들어 야구공은 빛 반사가 거의 없지만, 반대로 낮은
-<code>roughness</code>를 가진 물체, 당구공은 매우 번들번들하죠.</p>
-<p><a href="MeshStandardMaterial.metalness"><code>metalness</code></a>는 얼마나 금속성입니다.
+<code translate="no">roughness</code>를 가진 물체, 당구공은 매우 번들번들하죠.</p>
+<p><a href="MeshStandardMaterial.metalness"><code translate="no">metalness</code></a>는 얼마나 금속성입니다.
 얼마나 금속 재질에 가까울 것인가로써, 0은 아예 금속 같지 않은 것이고,
 1은 완전히 금속처럼 보이는 것을 의미합니다.</p>
-<p>아래의 예제는 <code>MeshStandardMaterial</code>의 <code>roughness</code>를 왼쪽에서 오른쪽으로
-커지게(0 -&gt; 1), <code>metalness</code>를 위에서 아래로 커지게(0 -&gt; 1) 한 것입니다.</p>
+<p>아래의 예제는 <code translate="no">MeshStandardMaterial</code>의 <code translate="no">roughness</code>를 왼쪽에서 오른쪽으로
+커지게(0 -&gt; 1), <code translate="no">metalness</code>를 위에서 아래로 커지게(0 -&gt; 1) 한 것입니다.</p>
 <div data-diagram="MeshStandardMaterial" style="min-height: 400px"></div>
 
-<p><code>MeshPhysicalMaterial</code>은 <code>MeshStandardMaterial</code>과 기본적으로 같지만,
-0부터 1까지의 <code>clearcoat</code> 속성으로 표면에 코팅 세기를 설정하고,
-<code>clearcoatRoughness</code> 속성으로 코팅의 거침 정도를 설정한다는 점이 다릅니다.</p>
-<p>아래는 위의 예제와 마찬가지로 <code>roughness</code>와 <code>metalness</code> 속성을 주고
-<code>clearcoat</code> 속성과 <code>clearcoatRoughness</code> 속성을 조정할 수 있도록 한 예제입니다.</p>
+<p><code translate="no">MeshPhysicalMaterial</code>은 <code translate="no">MeshStandardMaterial</code>과 기본적으로 같지만,
+0부터 1까지의 <code translate="no">clearcoat</code> 속성으로 표면에 코팅 세기를 설정하고,
+<code translate="no">clearcoatRoughness</code> 속성으로 코팅의 거침 정도를 설정한다는 점이 다릅니다.</p>
+<p>아래는 위의 예제와 마찬가지로 <code translate="no">roughness</code>와 <code translate="no">metalness</code> 속성을 주고
+<code translate="no">clearcoat</code> 속성과 <code translate="no">clearcoatRoughness</code> 속성을 조정할 수 있도록 한 예제입니다.</p>
 <div data-diagram="MeshPhysicalMaterial" style="min-height: 400px"></div>
 
 <p>여태까지 살펴본 Three.js의 기본 재질을 성능이 빠른 것부터 나열하면,</p>
-<p><code>MeshBasicMaterial</code> ➡ <code>MeshLambertMaterial</code> ➡ <code>MeshPhongMaterial</code> ➡
-<code>MeshStandardMaterial</code> ➡ <code>MeshPhysicalMaterial</code></p>
+<p><code translate="no">MeshBasicMaterial</code> ➡ <code translate="no">MeshLambertMaterial</code> ➡ <code translate="no">MeshPhongMaterial</code> ➡
+<code translate="no">MeshStandardMaterial</code> ➡ <code translate="no">MeshPhysicalMaterial</code></p>
 <p>입니다. 성능 부담이
 클수록 더 현실적인 결과물을 얻을 수 있지만, 저사양 지원을 위해서는 코드
 최적화에 그만큼 신경을 써야 합니다.</p>
-<p>또 특수한 경우에 사용하는 세 가지 재질이 있습니다. <code>ShadowMaterial</code>은
+<p>또 특수한 경우에 사용하는 세 가지 재질이 있습니다. <code translate="no">ShadowMaterial</code>은
 그림자로부터 데이터를 가져오는 데 사용하죠. 아직 그림자에 대해서는 다루지
 않았지만, 그림자에 대해서 살펴볼 때 씬 뒤에서 무슨 일이 일어나는지
 자세히 살펴볼 것입니다.</p>
-<p><code>MeshDepthMaterial</code>은 각 픽셀의 깊이를 렌더링합니다. 카메라의 마이너스
-<a href="PerspectiveCamera.near"><code>near</code></a>에 위치한 픽셀은 0으로, 마이너스
-<a href="PerspectiveCamera.far"><code>far</code></a>에 위치한 픽셀은 1로 렌더링하죠. 이 재질을
+<p><code translate="no">MeshDepthMaterial</code>은 각 픽셀의 깊이를 렌더링합니다. 카메라의 마이너스
+<a href="PerspectiveCamera.near"><code translate="no">near</code></a>에 위치한 픽셀은 0으로, 마이너스
+<a href="PerspectiveCamera.far"><code translate="no">far</code></a>에 위치한 픽셀은 1로 렌더링하죠. 이 재질을
 사용해 구현할 수 있는 것에 대해서는 다른 글에서 나중에 다뤄보겠습니다.</p>
 <div class="spread">
   <div>
@@ -389,9 +389,9 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
   </div>
 </div>
 
-<p><code>MeshNormalMaterial</code>은 <code>geometry</code>의 <em>법선(normals)</em>을 보여줍니다.
+<p><code translate="no">MeshNormalMaterial</code>은 <code translate="no">geometry</code>의 <em>법선(normals)</em>을 보여줍니다.
 <em>법선</em>이란 특정한 삼각형이나 픽셀이 가리키는 방향을 의미하죠.
-<code>MeshNormalMaterial</code>은 카메라를 기반으로 법선을 렌더링합니다.
+<code translate="no">MeshNormalMaterial</code>은 카메라를 기반으로 법선을 렌더링합니다.
 <span class="color:red;">x축은 빨강</span>,
 <span class="color:green;">y축은 초록</span>,
 <span class="color:blue;">z축은 파랑</span>이죠.
@@ -406,15 +406,15 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
   </div>
 </div>
 
-<p><code>ShaderMaterial</code>과 <code>RawShaderMaterial</code>은 재질을 커스텀할 때 사용합니다.
-둘의 차이점은 <code>ShaderMaterial</code>은 Three.js의 쉐이더 시스템을 이용하고,
-<code>RawShaderMaterial</code>은 아예 Three.js의 도움을 받지 않는다는 점이죠. 둘
+<p><code translate="no">ShaderMaterial</code>과 <code translate="no">RawShaderMaterial</code>은 재질을 커스텀할 때 사용합니다.
+둘의 차이점은 <code translate="no">ShaderMaterial</code>은 Three.js의 쉐이더 시스템을 이용하고,
+<code translate="no">RawShaderMaterial</code>은 아예 Three.js의 도움을 받지 않는다는 점이죠. 둘
 다 짧게 다루기는 어려운 주제로, 나중에 상세하게 다루겠습니다.</p>
-<p>재질 속성(properties)의 대부분은 <code>Material</code> 클래스에 의해 정의됩니다.
+<p>재질 속성(properties)의 대부분은 <code translate="no">Material</code> 클래스에 의해 정의됩니다.
 자세한 건 <a href="Material">공식 문서</a>를 참고하되, 여기서는 자주 사용하는
 두 가지 속성만 살펴보도록 하죠.</p>
-<p><a href="Material.flatShading"><code>flatShading</code></a>:
-물체를 각지게(faceted) 표현할지의 여부입니다. 기본값은 <code>false</code>.</p>
+<p><a href="Material.flatShading"><code translate="no">flatShading</code></a>:
+물체를 각지게(faceted) 표현할지의 여부입니다. 기본값은 <code translate="no">false</code>.</p>
 <div class="spread">
   <div>
     <div data-diagram="smoothShading"></div>
@@ -426,14 +426,14 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
   </div>
 </div>
 
-<p><a href="Material.side"><code>side</code></a>:
-어떤 면을 렌더링할지의 여부입니다. 기본값은 <code>THREE.FrontSide(앞면)</code>.
-다른 값으로는 <code>THREE.BackSide(뒷면)</code>와 <code>THREE.DoubleSide(양면)</code>를
+<p><a href="Material.side"><code translate="no">side</code></a>:
+어떤 면을 렌더링할지의 여부입니다. 기본값은 <code translate="no">THREE.FrontSide(앞면)</code>.
+다른 값으로는 <code translate="no">THREE.BackSide(뒷면)</code>와 <code translate="no">THREE.DoubleSide(양면)</code>를
 지정할 수 있습니다. 3D로 렌더링한 물체는 대부분 불투명한 고체이기에,
-뒷면(고체의 안쪽면)은 굳이 렌더링할 필요가 없습니다. <code>side</code> 속성을
+뒷면(고체의 안쪽면)은 굳이 렌더링할 필요가 없습니다. <code translate="no">side</code> 속성을
 별도로 지정하는 경우는 면이나 비-고체 등 뒷면을 렌더링해야 할 경우
 뿐이죠.</p>
-<p>아래는 각각 <code>THREE.FrontSide</code>와 <code>THREE.DoubleSide</code>를 이용해 6개의
+<p>아래는 각각 <code translate="no">THREE.FrontSide</code>와 <code translate="no">THREE.DoubleSide</code>를 이용해 6개의
 면을 렌더링한 것입니다.</p>
 <div class="spread">
   <div>
@@ -460,18 +460,18 @@ const m5 = new THREE.MeshBasicMaterial({color: &#39;hsl(0,100%,50%)&#39;); // �
 Three.js는 재질을 사용할 때-해당 재질을 사용하는 물체를 렌더링할 때-
 재질의 설정을 적용합니다. 재질을 바꿀 때는 많은 자원이 들어가기에,
 Three.js는 기본적으로 처음 한 번만 재질의 설정을 적용합니다. 만약
-재질의 속성(properties)을 런타임에 바꿔야 할 경우, <code>material.needsUpdate = true</code>를
+재질의 속성(properties)을 런타임에 바꿔야 할 경우, <code translate="no">material.needsUpdate = true</code>를
 설정해 Three.js가 변경사항을 반영하도록 해야 하죠. 대표적으로
-<code>needsUpdate</code>를 사용해야 하는 경우는 다음과 같습니다.
+<code translate="no">needsUpdate</code>를 사용해야 하는 경우는 다음과 같습니다.
 
 </p>
 <ul>
-  <li><code>flatShading</code> 속성을 변경할 때</li>
+  <li><code translate="no">flatShading</code> 속성을 변경할 때</li>
   <li>텍스처를 추가/제거할 때
     <p>
     단순히 텍스처를 변경할 때는 상관없으나, 아예 텍스처를 사용하지 않다가
     텍스처를 추가하는 경우, 또는 텍스처를 사용하다가 텍스처를 제거하는 경우
-    <code>needsUpdate = true</code>를 설정해주어야 합니다.
+    <code translate="no">needsUpdate = true</code>를 설정해주어야 합니다.
     </p>
     <p>
     하지만 텍스처를 제거하는 경우, 대게 1x1 하얀색 픽셀 텍스처로 변경하는 게
@@ -480,7 +480,7 @@ Three.js는 기본적으로 처음 한 번만 재질의 설정을 적용합니�
 </ul>
 <p>
 위에서 언급했듯, 대부분의 앱은 이런 경우를 고려할 일이 거의 없습니다.
-<code>flatShade</code> 속성을 변경하는 경우는 흔치 않고, 텍스처를 변경하는
+<code translate="no">flatShade</code> 속성을 변경하는 경우는 흔치 않고, 텍스처를 변경하는
 경우는 있어도 물체의 속성이나 색상을 지정하지 않았다가 추가하는 경우는 흔치 않기
 때문입니다.
 </p>

@@ -268,7 +268,7 @@ might make a good example.</p>
 <p>Starting with <a href="threejs-load-obj.html">an example from the .OBJ article</a> I removed the code
 for loading .OBJ and replaced it with code for loading .GLTF</p>
 <p>The old .OBJ code was</p>
-<pre class="prettyprint"><code class="lang-js">const objLoader = new OBJLoader2();
+<pre class="prettyprint" translate="no"><code class="lang-js">const objLoader = new OBJLoader2();
 objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, (materials) =&gt; {
   materials.Material.side = THREE.DoubleSide;
   objLoader.setMaterials(materials);
@@ -280,7 +280,7 @@ objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, 
 });
 </code></pre>
 <p>The new .GLTF code is</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const gltfLoader = new GLTFLoader();
   const url = &#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;;
   gltfLoader.load(url, (gltf) =&gt; {
@@ -290,14 +290,14 @@ objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, 
   });
 </code></pre>
 <p>I kept the auto framing code as before</p>
-<p>We also need to include the <code>GLTFLoader</code> and we can get rid of the <code>OBJLoader2</code>.</p>
-<pre class="prettyprint"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r115/examples/jsm/loaders/LoaderSupport.js&#39;;
+<p>We also need to include the <code translate="no">GLTFLoader</code> and we can get rid of the <code translate="no">OBJLoader2</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r115/examples/jsm/loaders/LoaderSupport.js&#39;;
 -import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
 -import {MTLLoader} from &#39;./resources/threejs/r115/examples/jsm/loaders/MTLLoader.js&#39;;
 +import {GLTFLoader} from &#39;./resources/threejs/r115/examples/jsm/loaders/GLTFLoader.js&#39;;
 </code></pre>
 <p>And running that we get</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -310,7 +310,7 @@ and if they were setup in a way I could use them.</p>
 <p>I wrote some code to dump put the scenegraph to the <a href="threejs-debugging-javascript.html">JavaScript
 console</a>.</p>
 <p>Here&#39;s the code to print out the scenegraph.</p>
-<pre class="prettyprint"><code class="lang-js">function dumpObject(obj, lines = [], isLast = true, prefix = &#39;&#39;) {
+<pre class="prettyprint" translate="no"><code class="lang-js">function dumpObject(obj, lines = [], isLast = true, prefix = &#39;&#39;) {
   const localPrefix = isLast ? &#39;└─&#39; : &#39;├─&#39;;
   lines.push(`${prefix}${prefix ? localPrefix : &#39;&#39;}${obj.name || &#39;*no-name*&#39;} [${obj.type}]`);
   const newPrefix = prefix + (isLast ? &#39;  &#39; : &#39;│ &#39;);
@@ -323,14 +323,14 @@ console</a>.</p>
 }
 </code></pre>
 <p>And I just called it right after loading the scene.</p>
-<pre class="prettyprint"><code class="lang-js">const gltfLoader = new GLTFLoader();
+<pre class="prettyprint" translate="no"><code class="lang-js">const gltfLoader = new GLTFLoader();
 gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
   const root = gltf.scene;
   scene.add(root);
   console.log(dumpObject(root).join(&#39;\n&#39;));
 </code></pre>
 <p><a href="../threejs-load-gltf-dump-scenegraph.html">Running that</a> I got this listing</p>
-<pre class="prettyprint"><code class="lang-text">OSG_Scene [Scene]
+<pre class="prettyprint" translate="no"><code class="lang-text">OSG_Scene [Scene]
   └─RootNode_(gltf_orientation_matrix) [Object3D]
     └─RootNode_(model_correction_matrix) [Object3D]
       └─4d4100bcb1c640e69699a87140df79d7fbx [Object3D]
@@ -370,8 +370,8 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
           ...
 </code></pre>
 <p>From that we can see all the cars happen to be under a parent
-called <code>&quot;Cars&quot;</code></p>
-<pre class="prettyprint"><code class="lang-text">*          ├─Cars [Object3D]
+called <code translate="no">&quot;Cars&quot;</code></p>
+<pre class="prettyprint" translate="no"><code class="lang-text">*          ├─Cars [Object3D]
           │ ├─CAR_03_1 [Object3D]
           │ │ └─CAR_03_1_World_ap_0 [Mesh]
           │ ├─CAR_03 [Object3D]
@@ -383,7 +383,7 @@ called <code>&quot;Cars&quot;</code></p>
 all the children of the &quot;Cars&quot; node around their Y axis.</p>
 <p>I looked up the &quot;Cars&quot; node after loading the scene
 and saved the result.</p>
-<pre class="prettyprint"><code class="lang-js">+let cars;
+<pre class="prettyprint" translate="no"><code class="lang-js">+let cars;
 {
   const gltfLoader = new GLTFLoader();
   gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
@@ -391,9 +391,9 @@ and saved the result.</p>
     scene.add(root);
 +    cars = root.getObjectByName(&#39;Cars&#39;);
 </code></pre>
-<p>Then in the <code>render</code> function we can just set the rotation
-of each child of <code>cars</code>.</p>
-<pre class="prettyprint"><code class="lang-js">+function render(time) {
+<p>Then in the <code translate="no">render</code> function we can just set the rotation
+of each child of <code translate="no">cars</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">+function render(time) {
 +  time *= 0.001;  // convert to seconds
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -414,7 +414,7 @@ of each child of <code>cars</code>.</p>
 }
 </code></pre>
 <p>And we get</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-rotate-cars.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-rotate-cars.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -429,17 +429,17 @@ so they have their origins in the correct places, so they are
 the correct scale, etc.</p>
 <p>Since I&#39;m not an artist and I don&#39;t know blender that well I
 will hack this example. We&#39;ll take each car and parent it to
-another <code>Object3D</code>. We will then move those <code>Object3D</code> objects
+another <code translate="no">Object3D</code>. We will then move those <code translate="no">Object3D</code> objects
 to move the cars but separately we can set the car&#39;s original
-<code>Object3D</code> to re-orient it so it&#39;s about where we really need it.</p>
+<code translate="no">Object3D</code> to re-orient it so it&#39;s about where we really need it.</p>
 <p>Looking back at the scene graph listing it looks like there
 are really only 3 types of cars, &quot;Car_08&quot;, &quot;CAR_03&quot;, and &quot;Car_04&quot;.
 Hopefully each type of car will work with the same adjustments.</p>
 <p>I wrote this code to go through each car, parent it to a new
-<code>Object3D</code>, parent that new <code>Object3D</code> to the scene, and apply
+<code translate="no">Object3D</code>, parent that new <code translate="no">Object3D</code> to the scene, and apply
 some per car <em>type</em> settings to fix its orientation, and add
-the new <code>Object3D</code> a <code>cars</code> array.</p>
-<pre class="prettyprint"><code class="lang-js">-let cars;
+the new <code translate="no">Object3D</code> a <code translate="no">cars</code> array.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">-let cars;
 +const cars = [];
 {
   const gltfLoader = new GLTFLoader();
@@ -469,7 +469,7 @@ the new <code>Object3D</code> a <code>cars</code> array.</p>
      ...
 </code></pre>
 <p>This fixes the orientation of the cars. </p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-rotate-cars-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-rotate-cars-fixed.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -489,7 +489,7 @@ Fortunately I was able to select just my path and export .OBJ checking &quot;wri
 
 <p>Opening the .OBJ file I was able to get a list of points
 which I formatted into this</p>
-<pre class="prettyprint"><code class="lang-js">const controlPoints = [
+<pre class="prettyprint" translate="no"><code class="lang-js">const controlPoints = [
   [1.118281, 5.115846, -3.681386],
   [3.948875, 5.115846, -3.641834],
   [3.960072, 5.115846, -0.240352],
@@ -513,7 +513,7 @@ which I formatted into this</p>
   [1.004861, 5.115846, -3.641834],
 ];
 </code></pre>
-<p>THREE.js has some curve classes. The <code>CatmullRomCurve3</code> seemed
+<p>THREE.js has some curve classes. The <code translate="no">CatmullRomCurve3</code> seemed
 like it might work. The thing about that kind of curve is
 it tries to make a smooth curve going through the points.</p>
 <p>In fact putting those points in directly will generate
@@ -524,12 +524,12 @@ a curve like this</p>
 some extra points we could get what we want. For each pair
 of points we&#39;ll compute a point 10% of the way between
 the 2 points and another 90% of the way between the 2 points
-and pass the result to <code>CatmullRomCurve3</code>.</p>
+and pass the result to <code translate="no">CatmullRomCurve3</code>.</p>
 <p>This will give us a curve like this</p>
 <div class="threejs_center"><img src="resources/images/car-curves-after.png" style="width: 400px"></div>
 
 <p>Here&#39;s the code to make the curve </p>
-<pre class="prettyprint"><code class="lang-js">let curve;
+<pre class="prettyprint" translate="no"><code class="lang-js">let curve;
 let curveObject;
 {
   const controlPoints = [
@@ -585,7 +585,7 @@ the lines made by connecting those 250 points.</p>
 <p>Running <a href="../threejs-load-gltf-car-path.html">the example</a> I didn&#39;t see
 the curve. To make it visible I made it ignore the depth test and
 render last</p>
-<pre class="prettyprint"><code class="lang-js">    curveObject = new THREE.Line(geometry, material);
+<pre class="prettyprint" translate="no"><code class="lang-js">    curveObject = new THREE.Line(geometry, material);
 +    material.depthTest = false;
 +    curveObject.renderOrder = 1;
 </code></pre>
@@ -606,7 +606,7 @@ they should find a way to apply that scale to the vertices
 so that when it ends up making it to your app you can ignore
 scale.</p>
 <p>And, not just scale, in this case the cars are rotated and offset
-by their parent, the <code>Cars</code> node. This will make it hard at runtime
+by their parent, the <code translate="no">Cars</code> node. This will make it hard at runtime
 to move the cars around in world space. To be clear, in this case
 we want cars to drive around in world space which is why these
 issues are coming up. If something that is meant to be manipulated
@@ -614,7 +614,7 @@ in a local space, like the moon revolving around the earth this
 is less of an issue.</p>
 <p>Going back to the function we wrote above to dump the scene graph,
 let&#39;s dump the position, rotation, and scale of each node.</p>
-<pre class="prettyprint"><code class="lang-js">+function dumpVec3(v3, precision = 3) {
+<pre class="prettyprint" translate="no"><code class="lang-js">+function dumpVec3(v3, precision = 3) {
 +  return `${v3.x.toFixed(precision)}, ${v3.y.toFixed(precision)}, ${v3.z.toFixed(precision)}`;
 +}
 
@@ -637,7 +637,7 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
 }
 </code></pre>
 <p>And the result from <a href="../threejs-load-gltf-dump-scenegraph-extra.html">running it</a></p>
-<pre class="prettyprint"><code class="lang-text">OSG_Scene [Scene]
+<pre class="prettyprint" translate="no"><code class="lang-text">OSG_Scene [Scene]
   │   pos: 0.000, 0.000, 0.000
   │   rot: 0.000, 0.000, 0.000
   │   scl: 1.000, 1.000, 1.000
@@ -670,7 +670,7 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
           │ │       rot: 0.000, 0.000, 0.000
           │ │       scl: 1.000, 1.000, 1.000
 </code></pre>
-<p>This shows us that <code>Cars</code> in the original scene has had its rotation and scale
+<p>This shows us that <code translate="no">Cars</code> in the original scene has had its rotation and scale
 removed and applied to its children. That suggests either whatever exporter was
 used to create the .GLTF file did some special work here or more likely the
 artist exported a different version of the file than the corresponding .blend
@@ -679,7 +679,7 @@ file, which is why things don&#39;t match.</p>
 file and exported myself. Before exporting I should have inspected
 all the major nodes and removed any transformations.</p>
 <p>All these nodes at the top</p>
-<pre class="prettyprint"><code class="lang-text">OSG_Scene [Scene]
+<pre class="prettyprint" translate="no"><code class="lang-text">OSG_Scene [Scene]
   │   pos: 0.000, 0.000, 0.000
   │   rot: 0.000, 0.000, 0.000
   │   scl: 1.000, 1.000, 1.000
@@ -708,7 +708,7 @@ adjust the object we&#39;re using to view the curve.</p>
 <p>Here&#39;s what I ended up with.</p>
 <p>First I adjusted the position of the curve and found values
 that seemed to work. I then hid it.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const points = curve.getPoints(250);
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
   const material = new THREE.LineBasicMaterial({color: 0xff0000});
@@ -723,10 +723,10 @@ that seemed to work. I then hid it.</p>
 </code></pre>
 <p>Then I wrote code to move the cars along the curve. For each car we pick a
 position from 0 to 1 along the curve and compute a point in world space using
-the <code>curveObject</code> to transform the point. We then pick another point slightly
-further down the curve. We set the car&#39;s orientation using <code>lookAt</code> and put the
+the <code translate="no">curveObject</code> to transform the point. We then pick another point slightly
+further down the curve. We set the car&#39;s orientation using <code translate="no">lookAt</code> and put the
 car at the mid point between the 2 points.</p>
-<pre class="prettyprint"><code class="lang-js">// create 2 Vector3s we can use for path calculations
+<pre class="prettyprint" translate="no"><code class="lang-js">// create 2 Vector3s we can use for path calculations
 const carPosition = new THREE.Vector3();
 const carTarget = new THREE.Vector3();
 
@@ -765,7 +765,7 @@ function render(time) {
 <p>and when I ran it I found out for each type of car, their height above their origins
 are not consistently set and so I needed to offset each one
 a little.</p>
-<pre class="prettyprint"><code class="lang-js">const loadedCars = root.getObjectByName(&#39;Cars&#39;);
+<pre class="prettyprint" translate="no"><code class="lang-js">const loadedCars = root.getObjectByName(&#39;Cars&#39;);
 const fixes = [
 -  { prefix: &#39;Car_08&#39;, rot: [Math.PI * .5, 0, Math.PI * .5], },
 -  { prefix: &#39;CAR_03&#39;, rot: [0, Math.PI, 0], },
@@ -789,7 +789,7 @@ for (const car of loadedCars.children.slice()) {
 }
 </code></pre>
 <p>And the result.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-animated-cars.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-animated-cars.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -797,11 +797,11 @@ for (const car of loadedCars.children.slice()) {
 </p>
 <p>Not bad for a few minutes work.</p>
 <p>The last thing I wanted to do is turn on shadows.</p>
-<p>To do this I grabbed all the GUI code from the <code>DirectionalLight</code> shadows
+<p>To do this I grabbed all the GUI code from the <code translate="no">DirectionalLight</code> shadows
 example in <a href="threejs-shadows.html">the article on shadows</a> and pasted it
 into our latest code.</p>
 <p>Then, after loading, we need to turn on shadows on all the objects.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const gltfLoader = new GLTFLoader();
   gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
     const root = gltf.scene;
@@ -816,13 +816,13 @@ into our latest code.</p>
 </code></pre>
 <p>I then spent nearly 4 hours trying to figure out why the shadow helpers
 were not working. It was because I forgot to enable shadows with</p>
-<pre class="prettyprint"><code class="lang-js">renderer.shadowMap.enabled = true;
+<pre class="prettyprint" translate="no"><code class="lang-js">renderer.shadowMap.enabled = true;
 </code></pre>
 <p>😭</p>
-<p>I then adjusted the values until our <code>DirectionLight</code>&#39;s shadow camera
+<p>I then adjusted the values until our <code translate="no">DirectionLight</code>&#39;s shadow camera
 had a frustum that covered the entire scene. These are the settings
 I ended up with.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -846,12 +846,12 @@ I ended up with.</p>
 ...
 </code></pre>
 <p>and I set the background color to light blue.</p>
-<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 -scene.background = new THREE.Color(&#39;black&#39;);
 +scene.background = new THREE.Color(&#39;#DEFEFF&#39;);
 </code></pre>
 <p>And ... shadows</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-shadows.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-shadows.html" target="_blank">click here to open in a separate window</a>
 </div>

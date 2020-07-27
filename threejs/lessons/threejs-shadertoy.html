@@ -231,7 +231,7 @@ traditional techniques, drawing buildings made from triangles with textures on
 them, etc...</p>
 <p>Still, let&#39;s go over using a Shadertoy shader with three.js.</p>
 <p>This is the default shadertoy shader if you <a href="https://www.shadertoy.com/new">pick &quot;New&quot; on shadertoy.com</a>, at least as of January 2019.</p>
-<pre class="prettyprint"><code class="lang-glsl">// By iq: https://www.shadertoy.com/user/iq  
+<pre class="prettyprint" translate="no"><code class="lang-glsl">// By iq: https://www.shadertoy.com/user/iq  
 // license: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
@@ -247,15 +247,15 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 </code></pre>
 <p>One thing important to understand about shaders is they are written in a
 language called GLSL (Graphics Library Shading Language) designed for 3D math
-which includes special types. Above we see <code>vec4</code>, <code>vec2</code>, <code>vec3</code> as 3 such
-special types. A <code>vec2</code> has 2 values, a <code>vec3</code> 3, a <code>vec4</code> 4 values. They can be
-addressed in a bunch of ways. The most common ways are with <code>x</code>, <code>y</code>, <code>z</code>, and
-<code>w</code> as in</p>
-<pre class="prettyprint"><code class="lang-glsl">vec4 v1 = vec4(1.0, 2.0, 3.0, 4.0);
+which includes special types. Above we see <code translate="no">vec4</code>, <code translate="no">vec2</code>, <code translate="no">vec3</code> as 3 such
+special types. A <code translate="no">vec2</code> has 2 values, a <code translate="no">vec3</code> 3, a <code translate="no">vec4</code> 4 values. They can be
+addressed in a bunch of ways. The most common ways are with <code translate="no">x</code>, <code translate="no">y</code>, <code translate="no">z</code>, and
+<code translate="no">w</code> as in</p>
+<pre class="prettyprint" translate="no"><code class="lang-glsl">vec4 v1 = vec4(1.0, 2.0, 3.0, 4.0);
 float v2 = v1.x + v1.y;  // adds 1.0 + 2.0
 </code></pre>
 <p>Unlike JavaScript, GLSL is more like C/C++ where variables have to have their
-type declared so instead of <code>var v = 1.2;</code> it&#39;s <code>float v = 1.2;</code> declaring <code>v</code>
+type declared so instead of <code translate="no">var v = 1.2;</code> it&#39;s <code translate="no">float v = 1.2;</code> declaring <code translate="no">v</code>
 to be a floating point number.</p>
 <p>Explaining GLSL in detail is more than we can do in this article. For a quick
 overview see <a href="https://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html">this article</a>
@@ -264,21 +264,21 @@ and maybe follow that up with <a href="https://thebookofshaders.com/">this serie
 <a href="https://shadertoy.com">shadertoy.com</a> only concerns itself with <em>fragment
 shaders</em>. A fragment shader&#39;s responsibility is, given a pixel location output
 a color for that pixel.</p>
-<p>Looking at the function above we can see the shader has an <code>out</code> parameter
-called <code>fragColor</code>. <code>out</code> stands for <code>output</code>. It&#39;s a parameter the function is
+<p>Looking at the function above we can see the shader has an <code translate="no">out</code> parameter
+called <code translate="no">fragColor</code>. <code translate="no">out</code> stands for <code translate="no">output</code>. It&#39;s a parameter the function is
 expected to provide a value for. We need to set this to some color.</p>
-<p>It also has an <code>in</code> (for input) parameter called <code>fragCoord</code>. This is the pixel
+<p>It also has an <code translate="no">in</code> (for input) parameter called <code translate="no">fragCoord</code>. This is the pixel
 coordinate that is about to be drawn. We can use that coordinate to decide on a
 color. If the canvas we&#39;re drawing to is 400x300 pixels then the function will
-be called 400x400 times or 120,000 times. Each time <code>fragCoord</code> will be a
+be called 400x400 times or 120,000 times. Each time <code translate="no">fragCoord</code> will be a
 different pixel coordinate.</p>
 <p>There are 2 more variables being used that are not defined in the code. One is
-<code>iResolution</code>. This is set to the resolution of the canvas. If the canvas is
-400x300 then <code>iResolution</code> would be 400,300 so as the pixel coordinates change
-that makes <code>uv</code> go from 0.0 to 1.0 across and up the texture. Working with
+<code translate="no">iResolution</code>. This is set to the resolution of the canvas. If the canvas is
+400x300 then <code translate="no">iResolution</code> would be 400,300 so as the pixel coordinates change
+that makes <code translate="no">uv</code> go from 0.0 to 1.0 across and up the texture. Working with
 <em>normalized</em> values often makes things easier and so the majority of shadertoy
 shaders start with something like this.</p>
-<p>The other undefined variable in the shader is <code>iTime</code>. This is the time since
+<p>The other undefined variable in the shader is <code translate="no">iTime</code>. This is the time since
 the page loaded in seconds.</p>
 <p>In shader jargon these global variables are called <em>uniform</em> variables. They are
 called <em>uniform</em> because they don&#39;t change, they stay uniform from one iteration
@@ -291,7 +291,7 @@ now let&#39;s write something that handles the two being used in the shader abov
 haven&#39;t read it yet we did this in <a href="threejs-backgrounds.html">the article on backgrounds</a>
 so let&#39;s grab that example but remove the cubes. It&#39;s pretty short so here&#39;s the
 entire thing</p>
-<pre class="prettyprint"><code class="lang-js">function main() {
+<pre class="prettyprint" translate="no"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const renderer = new THREE.WebGLRenderer({canvas});
   renderer.autoClearColor = false;
@@ -336,17 +336,17 @@ entire thing</p>
 main();
 </code></pre>
 <p>As <a href="threejs-backgrounds.html">explained in the backgrounds article</a> an
-<code>OrthographicCamera</code> with these parameters and a 2 unit plane will fill the
+<code translate="no">OrthographicCamera</code> with these parameters and a 2 unit plane will fill the
 canvas. For now all we&#39;ll get is a red canvas as our plane is using a red
-<code>MeshBasicMaterial</code>.</p>
-<p><div class="threejs_example_container">
+<code translate="no">MeshBasicMaterial</code>.</p>
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-prep.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-prep.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
 <p>Now that we have something working let&#39;s add the shadertoy shader. </p>
-<pre class="prettyprint"><code class="lang-js">const fragmentShader = `
+<pre class="prettyprint" translate="no"><code class="lang-js">const fragmentShader = `
 #include &lt;common&gt;
 
 uniform vec3 iResolution;
@@ -372,22 +372,22 @@ void main() {
 `;
 </code></pre>
 <p>Above we declared the 2 uniform variables we talked about. Then we inserted the
-shader GLSL code from shadertoy. Finally we called <code>mainImage</code> passing it
-<code>gl_FragColor</code> and <code>gl_FragCoord.xy</code>.  <code>gl_FragColor</code> is an official WebGL
+shader GLSL code from shadertoy. Finally we called <code translate="no">mainImage</code> passing it
+<code translate="no">gl_FragColor</code> and <code translate="no">gl_FragCoord.xy</code>.  <code translate="no">gl_FragColor</code> is an official WebGL
 global variable the shader is responsible for setting to whatever color it wants
-the current pixel to be. <code>gl_FragCoord</code> is another official WebGL global
+the current pixel to be. <code translate="no">gl_FragCoord</code> is another official WebGL global
 variable that tells us the coordinate of the pixel we&#39;re currently choosing a
 color for.</p>
 <p>We then need to setup three.js uniforms so we can supply values to the shader.</p>
-<pre class="prettyprint"><code class="lang-js">const uniforms = {
+<pre class="prettyprint" translate="no"><code class="lang-js">const uniforms = {
   iTime: { value: 0 },
   iResolution:  { value: new THREE.Vector3() },
 };
 </code></pre>
-<p>Each uniform in THREE.js has <code>value</code> parameter. That value has to match the type
+<p>Each uniform in THREE.js has <code translate="no">value</code> parameter. That value has to match the type
 of the uniform.</p>
-<p>Then we pass both the fragment shader and uniforms to a <code>ShaderMaterial</code>.</p>
-<pre class="prettyprint"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({
+<p>Then we pass both the fragment shader and uniforms to a <code translate="no">ShaderMaterial</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({
 -    color: &#39;red&#39;,
 -});
 +const material = new THREE.ShaderMaterial({
@@ -396,7 +396,7 @@ of the uniform.</p>
 +});
 </code></pre>
 <p>and before rendering we need to set the values of the uniforms</p>
-<pre class="prettyprint"><code class="lang-js">-function render() {
+<pre class="prettyprint" translate="no"><code class="lang-js">-function render() {
 +function render(time) {
 +  time *= 0.001;  // convert to seconds
 
@@ -412,11 +412,11 @@ of the uniform.</p>
 }
 </code></pre>
 <blockquote>
-<p>Note: I have no idea why <code>iResolution</code> is a <code>vec3</code> and what&#39;s in the 3rd value
+<p>Note: I have no idea why <code translate="no">iResolution</code> is a <code translate="no">vec3</code> and what&#39;s in the 3rd value
 <a href="https://www.shadertoy.com/howto">is not documented on shadertoy.com</a>. It&#39;s
 not used above so just setting it to 1 for now. ¯\_(ツ)_/¯</p>
 </blockquote>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-basic.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-basic.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -425,23 +425,23 @@ not used above so just setting it to 1 for now. ¯\_(ツ)_/¯</p>
 <p>This <a href="https://www.shadertoy.com/new">matches what we see on Shadertoy for a new shader</a>,
 at least as of January 2019 😉. What&#39;s the shader above doing? </p>
 <ul>
-<li><code>uv</code> goes from 0 to 1. </li>
-<li><code>cos(uv.xyx)</code> gives us 3 cosine values as a <code>vec3</code>. One for <code>uv.x</code>, another for <code>uv.y</code> and another for <code>uv.x</code> again.</li>
-<li>Adding in the time, <code>cos(iTime+uv.xyx)</code> makes them animate.</li>
-<li>Adding in <code>vec3(0,2,4)</code> as in <code>cos(iTime+uv.xyx+vec3(0,2,4))</code> offsets the cosine waves</li>
-<li><code>cos</code> goes from -1 to 1 so the <code>0.5 * 0.5 + cos(...)</code> converts from -1 &lt;-&gt; 1 to 0.0 &lt;-&gt; 1.0</li>
+<li><code translate="no">uv</code> goes from 0 to 1. </li>
+<li><code translate="no">cos(uv.xyx)</code> gives us 3 cosine values as a <code translate="no">vec3</code>. One for <code translate="no">uv.x</code>, another for <code translate="no">uv.y</code> and another for <code translate="no">uv.x</code> again.</li>
+<li>Adding in the time, <code translate="no">cos(iTime+uv.xyx)</code> makes them animate.</li>
+<li>Adding in <code translate="no">vec3(0,2,4)</code> as in <code translate="no">cos(iTime+uv.xyx+vec3(0,2,4))</code> offsets the cosine waves</li>
+<li><code translate="no">cos</code> goes from -1 to 1 so the <code translate="no">0.5 * 0.5 + cos(...)</code> converts from -1 &lt;-&gt; 1 to 0.0 &lt;-&gt; 1.0</li>
 <li>the results are then used as the RGB color for the current pixel</li>
 </ul>
-<p>A minor change will make it easier to see the cosine waves. Right now <code>uv</code> only
+<p>A minor change will make it easier to see the cosine waves. Right now <code translate="no">uv</code> only
 goes from 0 to 1. A cosine repeats at 2π so let&#39;s make it go from 0 to 40 by
 multiplying by 40.0. That should make it repeat about 6.3 times.</p>
-<pre class="prettyprint"><code class="lang-glsl">-vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+<pre class="prettyprint" translate="no"><code class="lang-glsl">-vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
 +vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx*40.0+vec3(0,2,4));
 </code></pre>
 <p>Counting below I see about 6.3 repeats. We can see the blue between the red
-since it&#39;s offset by 4 via the <code>+vec3(0,2,4)</code>. Without that the blue and red
+since it&#39;s offset by 4 via the <code translate="no">+vec3(0,2,4)</code>. Without that the blue and red
 would overlap perfectly making purple.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-basic-x40.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-basic-x40.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -458,7 +458,7 @@ making scenes from triangles. The fact that so much math has to be put into
 computing the color of every pixel means those examples run very slow.</p>
 <p>Some shadertoy shaders take textures as inputs like
 <a href="https://www.shadertoy.com/view/MsXSzM">this one</a>. </p>
-<pre class="prettyprint"><code class="lang-glsl">// By Daedelus: https://www.shadertoy.com/user/Daedelus
+<pre class="prettyprint" translate="no"><code class="lang-glsl">// By Daedelus: https://www.shadertoy.com/user/Daedelus
 // license: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 #define TIMESCALE 0.25 
 #define TILES 8
@@ -484,8 +484,8 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 <a href="threejs-textures.html">passing one into a normal material</a> but we need to set
 up the texture on the uniforms.</p>
 <p>First we&#39;ll add the uniform for the texture to the shader. They&#39;re referred to
-as <code>sampler2D</code> in GLSL.</p>
-<pre class="prettyprint"><code class="lang-js">const fragmentShader = `
+as <code translate="no">sampler2D</code> in GLSL.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const fragmentShader = `
 #include &lt;common&gt;
 
 uniform vec3 iResolution;
@@ -495,7 +495,7 @@ uniform float iTime;
 ...
 </code></pre>
 <p>Then we can load a texture like we covered <a href="threejs-textures.html">here</a> and assign the uniform&#39;s value.</p>
-<pre class="prettyprint"><code class="lang-js">+const loader = new THREE.TextureLoader();
+<pre class="prettyprint" translate="no"><code class="lang-js">+const loader = new THREE.TextureLoader();
 +const texture = loader.load(&#39;resources/images/bayer.png&#39;);
 +texture.minFilter = THREE.NearestFilter;
 +texture.magFilter = THREE.NearestFilter;
@@ -507,7 +507,7 @@ const uniforms = {
 +  iChannel0: { value: texture },
 };
 </code></pre>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-bleepy-blocks.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-bleepy-blocks.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -517,19 +517,19 @@ const uniforms = {
 <a href="https://shadertoy.com">Shadertoy.com</a>, namely drawing to cover the canvas.
 There&#39;s no reason we need to limit it to just that use case though. The
 important part to remember is the functions people write on shadertoy generally
-just take a <code>fragCoord</code> input and a <code>iResolution</code>. <code>fragCoord</code> does not have to
+just take a <code translate="no">fragCoord</code> input and a <code translate="no">iResolution</code>. <code translate="no">fragCoord</code> does not have to
 come from pixel coordinates, we could use something else like texture
 coordinates instead and could then use them kind of like other textures. This
 technique of using a function to generate textures is often called a
 <a href="https://www.google.com/search?q=procedural+texture"><em>procedural texture</em></a>.</p>
 <p>Let&#39;s change the shader above to do this. The simplest thing to do might be to
 take the texture coordinates that three.js normally supplies, multiply them by
-<code>iResolution</code> and pass that in for <code>fragCoords</code>. </p>
+<code translate="no">iResolution</code> and pass that in for <code translate="no">fragCoords</code>. </p>
 <p>To do that we add in a <em>varying</em>. A varying is a value passed from the vertex
 shader to the fragment shader that gets interpolated (or varied) between
 vertices. To use it in our fragment shader we declare it. Three.js refers to its
-texture coordinates as <code>uv</code> with the <code>v</code> in front meaning <em>varying</em>.</p>
-<pre class="prettyprint"><code class="lang-glsl">...
+texture coordinates as <code translate="no">uv</code> with the <code translate="no">v</code> in front meaning <em>varying</em>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-glsl">...
 
 +varying vec2 vUv;
 
@@ -540,8 +540,8 @@ void main() {
 </code></pre>
 <p>Then we need to also provide our own vertex shader. Here is a fairly common
 minimal three.js vertex shader. Three.js declares and will provide values for
-<code>uv</code>, <code>projectionMatrix</code>, <code>modelViewMatrix</code>, and <code>position</code>.</p>
-<pre class="prettyprint"><code class="lang-js">const vertexShader = `
+<code translate="no">uv</code>, <code translate="no">projectionMatrix</code>, <code translate="no">modelViewMatrix</code>, and <code translate="no">position</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const vertexShader = `
   varying vec2 vUv;
   void main() {
     vUv = uv;
@@ -549,15 +549,15 @@ minimal three.js vertex shader. Three.js declares and will provide values for
   }
 `;
 </code></pre>
-<p>We need to pass the vertex shader to the <code>ShaderMaterial</code></p>
-<pre class="prettyprint"><code class="lang-js">const material = new THREE.ShaderMaterial({
+<p>We need to pass the vertex shader to the <code translate="no">ShaderMaterial</code></p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const material = new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   uniforms,
 });
 </code></pre>
-<p>We can set the <code>iResolution</code> uniform value at init time since it will no longer change.</p>
-<pre class="prettyprint"><code class="lang-js">const uniforms = {
+<p>We can set the <code translate="no">iResolution</code> uniform value at init time since it will no longer change.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const uniforms = {
   iTime: { value: 0 },
 -  iResolution:  { value: new THREE.Vector3() },
 +  iResolution:  { value: new THREE.Vector3(1, 1, 1) },
@@ -565,13 +565,13 @@ minimal three.js vertex shader. Three.js declares and will provide values for
 };
 </code></pre>
 <p>and we no longer need to set it at render time</p>
-<pre class="prettyprint"><code class="lang-js">-const canvas = renderer.domElement;
+<pre class="prettyprint" translate="no"><code class="lang-js">-const canvas = renderer.domElement;
 -uniforms.iResolution.value.set(canvas.width, canvas.height, 1);
 uniforms.iTime.value = time;
 </code></pre>
 <p>Otherwise I copied back in the original camera and code that sets up 3 rotating
 cubes from <a href="threejs-responsive.html">the article on responsiveness</a>. The result:</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-as-texture.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-as-texture.html" target="_blank">click here to open in a separate window</a>
 </div>

@@ -222,12 +222,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 снизу - это то, что мы можем захотеть обработать. Динамическая диаграмма 
 в середине документа является еще одним примером.</p>
 <p>В последнем примере мы использовали простой холст без указания CSS и размера</p>
-<pre class="prettyprint"><code>&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint" translate="no"><code translate="no">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 </code></pre><p>Этот холст по умолчанию имеет размер 300x150 CSS пикселей.</p>
 <p>В вебе рекомендуемый способ установить размер чего-либо - использовать CSS.</p>
 <p>Прим. переводчика: Далее идет слишком подробное описание банальностей.</p>
 <p>Давайте растянем холст на всю страницу:</p>
-<pre class="prettyprint"><code>&lt;style&gt;
+<pre class="prettyprint" translate="no"><code translate="no">&lt;style&gt;
 html, body {
    margin: 0;
    height: 100%;
@@ -241,13 +241,13 @@ html, body {
 </code></pre><p>HTML body по умолчанию имеет margin в 5 пикселей, поэтому установка в 0 удаляет margin. 
 Установка высоты html и body на 100% заставляет их заполнить окно. В противном случае 
 они будут такими же большими, как контент, который их наполняет.</p>
-<p>Далее мы говорим, что <code>id=c</code> элемент будет занимать 100% его контейнера, 
+<p>Далее мы говорим, что <code translate="no">id=c</code> элемент будет занимать 100% его контейнера, 
 который в данном случае является телом документа.</p>
-<p>Наконец, мы установили его <code>display</code> режим на <code>block</code>. Режим отображения canvas 
-по умолчанию <code>inline</code>. Inline элементы могут в конечном итоге добавить пробел к тому, 
-что отображается. Устанавливая canvas&#39;у <code>display: block</code> эта проблема исчезает.</p>
+<p>Наконец, мы установили его <code translate="no">display</code> режим на <code translate="no">block</code>. Режим отображения canvas 
+по умолчанию <code translate="no">inline</code>. Inline элементы могут в конечном итоге добавить пробел к тому, 
+что отображается. Устанавливая canvas&#39;у <code translate="no">display: block</code> эта проблема исчезает.</p>
 <p>Вот результат</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-no-resize.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-no-resize.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -268,9 +268,9 @@ html, body {
 <p>Давайте сначала исправим проблему растяжения. Для этого нам нужно установить соотношение 
 сторон (aspect) камеры в соответствии с размером холста.
 Мы можем сделать это, задав холсту свойства
-<code>clientWidth</code> и <code>clientHeight</code>.</p>
+<code translate="no">clientWidth</code> и <code translate="no">clientHeight</code>.</p>
 <p>Мы обновим наш цикл отрисовки следующим образом</p>
-<pre class="prettyprint"><code>function render(time) {
+<pre class="prettyprint" translate="no"><code translate="no">function render(time) {
   time *= 0.001;
 
 +  const canvas = renderer.domElement;
@@ -279,7 +279,7 @@ html, body {
 
   ...
 </code></pre><p>Теперь кубики должны перестать быть искаженными.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-update-camera.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-update-camera.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -295,16 +295,16 @@ html, body {
 Это ничем не отличается от изображения. Например, у нас может быть 
 изображение размером 128x64 пикселей, а с помощью css мы можем отобразить 
 как 400x200 пикселей.</p>
-<pre class="prettyprint"><code>&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
+<pre class="prettyprint" translate="no"><code translate="no">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
 </code></pre><p>Внутренний размер холста, его разрешение часто называют размером рисованного 
 буфера (drawingbuffer size). В three.js мы можем установить размер буфера 
-рисования холста, вызывая <code>renderer.setSize</code>. Какой размер мы должны выбрать? 
+рисования холста, вызывая <code translate="no">renderer.setSize</code>. Какой размер мы должны выбрать? 
 Самый очевидный ответ - &quot;тот же размер, что отображается на холсте&quot;.
-Опять же, чтобы сделать это, мы можем посмотреть на <code>clientWidth</code> и <code>clientHeight</code>
+Опять же, чтобы сделать это, мы можем посмотреть на <code translate="no">clientWidth</code> и <code translate="no">clientHeight</code>
 свойства.</p>
 <p>Давайте напишем функцию, которая проверяет, совпадает ли размер рисованного буфера 
 с размером, на котором он отображается, и, если это так, зададим холсту этот размер.</p>
-<pre class="prettyprint"><code>function resizeRendererToDisplaySize(renderer) {
+<pre class="prettyprint" translate="no"><code translate="no">function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
   const height = canvas.clientHeight;
@@ -318,8 +318,8 @@ html, body {
 Изменение размера холста - интересная часть спецификации холста, 
 и лучше не устанавливать тот же размер, если он уже соответствует желаемому.</p>
 <p>Как только мы узнаем, нужно ли нам изменить размер или нет, мы вызываем 
-<code>renderer.setSize</code> и передаем новую ширину и высоту. Важно передать <code>false</code> в конце.
-<code>render.setSize</code> по умолчанию устанавливает размер CSS холста, но это не то, 
+<code translate="no">renderer.setSize</code> и передаем новую ширину и высоту. Важно передать <code translate="no">false</code> в конце.
+<code translate="no">render.setSize</code> по умолчанию устанавливает размер CSS холста, но это не то, 
 что нам нужно. Мы хотим, чтобы браузер продолжал работать так же, как и 
 для всех других элементов, то есть использовать CSS для определения размера 
 отображения элемента. Мы не хотим, чтобы холсты, используемые three.js, 
@@ -328,7 +328,7 @@ html, body {
 Мы можем использовать это, чтобы проверить, есть ли другие вещи, которые мы 
 должны обновить. Давайте изменим наш цикл отрисовки, чтобы использовать 
 новую функцию.</p>
-<pre class="prettyprint"><code>function render(time) {
+<pre class="prettyprint" translate="no"><code translate="no">function render(time) {
   time *= 0.001;
 
 +  if (resizeRendererToDisplaySize(renderer)) {
@@ -339,9 +339,9 @@ html, body {
 
   ...
 </code></pre><p>Поскольку apsect будет меняться только в случае изменения размера холста, мы 
-устанавливаем соотношение сторон камеры, только если <code>resizeRendererToDisplaySize</code> 
-вернёт <code>true</code>.</p>
-<p><div class="threejs_example_container">
+устанавливаем соотношение сторон камеры, только если <code translate="no">resizeRendererToDisplaySize</code> 
+вернёт <code translate="no">true</code>.</p>
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -350,10 +350,10 @@ html, body {
 <p>Теперь он должен отображаться с разрешением, 
 соответствующим размеру изображения на холсте.</p>
 <p>Чтобы сделать так, чтобы CSS позволял обрабатывать изменение размера, 
-давайте возьмем наш код и поместим его в <a href="../../threejs-responsive.js">отдельный <code>.js</code> файл</a>.
+давайте возьмем наш код и поместим его в <a href="../../threejs-responsive.js">отдельный <code translate="no">.js</code> файл</a>.
 Вот еще несколько примеров, где мы позволяем CSS выбирать размер, без написания кода.</p>
 <p>Давайте поместим наши кубики в середине абзаца текста.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-paragraph.html&startPane=html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-paragraph.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -361,7 +361,7 @@ html, body {
 </p>
 <p>и вот наш тот же код, используемый в макете стиля редактора, 
 где область управления справа может менять размер.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-editor.html&startPane=html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-editor.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -395,15 +395,15 @@ html, body {
 <p>Тем не менее, если вы действительно хотите рендерить с разрешением 
 устройства, есть три способа сделать это в three.js.</p>
 <p>Один из них заключается в том, чтобы сообщить Three.js множитель 
-разрешения, используя <code>renderer.setPixelRatio</code>.
+разрешения, используя <code translate="no">renderer.setPixelRatio</code>.
 Вы спрашиваете браузер, каков множитель пикселей CSS 
 для пикселей устройства, и передаете его в three.js.</p>
-<pre class="prettyprint"><code> renderer.setPixelRatio(window.devicePixelRatio);
-</code></pre><p>После этого любые вызовы <code>renderer.setSize</code> будут магически 
+<pre class="prettyprint" translate="no"><code translate="no"> renderer.setPixelRatio(window.devicePixelRatio);
+</code></pre><p>После этого любые вызовы <code translate="no">renderer.setSize</code> будут магически 
 использовать размер, который вы запрашиваете, 
 умноженный на любое количество пикселей, которое вы передали.</p>
 <p>Другой способ - сделать это самостоятельно, когда вы измените размер холста.</p>
-<pre class="prettyprint"><code>    function resizeRendererToDisplaySize(renderer) {
+<pre class="prettyprint" translate="no"><code translate="no">    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
       const width = canvas.clientWidth * pixelRatio | 0;
@@ -418,12 +418,12 @@ html, body {
 получаю то, что я прошу. При использовании three.js существует много случаев, 
 когда нам нужно знать фактический размер canvas&#39;s drawingBuffer. Например, 
 при создании фильтра пост-обработки, или если мы создаем шейдер, 
-который получает доступ <code>gl_FragCoord</code> и прочее... Делая это самостоятельно, 
+который получает доступ <code translate="no">gl_FragCoord</code> и прочее... Делая это самостоятельно, 
 мы всегда знаем, что используемый размер - это размер, 
 который мы запрашивали. Не существует особого случая, 
 когда магия происходит за кулисами.</p>
 <p>Вот пример использования кода выше.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-hd-dpi.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-hd-dpi.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>

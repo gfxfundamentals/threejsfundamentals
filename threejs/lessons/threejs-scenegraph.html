@@ -247,7 +247,7 @@ just making a sphere and putting it at the origin. Note: We&#39;re using
 sun, earth, moon as a demonstration of how to use a scene graph. Of course
 the real sun, earth, and moon use physics but for our purposes we&#39;ll
 fake it with a scene graph.</p>
-<pre class="prettyprint"><code class="lang-js">// an array of objects whose rotation to update
+<pre class="prettyprint" translate="no"><code class="lang-js">// an array of objects whose rotation to update
 const objects = [];
 
 // use just one sphere for everything
@@ -267,13 +267,13 @@ objects.push(sunMesh);
 This is so it&#39;s easy to see the rotation.</p>
 <p>We&#39;re going to reuse the same sphere for everything so we&#39;ll set a scale
 for the sun mesh of 5x.</p>
-<p>We also set the phong material&#39;s <code>emissive</code> property to yellow. A phong material&#39;s
+<p>We also set the phong material&#39;s <code translate="no">emissive</code> property to yellow. A phong material&#39;s
 emissive property is basically the color that will be drawn with no light hitting
 the surface. Light is added to that color.</p>
 <p>Let&#39;s also put a single point light in the center of the scene. We&#39;ll go into more
 details about point lights later but for now the simple version is a point light
 represents light that emanates from a single point.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const color = 0xFFFFFF;
   const intensity = 3;
   const light = new THREE.PointLight(color, intensity);
@@ -281,32 +281,32 @@ represents light that emanates from a single point.</p>
 }
 </code></pre>
 <p>To make it easy to see we&#39;re going to put the camera directly above the origin
-looking down. The easiest way to do that is to use the <code>lookAt</code> function. The <code>lookAt</code>
+looking down. The easiest way to do that is to use the <code translate="no">lookAt</code> function. The <code translate="no">lookAt</code>
 function will orient the camera from its position to &quot;look at&quot; the position
-we pass to <code>lookAt</code>. Before we do that though we need to tell the camera
+we pass to <code translate="no">lookAt</code>. Before we do that though we need to tell the camera
 which way the top of the camera is facing or rather which way is &quot;up&quot; for the
 camera. For most situations positive Y being up is good enough but since
 we are looking straight down we need to tell the camera that positive Z is up.</p>
-<pre class="prettyprint"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+<pre class="prettyprint" translate="no"><code class="lang-js">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 camera.position.set(0, 50, 0);
 camera.up.set(0, 0, 1);
 camera.lookAt(0, 0, 0);
 </code></pre>
 <p>In the render loop, adapted from previous examples, we&#39;re rotating all
-objects in our <code>objects</code> array with this code.</p>
-<pre class="prettyprint"><code class="lang-js">objects.forEach((obj) =&gt; {
+objects in our <code translate="no">objects</code> array with this code.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">objects.forEach((obj) =&gt; {
   obj.rotation.y = time;
 });
 </code></pre>
-<p>Since we added the <code>sunMesh</code> to the <code>objects</code> array it will rotate.</p>
-<p><div class="threejs_example_container">
+<p>Since we added the <code translate="no">sunMesh</code> to the <code translate="no">objects</code> array it will rotate.</p>
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
 <p>Now let&#39;s add in the earth.</p>
-<pre class="prettyprint"><code class="lang-js">const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+<pre class="prettyprint" translate="no"><code class="lang-js">const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
 const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
 earthMesh.position.x = 10;
 scene.add(earthMesh);
@@ -314,11 +314,11 @@ objects.push(earthMesh);
 </code></pre>
 <p>We make a material that is blue but we gave it a small amount of <em>emissive</em> blue
 so that it will show up against our black background.</p>
-<p>We use the same <code>sphereGeometry</code> with our new blue <code>earthMaterial</code> to make
-an <code>earthMesh</code>. We position that 10 units to the left of the sun
-and add it to the scene.  Since we added it to our <code>objects</code> array it will
+<p>We use the same <code translate="no">sphereGeometry</code> with our new blue <code translate="no">earthMaterial</code> to make
+an <code translate="no">earthMesh</code>. We position that 10 units to the left of the sun
+and add it to the scene.  Since we added it to our <code translate="no">objects</code> array it will
 rotate too.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -326,11 +326,11 @@ rotate too.</p>
 </p>
 <p>You can see both the sun and the earth are rotating but the earth is not
 going around the sun. Let&#39;s make the earth a child of the sun</p>
-<pre class="prettyprint"><code class="lang-js">-scene.add(earthMesh);
+<pre class="prettyprint" translate="no"><code class="lang-js">-scene.add(earthMesh);
 +sunMesh.add(earthMesh);
 </code></pre>
 <p>and...</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -338,17 +338,17 @@ going around the sun. Let&#39;s make the earth a child of the sun</p>
 </p>
 <p>What happened? Why is the earth the same size as the sun and why is it so far away?
 I actually had to move the camera from 50 units above to 150 units above to see the earth.</p>
-<p>We made the <code>earthMesh</code> a child of the <code>sunMesh</code>. The <code>sunMesh</code> has
-its scale set to 5x with <code>sunMesh.scale.set(5, 5, 5)</code>. That means the
-<code>sunMesh</code>s local space is 5 times as big. Anything put in that space
+<p>We made the <code translate="no">earthMesh</code> a child of the <code translate="no">sunMesh</code>. The <code translate="no">sunMesh</code> has
+its scale set to 5x with <code translate="no">sunMesh.scale.set(5, 5, 5)</code>. That means the
+<code translate="no">sunMesh</code>s local space is 5 times as big. Anything put in that space
  will be multiplied by 5. That means the earth is now 5x larger and
- it&#39;s distance from the sun (<code>earthMesh.position.x = 10</code>) is also
+ it&#39;s distance from the sun (<code translate="no">earthMesh.position.x = 10</code>) is also
  5x as well.</p>
 <p> Our scene graph currently looks like this</p>
 <p><img src="resources/images/scenegraph-sun-earth.svg" align="center"></p>
 <p>To fix it let&#39;s add an empty scene graph node. We&#39;ll parent both the sun and the earth
 to that node.</p>
-<pre class="prettyprint"><code class="lang-js">+const solarSystem = new THREE.Object3D();
+<pre class="prettyprint" translate="no"><code class="lang-js">+const solarSystem = new THREE.Object3D();
 +scene.add(solarSystem);
 +objects.push(solarSystem);
 
@@ -366,14 +366,14 @@ earthMesh.position.x = 10;
 +solarSystem.add(earthMesh);
 objects.push(earthMesh);
 </code></pre>
-<p>Here we made an <code>Object3D</code>. Like a <code>Mesh</code> it is also a node in the scene graph
-but unlike a <code>Mesh</code> it has no material or geometry. It just represents a local space.</p>
+<p>Here we made an <code translate="no">Object3D</code>. Like a <code translate="no">Mesh</code> it is also a node in the scene graph
+but unlike a <code translate="no">Mesh</code> it has no material or geometry. It just represents a local space.</p>
 <p>Our new scene graph looks like this</p>
 <p><img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center"></p>
-<p>Both the <code>sunMesh</code> and the <code>earthMesh</code> are children of the <code>solarSystem</code>. All 3
-are being rotated and now because the <code>earthMesh</code> is not a child of the <code>sunMesh</code>
+<p>Both the <code translate="no">sunMesh</code> and the <code translate="no">earthMesh</code> are children of the <code translate="no">solarSystem</code>. All 3
+are being rotated and now because the <code translate="no">earthMesh</code> is not a child of the <code translate="no">sunMesh</code>
 it is no longer scaled by 5x.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit-fixed.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -382,7 +382,7 @@ it is no longer scaled by 5x.</p>
 <p>Much better. The earth is smaller than the sun and it&#39;s rotating around the sun
 and rotating itself.</p>
 <p>Continuing that same pattern let&#39;s add a moon.</p>
-<pre class="prettyprint"><code class="lang-js">+const earthOrbit = new THREE.Object3D();
+<pre class="prettyprint" translate="no"><code class="lang-js">+const earthOrbit = new THREE.Object3D();
 +earthOrbit.position.x = 10;
 +solarSystem.add(earthOrbit);
 +objects.push(earthOrbit);
@@ -403,12 +403,12 @@ objects.push(earthMesh);
 +moonOrbit.add(moonMesh);
 +objects.push(moonMesh);
 </code></pre>
-<p>Again we added another invisible scene graph node, an <code>Object3D</code> called <code>earthOrbit</code>
-and added both the <code>earthMesh</code> and the <code>moonMesh</code> to it. The new scene graph looks like
+<p>Again we added another invisible scene graph node, an <code translate="no">Object3D</code> called <code translate="no">earthOrbit</code>
+and added both the <code translate="no">earthMesh</code> and the <code translate="no">moonMesh</code> to it. The new scene graph looks like
 this.</p>
 <p><img src="resources/images/scenegraph-sun-earth-moon.svg" align="center"></p>
 <p>and here&#39;s that</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -419,12 +419,12 @@ of this article but we didn&#39;t have to manually compute it. We just
 setup our scene graph to do it for us.</p>
 <p>It is often useful to draw something to visualize the nodes in the scene graph.
 Three.js has some helpful ummmm, helpers to ummm, ... help with this.</p>
-<p>One is called an <code>AxesHelper</code>. It draws 3 lines representing the local
+<p>One is called an <code translate="no">AxesHelper</code>. It draws 3 lines representing the local
 <span style="color:red">X</span>,
 <span style="color:green">Y</span>, and
 <span style="color:blue">Z</span> axes. Let&#39;s add one to every node we
 created.</p>
-<pre class="prettyprint"><code class="lang-js">// add an AxesHelper to each node
+<pre class="prettyprint" translate="no"><code class="lang-js">// add an AxesHelper to each node
 objects.forEach((node) =&gt; {
   const axes = new THREE.AxesHelper();
   axes.material.depthTest = false;
@@ -433,11 +433,11 @@ objects.forEach((node) =&gt; {
 });
 </code></pre>
 <p>On our case we want the axes to appear even though they are inside the spheres.
-To do this we set their material&#39;s <code>depthTest</code> to false which means they will
+To do this we set their material&#39;s <code translate="no">depthTest</code> to false which means they will
 not check to see if they are drawing behind something else. We also
-set their <code>renderOrder</code> to 1 (the default is 0) so that they get drawn after
+set their <code translate="no">renderOrder</code> to 1 (the default is 0) so that they get drawn after
 all the spheres. Otherwise a sphere might draw over them and cover them up.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -448,20 +448,20 @@ all the spheres. Otherwise a sphere might draw over them and cover them up.</p>
 <span style="color:blue">z (blue)</span> axes. Since we are looking
 straight down and each of our objects is only rotating around its
 y axis we don&#39;t see much of the <span style="color:green">y (green)</span> axes.</p>
-<p>It might be hard to see some of them as there are 2 pairs of overlapping axes. Both the <code>sunMesh</code>
-and the <code>solarSystem</code> are at the same position. Similarly the <code>earthMesh</code> and
-<code>earthOrbit</code> are at the same position. Let&#39;s add some simple controls to allow us
+<p>It might be hard to see some of them as there are 2 pairs of overlapping axes. Both the <code translate="no">sunMesh</code>
+and the <code translate="no">solarSystem</code> are at the same position. Similarly the <code translate="no">earthMesh</code> and
+<code translate="no">earthOrbit</code> are at the same position. Let&#39;s add some simple controls to allow us
 to turn them on/off for each node.
-While we&#39;re at it let&#39;s also add another helper called the <code>GridHelper</code>. It
+While we&#39;re at it let&#39;s also add another helper called the <code translate="no">GridHelper</code>. It
 makes a 2D grid on the X,Z plane. By default the grid is 10x10 units.</p>
 <p>We&#39;re also going to use <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> which is
 a UI library that is very popular with three.js projects. dat.GUI takes an
 object and a property name on that object and based on the type of the property
 automatically makes a UI to manipulate that property.</p>
-<p>We want to make both a <code>GridHelper</code> and an <code>AxesHelper</code> for each node. We need
+<p>We want to make both a <code translate="no">GridHelper</code> and an <code translate="no">AxesHelper</code> for each node. We need
 a label for each node so we&#39;ll get rid of the old loop and switch to calling
 some function to add the helpers for each node</p>
-<pre class="prettyprint"><code class="lang-js">-// add an AxesHelper to each node
+<pre class="prettyprint" translate="no"><code class="lang-js">-// add an AxesHelper to each node
 -objects.forEach((node) =&gt; {
 -  const axes = new THREE.AxesHelper();
 -  axes.material.depthTest = false;
@@ -480,17 +480,17 @@ some function to add the helpers for each node</p>
 +makeAxisGrid(earthMesh, &#39;earthMesh&#39;);
 +makeAxisGrid(moonMesh, &#39;moonMesh&#39;);
 </code></pre>
-<p><code>makeAxisGrid</code> makes an <code>AxisGridHelper</code> which is a class we&#39;ll create
+<p><code translate="no">makeAxisGrid</code> makes an <code translate="no">AxisGridHelper</code> which is a class we&#39;ll create
 to make dat.GUI happy. Like it says above dat.GUI
 will automagically make a UI that manipulates the named property
 of some object. It will create a different UI depending on the type
 of property. We want it to create a checkbox so we need to specify
-a <code>bool</code> property. But, we want both the axes and the grid
+a <code translate="no">bool</code> property. But, we want both the axes and the grid
 to appear/disappear based on a single property so we&#39;ll make a class
 that has a getter and setter for a property. That way we can let dat.GUI
 think it&#39;s manipulating a single property but internally we can set
-the visible property of both the <code>AxesHelper</code> and <code>GridHelper</code> for a node.</p>
-<pre class="prettyprint"><code class="lang-js">// Turns both axes and grid visible on/off
+the visible property of both the <code translate="no">AxesHelper</code> and <code translate="no">GridHelper</code> for a node.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">// Turns both axes and grid visible on/off
 // dat.GUI requires a property that returns a bool
 // to decide to make a checkbox so we make a setter
 // and getter for `visible` which we can tell dat.GUI
@@ -521,20 +521,20 @@ class AxisGridHelper {
   }
 }
 </code></pre>
-<p>One thing to notice is we set the <code>renderOrder</code> of the <code>AxesHelper</code>
-to 2 and for the <code>GridHelper</code> to 1 so that the axes get drawn after the grid.
+<p>One thing to notice is we set the <code translate="no">renderOrder</code> of the <code translate="no">AxesHelper</code>
+to 2 and for the <code translate="no">GridHelper</code> to 1 so that the axes get drawn after the grid.
 Otherwise the grid might overwrite the axes.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes-grids.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes-grids.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>Turn on the <code>solarSystem</code> and you&#39;ll see how the earth is exactly 10
+<p>Turn on the <code translate="no">solarSystem</code> and you&#39;ll see how the earth is exactly 10
 units out from the center just like we set above. You can see how the
-earth is in the <em>local space</em> of the <code>solarSystem</code>. Similarly if you
-turn on the <code>earthOrbit</code> you&#39;ll see how the moon is exactly 2 units
-from the center of the <em>local space</em> of the <code>earthOrbit</code>.</p>
+earth is in the <em>local space</em> of the <code translate="no">solarSystem</code>. Similarly if you
+turn on the <code translate="no">earthOrbit</code> you&#39;ll see how the moon is exactly 2 units
+from the center of the <em>local space</em> of the <code translate="no">earthOrbit</code>.</p>
 <p>A few more examples of scene graphs. An automobile in a simple game world might have a scene graph like this</p>
 <p><img src="resources/images/scenegraph-car.svg" align="center"></p>
 <p>If you move the car&#39;s body all the wheels will move with it. If you wanted the body
@@ -549,20 +549,20 @@ to cover every finger (at least another 28 nodes) and every toe
 <p>Let&#39;s make one semi-complex scene graph. We&#39;ll make a tank. The tank will have
 6 wheels and a turret. The tank will follow a path. There will be a sphere that
 moves around and the tank will target the sphere.</p>
-<p>Here&#39;s the scene graph. The meshes are colored in green, the <code>Object3D</code>s in blue,
+<p>Here&#39;s the scene graph. The meshes are colored in green, the <code translate="no">Object3D</code>s in blue,
 the lights in gold, and the cameras in purple. One camera has not been added
 to the scene graph.</p>
 <div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 <p>Look in the code to see the setup of all of these nodes.</p>
-<p>For the target, the thing the tank is aiming at, there is a <code>targetOrbit</code>
-(<code>Object3D</code>) which just rotates similar to the <code>earthOrbit</code> above. A
-<code>targetElevation</code> (<code>Object3D</code>) which is a child of the <code>targetOrbit</code> provides an
-offset from the <code>targetOrbit</code> and a base elevation. Childed to that is another
-<code>Object3D</code> called <code>targetBob</code> which just bobs up and down relative to the
-<code>targetElevation</code>. Finally there&#39;s the <code>targetMesh</code> which is just a cube we
+<p>For the target, the thing the tank is aiming at, there is a <code translate="no">targetOrbit</code>
+(<code translate="no">Object3D</code>) which just rotates similar to the <code translate="no">earthOrbit</code> above. A
+<code translate="no">targetElevation</code> (<code translate="no">Object3D</code>) which is a child of the <code translate="no">targetOrbit</code> provides an
+offset from the <code translate="no">targetOrbit</code> and a base elevation. Childed to that is another
+<code translate="no">Object3D</code> called <code translate="no">targetBob</code> which just bobs up and down relative to the
+<code translate="no">targetElevation</code>. Finally there&#39;s the <code translate="no">targetMesh</code> which is just a cube we
 rotate and change it&#39;s colors</p>
-<pre class="prettyprint"><code class="lang-js">// move target
+<pre class="prettyprint" translate="no"><code class="lang-js">// move target
 targetOrbit.rotation.y = time * .27;
 targetBob.position.y = Math.sin(time * 2) * 4;
 targetMesh.rotation.x = time * 7;
@@ -570,13 +570,13 @@ targetMesh.rotation.y = time * 13;
 targetMaterial.emissive.setHSL(time * 10 % 1, 1, .25);
 targetMaterial.color.setHSL(time * 10 % 1, 1, .25);
 </code></pre>
-<p>For the tank there&#39;s an <code>Object3D</code> called <code>tank</code> which is used to move everything
-below it around. The code uses a <code>SplineCurve</code> which it can ask for positions
+<p>For the tank there&#39;s an <code translate="no">Object3D</code> called <code translate="no">tank</code> which is used to move everything
+below it around. The code uses a <code translate="no">SplineCurve</code> which it can ask for positions
 along that curve. 0.0 is the start of the curve. 1.0 is the end of the curve. It
 asks for the current position where it puts the tank. It then asks for a
 position slightly further down the curve and uses that to point the tank in that
-direction using <code>Object3D.lookAt</code>.</p>
-<pre class="prettyprint"><code class="lang-js">const tankPosition = new THREE.Vector2();
+direction using <code translate="no">Object3D.lookAt</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const tankPosition = new THREE.Vector2();
 const tankTarget = new THREE.Vector2();
 
 ...
@@ -590,8 +590,8 @@ tank.lookAt(tankTarget.x, 0, tankTarget.y);
 </code></pre>
 <p>The turret on top of the tank is moved automatically by being a child
 of the tank. To point it at the target we just ask for the target&#39;s world position
-and then again use <code>Object3D.lookAt</code></p>
-<pre class="prettyprint"><code class="lang-js">const targetPosition = new THREE.Vector3();
+and then again use <code translate="no">Object3D.lookAt</code></p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const targetPosition = new THREE.Vector3();
 
 ...
 
@@ -599,28 +599,28 @@ and then again use <code>Object3D.lookAt</code></p>
 targetMesh.getWorldPosition(targetPosition);
 turretPivot.lookAt(targetPosition);
 </code></pre>
-<p>There&#39;s a <code>turretCamera</code> which is a child of the <code>turretMesh</code> so
+<p>There&#39;s a <code translate="no">turretCamera</code> which is a child of the <code translate="no">turretMesh</code> so
 it will move up and down and rotate with the turret. We make that
 aim at the target.</p>
-<pre class="prettyprint"><code class="lang-js">// make the turretCamera look at target
+<pre class="prettyprint" translate="no"><code class="lang-js">// make the turretCamera look at target
 turretCamera.lookAt(targetPosition);
 </code></pre>
-<p>There is also a <code>targetCameraPivot</code> which is a child of <code>targetBob</code> so it floats
+<p>There is also a <code translate="no">targetCameraPivot</code> which is a child of <code translate="no">targetBob</code> so it floats
 around with the target. We aim that back at the tank. It&#39;s purpose is to allow the
-<code>targetCamera</code> to be offset from the target itself. If we instead made the camera
-a child of <code>targetBob</code> and just aimed the camera itself it would be inside the
+<code translate="no">targetCamera</code> to be offset from the target itself. If we instead made the camera
+a child of <code translate="no">targetBob</code> and just aimed the camera itself it would be inside the
 target.</p>
-<pre class="prettyprint"><code class="lang-js">// make the targetCameraPivot look at the tank
+<pre class="prettyprint" translate="no"><code class="lang-js">// make the targetCameraPivot look at the tank
 tank.getWorldPosition(targetPosition);
 targetCameraPivot.lookAt(targetPosition);
 </code></pre>
 <p>Finally we rotate all the wheels</p>
-<pre class="prettyprint"><code class="lang-js">wheelMeshes.forEach((obj) =&gt; {
+<pre class="prettyprint" translate="no"><code class="lang-js">wheelMeshes.forEach((obj) =&gt; {
   obj.rotation.x = time * 3;
 });
 </code></pre>
 <p>For the cameras we setup an array of all 4 cameras at init time with descriptions.</p>
-<pre class="prettyprint"><code class="lang-js">const cameras = [
+<pre class="prettyprint" translate="no"><code class="lang-js">const cameras = [
   { cam: camera, desc: &#39;detached camera&#39;, },
   { cam: turretCamera, desc: &#39;on turret looking at target&#39;, },
   { cam: targetCamera, desc: &#39;near target looking at tank&#39;, },
@@ -630,17 +630,17 @@ targetCameraPivot.lookAt(targetPosition);
 const infoElem = document.querySelector(&#39;#info&#39;);
 </code></pre>
 <p>and cycle through our cameras at render time.</p>
-<pre class="prettyprint"><code class="lang-js">const camera = cameras[time * .25 % cameras.length | 0];
+<pre class="prettyprint" translate="no"><code class="lang-js">const camera = cameras[time * .25 % cameras.length | 0];
 infoElem.textContent = camera.desc;
 </code></pre>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-tank.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-tank.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
 <p>I hope this gives some idea of how scene graphs work and how you might use them.
-Making <code>Object3D</code> nodes and parenting things to them is an important step to using
+Making <code translate="no">Object3D</code> nodes and parenting things to them is an important step to using
 a 3D engine like three.js well. Often it might seem like some complex math is necessary
 to make something move and rotate the way you want. For example without a scene graph
 computing the motion of the moon or where to put the wheels of the car relative to its

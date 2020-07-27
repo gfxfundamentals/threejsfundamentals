@@ -242,16 +242,16 @@ to really go through some lessons.</p>
 <p>I started with the directional lighting example from 
 <a href="threejs-lights.html">the lights article</a> and I combined it with
 the hemispherical lighting example so I ended up with one
-<code>HemisphereLight</code> and one <code>DirectionalLight</code>. I also removed all the GUI stuff
+<code translate="no">HemisphereLight</code> and one <code translate="no">DirectionalLight</code>. I also removed all the GUI stuff
 related to adjusting the lights. I also removed the cube and sphere
 that were being added to the scene.</p>
-<p>From that the first thing we need to do is include the <code>OBJLoader2</code> loader in our script.</p>
-<pre class="prettyprint"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
+<p>From that the first thing we need to do is include the <code translate="no">OBJLoader2</code> loader in our script.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
-<p>Then to load the .OBJ file we create an instance of <code>OBJLoader2</code>,
+<p>Then to load the .OBJ file we create an instance of <code translate="no">OBJLoader2</code>,
 pass it the URL of our .OBJ file, and pass in a callback that adds
 the loaded model to our scene.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const objLoader = new OBJLoader2();
   objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
     scene.add(root);
@@ -259,7 +259,7 @@ the loaded model to our scene.</p>
 }
 </code></pre>
 <p>If we run that what happens?</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-no-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-no-materials.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -277,7 +277,7 @@ not it will use the loader&#39;s default material.</p>
 <p>Sometimes .OBJ files come with a .MTL file that defines
 materials. In our case the exporter also created a .MTL file.
 .MTL format is plain ASCII so it&#39;s easy to look at. Looking at it here</p>
-<pre class="prettyprint"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<pre class="prettyprint" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
 # Material Count: 2
 
 newmtl Material
@@ -327,17 +327,17 @@ file to.</p>
 <div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>Now that we have the textures available we can load the .MTL file.</p>
-<p>First we need to include the <code>MTLLoader</code> and the <code>MtlObjBridge</code>;</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<p>First we need to include the <code translate="no">MTLLoader</code> and the <code translate="no">MtlObjBridge</code>;</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
 +import {MTLLoader} from &#39;./resources/threejs/r115/examples/jsm/loaders/MTLLoader.js&#39;;
 +import {MtlObjBridge} from &#39;./resources/threejs/r115/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
 <p>Then we first load the .MTL file. When it&#39;s finished loading we add
-the just loaded materials on to the <code>OBJLoader2</code> itself via the <code>MtlObjBridge</code>
+the just loaded materials on to the <code translate="no">OBJLoader2</code> itself via the <code translate="no">MtlObjBridge</code>
 and then load the .OBJ file.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
 +  const mtlLoader = new MTLLoader();
 +  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
 +    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
@@ -349,7 +349,7 @@ and then load the .OBJ file.</p>
 }
 </code></pre>
 <p>And if we try that...</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -365,7 +365,7 @@ There is no easy way to fix this in the .MTL file. Off the top of my
 head I can think of 3 ways to fix this.</p>
 <ol>
 <li><p>Loop over all the materials after loading them and set them all to double sided.</p>
-<pre class="prettyprint"><code> const mtlLoader = new MTLLoader();
+<pre class="prettyprint" translate="no"><code translate="no"> const mtlLoader = new MTLLoader();
  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    for (const material of Object.values(materials)) {
@@ -377,11 +377,11 @@ to be double sided to be double sided because drawing double sided
 is slower than single sided.</p>
 </li>
 <li><p>Manually set a specific material</p>
-<p>Looking in the .MTL file there are 2 materials. One called <code>&quot;windmill&quot;</code>
-and the other called <code>&quot;Material&quot;</code>. Through trial and error I figured
-out the blades use the material called <code>&quot;Material&quot;</code>so we could set
+<p>Looking in the .MTL file there are 2 materials. One called <code translate="no">&quot;windmill&quot;</code>
+and the other called <code translate="no">&quot;Material&quot;</code>. Through trial and error I figured
+out the blades use the material called <code translate="no">&quot;Material&quot;</code>so we could set
 that one specifically </p>
-<pre class="prettyprint"><code> const mtlLoader = new MTLLoader();
+<pre class="prettyprint" translate="no"><code translate="no"> const mtlLoader = new MTLLoader();
  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    materials.Material.side = THREE.DoubleSide;
@@ -389,7 +389,7 @@ that one specifically </p>
 </code></pre></li>
 <li><p>Realizing that the .MTL file is limited we could just not use it
 and instead create materials ourselves </p>
-<pre class="prettyprint"><code> const materials = {
+<pre class="prettyprint" translate="no"><code translate="no"> const materials = {
    Material: new THREE.MeshPhongMaterial({...}),
    windmill: new THREE.MeshPhongMaterial({...}),
  };
@@ -412,8 +412,8 @@ the surface.</p>
 <div class="threejs_center"><img style="width: 256px;" src="../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
 <p>Looking at <a href="https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432">the source for the MTLLoader</a>
-it expects the keyword <code>norm</code> for normal maps so let&#39;s edit the .MTL file</p>
-<pre class="prettyprint"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+it expects the keyword <code translate="no">norm</code> for normal maps so let&#39;s edit the .MTL file</p>
+<pre class="prettyprint" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
 # Material Count: 2
 
 newmtl Material
@@ -445,7 +445,7 @@ map_Ns windmill_001_base_SPEC.jpg
 </code></pre>
 <p>and now when we load it it will be using the normal maps as normal maps and
 we can see the back of the blades.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-fixed.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -456,10 +456,10 @@ we can see the back of the blades.</p>
 <div class="threejs_center"><img src="resources/images/windmill-obj-2.jpg"></div>
 
 <p>It had a .OBJ version already available. Let&#39;s load it up (note I removed the .MTL loader for now)</p>
-<pre class="prettyprint"><code class="lang-js">-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, ...
+<pre class="prettyprint" translate="no"><code class="lang-js">-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, ...
 +  objLoader.load(&#39;resources/models/windmill-2/windmill.obj&#39;, ...
 </code></pre>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-wat.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-wat.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -470,7 +470,7 @@ We can ask THREE.js what size the model is and try to set our
 camera automatically.</p>
 <p>First off we can ask THREE.js to compute a box that contains the scene
 we just loaded and ask for its size and center</p>
-<pre class="prettyprint"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
+<pre class="prettyprint" translate="no"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
   scene.add(root);
 
 +  const box = new THREE.Box3().setFromObject(root);
@@ -480,10 +480,10 @@ we just loaded and ask for its size and center</p>
 +  console.log(boxCenter);
 </code></pre>
 <p>Looking in <a href="threejs-debugging-javascript.html">the JavaScript console</a> I see</p>
-<pre class="prettyprint"><code class="lang-js">size 2123.6499788469982
+<pre class="prettyprint" translate="no"><code class="lang-js">size 2123.6499788469982
 center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 </code></pre>
-<p>Our camera is currently only showing about 100 units with <code>near</code> at 0.1 and <code>far</code> at 100.
+<p>Our camera is currently only showing about 100 units with <code translate="no">near</code> at 0.1 and <code translate="no">far</code> at 100.
 Our ground plane is only 40 units across so basically this windmill model is so big, 2000 units, 
 that it&#39;s surrounding our camera and all parts of it our outside our frustum.</p>
 <div class="threejs_center"><img style="width: 280px;" src="resources/images/camera-inside-windmill.svg"></div>
@@ -494,10 +494,10 @@ view the entire scene. Note that there is no <em>right</em> answer
 on where to put the camera. We could be facing the scene from any direction at any
 altitude so we&#39;ll just have to pick something.</p>
 <p>As we went over in <a href="threejs-cameras.html">the article on cameras</a> the camera defines a frustum.
-That frustum is defined by the field of view (<code>fov</code>) and the <code>near</code> and <code>far</code> settings. We
+That frustum is defined by the field of view (<code translate="no">fov</code>) and the <code translate="no">near</code> and <code translate="no">far</code> settings. We
 want to know given whatever field of view the camera currently has, how far away does the camera
 need to be so the box containing the scene fits inside the frustum assuming the frustum
-extended forever. In other words let&#39;s assume <code>near</code> is 0.00000001 and <code>far</code> is infinity.</p>
+extended forever. In other words let&#39;s assume <code translate="no">near</code> is 0.00000001 and <code translate="no">far</code> is infinity.</p>
 <p>Since we know the size of the box and we know the field of view we have this triangle</p>
 <div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
 
@@ -510,12 +510,12 @@ given we know the field of view for the frustum and we know the size of the box 
 <div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
 
 <p>Based on that diagram the formula for computing distance is</p>
-<pre class="prettyprint"><code class="lang-js">distance = halfSizeToFitOnScreen / tangent(halfFovY)
+<pre class="prettyprint" translate="no"><code class="lang-js">distance = halfSizeToFitOnScreen / tangent(halfFovY)
 </code></pre>
-<p>Let&#39;s translate that to code. First let&#39;s make a function that will compute <code>distance</code> and then move the
-camera that <code>distance</code> units from the center of the box. We&#39;ll then point the
-camera at the <code>center</code> of the box.</p>
-<pre class="prettyprint"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+<p>Let&#39;s translate that to code. First let&#39;s make a function that will compute <code translate="no">distance</code> and then move the
+camera that <code translate="no">distance</code> units from the center of the box. We&#39;ll then point the
+camera at the <code translate="no">center</code> of the box.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
   const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
   const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
@@ -539,11 +539,11 @@ camera at the <code>center</code> of the box.</p>
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
 </code></pre>
-<p>We pass in 2 sizes. The <code>boxSize</code> and the <code>sizeToFitOnScreen</code>. If we just passed in <code>boxSize</code>
-and used that as <code>sizeToFitOnScreen</code> then the math would make the box fit perfectly inside
+<p>We pass in 2 sizes. The <code translate="no">boxSize</code> and the <code translate="no">sizeToFitOnScreen</code>. If we just passed in <code translate="no">boxSize</code>
+and used that as <code translate="no">sizeToFitOnScreen</code> then the math would make the box fit perfectly inside
 the frustum. We want a little extra space above and below so we&#39;ll pass in a slightly 
 larger size. </p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const objLoader = new OBJLoader2();
   objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
     scene.add(root);
@@ -564,11 +564,11 @@ larger size. </p>
   });
 }
 </code></pre>
-<p>You can see above we pass in <code>boxSize * 1.2</code> to give us 20% more space above and below the box when trying 
-to fit it inside the frustum. We also updated the <code>OrbitControls</code> so the camera will orbit the center
+<p>You can see above we pass in <code translate="no">boxSize * 1.2</code> to give us 20% more space above and below the box when trying 
+to fit it inside the frustum. We also updated the <code translate="no">OrbitControls</code> so the camera will orbit the center
 of the scene.</p>
 <p>Now if we try that we get...</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -576,16 +576,16 @@ of the scene.</p>
 </p>
 <p>This almost works. Use the mouse to rotate the camera and you
 should see the windmill. The problem is the windmill is large and the box&#39;s center is at about (0, 770, 0). So, when we move the camera from where it
-starts (0, 10, 20) to <code>distance</code> units way from the center in the direction the camera
+starts (0, 10, 20) to <code translate="no">distance</code> units way from the center in the direction the camera
 is relative to the center that&#39;s moving the camera almost straight down below
 the windmill.</p>
 <div class="threejs_center"><img style="width: 360px;" src="resources/images/computed-camera-position.svg"></div>
 
 <p>Let&#39;s change it to move sideways from the center of the box to in whatever direction
-the camera is from the center. All we need to do to do that is zero out the <code>y</code> component
+the camera is from the center. All we need to do to do that is zero out the <code translate="no">y</code> component
 of the vector from the box to the camera. Then, when we normalize that vector it will
 become a vector parallel to the XZ plane. In other words parallel to the ground.</p>
-<pre class="prettyprint"><code class="lang-js">-// compute a unit vector that points in the direction the camera is now
+<pre class="prettyprint" translate="no"><code class="lang-js">-// compute a unit vector that points in the direction the camera is now
 -// from the center of the box
 -const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
 +// compute a unit vector that points in the direction the camera is now
@@ -603,7 +603,7 @@ plane. </p>
 Since the windmill is over 2000 units big let&#39;s change the size of the ground plane to
 something more fitting. We also need to adjust the repeat otherwise our checkerboard
 will be so fine we won&#39;t even be able to see it unless we zoom way way in.</p>
-<pre class="prettyprint"><code class="lang-js">-const planeSize = 40;
+<pre class="prettyprint" translate="no"><code class="lang-js">-const planeSize = 40;
 +const planeSize = 4000;
 
 const loader = new THREE.TextureLoader();
@@ -616,7 +616,7 @@ texture.magFilter = THREE.NearestFilter;
 texture.repeat.set(repeats, repeats);
 </code></pre>
 <p>and now we can see this windmill</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera-xz.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera-xz.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -624,7 +624,7 @@ texture.repeat.set(repeats, repeats);
 </p>
 <p>Let&#39;s add the materials back. Like before there is a .MTL file that references
 some textures but looking at the files I quickly see an issue.</p>
-<pre class="prettyprint"><code class="lang-shell"> $ ls -l windmill
+<pre class="prettyprint" translate="no"><code class="lang-shell"> $ ls -l windmill
  -rw-r--r--@ 1 gregg  staff       299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff    142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_diffuse.tga
@@ -649,7 +649,7 @@ so we can make the files much smaller to download</p>
 <p>Loading the files up they were each 2048x2048. That seemed like a waste to me but of
 course it depends on your use case. I made them each 1024x1024 and saved them at a
 50% quality setting in Photoshop. Getting a file listing</p>
-<pre class="prettyprint"><code class="lang-shell"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+<pre class="prettyprint" translate="no"><code class="lang-shell"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
@@ -660,7 +660,7 @@ course it depends on your use case. I made them each 1024x1024 and saved them at
 with this compression so be sure to consult with them to discuss the tradeoffs.</p>
 <p>Now, to use the .MTL file we need to edit it to reference the .JPG files
 instead of the .TGA files. Fortunately it&#39;s a simple text file so it&#39;s easy to edit</p>
-<pre class="prettyprint"><code class="lang-mtl">newmtl blinn1SG
+<pre class="prettyprint" translate="no"><code class="lang-mtl">newmtl blinn1SG
 Ka 0.10 0.10 0.10
 
 Kd 0.00 0.00 0.00
@@ -684,8 +684,8 @@ illum 2
 +bump windmill_normal.jpg
 </code></pre>
 <p>Now that the .MTL file points to some reasonable size textures we need to load it so we&#39;ll just do like we did above, first load the materials
-and then set them on the <code>OBJLoader2</code></p>
-<pre class="prettyprint"><code class="lang-js">{
+and then set them on the <code translate="no">OBJLoader2</code></p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
 +  const mtlLoader = new MTLLoader();
 +  mtlLoader.load(&#39;resources/models/windmill_2/windmill-fixed.mtl&#39;, (mtlParseResult) =&gt; {
 +    const objLoader = new OBJLoader2();
@@ -713,33 +713,33 @@ and then set them on the <code>OBJLoader2</code></p>
 }
 </code></pre>
 <p>Before we actually try it out I ran into some issues that rather than show a failure I&#39;m just going to go over them.</p>
-<p>Issue #1: The three <code>MTLLoader</code> creates materials that multiply the material&#39;s diffuse color by the diffuse texture map.</p>
+<p>Issue #1: The three <code translate="no">MTLLoader</code> creates materials that multiply the material&#39;s diffuse color by the diffuse texture map.</p>
 <p>That&#39;s a useful feature but looking a the .MTL file above the line</p>
-<pre class="prettyprint"><code class="lang-mtl">Kd 0.00 0.00 0.00
+<pre class="prettyprint" translate="no"><code class="lang-mtl">Kd 0.00 0.00 0.00
 </code></pre>
 <p>sets the diffuse color to 0. Texture map * 0 = black! It&#39;s possible the modeling tool used to make the windmill
 did not multiply the diffuse texture map by the diffuse color. That&#39;s why it worked for the artists that made this windmill.</p>
 <p>To fix this we can change the line to</p>
-<pre class="prettyprint"><code class="lang-mtl">Kd 1.00 1.00 1.00
+<pre class="prettyprint" translate="no"><code class="lang-mtl">Kd 1.00 1.00 1.00
 </code></pre>
 <p>since Texture Map * 1 = Texture Map.</p>
 <p>Issue #2: The specular color is also black</p>
-<p>The line that starts with <code>Ks</code> specifies the specular color. It&#39;s likely the modeling software used to make the windmill
+<p>The line that starts with <code translate="no">Ks</code> specifies the specular color. It&#39;s likely the modeling software used to make the windmill
 did something similar as it did with diffuse maps in that it used the specular map&#39;s color for specular highlights.
 Three.js uses only the red channel of a specular map as input to how much of the specular color to reflect but three still
 needs a specular color set.</p>
 <p>Like above we can fix that by editing the .MTL file like this.</p>
-<pre class="prettyprint"><code class="lang-mtl">-Ks 0.00 0.00 0.00
+<pre class="prettyprint" translate="no"><code class="lang-mtl">-Ks 0.00 0.00 0.00
 +Ks 1.00 1.00 1.00
 </code></pre>
-<p>Issue #3: The <code>windmill_normal.jpg</code> is a normal map not a bump map.</p>
+<p>Issue #3: The <code translate="no">windmill_normal.jpg</code> is a normal map not a bump map.</p>
 <p>Just like above we just need to edit the .MTL file</p>
-<pre class="prettyprint"><code class="lang-mtl">-map_bump windmill_normal.jpg 
+<pre class="prettyprint" translate="no"><code class="lang-mtl">-map_bump windmill_normal.jpg 
 -bump windmill_normal.jpg 
 +norm windmill_normal.jpg
 </code></pre>
 <p>Given all that if we now try it out it should load up with materials.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-windmill2.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-windmill2.html" target="_blank">click here to open in a separate window</a>
 </div>

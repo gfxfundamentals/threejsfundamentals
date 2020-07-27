@@ -220,48 +220,48 @@ post processing because it happens after (post) the main scene processing.</p>
 <p>Examples of post processing are Instagram like filters,
 Photoshop filters, etc...</p>
 <p>THREE.js has some example classes to help setup a post processing pipeline. The
-way it works is you create an <code>EffectComposer</code> and to it you add multiple <code>Pass</code>
-objects. You then call <code>EffectComposer.render</code> and it renders your scene to a
-<a href="threejs-rendertargets.html">render target</a> and then applies each <code>Pass</code>.</p>
-<p>Each <code>Pass</code> can be some post processing effect like adding a vignette, blurring,
+way it works is you create an <code translate="no">EffectComposer</code> and to it you add multiple <code translate="no">Pass</code>
+objects. You then call <code translate="no">EffectComposer.render</code> and it renders your scene to a
+<a href="threejs-rendertargets.html">render target</a> and then applies each <code translate="no">Pass</code>.</p>
+<p>Each <code translate="no">Pass</code> can be some post processing effect like adding a vignette, blurring,
 applying a bloom, applying film grain, adjusting the hue, saturation, contrast,
 etc... and finally rendering the result to the canvas.</p>
-<p>It&#39;s a little bit important to understand how <code>EffectComposer</code> functions. It
+<p>It&#39;s a little bit important to understand how <code translate="no">EffectComposer</code> functions. It
 creates two <a href="threejs-rendertargets.html">render targets</a>. Let&#39;s call them
 <strong>rtA</strong> and <strong>rtB</strong>.</p>
-<p>Then, you call <code>EffectComposer.addPass</code> to add each pass in the order you want
+<p>Then, you call <code translate="no">EffectComposer.addPass</code> to add each pass in the order you want
 to apply them. The passes are then applied <em>something like</em> this.</p>
 <div class="threejs_center"><img src="resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
 
-<p>First the scene you passed into <code>RenderPass</code> is rendered to <strong>rtA</strong>, then
+<p>First the scene you passed into <code translate="no">RenderPass</code> is rendered to <strong>rtA</strong>, then
 <strong>rtA</strong> is passed to the next pass, whatever it is. That pass uses <strong>rtA</strong> as
 input to do whatever it does and writes the results to <strong>rtB</strong>. <strong>rtB</strong> is then
 passed to the next pass which uses <strong>rtB</strong> as input and writes back to <strong>rtA</strong>.
 This continues through all the passes. </p>
-<p>Each <code>Pass</code> has 4 basic options</p>
-<h2 id="-enabled-"><code>enabled</code></h2>
+<p>Each <code translate="no">Pass</code> has 4 basic options</p>
+<h2 id="-enabled-"><code translate="no">enabled</code></h2>
 <p>Whether or not to use this pass</p>
-<h2 id="-needsswap-"><code>needsSwap</code></h2>
-<p>Whether or not to swap <code>rtA</code> and <code>rtB</code> after finishing this pass</p>
-<h2 id="-clear-"><code>clear</code></h2>
+<h2 id="-needsswap-"><code translate="no">needsSwap</code></h2>
+<p>Whether or not to swap <code translate="no">rtA</code> and <code translate="no">rtB</code> after finishing this pass</p>
+<h2 id="-clear-"><code translate="no">clear</code></h2>
 <p>Whether are not to clear before rendering this pass</p>
-<h2 id="-rendertoscreen-"><code>renderToScreen</code></h2>
+<h2 id="-rendertoscreen-"><code translate="no">renderToScreen</code></h2>
 <p>Whether or not to render to the canvas instead the current destination render
 target. Usually you need to set this to true on the last pass you add to your
-<code>EffectComposer</code>.</p>
+<code translate="no">EffectComposer</code>.</p>
 <p>Let&#39;s put together a basic example. We&#39;ll start with the example from <a href="threejs-responsive.html">the
 article on responsiveness</a>.</p>
-<p>To that first we create an <code>EffectComposer</code>.</p>
-<pre class="prettyprint"><code class="lang-js">const composer = new EffectComposer(renderer);
+<p>To that first we create an <code translate="no">EffectComposer</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const composer = new EffectComposer(renderer);
 </code></pre>
-<p>Then as the first pass we add a <code>RenderPass</code> that will render our scene with our
+<p>Then as the first pass we add a <code translate="no">RenderPass</code> that will render our scene with our
 camera into the first render target.</p>
-<pre class="prettyprint"><code class="lang-js">composer.addPass(new RenderPass(scene, camera));
+<pre class="prettyprint" translate="no"><code class="lang-js">composer.addPass(new RenderPass(scene, camera));
 </code></pre>
-<p>Next we add a <code>BloomPass</code>. A <code>BloomPass</code> renders its input to a generally
+<p>Next we add a <code translate="no">BloomPass</code>. A <code translate="no">BloomPass</code> renders its input to a generally
 smaller render target and blurs the result. It then adds that blurred result on
 top of the original input. This makes the scene <em>bloom</em></p>
-<pre class="prettyprint"><code class="lang-js">const bloomPass = new BloomPass(
+<pre class="prettyprint" translate="no"><code class="lang-js">const bloomPass = new BloomPass(
     1,    // strength
     25,   // kernel size
     4,    // sigma ?
@@ -269,8 +269,8 @@ top of the original input. This makes the scene <em>bloom</em></p>
 );
 composer.addPass(bloomPass);
 </code></pre>
-<p>Finally we had a <code>FilmPass</code> that draws noise and scanlines on top of its input.</p>
-<pre class="prettyprint"><code class="lang-js">const filmPass = new FilmPass(
+<p>Finally we had a <code translate="no">FilmPass</code> that draws noise and scanlines on top of its input.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const filmPass = new FilmPass(
     0.35,   // noise intensity
     0.025,  // scanline intensity
     648,    // scanline count
@@ -279,21 +279,21 @@ composer.addPass(bloomPass);
 filmPass.renderToScreen = true;
 composer.addPass(filmPass);
 </code></pre>
-<p>Since the <code>filmPass</code> is the last pass we set its <code>renderToScreen</code> property to
+<p>Since the <code translate="no">filmPass</code> is the last pass we set its <code translate="no">renderToScreen</code> property to
 true to tell it to render to the canvas. Without setting this it would instead
 render to the next render target.</p>
 <p>To use these classes we need to import a bunch of scripts.</p>
-<pre class="prettyprint"><code class="lang-js">import {EffectComposer} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/EffectComposer.js&#39;;
+<pre class="prettyprint" translate="no"><code class="lang-js">import {EffectComposer} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/EffectComposer.js&#39;;
 import {RenderPass} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/RenderPass.js&#39;;
 import {BloomPass} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/BloomPass.js&#39;;
 import {FilmPass} from &#39;./resources/threejs/r115/examples/jsm/postprocessing/FilmPass.js&#39;;
 </code></pre>
-<p>For pretty much any post processing <code>EffectComposer.js</code>, and <code>RenderPass.js</code>
+<p>For pretty much any post processing <code translate="no">EffectComposer.js</code>, and <code translate="no">RenderPass.js</code>
 are required.</p>
-<p>The last things we need to do are to use <code>EffectComposer.render</code> instead of
-<code>WebGLRenderer.render</code> <em>and</em> to tell the <code>EffectComposer</code> to match the size of
+<p>The last things we need to do are to use <code translate="no">EffectComposer.render</code> instead of
+<code translate="no">WebGLRenderer.render</code> <em>and</em> to tell the <code translate="no">EffectComposer</code> to match the size of
 the canvas.</p>
-<pre class="prettyprint"><code class="lang-js">-function render(now) {
+<pre class="prettyprint" translate="no"><code class="lang-js">-function render(now) {
 -  time *= 0.001;
 +let then = 0;
 +function render(now) {
@@ -322,10 +322,10 @@ the canvas.</p>
   requestAnimationFrame(render);
 }
 </code></pre>
-<p><code>EffectComposer.render</code> takes a <code>deltaTime</code> which is the time in seconds since
+<p><code translate="no">EffectComposer.render</code> takes a <code translate="no">deltaTime</code> which is the time in seconds since
 the last frame was rendered. It passes this to the various effects in case any
-of them are animated. In this case the <code>FilmPass</code> is animated.</p>
-<p><div class="threejs_example_container">
+of them are animated. In this case the <code translate="no">FilmPass</code> is animated.</p>
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -336,27 +336,27 @@ Let&#39;s add a gui to adjust some of the parameters. Figuring out which values 
 can easily adjust and how to adjust them requires digging through the code for
 that effect.</p>
 <p>Looking inside
-<a href="https://github.com/mrdoob/three.js/blob/master/examples/js/postprocessing/BloomPass.js"><code>BloomPass.js</code></a>
+<a href="https://github.com/mrdoob/three.js/blob/master/examples/js/postprocessing/BloomPass.js"><code translate="no">BloomPass.js</code></a>
 I found this line:</p>
-<pre class="prettyprint"><code class="lang-js">this.copyUniforms[ &quot;opacity&quot; ].value = strength;
+<pre class="prettyprint" translate="no"><code class="lang-js">this.copyUniforms[ &quot;opacity&quot; ].value = strength;
 </code></pre>
 <p>So we can set the strength by setting</p>
-<pre class="prettyprint"><code class="lang-js">bloomPass.copyUniforms.opacity.value = someValue;
+<pre class="prettyprint" translate="no"><code class="lang-js">bloomPass.copyUniforms.opacity.value = someValue;
 </code></pre>
 <p>Similarly looking in
-<a href="https://github.com/mrdoob/three.js/blob/master/examples/js/postprocessing/FilmPass.js"><code>FilmPass.js</code></a>
+<a href="https://github.com/mrdoob/three.js/blob/master/examples/js/postprocessing/FilmPass.js"><code translate="no">FilmPass.js</code></a>
 I found these lines:</p>
-<pre class="prettyprint"><code class="lang-js">if ( grayscale !== undefined )    this.uniforms.grayscale.value = grayscale;
+<pre class="prettyprint" translate="no"><code class="lang-js">if ( grayscale !== undefined )    this.uniforms.grayscale.value = grayscale;
 if ( noiseIntensity !== undefined ) this.uniforms.nIntensity.value = noiseIntensity;
 if ( scanlinesIntensity !== undefined ) this.uniforms.sIntensity.value = scanlinesIntensity;
 if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 </code></pre>
 <p>So which makes it pretty clear how to set them.</p>
 <p>Let&#39;s make a quick GUI to set those values</p>
-<pre class="prettyprint"><code class="lang-js">import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
+<pre class="prettyprint" translate="no"><code class="lang-js">import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <p>and</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
+<pre class="prettyprint" translate="no"><code class="lang-js">const gui = new GUI();
 {
   const folder = gui.addFolder(&#39;BloomPass&#39;);
   folder.add(bloomPass.copyUniforms.opacity, &#39;value&#39;, 0, 2).name(&#39;strength&#39;);
@@ -372,7 +372,7 @@ if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 }
 </code></pre>
 <p>and now we can adjust those settings</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-gui.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -387,14 +387,14 @@ and maybe <a href="https://thebookofshaders.com/">the Book of Shaders</a>.</p>
 <p>I think an example to get you started would be helpful though so let&#39;s make a
 simple GLSL post processing shader. We&#39;ll make one that lets us multiply the
 image by a color.</p>
-<p>For post processing THREE.js provides a useful helper called the <code>ShaderPass</code>.
+<p>For post processing THREE.js provides a useful helper called the <code translate="no">ShaderPass</code>.
 It takes an object with info defining a vertex shader, a fragment shader, and
 the default inputs. It will handling setting up which texture to read from to
 get the previous pass&#39;s results and where to render to, either one of the
-<code>EffectComposer</code>s render target or the canvas.</p>
+<code translate="no">EffectComposer</code>s render target or the canvas.</p>
 <p>Here&#39;s a simple post processing shader that multiplies the previous pass&#39;s
 result by a color. </p>
-<pre class="prettyprint"><code class="lang-js">const colorShader = {
+<pre class="prettyprint" translate="no"><code class="lang-js">const colorShader = {
   uniforms: {
     tDiffuse: { value: null },
     color:    { value: new THREE.Color(0x88CCFF) },
@@ -419,30 +419,30 @@ result by a color. </p>
   `,
 };
 </code></pre>
-<p>Above <code>tDiffuse</code> is the name that <code>ShaderPass</code> uses to pass in the previous
+<p>Above <code translate="no">tDiffuse</code> is the name that <code translate="no">ShaderPass</code> uses to pass in the previous
 pass&#39;s result texture so we pretty much always need that. We then declare
-<code>color</code> as a THREE.js <code>Color</code>.</p>
+<code translate="no">color</code> as a THREE.js <code translate="no">Color</code>.</p>
 <p>Next we need a vertex shader. For post processing the vertex shader shown here
 is pretty much standard and rarely needs to be changed. Without going into too
-many details (see articles linked above) the variables <code>uv</code>, <code>projectionMatrix</code>,
-<code>modelViewMatrix</code> and <code>position</code> are all magically added by THREE.js.</p>
+many details (see articles linked above) the variables <code translate="no">uv</code>, <code translate="no">projectionMatrix</code>,
+<code translate="no">modelViewMatrix</code> and <code translate="no">position</code> are all magically added by THREE.js.</p>
 <p>Finally we create a fragment shader. In it we get a pixel color from the
 previous pass with this line</p>
-<pre class="prettyprint"><code class="lang-glsl">vec4 previousPassColor = texture2D(tDiffuse, vUv);
+<pre class="prettyprint" translate="no"><code class="lang-glsl">vec4 previousPassColor = texture2D(tDiffuse, vUv);
 </code></pre>
-<p>we multiply it by our color and set <code>gl_FragColor</code> to the result</p>
-<pre class="prettyprint"><code class="lang-glsl">gl_FragColor = vec4(
+<p>we multiply it by our color and set <code translate="no">gl_FragColor</code> to the result</p>
+<pre class="prettyprint" translate="no"><code class="lang-glsl">gl_FragColor = vec4(
     previousPassColor.rgb * color,
     previousPassColor.a);
 </code></pre>
 <p>Adding some simple GUI to set the 3 values of the color</p>
-<pre class="prettyprint"><code class="lang-js">const gui = new GUI();
+<pre class="prettyprint" translate="no"><code class="lang-js">const gui = new GUI();
 gui.add(colorPass.uniforms.color.value, &#39;r&#39;, 0, 4).name(&#39;red&#39;);
 gui.add(colorPass.uniforms.color.value, &#39;g&#39;, 0, 4).name(&#39;green&#39;);
 gui.add(colorPass.uniforms.color.value, &#39;b&#39;, 0, 4).name(&#39;blue&#39;);
 </code></pre>
 <p>Gives us a simple postprocessing effect that multiplies by a color.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-custom.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-custom.html" target="_blank">click here to open in a separate window</a>
 </div>

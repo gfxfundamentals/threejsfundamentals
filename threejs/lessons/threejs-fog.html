@@ -217,15 +217,15 @@ consider starting there. If you haven&#39;t read about cameras you might
 want to start with <a href="threejs-cameras.html">this article</a>.</p>
 <p>Fog in a 3D engine is generally a way of fading to a specific color
 based on the distance from the camera. In three.js you add fog by
-creating <code>Fog</code> or <code>FogExp2</code> object and setting it on the scene&#39;s
-<a href="Scene.fog"><code>fog</code></a> property.</p>
-<p><code>Fog</code> lets you choose <code>near</code> and <code>far</code> settings which are distances
-from the camera. Anything closer than <code>near</code> is unaffected by fog.
-Anything further than <code>far</code> is completely the fog color. Parts between
-<code>near</code> and <code>far</code> fade from their material color to the fog color.</p>
-<p>There&#39;s also <code>FogExp2</code> which grows exponentially with distance from the camera.</p>
+creating <code translate="no">Fog</code> or <code translate="no">FogExp2</code> object and setting it on the scene&#39;s
+<a href="Scene.fog"><code translate="no">fog</code></a> property.</p>
+<p><code translate="no">Fog</code> lets you choose <code translate="no">near</code> and <code translate="no">far</code> settings which are distances
+from the camera. Anything closer than <code translate="no">near</code> is unaffected by fog.
+Anything further than <code translate="no">far</code> is completely the fog color. Parts between
+<code translate="no">near</code> and <code translate="no">far</code> fade from their material color to the fog color.</p>
+<p>There&#39;s also <code translate="no">FogExp2</code> which grows exponentially with distance from the camera.</p>
 <p>To use either type of fog you create one and and assign it to the scene as in</p>
-<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;  // white
   const near = 10;
@@ -233,15 +233,15 @@ Anything further than <code>far</code> is completely the fog color. Parts betwee
   scene.fog = new THREE.Fog(color, near, far);
 }
 </code></pre>
-<p>or for <code>FogExp2</code> it would be</p>
-<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+<p>or for <code translate="no">FogExp2</code> it would be</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;
   const density = 0.1;
   scene.fog = new THREE.FogExp2(color, density);
 }
 </code></pre>
-<p><code>FogExp2</code> is closer to reality but <code>Fog</code> is used
+<p><code translate="no">FogExp2</code> is closer to reality but <code translate="no">Fog</code> is used
 more commonly since it lets you choose a place to apply
 the fog so you can decide to show a clear scene
 up to a certain distance and then fade out to some color
@@ -262,9 +262,9 @@ It is part of the calculation of each pixel of the color of the object.
 What that means is if you want your scene to fade to a certain color you
 need to set the fog <strong>and</strong> the background color to the same color.
 The background color is set using the
-<a href="Scene.background"><code>scene.background</code></a>
-property. To pick a background color you attach a <code>THREE.Color</code> to it. For example</p>
-<pre class="prettyprint"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
+<a href="Scene.background"><code translate="no">scene.background</code></a>
+property. To pick a background color you attach a <code translate="no">THREE.Color</code> to it. For example</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
 </code></pre>
 <div class="spread">
   <div>
@@ -280,7 +280,7 @@ property. To pick a background color you attach a <code>THREE.Color</code> to it
 <p>Here is one of our previous examples with fog added. The only addition
 is right after setting up the scene we add the fog and set the scene&#39;s
 background color</p>
-<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 
 +{
 +  const near = 1;
@@ -290,11 +290,11 @@ background color</p>
 +  scene.background = new THREE.Color(color);
 +}
 </code></pre>
-<p>In the example below the camera&#39;s <code>near</code> is 0.1 and its <code>far</code> is 5.
-The camera is at <code>z = 2</code>. The cubes are 1 unit large and at Z = 0.
-This means with a fog setting of <code>near = 1</code> and <code>far = 2</code> the cubes
+<p>In the example below the camera&#39;s <code translate="no">near</code> is 0.1 and its <code translate="no">far</code> is 5.
+The camera is at <code translate="no">z = 2</code>. The cubes are 1 unit large and at Z = 0.
+This means with a fog setting of <code translate="no">near = 1</code> and <code translate="no">far = 2</code> the cubes
 will fade out right around their center.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -304,11 +304,11 @@ will fade out right around their center.</p>
 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>. dat.GUI takes
 an object and a property and automagically makes an interface
 for that type of property. We could just simply let it manipulate
-the fog&#39;s <code>near</code> and <code>far</code> properties but it&#39;s invalid to have
-<code>near</code> be greater than <code>far</code> so let&#39;s make a helper so dat.GUI
-can manipulate a <code>near</code> and <code>far</code> property but we&#39;ll make sure <code>near</code>
-is less than or equal to <code>far</code> and <code>far</code> is greater than or equal <code>near</code>.</p>
-<pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
+the fog&#39;s <code translate="no">near</code> and <code translate="no">far</code> properties but it&#39;s invalid to have
+<code translate="no">near</code> be greater than <code translate="no">far</code> so let&#39;s make a helper so dat.GUI
+can manipulate a <code translate="no">near</code> and <code translate="no">far</code> property but we&#39;ll make sure <code translate="no">near</code>
+is less than or equal to <code translate="no">far</code> and <code translate="no">far</code> is greater than or equal <code translate="no">near</code>.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 class FogGUIHelper {
@@ -332,7 +332,7 @@ class FogGUIHelper {
 }
 </code></pre>
 <p>We can then add it like this</p>
-<pre class="prettyprint"><code class="lang-js">{
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -344,23 +344,23 @@ class FogGUIHelper {
 +  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
 }
 </code></pre>
-<p>The <code>near</code> and <code>far</code> parameters set the minimum and maximum values
+<p>The <code translate="no">near</code> and <code translate="no">far</code> parameters set the minimum and maximum values
 for adjusting the fog. They are set when we setup the camera.</p>
-<p>The <code>.listen()</code> at the end of the last 2 lines tells dat.GUI to <em>listen</em>
-for changes. That way when we change <code>near</code> because of an edit to <code>far</code>
-or we change <code>far</code> in response to an edit to <code>near</code> dat.GUI will update
+<p>The <code translate="no">.listen()</code> at the end of the last 2 lines tells dat.GUI to <em>listen</em>
+for changes. That way when we change <code translate="no">near</code> because of an edit to <code translate="no">far</code>
+or we change <code translate="no">far</code> in response to an edit to <code translate="no">near</code> dat.GUI will update
 the other property&#39;s UI for us.</p>
 <p>It might also be nice to be able to change the fog color but like was
 mentioned above we need to keep both the fog color and the background
 color in sync. So, let&#39;s add another <em>virtual</em> property to our helper
 that will set both colors when dat.GUI manipulates it.</p>
-<p>dat.GUI can manipulate colors in 4 ways, as a CSS 6 digit hex string (eg: <code>#112233</code>). As an hue, saturation, value, object (eg: <code>{h: 60, s: 1, v: }</code>).
-As an RGB array (eg: <code>[255, 128, 64]</code>). Or, as an RGBA array (eg: <code>[127, 200, 75, 0.3]</code>).</p>
+<p>dat.GUI can manipulate colors in 4 ways, as a CSS 6 digit hex string (eg: <code translate="no">#112233</code>). As an hue, saturation, value, object (eg: <code translate="no">{h: 60, s: 1, v: }</code>).
+As an RGB array (eg: <code translate="no">[255, 128, 64]</code>). Or, as an RGBA array (eg: <code translate="no">[127, 200, 75, 0.3]</code>).</p>
 <p>It&#39;s easiest for our purpose to use the hex string version since that way
-dat.GUI is only manipulating a single value. Fortunately <code>THREE.Color</code>
-as a <a href="Color.getHexString"><code>getHexString</code></a> method
+dat.GUI is only manipulating a single value. Fortunately <code translate="no">THREE.Color</code>
+as a <a href="Color.getHexString"><code translate="no">getHexString</code></a> method
 we get use to easily get such a string, we just have to prepend a &#39;#&#39; to the front.</p>
-<pre class="prettyprint"><code class="lang-js">// We use this class to pass to dat.gui
+<pre class="prettyprint" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 +// Also when dat.gui manipulates color we&#39;ll
@@ -393,8 +393,8 @@ class FogGUIHelper {
 +  }
 }
 </code></pre>
-<p>We then call <code>gui.addColor</code> to add a color UI for our helper&#39;s virtual property.</p>
-<pre class="prettyprint"><code class="lang-js">{
+<p>We then call <code translate="no">gui.addColor</code> to add a color UI for our helper&#39;s virtual property.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const near = 1;
   const far = 2;
   const color = &#39;lightblue&#39;;
@@ -407,19 +407,19 @@ class FogGUIHelper {
 +  gui.addColor(fogGUIHelper, &#39;color&#39;);
 }
 </code></pre>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
-<p>You can see setting <code>near</code> to like 1.9 and <code>far</code> to 2.0 gives
+<p>You can see setting <code translate="no">near</code> to like 1.9 and <code translate="no">far</code> to 2.0 gives
 a very sharp transition between un-fogged and completely fogged.
-where as <code>near</code> = 1.1 and <code>far</code> = 2.9 should just about be
+where as <code translate="no">near</code> = 1.1 and <code translate="no">far</code> = 2.9 should just about be
 the smoothest given our cubes are spinning 2 units away from the camera.</p>
-<p>One last thing, there is a boolean <a href="Material.fog"><code>fog</code></a>
+<p>One last thing, there is a boolean <a href="Material.fog"><code translate="no">fog</code></a>
 property on a material for whether or not objects rendered
-with that material are affected by fog. It defaults to <code>true</code>
+with that material are affected by fog. It defaults to <code translate="no">true</code>
 for most materials. As an example of why you might want
 to turn the fog off, imagine you&#39;re making a 3D vehicle
 simulator with a view from the driver&#39;s seat or cockpit.

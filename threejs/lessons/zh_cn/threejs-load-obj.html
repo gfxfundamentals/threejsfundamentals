@@ -226,12 +226,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_center"><img style="width: 239px;" src="../resources/images/windmill-export-options.jpg"></div>
 
 <p>让我们一起来尝试将它展示出来。</p>
-<p>基于<a href="threejs-lights.html">光线文章</a>中的定向光线（<code>DirectionalLight</code>）示例，结合半球光线（<code>HemisphereLight</code>）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。</p>
-<p>第一件要做的事就是将<code>OBJLoader2</code>添加到代码中。</p>
-<pre class="prettyprint"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
+<p>基于<a href="threejs-lights.html">光线文章</a>中的定向光线（<code translate="no">DirectionalLight</code>）示例，结合半球光线（<code translate="no">HemisphereLight</code>）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。</p>
+<p>第一件要做的事就是将<code translate="no">OBJLoader2</code>添加到代码中。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
-<p>然后创建<code>OBJLoader2</code>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
-<pre class="prettyprint"><code class="lang-js">{
+<p>然后创建<code translate="no">OBJLoader2</code>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const objLoader = new OBJLoader2();
   objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
     scene.add(root);
@@ -239,7 +239,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 </code></pre>
 <p>如果这样跑一下会怎么样？</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-no-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-no-materials.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -248,7 +248,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>这已经相当接近，但是材质（material）显示异常。场景里材质显示异常是因为.OBJ文件格式是不包含材质数据的。</p>
 <p>.OBJ加载器可以传入 名称/材质对 的对象。当它加载.OBJ文件时，会加载对应名称的材质，若该材质不存在就会使用默认材质。</p>
 <p>有时.OBJ文件会带有一个.MTL文件来定义材质。在我们的示例里也会创建一个.MTL文件。.MTL文件是一个ASCII码文件，所以可以直接阅读。</p>
-<pre class="prettyprint"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<pre class="prettyprint" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
 # Material Count: 2
 
 newmtl Material
@@ -293,15 +293,15 @@ map_Ns windmill_001_base_SPEC.jpg
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>现在.MTL文件就能加载到这些纹理。</p>
-<p>首先要引用 <code>MTLLoader</code> 和 <code>MtlObjBridge</code>;</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<p>首先要引用 <code translate="no">MTLLoader</code> 和 <code translate="no">MtlObjBridge</code>;</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJLoader2.js&#39;;
 +import {MTLLoader} from &#39;./resources/threejs/r115/examples/jsm/loaders/MTLLoader.js&#39;;
 +import {MtlObjBridge} from &#39;./resources/threejs/r115/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
-<p>然后我们先加载.MTL文件，在它加载完材质后利用<code>MtlObjBridge</code>将材质传给<code>OBJLoader2</code>，再加载.OBJ文件。</p>
-<pre class="prettyprint"><code class="lang-js">{
+<p>然后我们先加载.MTL文件，在它加载完材质后利用<code translate="no">MtlObjBridge</code>将材质传给<code translate="no">OBJLoader2</code>，再加载.OBJ文件。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
 +  const mtlLoader = new MTLLoader();
 +  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
 +    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
@@ -313,7 +313,7 @@ import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJL
 }
 </code></pre>
 <p>尝试一下：</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -326,7 +326,7 @@ import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJL
 在.MTL里不好修复这个问题，在我脑海里有三个解决办法：</p>
 <ol>
 <li><p>加载模型后，遍历所有材质，设置成双面。</p>
-<pre class="prettyprint"><code> const mtlLoader = new MTLLoader();
+<pre class="prettyprint" translate="no"><code translate="no"> const mtlLoader = new MTLLoader();
  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    for (const material of Object.values(materials)) {
@@ -336,15 +336,15 @@ import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJL
 </code></pre><p>这样能解决问题，但是最理想的情况下是，仅设置特定的材质为双面，其它无需设置成双面，毕竟渲染双面的效率低于单面。</p>
 </li>
 <li><p>手动设置一个特定材质。</p>
-<p>看到.MTL里有两个材质，一个是<code>&quot;windmill&quot;</code>另一个是<code>&quot;Material&quot;</code>。经过反复尝试，发现可以单独设置一个材质。</p>
-<pre class="prettyprint"><code> const mtlLoader = new MTLLoader();
+<p>看到.MTL里有两个材质，一个是<code translate="no">&quot;windmill&quot;</code>另一个是<code translate="no">&quot;Material&quot;</code>。经过反复尝试，发现可以单独设置一个材质。</p>
+<pre class="prettyprint" translate="no"><code translate="no"> const mtlLoader = new MTLLoader();
  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    materials.Material.side = THREE.DoubleSide;
    ...
 </code></pre></li>
 <li><p>在.MTL文件上无法解决，可以不使用它而使用自行创建的材质。</p>
-<pre class="prettyprint"><code> const materials = {
+<pre class="prettyprint" translate="no"><code translate="no"> const materials = {
    Material: new THREE.MeshPhongMaterial({...}),
    windmill: new THREE.MeshPhongMaterial({...}),
  };
@@ -359,8 +359,8 @@ import {OBJLoader2} from &#39;./resources/threejs/r115/examples/jsm/loaders/OBJL
 <p>看看纹理，有2个纹理命名包含了NOR，这是法线贴图（NORmal map）。法线贴图通常是紫色的，而凹凸贴图则是黑白的。法线贴图表示表面的方向，而凹凸贴图则表示表面的高度。</p>
 <div class="threejs_center"><img style="width: 256px;" src="../../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
-<p>看<a href="https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432">MTLLoader源码</a>，<code>norm</code>是标记为法线贴图，我们手动修改一下.MTL文件。</p>
-<pre class="prettyprint"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<p>看<a href="https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432">MTLLoader源码</a>，<code translate="no">norm</code>是标记为法线贴图，我们手动修改一下.MTL文件。</p>
+<pre class="prettyprint" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
 # Material Count: 2
 
 newmtl Material
@@ -391,7 +391,7 @@ map_Kd windmill_001_base_COL.jpg
 map_Ns windmill_001_base_SPEC.jpg
 </code></pre>
 <p>现在当我们加载它时它将使用法线贴图作为法线贴图，我们可以看到叶片的背面。</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-fixed.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -402,10 +402,10 @@ map_Ns windmill_001_base_SPEC.jpg
 <div class="threejs_center"><img src="../resources/images/windmill-obj-2.jpg"></div>
 
 <p>它已经有了一个.obj版本。让我们加载它(注意，我现在已经删除了.MTL加载器)</p>
-<pre class="prettyprint"><code class="lang-js">-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, ...
+<pre class="prettyprint" translate="no"><code class="lang-js">-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, ...
 +  objLoader.load(&#39;resources/models/windmill-2/windmill.obj&#39;, ...
 </code></pre>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-wat.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-wat.html" target="_blank">点击在新标签页中打开</a>
 </div>
@@ -413,7 +413,7 @@ map_Ns windmill_001_base_SPEC.jpg
 </p>
 <p>嗯,没有东西出现。是什么问题?我想知道这个模型的尺寸是多少?我们可以问THREE.js模型的大小，并尝试自动设置相机的参数。</p>
 <p>首先，我们可以让THREE.js计算一个包含我们刚刚加载的场景的盒子，并计算出它的大小和中心。</p>
-<pre class="prettyprint"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
+<pre class="prettyprint" translate="no"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
   scene.add(root);
 
 +  const box = new THREE.Box3().setFromObject(root);
@@ -423,14 +423,14 @@ map_Ns windmill_001_base_SPEC.jpg
 +  console.log(boxCenter);
 </code></pre>
 <p>在<a href="threejs-debugging-javascript.html">JavaScript控制台</a>能看到：</p>
-<pre class="prettyprint"><code class="lang-js">size 2123.6499788469982
+<pre class="prettyprint" translate="no"><code class="lang-js">size 2123.6499788469982
 center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 </code></pre>
 <p>我们的相机目前只显示大约100个单位，最近0.1和最远100。我们的地平面只有40个单位宽，所以这个风车模型是如此之大，达2000个单位，摄像机被包含在模型里面，所有能展示的部分都在截锥体外面。</p>
 <div class="threejs_center"><img style="width: 280px;" src="../resources/images/camera-inside-windmill.svg"></div>
 
 <p>我们可以手动修复该问题，也可以使相机自动对场景进行构图。 让我们尝试一下，我们可以使用刚计算出的框调整摄像机设置以查看整个场景。 请注意，关于将相机放置在哪里，并没有正确的答案。 我们可以从任何方向，在任何高度面对场景，因此我们只需要选择一些东西即可。</p>
-<p>在<a href="threejs-cameras.html">关于相机的文章</a>讨论提到，相机定义了一个截锥体。该截锥体由视场(<code>fov</code>：the field of view)和远(<code>far</code>)近(<code>near</code>)设置定义。我们想知道的是，给定当前的视场，摄像机需要设置多远，才能使包含场景的盒子在截锥体内，假设截锥体永远延伸，即假设<code>near</code>是0.00000001，<code>far</code>是无穷大(infinity)。</p>
+<p>在<a href="threejs-cameras.html">关于相机的文章</a>讨论提到，相机定义了一个截锥体。该截锥体由视场(<code translate="no">fov</code>：the field of view)和远(<code translate="no">far</code>)近(<code translate="no">near</code>)设置定义。我们想知道的是，给定当前的视场，摄像机需要设置多远，才能使包含场景的盒子在截锥体内，假设截锥体永远延伸，即假设<code translate="no">near</code>是0.00000001，<code translate="no">far</code>是无穷大(infinity)。</p>
 <p>因为我们知道盒子的大小也知道视野（FOV:the field of view），所以我们有了这个三角形。</p>
 <div class="threejs_center"><img style="width: 600px;" src="../resources/images/camera-fit-scene.svg"></div>
 
@@ -439,10 +439,10 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 <div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 <p>根据该图，计算距离的公式为：</p>
-<pre class="prettyprint"><code class="lang-js">distance = halfSizeToFitOnScreen / tangent(halfFovY)
+<pre class="prettyprint" translate="no"><code class="lang-js">distance = halfSizeToFitOnScreen / tangent(halfFovY)
 </code></pre>
-<p>我们把它转换成代码。首先做一个函数，计算出距离<code>distance</code>。然后移动相机，离盒子中心<code>distance</code>远。然后把摄像机对准盒子中心。</p>
-<pre class="prettyprint"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+<p>我们把它转换成代码。首先做一个函数，计算出距离<code translate="no">distance</code>。然后移动相机，离盒子中心<code translate="no">distance</code>远。然后把摄像机对准盒子中心。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
   const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
   const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
@@ -466,8 +466,8 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
 </code></pre>
-<p>我们传入了两种尺寸：盒子大小<code>boxSize</code>和尺寸<code>sizeToFitOnScreen</code>。如果我们只是传递<code>boxSize</code>并将其用作<code>sizeToFitOnScreen</code>，那么数学运算将使这个盒子完美地嵌入到截锥。我们想要在上面和下面留出一点额外的空间，所以我们要传一个稍微大一点的尺寸。</p>
-<pre class="prettyprint"><code class="lang-js">{
+<p>我们传入了两种尺寸：盒子大小<code translate="no">boxSize</code>和尺寸<code translate="no">sizeToFitOnScreen</code>。如果我们只是传递<code translate="no">boxSize</code>并将其用作<code translate="no">sizeToFitOnScreen</code>，那么数学运算将使这个盒子完美地嵌入到截锥。我们想要在上面和下面留出一点额外的空间，所以我们要传一个稍微大一点的尺寸。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
   const objLoader = new OBJLoader2();
   objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
     scene.add(root);
@@ -488,19 +488,19 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
   });
 }
 </code></pre>
-<p>你可以看到在上面，我们传递了<code>boxSize * 1.2</code>，当试图把它放入截锥体时，给了20%额外空间在盒子的上下面。我们还更新了<code>OrbitControls</code>，使相机转动时是围绕它进行转动。</p>
+<p>你可以看到在上面，我们传递了<code translate="no">boxSize * 1.2</code>，当试图把它放入截锥体时，给了20%额外空间在盒子的上下面。我们还更新了<code translate="no">OrbitControls</code>，使相机转动时是围绕它进行转动。</p>
 <p>现在的效果是：</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera.html" target="_blank">点击在新标签页中打开</a>
 </div>
 
 </p>
-<p>这效果已经差不多了。用鼠标旋转照相机，你应该能看到风车。问题是风车很大，盒子中心约为(0,770,0)。所以,当我们把相机从(0,10,20)移到到<code>distance</code>单位距离，摄像头是风车的正下方。</p>
+<p>这效果已经差不多了。用鼠标旋转照相机，你应该能看到风车。问题是风车很大，盒子中心约为(0,770,0)。所以,当我们把相机从(0,10,20)移到到<code translate="no">distance</code>单位距离，摄像头是风车的正下方。</p>
 <div class="threejs_center"><img style="width: 360px;" src="../resources/images/computed-camera-position.svg"></div>
 
-<p>修改代码使摄像头不管在哪个方向，都能对准盒子侧面中心。我们要做的就是把盒子到摄像机的<code>y</code>分量归零。然后，当我们标准化这个向量它就会变成一个平行于XZ平面的向量。换句话说，平行于地面。</p>
-<pre class="prettyprint"><code class="lang-js">-// compute a unit vector that points in the direction the camera is now
+<p>修改代码使摄像头不管在哪个方向，都能对准盒子侧面中心。我们要做的就是把盒子到摄像机的<code translate="no">y</code>分量归零。然后，当我们标准化这个向量它就会变成一个平行于XZ平面的向量。换句话说，平行于地面。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">-// compute a unit vector that points in the direction the camera is now
 -// from the center of the box
 -const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
 +// compute a unit vector that points in the direction the camera is now
@@ -514,7 +514,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 <div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
 <p>它只有40x40个单位，相对于风车来说太小了。由于风车超过2000个单位大，让我们改变地面的大小来适配。我们还需要调整重复次数，否则不能看到棋盘。</p>
-<pre class="prettyprint"><code class="lang-js">-const planeSize = 40;
+<pre class="prettyprint" translate="no"><code class="lang-js">-const planeSize = 40;
 +const planeSize = 4000;
 
 const loader = new THREE.TextureLoader();
@@ -527,14 +527,14 @@ texture.magFilter = THREE.NearestFilter;
 texture.repeat.set(repeats, repeats);
 </code></pre>
 <p>现在再看看这个风车：</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera-xz.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera-xz.html" target="_blank">点击在新标签页中打开</a>
 </div>
 
 </p>
 <p>现在把材质加回去，就像之前有一个.mtl文件，它引用了一些纹理。但是看了一下这些文件，我很快发现了一个问题。</p>
-<pre class="prettyprint"><code class="lang-shell"> $ ls -l windmill
+<pre class="prettyprint" translate="no"><code class="lang-shell"> $ ls -l windmill
  -rw-r--r--@ 1 gregg  staff       299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff    142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_diffuse.tga
@@ -547,7 +547,7 @@ texture.repeat.set(repeats, repeats);
 <p>TGA的另一个问题是，浏览器本身不支持它们，所以加载它们可能比加载.jpg和.png等受支持的格式要慢。</p>
 <p>我很确定将它们转换成.jpg是最好的选择。看里面，我看到他们是3个通道（RGB），没有阿尔法通道（alpha）。JPG只支持3个频道，所以很适合。JPG也支持有损压缩，所以我们可以使文件更小的下载。</p>
 <p>加载文件的大小分别为2048x2048。这对我来说似乎是一种浪费，但当然这取决于您的实际情况。我把它们分别做成1024x1024，并在Photoshop中以50%的质量保存。文件列表：</p>
-<pre class="prettyprint"><code class="lang-shell"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+<pre class="prettyprint" translate="no"><code class="lang-shell"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
@@ -556,7 +556,7 @@ texture.repeat.set(repeats, repeats);
 </code></pre>
 <p>从36M转到0.55M!当然，艺术家可能不喜欢这种压缩，所以一定要咨询他们，进行权衡。</p>
 <p>现在，为了使用.mtl文件，我们需要编辑它来引用.jpg文件，而不是.tga文件。幸运的是，它是一个简单的文本文件，所以很容易编辑。</p>
-<pre class="prettyprint"><code class="lang-mtl">newmtl blinn1SG
+<pre class="prettyprint" translate="no"><code class="lang-mtl">newmtl blinn1SG
 Ka 0.10 0.10 0.10
 
 Kd 0.00 0.00 0.00
@@ -579,8 +579,8 @@ illum 2
 +map_bump windmill_normal.jpg 
 +bump windmill_normal.jpg
 </code></pre>
-<p>现在。mtl文件指向一些合理大小的纹理，我们需要加载它，所以我们就像上面做的那样，首先加载材质，然后将它们设置在<code>OBJLoader2</code>上。</p>
-<pre class="prettyprint"><code class="lang-js">{
+<p>现在。mtl文件指向一些合理大小的纹理，我们需要加载它，所以我们就像上面做的那样，首先加载材质，然后将它们设置在<code translate="no">OBJLoader2</code>上。</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">{
 +  const mtlLoader = new MTLLoader();
 +  mtlLoader.load(&#39;resources/models/windmill_2/windmill-fixed.mtl&#39;, (mtlParseResult) =&gt; {
 +    const objLoader = new OBJLoader2();
@@ -608,29 +608,29 @@ illum 2
 }
 </code></pre>
 <p>在我们真正尝试之前，我想到了一些问题，我不想显示出失败，我只是要检查一下。</p>
-<p>问题1：三个<code>MTLLoader</code>创建的材质会将材质的漫反射颜色，乘以漫反射纹理贴图。</p>
+<p>问题1：三个<code translate="no">MTLLoader</code>创建的材质会将材质的漫反射颜色，乘以漫反射纹理贴图。</p>
 <p>这是一个很有用的特性，但是要查看行上面的.MTL文件</p>
-<pre class="prettyprint"><code class="lang-mtl">Kd 0.00 0.00 0.00
+<pre class="prettyprint" translate="no"><code class="lang-mtl">Kd 0.00 0.00 0.00
 </code></pre>
 <p>将漫反射颜色设置为0。纹理贴图的值* 0 =黑色！ 但可能用于制造风车的建模工具，并没有将漫反射纹理贴图乘以漫反射颜色，所以在艺术家制作模型时仍显示正常。</p>
 <p>为了修复它，这样修改：</p>
-<pre class="prettyprint"><code class="lang-mtl">Kd 1.00 1.00 1.00
+<pre class="prettyprint" translate="no"><code class="lang-mtl">Kd 1.00 1.00 1.00
 </code></pre>
 <p>因为 纹理贴图的值 * 1 = 纹理贴图的值.</p>
 <p>问题2:高光的颜色也是黑色的</p>
-<p>以<code>Ks</code>开头的行指定了高光颜色。跟上面漫反射贴图一样，使用高光贴图的颜色来实现高光效果。这里仍需要设置一个高光颜色。</p>
+<p>以<code translate="no">Ks</code>开头的行指定了高光颜色。跟上面漫反射贴图一样，使用高光贴图的颜色来实现高光效果。这里仍需要设置一个高光颜色。</p>
 <p>跟上面一样，直接修改.MTL文件：</p>
-<pre class="prettyprint"><code class="lang-mtl">-Ks 0.00 0.00 0.00
+<pre class="prettyprint" translate="no"><code class="lang-mtl">-Ks 0.00 0.00 0.00
 +Ks 1.00 1.00 1.00
 </code></pre>
-<p>问题3: <code>windmill_normal.jpg</code> 是法线贴图而不是凹凸贴图。</p>
+<p>问题3: <code translate="no">windmill_normal.jpg</code> 是法线贴图而不是凹凸贴图。</p>
 <p>跟上面一样修改.MTL文件：</p>
-<pre class="prettyprint"><code class="lang-mtl">-map_bump windmill_normal.jpg 
+<pre class="prettyprint" translate="no"><code class="lang-mtl">-map_bump windmill_normal.jpg 
 -bump windmill_normal.jpg 
 +norm windmill_normal.jpg
 </code></pre>
 <p>现在试一试附带材质的效果：</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-windmill2.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-windmill2.html" target="_blank">点击在新标签页中打开</a>
 </div>

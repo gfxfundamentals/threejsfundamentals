@@ -214,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 If you haven&#39;t read that yet you should probably start there.</p>
 <p>In <a href="threejs-textures.html">the previous article on textures</a> we mostly used
 image files for textures. Sometimes though we want to generate a texture
-at runtime. One way to do this is to use a <code>CanvasTexture</code>.</p>
-<p>A canvas texture takes a <code>&lt;canvas&gt;</code> as its input. If you don&#39;t know how to
+at runtime. One way to do this is to use a <code translate="no">CanvasTexture</code>.</p>
+<p>A canvas texture takes a <code translate="no">&lt;canvas&gt;</code> as its input. If you don&#39;t know how to
 draw with the 2D canvas API on a canvas <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial">there&#39;s a good tutorial on MDN</a>.</p>
 <p>Let&#39;s make a simple canvas program. Here&#39;s one that draws dots at random places in random colors.</p>
-<pre class="prettyprint"><code class="lang-js">const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+<pre class="prettyprint" translate="no"><code class="lang-js">const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 document.body.appendChild(ctx.canvas);
 ctx.canvas.width = 256;
 ctx.canvas.height = 256;
@@ -251,7 +251,7 @@ function render() {
 requestAnimationFrame(render);
 </code></pre>
 <p>it&#39;s pretty straight forward.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fcanvas-random-dots.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../canvas-random-dots.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -260,8 +260,8 @@ requestAnimationFrame(render);
 <p>Now let&#39;s use it to texture something. We&#39;ll start with the example of texturing
 a cube from <a href="threejs-textures.html">the previous article</a>.
 We&#39;ll remove the code that loads an image and instead use
-our canvas by creating a <code>CanvasTexture</code> and passing it the canvas we created.</p>
-<pre class="prettyprint"><code class="lang-js">const cubes = [];  // just an array we can use to rotate the cubes
+our canvas by creating a <code translate="no">CanvasTexture</code> and passing it the canvas we created.</p>
+<pre class="prettyprint" translate="no"><code class="lang-js">const cubes = [];  // just an array we can use to rotate the cubes
 -const loader = new THREE.TextureLoader();
 -
 +const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
@@ -280,7 +280,7 @@ scene.add(cube);
 cubes.push(cube);  // add to our list of cubes to rotate
 </code></pre>
 <p>And then call the code to draw a random dot in our render loop</p>
-<pre class="prettyprint"><code class="lang-js">function render(time) {
+<pre class="prettyprint" translate="no"><code class="lang-js">function render(time) {
   time *= 0.001;
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -304,18 +304,18 @@ cubes.push(cube);  // add to our list of cubes to rotate
   requestAnimationFrame(render);
 }
 </code></pre>
-<p>The only extra thing we need to do is set the <code>needsUpdate</code> property
-of the <code>CanvasTexture</code> to tell three.js to update the texture with
+<p>The only extra thing we need to do is set the <code translate="no">needsUpdate</code> property
+of the <code translate="no">CanvasTexture</code> to tell three.js to update the texture with
 the latest contents of the canvas.</p>
 <p>And with that we have a canvas textured cube</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-cube.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-cube.html" target="_blank">click here to open in a separate window</a>
 </div>
 
 </p>
 <p>Note that if you want to use three.js to draw into the canvas you&#39;re
-better off using a <code>RenderTarget</code> which is covered in <a href="threejs-rendertargets.html">this article</a>.</p>
+better off using a <code translate="no">RenderTarget</code> which is covered in <a href="threejs-rendertargets.html">this article</a>.</p>
 <p>A common use case for canvas textures is to provide text in a scene.
 For example if you wanted to put a person&#39;s name on their character&#39;s
 badge you might use a canvas texture to texture the badge.</p>
@@ -323,7 +323,7 @@ badge you might use a canvas texture to texture the badge.</p>
 or label.</p>
 <p>Let&#39;s take the example above and remove all the cube related
 stuff. Then let&#39;s set the background to white and add two <a href="threejs-lights.html">lights</a>.</p>
-<pre class="prettyprint"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint" translate="no"><code class="lang-js">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(&#39;white&#39;);
 +
 +function addLight(position) {
@@ -338,7 +338,7 @@ stuff. Then let&#39;s set the background to white and add two <a href="threejs-l
 +addLight([ 2, 1, .5]);
 </code></pre>
 <p>Let&#39;s make some code to make a label using canvas 2D</p>
-<pre class="prettyprint"><code class="lang-js">+function makeLabelCanvas(size, name) {
+<pre class="prettyprint" translate="no"><code class="lang-js">+function makeLabelCanvas(size, name) {
 +  const borderSize = 2;
 +  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 +  const font =  `${size}px bold sans-serif`;
@@ -365,7 +365,7 @@ stuff. Then let&#39;s set the background to white and add two <a href="threejs-l
 <p>Then we&#39;ll make simple people from a cylinder for the body, a sphere
 for the head, and a plane for the label.</p>
 <p>First let&#39;s make the shared geometry.</p>
-<pre class="prettyprint"><code class="lang-js">+const bodyRadiusTop = .4;
+<pre class="prettyprint" translate="no"><code class="lang-js">+const bodyRadiusTop = .4;
 +const bodyRadiusBottom = .2;
 +const bodyHeight = 2;
 +const bodyRadialSegments = 6;
@@ -382,7 +382,7 @@ for the head, and a plane for the label.</p>
 </code></pre>
 <p>Then let&#39;s make a function to build a person from these
 parts.</p>
-<pre class="prettyprint"><code class="lang-js">+function makePerson(x, size, name, color) {
+<pre class="prettyprint" translate="no"><code class="lang-js">+function makePerson(x, size, name, color) {
 +  const canvas = makeLabelCanvas(size, name);
 +  const texture = new THREE.CanvasTexture(canvas);
 +  // because our canvas is likely not a power of 2
@@ -428,22 +428,22 @@ parts.</p>
 +}
 </code></pre>
 <p>You can see above we put the body, head, and label on a root
-<code>Object3D</code> and adjust their positions. This would let us move the
+<code translate="no">Object3D</code> and adjust their positions. This would let us move the
 root object if we wanted to move the people. The body is 2 units
 high. If 1 unit equals 1 meter then the code above tries to
 make the label in centimeters so they will be size centimeters
 tall and however wide is needed to fit the text.</p>
 <p>We can then make people with labels</p>
-<pre class="prettyprint"><code class="lang-js">+makePerson(-3, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
+<pre class="prettyprint" translate="no"><code class="lang-js">+makePerson(-3, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
 +makePerson(-0, 32, &#39;Green Machine&#39;, &#39;green&#39;);
 +makePerson(+3, 32, &#39;Red Menace&#39;, &#39;red&#39;);
 </code></pre>
-<p>What&#39;s left is to add some <code>OrbitControls</code> so we can move
+<p>What&#39;s left is to add some <code translate="no">OrbitControls</code> so we can move
 the camera.</p>
-<pre class="prettyprint"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
+<pre class="prettyprint" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
 +import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
-<pre class="prettyprint"><code class="lang-js">const fov = 75;
+<pre class="prettyprint" translate="no"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 -const far = 5;
@@ -457,7 +457,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +controls.update();
 </code></pre>
 <p>and we get simple labels.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -473,7 +473,7 @@ Plus they will require the user download font data which
 would be slow.</p>
 <p>One solution is to increase the resolution of the labels.
 Try setting the size passed into to double what it is now
-and setting <code>labelBaseScale</code> to half what it currently is.</p>
+and setting <code translate="no">labelBaseScale</code> to half what it currently is.</p>
 <ul>
 <li>The labels get longer the longer the name.</li>
 </ul>
@@ -481,7 +481,7 @@ and setting <code>labelBaseScale</code> to half what it currently is.</p>
 label and then squish the text.</p>
 <p>This is pretty easy. Pass in a base width and scale the text to fit that
 width like this</p>
-<pre class="prettyprint"><code class="lang-js">-function makeLabelCanvas(size, name) {
+<pre class="prettyprint" translate="no"><code class="lang-js">-function makeLabelCanvas(size, name) {
 +function makeLabelCanvas(baseWidth, size, name) {
   const borderSize = 2;
   const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
@@ -517,7 +517,7 @@ width like this</p>
 }
 </code></pre>
 <p>Then we can pass in a width for the labels</p>
-<pre class="prettyprint"><code class="lang-js">-function makePerson(x, size, name, color) {
+<pre class="prettyprint" translate="no"><code class="lang-js">-function makePerson(x, size, name, color) {
 -  const canvas = makeLabelCanvas(size, name);
 +function makePerson(x, labelWidth, size, name, color) {
 +  const canvas = makeLabelCanvas(labelWidth, size, name);
@@ -534,7 +534,7 @@ width like this</p>
 +makePerson(+3, 150, 32, &#39;Red Menace&#39;, &#39;red&#39;);
 </code></pre>
 <p>and we get labels where the text is centered and scaled to fit</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels-scale-to-fit.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels-scale-to-fit.html" target="_blank">click here to open in a separate window</a>
 </div>
@@ -546,7 +546,7 @@ having one canvas per texture is probably the best option. If they are
 rarely or never updated then you can choose to use a single canvas
 for multiple textures by forcing three.js to use the texture.
 Let&#39;s change the code above to do just that.</p>
-<pre class="prettyprint"><code class="lang-js">+const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+<pre class="prettyprint" translate="no"><code class="lang-js">+const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
 
 function makeLabelCanvas(baseWidth, size, name) {
   const borderSize = 2;
@@ -582,7 +582,7 @@ function makePerson(x, labelWidth, size, name, color) {
 
   ...
 </code></pre>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels-one-canvas.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels-one-canvas.html" target="_blank">click here to open in a separate window</a>
 </div>

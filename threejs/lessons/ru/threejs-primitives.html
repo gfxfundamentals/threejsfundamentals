@@ -230,7 +230,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div id="Diagram-DodecahedronBufferGeometry" data-primitive="DodecahedronBufferGeometry">Додекаэдр (12 граней)</div>
 <div id="Diagram-ExtrudeBufferGeometry" data-primitive="ExtrudeBufferGeometry">Выдавленная 2d фигура с скругленными краями.
 Здесь мы выдавливаем форму сердца. Обратите внимание, это основа 
-для <code>TextBufferGeometry</code> и <code>TextGeometry</code> соответственно.</div>
+для <code translate="no">TextBufferGeometry</code> и <code translate="no">TextGeometry</code> соответственно.</div>
 <div id="Diagram-IcosahedronBufferGeometry" data-primitive="IcosahedronBufferGeometry">Икосаэдр (20 граней)</div>
 <div id="Diagram-LatheBufferGeometry" data-primitive="LatheBufferGeometry">Форма, созданная вращением линии. Например, лампы, кегли для боулинга, свечи, подсвечники, бокалы для вина, стаканы для питья и т. Д. Вы указываете 2-мерный силуэт в виде серии точек, а затем указываете three.js , сколько секций нужно сделать, когда он вращает силуэт вокруг оси.</div>
 <div id="Diagram-OctahedronBufferGeometry" data-primitive="OctahedronBufferGeometry">Октаэдр (8 граней)</div>
@@ -246,39 +246,39 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div id="Diagram-TorusKnotBufferGeometry" data-primitive="TorusKnotBufferGeometry">Торический узел</div>
 <div id="Diagram-TubeBufferGeometry" data-primitive="TubeBufferGeometry">Труба - круг проходящий путь</div>
 <div id="Diagram-EdgesGeometry" data-primitive="EdgesGeometry">Вспомогательный объект, который принимает другую геометрию в качестве входных данных и генерирует ребра, только если угол между гранями больше некоторого порога. Например, если вы посмотрите на прямоугольник сверху, он показывает линию, проходящую через каждую грань, показывая каждый треугольник, из которого состоит прямоугольник. Используя EdgesGeometry, вместо этого удаляются средние линии.</div>
-<div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">Создает геометрию, которая содержит один отрезок (2 точки) на ребро в заданной геометрии. Без этого вы часто теряете ребра или получаете дополнительные ребра, поскольку WebGL обычно требует 2 точки на отрезок. Например, если бы у вас был только один треугольник, было бы только 3 очка. Если вы попытаетесь нарисовать его, используя материал с <code>wireframe: true</code> вы получите только одну линию. А передача этой triangle geometry в <code>WireframeGeometry</code> создаст новую геометрию, которая имеет 3 отрезка линий, используя 6 точек..</div>
+<div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">Создает геометрию, которая содержит один отрезок (2 точки) на ребро в заданной геометрии. Без этого вы часто теряете ребра или получаете дополнительные ребра, поскольку WebGL обычно требует 2 точки на отрезок. Например, если бы у вас был только один треугольник, было бы только 3 очка. Если вы попытаетесь нарисовать его, используя материал с <code translate="no">wireframe: true</code> вы получите только одну линию. А передача этой triangle geometry в <code translate="no">WireframeGeometry</code> создаст новую геометрию, которая имеет 3 отрезка линий, используя 6 точек..</div>
 
-<p>Вы можете заметить, что большинство из них приходят парами <code>Geometry</code> 
-или <code>BufferGeometry</code>. Разница между этими двумя типами заключается 
+<p>Вы можете заметить, что большинство из них приходят парами <code translate="no">Geometry</code> 
+или <code translate="no">BufferGeometry</code>. Разница между этими двумя типами заключается 
 в гибкости и производительности.</p>
-<p><code>BufferGeometry</code> основанные на примитивах типы ориентированы на производительность. 
+<p><code translate="no">BufferGeometry</code> основанные на примитивах типы ориентированы на производительность. 
 Вершины для геометрии генерируются непосредственно в эффективный формат 
 типизированного массива, готовый для загрузки в графический процессор 
 для рендеринга. Это означает, что они быстрее запускаются и занимают 
 меньше памяти, но если вы хотите изменить их данные, они берут то, 
 что часто считается более сложным программированием для манипулирования.</p>
-<p><code>Geometry</code> основанные на примитивах являются более гибкими, легче манипулировать типом. 
-Они построены на основе классов JavaScript, таких как <code>Vector3</code> для 3D-точки, <code>Face3</code> 
+<p><code translate="no">Geometry</code> основанные на примитивах являются более гибкими, легче манипулировать типом. 
+Они построены на основе классов JavaScript, таких как <code translate="no">Vector3</code> для 3D-точки, <code translate="no">Face3</code> 
 для треугольников. Они занимают немного памяти, и прежде чем их можно будет отобразить, 
 нужно будет преобразовать их во что-то похожее на соответствующее 
-<code>BufferGeometry</code> представление.</p>
+<code translate="no">BufferGeometry</code> представление.</p>
 <p>Если вы знаете, что не собираетесь манипулировать примитивом или если вам удобно 
 выполнять математику на прямую, чтобы манипулировать их внутренностями, то лучше 
-использовать основанные на <code>BufferGeometry</code> примитивы. 
+использовать основанные на <code translate="no">BufferGeometry</code> примитивы. 
 Если, с другой стороны, вы хотите изменить некоторые вещи перед рендерингом, 
-вам может быть проще работать с примитивами основанными на <code>Geometry</code>.</p>
-<p>В качестве простого примера в <code>BufferGeometry</code> не могут быть легко добавлены новые вершины.
+вам может быть проще работать с примитивами основанными на <code translate="no">Geometry</code>.</p>
+<p>В качестве простого примера в <code translate="no">BufferGeometry</code> не могут быть легко добавлены новые вершины.
 Количество используемых вершин определяется во время создания, создается 
-хранилище, а затем заполняются данные для вершин. В то время как с <code>Geometry</code> 
+хранилище, а затем заполняются данные для вершин. В то время как с <code translate="no">Geometry</code> 
 вы можете добавлять вершины по мере необходимости.</p>
 <p>Мы рассмотрим создание пользовательской геометрии в другой статье. 
 А пока давайте создадим пример создания каждого типа примитива. 
 Начнем с <a href="threejs-responsive.html">примеров из предыдущей статьи</a>.</p>
 <p>Близ вершины давайте установим цвет фона в светло-серый</p>
-<pre class="prettyprint"><code>const scene = new THREE.Scene();
+<pre class="prettyprint" translate="no"><code translate="no">const scene = new THREE.Scene();
 +scene.background = new THREE.Color(0xAAAAAA);
 </code></pre><p>Камера должна изменить положение, чтобы мы могли видеть все объекты.</p>
-<pre class="prettyprint"><code>-const fov = 75;
+<pre class="prettyprint" translate="no"><code translate="no">-const fov = 75;
 +const fov = 40;
 const aspect = 2;  // the canvas default
 const near = 0.1;
@@ -287,9 +287,9 @@ const near = 0.1;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 -camera.position.z = 2;
 +camera.position.z = 120;
-</code></pre><p>Давайте добавим функцию, <code>addObject</code>, которая добавляет 
-объект <code>Object3D</code> на сцену в позицию x, y.</p>
-<pre class="prettyprint"><code>const objects = [];
+</code></pre><p>Давайте добавим функцию, <code translate="no">addObject</code>, которая добавляет 
+объект <code translate="no">Object3D</code> на сцену в позицию x, y.</p>
+<pre class="prettyprint" translate="no"><code translate="no">const objects = [];
 const spread = 15;
 
 function addObject(x, y, obj) {
@@ -300,16 +300,16 @@ function addObject(x, y, obj) {
   objects.push(obj);
 }
 </code></pre><p>Давайте также сделаем функцию для создания случайно раскрашенного материала.
-Мы будем использовать особенность <code>Color</code> которая позволяет вам установить цвет 
+Мы будем использовать особенность <code translate="no">Color</code> которая позволяет вам установить цвет 
 на основе оттенка, насыщенности и яркости (hue, saturation, luminance).</p>
-<p><code>hue</code> идет от 0 до 1 вокруг цветового круга с красным на 0, 
-зеленым на .33 и синим на .66. <code>saturation</code> 
+<p><code translate="no">hue</code> идет от 0 до 1 вокруг цветового круга с красным на 0, 
+зеленым на .33 и синим на .66. <code translate="no">saturation</code> 
 изменяется от 0 до 1, где 0 не имеет цвета, а 1 наиболее насыщен.
-<code>luminance</code> изменяется от 0 до 1, где 0 - черный, 1 - белый, 
+<code translate="no">luminance</code> изменяется от 0 до 1, где 0 - черный, 1 - белый, 
 а 0.5 максимальное количество цвета. Другими словами, 
-<code>luminance</code> от 0,0 до 0,5 цвет будет изменяться с черного на <code>hue</code>. 
-От 0,5 до 1,0 цвет изменится <code>hue</code> на белый.</p>
-<pre class="prettyprint"><code>function createMaterial() {
+<code translate="no">luminance</code> от 0,0 до 0,5 цвет будет изменяться с черного на <code translate="no">hue</code>. 
+От 0,5 до 1,0 цвет изменится <code translate="no">hue</code> на белый.</p>
+<pre class="prettyprint" translate="no"><code translate="no">function createMaterial() {
   const material = new THREE.MeshPhongMaterial({
     side: THREE.DoubleSide,
   });
@@ -321,31 +321,31 @@ function addObject(x, y, obj) {
 
   return material;
 }
-</code></pre><p>Мы также передаем материалу <code>side: THREE.DoubleSide</code>.
+</code></pre><p>Мы также передаем материалу <code translate="no">side: THREE.DoubleSide</code>.
 Это говорит three нарисовать обе стороны треугольников, 
 которые составляют форму. Для сплошной (solid)  формы, 
 такой как сфера или куб, обычно нет причин рисовать 
 задние стороны треугольников, поскольку все они обращены 
 внутрь фигуры. В нашем случае мы рисуем несколько вещей, 
-таких как  <code>PlaneBufferGeometry</code> и <code>ShapeBufferGeometry</code>
+таких как  <code translate="no">PlaneBufferGeometry</code> и <code translate="no">ShapeBufferGeometry</code>
 которые являются двухмерными и поэтому не имеют внутренней 
-части. Без установки <code>side: THREE.DoubleSide</code> они исчезнут,
+части. Без установки <code translate="no">side: THREE.DoubleSide</code> они исчезнут,
 при взгляде на их задние стороны.</p>
 <p>Я должен отметить, что отрисовка быстрее, когда <strong>не</strong> установлено
-<code>side: THREE.DoubleSide</code> в реальной работе, мы бы устанавливали 
+<code translate="no">side: THREE.DoubleSide</code> в реальной работе, мы бы устанавливали 
 его только для материалов, которые действительно в этом нуждаются, 
 но в этом случае мы не рисуем слишком много, поэтому нет 
 причин для беспокойства.</p>
-<p>Давайте создадим функцию <code>addSolidGeometry</code>, которой мы передадим 
+<p>Давайте создадим функцию <code translate="no">addSolidGeometry</code>, которой мы передадим 
 геометрию, и она создаст случайно раскрашенный материал 
-<code>createMaterial</code> и <code>addObject</code> добавит его в сцену.</p>
-<pre class="prettyprint"><code>function addSolidGeometry(x, y, geometry) {
+<code translate="no">createMaterial</code> и <code translate="no">addObject</code> добавит его в сцену.</p>
+<pre class="prettyprint" translate="no"><code translate="no">function addSolidGeometry(x, y, geometry) {
   const mesh = new THREE.Mesh(geometry, createMaterial());
   addObject(x, y, mesh);
 }
 </code></pre><p>Теперь мы можем использовать это для большинства примитивов, 
 которые мы создаем. Например, создание прямоугольного параллелепипеда</p>
-<pre class="prettyprint"><code>{
+<pre class="prettyprint" translate="no"><code translate="no">{
   const width = 8;
   const height = 8;
   const depth = 8;
@@ -354,23 +354,23 @@ function addObject(x, y, obj) {
 </code></pre><p>Если вы посмотрите на код ниже, вы увидите похожую часть для 
 каждого типа геометрии.</p>
 <p>Вот результат:</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-primitives.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
 </p>
 <p>Есть несколько заметных исключений из шаблона выше. 
-Самым большим, вероятно, является <code>TextBufferGeometry</code>. Он должен 
+Самым большим, вероятно, является <code translate="no">TextBufferGeometry</code>. Он должен 
 загрузить данные 3D шрифта, прежде чем он сможет сгенерировать 
 сетку для текста. Эти данные загружаются асинхронно, поэтому 
 нам нужно дождаться их загрузки, прежде чем пытаться создать 
-геометрию. Вы можете увидеть ниже, мы создаем <code>FontLoader</code> 
+геометрию. Вы можете увидеть ниже, мы создаем <code translate="no">FontLoader</code> 
 и передаем его URL нашему шрифту и обратному вызову (callback). 
 Обратный вызов срабатывает после загрузки шрифта. 
-В обратном вызове мы создаем геометрию и вызываем <code>addObject</code>, 
+В обратном вызове мы создаем геометрию и вызываем <code translate="no">addObject</code>, 
 чтобы добавить к ней сцену.</p>
-<pre class="prettyprint"><code>{
+<pre class="prettyprint" translate="no"><code translate="no">{
   const loader = new THREE.FontLoader();
   loader.load(&#39;../resources/threejs/fonts/helvetiker_regular.typeface.json&#39;, (font) =&gt; {
     const geometry = new THREE.TextBufferGeometry(&#39;three.js&#39;, {
@@ -397,24 +397,24 @@ function addObject(x, y, obj) {
 но по умолчанию three.js создает текст таким образом, чтобы его 
 центр вращения находился на левом краю. Чтобы обойти это, мы 
 можем попросить three.js вычислить ограничивающую 
-рамку (bounding box) геометрии. Затем мы можем вызвать <code>getCenter</code> 
+рамку (bounding box) геометрии. Затем мы можем вызвать <code translate="no">getCenter</code> 
 метод bounding box и передать ему объект позиции нашей полигональной 
-сетки (mesh). <code>getCenter</code> копирует центр коробки в указанное положение.
+сетки (mesh). <code translate="no">getCenter</code> копирует центр коробки в указанное положение.
 Он также возвращает объект position, поэтому мы можем вызвать 
-<code>multiplyScaler(-1)</code> для позиционирования всего объекта таким образом, 
+<code translate="no">multiplyScaler(-1)</code> для позиционирования всего объекта таким образом, 
 чтобы его центр вращения находился в центре объекта.</p>
-<p>Если бы мы тогда просто вызвали <code>addSolidGeometry</code> как в предыдущих 
+<p>Если бы мы тогда просто вызвали <code translate="no">addSolidGeometry</code> как в предыдущих 
 примерах, это снова установило бы позицию, что не годится. 
-Итак, в этом случае мы создаем <code>Object3D</code> стандартный узел для графа 
-сцены three.js. <code>Mesh</code> так же наследуется от <code>Object3D</code>. Мы рассмотрим, 
+Итак, в этом случае мы создаем <code translate="no">Object3D</code> стандартный узел для графа 
+сцены three.js. <code translate="no">Mesh</code> так же наследуется от <code translate="no">Object3D</code>. Мы рассмотрим, 
 <a href="threejs-scenegraph.html">как работает график сцены, в другой статье</a>.
 На данный момент достаточно знать, что, как и DOM-узлы, дети рисуются 
-относительно своего родителя. Сделав <code>Object3D</code> и сделав нашу сетку 
-дочерней по отношению к этому, мы можем расположить <code>Object3D</code>  в то 
+относительно своего родителя. Сделав <code translate="no">Object3D</code> и сделав нашу сетку 
+дочерней по отношению к этому, мы можем расположить <code translate="no">Object3D</code>  в то 
 место, где мы хотим, и при этом сохранить смещение центра, 
 которое мы установили раньше.</p>
 <p>Если бы мы этого не делали, текст был бы оторван от центра.</p>
-<p><div class="threejs_example_container">
+<p><div translate="no" class="threejs_example_container">
   <div><iframe class="threejs_example" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-primitives-text.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-primitives-text.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
@@ -422,16 +422,16 @@ function addObject(x, y, obj) {
 </p>
 <p>Обратите внимание, что то что слева не вращается вокруг своего центра, 
 как то, что справа.</p>
-<p>Другие исключения - это 2-строчные примеры для <code>EdgesGeometry</code>
-и <code>WireframeGeometry</code>. Вместо того, чтобы вызвать <code>addSolidGeometry</code> 
-они вызвают <code>addLineGeomtry</code> который выглядит так</p>
-<pre class="prettyprint"><code>function addLineGeometry(x, y, geometry) {
+<p>Другие исключения - это 2-строчные примеры для <code translate="no">EdgesGeometry</code>
+и <code translate="no">WireframeGeometry</code>. Вместо того, чтобы вызвать <code translate="no">addSolidGeometry</code> 
+они вызвают <code translate="no">addLineGeomtry</code> который выглядит так</p>
+<pre class="prettyprint" translate="no"><code translate="no">function addLineGeometry(x, y, geometry) {
   const material = new THREE.LineBasicMaterial({color: 0x000000});
   const mesh = new THREE.LineSegments(geometry, material);
   addObject(x, y, mesh);
 }
-</code></pre><p>Он создает черный цвет <code>LineBasicMaterial</code>, а затем создает <code>LineSegments</code>, 
-который является оберткой <code>Mesh</code>, который помогает three знать, что вы 
+</code></pre><p>Он создает черный цвет <code translate="no">LineBasicMaterial</code>, а затем создает <code translate="no">LineSegments</code>, 
+который является оберткой <code translate="no">Mesh</code>, который помогает three знать, что вы 
 отрисовываете отрезки линии (2 точки на отрезок).</p>
 <p>Каждый из примитивов имеет несколько параметров, которые вы можете 
 передать при создании, и лучше всего <a href="https://threejs.org/docs/">посмотреть в документации</a> 
