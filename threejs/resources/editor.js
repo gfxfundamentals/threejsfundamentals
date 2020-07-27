@@ -234,7 +234,7 @@ async function parseHTML(url, html) {
   const inlineScriptRE = /<script>([^]*?)<\/script>/i;
   const inlineModuleScriptRE = /<script type="module">([^]*?)<\/script>/i;
   const externalScriptRE = /(<!--(?:(?!-->)[\s\S])*?-->\n){0,1}<script\s+(type="module"\s+)?src\s*=\s*"(.*?)"\s*>\s*<\/script>/ig;
-  const dataScriptRE = /(<!--(?:(?!-->)[\s\S])*?-->\n){0,1}<script(.*?src=".*?)>([^]*?)<\/script>/ig;
+  const dataScriptRE = /(<!--(?:(?!-->)[\s\S])*?-->\n){0,1}<script(.*?id=".*?)>([^]*?)<\/script>/ig;
   const cssLinkRE = /<link ([^>]+?)>/g;
   const isCSSLinkRE = /type="text\/css"|rel="stylesheet"/;
   const hrefRE = /href="([^"]+)"/;
@@ -655,7 +655,7 @@ function setupEditor() {
   g.result.style.display = 'none';
   toggleResultPane();
 
-  if (window.innerWidth > 1200) {
+  if (window.innerWidth >= 1000) {
     toggleSourcePane(htmlParts.js.button);
   }
 
