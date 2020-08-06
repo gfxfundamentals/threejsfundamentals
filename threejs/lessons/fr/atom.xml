@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three.js, notions de base</title>
-    <updated>2020-07-18T05:26:09.000Z</updated>
+    <updated>2020-07-10T04:18:28.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -11,6 +11,30 @@
     <link rel="alternate" href="http://threejsfundamentals.org/"/>
     <subtitle>Apprendre à utiliser Three.js.</subtitle>
     <logo>https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"/>
+        <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html">
+        </link>
+        <updated>2020-07-10T04:18:28.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-07-10T04:18:28.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Pré-requis pour Three.js]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html">
+        </link>
+        <updated>2020-07-10T04:18:28.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-07-10T04:18:28.000Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Primitives de Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-primitives.html</id>
@@ -24,39 +48,15 @@
         <published>2020-07-10T04:18:28.000Z</published>
     </entry>
     <entry>
-        <title type="html"/>
-        <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html</id>
-        <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html">
-        </link>
-        <updated>2020-07-07T07:18:07.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>https://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2020-07-07T07:18:07.000Z</published>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Pré-requis pour Three.js]]></title>
-        <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html</id>
-        <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html">
-        </link>
-        <updated>2020-07-07T07:18:07.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>https://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2020-07-07T07:18:07.000Z</published>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Design réactif et Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html">
         </link>
-        <updated>2020-07-07T07:18:07.000Z</updated>
+        <updated>2020-07-10T04:18:28.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-07T07:18:07.000Z</published>
+        <published>2020-07-10T04:18:28.000Z</published>
     </entry>
 </feed>

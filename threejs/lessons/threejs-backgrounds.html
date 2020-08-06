@@ -369,7 +369,7 @@ scene&#39;s background.</p>
 }
 </code></pre>
 <p>Let&#39;s add some controls in so we can rotate the camera.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OrbitControls} from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
 const aspect = 2;  // the canvas default
@@ -398,56 +398,33 @@ surrounds us.</p>
 <a href="https://hdrihaven.com">this site</a>.</p>
 <div class="threejs_center"><img src="../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
 
-<p>To use it is a little more involved. We make a separate <code class="notranslate" translate="no">Scene</code>, a
-<code class="notranslate" translate="no">BoxBufferGeometry</code>, and a custom <code class="notranslate" translate="no">ShaderMaterial</code> but using a built in shader.
-We use these to render the background by itself before rendering the scene we
-already have.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const bgScene = new THREE.Scene();
-let bgMesh;
-{
-  const loader = new THREE.TextureLoader();
-  const texture = loader.load(
-    &#39;resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg&#39;,
-  );
-  texture.magFilter = THREE.LinearFilter;
-  texture.minFilter = THREE.LinearFilter;
-
-  const shader = THREE.ShaderLib.equirect;
-    const material = new THREE.ShaderMaterial({
-    fragmentShader: shader.fragmentShader,
-    vertexShader: shader.vertexShader,
-    uniforms: shader.uniforms,
-    depthWrite: false,
-    side: THREE.BackSide,
-  });
-    material.uniforms.tEquirect.value = texture;
-  const plane = new THREE.BoxBufferGeometry(2, 2, 2);
-  bgMesh = new THREE.Mesh(plane, material);
-  bgScene.add(bgMesh);
+<p>It&#39;s not much different. First we load the equirectangular image as a texture
+and then, in the callback after it has loaded, we can call <code class="notranslate" translate="no">WebGLCubeRenderTarget.fromEquirectangularTexture</code>
+which will generate a cubemap from the equirectangular texture for us.
+We pass in the size we want the cubemap to be to <code class="notranslate" translate="no">WebGLCubeRenderTarget</code>.
+Passing in the height of the equirectangular image seems like a good bet.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+-  const loader = new THREE.CubeTextureLoader();
+-  const texture = loader.load([
+-    &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/neg-x.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/pos-y.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/neg-y.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/pos-z.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/neg-z.jpg&#39;,
+-  ]);
+-  scene.background = texture;
++  const loader = new THREE.TextureLoader();
++  const texture = loader.load(
++    &#39;resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg&#39;,
++    () =&gt; {
++      const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
++      rt.fromEquirectangularTexture(renderer, texture);
++      scene.background = rt;
++    });
 }
 </code></pre>
-<p>The box must be larger than the camera&#39;s <code class="notranslate" translate="no">near</code> setting but not so large that 
-it passes the camera&#39;s <code class="notranslate" translate="no">far</code> setting.</p>
-<p>We set <code class="notranslate" translate="no">side: THREE.BackSide</code> to see the inside of the box and we set
-<code class="notranslate" translate="no">depthWrite: false</code> so that we neither test nor write to the depth buffer.</p>
-<p>At render time we just make sure the box is at the same position as the camera
-and render the new scene</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time)
-
-    /* ... */
-
-+    bgMesh.position.copy(camera.position);
-+    renderer.render(bgScene, bgCamera);
-    renderer.render(scene, camera);
-</code></pre>
-<p>By default every time <code class="notranslate" translate="no">renderer.render</code> is called THREE.js will clear the
-canvas. We need to tell it not to do that otherwise the second call to render
-will clear our first render and we won&#39;t see the background. We can do this by
-setting <code class="notranslate" translate="no">renderer.autoClearColor = false</code>.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const renderer = new THREE.WebGLRenderer({canvas});
-+renderer.autoClearColor = false;
-</code></pre>
-<p>And there we have it.</p>
+<p>And that&#39;s all there is to it.</p>
 <p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-equirectangularmap.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-background-equirectangularmap.html" target="_blank">click here to open in a separate window</a>

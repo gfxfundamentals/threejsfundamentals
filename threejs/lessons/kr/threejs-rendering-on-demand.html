@@ -231,8 +231,8 @@ requestAnimationFrame(render);
 <p><a href="threejs-responsive.html">반응형 디자인에 관한 글</a>에서 썼던 예제를 수정해
 필요에 따른 렌더링을 구현해봅시다.</p>
 <p>먼저 뭔가 변화를 일으킬 수 있는 요소가 필요하니 <code class="notranslate" translate="no">OrbitControls</code>를 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
-+import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
++import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
 
 ...
 
@@ -354,8 +354,8 @@ render();
 
 </p>
 <p>간단한 dat.GUI를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
-import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
+import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
 +import { GUI } from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <p>먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. <a href="threejs-lights.html">조명에 관한 글</a>에서
