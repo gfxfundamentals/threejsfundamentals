@@ -217,13 +217,10 @@ to a canvas. This is a way to offload heavy work, like rendering a complex 3D sc
 to a web worker so as not to slow down the responsiveness of the browser. It
 also means data is loaded and parsed in the worker so possibly less jank while
 the page loads.</p>
-<p>One big issue with offscreen canvas is, at least in Chrome, es6 modules are not yet
-supported on web workers, so, unlike all the other examples on this site that use
-es6 modules these examples will use class scripts.</p>
 <p>Getting <em>started</em> using it is pretty straight forward. Let&#39;s port the 3 spinning cube
 example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
 <p>Workers generally have their code separated
-into another script file. Most of the examples on this site have had
+into another script file whereas most of the examples on this site have had
 their scripts embedded into the HTML file of the page they are on.</p>
 <p>In our case we&#39;ll make a file called <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> and
 copy all the JavaScript from <a href="threejs-responsive.html">the responsive example</a> into it. We&#39;ll then
@@ -237,12 +234,12 @@ canvas to be offscreen by calling <code class="notranslate" translate="no">canva
 
   ...
 </code></pre>
-<p>We can then start our worker with <code class="notranslate" translate="no">new Worker(pathToScript)</code>.
+<p>We can then start our worker with <code class="notranslate" translate="no">new Worker(pathToScript, {type: &#39;module&#39;})</code>.
 and pass the <code class="notranslate" translate="no">offscreen</code> object to it.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const offscreen = canvas.transferControlToOffscreen();
-  const worker = new Worker(&#39;offscreencanvas-cubes.js&#39;);
+  const worker = new Worker(&#39;offscreencanvas-cubes.js&#39;, {type: &#39;module&#39;});
   worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 }
 main();
@@ -250,7 +247,7 @@ main();
 <p>It&#39;s important to note that workers can&#39;t access the <code class="notranslate" translate="no">DOM</code>. They
 can&#39;t look at HTML elements nor can they receive mouse events or
 keyboard events. The only thing they can generally do is respond
-to messages sent to them.</p>
+to messages sent to them and send messages back to the page.</p>
 <p>To send a message to a worker we call <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage"><code class="notranslate" translate="no">worker.postMessage</code></a> and
 pass it 1 or 2 arguments. The first argument is a JavaScript object
 that will be <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm">cloned</a> 
@@ -264,7 +261,8 @@ so once transferred the <code class="notranslate" translate="no">offscreen</code
 <p>Workers receive messages from their <code class="notranslate" translate="no">onmessage</code> handler. The object
 we passed to <code class="notranslate" translate="no">postMessage</code> arrives on <code class="notranslate" translate="no">event.data</code> passed to the <code class="notranslate" translate="no">onmessage</code>
 handler on the worker. The code above declares a <code class="notranslate" translate="no">type: &#39;main&#39;</code> in the object it passes
-to the worker. We&#39;ll make a handler that based on <code class="notranslate" translate="no">type</code> calls
+to the worker. This object has no meaning to the browser. It&#39;s entirely for
+our own usage. We&#39;ll make a handler that based on <code class="notranslate" translate="no">type</code> calls
 a different function in the worker. Then we can add functions as
 needed and easily call them from the main page.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const handlers = {
@@ -283,10 +281,7 @@ self.onmessage = function(e) {
 that was sent from the main page.</p>
 <p>So now we just need to start changing the <code class="notranslate" translate="no">main</code> we pasted into 
 <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> from <a href="threejs-responsive.html">the responsive article</a>.</p>
-<p>The first thing we need to do is include THREE.js into our worker.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">importScripts(&#39;resources/threejs/r119/build/three.min.js&#39;);
-</code></pre>
-<p>Then instead of looking up the canvas from the DOM we&#39;ll receive it from the
+<p>Instead of looking up the canvas from the DOM we&#39;ll receive it from the
 event data.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function main() {
 -  const canvas = document.querySelector(&#39;#c&#39;);
@@ -355,7 +350,7 @@ const handlers = {
   ...
 </code></pre>
 <p>Back in the main page we&#39;ll send a <code class="notranslate" translate="no">size</code> event anytime the page changes size.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const worker = new Worker(&#39;offscreencanvas-picking.js&#39;, {type: &#39;module&#39;});
 worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 
 +function sendSize() {
@@ -401,7 +396,7 @@ if the browser supports <code class="notranslate" translate="no">OffscreenCanvas
 +    return;
 +  }
   const offscreen = canvas.transferControlToOffscreen();
-  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;, {type: &#39;module});
   worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 
   ...
@@ -424,7 +419,7 @@ of work done so that when running in a worker you can do more than when
 running in the main page. What you do is really up to you.</p>
 </blockquote>
 <p>The first thing we should probably do is separate out the three.js
-code from the code that is specific to the worker. That we we can
+code from the code that is specific to the worker. That way we can
 use the same code on both the main page and the worker. In other words
 we will now have 3 files</p>
 <ol>
@@ -439,16 +434,45 @@ we will now have 3 files</p>
 </li>
 </ol>
 <p><code class="notranslate" translate="no">shared-cubes.js</code> and <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> are basically
-the split of our previous <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> file. 
-We renamed <code class="notranslate" translate="no">main</code> to <code class="notranslate" translate="no">init</code> since we already have a <code class="notranslate" translate="no">main</code> in our
-HTML file.</p>
-<p><code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> is just</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">&#39;use strict&#39;;
+the split of our previous <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> file. First we
+copy all of <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> to <code class="notranslate" translate="no">shared-cube.js</code>. Then
+we rename <code class="notranslate" translate="no">main</code> to <code class="notranslate" translate="no">init</code> since we already have a <code class="notranslate" translate="no">main</code> in our
+HTML file and we need to export <code class="notranslate" translate="no">init</code> and <code class="notranslate" translate="no">state</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
 
-/* global importScripts, init, state */
+-const state = {
++export const state = {
+  width: 300,   // canvas default
+  height: 150,  // canvas default
+};
 
-importScripts(&#39;resources/threejs/r119/build/three.min.js&#39;);
-+importScripts(&#39;shared-cubes.js&#39;);
+-function main(data) {
++export function init(data) {
+  const {canvas} = data;
+  const renderer = new THREE.WebGLRenderer({canvas});
+</code></pre>
+<p>and cut out the just the non three.js relates parts</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function size(data) {
+-  state.width = data.width;
+-  state.height = data.height;
+-}
+-
+-const handlers = {
+-  main,
+-  size,
+-};
+-
+-self.onmessage = function(e) {
+-  const fn = handlers[e.data.type];
+-  if (!fn) {
+-    throw new Error(&#39;no handler for type: &#39; + e.data.type);
+-  }
+-  fn(e.data);
+-};
+</code></pre>
+<p>Then we copy those parts we just deleted to <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code>
+and import <code class="notranslate" translate="no">shared-cubes.js</code> as well as call <code class="notranslate" translate="no">init</code> instead of <code class="notranslate" translate="no">main</code>.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {init, state} from &#39;./shared-cubes.js&#39;;
 
 function size(data) {
   state.width = data.width;
@@ -469,10 +493,9 @@ self.onmessage = function(e) {
   fn(e.data);
 };
 </code></pre>
-<p>note we include <code class="notranslate" translate="no">shared-cubes.js</code> which is all our three.js code</p>
-<p>Similarly we need to include three.js and  <code class="notranslate" translate="no">shared-cubes.js</code> in the main page</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script src=&quot;resources/threejs/r119/build/three.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;shared-cubes.js&quot;&gt;&lt;script&gt;
+<p>Similarly we need to include <code class="notranslate" translate="no">shared-cubes.js</code> in the main page</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
++import {init, state} from &#39;./shared-cubes.js&#39;;
 </code></pre>
 <p>We can remove the HTML and CSS we added previously</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
@@ -503,7 +526,7 @@ function or another depending on if the browser supports <code class="notranslat
 -    return;
 -  }
 -  const offscreen = canvas.transferControlToOffscreen();
--  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;);
+-  const worker = new Worker(&#39;offscreencanvas-picking.js&#39;, {type: &#39;module&#39;});
 -  worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 +  if (canvas.transferControlToOffscreen) {
 +    startWorker(canvas);
@@ -515,8 +538,8 @@ function or another depending on if the browser supports <code class="notranslat
 <p>We&#39;ll move all the code we had to setup the worker inside <code class="notranslate" translate="no">startWorker</code></p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function startWorker(canvas) {
   const offscreen = canvas.transferControlToOffscreen();
-  const worker = new Worker(&#39;offscreencanvas-worker-cubes.js&#39;);
-  worker.postMessage({type: &#39;init&#39;, canvas: offscreen}, [offscreen]);
+  const worker = new Worker(&#39;offscreencanvas-worker-cubes.js&#39;, {type: &#39;module&#39;});
+  worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 
   function sendSize() {
     worker.postMessage({
@@ -531,6 +554,10 @@ function or another depending on if the browser supports <code class="notranslat
 
   console.log(&#39;using OffscreenCanvas&#39;);
 }
+</code></pre>
+<p>and send <code class="notranslate" translate="no">init</code> instead of <code class="notranslate" translate="no">main</code></p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-  worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
++  worker.postMessage({type: &#39;init&#39;, canvas: offscreen}, [offscreen]);
 </code></pre>
 <p>for starting in the main page we can do this</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function startMainPage(canvas) {
@@ -639,7 +666,7 @@ to the worker or the main page.</p>
 
 function startWorker(canvas) {
   const offscreen = canvas.transferControlToOffscreen();
-  const worker = new Worker(&#39;offscreencanvas-worker-picking.js&#39;);
+  const worker = new Worker(&#39;offscreencanvas-worker-picking.js&#39;, {type: &#39;module&#39;});
   worker.postMessage({type: &#39;init&#39;, canvas: offscreen}, [offscreen]);
 
 +  sendMouse = (x, y) =&gt; {
@@ -731,7 +758,7 @@ the DOM pretty extensively checking the mouse, touch events,
 and the keyboard.</p>
 <p>Unlike our code so far we can&#39;t really use a global <code class="notranslate" translate="no">state</code> object
 without re-writing all the OrbitControls code to work with it.
-The OrbitControls take an element to which they attach most
+The OrbitControls take an <code class="notranslate" translate="no">HTMLElement</code> to which they attach most
 of the DOM events they use. Maybe we could pass in our own
 object that has the same API surface as a DOM element. 
 We only need to support the features the OrbitControls need.</p>
@@ -762,7 +789,9 @@ events and pass them on using events that have the same structure
 as the original DOM events so the OrbitControls won&#39;t be able to
 tell the difference.</p>
 <p>Here&#39;s the code for the worker part.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class ElementProxyReceiver extends THREE.EventDispatcher {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+
+class ElementProxyReceiver extends EventDispatcher {
   constructor() {
     super();
   }
@@ -833,14 +862,11 @@ self.onmessage = function(e) {
   fn(e.data);
 };
 </code></pre>
-<p>We also need to actually add the <code class="notranslate" translate="no">OrbitControls</code> to the top of
-the script</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">importScripts(&#39;resources/threejs/r119/build/three.min/js&#39;);
-+importScripts(&#39;resources/threejs/r119/examples/js/controls/OrbitControls.js&#39;);
-*importScripts(&#39;shared-orbitcontrols.js&#39;);
-</code></pre>
-<p>and in our shared three.js code we need to set them up</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function init(data) {
+<p>In our shared three.js code we need to import the <code class="notranslate" translate="no">OrbitControls</code> and set them up.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+
+export function init(data) {
 -  const {canvas} = data;
 +  const {canvas, inputElement} = data;
   const renderer = new THREE.WebGLRenderer({canvas});
@@ -937,7 +963,7 @@ the worker.</p>
 <p>When we start the worker we first make a proxy and pass in our event handlers.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function startWorker(canvas) {
   const offscreen = canvas.transferControlToOffscreen();
-  const worker = new Worker(&#39;offscreencanvas-worker-orbitcontrols.js&#39;);
+  const worker = new Worker(&#39;offscreencanvas-worker-orbitcontrols.js&#39;, {type: &#39;module&#39;});
 
 +  const eventHandlers = {
 +    contextmenu: preventDefaultHandler,
@@ -1153,7 +1179,7 @@ to handle moving you&#39;d need to call <code class="notranslate" translate="no"
 }
 </code></pre>
 <p>and in our shared three.js code we no longer need <code class="notranslate" translate="no">state</code></p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const state = {
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-export const state = {
 -  width: 300,   // canvas default
 -  height: 150,  // canvas default
 -};
@@ -1184,23 +1210,17 @@ function render(time) {
 
   ...
 </code></pre>
-<p>A few more hacks. The OrbitControls attach event handlers to <code class="notranslate" translate="no">window</code> to
-get keyboard events. Not sure that&#39;s the right place to attach them but that&#39;s beyond our control
-unless we fork the OrbitControls. In any case <code class="notranslate" translate="no">window</code> doesn&#39;t exist in a worker.</p>
-<p>They also also add <code class="notranslate" translate="no">mousemove</code> and <code class="notranslate" translate="no">mouseup</code> events to the <code class="notranslate" translate="no">document</code>
-to handle mouse capture (when the mouse goes outside the window) but
-like <code class="notranslate" translate="no">window</code> there is no <code class="notranslate" translate="no">document</code> in a worker.</p>
-<p>Further the code compares <code class="notranslate" translate="no">document</code> to the element we pass into <code class="notranslate" translate="no">OrbitControls</code>
-and expects them to not be equal.</p>
-<p>We can solve all of these with a few quick hacks. In our worker
-code we&#39;ll re-use our proxy for all 3 problems.</p>
+<p>A few more hacks. The OrbitControls add <code class="notranslate" translate="no">mousemove</code> and <code class="notranslate" translate="no">mouseup</code> events to the
+<code class="notranslate" translate="no">ownerDocument</code> of the element to handle mouse capture (when the mouse goes
+outside the window).</p>
+<p>Further the code references the global <code class="notranslate" translate="no">document</code> but there is no global document
+in a worker. </p>
+<p>We can solve all of these with a 2 quick hacks. In our worker
+code we&#39;ll re-use our proxy for both problems.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function start(data) {
   const proxy = proxyManager.getProxy(data.canvasId);
-+  self.window = proxy;  // HACK!
-+  self.document = {  // HACK!
-+    addEventListener: proxy.addEventListener.bind(proxy),
-+    removeEventListener: proxy.removeEventListener.bind(proxy),
-+  };
++  proxy.ownerDocument = proxy; // HACK!
++  self.document = {} // HACK!
   init({
     canvas: data.canvas,
     inputElement: proxy,

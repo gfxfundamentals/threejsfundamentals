@@ -362,8 +362,8 @@ function makeBlobURLsForSources(scriptInfo) {
       scriptInfo.numLinesBeforeScript = 0;
       if (scriptInfo.isWorker) {
         const extra = `self.lessonSettings = ${JSON.stringify(lessonSettings)};
-importScripts('${dirname(scriptInfo.fqURL)}/resources/webgl-debug-helper.js');
-importScripts('${dirname(scriptInfo.fqURL)}/resources/lessons-worker-helper.js')`;
+import '${dirname(scriptInfo.fqURL)}/resources/webgl-debug-helper.js';
+import '${dirname(scriptInfo.fqURL)}/resources/lessons-worker-helper.js';`;
         scriptInfo.numLinesBeforeScript = extra.split('\n').length;
         text = `${extra}\n${text}`;
       }
