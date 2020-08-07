@@ -353,10 +353,10 @@ function init() {
 </code></pre>
 <p>이제 애니메이션이 들어간 모델을 화면에 띄워봅시다.</p>
 <p><a href="threejs-load-gltf.html">이전 glTF 파일 예제</a>와 달리 이번에는 각 모델을 하나 이상 배치할 계획입니다. 그러니 파일을 불러온 뒤 바로 장면에 넣는 대신 각 glTF의 씬 그래프(scene), 이 경우에는 움직이는 캐릭터를 복사해야 합니다. 다행히 Three.js에는 <code class="notranslate" translate="no">SkeletonUtil.clone</code>이라는 함수가 있어 이를 쉽게 구현할 수 있죠. 먼저 해당 모듈을 불러오겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
-import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
-import { GLTFLoader } from &#39;./resources/threejs/r115/examples/jsm/loaders/GLTFLoader.js&#39;;
-+import { SkeletonUtils } from &#39;./resources/threejs/r115/examples/jsm/utils/SkeletonUtils.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
+import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+import { GLTFLoader } from &#39;./resources/threejs/r119/examples/jsm/loaders/GLTFLoader.js&#39;;
++import { SkeletonUtils } from &#39;./resources/threejs/r119/examples/jsm/utils/SkeletonUtils.js&#39;;
 </code></pre>
 <p>그리고 아까 불러왔던 모델을 복사합니다.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function init() {
@@ -1508,10 +1508,10 @@ class StateDisplayHelper extends Component {
 }
 </code></pre>
 <p>추가로 dat.GUI를 이용해 위 디버깅 요소들를 켜고 끌 수 있도록 합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
-import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
-import { GLTFLoader } from &#39;./resources/threejs/r115/examples/jsm/loaders/GLTFLoader.js&#39;;
-import { SkeletonUtils } from &#39;./resources/threejs/r115/examples/jsm/utils/SkeletonUtils.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
+import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+import { GLTFLoader } from &#39;./resources/threejs/r119/examples/jsm/loaders/GLTFLoader.js&#39;;
+import { SkeletonUtils } from &#39;./resources/threejs/r119/examples/jsm/utils/SkeletonUtils.js&#39;;
 +import { GUI } from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const gui = new GUI();
