@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ru/threejs-optimize-lots-of-objects.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,67 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Optimize Lots of Objects" />
+
+<meta name="description" content="Оптимизация путем объединения объектов" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ru.jpg" />
+
+<meta property="og:title" content="Three.js Оптимизация большого количества объектов" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Optimize by merging Objects" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ru.jpg" />
+<meta property="og:description" content="Оптимизация путем объединения объектов" />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Optimize Lots of Objects" />
+<meta name="twitter:title" content="Three.js Оптимизация большого количества объектов" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html" />
-<meta name="twitter:description" content="Optimize by merging Objects" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="Оптимизация путем объединения объектов" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ru.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ru.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html",
+      "inLanguage":"ru",
+      "name":"Three.js Оптимизация большого количества объектов",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
-<title>Three.js Optimize Lots of Objects</title>
+<title>Three.js Оптимизация большого количества объектов</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css" />
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -163,12 +206,458 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Optimize Lots of Objects</h1>
+    <h1>Three.js Оптимизация большого количества объектов</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>К сожалению, страница ещё не переведена. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Я всегда рад переводчикам</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">А пока можете почитать статью на английском языке</a>.</p>
+      <p>Эта статья является частью серии статей о three.js. Первая статья - <a href="threejs-fundamentals.html">основы Three.js</a>. 
+Если вы еще не читали это, и вы новичок в three.js, вы можете начать там. </p>
+<p>Есть много способов оптимизировать вещи для three.js. Один из способов часто называют геометрией слияния.
+Каждая созданная вами сетка и three.js представляют 1 или более запросов системы на что-то нарисовать.
+Рисование 2 вещей имеет больше затрат, чем рисование 1, 
+даже если результаты одинаковы, поэтому одним из способов оптимизации является объединение сеток. </p>
+<p>Давайте посмотрим пример, когда это хорошее решение для проблемы. Давайте заново создадим <a href="https://globe.chromeexperiments.com/">WebGL Globe</a>.</p>
+<p>Первое, что нам нужно сделать, это получить данные. WebGL Globe сказал, что данные, которые они используют, взяты из <a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>. 
+Проверяя сайт, я увидел  <a href="https://beta.sedac.ciesin.columbia.edu/data/set/gpw-v4-basic-demographic-characteristics-rev10">демографические данные в виде сетки</a>.
+Я загрузил данные с 60-минутным разрешением. Затем я посмотрел на данные </p>
+<p>Это выглядит так </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-txt"> ncols         360
+ nrows         145
+ xllcorner     -180
+ yllcorner     -60
+ cellsize      0.99999999999994
+ NODATA_value  -9999
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ 9.241768 8.790958 2.095345 -9999 0.05114867 -9999 -9999 -9999 -9999 -999...
+ 1.287993 0.4395509 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+</code></pre>
+<p>Есть несколько строк, похожих на пары ключ / значение, за которыми следуют строки со значением для каждой точки сетки, по одной строке для каждой строки точек данных. </p>
+<p>Чтобы убедиться, что мы понимаем данные, давайте попробуем построить их в 2D. </p>
+<p>Сначала немного кода для загрузки текстового файла </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadFile(url) {
+  const req = await fetch(url);
+  return req.text();
+}
+</code></pre>
+<p>Приведенный выше код возвращает <code class="notranslate" translate="no">Promise</code> с содержимым файла по адресу <code class="notranslate" translate="no">url</code>; </p>
+<p>Тогда нам нужен код для разбора файла </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function parseData(text) {
+  const data = [];
+  const settings = {data};
+  let max;
+  let min;
+  // split into lines
+  text.split(&#39;\n&#39;).forEach((line) =&gt; {
+    // split the line by whitespace
+    const parts = line.trim().split(/\s+/);
+    if (parts.length === 2) {
+      // only 2 parts, must be a key/value pair
+      settings[parts[0]] = parseFloat(parts[1]);
+    } else if (parts.length &gt; 2) {
+      // more than 2 parts, must be data
+      const values = parts.map((v) =&gt; {
+        const value = parseFloat(v);
+        if (value === settings.NODATA_value) {
+          return undefined;
+        }
+        max = Math.max(max === undefined ? value : max, value);
+        min = Math.min(min === undefined ? value : min, value);
+        return value;
+      });
+      data.push(values);
+    }
+  });
+  return Object.assign(settings, {min, max});
+}
+</code></pre>
+<p>Приведенный выше код возвращает объект со всеми парами ключ / значение из файла,
+а также свойство <code class="notranslate" translate="no">data</code> со всеми данными в одном большом массиве и значениями <code class="notranslate" translate="no">min</code> и <code class="notranslate" translate="no">max</code>, найденными в данных. </p>
+<p>Тогда нам нужен код для рисования этих данных </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function drawData(file) {
+  const {min, max, data} = file;
+  const range = max - min;
+  const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  // make the canvas the same size as the data
+  ctx.canvas.width = ncols;
+  ctx.canvas.height = nrows;
+  // but display it double size so it&#39;s not too small
+  ctx.canvas.style.width = px(ncols * 2);
+  ctx.canvas.style.height = px(nrows * 2);
+  // fill the canvas to dark gray
+  ctx.fillStyle = &#39;#444&#39;;
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  // draw each data point
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
+      if (value === undefined) {
+        return;
+      }
+      const amount = (value - min) / range;
+      const hue = 1;
+      const saturation = 1;
+      const lightness = amount;
+      ctx.fillStyle = hsl(hue, saturation, lightness);
+      ctx.fillRect(lonNdx, latNdx, 1, 1);
+    });
+  });
+}
+
+function px(v) {
+  return `${v | 0}px`;
+}
+
+function hsl(h, s, l) {
+  return `hsl(${h * 360 | 0},${s * 100 | 0}%,${l * 100 | 0}%)`;
+}
+</code></pre>
+<p>И, наконец, склеив все это </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+  .then(parseData)
+  .then(drawData);
+</code></pre>
+<p>Дает нам этот результат </p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fgpw-data-viewer.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../gpw-data-viewer.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Так что, кажется, это работает. </p>
+<p>Давайте попробуем это в 3D. Начиная с кода от <a href="threejs-rendering-on-demand.html">рендеринга по требованию</a> мы сделаем один блок на данные в файле. </p>
+<p>Сначала давайте сделаем простую сферу с текстурой мира. Вот текстура </p>
+<div class="threejs_center"><img src="../../resources/images/world.jpg" style="width: 600px"></div>
+
+<p>И код для его настройки. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load(&#39;resources/images/world.jpg&#39;, render);
+  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const material = new THREE.MeshBasicMaterial({map: texture});
+  scene.add(new THREE.Mesh(geometry, material));
+}
+</code></pre>
+<p>Обратите внимание на вызов для рендеринга после завершения загрузки текстуры. Нам это нужно, потому что мы выполняем  <a href="threejs-rendering-on-demand.html">рендеринг по требованию</a> 
+а не постоянно, поэтому нам нужно рендерить один раз при загрузке текстуры. </p>
+<p>Затем нам нужно изменить код, который рисует точку на точку данных выше, чтобы вместо этого создать прямоугольник для точки данных. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  // make one box geometry
+  const boxWidth = 1;
+  const boxHeight = 1;
+  const boxDepth = 1;
+  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+  // make it so it scales away from the positive Z axis
+  geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, 0.5));
+
+  // these helpers will make it easy to position the boxes
+  // We can rotate the lon helper on its Y axis to the longitude
+  const lonHelper = new THREE.Object3D();
+  scene.add(lonHelper);
+  // We rotate the latHelper on its X axis to the latitude
+  const latHelper = new THREE.Object3D();
+  lonHelper.add(latHelper);
+  // The position helper moves the object to the edge of the sphere
+  const positionHelper = new THREE.Object3D();
+  positionHelper.position.z = 1;
+  latHelper.add(positionHelper);
+
+  const lonFudge = Math.PI * .5;
+  const latFudge = Math.PI * -0.135;
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
+      if (value === undefined) {
+        return;
+      }
+      const amount = (value - min) / range;
+      const material = new THREE.MeshBasicMaterial();
+      const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
+      const saturation = 1;
+      const lightness = THREE.MathUtils.lerp(0.1, 1.0, amount);
+      material.color.setHSL(hue, saturation, lightness);
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      // adjust the helpers to point to the latitude and longitude
+      lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
+      latHelper.rotation.x = THREE.MathUtils.degToRad(latNdx + file.yllcorner) + latFudge;
+
+      // use the world matrix of the position helper to
+      // position this mesh.
+      positionHelper.updateWorldMatrix(true, false);
+      mesh.applyMatrix4(positionHelper.matrixWorld);
+
+      mesh.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
+    });
+  });
+}
+</code></pre>
+<p>Код в основном прямо из нашего тестового кода рисования. </p>
+<p>Мы делаем одну коробку и корректируем ее центр так, чтобы она масштабировалась от положительного Z. 
+Если бы мы этого не делали, она бы масштабировалась от центра, но мы хотим, чтобы они росли от начала координат. </p>
+<div class="spread">
+  <div>
+    <div data-diagram="scaleCenter" style="height: 250px"></div>
+    <div class="code">default</div>
+  </div>
+  <div>
+    <div data-diagram="scalePositiveZ" style="height: 250px"></div>
+    <div class="code">adjusted</div>
+  </div>
+</div>
+
+<p>Конечно, мы могли бы также решить эту проблему, добавив в родительский блок больше объектов 
+THREE.Object3D, как мы покрывали в <a href="threejs-scenegraph.html">графах сцены</a> 
+но чем больше узлов мы добавляем в граф сцены, тем медленнее он становится. </p>
+<p>Мы также настраиваем эту небольшую иерархию узлов <code class="notranslate" translate="no">lonHelper</code>, <code class="notranslate" translate="no">latHelper</code> и <code class="notranslate" translate="no">positionHelper</code>.
+Мы используем эти объекты, чтобы вычислить положение вокруг сферы, чтобы разместить коробку. </p>
+<div class="spread">
+  <div data-diagram="lonLatPos" style="width: 600px; height: 400px;"></div>
+</div>
+
+<p>Над <span style="color: green;">зелёной полосой</span> изображен  <code class="notranslate" translate="no">lonHelper</code> и используется для поворота в направлении долготы на экваторе.
+<span style="color: blue;">Синяя полоса</span> обозначает <code class="notranslate" translate="no">latHelper</code> который используется для поворота на широту выше или ниже экватора. 
+<span style="color: red;">Красная сфера</span> представляет смещение, которое обеспечивает этот <code class="notranslate" translate="no">positionHelper</code>.</p>
+<p>Мы могли бы сделать всю математику вручную, чтобы выяснить позиции на земном шаре, но, делая это таким образом,
+мы оставляем большую часть математики самой библиотеке, поэтому нам не нужно иметь с ней дело. </p>
+<p>Для каждой точки данных мы создаем <code class="notranslate" translate="no">MeshBasicMaterial</code> и <code class="notranslate" translate="no">Mesh</code>, а затем запрашиваем мировую матрицу
+<code class="notranslate" translate="no">positionHelper</code> и применяем ее к новой <code class="notranslate" translate="no">Mesh</code>. Наконец мы масштабируем сетку в новой позиции. </p>
+<p>Как и выше, мы могли бы также создать <code class="notranslate" translate="no">latHelper</code>, <code class="notranslate" translate="no">lonHelper</code> и <code class="notranslate" translate="no">positionHelper</code> для каждого нового окна, но это было бы еще медленнее. </p>
+<p>Мы собираемся создать до 360х145 коробок. Это до 52000 коробок. 
+Поскольку некоторые точки данных помечены как «NO_DATA», фактическое
+количество блоков, которые мы собираемся создать, составляет около 19000. 
+Если бы мы добавили 3 дополнительных вспомогательных объекта в блок,
+это было бы почти 80000 узлов графа сцены, которые THREE.js должен был бы 
+вычислить. позиции для. Вместо этого, используя один набор помощников, 
+чтобы просто расположить сетки, мы экономим около 60000 операций. </p>
+<p>Примечание о <code class="notranslate" translate="no">lonFudge</code> и <code class="notranslate" translate="no">latFudge</code>. <code class="notranslate" translate="no">lonFudge</code> равен π / 2, что составляет четверть оборота. 
+В этом есть смысл. Это просто означает, что текстура или координаты текстуры начинаются 
+с другого смещения по всему земному шару. <code class="notranslate" translate="no">latFudge</code> с другой стороны, я понятия не имею, 
+почему он должен быть π * -0,135, это просто количество, которое выровняло боксы с текстурой. </p>
+<p>Последнее, что нам нужно сделать, это вызвать нашего загрузчика </p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+  .then(parseData)
+-  .then(drawData)
++  .then(addBoxes)
++  .then(render);
+</code></pre><p>После того, как данные закончили загрузку и анализ, нам нужно выполнить рендеринг хотя бы один раз, поскольку мы выполняем 
+ <a href="threejs-rendering-on-demand.html">рендеринг по требованию</a>.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-slow.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-slow.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Если вы попытаетесь повернуть приведенный выше пример, перетащив образец, вы, вероятно, заметите, что он медленный. </p>
+<p>Мы можем проверить частоту кадров, <a href="threejs-debugging-javascript.html">открыв devtools</a> и включив индикатор частоты кадров браузера.</p>
+<div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
+
+<p>На моей машине я вижу частоту кадров ниже 20 кадров в секунду. </p>
+<div class="threejs_center"><img src="../resources/images/fps-meter.gif"></div>
+
+<p>Это не очень хорошо для меня, и я подозреваю, что многие люди имеют более медленные машины, которые сделали бы это еще хуже. Нам лучше взглянуть на оптимизацию. </p>
+<p>Для этой конкретной задачи мы можем объединить все блоки в одну геометрию. 
+В настоящее время мы рисуем около 19000 коробок. Объединяя их в одну геометрию, мы удалили 18999 операций. </p>
+<p>Вот новый код для объединения блоков в одну геометрию. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+-  // make one box geometry
+-  const boxWidth = 1;
+-  const boxHeight = 1;
+-  const boxDepth = 1;
+-  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+-  // make it so it scales away from the positive Z axis
+-  geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, 0.5));
+
+  // these helpers will make it easy to position the boxes
+  // We can rotate the lon helper on its Y axis to the longitude
+  const lonHelper = new THREE.Object3D();
+  scene.add(lonHelper);
+  // We rotate the latHelper on its X axis to the latitude
+  const latHelper = new THREE.Object3D();
+  lonHelper.add(latHelper);
+  // The position helper moves the object to the edge of the sphere
+  const positionHelper = new THREE.Object3D();
+  positionHelper.position.z = 1;
+  latHelper.add(positionHelper);
++  // Used to move the center of the box so it scales from the position Z axis
++  const originHelper = new THREE.Object3D();
++  originHelper.position.z = 0.5;
++  positionHelper.add(originHelper);
+
+  const lonFudge = Math.PI * .5;
+  const latFudge = Math.PI * -0.135;
++  const geometries = [];
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
+      if (value === undefined) {
+        return;
+      }
+      const amount = (value - min) / range;
+
+-      const material = new THREE.MeshBasicMaterial();
+-      const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
+-      const saturation = 1;
+-      const lightness = THREE.MathUtils.lerp(0.1, 1.0, amount);
+-      material.color.setHSL(hue, saturation, lightness);
+-      const mesh = new THREE.Mesh(geometry, material);
+-      scene.add(mesh);
+
++      const boxWidth = 1;
++      const boxHeight = 1;
++      const boxDepth = 1;
++      const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+
+      // adjust the helpers to point to the latitude and longitude
+      lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
+      latHelper.rotation.x = THREE.MathUtils.degToRad(latNdx + file.yllcorner) + latFudge;
+
+-      // use the world matrix of the position helper to
+-      // position this mesh.
+-      positionHelper.updateWorldMatrix(true, false);
+-      mesh.applyMatrix4(positionHelper.matrixWorld);
+-
+-      mesh.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
+
++      // use the world matrix of the origin helper to
++      // position this geometry
++      positionHelper.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
++      originHelper.updateWorldMatrix(true, false);
++      geometry.applyMatrix4(originHelper.matrixWorld);
++
++      geometries.push(geometry);
+    });
+  });
+
++  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
++      geometries, false);
++  const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
++  const mesh = new THREE.Mesh(mergedGeometry, material);
++  scene.add(mesh);
+
+}
+</code></pre>
+<p>Выше мы удалили код, который изменял центральную точку геометрии бокса,
+и вместо этого делаем это, добавляя <code class="notranslate" translate="no">originHelper</code>. Раньше мы использовали 
+одну и ту же геометрию 19000 раз. На этот раз мы создаем новую геометрию
+для каждого отдельного блока, и, поскольку мы будем использовать <code class="notranslate" translate="no">applyMatrix</code> 
+для перемещения вершин каждой геометрии блока, мы могли бы сделать это один раз, а не два. </p>
+<p>В конце мы передаем массив всех геометрий в <code class="notranslate" translate="no">BufferGeometryUtils.mergeBufferGeometries</code>, который объединит их все в одну сетку. </p>
+<p>Нам также нужно включить <code class="notranslate" translate="no">BufferGeometryUtils</code> </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r119/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+</code></pre>
+<p>И теперь, по крайней мере на моей машине, я получаю 60 кадров в секунду </p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Так что это сработало, но поскольку это одна сетка, мы получаем только один материал, 
+что означает, что мы получаем только один цвет, тогда как раньше у нас был другой цвет 
+на каждой коробке. Мы можем исправить это, используя цвета вершин. </p>
+<p>Цвета вершин добавляют цвет для каждой вершины. Установив все цвета каждой 
+вершины каждого блока на определенные цвета, каждый блок будет иметь другой цвет. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const color = new THREE.Color();
+
+const lonFudge = Math.PI * .5;
+const latFudge = Math.PI * -0.135;
+const geometries = [];
+data.forEach((row, latNdx) =&gt; {
+  row.forEach((value, lonNdx) =&gt; {
+    if (value === undefined) {
+      return;
+    }
+    const amount = (value - min) / range;
+
+    const boxWidth = 1;
+    const boxHeight = 1;
+    const boxDepth = 1;
+    const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+
+    // adjust the helpers to point to the latitude and longitude
+    lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
+    latHelper.rotation.x = THREE.MathUtils.degToRad(latNdx + file.yllcorner) + latFudge;
+
+    // use the world matrix of the origin helper to
+    // position this geometry
+    positionHelper.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
+    originHelper.updateWorldMatrix(true, false);
+    geometry.applyMatrix4(originHelper.matrixWorld);
+
++    // compute a color
++    const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
++    const saturation = 1;
++    const lightness = THREE.MathUtils.lerp(0.4, 1.0, amount);
++    color.setHSL(hue, saturation, lightness);
++    // get the colors as an array of values from 0 to 255
++    const rgb = color.toArray().map(v =&gt; v * 255);
++
++    // make an array to store colors for each vertex
++    const numVerts = geometry.getAttribute(&#39;position&#39;).count;
++    const itemSize = 3;  // r, g, b
++    const colors = new Uint8Array(itemSize * numVerts);
++
++    // copy the color into the colors array for each vertex
++    colors.forEach((v, ndx) =&gt; {
++      colors[ndx] = rgb[ndx % 3];
++    });
++
++    const normalized = true;
++    const colorAttrib = new THREE.BufferAttribute(colors, itemSize, normalized);
++    geometry.setAttribute(&#39;color&#39;, colorAttrib);
+
+    geometries.push(geometry);
+  });
+});
+</code></pre>
+<p>Приведенный выше код ищет количество или вершины, 
+необходимые для получения атрибута <code class="notranslate" translate="no">position</code> из геометрии. 
+Затем мы создаем <code class="notranslate" translate="no">Uint8Array</code> для размещения цветов.
+Затем он добавляет это как атрибут, вызывая <code class="notranslate" translate="no">geometry.setAttribute</code>. </p>
+<p>Наконец, нам нужно указать three.js использовать цвета вершин. </p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+    geometries, false);
+-const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
++const material = new THREE.MeshBasicMaterial({
++  vertexColors: THREE.VertexColors,
++});
+const mesh = new THREE.Mesh(mergedGeometry, material);
+scene.add(mesh);
+</code></pre>
+<p>И с этим мы получаем наши цвета обратно </p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged-vertexcolors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged-vertexcolors.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
+</div>
+
+</p>
+<p>Объединение геометрии является распространенным методом оптимизации.
+Например, вместо 100 деревьев вы можете объединить деревья в одну геометрию, 
+кучу отдельных камней в одну геометрию камней, частокол из отдельных пикетов в одну сетку. 
+Другой пример в Minecraft - он не рисует каждый куб по отдельности, а создает 
+группы объединенных кубов, а также выборочно удаляет грани, которые никогда не видны. </p>
+<p>Проблема создания всего одного меша состоит в том, что больше не легко перемещать какие-либо части, которые были ранее разделены.
+В зависимости от нашего варианта использования, хотя есть творческие решения. Мы рассмотрим одну в 
+<a href="threejs-optimize-lots-of-objects-animated.html">другой статье</a>.</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="resources/threejs-lots-of-objects.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +671,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>Введение</li>
+        <div id="toc">
+          <ul>  <li>Введение</li>
         <ul>
           <li><a href="/threejs/lessons/ru/threejs-fundamentals.html">Базовые принципы</a></li>
 <li><a href="/threejs/lessons/ru/threejs-responsive.html">Адаптивный дизайн</a></li>
@@ -216,7 +706,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>Optimization</li>
         <ul>
-          <li><a href="/threejs/lessons/ru/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+          <li><a href="/threejs/lessons/ru/threejs-optimize-lots-of-objects.html">Оптимизация большого количества объектов</a></li>
 <li><a href="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
 <li><a href="/threejs/lessons/ru/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
         </ul>
@@ -255,6 +745,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>Вопросы? <a href="http://stackoverflow.com/questions/tagged/three.js">Спросите на stackoverflow</a>.</div>
+        <div>Нашли ошибку? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Создайте issue на github</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Оптимизация большого количества объектов';
+            var disqus_title = 'Three.js Оптимизация большого количества объектов';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
