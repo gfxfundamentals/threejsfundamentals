@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/kr/threejs-canvas-textures.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,68 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Canvas Textures" />
+
+<meta name="description" content="캔버스를 Three.js 텍스처로 쓰는 방법을 알아봅니다" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-canvas-textures_ko.jpg" />
+
+<meta property="og:title" content="Three.js 캔버스 텍스처" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to use a canvas as a texture in Three.js" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-canvas-textures_ko.jpg" />
+<meta property="og:description" content="캔버스를 Three.js 텍스처로 쓰는 방법을 알아봅니다" />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Canvas Textures" />
+<meta name="twitter:title" content="Three.js 캔버스 텍스처" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html" />
-<meta name="twitter:description" content="How to use a canvas as a texture in Three.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="캔버스를 Three.js 텍스처로 쓰는 방법을 알아봅니다" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-canvas-textures_ko.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-canvas-textures_ko.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html",
+      "inLanguage":"ko",
+      "name":"Three.js 캔버스 텍스처",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
-<title>Three.js Canvas Textures</title>
+<title>Three.js 캔버스 텍스처</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css" />
+<link rel="stylesheet" href="/threejs/lessons/kr/lang.css" />
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -163,12 +207,354 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Canvas Textures</h1>
+    <h1>Three.js 캔버스 텍스처</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>아직 번역을 완료하지 못한 문서입니다. <a href="https://github.com/gfxfundamentals/threejsfundamentals">한국어 번역에 동참</a>해주세요! 😄</p>
-<p><a href="/threejs/lessons/threejs-canvas-textures.html">영문으로 볼래요</a>.</p>
+      <p>※ 이 글은 <a href="threejs-textures.html">텍스처에 관한 글</a>에서 이어집니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.</p>
+<p><a href="threejs-textures.html">이전 글</a>에서 텍스처를 다룰 때는 주로 이미지 파일로 텍스처를 만들었습니다. 하지만 경우에 따라서는 런타임에 텍스처를 만들어야 할 수도 있죠. <code class="notranslate" translate="no">CanvasTexture</code>를 사용하면 캔버스를 텍스처로 활용할 수 있습니다.</p>
+<p>캔버스 텍스처는 <code class="notranslate" translate="no">&lt;canvas&gt;</code> 요소를 인자로 받습니다. 2D 캔버스 API에 대해 잘 모른다면 <a href="https://developer.mozilla.org/ko/docs/Web/API/Canvas_API/Tutorial">MDN의 튜토리얼</a>을 참고하세요.</p>
+<p>간단한 2D 캔버스 앱을 만들어봅시다. 아래는 크기, 색, 위치 모두 무작위인 점을 반복해서 렌더링하는 예제입니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+document.body.appendChild(ctx.canvas);
+ctx.canvas.width = 256;
+ctx.canvas.height = 256;
+ctx.fillStyle = &#39;#FFF&#39;;
+ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+function randInt(min, max) {
+  if (max === undefined) {
+    max = min;
+    min = 0;
+  }
+  return Math.random() * (max - min) + min | 0;
+}
+
+function drawRandomDot() {
+  ctx.fillStyle = `#${ randInt(0x1000000).toString(16).padStart(6, &#39;0&#39;) }`;
+  ctx.beginPath();
+
+  const x = randInt(256);
+  const y = randInt(256);
+  const radius = randInt(10, 64);
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function render() {
+  drawRandomDot();
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fcanvas-random-dots.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../canvas-random-dots.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>이제 위 캔버스를 텍스처로 만들어봅시다. <a href="threejs-textures.html">이전 글</a>에서 정육면체에 텍스처를 입혔던 예제를 가져오겠습니다. 이미지를 불러오는 코드를 제거하고 대신 <code class="notranslate" translate="no">CanvasTexture</code>에 방금 만든 캔버스를 넘겨 인스턴스를 생성합니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cubes = [];  // 정육면체를 회전시키기 위한 배열입니다.
+-const loader = new THREE.TextureLoader();
+-
++const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
++ctx.canvas.width = 256;
++ctx.canvas.height = 256;
++ctx.fillStyle = &#39;#FFF&#39;;
++ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
++const texture = new THREE.CanvasTexture(ctx.canvas);
+
+const material = new THREE.MeshBasicMaterial({
+-  map: loader.load(&#39;resources/images/wall.jpg&#39;),
++  map: texture,
+});
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+cubes.push(cube);  // 정육면체 배열에 추가해 애니메이션이 적용되도록 합니다.
+</code></pre>
+<p>그리고 렌더링 루프에서 무작위 점을 찍도록 합니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
++  drawRandomDot();
++  texture.needsUpdate = true;
+
+  cubes.forEach((cube, ndx) =&gt; {
+    const speed = .2 + ndx * .1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>추가로 <code class="notranslate" translate="no">CanvasTexture</code>가 변경되었을 때 Three.js가 텍스처를 업데이트하도록 <code class="notranslate" translate="no">needsUpdate</code> 속성을 <code class="notranslate" translate="no">true</code>로 설정합니다.</p>
+<p>이제 정육면체에 캔버스 텍스처가 적용되었을 겁니다.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-cube.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>Three.js가 캔버스 텍스처를 렌더링할 때는 이전에 <a href="threejs-rendertargets.html">별도의 글</a>에서 설명했던 <code class="notranslate" translate="no">RenderTarget</code>을 쓰는 게 더 좋습니다.</p>
+<p>캔버스 텍스처는 주로 장면에 텍스트를 삽입할 때 사용합니다. 예를 들어 캐릭터의 명찰에 이름을 표기하는 경우 캔버스 텍스처를 명찰의 텍스처로 사용할 수 있겠죠.</p>
+<p>한 번 3명의 사람이 있는 장면을 만들어 각 사람에게 명찰을 달아봅시다.</p>
+<p>위 예제를 그대로 가져와 정육면체 관련 코드를 지웁니다. 배경은 하얀색으로 바꾸고 두 개의 <a href="threejs-lights.html">조명</a>을 넣습니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
++scene.background = new THREE.Color(&#39;white&#39;);
++
++function addLight(position) {
++  const color = 0xFFFFFF;
++  const intensity = 1;
++  const light = new THREE.DirectionalLight(color, intensity);
++  light.position.set(...position);
++  scene.add(light);
++  scene.add(light.target);
++}
++addLight([-3, 1, 1]);
++addLight([ 2, 1, .5]);
+</code></pre>
+<p>2D 캔버스를 이용해 명찰을 만드는 함수를 작성합니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function makeLabelCanvas(size, name) {
++  const borderSize = 2;
++  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
++  const font =  `${ size }px bold sans-serif`;
++  ctx.font = font;
++  // 이름의 길이를 예측합니다.
++  const doubleBorderSize = borderSize * 2;
++  const width = ctx.measureText(name).width + doubleBorderSize;
++  const height = size + doubleBorderSize;
++  ctx.canvas.width = width;
++  ctx.canvas.height = height;
++
++  // 캔버스 크기를 바꿨을 때 폰트를 다시 설정해줘야 합니다.
++  ctx.font = font;
++  ctx.textBaseline = &#39;top&#39;;
++
++  ctx.fillStyle = &#39;blue&#39;;
++  ctx.fillRect(0, 0, width, height);
++  ctx.fillStyle = &#39;white&#39;;
++  ctx.fillText(name, borderSize, borderSize);
++
++  return ctx.canvas;
++}
+</code></pre>
+<p>다음으로 원통이 몸, 구체가 머리, 평면이 명찰인 간단한 사람을 만들어야 합니다.</p>
+<p>먼저 공통으로 사용할 geometry를 만듭니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const bodyRadiusTop = .4;
++const bodyRadiusBottom = .2;
++const bodyHeight = 2;
++const bodyRadialSegments = 6;
++const bodyGeometry = new THREE.CylinderBufferGeometry(
++    bodyRadiusTop, bodyRadiusBottom, bodyHeight, bodyRadialSegments);
++
++const headRadius = bodyRadiusTop * 0.8;
++const headLonSegments = 12;
++const headLatSegments = 5;
++const headGeometry = new THREE.SphereBufferGeometry(
++    headRadius, headLonSegments, headLatSegments);
++
++const labelGeometry = new THREE.PlaneBufferGeometry(1, 1);
+</code></pre>
+<p>다음으로 이 geometry들을 이용해 사람을 만드는 함수를 만듭니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function makePerson(x, size, name, color) {
++  const canvas = makeLabelCanvas(size, name);
++  const texture = new THREE.CanvasTexture(canvas);
++  // 텍스처용 캔버스는 2D이므로 픽셀이 모자랑 경우 대략적으로
++  // 필터링하게끔 설정합니다.
++  texture.minFilter = THREE.LinearFilter;
++  texture.wrapS = THREE.ClampToEdgeWrapping;
++  texture.wrapT = THREE.ClampToEdgeWrapping;
++
++  const labelMaterial = new THREE.MeshBasicMaterial({
++    map: texture,
++    side: THREE.DoubleSide,
++    transparent: true,
++  });
++  const bodyMaterial = new THREE.MeshPhongMaterial({
++    color,
++    flatShading: true,
++  });
++
++  const root = new THREE.Object3D();
++  root.position.x = x;
++
++  const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
++  root.add(body);
++  body.position.y = bodyHeight / 2;
++
++  const head = new THREE.Mesh(headGeometry, bodyMaterial);
++  root.add(head);
++  head.position.y = bodyHeight + headRadius * 1.1;
++
++  const label = new THREE.Mesh(labelGeometry, labelMaterial);
++  root.add(label);
++  label.position.y = bodyHeight * 4 / 5;
++  label.position.z = bodyRadiusTop * 1.01;
++
++  // 명찰의 크기를 조정합니다.
++  const labelBaseScale = 0.01;
++  label.scale.x = canvas.width  * labelBaseScale;
++  label.scale.y = canvas.height * labelBaseScale;
++
++  scene.add(root);
++  return root;
++}
+</code></pre>
+<p>위 코드에서는 몸, 머리, 명찰을 하나의 <code class="notranslate" translate="no">Object3D</code>에 넣고 위치를 조정했습니다. 이러면 <code class="notranslate" translate="no">Object3D</code>만 움직여 해당 사람을 움직일 수 있겠죠. 몸은 2칸으로, 캔버스 사이즈가 픽셀 단위이고 거의 수십 픽셀이기에 여기에 0.01을 곱해 사이즈를 적당한 크기로 조정했습니다.</p>
+<p>이제 사람과 명찰을 만듭니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+makePerson(-3, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
++makePerson(-0, 32, &#39;Green Machine&#39;, &#39;green&#39;);
++makePerson(+3, 32, &#39;Red Menace&#39;, &#39;red&#39;);
+</code></pre>
+<p>마지막으로 <code class="notranslate" translate="no">OrbitControls</code>를 넣어 카메라를 움직일 수 있도록 합니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r115/build/three.module.js&#39;;
++import { OrbitControls } from &#39;./resources/threejs/r115/examples/jsm/controls/OrbitControls.js&#39;;
+</code></pre>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+const aspect = 2;  // 캔버스 기본값
+const near = 0.1;
+-const far = 5;
++const far = 50;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.set(0, 2, 5);
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 2, 0);
++controls.update();
+</code></pre>
+<p>사람 위에 간단한 명찰이 붙었습니다.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>나쁘지 않은 예제이지만 몇 가지 짚고 넘어가야 할 것들이 있습니다.</p>
+<ul>
+<li>명찰을 확대했을 때 해상도가 낮아 보인다.</li>
+</ul>
+<p>이 문제를 해결하는 건 생각보다 까다롭습니다. 고급 폰트 렌더링 기법이 있긴 하나 제가 아는 한 플러그인으로 구현되어 있진 않습니다. 거기다 폰트 데이터를 다운 받아야 하니 상대적으로 느리겠죠.</p>
+<p>다른 방법은 명찰의 해상도를 높이는 겁니다. 텍스처용 캔버스의 사이즈를 두 배로 설정하고 <code class="notranslate" translate="no">labelBaseScale</code>을 반으로 낮추면 지금과 같은 크기에 해상도만 높일 수 있겠죠.</p>
+<ul>
+<li>이름의 길이가 길수록 명찰도 길어진다.</li>
+</ul>
+<p>이 문제를 해결하려면 명찰 크기를 고정하고 텍스트를 우겨넣으면 됩니다.</p>
+<p>이건 상대적으로 구현하기 쉽습니다. 명찰의 넓이를 넘겨주고 텍스트의 스케일을 해당 넓이에 맞춰 조정하면 되죠.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function makeLabelCanvas(size, name) {
++function makeLabelCanvas(baseWidth, size, name) {
+  const borderSize = 2;
+  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  const font =  `${ size }px bold sans-serif`;
+  ctx.font = font;
+  // 이름의 길이를 예측합니다.
++  const textWidth = ctx.measureText(name).width;
+
+  const doubleBorderSize = borderSize * 2;
+-  const width = ctx.measureText(name).width + doubleBorderSize;
++  const width = baseWidth + doubleBorderSize;
+  const height = size + doubleBorderSize;
+  ctx.canvas.width = width;
+  ctx.canvas.height = height;
+
+  // 캔버스 크기를 바꿨을 때 폰트를 다시 설정해줘야 합니다.
+  ctx.font = font;
+-  ctx.textBaseline = &#39;top&#39;;
++  ctx.textBaseline = &#39;middle&#39;;
++  ctx.textAlign = &#39;center&#39;;
+
+  ctx.fillStyle = &#39;blue&#39;;
+  ctx.fillRect(0, 0, width, height);
+
++  // 명찰의 크기에 맞춰 조정하되 늘어나지 않도록 합니다.
++  const scaleFactor = Math.min(1, baseWidth / textWidth);
++  ctx.translate(width / 2, height / 2);
++  ctx.scale(scaleFactor, 1);
+  ctx.fillStyle = &#39;white&#39;;
+  ctx.fillText(name, borderSize, borderSize);
+
+  return ctx.canvas;
+}
+</code></pre>
+<p>사람을 만들 때 명찰의 넓이도 같이 받도록 바꿉니다.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function makePerson(x, size, name, color) {
+-  const canvas = makeLabelCanvas(size, name);
++function makePerson(x, labelWidth, size, name, color) {
++  const canvas = makeLabelCanvas(labelWidth, size, name);
+
+...
+
+}
+
+-makePerson(-3, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
+-makePerson(-0, 32, &#39;Green Machine&#39;, &#39;green&#39;);
+-makePerson(+3, 32, &#39;Red Menace&#39;, &#39;red&#39;);
++makePerson(-3, 150, 32, &#39;Purple People Eater&#39;, &#39;purple&#39;);
++makePerson(-0, 150, 32, &#39;Green Machine&#39;, &#39;green&#39;);
++makePerson(+3, 150, 32, &#39;Red Menace&#39;, &#39;red&#39;);
+</code></pre>
+<p>이제 명찰의 텍스트가 크기에 맞춰지고 가운데 정렬됩니다.</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels-scale-to-fit.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels-scale-to-fit.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>위 예제에서는 텍스처마다 캔버스를 따로 썼습니다. 텍스처마다 캔버스를 따로 쓸지는 여러분의 선택에 달렸습니다. 만약 캔버스를 자주 업데이트해야 한다면 텍스처마다 캔버스를 따로 두는 게 좋겠죠. 반대로 아예, 또는 가끔 업데이트할 거라면 하나의 캔버스를 돌려 쓰는 게 더 나을 겁니다. 명찰은 업데이트할 일이 없으니 위 코드를 고쳐 하나의 캔버스를 쓰도록 해보죠.</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+
+function makeLabelCanvas(baseWidth, size, name) {
+  const borderSize = 2;
+-  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  const font =  `${ size }px bold sans-serif`;
+
+  ...
+
+}
+
++const forceTextureInitialization = function() {
++  const material = new THREE.MeshBasicMaterial();
++  const geometry = new THREE.PlaneBufferGeometry();
++  const scene = new THREE.Scene();
++  scene.add(new THREE.Mesh(geometry, material));
++  const camera = new THREE.Camera();
++
++  return function forceTextureInitialization(texture) {
++    material.map = texture;
++    renderer.render(scene, camera);
++  };
++}();
+
+function makePerson(x, labelWidth, size, name, color) {
+  const canvas = makeLabelCanvas(labelWidth, size, name);
+  const texture = new THREE.CanvasTexture(canvas);
+  // 텍스처용 캔버스는 2D이므로 픽셀이 모자랑 경우 대략적으로
+  // 필터링하게끔 설정합니다.
+  texture.minFilter = THREE.LinearFilter;
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
++  forceTextureInitialization(texture);
+
+  ...
+</code></pre>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-canvas-textured-labels-one-canvas.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-canvas-textured-labels-one-canvas.html" target="_blank">새 탭에서 보기</a>
+</div>
+
+</p>
+<p>아직 언급하지 않은 다른 문제점이 있습니다. 카메라를 사람 뒤로 돌리면 명찰이 뒤집혀 보인다는 거죠. 만약 명찰을 배지 형태로 사용할 거라면 크게 문제될 일은 없습니다. 하지만 명찰을 3D 게임 캐릭터의 이름표로 사용할 거라면 이름표가 항상 카메라를 향해야 하겠죠. 이 방법에 대해서는 <a href="threejs-billboards.html">빌보드와 파사드</a>에서 다루겠습니다.</p>
+<p>단순히 이름표를 구현하는 경우라면 <a href="threejs-align-html-elements-to-3d.html">HTML을 이용한 방법</a>을 사용할 수도 있습니다. 다만 <a href="threejs-align-html-elements-to-3d.html">HTML 이름표</a>는 항상 3D 요소 위에 있죠. 예제의 명찰은 <em>3차원 세계 안</em>에 있기에 다른 물체에 의해 가려지길 원할 경우 유용합니다.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +568,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>Three.js란?</li>
+        <div id="toc">
+          <ul>  <li>Three.js란?</li>
         <ul>
           <li><a href="/threejs/lessons/kr/threejs-fundamentals.html">Three.js란?</a></li>
 <li><a href="/threejs/lessons/kr/threejs-responsive.html">반응형 디자인</a></li>
@@ -230,14 +617,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/kr/threejs-picking.html">물체를 마우스로 피킹하기</a></li>
 <li><a href="/threejs/lessons/kr/threejs-post-processing.html">후처리</a></li>
 <li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">LUT 파일로 후처리 효과 적용하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
-<li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
-<li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
-<li><a href="/threejs/lessons/kr/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
-<li><a href="/threejs/lessons/kr/threejs-billboards.html">Billboards and Facades</a></li>
-<li><a href="/threejs/lessons/kr/threejs-cleanup.html">Freeing Resources</a></li>
-<li><a href="/threejs/lessons/kr/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-game.html">Start making a Game.</a></li>
+<li><a href="/threejs/lessons/kr/threejs-shadertoy.html">쉐이더토이 쉐이더 활용하기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">HTML 요소를 3D로 정렬하기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">피킹과 색상에 인덱스 텍스처 사용하기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-canvas-textures.html">캔버스로 동적 텍스처 만들기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-billboards.html">빌보드와 파사드</a></li>
+<li><a href="/threejs/lessons/kr/threejs-cleanup.html">메모리 해제하기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-voxel-geometry.html">복셀 Geometry(마인크래프트) 만들기</a></li>
+<li><a href="/threejs/lessons/kr/threejs-game.html">게임 만들기</a></li>
         </ul>
   <li>웹VR</li>
         <ul>
@@ -258,6 +645,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </ul>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>
+      <a href="http://stackoverflow.com/questions/tagged/three.js">Stackoverflow</a>
+      /
+      <a href="http://github.com/greggman/threefundamentals/issues">Github</a>
+    </div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 캔버스 텍스처';
+            var disqus_title = 'Three.js 캔버스 텍스처';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
