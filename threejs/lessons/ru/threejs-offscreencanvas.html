@@ -210,15 +210,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas"><code class="notranslate" translate="no">OffscreenCanvas</code></a></p>
-<ul>
-<li>это относительно новая функция браузера, которая в настоящее время доступна только в Chrome,
-но, очевидно, будет доступна и в других браузерах. <code class="notranslate" translate="no">OffscreenCanvas</code> позволяет веб-воркеру выполнять
-рендеринг на холст. Это способ переложить тяжелую работу, такую ​​как рендеринг сложной 3D-сцены, на веб-воркера, чтобы не замедлить скорость отклика браузера.
-Это также означает, что данные загружаются и анализируются в воркере, поэтому возможно меньше мусора во время загрузки страницы.</li>
-</ul>
+      <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas"><code class="notranslate" translate="no">OffscreenCanvas</code></a> - это относительно новая функция браузера, которая в настоящее время доступна только в Chrome,
+ но, очевидно, будет доступна и в других браузерах. <code class="notranslate" translate="no">OffscreenCanvas</code> позволяет веб-воркеру выполнять
+ рендеринг на холст. Это способ переложить тяжелую работу, такую ​​как рендеринг сложной 3D-сцены, на веб-воркера, чтобы не замедлить скорость отклика браузера.
+ Это также означает, что данные загружаются и анализируются в воркере, поэтому возможно меньше мусора во время загрузки страницы.</p>
 <p>Начать использовать его довольно просто. Давайте разберём пример 3 вращающихся кубов из  <a href="threejs-responsive.html">статьи об отзывчивости</a>.</p>
-<p>Обычно у рабочих есть свой код, разделенный в другой файл сценария. Для большинства примеров на этом сайте скрипты встроены в HTML-файл страницы, на которой они находятся.</p>
+<p>Обычно у воркера есть свой код, разделенный в другой файл сценария. Для большинства примеров на этом сайте скрипты встроены в HTML-файл страницы, на которой они находятся.</p>
 <p>В нашем случае мы создадим файл с именем <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> и скопируем в него весь JavaScript из <a href="threejs-responsive.html">адаптивного примера</a>. Затем мы внесем изменения, необходимые для его работы в воркере.</p>
 <p>Нам все еще нужен JavaScript в нашем HTML-файле. Первое, что нам нужно сделать там, это найти холст,
 а затем передать управление этим холстом за пределы экрана, вызвав <code class="notranslate" translate="no">canvas.transferControlToOffscreen</code>.</p>
@@ -229,7 +226,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   ...
 </code></pre>
 <p>Затем мы можем запустить наш воркер с  <code class="notranslate" translate="no">new Worker(pathToScript, {type: &#39;module&#39;})</code>.
-и передать ему закадровый объект.</p>
+и передать ему <code class="notranslate" translate="no">offscreen</code>.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
   const canvas = document.querySelector(&#39;#c&#39;);
   const offscreen = canvas.transferControlToOffscreen();
@@ -247,10 +244,10 @@ main();
 Эти объекты не будут клонированы. Вместо этого они будут перенесены и перестанут существовать на главной странице.
 Прекращение существования - это, вероятно, неправильное описание, скорее они кастрированы.
 Вместо клонирования можно передавать только определенные типы объектов.
-Они включают <code class="notranslate" translate="no">OffscreenCanvas</code>, поэтому после переноса закадрового объекта обратно на главную страницу он бесполезен.</p>
+Они включают <code class="notranslate" translate="no">OffscreenCanvas</code>, поэтому после переноса <code class="notranslate" translate="no">offscreen</code> обратно на главную страницу он бесполезен.</p>
 <p>Воркеры получают сообщения от своего обработчика сообщений <code class="notranslate" translate="no">onmessage</code>. Объект, 
 который мы передали в <code class="notranslate" translate="no">postMessage</code>, прибывает в объект <code class="notranslate" translate="no">event.data</code>, переданный 
-обработчику <code class="notranslate" translate="no">onmessage</code> на воркере. В приведенном выше коде объявляется `type: &#39;main&#39; в объекте, который он передает воркеру. Мы создадим обработчик, 
+обработчику <code class="notranslate" translate="no">onmessage</code> на воркере. В приведенном выше коде объявляется <code class="notranslate" translate="no">type: &#39;main&#39;</code> в объекте, который он передает воркеру. Мы создадим обработчик, 
 который на основе типа будет вызывать другую функцию в воркере. Затем мы можем добавлять функции по мере необходимости и легко вызывать их с главной страницы.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const handlers = {
   main,
@@ -411,7 +408,7 @@ worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 </li>
 </ol>
 <p><code class="notranslate" translate="no">shared-cubes.js</code> и <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> по сути являются разделением нашего 
-предыдущего файла <code class="notranslate" translate="no">offscreencanvas-cubes.js</code>. Мы переименовали main в init, поскольку у нас уже есть main в нашем HTML-файле.</p>
+предыдущего файла <code class="notranslate" translate="no">offscreencanvas-cubes.js</code>. Сначала мы копируем весь файл <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> в <code class="notranslate" translate="no">shared-cube.js</code>. Затем мы переименовываем <code class="notranslate" translate="no">main</code> в <code class="notranslate" translate="no">init</code>, так как у нас уже есть <code class="notranslate" translate="no">main</code> в нашем HTML-файле, и нам нужно экспортировать <code class="notranslate" translate="no">init</code> и состояние</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
 
 -const state = {
@@ -471,7 +468,7 @@ self.onmessage = function(e) {
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 +import {init, state} from &#39;./shared-cubes.js&#39;;
 </code></pre>
-<p>We can remove the HTML and CSS we added previously</p>
+<p>Мы можем удалить HTML и CSS, которые мы добавили ранее</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 -  &lt;div id=&quot;noOffscreenCanvas&quot; style=&quot;display:none;&quot;&gt;
@@ -479,7 +476,7 @@ self.onmessage = function(e) {
 -  &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
-<p>and some CSS for that</p>
+<p>и немного CSS для этого</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-css">-#noOffscreenCanvas {
 -    display: flex;
 -    width: 100vw;
