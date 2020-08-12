@@ -290,11 +290,7 @@ files</p>
   });
   // make a copy of baseFile and replace min, max, and data
   // with the new data
-  return Object.assign({}, baseFile, {
-    min,
-    max,
-    data,
-  });
+  return {...baseFile, min, max, data};
 }
 </code></pre>
 <p>The code above uses <code class="notranslate" translate="no">mapValues</code> to generate a new set of data that is

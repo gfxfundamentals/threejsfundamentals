@@ -269,11 +269,7 @@ loadAll();
       return value;
   });
   // baseFile을 복사한 뒤 min, max, data를 새 값으로 교체합니다.
-  return Object.assign({}, baseFile, {
-    min,
-    max,
-    data,
-  });
+  return {...baseFile, min, max, data};
 }
 </code></pre>
 <p>위 함수는 <code class="notranslate" translate="no">mapValues</code> 안에서 넘겨받은 <code class="notranslate" translate="no">compareFn</code>으로 값을 비교해 새로운 데이터 그룹을 만듭니다. 또한 값의 <code class="notranslate" translate="no">min</code>, <code class="notranslate" translate="no">max</code>를 계속 추적해 <code class="notranslate" translate="no">baseFile</code>을 기반으로 <code class="notranslate" translate="no">min</code>, <code class="notranslate" translate="no">max</code>, <code class="notranslate" translate="no">data</code> 속성을 교체한 새로운 파일을 만듭니다.</p>
