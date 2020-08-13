@@ -390,10 +390,12 @@ be specified using standard CSS style 6 digit hex color values.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </code></pre>
 <p>We then create a <code class="notranslate" translate="no">Mesh</code>. A <code class="notranslate" translate="no">Mesh</code> in three represents the combination
-of a <code class="notranslate" translate="no">Geometry</code> (the shape of the object) and a <code class="notranslate" translate="no">Material</code> (how to draw
-the object, shiny or flat, what color, what texture(s) to apply. Etc.)
-as well as the position, orientation, and scale of that
-object in the scene.</p>
+of a three things</p>
+<ol>
+<li>A <code class="notranslate" translate="no">Geometry</code> (the shape of the object)</li>
+<li>A <code class="notranslate" translate="no">Material</code> (how to draw the object, shiny or flat, what color, what texture(s) to apply. Etc.)</li>
+<li>The position, orientation, and scale of that object in the scene relative to its parent. In the code below that parent is the scene.</li>
+</ol>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
 </code></pre>
 <p>And finally we add that mesh to the scene</p>
