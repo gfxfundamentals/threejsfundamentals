@@ -318,23 +318,23 @@ const height = dims.height;
 <p>new code</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const {width, height} = dims;
 </code></pre>
-<p>Destructuring works with arrays too. Assume an array <code class="notranslate" translate="no">const position = [1, 2, 3, 4]</code>;</p>
+<p>Destructuring works with arrays too. Assume an array <code class="notranslate" translate="no">const position = [5, 6, 7, 1]</code>;</p>
 <p>old code</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const x = position[2]; // 3
-const y = position[1]; // 2
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const y = position[1];
+const z = position[2];
 </code></pre>
 <p>new code</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const [, y, x] = position; // x = 3, y = 2
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const [, y, z] = position;
 </code></pre>
 <p>Destructuring also works in function arguments</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const dims = {width: 300, height: 150};
-const position = [1, 2, 3, 4];
+const vector = [3, 4];
 
-function distFromOrig([x, y]) {
+function lengthOfVector([x, y]) {
   return Math.sqrt(x * x + y * y);
 }
 
-const dist = distFromOrig(position);  // dist = 2.236...
+const dist = lengthOfVector(vector);  // dist = 5
 
 function area({width, height}) {
   return width * height;
