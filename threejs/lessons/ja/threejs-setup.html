@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-setup.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,67 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Setup" />
+
+<meta name="description" content="three.jsの開発環境のセットアップ方法" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg" />
+
+<meta property="og:title" content="Three.jsのセットアップ" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to setup your development environment for three.js" />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg" />
+<meta property="og:description" content="three.jsの開発環境のセットアップ方法" />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Setup" />
+<meta name="twitter:title" content="Three.jsのセットアップ" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html" />
-<meta name="twitter:description" content="How to setup your development environment for three.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="three.jsの開発環境のセットアップ方法" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのセットアップ",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
-<title>Three.js Setup</title>
+<title>Three.jsのセットアップ</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css" />
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -163,12 +206,46 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Setup</h1>
+    <h1>Three.jsのセットアップ</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-setup.html">ここに元の英語の記事があります</a>.</p>
+      <p>これはthree.jsシリーズの記事の1つです。
+最初の記事は<a href="threejs-fundamentals.html">Three.jsの基礎知識</a>でした。
+まだ読んでない人はそこから読んでみるといいかもしれません。</p>
+<p>先に進む前に開発環境のセットアップの話をする必要があります。特にセキュリティ上の理由から、WebGLはハードディスクから直接画像を扱う事ができません。開発をするためにはWebサーバーを利用する必要があります。幸運な事に開発用のWebサーバーをセットアップし利用する事は非常に簡単です。</p>
+<p>まず最初にこのサイト全体を<a href="https://github.com/gfxfundamentals/threejsfundamentals/archive/gh-pages.zip">このリンク</a>からダウンロードする事ができます。
+ダウンロードしたらzipファイルをダブルクリックで解凍して下さい。</p>
+<p>次にシンプルなWebサーバーの1つをダウンロードします。
+ユーザーインターフェースのあるWebサーバーをお望みなら<a href="https://greggman.github.io/servez">Servez</a>があります。</p>
+<p><div class="threejs_image border">
+  <img class="" src="/threejs/lessons/resources/servez.gif">
+</div>
+
+</p>
+<p>ファイルを解凍してフォルダを指定し、&quot;Start&quot;をクリックしてからブラウザで<a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a>を表示するか、またはサンプルを閲覧したい場合は<a href="http://localhost:8080/threejs"><code class="notranslate" translate="no">http://localhost:8080/threejs</code></a>にアクセスして下さい。</p>
+<p>Servezのサービスを停止するにはstopを選ぶか、Servezを終了します。</p>
+<p>コマンドラインが好きな方は（私はそうしてる）、別の方法として<a href="https://nodejs.org">node.js</a>を使う事もできます。</p>
+<p>ダウンロードしてインストールし、コマンドプロンプト / コンソール / ターミナルウィンドウを開きます。WindowsのNode.jsインストーラーで追加した場合、&quot;Node Command Prompt&quot;を選択する必要があります。</p>
+<p><a href="https://github.com/greggman/servez-cli"><code class="notranslate" translate="no">servez</code></a>をインストールするには、次のように入力します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">npm -g install servez
+</code></pre><p>もしMacを使ってる場合は以下を入力します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">sudo npm -g install servez
+</code></pre><p>次に以下を入力します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">servez path/to/folder/where/you/unzipped/files
+</code></pre><p>または、私と同じであれば以下を入力します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">cd path/to/folder/where/you/unzipped/files
+servez
+</code></pre><p>そして、以下のように表示されるはずです。</p>
+<p><div class="threejs_image ">
+  <img class="" src="/threejs/lessons/resources/servez-response.png">
+</div>
+
+</p>
+<p>ブラウザで<a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a>にアクセスして下さい。</p>
+<p>もしパスを指定しなかった場合、servezは現在のフォルダをserveします。</p>
+<p>これらのオプションが好きでない場合、<a href="https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver">他にもたくさんのシンプルなサーバーがあります</a>。</p>
+<p>これでサーバーのセットアップが完了したので<a href="threejs-textures.html">テクスチャ</a>のページに移動しましょう。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,12 +259,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
-          <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">Fundamentals</a></li>
-<li><a href="/threejs/lessons/ja/threejs-responsive.html">Responsive Design</a></li>
-<li><a href="/threejs/lessons/ja/threejs-prerequisites.html">Prerequisites</a></li>
-<li><a href="/threejs/lessons/ja/threejs-setup.html">Setup</a></li>
+          <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
+<li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
+<li><a href="/threejs/lessons/ja/threejs-prerequisites.html">前提条件</a></li>
+<li><a href="/threejs/lessons/ja/threejs-setup.html">セットアップ</a></li>
         </ul>
   <li>基礎</li>
         <ul>
@@ -255,6 +333,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのセットアップ';
+            var disqus_title = 'Three.jsのセットアップ';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>

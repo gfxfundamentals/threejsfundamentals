@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-responsive.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,24 +36,67 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Responsive Design" />
+
+<meta name="description" content="異なるディスプレイサイズにThree.jsを適用させる方法" />
+<meta name="keywords" content="webgl graphics three.js" />
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_ja.jpg" />
+
+<meta property="og:title" content="Three.jsのレスポンシブデザイン" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to make your three.js fit different sized displays." />
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_ja.jpg" />
+<meta property="og:description" content="異なるディスプレイサイズにThree.jsを適用させる方法" />
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@greggman" />
 <meta name="twitter:creator" content="@greggman" />
 <meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Responsive Design" />
+<meta name="twitter:title" content="Three.jsのレスポンシブデザイン" />
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html" />
-<meta name="twitter:description" content="How to make your three.js fit different sized displays." />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:description" content="異なるディスプレイサイズにThree.jsを適用させる方法" />
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_ja.jpg" />
 
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのレスポンシブデザイン",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
-<title>Three.js Responsive Design</title>
+<title>Three.jsのレスポンシブデザイン</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css" />
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
 </head>
 <body>
@@ -163,12 +206,174 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Responsive Design</h1>
+    <h1>Three.jsのレスポンシブデザイン</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-responsive.html">ここに元の英語の記事があります</a>.</p>
+      <p>これはthree.jsシリーズの2番目の記事です。
+最初の記事は <a href="threejs-fundamentals.html">Three.jsの基礎知識</a> でした。
+まだ読んでいない場合はそこから始めて下さい。</p>
+<p>この記事はthree.jsアプリをどんな状況にもレスポンシブにする方法を説明します。
+一般的なレスポンシブ対応のWebページはデスクトップやタブレット、スマートフォンなど異なったディスプレイサイズに対応します。</p>
+<p>three.jsの場合、さらに考慮すべき状況があります。例えば3Dエディターで左・右・上・下に何かを制御したい場合です。このドキュメントの真ん中にあるコードが一つの例です。
+最後のサンプルコードはCSSでサイズ指定なしのcanvasを使ってます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>このcanvasのデフォルトサイズは300 x 150です。
+Web上ではCSSでサイズ指定する事が推奨されています。
+CSSを追加しcanvasをWebページ一杯にしましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;style&gt;
+html, body {
+   margin: 0;
+   height: 100%;
+}
+#c {
+   width: 100%;
+   height: 100%;
+   display: block;
+}
+&lt;/style&gt;
+</code></pre>
+<p>bodyのmarginはデフォルトで5ピクセルのためマージンを0にします。
+htmlとbodyの高さは100%にしウィンドウ一杯に設定します。
+そうしないとhtmlとbodyはbody内のコンテンツと同じぐらいのサイズにしかなりません。</p>
+<p>次にbodyのコンテナーである <code class="notranslate" translate="no">id=c</code> のelementが100%のサイズになるようにします。</p>
+<p>最後にそのコンテナーの <code class="notranslate" translate="no">display</code> を <code class="notranslate" translate="no">block</code> に設定します。canvasのdisplayのデフォルトは <code class="notranslate" translate="no">inline</code> です。インライン要素は表示されているものに空白を追加してしまう事があります。このような場合はcanvasを <code class="notranslate" translate="no">block</code> に設定するとこの問題は解消されます。</p>
+<p>その結果がこちらにあります。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-no-resize.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-no-resize.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>canvasがページを埋め尽くすようになりましたが、2つ問題があります。
+1つはキューブが伸びています。キューブは立方体でなく箱のようなものです。高すぎて広がりすぎています。サンプルを開いてブラウザのウィンドウサイズをリサイズすると、キューブが伸びていて高すぎるのがわかります。</p>
+<p><img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg"></p>
+<p>2つ目の問題は解像度が低い、または濃淡にムラがありぼやけて見える事です。ウィンドウを大きく引き伸ばすとこの問題がわかります。</p>
+<p><img src="../resources/images/resize-low-res.png" class="threejs_center nobg"></p>
+<p>まず引き伸びている問題を解決しましょう。そのためにはカメラのアスペクトをcanvasの表示サイズのアスペクトに設定する必要があります。canvasの <code class="notranslate" translate="no">clientWidth</code> と <code class="notranslate" translate="no">clientHeight</code> を参照する事で設定を行う事ができます。</p>
+<p>レンダーのループ処理を次のように更新します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
++  const canvas = renderer.domElement;
++  camera.aspect = canvas.clientWidth / canvas.clientHeight;
++  camera.updateProjectionMatrix();
+
+  ...
+</code></pre>
+<p>これでキューブが歪むのを止められます。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-update-camera.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-update-camera.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>サンプルを別ウィンドウで開きウィンドウのサイズを変更すると、キューブが縦にも横にも伸びていない事がわかるはずです。ウィンドウの大きさに関係なく、正しいアスペクトを保っています。</p>
+<p><img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg"></p>
+<p>次はブロックノイズを修正していきましょう。</p>
+<p>キャンバス要素には2つのサイズがあります。1つ目のサイズは、キャンバスがページに表示されるサイズです。それはCSSで設定しています。2つ目のサイズはキャンバス自体のピクセル数です。これは画像と何ら変わりありません。
+例えば、128 x 64ピクセルの画像を持っていて、CSSを使って400 x 200ピクセルで表示する事ができるかもしれません。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;img src=&quot;some128x64image.jpg&quot; style=&quot;width:400px; height:200px&quot;&gt;
+</code></pre>
+<p>キャンバス内部のサイズ、その解像度は描画バッファサイズと呼ばれます。
+three.jsでは <code class="notranslate" translate="no">renderer.setSize</code> を呼び出す事でキャンバスの描画バッファサイズを設定する事ができます。
+どのサイズを選ぶべきでしょうか？一番わかりやすい答えは&quot;キャンバスが表示されているサイズと同じ&quot;です。
+もう一度キャンバスの <code class="notranslate" translate="no">clientWidth</code> と <code class="notranslate" translate="no">clientHeight</code> を見てみましょう。</p>
+<p>レンダラーのキャンバスが表示されているサイズになっていないかどうかを確認し、表示されている場合はサイズを設定する関数を書いてみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function resizeRendererToDisplaySize(renderer) {
+  const canvas = renderer.domElement;
+  const width = canvas.clientWidth;
+  const height = canvas.clientHeight;
+  const needResize = canvas.width !== width || canvas.height !== height;
+  if (needResize) {
+    renderer.setSize(width, height, false);
+  }
+  return needResize;
+}
+</code></pre>
+<p>キャンバスのサイズを変更する必要があるかどうかをチェックしています。キャンバスのサイズを変更する事は、キャンバスの仕様の興味深い部分であり、すでに必要なサイズになっている場合は同じサイズを設定しない方が良いでしょう。</p>
+<p>サイズを変更する必要があるかどうかわかったら、次に <code class="notranslate" translate="no">renderer.setSize</code> を呼び出して新しい幅と高さを渡します。最後に <code class="notranslate" translate="no">false</code> を渡す事が重要です。</p>
+<p>デフォルトでは <code class="notranslate" translate="no">render.setSize</code> はキャンバスのCSSサイズを設定しますが、これは私たちが望んでいるものではありません。ブラウザは他の全ての要素に対して、CSSを使用して要素の表示サイズを決定するという方法で動作し続けてほしいのです。3つの要素で使用されるキャンバスが他の要素と異なるのは避けたいのです。</p>
+<p>この関数はキャンバスのサイズが変更された場合、trueを返す事に注意して下さい。この関数を使って他にも更新すべき事があるかどうかをチェックする事ができます。この関数を使ってレンダーのループ処理を修正してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+  time *= 0.001;
+
++  if (resizeRendererToDisplaySize(renderer)) {
++    const canvas = renderer.domElement;
++    camera.aspect = canvas.clientWidth / canvas.clientHeight;
++    camera.updateProjectionMatrix();
++  }
+
+  ...
+</code></pre>
+<p>キャンバスの表示サイズが変更されて <code class="notranslate" translate="no">resizeRendererToDisplaySize</code> が <code class="notranslate" translate="no">true</code> を返した場合のみ、カメラのアスペクトを設定します。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>これでキャンバスの表示サイズに合った解像度でレンダリングされるようになりました。</p>
+<p>CSSにリサイズ処理を任せた場合のポイントを明確にするために、このコードを <a href="../../threejs-responsive.js">分離した <code class="notranslate" translate="no">.js</code> ファイル</a> に入れてみましょう。
+ここではCSSがサイズを選択するいくつかのサンプルがあります。
+それらが動作するようにゼロからコードを変更しなければならなかった事に気づくでしょう。</p>
+<p>文章の段落の真ん中にキューブを置いてみましょう。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-paragraph.html&startPane=html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-paragraph.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>エディタスタイルのレイアウトで右側のコントロールエリアのサイズを変更できるようにしたのと同じコードです。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-editor.html&startPane=html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-editor.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>注目すべき重要な部分はコードが変更されていない事です。HTMLとCSSだけが変更されました。</p>
+<h2 id="hd-dpi-">HD-DPIディスプレイの取り扱い</h2>
+<p>HD-DPIとは高解像度ディスプレイの略です。
+最近ではほとんどのスマートフォンと同じくらい、Macや多くのWindowsマシンで採用されています。</p>
+<p>ブラウザでの動作方法は、CSSを使用してディスプレイの高解像度に関係なく同じサイズを設定する事です。ブラウザはテキストをさらに詳細にレンダリングしますが、物理的なサイズは同じです。</p>
+<p>three.jsでHD-DPIを扱う方法は色々あります。</p>
+<p>1つ目の方法は特に何もしない事です。これは間違いなく最も一般的な方法です。3DグラフィックのレンダリングにはたくさんのGPUの処理パワーが必要です。モバイルのGPUは少なくとも2018年時点ではデスクトップよりも電力が少ないが、それでも携帯電話は非常に高解像度のディスプレイを搭載している事が多いです。現在の上位機種はHD-DPI比が3倍という事は、非HD-DPIディスプレイの1ピクセルごとに9ピクセルを持っている事を意味します。つまり、9倍のレンダリングをしなければならないという事です。</p>
+<p>9倍のピクセルを計算するのは大変な作業なので、コードをそのままにしておくと1倍のピクセルを計算して、ブラウザは3倍のサイズ(3x x 3x = 9xピクセル)で描画します。</p>
+<p>重いthree.jsアプリの場合はこれが必要でしょう。そうしないとフレームレートが遅くなる可能性があります。</p>
+<p>デバイスの解像度でレンダリングしたい場合、three.jsにはいくつかのデバイスを変更する方法があります。</p>
+<p>1つは <code class="notranslate" translate="no">renderer.setPixelRatio</code> でthree.jsに解像度の乗数を伝える事です。
+CSSピクセルからデバイスピクセルへの乗数をブラウザに伝え、それをthree.jsに渡します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> renderer.setPixelRatio(window.devicePixelRatio);
+</code></pre><p><code class="notranslate" translate="no">renderer.setSize</code> を呼び出し後、要求されたサイズに渡されたピクセル比を乗算したものが使用されます。<strong>これは強く非推奨です</strong>。以下を参照して下さい。</p>
+<p>もう1つの方法は、キャンバスのサイズを変更する時に自分で設定する事です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">    function resizeRendererToDisplaySize(renderer) {
+      const canvas = renderer.domElement;
+      const pixelRatio = window.devicePixelRatio;
+      const width  = canvas.clientWidth  * pixelRatio | 0;
+      const height = canvas.clientHeight * pixelRatio | 0;
+      const needResize = canvas.width !== width || canvas.height !== height;
+      if (needResize) {
+        renderer.setSize(width, height, false);
+      }
+      return needResize;
+    }
+</code></pre>
+<p>この2つ目の方法の方が客観的には優れています。なぜかと言うと私が求めるものを手に入れる事ができるからです。</p>
+<p>three.jsを使っていると実際のキャンバスの描画バッファのサイズを指定します。例えば、後処理フィルタを作成する場合などです。
+または <code class="notranslate" translate="no">gl_FragCoord</code> にアクセスするシェーダを作成している場合、あるいは2Dキャンバスに描画するためのスクリーンショット、またはGPUピッキング用のピクセルを読み込んだ場合などに使用する事ができます。</p>
+<p><code class="notranslate" translate="no">setPixelRatio</code> を使うと要求したサイズよりも実際のサイズが違ってしまう事が多々あります。いつ要求したサイズが使えるか、いつThree.jsの実際のサイズが使えるか推測しなければなりません。
+これを自分で行う事で使用されているサイズが要求したサイズである事を常に知る事ができます。
+裏で魔法がかかっているという特殊ケースではありません。</p>
+<p>上のコードを使った例です。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-hd-dpi.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-hd-dpi.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>違いがわかりにくいかもしれませんが、HD-DPIディスプレイをお持ちの方はこのサンプルを上のサンプルと比較してみて下さい。エッジがより鮮明になっている事がわかると思います。</p>
+<p>基礎な内容ですがこの記事ではとても基本的な所を取り上げました。次は<a href="threejs-primitives.html">three.jsが提供する基本的なプリミティブについて簡単に説明します。</a></p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,12 +387,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
-          <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">Fundamentals</a></li>
-<li><a href="/threejs/lessons/ja/threejs-responsive.html">Responsive Design</a></li>
-<li><a href="/threejs/lessons/ja/threejs-prerequisites.html">Prerequisites</a></li>
-<li><a href="/threejs/lessons/ja/threejs-setup.html">Setup</a></li>
+          <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
+<li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
+<li><a href="/threejs/lessons/ja/threejs-prerequisites.html">前提条件</a></li>
+<li><a href="/threejs/lessons/ja/threejs-setup.html">セットアップ</a></li>
         </ul>
   <li>基礎</li>
         <ul>
@@ -255,6 +461,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのレスポンシブデザイン';
+            var disqus_title = 'Three.jsのレスポンシブデザイン';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>

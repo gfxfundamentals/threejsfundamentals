@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three Fundamentals</title>
-    <updated>2020-08-10T18:11:00.000Z</updated>
+    <updated>2020-08-15T17:19:12.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -12,11 +12,35 @@
     <subtitle>Three.jsを学習する</subtitle>
     <logo>https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
     <entry>
+        <title type="html"><![CDATA[Three.jsのセットアップ]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html">
+        </link>
+        <updated>2020-08-15T17:19:12.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-08-15T17:19:12.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.jsのレスポンシブデザイン]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-responsive.html">
+        </link>
+        <updated>2020-08-15T17:18:54.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-08-15T17:18:54.000Z</published>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Three.js のプリミティブ]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-primitives.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-primitives.html">
         </link>
-        <updated>2020-08-10T18:11:00.000Z</updated>
+        <updated>2020-08-15T17:18:54.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -24,27 +48,27 @@
         <published>2020-08-08T15:12:08.000Z</published>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Three.jsの基礎]]></title>
+        <title type="html"><![CDATA[Three.jsの基礎知識]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-fundamentals.html">
         </link>
-        <updated>2020-08-09T12:30:13.000Z</updated>
+        <updated>2020-08-15T17:18:54.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.jsの前提条件]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-prerequisites.html">
         </link>
-        <updated>2020-08-09T12:30:13.000Z</updated>
+        <updated>2020-08-15T17:18:54.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
 </feed>

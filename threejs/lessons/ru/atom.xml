@@ -48,18 +48,6 @@
         <published>2020-08-07T07:34:19.000Z</published>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Three.js Советы]]></title>
-        <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-tips.html</id>
-        <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-tips.html">
-        </link>
-        <updated>2020-08-06T07:54:04.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>https://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2020-08-05T14:43:08.000Z</published>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Three.js - Камера]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html">
@@ -69,7 +57,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Пользовательская BufferGeometry]]></title>
@@ -81,7 +69,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Пользовательская Geometry]]></title>
@@ -93,31 +81,31 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Отладка Three.js - GLSL]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Отладка JavaScript]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-javascript.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-javascript.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Туман]]></title>
@@ -129,7 +117,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Основы Three.js]]></title>
@@ -141,7 +129,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Освещение]]></title>
@@ -153,7 +141,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Таблица характеристик материалов]]></title>
@@ -165,7 +153,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Материалы Three.js]]></title>
@@ -177,7 +165,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Несколько холстов и Несколько сцен]]></title>
@@ -189,7 +177,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Необходимые условия]]></title>
@@ -201,7 +189,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Примитивы Three.js]]></title>
@@ -213,7 +201,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Рендеринг по требованию]]></title>
@@ -225,67 +213,67 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Цели рендеринга]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-rendertargets.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-rendertargets.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Oтзывчивый Дизайн]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Граф сцены Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Настройка окружения Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Тени]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-shadows.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-shadows.html">
         </link>
-        <updated>2020-07-27T19:19:55.000Z</updated>
+        <updated>2020-08-05T14:43:08.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Текстуры]]></title>
@@ -297,6 +285,18 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-07-27T19:19:55.000Z</published>
+        <published>2020-08-05T14:43:08.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js Советы]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-tips.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-tips.html">
+        </link>
+        <updated>2020-08-06T07:54:04.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-08-05T14:43:08.000Z</published>
     </entry>
 </feed>
