@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-rendering-on-demand.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Rendering on Demand" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to use less energy." />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Rendering on Demand" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html" />
-<meta name="twitter:description" content="How to use less energy." />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="少ないエネルギーの使い方">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_ja.jpg">
+
+<meta property="og:title" content="Three.jsで要求されたレンダリング">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_ja.jpg">
+<meta property="og:description" content="少ないエネルギーの使い方">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsで要求されたレンダリング">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html">
+<meta name="twitter:description" content="少ないエネルギーの使い方">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">
 
 
-<title>Three.js Rendering on Demand</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html",
+      "inLanguage":"ja",
+      "name":"Three.jsで要求されたレンダリング",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsで要求されたレンダリング</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,12 +216,183 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Rendering on Demand</h1>
+    <h1>Three.jsで要求されたレンダリング</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-rendering-on-demand.html">ここに元の英語の記事があります</a>.</p>
+      <p>多くの人にとって当然かもしれませんが、ほとんどのThree.js exampleでは連続したレンダリングをします。
+言い換えると <code class="notranslate" translate="no">requestAnimationFrame</code> ループ、または&quot;<em>rAF loop</em>&quot;ループは以下のようになります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+  ...
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</code></pre>
+<p>アニメーションする時は意味がありますがしない時はどうでしょう？
+連続したレンダリングはデバイスの電力浪費になり、ポータブルデバイスを使用している場合はバッテリーを浪費します。</p>
+<p>これを解決する最も明確な方法は、最初に一度レンダリングして何か変更された時だけレンダリングする事です。
+変更にはテクスチャやモデルの読込完了、外部ソースからのデータ受取、ユーザーによる設定やカメラ調整などその他の関連する入力などが含まれます。</p>
+<p><a href="threejs-responsive.html">レスポンシブデザインの記事</a>を例に要求に応じてレンダリングするように修正してみましょう。</p>
+<p>最初に <code class="notranslate" translate="no">OrbitControls</code> を追加します。これで何かの変更を反映してレンダリングする事ができます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+</code></pre>
+<p>次に以下のように設定します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.z = 2;
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</code></pre>
+<p>cubesのアニメーションは必要がないのでトラッキングは必要はありません。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
+-];
++makeInstance(geometry, 0x44aa88,  0);
++makeInstance(geometry, 0x8844aa, -2);
++makeInstance(geometry, 0xaa8844,  2);
+</code></pre>
+<p>cubesをアニメーションさせるコードと <code class="notranslate" translate="no">requestAnimationFrame</code> の呼出を削除する事ができます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function render(time) {
+-  time *= 0.001;
++function render() {
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+-  cubes.forEach((cube, ndx) =&gt; {
+-    const speed = 1 + ndx * .1;
+-    const rot = time * speed;
+-    cube.rotation.x = rot;
+-    cube.rotation.y = rot;
+-  });
+
+  renderer.render(scene, camera);
+
+-  requestAnimationFrame(render);
+}
+
+-requestAnimationFrame(render);
+</code></pre>
+<p>そして、もう一度レンダリングする必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">render();
+</code></pre>
+<p><code class="notranslate" translate="no">OrbitControls</code> がカメラ設定を変更する時はレンダリングする必要があります。
+幸いな事に <code class="notranslate" translate="no">OrbitControls</code> は何か変更された時に <code class="notranslate" translate="no">change</code> イベントをdispatchします。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
+</code></pre>
+<p>ウィンドウのリサイズ時の対応も必要です。
+前は連続したレンダリングで自動的な処理でしたが、ウィンドウのリサイズ時にレンダリングする必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
+</code></pre>
+<p>これで要求されたらレンダリングする事ができます。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p><code class="notranslate" translate="no">OrbitControls</code> には慣性のようなものを追加して動きを滑らかにするオプションがあります。
+これを有効にするには <code class="notranslate" translate="no">enableDamping</code> プロパティをtrueに設定します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.enableDamping = true;
+</code></pre>
+<p><code class="notranslate" translate="no">enableDamping</code> をオンにした状態で、render関数内で <code class="notranslate" translate="no">controls.update</code> を呼び出す必要があります。
+これで動きを滑らかにする新しいカメラ設定を <code class="notranslate" translate="no">OrbitControls</code> に与えてくれます。
+この設定は動きを滑らかにしてくれますが、無限ループになってしまうので <code class="notranslate" translate="no">change</code> イベントから直接 <code class="notranslate" translate="no">render</code> を呼び出す事はできません。
+controlsは <code class="notranslate" translate="no">change</code> イベントを送信し <code class="notranslate" translate="no">render</code> を呼び出します。 <code class="notranslate" translate="no">render</code> は <code class="notranslate" translate="no">controls.update</code> を呼び出します。
+<code class="notranslate" translate="no">controltrols.update</code> は別の <code class="notranslate" translate="no">change</code> イベントを送信します。</p>
+<p>この問題は <code class="notranslate" translate="no">requestAnimationFrame</code> を使い <code class="notranslate" translate="no">render</code> を呼び出す事で解決できます。
+まだ新しいフレームが要求されていない場合、新しいフレームを要求するようにしなければなりません。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+let renderRequested = false;
+
+function render() {
++  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  renderer.render(scene, camera);
+}
+render();
+
++function requestRenderIfNotRequested() {
++  if (!renderRequested) {
++    renderRequested = true;
++    requestAnimationFrame(render);
++  }
++}
+
+-controls.addEventListener(&#39;change&#39;, render);
++controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
+</code></pre>
+<p>リサイズにも <code class="notranslate" translate="no">requestRenderIfNotRequested</code> を使うべきでしょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
++window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
+</code></pre>
+<p>違いがわかりにくいかもしれません。以下のサンプルで矢印キーを使って移動したりドラッグして回転させてみて下さい。
+次にこのページの一番上のサンプルで同じ事をしてみて下さい。
+一番上のサンプルでは矢印キーを押したりドラッグしたりするとスナップし、以下のサンプルではスライドします。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>シンプルなdat.GUIを追加し、GUIで値の変更時にレンダリングを要求してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
++import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
+</code></pre>
+<p>各キューブの色と×スケールを設定できるようにしましょう。
+色を設定するには<a href="threejs-lights.html">照明の記事</a>で作成した <code class="notranslate" translate="no">ColorGUIHelper</code> を使います。</p>
+<p>まずはGUIを作成する必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
+</code></pre>
+<p>次に各キューブに対してフォルダを作成し、2つのコントロールを追加します。
+1つは <code class="notranslate" translate="no">material.color</code>、もう1つは <code class="notranslate" translate="no">cube.scale.x</code>です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
++  const folder = gui.addFolder(`Cube${x}`);
++  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
++      .name(&#39;color&#39;)
++      .onChange(requestRenderIfNotRequested);
++  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
++      .name(&#39;scale x&#39;)
++      .onChange(requestRenderIfNotRequested);
++  folder.open();
+
+  return cube;
+}
+</code></pre>
+<p>dat.GUIには <code class="notranslate" translate="no">onChange</code> メソッドがあり、GUIで値を変更時にコールバックを渡す事ができます。今回は <code class="notranslate" translate="no">requestRenderIfNotRequested</code> をコールバックするだけです。
+<code class="notranslate" translate="no">folder.open</code> でフォルダ展開できます。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>three.jsを連続したレンダリングでなく、要求に応じてレンダリングさせる方法のヒントになれば幸いです。
+three.jsを要求に応じてレンダリングするアプリ/ページはあまり一般的ではありませんが、three.jsを使用しているページの多くはゲームや3Dアニメーション、エディタ、3Dグラフ生成、商品カタログなどのアートです。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +406,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -205,7 +430,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>Tips</li>
         <ul>
-          <li><a href="/threejs/lessons/ja/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+          <li><a href="/threejs/lessons/ja/threejs-rendering-on-demand.html">要求されたレンダリング</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-glsl.html">Debugging GLSL</a></li>
 <li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">Taking a screenshot</a></li>
@@ -255,6 +480,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsで要求されたレンダリング';
+            var disqus_title = 'Three.jsで要求されたレンダリング';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
