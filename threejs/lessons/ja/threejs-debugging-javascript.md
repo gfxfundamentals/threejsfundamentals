@@ -1,10 +1,10 @@
-Title: Three.jsにおけるJavaScriptのデバッグ
+Title: Three.jsでのJavaScriptデバッグ
 Description: THREE.jsでJavaScriptをデバッグする方法
 TOC: JavaScriptのデバッグ
 
-この記事のほとんどはTHREE.jsのデバッグというより、一般的なJavaScriptのデバッグについての記事です。THREE.jsを始めたばかりの人もJavaScriptを始めたばかりの人が多いので、問題解決の助けになればいいと思います。デバッグに関しては、時間をかけて学ぶ事を強くオススメします。
+この記事のほとんどはTHREE.jsのデバッグと言うより、一般的なJavaScriptのデバッグの内容です。THREE.js初心者にはJavaScript初心者も多いので、この記事を読んで困った時に簡単に解決できるようになると良いと思います。
 
-デバッグは大きなトピックでこの記事で全てをカバーできませんが、JavaScriptに慣れていない場合はいくつかのヒントを得られると思います。デバッグはあたなの学習を大いにサポートしてくれるでしょう。
+デバッグは大きなトピックであり、この記事で全てをカバーできませんが、JavaScriptに慣れていない場合はいくつかのヒントを得られると思います。デバッグに関しては、時間をかけて学ぶ事を強くお勧めします。デバッグはあなたの学習を大いに助けてくれます。
 
 ## ブラウザの開発者ツールを学ぶ
 
@@ -14,7 +14,7 @@ TOC: JavaScriptのデバッグ
 [Safari](https://developer.apple.com/safari/tools/), 
 [Edge](https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide).
 
-Chromeでは `⋮` アイコンをクリックし、その他のツール -> デベロッパー ツールを選択すると開発者ツールが表示されます。そこにはキーボードのショートカットも表示されています。
+Chromeでは `⋮` アイコンをクリックし、その他のツール -> デベロッパーツールを選択すると開発者ツールが表示されます。そこにはキーボードのショートカットも表示されています。
 
 <div class="threejs_center"><img class="border" src="resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
 
@@ -33,13 +33,13 @@ Safariでは詳細設定メニューから開発メニューを有効にする�
 [Chromeを使ってAndroidやタブレットでChrome上で実行されているウェブページをデバッグする事もできます](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/)。
 同様にSafariでは[iPhoneやiPadでSafari上で実行されているウェブページをPCでデバッグする事ができます](https://www.google.com/search?q=safari+remote+debugging+ios)。
 
-私はChromeを一番よく知ってるのでこのガイドではツールを参照する際にChromeを例にしますが、ほとんどのブラウザは似たような機能を持っているため、全てのブラウザで簡単に適用できるはずです。
+私はChromeを一番よく知ってるのでChromeを例にしますが、ほとんどのブラウザは似たような機能を持っているため、全てのブラウザで簡単に同じ機能を適用できるはずです。
 
 ## キャッシュをオフにする
 
-ブラウザはダウンロードしたデータを再利用しようとします。これはウェブサイトを2回目に訪れた場合、サイトを表示するためのファイルの多くは再びダウンロードされず、ユーザーにとって素晴らしい事です。
+ブラウザはダウンロードしたデータを再利用します。これはウェブサイトを2回目に訪れた際、サイトを表示するために必要な多くのファイルは再びダウンロードされず、ユーザーにとって素晴らしい事です。
 
-一方でこれはウェブ開発に悪い影響を与える可能性があります。PC上でファイル変更しリロードしても、前回ダウンロードしたバージョンを使用しているため変更内容が表示されません。
+一方でこれはウェブ開発に悪い影響を与える可能性があります。PC上でファイルを変更しリロードしても、前回ダウンロードしたバージョンを使用しているため変更内容が表示されません。
 
 ウェブ開発中の解決策の1つは、キャッシュをオフにする事です。これによりブラウザは常に最新バージョンのファイルを取得する事ができます。
 
@@ -73,7 +73,7 @@ Safariでは詳細設定メニューから開発メニューを有効にする�
 console.log(someObject.position.x, someObject.position.y, someObject.position.z);
 ```
 
-さらにクールな事に、オブジェクトのログを記録したり検査する事ができます。例えば[gLTFの記事](threejs-load-gltf.html)からルートシーンのオブジェクトをlogに表示できます。
+さらにクールな事にオブジェクトのログを記録したり検査する事ができます。例えば[gLTFの記事](threejs-load-gltf.html)からルートシーンのオブジェクトをログに表示できます。
 
 ```js
   {
@@ -90,9 +90,9 @@ console.log(someObject.position.x, someObject.position.y, someObject.position.z)
 
 スタックトレースを含む赤色メッセージを表示する場合は `console.error` を使う事ができます。
 
-## データを画面に載せる
+## データを画面に表示させる
 
-もう1つの分かりやすい方法は `<div>` や `<pre>` タグを追加してデータを入れる事です。
+もう1つの分かりやすい方法は `<div>` や `<pre>` を追加しデータを入れる事です。
 
 最も分かりやすい方法はいくつかのHTML要素を作成する事です。
 
@@ -139,7 +139,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 
 {{{example url="../threejs-debug-js-html-elements.html" }}}
 
-または、画面にデータを貼り付けるのにクリアロガーを作成する方法もあります。私はその言葉を作っただけですが、私が開発したゲームの多くはこの解決法を使っています。
+または画面にデータを貼り付けるのにクリアロガーを作成する方法もあります。私はその言葉を作っただけですが、私が手がけたゲームの多くはこの解決法を使っています。
 このアイデアは1フレーム分だけメッセージを表示するバッファを持つ事です。
 データを表示したいコードのどの部分でも、フレームごとにバッファにデータを追加する関数を呼び出します。これは上記のデータのピースごとに要素を作成するよりもはるかに少ない作業です。
 
@@ -152,7 +152,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 </div>
 ```
 
-そして、この*クリアバックバッファ*を管理するための簡単なクラスを作ってみましょう。
+この*クリアバックバッファ*を管理するための簡単なクラスを作ってみましょう。
 
 ```js
 class ClearingLogger {
@@ -201,7 +201,7 @@ function createThing() {
 canvas.addEventListener('click', createThing);
 ```
 
-作成したメッシュを移動させログに記録し、タイマーが切れたら削除するコードです。
+このコードは作成したメッシュを移動させログに記録し、タイマーが切れたら削除します。
 
 ```js
 const logger = new ClearingLogger(document.querySelector('#debug pre'));
@@ -241,7 +241,7 @@ function render(now) {
 }
 ```
 
-以下の例でマウスをクリックして下さい。
+以下のサンプルでマウスをクリックして下さい。
 
 {{{example url="../threejs-debug-js-clearing-logger.html" }}}
 
@@ -253,7 +253,7 @@ function render(now) {
 
 これを使用しオプション機能やパラメーターを渡す事ができます。
 
-例えば、先ほどの例では次のようにしています。デバッグ機能はURLに `?debug=true` を指定した場合にのみ表示されます。
+先ほどの例では次のようにしています。デバッグ機能はURLに `?debug=true` を指定した場合にのみ表示されます。
 
 まず、クエリストリングを解析するコードが必要です。
 
@@ -286,7 +286,7 @@ function getQuery() {
 </div>
 ```
 
-このコードの引数をみると `?debug=true` が渡されただけの場合にデバッグ情報の非表示にするのが分かります。
+このコードをみると `?debug=true` が渡された場合のみデバッグ情報を表示するのが分かります。
 
 ```js
 const query = getQuery();
@@ -308,19 +308,19 @@ class DummyLogger {
 }
 ```
 
-このURLを使用しているかどうかを確認する事ができます。
+以下のURLを使用して確認する事ができます。
 
 <a target="_blank" href="../threejs-debug-js-params.html">threejs-debug-js-params.html</a>
 
-デバッグ情報はありませんが、このURLを使用するとデバッグ情報が得られます。
+上記にはデバッグ情報はありません。
 
 <a target="_blank" href="../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a>
 
-これにはデバッグ情報があります。
+こちらにはデバッグ情報があります。
 
 複数のパラメーターは `somepage.html?someparam=somevalue&someotherparam=someothervalue` のように'&'で区切る事で渡せます。
 このようなパラメータを使用するとあらゆる種類のオプションを渡す事ができます。
-`speed=0.01` のようにアプリの速度を遅くしてわかりやすくしたり、`showHelpers=true` のように他のレッスンで見られる照明や影、カメラのフラスタムを表示するヘルパーを追加するかどうかを設定したりしてもいいかもしれません。
+`speed=0.01` のようにアプリの速度を遅くしてわかりやすくしたり、`showHelpers=true` のように他のレッスンで見られる照明や影、カメラの錐台を表示するヘルパーを追加してもいいかもしれません。
 
 ## デバッガの使い方を学ぶ
 
@@ -340,35 +340,35 @@ class DummyLogger {
 
 <div class="threejs_center"><img class="border" src="resources/images/nan-banana.png" style="width: 180px;"></div>
 
-何か開発中に画面に何も表示されない事がよくあるので、いくつかの値を確認し `NaN` が表示されたらすぐに探す場所ができます。
+何か開発中に画面に何も表示されない事がよくあるので、私は `NaN` が表示されたらその場所からすぐにいくつかの値を確認します。
 
-パスを最初に作り始めた例として[gLTFファイルの読込](threejs-load-gltf.html)の記事で、2次元曲線を作るSplineCurveクラスを使って曲線を作ってみました。
+例として最初に[gLTFファイルの読込](threejs-load-gltf.html)の記事でパスを作り始めた時に2次元曲線を作るSplineCurveクラスを使って曲線を作ってみました。
 
-そのカーブを利用してこんな風に車を動かしました。
+そのカーブを利用してこのように車を動かしました。
 
 ```js
 curve.getPointAt(zeroToOnePointOnCurve, car.position);
 ```
 
-内部的には `curve.getPointAt` は第二引数として渡されたオブジェクトに対して `set` 関数を呼び出します。この場合、第2引数は `car.position` であり、これは `Vector3` です。`Vector3` の `set` 関数は x, y, z の3つの引数を必要としますが、`SplineCurve` は2次元曲線なので、xとyだけを指定して `car.position.set` を呼び出します。
+内部的には `curve.getPointAt` は第2引数に渡されたオブジェクトに対して `set` 関数を呼び出します。この場合、第2引数は `car.position` であり、これは `Vector3` です。`Vector3` の `set` 関数はx, y, zの3つの引数を必要としますが、`SplineCurve` は2次元曲線なので、xとyだけを指定して `car.position.set` を呼び出します。
 
-その結果、`car.position.set` はxをxに、yをyに、zを `undefined` に設定します。
+その結果、`car.position.set` はxにx、yにy、zに `undefined` をセットします。
 
-デバッガで `matrixWorld` を見てみると `NaN` 値のが表示されています。
+デバッガで `matrixWorld` を見てみると `NaN` 値が表示されています。
 
 <div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
-行列を見ると `NaN` が含まれており、`position`, `rotation`, `scale`, または他の関数に影響を与える悪いデータがある事が見えます。これらの悪いデータから逆算すると、問題を追跡するのは簡単です。
+行列を見ると `NaN` が含まれており、`position`、 `rotation`、 `scale` または他の関数に悪い影響を与えるデータがあるのが見えます。これらの悪いデータから逆算すると問題を追跡するのは簡単です。
 
 `NaN` の上には `Infinity` もありますが、これはどこかに数学のバグがあるような気がします。
 
-## コードの中を見て!
+## コードの中を見て！
 
-THREE.jsはオープンソースです。コードの中を見る事を恐れないで下さい!
+THREE.jsはオープンソースです。コードの中を見る事を恐れないで下さい！
 [github](https://github.com/mrdoob/three.js)で内部コードを見れます。
-また、デバッガの関数を踏み込んで内部を見る事もできます。その際には、`three.min.js` でなく `three.js` を見るようにして下さい。`three.min.js` は、最小化・圧縮されたバージョンなので、ダウンロードする際のサイズが小さくなっています。`three.js` はサイズは大きいですが、デバッグしやすいバージョンです。私はよく `three.js` に切り替えて、コードをステップスルーを行い、何が起こっているのかを確認しています。
+また、デバッガの関数を踏み込んで内部を見る事もできます。その際には `three.min.js` でなく `three.js` を見るようにして下さい。`three.min.js` は最小化・圧縮されたバージョンなので、ダウンロードする際のサイズが小さくなっています。`three.js` はサイズは大きいですが、デバッグしやすいバージョンです。私はよく `three.js` に切り替えて、コードのステップスルーを行い、何が起こっているのかを確認しています。
 
-## render関数の下に `requestAnimationFrame` を配置する
+## `requestAnimationFrame` はrender関数の一番下へ
 
 以下のパターンはよく見かけます。
 
@@ -383,7 +383,7 @@ function render() {
 requestAnimationFrame(render);
 ```
 
-以下のように `requestAnimationFrame` の呼び出しを一番下に置く事をお勧めします。
+以下のように `requestAnimationFrame` を一番下に置く事をお勧めします。
 
 ```js
 function render() {
@@ -396,25 +396,25 @@ function render() {
 requestAnimationFrame(render);
 ```
 
-最大の理由は、エラーが発生した場合にあなたのコードが停止する事を意味します。
-`requestAnimationFrame`を先頭に置くのは、既に別のフレームを要求しているためにエラーが発生してもコードを実行し続ける事です。
-IMOを無視するよりも、それらのエラーを見つける方が良いでしょう。これらのエラーは、何かが期待したように表示されない原因になりやすいのですが、コードが停止しない限り、気がつかないかもしれません。
+最大の理由はエラーが発生した場合にコードが停止する事です。
+`requestAnimationFrame` を先頭に置くと、既に別のフレームを要求しているためにエラーが発生してもコードを実行し続けます。
+IMOを無視するよりも、それらのエラーを見つける方が良いでしょう。これらのエラーは何かが期待したように表示されない原因になりやすいのですが、コードが停止しない限り、気がつかないかもしれません。
 
-## 単位をチェックして下さい!
+## 単位をチェックして下さい！
 
-ここでは基本的な角度を使う時、ラジアンを使う時の例を知ってる必要があります。
-残念ながら、THREE.jsではどこでも同じ単位を使用している訳ではありません。
-頭のてっぺんからカメラの視野は度が入っています。その他の角度は全てラジアンで表示されます。
+角度やラジアンを使う時の例を知っておく必要があります。
+残念ながらTHREE.jsではどこでも同じ単位を使用している訳ではありません。
+すぐに思いつくのだとカメラの視野は度単位です。それ以外の角度は全てラジアン単位です。
 
-もう1つ注目したいのは、あなたの世界単位の大きさです。最近の3Dアプリでは好きな単位を選べるようになっています。あるアプリでは1単位＝1cmを選択する事があります。もう1つのアプリでは1台＝1フィートを選ぶかもしれません。特定の用途に合わせて好きな単位を選べるアプリはあります。つまり、three.jsは1単位＝1メートルを想定しています。
-これは、測定器を使用して照明効果を計算する物理ベースのレンダリングなどで重要です。
+もう1つ注目したいのは、世界単位のサイズです。最近の3Dアプリでは好きな単位を選べるようになっています。あるアプリでは1単位＝1cmを選択する事があります。もう1つのアプリでは1台＝1フィートを選ぶかもしれません。特定のアプリケーションでは必要なユニットを選択する事ができます。three.jsでは1単位＝1メートルを想定しています。
+これは測定器を使用して照明効果を計算する物理ベースのレンダリングなどで重要です。
 スマホがどこにあるか、VRコントローラーがどこにあるかなど、現実世界の単位を扱う必要があるARやVRにとっても重要です。
 
 ## スタックオーバーフローのための *最小で完全で検証可能なサンプルコード* の作成
 
-THREE.jsについて質問をする場合、MCVE（Minimal<最小>、Complete<完全>、Verifiable<検証可能>、Example<サンプル>の略）のコードを提供する事が求められます。
+THREE.jsの質問をする場合、MCVE（Minimal<最小>、Complete<完全>、Verifiable<検証可能>、Example<サンプル>の略）のコードを提供する事が求められます。
 
-**最小** の部分が重要です。[gLTF読込の記事](threejs-load-gltf.html)の最後のサンプルコードでパスの動きに問題があったとしましょう。そのサンプルには多くのパーツがあり、リストアップすると
+**最小**の部分が重要です。[gLTF読込の記事](threejs-load-gltf.html)の最後のサンプルコードでパスの動きに問題があったとしましょう。そのサンプルには多くのパーツがあり、リストアップすると
 
 1. HTMLの集まり
 2. いくつかのCSS
@@ -425,83 +425,51 @@ THREE.jsについて質問をする場合、MCVE（Minimal<最小>、Complete<�
 7. キャンバスのリサイズコード
 8. パスに沿って車を移動させるコード
 
-このコードはかなり大きいです。もし質問がパスの後に続く部分だけであれば、THREE.jsの `<canvas>` と `<script>` タグだけで済むので、ほとんどのHTMLを削除する事ができます。CSSとリサイズのコードを削除する事ができます。GLTFのコードもパスだけを気にしているので削除できます。`MeshBasicMaterial` を使用すると、ライトとシャドウも削除する事ができます。DAT.guiのコードも確実に削除できます。
+このコードはかなり大きいです。もし質問がパスの後に続く部分だけであれば、THREE.jsの `<canvas>` と `<script>` タグだけで済むので、ほとんどのHTMLを削除する事ができます。また、CSSとリサイズのコードを削除する事ができます。GLTFのコードもパスだけを気にしているので削除できます。`MeshBasicMaterial` を使用するとライトとシャドウも削除する事ができます。DAT.guiのコードも確実に削除できます。
 このコードはテクスチャ付きの地面を作ります。`GridHelper` を使った方が簡単です。
-最終的に、もし質問したい事がパス上での移動についてなら、ロードされた車モデルの代わりにパス上にキューブを使用する事ができます。
+最終的にもし質問したい事がパス上での移動についてなら、ロードされた車モデルの代わりにパス上にキューブを使用する事ができます。
 
 以上の事を考慮したミニマムなサンプルコードを紹介します。271行から135行に縮小しました。パスを単純化する事でさらに縮小する事も考られます。3,4点のパスは、21点のパスと同じように動作するかもしれません。
 
 {{{example url="../threejs-debugging-mcve.html" }}}
 
-I kept the `OrbitController` just because it's useful for others
-to move the camera and figure out what's going on but depending
-on your issue you might be able to remove that as well.
+`OrbitController` を残してるのはカメラを動かして何が起こっているのかを把握するのに便利だからですが、問題によってはこれも削除できるかもしれません。
 
-The best thing about making an MCVE is we'll often solve our own
-problem. The process of removing everything that's not needed and
-making the smallest example we can that reproduces the issue more
-often than not leads us to our bug.
+MCVEを作る上で一番良い点は、自分自身で解決する事が多いという事です。不要なものを取り除いて可能な限り小さなサンプルコードを作って問題を再現する事で、バグにたどり着く事が多いからです。
 
-On top of that it's respectful of all the people's time who you are
-asking to look at your code on Stack Overflow. By making the minimal
-example you make it much easier for them to help you. You'll also
-learn in the process.
+その上でStack Overflowで自分のコードを見てもらうのは、回答者の時間を尊重する事になります。最小限のサンプルを作る事で、誰かがあなたを助ける事がはるかに簡単になります。また、その過程で以下を学ぶ事ができます。
 
-Also important, when you go to Stack Overflow to post your question **put your
-code [in a snippet](https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/).**
-Of course you are welcome to use JSFiddle or Codepen or similar site to test out
-your MCVE but once you actually get to posting your question on Stack Overflow
-you're required to put the code to reproduce your issue **in the question itself**. 
-By making a snippet you satisfy that requirement.
+Stack Overflowに質問を投稿する際、**コードを[スニペット](https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/)**にする事が重要です。
+もちろん、MCVEを試すためにJSFiddleやCodepen、または同様のサイトを使用する事は歓迎しますが、実際にStack Overflowに質問を投稿するようになったら、**質問自体に**問題を再現するためのコードを記述する必要があります。
+スニペットを作る事でその条件を満たしています。
 
-Also note all the live examples on this site should run as snippets.
-Just copy the HTML, CSS, and JavaScript parts to their respective
-parts of the [snippet editor](https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/).
-Just remember to try to remove the parts that are not relevant to
-your issue and try to make your code the minimal amount needed.
+また、このサイト上の全てのライブサンプルはスニペットとして実行されるべきである事に注意して下さい。HTML、CSS、JavaScriptの部分を[スニペットエディタ](https://stackoverflow.blog/2014/09/16/introducing-runnable-javascript-css-and-html-code-snippets/)のそれぞれの部分にコピーするだけです。ただし、自分の問題に関係のない部分を削除し、必要最低限のコードにするのを忘れないようにして下さい。
 
-Follow these suggestions and you're far more likely to get help
-with your issue.
+これらに従えば、あなたの問題は助けを得る可能性がはるかに高くなります。
 
-## Use a `MeshBasicMaterial`
+## `MeshBasicMaterial` を使用する
 
-Because the `MeshBasicMaterial` uses no lights this is one way to 
-remove reasons something might not be showing up. If your objects
-show up using `MeshBasicMaterial` but not with whatever materials
-you were using then you know the issue is likely with the materials
-or the lights and not some other part of the code.
+`MeshBasicMaterial` はライトを使用しないので、何かが表示されない理由を取り除く1つの方法です。もしオブジェクトが `MeshBasicMaterial` を使用して表示されない場合は、コードの他の部分ではなくマテリアルやライトに問題がある可能性が高い事がわかります。
 
-## Check your `near` and `far` settings for your camera
+## カメラの `near` と `far` の設定を確認する
 
-A `PerspectiveCamera` has `near` and `far` settings which are covered in the
-[article on cameras](threejs-cameras.html). Make sure they are set to fit the
-space that contains your objects. Maybe even just **temporarily** set them to
-something large like `near` = 0.001 and `far` = 1000000. You will likely run
-into depth resolution issues but you'll at least be able to see your objects
-provided they are in front of the camera.
+`PerspectiveCamera` には `near` と `far` の設定があり、それは[カメラの記事](threejs-cameras.html) で説明しています。
+オブジェクトを含む空間に合わせて設定されている事を確認して下さい。
+例えば `near` = 0.001、`far` = 1000000のような大きな値に**一時的に**設定する事もできます。
+奥行き解像度の問題が発生する可能性がありますが、少なくともカメラの前にあるオブジェクトを見る事ができるようになります。
 
-## Check your scene is in front of the camera
+## カメラの前にシーンがある事を確認する
 
-Sometimes things don't appear because they are not in front of the camera. If
-your camera is not controllable try adding camera control like the
-`OrbitController` so you can look around and find your scene. Or, try framing
-the scene using code which is covered in [this article](threejs-load-obj.html).
-That code finds the size of part of the scene and then moves the camera and
-adjusts the `near` and `far` settings to make it visible. You can then look in
-the debugger or add some `console.log` messages to print the size and center of
-the scene.
+時にはカメラの前になく何も出てこない事もあります。カメラを制御できない場合は `OrbitController` のようなカメラコントロールを追加してみて下さい。
+あるいは[この記事](threejs-load-obj.html)で紹介されているコードを使ってシーンをフレーミングしてみて下さい。
+このコードはシーンの一部のサイズを見つけ、カメラを移動して `near` と `far` の設定を調整し、それが見えるようにします。
 
-## Put something in front of the camera
+## カメラの前に何かを置く
 
-This is just another way of saying if all else fails start with
-something that works and then slowly add stuff back in. If you get
-a screen with nothing on it then try putting something directly in
-front of the camera. Make a sphere or box, give it a simple material
-like the `MeshBasicMaterial` and make sure you can get that on the screen.
-Then start adding things back a little at time and testing. Eventually
-you'll either reproduce your bug or you'll find it on the way.
+これは全てに失敗した場合は、動作するものから始めてゆっくりと何かを追加していくという方法です。何もない画面が表示された場合は、直接カメラの前に何かを置いてみて下さい。
+球体や箱を作り `MeshBasicMaterial`のようなシンプルなマテリアルを与えて、それを画面上に表示できるようにします。
+その後、少しずつ追加してテストを開始します。最終的にはバグを再現するか、途中で発見するかのどちらかになります。
 
 ---
 
-These were a few tips for debugging JavaScript. Let's also go
-over [some tips for debugging GLSL](threejs-debugging-glsl.html).
+以上、JavaScriptのデバッグのヒントでした。[GLSLをデバッグするためのいくつかのヒント](threejs-debugging-glsl.html)も見てみましょう。
