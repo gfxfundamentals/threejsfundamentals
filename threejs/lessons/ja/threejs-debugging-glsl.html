@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-debugging-glsl.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Debugging Three.js - GLSL" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to debug GLSL Shaders" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Debugging Three.js - GLSL" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html" />
-<meta name="twitter:description" content="How to debug GLSL Shaders" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="GLSLシェーダーをデバッグする方法">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ja.jpg">
+
+<meta property="og:title" content="Three.jsでのGLSLデバッグ">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ja.jpg">
+<meta property="og:description" content="GLSLシェーダーをデバッグする方法">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsでのGLSLデバッグ">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html">
+<meta name="twitter:description" content="GLSLシェーダーをデバッグする方法">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-debugging-glsl.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-debugging-glsl.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-debugging-glsl.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-debugging-glsl.html">
 
 
-<title>Debugging Three.js - GLSL</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-debugging-glsl_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html",
+      "inLanguage":"ja",
+      "name":"Three.jsでのGLSLデバッグ",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-debugging-glsl.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsでのGLSLデバッグ</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,12 +216,64 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Debugging Three.js - GLSL</h1>
+    <h1>Three.jsでのGLSLデバッグ</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-debugging-glsl.html">ここに元の英語の記事があります</a>.</p>
+      <p>このサイトではJavaScriptについては教えてないと同様にGLSLについても教えていません。
+それは本当に大きなトピックです。GLSLを学びたいのであれば<a href="https://webglfundamentals.org">これらの記事</a>から始めてみて下さい。</p>
+<p>すでにGLSLを知っている場合はデバッグのヒントをいくつか紹介します。</p>
+<p>新しくGLSLシェーダーを作成し何も表示されない場合、一般的に最初にするのはフラグメントシェーダーでソリッドカラーに変更する事です。例えばシェーダーの一番下を以下のようにします。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">void main() {
+
+  ...
+
+  gl_FragColor = vec4(1, 0, 0, 1);  // red
+}
+</code></pre>
+<p>描画しようとしたオブジェクトが表示されれば、その問題がフラグメントシェーダーに関係している事がわかります。良くないテクスチャ、初期化がないuniform変数、間違った値を持つuniform変数の可能性がありますが、私には見るべきポイントがあります。</p>
+<p>いくつかをテストするために入力値を描画してみようと思います。
+例えばフラグメントシェーダーで法線を使用している場合は次のように追加します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
+</code></pre>
+<p>法線は-1から+1までなので、0.5を掛けて0.5を足すと0.0から1.0までの値が得られて色で判別できて便利です。</p>
+<p>動作すると知ってるコード変更をいくつか試してみて下さい。正常な<em>通常</em>の描画がどのように見えるか目に見えてわかるようになります。
+通常に見えない箇所があれば、どこを見て直せば良いかのヒントがあります。
+フラグメントシェーダーで法線を操作している場合、その操作の結果を描画するために同じテクニックが使えます。</p>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+
+<p>テクスチャを使用している場合も同様に、テクスチャ座標で以下のように描画できます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(fract(vUv), 0, 1);
+</code></pre>
+<p><code class="notranslate" translate="no">fract</code> は0から1の範囲外のテクスチャ座標を使用している場合に使用します。
+これは <code class="notranslate" translate="no">texture.repeat</code> が1よりも大きい値に設定されている場合によく見られます。</p>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+
+<p>フラグメントシェーダーの全ての値に対して同様の事ができます。
+その範囲を把握し、0.0から1.0にスケーリングし <code class="notranslate" translate="no">gl_FragColor</code> に設定するコードを追加します。</p>
+<p>テクスチャを確認するには <code class="notranslate" translate="no">CanvasTexture</code> や <code class="notranslate" translate="no">DataTexture</code> が動作するもので試してみて下さい。</p>
+<p>逆に言えば <code class="notranslate" translate="no">gl_FragColor</code> を赤に設定しても何も表示されない場合、問題は頂点シェーダーに関連したものにあるかもしれません。
+一部の行列が間違っていたり、attributesが間違ったデータを持っていたり、設定が間違っていたりする事があります。</p>
+<p>私ならまず行列を見ます。<code class="notranslate" translate="no">renderer.renderer.render(scene, camera)</code> の呼出直後にブレークポイントを設定し、インスペクタで展開を始めるかもしれません。
+カメラのワールド座標とプロジェクション座標は <code class="notranslate" translate="no">NaN</code> でいっぱいではないのか？
+シーンを展開し <code class="notranslate" translate="no">children</code> を見てみるとワールド座標が妥当に見えるか（ <code class="notranslate" translate="no">NaN</code> がない）、各行列の最後の4つの値がシーンにとって妥当に見えるかを確認します。
+シーンが50 x 50 x 50 x 50の単位であるはずが、いくつかの行列が552352623.123の場合は明らかに何かが間違っている事がわかります。</p>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
+
+<p>フラグメントシェーダーの時と同様に、頂点シェーダーの値をフラグメントシェーダーに渡すと頂点シェーダーから値を描画する事もできます。
+両方のシェーダーでvaryingを宣言し、正しい値なのかわからない値を渡します。
+実際にシェーダーが法線を使っている場合、値が0.0から1.0になるように <code class="notranslate" translate="no">vNormal</code> を値に設定し法線を表示するようにします。
+描画結果を見て予想通りか確認します。</p>
+<p>もう一つの良い点はよりシンプルなシェーダーを使う事です。
+<code class="notranslate" translate="no">MeshBasicMaterial</code> でデータを描画できますか？
+可能であれば試してみて期待通りに表示される事を確認して下さい。</p>
+<p>期待通りでない場合、ジオメトリをビジュアライズできる最もシンプルな頂点シェーダーは何でしょうか？
+通常は次のようなシンプルなものです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_Position = projection * modelView * vec4(position.xyz, 1);
+</code></pre>
+<p>それが動作する場合は一度に少しずつ変更を追加していきます。</p>
+<p>もう一つの方法は<a href="https://chrome.google.com/webstore/detail/shader-editor/ggeaidddejpbakgafapihjbgdlbbbpob?hl=en">Shader Editor extension for Chrome</a>を使うか、他のブラウザでは同様なものを使う事です。
+他のシェーダーがどのように動作してるか見る良い方法です。また、上記で記載してきたフラグメントシェーダーの変更を行うとライブで結果確認できるので良いです。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +287,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -207,7 +313,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-rendering-on-demand.html">要求されたレンダリング</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-javascript.html">JavaScriptのデバッグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-debugging-glsl.html">Debugging GLSL</a></li>
+<li><a href="/threejs/lessons/ja/threejs-debugging-glsl.html">GLSLのデバッグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">Taking a screenshot</a></li>
 <li><a href="/threejs/lessons/ja/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
 <li><a href="/threejs/lessons/ja/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
@@ -255,6 +361,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsでのGLSLデバッグ';
+            var disqus_title = 'Three.jsでのGLSLデバッグ';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
