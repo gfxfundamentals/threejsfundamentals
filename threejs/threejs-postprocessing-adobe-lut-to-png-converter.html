@@ -40,7 +40,7 @@ import {ShaderPass} from './resources/threejs/r119/examples/jsm/postprocessing/S
 
 function main() {
   const canvas = document.querySelector('#c');
-  const renderer = new THREE.WebGLRenderer({canvas});
+  const renderer = new THREE.WebGLRenderer({canvas, preserveDrawingBuffer: true});
 
   const makeIdentityLutTexture = function() {
     const identityLUT = new Uint8Array([
