@@ -591,10 +591,16 @@ import * as dragAndDrop from &#39;./resources/drag-and-drop.js&#39;;
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">dragAndDrop.setup({ msg: &#39;Drop LUT File here&#39; });
 dragAndDrop.onDropFile(readLUTFile);
 
+function ext(s) {
+  const period = s.lastIndexOf(&#39;.&#39;);
+  return s.substr(period + 1);
+}
+
 function readLUTFile(file) {
   const reader = new FileReader();
   reader.onload = (e) =&gt; {
-    const lut = lutParser.lutTo2D3Drgb8(lutParser.parse(e.target.result));
+    const type = ext(file.name);
+    const lut = lutParser.lutTo2D3Drgb8(lutParser.parse(e.target.result, type));
     const {size, data, name} = lut;
     const texture = new THREE.DataTexture(data, size * size, size, THREE.RGBFormat);
     texture.minFilter = THREE.LinearFilter;
