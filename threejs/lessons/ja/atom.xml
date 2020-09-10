@@ -96,18 +96,6 @@
         <published>2020-08-15T17:18:54.000Z</published>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Three.js のプリミティブ]]></title>
-        <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-primitives.html</id>
-        <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-primitives.html">
-        </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
-        <author>
-            <name>ThreeJSFundamentals Contributors</name>
-            <uri>https://threejsfundamentals.org/contributors.html</uri>
-        </author>
-        <published>2020-08-08T15:12:08.000Z</published>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Three.jsの基礎知識]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-fundamentals.html">
@@ -117,7 +105,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-08-08T10:25:36.000Z</published>
+        <published>2020-08-08T15:12:08.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.jsの前提条件]]></title>
@@ -129,6 +117,18 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-08-08T10:25:36.000Z</published>
+        <published>2020-08-08T15:12:08.000Z</published>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Three.js のプリミティブ]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-primitives.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-primitives.html">
+        </link>
+        <updated>2020-08-15T17:18:54.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-08-08T15:12:08.000Z</published>
     </entry>
 </feed>
