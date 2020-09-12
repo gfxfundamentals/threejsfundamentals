@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-tips.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Tips" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Small issues that might trip you up using three.js" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Tips" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html" />
-<meta name="twitter:description" content="Small issues that might trip you up using three.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="three.jsで躓くかもしれない小さな問題">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_ja.jpg">
+
+<meta property="og:title" content="Three.jsのTips">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_ja.jpg">
+<meta property="og:description" content="three.jsで躓くかもしれない小さな問題">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsのTips">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html">
+<meta name="twitter:description" content="three.jsで躓くかもしれない小さな問題">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-tips.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-tips.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-tips.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-tips.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-tips.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-tips.html">
 
 
-<title>Three.js Tips</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-tips_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのTips",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-tips.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsのTips</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,12 +216,312 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Tips</h1>
+    <h1>Three.jsのTips</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-tips.html">ここに元の英語の記事があります</a>.</p>
+      <p>この記事では個別の記事を持つには小さすぎるため、three.jsで遭遇するかもしれないいくつかの小さな問題をまとめています。</p>
+<hr>
+<p><a id="screenshot" data-toc="Taking a screenshot"></a></p>
+<h1 id="-">キャンバスのスクリーンショットを撮る</h1>
+<p>ブラウザではスクリーンショットを撮れる機能が2つあります。
+古いやり方は <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL"><code class="notranslate" translate="no">canvas.toDataURL</code></a>、新しいやり方は <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob"><code class="notranslate" translate="no">canvas.toBlob</code></a> です。</p>
+<p>以下のようなコードを追加するだけで簡単にスクリーンショットを撮れると思うはずです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++&lt;button id=&quot;screenshot&quot; type=&quot;button&quot;&gt;Save...&lt;/button&gt;
+</code></pre>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const elem = document.querySelector(&#39;#screenshot&#39;);
+elem.addEventListener(&#39;click&#39;, () =&gt; {
+  canvas.toBlob((blob) =&gt; {
+    saveBlob(blob, `screencapture-${canvas.width}x${canvas.height}.png`);
+  });
+});
+
+const saveBlob = (function() {
+  const a = document.createElement(&#39;a&#39;);
+  document.body.appendChild(a);
+  a.style.display = &#39;none&#39;;
+  return function saveData(blob, fileName) {
+     const url = window.URL.createObjectURL(blob);
+     a.href = url;
+     a.download = fileName;
+     a.click();
+  };
+}());
+</code></pre>
+<p>以下は<a href="threejs-responsive.html">レスポンシブデザインの記事</a>の例で、上記のコードにボタンを配置するためのCSSを追加したものです。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-screenshot-bad.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-screenshot-bad.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>試してみるとこのようなスクリーンショットが出てきました。</p>
+<div class="threejs_center"><img src="../resources/images/screencapture-413x313.png"></div>
+
+<p>はい、ただの黒い画像です。</p>
+<p>お使いのブラウザやOSによっては上手く撮れる事もありますが、一般的には上手く撮れない可能性が高いです。</p>
+<p>この問題はパフォーマンスと互換性の理由から、デフォルトではブラウザがWebGLキャンバスに描画後に描画バッファをクリアしてしまいます。</p>
+<p>解決策としてはキャプチャの直前にレンダリングのコードを呼び出す事です。</p>
+<p>このコードはいくつか調整する必要があります。最初にレンダリングのコードを分離してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const state = {
++  time: 0,
++};
+
+-function render(time) {
+-  time *= 0.001;
++function render() {
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  cubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+-    const rot = time * speed;
++    const rot = state.time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  renderer.render(scene, camera);
+
+-  requestAnimationFrame(render);
+}
+
++function animate(time) {
++  state.time = time * 0.001;
++
++  render();
++
++  requestAnimationFrame(animate);
++}
++requestAnimationFrame(animate);
+</code></pre>
+<p><code class="notranslate" translate="no">render</code> は実際にレンダリングする事だけに関係しており、キャンバスをキャプチャする直前に呼び出す事ができます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const elem = document.querySelector(&#39;#screenshot&#39;);
+elem.addEventListener(&#39;click&#39;, () =&gt; {
++  render();
+  canvas.toBlob((blob) =&gt; {
+    saveBlob(blob, `screencapture-${canvas.width}x${canvas.height}.png`);
+  });
+});
+</code></pre>
+<p>そして上手く機能するはずです。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-screenshot-good.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-screenshot-good.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>別の解決策については次の項目を参照して下さい。</p>
+<hr>
+<p><a id="preservedrawingbuffer" data-toc="Prevent the Canvas Being Cleared"></a></p>
+<h1 id="-">キャンバスのクリアを防ぐ</h1>
+<p>アニメーションオブジェクトを使って、ユーザーにお絵かきさせたいとしましょう。
+<code class="notranslate" translate="no">WebGLRenderer</code> 作成時に <code class="notranslate" translate="no">preserveDrawingBuffer: true</code> を渡す必要があります。
+これによりブラウザがキャンバスをクリアできなくなります。また、three.jsでもキャンバスをクリアしないようにする必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const canvas = document.querySelector(&#39;#c&#39;);
+-const renderer = new THREE.WebGLRenderer({canvas});
++const renderer = new THREE.WebGLRenderer({
++  canvas,
++  preserveDrawingBuffer: true,
++  alpha: true,
++});
++renderer.autoClearColor = false;
+</code></pre>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-preservedrawingbuffer.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-preservedrawingbuffer.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>もしお絵かきプログラムを作ろうとしているのであれば、解像度を変更するとブラウザはキャンバスをクリアしてしまうのでこれは解決策にはなりません。
+ディスプレイのサイズに応じて解像度を変えています。ウィンドウのサイズが変わると表示サイズも変わります。
+これにはユーザーが別のタブでファイルをダウンロードし、ブラウザがステータスバーを追加した場合も含まれます。
+また、ユーザーがスマートフォンを回転しブラウザが縦から横に切り替わった時も含まれます。</p>
+<p>お絵かきプログラムを作りたいのであれば、<a href="threejs-rendertargets.html">レンダーターゲットを使用してテクスチャにレンダリング</a>して下さい。</p>
+<hr>
+<p><a id="tabindex" data-toc="Get Keyboard Input From a Canvas"></a></p>
+<h1 id="-">キーボード入力を取得する</h1>
+<p>このチュートリアルではイベントリスナーを <code class="notranslate" translate="no">canvas</code> にアタッチする事がよくあります。
+多くのイベントが動作しますが、デフォルトでは動作しないキーボードイベントもあります。</p>
+<p>例えばキーボードイベントを取得するには、キャンバスの<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex"><code class="notranslate" translate="no">tabindex</code></a>を0以上にします。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas tabindex=&quot;0&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>しかし、これは新たな問題を引き起こします。<code class="notranslate" translate="no">tabindex</code> が設定されているものはフォーカスがある時にハイライトされます。
+これを修正するにはCSSの擬似クラスであるfocusでoutlineをnoneにします。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">canvas:focus {
+  outline:none;
+}
+</code></pre>
+<p>ここに3つのキャンバスがあります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c1&quot;&gt;&lt;/canvas&gt;
+&lt;canvas id=&quot;c2&quot; tabindex=&quot;0&quot;&gt;&lt;/canvas&gt;
+&lt;canvas id=&quot;c3&quot; tabindex=&quot;1&quot;&gt;&lt;/canvas&gt;
+</code></pre>
+<p>最後のキャンバスだけCSSを追加します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c3:focus {
+    outline: none;
+}
+</code></pre>
+<p>全てのイベントリスナーに同じイベントリスナーをアタッチしてみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">document.querySelectorAll(&#39;canvas&#39;).forEach((canvas) =&gt; {
+  const ctx = canvas.getContext(&#39;2d&#39;);
+
+  function draw(str) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.textAlign = &#39;center&#39;;
+    ctx.textBaseline = &#39;middle&#39;;
+    ctx.fillText(str, canvas.width / 2, canvas.height / 2);
+  }
+  draw(canvas.id);
+
+  canvas.addEventListener(&#39;focus&#39;, () =&gt; {
+    draw(&#39;has focus press a key&#39;);
+  });
+
+  canvas.addEventListener(&#39;blur&#39;, () =&gt; {
+    draw(&#39;lost focus&#39;);
+  });
+
+  canvas.addEventListener(&#39;keydown&#39;, (e) =&gt; {
+    draw(`keyCode: ${e.keyCode}`);
+  });
+});
+</code></pre>
+<p>1つ目のキャンバスがキーボード入力を受け付けない事に注意して下さい。
+2つ目はキーボード入力をうけつけますがハイライトされます。
+3つ目は両方の問題を解決しています。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-tabindex.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-tabindex.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<hr>
+<p><a id="transparent-canvas" data-toc="Make the Canvas Transparent"></a></p>
+<h1 id="-">キャンバスを透明にする</h1>
+<p>デフォルトではthree.jsはキャンバスを不透明にします。
+キャンバスを透明にしたい場合は <code class="notranslate" translate="no">WebGLRenderer</code> 作成時に<a href="WebGLRenderer.alpha"><code class="notranslate" translate="no">alpha:true</code></a>を指定します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const canvas = document.querySelector(&#39;#c&#39;);
+-const renderer = new THREE.WebGLRenderer({canvas});
++const renderer = new THREE.WebGLRenderer({
++  canvas,
++  alpha: true,
++});
+</code></pre>
+<p>また、プリマルチプライドアルファを<strong>使用しない</strong>事を指定したいでしょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const canvas = document.querySelector(&#39;#c&#39;);
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
++  premultipliedAlpha: false,
+});
+</code></pre>
+<p>Three.jsのデフォルトではキャンバスは<a href="WebGLRenderer.premultipliedAlpha"><code class="notranslate" translate="no">premultipliedAlpha: true</code></a>で出力されますが、マテリアルは<a href="Material.premultipliedAlpha"><code class="notranslate" translate="no">premultipliedAlpha: false</code></a>で出力されます。</p>
+<p>プリマルチプライドアルファを利用するタイミングの理解を深めたいのであれば、この<a href="https://developer.nvidia.com/content/alpha-blending-pre-or-not-pre">良い記事</a>を参照して下さい。</p>
+<p>いずれにしても透明なキャンバスを使った簡単な例で設定してみましょう。</p>
+<p><a href="threejs-responsive.html">レスポンシブデザインの記事</a>の例に上記の設定を適用してみました。
+マテリアルも透明感のあるものにしてみました。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshPhongMaterial({
++    color,
++    opacity: 0.5,
++  });
+
+...
+</code></pre>
+<p>次にHTMLを追加してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;content&quot;&gt;
++    &lt;div&gt;
++      &lt;h1&gt;Cubes-R-Us!&lt;/h1&gt;
++      &lt;p&gt;We make the best cubes!&lt;/p&gt;
++    &lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>CSSで文字テキストをキャンバスの前に配置します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">body {
+    margin: 0;
+}
+#c {
+    width: 100vw;
+    height: 100vh;
+    display: block;
++    position: fixed;
++    left: 0;
++    top: 0;
++    z-index: 2;
++    pointer-events: none;
+}
++#content {
++  font-size: 7vw;
++  font-family: sans-serif;
++  text-align: center;
++  width: 100vw;
++  height: 100vh;
++  display: flex;
++  justify-content: center;
++  align-items: center;
++}
+</code></pre>
+<p><code class="notranslate" translate="no">pointer-events: none</code> はマウスやタッチイベントをキャンバスから見えなくするので、その下のテキストを選択できる事に注意して下さい。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-transparent-canvas.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-transparent-canvas.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<hr>
+<p><a id="html-background" data-toc="Use three.js as Background in HTML"></a></p>
+<h1 id="-three-js-">背景をthree.jsでアニメーションする</h1>
+<p>よくある質問として、three.jsのアニメーションをWebページの背景にするにはどうしたら良いかという事です。</p>
+<p>明確な2つの方法があります。</p>
+<ul>
+<li>以下のようにCSSでキャンバスの <code class="notranslate" translate="no">position</code> を <code class="notranslate" translate="no">fixed</code> にします。</li>
+</ul>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c {
+ position: fixed;
+ left: 0;
+ top: 0;
+ ...
+}
+</code></pre>
+<p>先ほどの例でこの正解コードを見る事ができます。<code class="notranslate" translate="no">z-index</code> を-1にするだけでキューブがテキストの後ろに表示されます。</p>
+<p>この解決策の小さな欠点はJavaScriptをウェブページと統合する必要があります。
+複雑なウェブページの場合、three.jsの描画部分がページの他の要素と競合しないようにする必要があります。</p>
+<ul>
+<li><code class="notranslate" translate="no">iframe</code> を使用する</li>
+</ul>
+<p>この解決策は<a href="/">このサイトのトップページ</a>で使用してます。</p>
+<p>ウェブページへiframeを挿入したとします。例えば</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;iframe id=&quot;background&quot; src=&quot;threejs-responsive.html&quot;&gt;
+&lt;div&gt;
+  Your content goes here.
+&lt;/div&gt;
+</code></pre>
+<p>これは基本的には上記でキャンバスに使用したのと同じコードですが、iframeにはデフォルトでborderがあるので <code class="notranslate" translate="no">border</code> を <code class="notranslate" translate="no">none</code> にする必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">#background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border: none;
+    pointer-events: none;
+}
+</code></pre><p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-tips-html-background.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-tips-html-background.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +535,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -255,6 +609,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのTips';
+            var disqus_title = 'Three.jsのTips';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>

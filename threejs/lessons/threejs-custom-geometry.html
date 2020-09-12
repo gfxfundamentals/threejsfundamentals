@@ -466,8 +466,7 @@ For our cube we could do something like</p>
 <p>It&#39;s important to notice <code class="notranslate" translate="no">faceVertexUvs</code> is an array of layers. Each layer
 is another set of UV coordinates. By default there is one layer of UV coordinates,
 layer 0, so we just add our UVs to that layer.</p>
-<p>Let&#39;s <a href="threejs-textures.html">add a texture</a> to our material and switch back
-back to compute face normals</p>
+<p>Let&#39;s <a href="threejs-textures.html">add a texture</a> to our material and switch back to compute face normals</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">-geometry.computeVertexNormals();
 +geometry.computeFaceNormals();
 
