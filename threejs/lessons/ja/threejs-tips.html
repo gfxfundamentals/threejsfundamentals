@@ -222,7 +222,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <div class="lesson-main">
       <p>この記事では個別の記事を持つには小さすぎるため、three.jsで遭遇するかもしれないいくつかの小さな問題をまとめています。</p>
 <hr>
-<p><a id="screenshot" data-toc="Taking a screenshot"></a></p>
+<p><a id="screenshot" data-toc="スクリーンショットを撮る"></a></p>
 <h1 id="-">キャンバスのスクリーンショットを撮る</h1>
 <p>ブラウザではスクリーンショットを撮れる機能が2つあります。
 古いやり方は <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL"><code class="notranslate" translate="no">canvas.toDataURL</code></a>、新しいやり方は <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob"><code class="notranslate" translate="no">canvas.toBlob</code></a> です。</p>
@@ -317,7 +317,7 @@ elem.addEventListener(&#39;click&#39;, () =&gt; {
 </p>
 <p>別の解決策については次の項目を参照して下さい。</p>
 <hr>
-<p><a id="preservedrawingbuffer" data-toc="Prevent the Canvas Being Cleared"></a></p>
+<p><a id="preservedrawingbuffer" data-toc="キャンバスがクリアされるのを防ぐ"></a></p>
 <h1 id="-">キャンバスのクリアを防ぐ</h1>
 <p>アニメーションオブジェクトを使って、ユーザーにお絵かきさせたいとしましょう。
 <code class="notranslate" translate="no">WebGLRenderer</code> 作成時に <code class="notranslate" translate="no">preserveDrawingBuffer: true</code> を渡す必要があります。
@@ -343,7 +343,7 @@ elem.addEventListener(&#39;click&#39;, () =&gt; {
 また、ユーザーがスマートフォンを回転しブラウザが縦から横に切り替わった時も含まれます。</p>
 <p>お絵かきプログラムを作りたいのであれば、<a href="threejs-rendertargets.html">レンダーターゲットを使用してテクスチャにレンダリング</a>して下さい。</p>
 <hr>
-<p><a id="tabindex" data-toc="Get Keyboard Input From a Canvas"></a></p>
+<p><a id="tabindex" data-toc="キャンバスからキーボード入力を取得する"></a></p>
 <h1 id="-">キーボード入力を取得する</h1>
 <p>このチュートリアルではイベントリスナーを <code class="notranslate" translate="no">canvas</code> にアタッチする事がよくあります。
 多くのイベントが動作しますが、デフォルトでは動作しないキーボードイベントもあります。</p>
@@ -401,7 +401,7 @@ elem.addEventListener(&#39;click&#39;, () =&gt; {
 
 </p>
 <hr>
-<p><a id="transparent-canvas" data-toc="Make the Canvas Transparent"></a></p>
+<p><a id="transparent-canvas" data-toc="キャンバスを透明にする"></a></p>
 <h1 id="-">キャンバスを透明にする</h1>
 <p>デフォルトではthree.jsはキャンバスを不透明にします。
 キャンバスを透明にしたい場合は <code class="notranslate" translate="no">WebGLRenderer</code> 作成時に<a href="WebGLRenderer.alpha"><code class="notranslate" translate="no">alpha:true</code></a>を指定します。</p>
@@ -478,7 +478,7 @@ const renderer = new THREE.WebGLRenderer({
 
 </p>
 <hr>
-<p><a id="html-background" data-toc="Use three.js as Background in HTML"></a></p>
+<p><a id="html-background" data-toc="HTMLの背景にthree.jsを使う"></a></p>
 <h1 id="-three-js-">背景をthree.jsでアニメーションする</h1>
 <p>よくある質問として、three.jsのアニメーションをWebページの背景にするにはどうしたら良いかという事です。</p>
 <p>明確な2つの方法があります。</p>
@@ -562,15 +562,15 @@ const renderer = new THREE.WebGLRenderer({
           <li><a href="/threejs/lessons/ja/threejs-rendering-on-demand.html">要求されたレンダリング</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-javascript.html">JavaScriptのデバッグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-glsl.html">GLSLのデバッグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">Taking a screenshot</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">スクリーンショットを撮る</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#preservedrawingbuffer">キャンバスがクリアされるのを防ぐ</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#tabindex">キャンバスからキーボード入力を取得する</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#transparent-canvas">キャンバスを透明にする</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#html-background">HTMLの背景にthree.jsを使う</a></li>
         </ul>
   <li>最適化</li>
         <ul>
-          <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+          <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a></li>
 <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
 <li><a href="/threejs/lessons/ja/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
         </ul>

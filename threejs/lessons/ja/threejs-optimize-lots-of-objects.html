@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-optimize-lots-of-objects.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Optimize Lots of Objects" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Optimize by merging Objects" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Optimize Lots of Objects" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html" />
-<meta name="twitter:description" content="Optimize by merging Objects" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="オブジェクトをマージして最適化">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ja.jpg">
+
+<meta property="og:title" content="Three.jsで多くのオブジェクトを最適化">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ja.jpg">
+<meta property="og:description" content="オブジェクトをマージして最適化">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsで多くのオブジェクトを最適化">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">
+<meta name="twitter:description" content="オブジェクトをマージして最適化">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-optimize-lots-of-objects.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">
 
 
-<title>Three.js Optimize Lots of Objects</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html",
+      "inLanguage":"ja",
+      "name":"Three.jsで多くのオブジェクトを最適化",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsで多くのオブジェクトを最適化</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,13 +216,438 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Optimize Lots of Objects</h1>
+    <h1>Three.jsで多くのオブジェクトを最適化</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-optimize-lots-of-objects.html">ここに元の英語の記事があります</a>.</p>
+      <p>この記事はthree.jsシリーズ記事の一部です。最初の記事は<a href="threejs-fundamentals.html">Three.jsの基礎知識</a>です。まだ読んでいない場合はそこから始めて下さい。</p>
+<p>three.jsには最適化する方法は多々あります。1つの方法は<em>ジオメトリのマージ</em>と呼ばれています。メッシュを作成すると描画リクエストを1つ以上行った事を表します。
+2つのメッシュを描画すると結果が同じでも1つのメッシュを描画するよりもオーバーヘッドが大きく、最適化する1つの方法がメッシュのマージです。</p>
+<p>これが問題解決になるか、例を示してみます。
+<a href="https://globe.chromeexperiments.com/">WebGL Globe</a>を作り直してみましょう。</p>
+<p>まずデータが必要です。WebGL Globeで使用しているデータは<a href="http://sedac.ciesin.columbia.edu/gpw/">SEDAC</a>です。
+サイトをチェックすると<a href="https://beta.sedac.ciesin.columbia.edu/data/set/gpw-v4-basic-demographic-characteristics-rev10">人口統計データのグリッド形式</a>があります。
+私は60分間の解像度データをダウンロードしました。データを見てみると以下のような感じになっています。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-txt"> ncols         360
+ nrows         145
+ xllcorner     -180
+ yllcorner     -60
+ cellsize      0.99999999999994
+ NODATA_value  -9999
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+ 9.241768 8.790958 2.095345 -9999 0.05114867 -9999 -9999 -9999 -9999 -999...
+ 1.287993 0.4395509 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999...
+ -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
+</code></pre>
+<p>キーと値のペアのような行がいくつかあり、その行に続くグリッドポイントごとの値の行があり、データポイントごとに1行ずつ並んでいます。
+データをもっと理解するために2Dでプロットしてみましょう。</p>
+<p>最初にテキストファイルをロードするコードです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadFile(url) {
+  const req = await fetch(url);
+  return req.text();
+}
+</code></pre>
+<p>上記のコードは <code class="notranslate" translate="no">Promise</code> を返しファイルの内容は <code class="notranslate" translate="no">url</code> にあります。
+次にファイルを解析するコードが必要です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function parseData(text) {
+  const data = [];
+  const settings = {data};
+  let max;
+  let min;
+  // split into lines
+  text.split(&#39;\n&#39;).forEach((line) =&gt; {
+    // split the line by whitespace
+    const parts = line.trim().split(/\s+/);
+    if (parts.length === 2) {
+      // only 2 parts, must be a key/value pair
+      settings[parts[0]] = parseFloat(parts[1]);
+    } else if (parts.length &gt; 2) {
+      // more than 2 parts, must be data
+      const values = parts.map((v) =&gt; {
+        const value = parseFloat(v);
+        if (value === settings.NODATA_value) {
+          return undefined;
+        }
+        max = Math.max(max === undefined ? value : max, value);
+        min = Math.min(min === undefined ? value : min, value);
+        return value;
+      });
+      data.push(values);
+    }
+  });
+  return Object.assign(settings, {min, max});
+}
+</code></pre>
+<p>上記のコードはファイルから全てのキーと値のペアを持つオブジェクトを返します。また<code class="notranslate" translate="no">data</code> プロパティには全てのデータを1つの大きな配列にまとめて、データに含まれる <code class="notranslate" translate="no">min</code> と <code class="notranslate" translate="no">max</code> の値を返します。</p>
+<p>次にデータの描画コードが必要です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function drawData(file) {
+  const {min, max, data} = file;
+  const range = max - min;
+  const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  // make the canvas the same size as the data
+  ctx.canvas.width = ncols;
+  ctx.canvas.height = nrows;
+  // but display it double size so it&#39;s not too small
+  ctx.canvas.style.width = px(ncols * 2);
+  ctx.canvas.style.height = px(nrows * 2);
+  // fill the canvas to dark gray
+  ctx.fillStyle = &#39;#444&#39;;
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+  // draw each data point
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
+      if (value === undefined) {
+        return;
+      }
+      const amount = (value - min) / range;
+      const hue = 1;
+      const saturation = 1;
+      const lightness = amount;
+      ctx.fillStyle = hsl(hue, saturation, lightness);
+      ctx.fillRect(lonNdx, latNdx, 1, 1);
+    });
+  });
+}
 
+function px(v) {
+  return `${v | 0}px`;
+}
+
+function hsl(h, s, l) {
+  return `hsl(${h * 360 | 0},${s * 100 | 0}%,${l * 100 | 0}%)`;
+}
+</code></pre>
+<p>最後にすべてを統合します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+  .then(parseData)
+  .then(drawData);
+</code></pre>
+<p>そして、以下のような結果が得られました。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fgpw-data-viewer.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../gpw-data-viewer.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>どうやら上手くいったようです。</p>
+<p>これを3Dでやってみましょう。
+<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>のコードから始めてファイル内のデータごとに1つのボックスを作ります。</p>
+<p>まずは世界地図テクスチャで簡単な球体を作ってみましょう。テクスチャはこんな感じです。</p>
+<div class="threejs_center"><img src="../../resources/images/world.jpg" style="width: 600px"></div>
+
+<p>テクスチャをセットするコードです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load(&#39;resources/images/world.jpg&#39;, render);
+  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const material = new THREE.MeshBasicMaterial({map: texture});
+  scene.add(new THREE.Mesh(geometry, material));
+}
+</code></pre>
+<p>テクスチャ読込後に <code class="notranslate" translate="no">render</code> を呼び出している部分に注目して下さい。
+renderが必要なのは連続的なレンダリングでなく、<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>なのでテクスチャ読込後に一度レンダリングする必要があるからです。</p>
+<p>次に上記のデータポイントごとにドット描画するコードをデータポイントごとにボックスを作成するコードに変更する必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  // make one box geometry
+  const boxWidth = 1;
+  const boxHeight = 1;
+  const boxDepth = 1;
+  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+  // make it so it scales away from the positive Z axis
+  geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, 0.5));
+
+  // these helpers will make it easy to position the boxes
+  // We can rotate the lon helper on its Y axis to the longitude
+  const lonHelper = new THREE.Object3D();
+  scene.add(lonHelper);
+  // We rotate the latHelper on its X axis to the latitude
+  const latHelper = new THREE.Object3D();
+  lonHelper.add(latHelper);
+  // The position helper moves the object to the edge of the sphere
+  const positionHelper = new THREE.Object3D();
+  positionHelper.position.z = 1;
+  latHelper.add(positionHelper);
+
+  const lonFudge = Math.PI * .5;
+  const latFudge = Math.PI * -0.135;
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
+      if (value === undefined) {
+        return;
+      }
+      const amount = (value - min) / range;
+      const material = new THREE.MeshBasicMaterial();
+      const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
+      const saturation = 1;
+      const lightness = THREE.MathUtils.lerp(0.1, 1.0, amount);
+      material.color.setHSL(hue, saturation, lightness);
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      // adjust the helpers to point to the latitude and longitude
+      lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
+      latHelper.rotation.x = THREE.MathUtils.degToRad(latNdx + file.yllcorner) + latFudge;
+
+      // use the world matrix of the position helper to
+      // position this mesh.
+      positionHelper.updateWorldMatrix(true, false);
+      mesh.applyMatrix4(positionHelper.matrixWorld);
+
+      mesh.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
+    });
+  });
+}
+</code></pre>
+<p>2Dドットの描画コードからほとんどの部分が単純明快なものになっています。</p>
+<p>1つのボックスを作り、ボックスの中心が正のZから離れるように調整します。これをしないと中心からのスケールになってしまうため、原点から離れるようになってほしいからです。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="scaleCenter" style="height: 250px"></div>
+    <div class="code">default</div>
+  </div>
+  <div>
+    <div data-diagram="scalePositiveZ" style="height: 250px"></div>
+    <div class="code">adjusted</div>
+  </div>
+</div>
+
+<p><a href="threejs-scenegraph.html">シーングラフ</a>で説明したように、多くの <code class="notranslate" translate="no">THREE.Object3D</code> オブジェクトでボックスを親にして解決できますが、シーングラフにノードを追加すればするほど遅くなってしまいます。</p>
+<p>また <code class="notranslate" translate="no">lonHelper</code>、<code class="notranslate" translate="no">latHelper</code>、<code class="notranslate" translate="no">positionHelper</code>という小さなノード階層を設定します。
+これらのオブジェクトを使用し、ボックスを配置する球体の周りの位置を計算します。</p>
+<div class="spread">
+  <div data-diagram="lonLatPos" style="width: 600px; height: 400px;"></div>
+</div>
+
+<p>上記の<span style="color: green;">green bar</span>は <code class="notranslate" translate="no">lonHelper</code> と <code class="notranslate" translate="no">longHelper</code> を表し、赤道上の経度方向に回転させるために使用します。
+<span style="color: blue;">blue bar</span> は <code class="notranslate" translate="no">latHelper</code> を表し、赤道上や赤道下の緯度を回転させるために使用します。
+<span style="color: red;">red sphere</span>は <code class="notranslate" translate="no">positionHelper</code> が提供するオフセットを表します。</p>
+<p>地球儀上の位置の計算を手動で行う事もできますが、ほとんどの計算をライブラリ自体に任せてしまうので処理をする必要がありません。</p>
+<p>各データポイントに対して <code class="notranslate" translate="no">MeshBasicMaterial</code> と <code class="notranslate" translate="no">Mesh</code> を作成し、<code class="notranslate" translate="no">positionHelper</code> のワールド座標を求めてそれを新しい <code class="notranslate" translate="no">Mesh</code> に適用します。
+最後にメッシュを新しい位置で拡大縮小します。</p>
+<p>上記のように新しいボックスを作成する度に <code class="notranslate" translate="no">latHelper</code>、<code class="notranslate" translate="no">lonHelper</code>、<code class="notranslate" translate="no">positionHelper</code> を作成できましたが、それではさらに時間がかかります。</p>
+<p>これから作るボックスは360 × 145まであります。最大で52000個のボックスです。
+いくつかのデータポイントが &quot;NO_DATA &quot;とマークされているので、実際に作成するボックスの数は約19000個です。
+1ボックスごとに3つのヘルパーオブジェクトを追加した場合、シーングラフのノードが80000個近くになり、THREE.jsはその位置を計算しなければなりません。
+ヘルパーの1つのセットを使用して単にメッシュを使用する事で約60000回の操作を削減できます。</p>
+<p>また <code class="notranslate" translate="no">lonFudge</code> と <code class="notranslate" translate="no">latFudge</code> には注意点があります。<code class="notranslate" translate="no">lonFudge</code> はπ/2で1/4回転です。
+これは理にかなっています。テクスチャやテクスチャ座標が地球の周りの異なるオフセットから始まる事を意味しているだけです。
+一方、<code class="notranslate" translate="no">latFudge</code>についてはなぜπ * -0.135にする必要があるのか私にはわかりません。</p>
+<p>最後に行う必要があるのはローダーの呼出です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+  .then(parseData)
+-  .then(drawData)
++  .then(addBoxes)
++  .then(render);
+</code></pre><p>データ読込と解析が終わったら、少なくとも一度は<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>をする必要があります。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-slow.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-slow.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>上記のサンプルをドラッグして回転させようとすると遅い事に気づくでしょう。</p>
+<p><a href="threejs-debugging-javascript.html">devtoolsを開いて</a>FPS meterをオンにする事でFPSを確認できます。</p>
+<div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
+
+<p>私のマシンでは20fps以下のFPSが表示されています。</p>
+<div class="threejs_center"><img src="../resources/images/fps-meter.gif"></div>
+
+<p>FPSの遅延はあまり好ましくなく、多くの人々がさらにFPSが遅くなるマシンを持っているのではないでしょうか。最適化を検討した方がいいですね。</p>
+<p>このFPS遅延の問題解決では、全てのボックスを1つのジオメトリに統合する事ができます。
+現在は19000個前後のボックスを描画してます。1つのジオメトリに統合する事で18999個の操作を削除する事ができます。</p>
+<p>以下はボックスを1つのジオメトリに統合する新しいコードです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+-  // make one box geometry
+-  const boxWidth = 1;
+-  const boxHeight = 1;
+-  const boxDepth = 1;
+-  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+-  // make it so it scales away from the positive Z axis
+-  geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, 0.5));
+
+  // these helpers will make it easy to position the boxes
+  // We can rotate the lon helper on its Y axis to the longitude
+  const lonHelper = new THREE.Object3D();
+  scene.add(lonHelper);
+  // We rotate the latHelper on its X axis to the latitude
+  const latHelper = new THREE.Object3D();
+  lonHelper.add(latHelper);
+  // The position helper moves the object to the edge of the sphere
+  const positionHelper = new THREE.Object3D();
+  positionHelper.position.z = 1;
+  latHelper.add(positionHelper);
++  // Used to move the center of the box so it scales from the position Z axis
++  const originHelper = new THREE.Object3D();
++  originHelper.position.z = 0.5;
++  positionHelper.add(originHelper);
+
+  const lonFudge = Math.PI * .5;
+  const latFudge = Math.PI * -0.135;
++  const geometries = [];
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
+      if (value === undefined) {
+        return;
+      }
+      const amount = (value - min) / range;
+
+-      const material = new THREE.MeshBasicMaterial();
+-      const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
+-      const saturation = 1;
+-      const lightness = THREE.MathUtils.lerp(0.1, 1.0, amount);
+-      material.color.setHSL(hue, saturation, lightness);
+-      const mesh = new THREE.Mesh(geometry, material);
+-      scene.add(mesh);
+
++      const boxWidth = 1;
++      const boxHeight = 1;
++      const boxDepth = 1;
++      const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+
+      // adjust the helpers to point to the latitude and longitude
+      lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
+      latHelper.rotation.x = THREE.MathUtils.degToRad(latNdx + file.yllcorner) + latFudge;
+
+-      // use the world matrix of the position helper to
+-      // position this mesh.
+-      positionHelper.updateWorldMatrix(true, false);
+-      mesh.applyMatrix4(positionHelper.matrixWorld);
+-
+-      mesh.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
+
++      // use the world matrix of the origin helper to
++      // position this geometry
++      positionHelper.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
++      originHelper.updateWorldMatrix(true, false);
++      geometry.applyMatrix4(originHelper.matrixWorld);
++
++      geometries.push(geometry);
+    });
+  });
+
++  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
++      geometries, false);
++  const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
++  const mesh = new THREE.Mesh(mergedGeometry, material);
++  scene.add(mesh);
+
+}
+</code></pre>
+<p>上記ではボックスジオメトリの中心点を変更していたコードを削除し、代わりに <code class="notranslate" translate="no">originHelper</code> を追加しています。
+前は同じジオメトリを19000回も使っていました。
+今回は1つ1つのジオメトリを新しく作成し、各ボックスジオメトリの頂点を移動するために <code class="notranslate" translate="no">applyMatrix</code> を使用するので、2回ではなく1回にした方が良いかもしれません。</p>
+<p>最後に全てのジオメトリの配列を <code class="notranslate" translate="no">BufferGeometryUtils.mergeBufferGeometries</code> に渡します。
+また <code class="notranslate" translate="no">BufferGeometryUtils</code> も含める必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r119/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+</code></pre>
+<p>少なくとも私のマシンでは毎秒60フレームになりました。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>これで上手くいったのですが、以前はそれぞれのボックスに異なる色がありましたが、1つのメッシュなので1つのマテリアルとなり1つの色だけになります。
+これは頂点カラーを使い修正できます。</p>
+<p>頂点カラーは頂点ごとに色を追加します。各ボックスの各頂点の全ての色を特定の色に設定する事で、全てのボックスが異なる色を持つようになります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const color = new THREE.Color();
+
+const lonFudge = Math.PI * .5;
+const latFudge = Math.PI * -0.135;
+const geometries = [];
+data.forEach((row, latNdx) =&gt; {
+  row.forEach((value, lonNdx) =&gt; {
+    if (value === undefined) {
+      return;
+    }
+    const amount = (value - min) / range;
+
+    const boxWidth = 1;
+    const boxHeight = 1;
+    const boxDepth = 1;
+    const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+
+    // adjust the helpers to point to the latitude and longitude
+    lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
+    latHelper.rotation.x = THREE.MathUtils.degToRad(latNdx + file.yllcorner) + latFudge;
+
+    // use the world matrix of the origin helper to
+    // position this geometry
+    positionHelper.scale.set(0.005, 0.005, THREE.MathUtils.lerp(0.01, 0.5, amount));
+    originHelper.updateWorldMatrix(true, false);
+    geometry.applyMatrix4(originHelper.matrixWorld);
+
++    // compute a color
++    const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
++    const saturation = 1;
++    const lightness = THREE.MathUtils.lerp(0.4, 1.0, amount);
++    color.setHSL(hue, saturation, lightness);
++    // get the colors as an array of values from 0 to 255
++    const rgb = color.toArray().map(v =&gt; v * 255);
++
++    // make an array to store colors for each vertex
++    const numVerts = geometry.getAttribute(&#39;position&#39;).count;
++    const itemSize = 3;  // r, g, b
++    const colors = new Uint8Array(itemSize * numVerts);
++
++    // copy the color into the colors array for each vertex
++    colors.forEach((v, ndx) =&gt; {
++      colors[ndx] = rgb[ndx % 3];
++    });
++
++    const normalized = true;
++    const colorAttrib = new THREE.BufferAttribute(colors, itemSize, normalized);
++    geometry.setAttribute(&#39;color&#39;, colorAttrib);
+
+    geometries.push(geometry);
+  });
+});
+</code></pre>
+<p>上記のコードではジオメトリから <code class="notranslate" translate="no">position</code> を取得して必要な頂点の数を調べています。
+次に色を入れるための変数を <code class="notranslate" translate="no">Uint8Array</code> で作成します。その後に <code class="notranslate" translate="no">geometry.setAttribute</code> を呼び出して属性として追加します。</p>
+<p>最後に頂点カラーを扱うようにthree.jsで指定する必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+    geometries, false);
+-const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
++const material = new THREE.MeshBasicMaterial({
++  vertexColors: THREE.VertexColors,
++});
+const mesh = new THREE.Mesh(mergedGeometry, material);
+scene.add(mesh);
+</code></pre>
+<p>これで色を取り戻す事ができました。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged-vertexcolors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged-vertexcolors.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>ジオメトリのマージは一般的な最適化手法です。
+例えば100本の木を1つのジオメトリに統合したり、個々の岩の山を1つの岩のジオメトリに統合したり、個々の杭から1つの柵メッシュに統合したりする事ができます。
+別の例としてマインクラフトではそれぞれのキューブを個別に描画するのではなく、マージされたキューブのグループを作成したり描画されない面は選択的に削除したりします。</p>
+<p>全てを1つのメッシュにする問題点としては、以前は分離されていた部分を移動する事が容易ではなくなった事です。
+ユースケースに応じて創造的なソリューションがあります。
+1つは<a href="threejs-optimize-lots-of-objects-animated.html">別の記事</a>で紹介します。</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-lots-of-objects.js"></script>
     </div>
     <div class="lesson-sidebar">
         <select class="language">
@@ -182,7 +660,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -208,15 +687,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           <li><a href="/threejs/lessons/ja/threejs-rendering-on-demand.html">要求されたレンダリング</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-javascript.html">JavaScriptのデバッグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-debugging-glsl.html">GLSLのデバッグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">Taking a screenshot</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#preservedrawingbuffer">Prevent the Canvas Being Cleared</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#tabindex">Get Keyboard Input From a Canvas</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#transparent-canvas">Make the Canvas Transparent</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#html-background">Use three.js as Background in HTML</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">スクリーンショットを撮る</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#preservedrawingbuffer">キャンバスがクリアされるのを防ぐ</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#tabindex">キャンバスからキーボード入力を取得する</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#transparent-canvas">キャンバスを透明にする</a></li>
+<li><a href="/threejs/lessons/ja/threejs-tips.html#html-background">HTMLの背景にthree.jsを使う</a></li>
         </ul>
   <li>最適化</li>
         <ul>
-          <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
+          <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a></li>
 <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
 <li><a href="/threejs/lessons/ja/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
         </ul>
@@ -255,6 +734,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsで多くのオブジェクトを最適化';
+            var disqus_title = 'Three.jsで多くのオブジェクトを最適化';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
