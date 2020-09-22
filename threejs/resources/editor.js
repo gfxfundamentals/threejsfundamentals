@@ -478,27 +478,32 @@ function makeScriptsForWorkers(scriptInfo) {
   }
 
   const scripts = makeScriptsForWorkersImpl(scriptInfo);
-  const mainScript = scripts.pop().text;
-  if (!scripts.length) {
+  if (scripts.length === 1) {
     return {
-      js: mainScript,
+      js: scripts[0].text,
       html: '',
     };
   }
 
-  const workerName = scripts[scripts.length - 1].name;
+  // scripts[last]      = main script
+  // scripts[last - 1]  = worker
+  const mainScriptInfo = scripts[scripts.length - 1];
+  const workerScriptInfo = scripts[scripts.length - 2];
+  const workerName = workerScriptInfo.name;
+  mainScriptInfo.text = mainScriptInfo.text.split(`'${workerName}'`).join('getWorkerBlob()');
   const html = scripts.map((nameText) => {
     const {name, text} = nameText;
-    return `<script id="${name}" type="x-worker">\n${text}\n</script>`;
+    return `<script id="${name}" type="x-worker">\n${text}\n</script>\n`;
   }).join('\n');
   const init = `
 
 
 
 // ------
-// Creates Blobs for the Worker Scripts so things can be self contained for snippets/JSFiddle/Codepen
+// Creates Blobs for the Scripts so things can be self contained for snippets/JSFiddle/Codepen
+// even though they are using workers
 //
-function getWorkerBlob() {
+(function() {
   const idsToUrls = [];
   const scriptElements = [...document.querySelectorAll('script[type=x-worker]')];
   for (const scriptElement of scriptElements) {
@@ -511,11 +516,14 @@ function getWorkerBlob() {
     const id = scriptElement.id;
     idsToUrls.push({id, url});
   }
-  return idsToUrls.pop().url;
-}
+  window.getWorkerBlob = function() {
+    return idsToUrls.pop().url;
+  };
+  import(window.getWorkerBlob());
+}());
 `;
   return {
-    js: mainScript.split(`'${workerName}'`).join('getWorkerBlob()') + init,
+    js: init,
     html,
   };
 }
