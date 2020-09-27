@@ -7,11 +7,11 @@ TOC: アニメーションする多くのオブジェクトを最適化
 前回の記事では約19000個のキューブを単体のジオメトリにマージしました。
 19000個のキューブの描画を最適化する利点がありましたが、個々のキューブを動かすのが難しくなる欠点がありました。
 
-何を達成しようとしているかによって、様々な解決策があります。
-今回は複数のデータの集合をグラフ化し、その集合間でアニメーションさせてみましょう。
+何を達成するかによって様々な解決策があります。
+今回は複数のデータセットをグラフ化し、そのデータセットでクロスフェードアニメーションさせてみましょう。
 
 まず、複数のデータセットを取得する必要があります。
-理想的にはオフラインでデータの前処理をする事ですが、今回は2つのデータセットをロードしてさらに2つのデータを生成してみましょう。
+オフラインでデータの前処理をするのが理想的ですが、今回は2つのデータセットをロードしてさらに2つのデータを生成してみましょう。
 
 以下は古いデータロードのコードです。
 
@@ -22,7 +22,7 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
   .then(render);
 ```
 
-こんな感じに変更してみましょう。
+このような感じに変更してみましょう。
 
 ```js
 async function loadData(info) {
@@ -43,17 +43,18 @@ async function loadAll() {
 loadAll();
 ```
 
-上記のコードでは `fileInfos` 内の各オブジェクトのurlプロパティからファイルをロードし、`file` プロパティに渡ってPromise.allで全てのファイルをロードします。
-`name` と `hueRange` プロパティは後で使います。`name` はUIフィールドです。`hueRange` はマップする色相の範囲を選択するために使います。
+上記のコードでは `fileInfos` 内の各オブジェクトがローティングされたファイルを `file` プロパティに持ち、Promise.allで全てのファイルをロードします。
+`name` と `hueRange` プロパティはあとで使います。`name` はUIフィールドです。`hueRange` は色相の範囲をマップし選択するために使います。
 
-上記の2つのファイルは、2010年時点でのエリア別の男性数と女性数を示しています。
-注：このデータが正しいかどうかはわかりませんが、実際には重要ではありません。
+上記2ファイルは2010年時点でのエリア別の男性数と女性数を示しています。
+
+注：このデータが正しいかわかりませんが、それは重要ではありません。
 重要なのは異なるデータセットを示す事です。
 
 さらに2つのデータセットを生成してみましょう。
-1つは女性の数よりも男性の数が多い場所、逆にもう1つは男性より女性が多い場所です。
+1つは女性数よりも男性数が多い場所、逆にもう1つは男性数より女性数が多い場所です。
 
-まず先ほどのような2次元配列を与えられた時に、それをマップして新しい2次元配列を生成する関数を書いてみましょう。
+まず先ほどのデータで新しい2次元配列をマップする前に、2次元配列を生成する関数を書いてみましょう。
 
 ```js
 function mapValues(data, fn) {
@@ -66,9 +67,9 @@ function mapValues(data, fn) {
 ```
 
 通常の `Array.map` 関数と同様に `mapValues` 関数は配列の各値に対して関数 `fn` を呼び出します。
-値と行と列のインデックスの両方を渡します。
+fnには値と行と列のインデックスを渡します。
 
-2つのファイルを比較した新しいファイルを生成するコードを作成してみましょう。
+2つのファイルを比較した新しいファイルを生成するコードを作成します。
 
 ```js
 function makeDiffFile(baseFile, otherFile, compareFn) {
@@ -92,11 +93,10 @@ function makeDiffFile(baseFile, otherFile, compareFn) {
 }
 ```
 
-上記のコードは `compareFn` 関数で比較した新しいデータセットを生成する `mapValues` 関数を使っています。
-また、`min` と `max` の比較結果も追跡します。
-最後に新しく `min`、`max`、`data` を追加した以外は `baseFile` と同じプロパティを持つ新しいファイルを作成します。
+上記のコードは `compareFn` 関数で比較された値を元に `mapValues` 関数で新しいデータセットを生成しています。また `min` と `max` の比較結果も持っています。
+最後のreturnで新しく `min`、`max`、`data` を追加した以外は `baseFile` と同じプロパティを持つ新しいファイルを作成します。
 
-そして、それを使って2つの新しいデータセットを作りましょう。
+それを使って2つの新しいデータセットを作りましょう。
 
 ```js
 {
@@ -134,7 +134,7 @@ function makeDiffFile(baseFile, otherFile, compareFn) {
 </body>
 ```
 
-そして、左上のエリアに表示するためにCSSを追加しました。
+次に左上のエリアに表示するためにCSSを追加しました。
 
 ```css
 #ui {
@@ -153,7 +153,7 @@ function makeDiffFile(baseFile, otherFile, compareFn) {
 ```
 
 各ファイルを調べてデータセットごとにマージされたボックスのセットを生成します。
-これで上にマウスカーソルを置くとそのセットを表示し、他の全てのセットを非表示にするUIを生成する事ができます。
+これでラベル上にマウスカーソルを置くとそのデータセットを表示し、他の全てのデータセットを非表示にするラベルUIを生成できます。
 
 ```js
 // show the selected data, hide the rest
@@ -182,7 +182,7 @@ fileInfos.forEach((info) => {
 showFileInfo(fileInfos, fileInfos[0]);
 ```
 
-先ほどの例からもう1つ変更が必要で `addBoxes` の引数に `hueRange` があります。
+もう1つ変更が必要で `addBoxes` の引数に `hueRange` があります。
 
 ```js
 -function addBoxes(file) {
@@ -197,37 +197,39 @@ showFileInfo(fileInfos, fileInfos[0]);
   ...
 ```
 
-これで4つのデータセットを表示できるようになるはずです。ラベルの上にマウスを置いたり、タッチしてセットを切り替えたりする事ができます。
+これで4つのデータセットを表示できるようになるはずです。ラベルの上にマウスを置いたり、タッチしてデータセットを切り替える事ができます。
 
 {{{example url="../threejs-lots-of-objects-multiple-data-sets.html" }}}
 
-注意してほしいのは、突出したいくつかの奇妙なデータポイントがあります。
+注意してほしいのは突出したいくつかの奇妙なデータポイントがあります。
+
 これは何が起きてるのでしょう！？
-いずれにしてもこの4つのデータの間をアニメーションさせるにはどうすればいいのでしょうか。
+
+いずれにしてもこの4つのデータセットをラベルから切り替えた際にクロスフェードアニメーションさせるにはどうすればいいのでしょうか。
 
 たくさんのアイデアがあります。
 
-*  `Material.opacity` でフェードする
+*  `Material.opacity` でクロスフェードアニメーションする
 
    この解決策の問題点はキューブが完全に重なっているため、Z軸の戦いの問題を意味します。
-   depth関数に変えてブレンディングを使えば直る可能性はあります。調べてみた方が良さそうですね。
+   depth関数とブレンディングを使い修正できる可能性があります。調べてみた方が良さそうですね。
 
-*  見たいセットをスケールアップして他のセットをスケールダウンする
+*  見たいデータセットをスケールアップして他のデータセットをスケールダウンする
 
    全てのボックスは惑星の中心に位置しているので、1.0以下に縮小すると惑星の中に沈んでしまいます。
-   最初は良いアイデアのように聞こえますが、高さの低いボックスはほとんどすぐに消えてしまい、新しいデータセットが1.0までスケールアップするまで置き換えられないという事です。
-   このため、アニメーションの遷移があまり気持ち良くありません。派手なカスタムシェーダーで修正できるかもしれません。
+   最初は良いアイデアのように聞こえますが、高さの低いボックスはほとんどすぐに消えてしまい、新しいデータセットが1.0までスケールアップするまで置き換えできません。
+   このため、アニメーション遷移があまり気持ち良くありません。派手なカスタムシェーダーで修正できるかもしれません。
 
 *  モーフターゲットを使用する
 
-   モーフターゲットはジオメトリ内の各頂点に複数の値を与え、それらの間を *モーフ* または lerp (線形補間) する方法です。
+   モーフターゲットはジオメトリ内の各頂点に複数の値を与え、それらの中間を *モーフ* または lerp (線形補間) する方法です。
    モーフターゲットは3Dキャラクターの表情アニメーションに最も一般的に使用されていますがそれだけではありません。
 
 モーフターゲットを使ってみましょう。
 
-これまで通りにデータセットごとにジオメトリを作成しますが、それぞれのデータから `position` 属性を抜き出してモーフターゲットとして使用します。
+これまで通りにデータセットごとにジオメトリを作成しますが、それぞれのデータから `position` を抜き出してモーフターゲットとして使用します。
 
-まず、`addBoxes` を変更してマージされたジオメトリを作成して返すだけにしてみましょう。
+まず `addBoxes` を変更してマージされたジオメトリを返すだけに変更してみましょう。
 
 ```js
 -function addBoxes(file, hueRange) {
@@ -250,14 +252,13 @@ showFileInfo(fileInfos, fileInfos[0]);
 }
 ```
 
-There's one more thing we need to do here though. Morphtargets are required to
-all have exactly the same number of vertices. Vertex #123 in one target needs
-have a corresponding Vertex #123 in all other targets. But, as it is now
-different data sets might have some data points with no data so no box will be
-generated for that point which would mean no corresponding vertices for another
-set. So, we need to check across all data sets and either always generate
-something if there is data in any set or, generate nothing if there is data
-missing in any set. Let's do the latter.
+ここでもう1つやるべき事があります。モーフターゲットは全ての頂点数が全く同じである必要があります。
+あるターゲットの頂点#123は、他の全てのターゲットに対応する頂点#123を持つ必要があります。
+しかし、異なるデータセットにはデータのないデータポイントがあるかもしれないので、
+そのポイントに対してはボックスが生成されず、別のデータセットに対応する頂点も生成されません。
+
+そこで全てのデータセットをチェックし、どのセットにもデータがある場合は常に何かを生成するか、
+またはどのセットにもデータがない場合は何も生成しないかのどちらかを選択する必要があります。後者をやってみましょう。
 
 ```js
 +function dataMissingInAnySet(fileInfos, latNdx, lonNdx) {
@@ -287,8 +288,7 @@ missing in any set. Let's do the latter.
   ...
 ```
 
-Now we'll change the code that was calling `addBoxes` to use `makeBoxes`
-and setup morphtargets
+`addBoxes` を呼び出していたコードを `makeBoxes` に変更し、モーフターゲットを設定します。
 
 ```js
 +// make geometry for each data set
@@ -330,22 +330,17 @@ fileInfos.forEach((info) => {
 showFileInfo(fileInfos, fileInfos[0]);
 ```
 
-Above we make geometry for each data set, use the first one as the base,
-then get a `position` attribute from each geometry and add it as
-a morphtarget to the base geometry for `position`.
+上記では最初のデータセットをベースとしたジオメトリを作成し、各ジオメトリから `position` を取得し、
+それを `position` のベースジオメトリにモーフターゲットとして追加します。
+あとはデータセットの表示・非表示の仕方を変える必要があります。
+メッシュを表示・非表示するのではなく、モーフターゲットの影響を変える必要があります。
+見たいデータセットは1の影響を持つ必要があり、見たくないデータセットは0の影響を持つ必要があります。
 
-Now we need to change how we're showing and hiding the various data sets.
-Instead of showing or hiding a mesh we need to change the influence of the
-morphtargets. For the data set we want to see we need to have an influence of 1
-and for all the ones we don't want to see to we need to have an influence of 0.
+直接0か1にすれば良いのですがそうするとクロスフェードアニメーションが見られなくなり、すでに持っている値に変更がなくスナップします。
+または簡単にカスタムアニメーションのコードを書く事ができますが、
+オリジナルのwebgl globeでは[アニメーションライブラリ](https://github.com/tweenjs/tween.js/)を使っているので合わせましょう。
 
-We could just set them to 0 or 1 directly but if we did that we wouldn't see any
-animation, it would just snap which would be no different than what we already
-have. We could also write some custom animation code which would be easy but
-because the original webgl globe uses 
-[an animation library](https://github.com/tweenjs/tween.js/) let's use the same one here.
-
-We need to include the library
+アニメーションライブラリをimportする必要があります。
 
 ```js
 import * as THREE from './resources/three/r119/build/three.module.js';
@@ -354,7 +349,7 @@ import {OrbitControls} from './resources/threejs/r119/examples/jsm/controls/Orbi
 +import {TWEEN} from './resources/threejs/r119/examples/jsm/libs/tween.min.js';
 ```
 
-And then create a `Tween` to animate the influences.
+そして、影響を与えるアニメーションの `Tween` を作成します。
 
 ```js
 // show the selected data, hide the rest
@@ -376,16 +371,11 @@ function showFileInfo(fileInfos, fileInfo) {
 }
 ```
 
-We're also suppose to call `TWEEN.update` every frame inside our render loop
-but that points out a problem. "tween.js" is designed for continuous rendering
-but we are [rendering on demand](threejs-rendering-on-demand.html). We could
-switch to continuous rendering but it's sometimes nice to only render on demand
-as it well stop using the user's power when nothing is happening
-so let's see if we can make it animate on demand.
-
-We'll make a `TweenManager` to help. We'll use it to create the `Tween`s and
-track them. It will have an `update` method that will return `true`
-if we need to call it again and `false` if all the animations are finished.
+レンダリングループ内でフレームごとに `TWEEN.update` を呼び出しますが問題があります。
+"tween.js"は連続的なレンダリング用に設計されていますが、ここでは[要求されたレンダリング](threejs-rendering-on-demand.html)をしています。
+連続的なレンダリングに切り替えれますが、何も起きていない時にはレンダリングコストを下げた方が良いため、要求されたレンダリングだけにするのもいいかもしれません。
+これを助けるために `TweenManager` を作ります。
+TweenManagerは `update` メソッドを持ち、再度呼び出す必要がある場合は `true` を返し、全てのアニメーションが終了した場合は `false` を返します。
 
 ```js
 class TweenManger {
@@ -420,7 +410,7 @@ class TweenManger {
 }
 ```
 
-To use it we'll create one 
+TweenMangerを使用するために次のようなコードにします。
 
 ```js
 function main() {
@@ -431,7 +421,7 @@ function main() {
   ...
 ```
 
-We'll use it to create our `Tween`s.
+TweenMangerを使って `Tween` を作成します。
 
 ```js
 // show the selected data, hide the rest
@@ -453,8 +443,7 @@ function showFileInfo(fileInfos, fileInfo) {
 }
 ```
 
-Then we'll update our render loop to update the tweens and keep rendering
-if there are still animations running.
+次にtweenManagerを更新するためにレンダーループを修正し、アニメーションが実行されている場合はレンダリングを継続します。
 
 ```js
 function render() {
@@ -476,24 +465,19 @@ function render() {
 render();
 ```
 
-And with that we should be animating between data sets.
+そして、データセットでクロスフェードアニメーションを行う必要があります。
 
 {{{example url="../threejs-lots-of-objects-morphtargets.html" }}}
 
-That seems to work but unfortunately we lost the colors.
+これでクロスフェードアニメーションが上手く動くようですが、残念ながら色を失ってしまいました。
 
-Three.js does not support morphtarget colors and in fact this is an issue
-with the original [webgl globe](https://github.com/dataarts/webgl-globe).
-Basically it just makes colors for the first data set. Any other datasets
-use the same colors even if they are vastly different.
+Three.jsはモーフターゲットの色をサポートしておらず、これはオリジナルの[webgl globe](https://github.com/dataarts/webgl-globe)側の問題です。
+基本的には最初のデータセットの色を作るだけです。他のデータセットは色が大きく異なっていても同じ色を使用しています。
 
-Let's see if we can add support for morphing the colors. This might
-be brittle. The least brittle way would probably be to 100% write our own
-shaders but I think it would be useful to see how to modify the built
-in shaders.
+色のモーフィングのサポートを追加できるかどうか見てみましょう。これは壊れやすいかもしれませんね。
+最も壊れやすい方法はおそらく100%独自のシェーダを書く事でしょうが、内蔵シェーダーをどのように修正するかを見るのは有用だと思います。
 
-The first thing we need to do is make the code extract color a `BufferAttribute` from
-each data set's geometry.
+まず最初に行う必要があるのは各データセットのジオメトリから色を `BufferAttribute` として抽出するコードを作成する事です。
 
 ```js
 // use the first geometry as the base
@@ -517,13 +501,12 @@ const material = new THREE.MeshBasicMaterial({
 });
 ```
 
-We then need to modify the three.js shader. Three.js materials have an
-`Material.onBeforeCompile` property we can assign a function. It gives us a
-chance to modify the material's shader before it is passed to WebGL. In fact the
-shader that is provided is actually a special three.js only syntax of shader
-that lists a bunch of shader *chunks* that three.js will substitute with the
-actual GLSL code for each chunk. Here is what the unmodified vertex shader code
-looks like as passed to `onBeforeCompile`.
+次にthree.jsのシェーダーを修正する必要があります。
+Three.jsのマテリアルには `Material.onBeforeCompile` プロパティがあり、関数を割り当てる事ができます。
+これはWebGLに渡される前にマテリアルのシェーダーを修正する機会を与えてくれます。
+実際に提供されているシェーダーはthree.js独自の特殊なシェーダー構文になっており、
+シェーダーの*チャンク*の束をリストアップし、three.jsが各チャンクに対して実際のGLSLコードで置換します。
+以下は変更されていない頂点シェーダーのコードで `onBeforeCompile` に渡されるように見えます。
 
 ```glsl
 #include <common>
@@ -559,14 +542,15 @@ void main() {
 }
 ```
 
-Digging through the various chunks we want to replace
-the [`morphtarget_pars_vertex` chunk](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_pars_vertex.glsl.js)
-the [`morphnormal_vertex` chunk](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphnormal_vertex.glsl.js)
-the [`morphtarget_vertex` chunk](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_vertex.glsl.js)
-the [`color_pars_vertex` chunk](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_pars_vertex.glsl.js)
-and the [`color_vertex` chunk](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js)
+上記のシェーダーチャンクから
+[`morphtarget_pars_vertex` チャンク](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_pars_vertex.glsl.js)、
+[`morphnormal_vertex` チャンク](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphnormal_vertex.glsl.js)、
+[`morphtarget_vertex` チャンク](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_vertex.glsl.js)、
+[`color_pars_vertex` チャンク](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_pars_vertex.glsl.js)、
+[`color_vertex` チャンク](https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js)
+を置き換えたいと思います。
 
-To do that we'll make a simple array of replacements and apply them in `Material.onBeforeCompile`
+これを行うには単純な置換の配列を作成して `Material.onBeforeCompile` で適用します。
 
 ```js
 const material = new THREE.MeshBasicMaterial({
@@ -621,17 +605,14 @@ const material = new THREE.MeshBasicMaterial({
 +};
 ```
 
-Three.js also sorts morphtargets and applies only the highest influences. This
-lets it allow many more morphtargets as long as only a few are used at a time.
-Unfortunately three.js does not provide any way to know how many morph targets
-will be used nor which attributes the morph targets will be assigned to. So,
-we'll have to look into the code and reproduce what it does here. If that
-algorithm changes in three.js we'll need to refactor this code.
+また、Three.jsはモーフターゲットをソートし、最も影響の高いものだけを適用します。
+これにより1度に数個しか使用されない限り、より多くのモーフターゲットを使用する事ができます。
+残念ながらthree.jsではモーフターゲットが何個使われるのか、どの属性に割り当てられるのかを知る方法は提供されていません。
+そこでコードを調べて、ここで何をしているのかを再現してみましょう。
+もしそのアルゴリズムがthree.jsで変更されたら、このコードをリファクタリングする必要があります。
 
-First we remove all the color attributes. It doesn't matter if we did not add
-them before as it's safe to remove an attribute that was not previously added.
-Then we'll compute which targets we think three.js will use and finally assign
-those targets to the attributes we think three.js would assign them to.
+まず色の属性を全て削除します。今まで追加していなかった属性は削除しても大丈夫なので問題ありません。
+次にthree.jsが使用すると思われるターゲットを計算し、最後にそのターゲットをthree.jsが割り当てる属性に割り当てます。
 
 ```js
 
@@ -663,8 +644,7 @@ scene.add(mesh);
 +}
 ```
 
-We'll return this function from our `loadAll` function. This way we don't
-need to leak any variables.
+この関数は `loadAll` 関数から返します。この方法では変数をリークする必要はありません。
 
 ```js
 async function loadAll() {
@@ -681,8 +661,7 @@ async function loadAll() {
 +});
 ```
 
-And finally we need to call `updateMorphTargets` after we've let the values
-be updated by the tween manager and before rendering.
+最後にtweenManagerで値を更新した後、レンダリング前に `updateMorphTargets` を呼び出す必要があります。
 
 ```js
 function render() {
@@ -700,24 +679,17 @@ function render() {
 }
 ```
 
-And with that we should have the colors animating as well as the boxes.
+これで色をクロスフェードアニメーションさせる事ができます。
 
 {{{example url="../threejs-lots-of-objects-morphtargets-w-colors.html" }}}
 
-I hope going through this was helpful. Using morphtargets either through the
-services three.js provides or by writing custom shaders is a common technique to
-move lots of objects. As an example we could give every cube a random place in
-another target and morph from that to their first positions on the globe. That
-might be a cool way to introduce the globe.
+これがお役に立てれば幸いです。
+three.jsが提供するサービスを利用するか、カスタムシェーダーを使ってモーフターゲットを使うのは多くのオブジェクトを移動させるための一般的なテクニックです。
+例として全てのキューブに別の目標を設定し、そこから地球上での最初の位置へと変化します。
+地球儀を紹介するにはかっこいいかもしれません。
 
-Next you might be interested in adding labels to a globe which is covered
-in [Aligning HTML Elements to 3D](threejs-align-html-elements-to-3d.html).
+次は[HTML要素を3Dに整列させる](threejs-align-html-elements-to-3d.html)で説明している地球儀にラベルを追加します。
 
-Note: We could try to just graph percent of men or percent of women or the raw
-difference but based on how we are displaying the info, cubes that grow from the
-surface of the earth, we'd prefer most cubes to be low. If we used one of these
-other comparisons most cubes would be about 1/2 their maximum height which would
-not make a good visualization. Feel free to change the `amountGreaterThan` from
-`Math.max(a - b, 0)` to something like `(a - b)` "raw difference" or `a / (a +
-b)` "percent" and you'll see what I mean.
-
+注: 男性や女性の割合、または正の差をグラフ化する事もできますが、情報を表示する方法に基づいて地表から成長するキューブはほとんどのキューブが低い方が良いでしょう。
+これらの他の比較を使用した場合、ほとんどのキューブは最大高さの約1/2の大きさになり可視化として良くありません。
+`amountGreaterThan` を変えたように感じますが、このような場合は `Math.max(a - b, 0)` を `(a - b)` "正の差" や `a / (a +b)` "パーセント" のようなものに変えると何を言っているのかわかるでしょう。
