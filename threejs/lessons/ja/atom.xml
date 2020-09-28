@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three Fundamentals</title>
-    <updated>2020-09-22T16:29:05.000Z</updated>
+    <updated>2020-09-28T03:01:15.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -11,6 +11,18 @@
     <link rel="alternate" href="http://threejsfundamentals.org/threejs/lessons/ja"/>
     <subtitle>Three.jsを学習する</subtitle>
     <logo>https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Three.jsでアニメーションする多くのオブジェクトを最適化]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">
+        </link>
+        <updated>2020-09-28T03:01:15.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2020-09-28T03:01:15.000Z</published>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Three.jsのテクスチャ]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ja/threejs-textures.html</id>
@@ -141,7 +153,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-08-10T11:36:11.000Z</published>
+        <published>2020-08-10T18:11:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.jsの前提条件]]></title>
@@ -153,7 +165,7 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-08-10T11:36:11.000Z</published>
+        <published>2020-08-10T18:11:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js のプリミティブ]]></title>
@@ -165,6 +177,6 @@
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-08-10T11:36:11.000Z</published>
+        <published>2020-08-10T18:11:00.000Z</published>
     </entry>
 </feed>

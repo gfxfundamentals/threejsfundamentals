@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Optimize Lots of Objects Animated" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Animated merged objects with Morphtargets" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Optimize Lots of Objects Animated" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html" />
-<meta name="twitter:description" content="Animated merged objects with Morphtargets" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="モーフターゲットでアニメーションするオブジェクトをマージする">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_ja.jpg">
+
+<meta property="og:title" content="Three.jsでアニメーションする多くのオブジェクトを最適化">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_ja.jpg">
+<meta property="og:description" content="モーフターゲットでアニメーションするオブジェクトをマージする">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsでアニメーションする多くのオブジェクトを最適化">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">
+<meta name="twitter:description" content="モーフターゲットでアニメーションするオブジェクトをマージする">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">
 
 
-<title>Three.js Optimize Lots of Objects Animated</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html",
+      "inLanguage":"ja",
+      "name":"Three.jsでアニメーションする多くのオブジェクトを最適化",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsでアニメーションする多くのオブジェクトを最適化</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,12 +216,611 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Optimize Lots of Objects Animated</h1>
+    <h1>Three.jsでアニメーションする多くのオブジェクトを最適化</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">ここに元の英語の記事があります</a>.</p>
+      <p>この記事は<a href="threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a>の続きです。まだ読んでいない場合は先に読んでみて下さい。</p>
+<p>前回の記事では約19000個のキューブを単体のジオメトリにマージしました。
+19000個のキューブの描画を最適化する利点がありましたが、個々のキューブを動かすのが難しくなる欠点がありました。</p>
+<p>何を達成するかによって様々な解決策があります。
+今回は複数のデータセットをグラフ化し、そのデータセットでクロスフェードアニメーションさせてみましょう。</p>
+<p>まず、複数のデータセットを取得する必要があります。
+オフラインでデータの前処理をするのが理想的ですが、今回は2つのデータセットをロードしてさらに2つのデータを生成してみましょう。</p>
+<p>以下は古いデータロードのコードです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+  .then(parseData)
+  .then(addBoxes)
+  .then(render);
+</code></pre>
+<p>このような感じに変更してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadData(info) {
+  const text = await loadFile(info.url);
+  info.file = parseData(text);
+}
+
+async function loadAll() {
+  const fileInfos = [
+    {name: &#39;men&#39;,   hueRange: [0.7, 0.3], url: &#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39; },
+    {name: &#39;women&#39;, hueRange: [0.9, 1.1], url: &#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014ft_2010_cntm_1_deg.asc&#39; },
+  ];
+
+  await Promise.all(fileInfos.map(loadData));
+
+  ...
+}
+loadAll();
+</code></pre>
+<p>上記のコードでは <code class="notranslate" translate="no">fileInfos</code> 内の各オブジェクトがローティングされたファイルを <code class="notranslate" translate="no">file</code> プロパティに持ち、Promise.allで全てのファイルをロードします。
+<code class="notranslate" translate="no">name</code> と <code class="notranslate" translate="no">hueRange</code> プロパティはあとで使います。<code class="notranslate" translate="no">name</code> はUIフィールドです。<code class="notranslate" translate="no">hueRange</code> は色相の範囲をマップし選択するために使います。</p>
+<p>上記2ファイルは2010年時点でのエリア別の男性数と女性数を示しています。</p>
+<p>注：このデータが正しいかわかりませんが、それは重要ではありません。
+重要なのは異なるデータセットを示す事です。</p>
+<p>さらに2つのデータセットを生成してみましょう。
+1つは女性数よりも男性数が多い場所、逆にもう1つは男性数より女性数が多い場所です。</p>
+<p>まず先ほどのデータで新しい2次元配列をマップする前に、2次元配列を生成する関数を書いてみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function mapValues(data, fn) {
+  return data.map((row, rowNdx) =&gt; {
+    return row.map((value, colNdx) =&gt; {
+      return fn(value, rowNdx, colNdx);
+    });
+  });
+}
+</code></pre>
+<p>通常の <code class="notranslate" translate="no">Array.map</code> 関数と同様に <code class="notranslate" translate="no">mapValues</code> 関数は配列の各値に対して関数 <code class="notranslate" translate="no">fn</code> を呼び出します。
+fnには値と行と列のインデックスを渡します。</p>
+<p>2つのファイルを比較した新しいファイルを生成するコードを作成します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeDiffFile(baseFile, otherFile, compareFn) {
+  let min;
+  let max;
+  const baseData = baseFile.data;
+  const otherData = otherFile.data;
+  const data = mapValues(baseData, (base, rowNdx, colNdx) =&gt; {
+    const other = otherData[rowNdx][colNdx];
+      if (base === undefined || other === undefined) {
+        return undefined;
+      }
+      const value = compareFn(base, other);
+      min = Math.min(min === undefined ? value : min, value);
+      max = Math.max(max === undefined ? value : max, value);
+      return value;
+  });
+  // make a copy of baseFile and replace min, max, and data
+  // with the new data
+  return {...baseFile, min, max, data};
+}
+</code></pre>
+<p>上記のコードは <code class="notranslate" translate="no">compareFn</code> 関数で比較された値を元に <code class="notranslate" translate="no">mapValues</code> 関数で新しいデータセットを生成しています。また <code class="notranslate" translate="no">min</code> と <code class="notranslate" translate="no">max</code> の比較結果も持っています。
+最後のreturnで新しく <code class="notranslate" translate="no">min</code>、<code class="notranslate" translate="no">max</code>、<code class="notranslate" translate="no">data</code> を追加した以外は <code class="notranslate" translate="no">baseFile</code> と同じプロパティを持つ新しいファイルを作成します。</p>
+<p>それを使って2つの新しいデータセットを作りましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+  const menInfo = fileInfos[0];
+  const womenInfo = fileInfos[1];
+  const menFile = menInfo.file;
+  const womenFile = womenInfo.file;
+
+  function amountGreaterThan(a, b) {
+    return Math.max(a - b, 0);
+  }
+  fileInfos.push({
+    name: &#39;&gt;50%men&#39;,
+    hueRange: [0.6, 1.1],
+    file: makeDiffFile(menFile, womenFile, (men, women) =&gt; {
+      return amountGreaterThan(men, women);
+    }),
+  });
+  fileInfos.push({
+    name: &#39;&gt;50% women&#39;, 
+    hueRange: [0.0, 0.4],
+    file: makeDiffFile(womenFile, menFile, (women, men) =&gt; {
+      return amountGreaterThan(women, men);
+    }),
+  });
+}
+</code></pre>
+<p>これらのデータセットを選択するUIを生成しましょう。まず、いくつかのhtmlのUIが必要です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
+  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
++  &lt;div id=&quot;ui&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<p>次に左上のエリアに表示するためにCSSを追加しました。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#ui {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
+#ui&gt;div {
+  font-size: 20pt;
+  padding: 1em;
+  display: inline-block;
+}
+#ui&gt;div.selected {
+  color: red;
+}
+</code></pre>
+<p>各ファイルを調べてデータセットごとにマージされたボックスのセットを生成します。
+これでラベル上にマウスカーソルを置くとそのデータセットを表示し、他の全てのデータセットを非表示にするラベルUIを生成できます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+    info.root.visible = visible;
+    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+  });
+  requestRenderIfNotRequested();
+}
+
+const uiElem = document.querySelector(&#39;#ui&#39;);
+fileInfos.forEach((info) =&gt; {
+  const boxes = addBoxes(info.file, info.hueRange);
+  info.root = boxes;
+  const div = document.createElement(&#39;div&#39;);
+  info.elem = div;
+  div.textContent = info.name;
+  uiElem.appendChild(div);
+  div.addEventListener(&#39;mouseover&#39;, () =&gt; {
+    showFileInfo(fileInfos, info);
+  });
+});
+// show the first set of data
+showFileInfo(fileInfos, fileInfos[0]);
+</code></pre>
+<p>もう1つ変更が必要で <code class="notranslate" translate="no">addBoxes</code> の引数に <code class="notranslate" translate="no">hueRange</code> があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function addBoxes(file) {
++function addBoxes(file, hueRange) {
+
+  ...
+
+    // compute a color
+-    const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
++    const hue = THREE.MathUtils.lerp(...hueRange, amount);
+
+  ...
+</code></pre>
+<p>これで4つのデータセットを表示できるようになるはずです。ラベルの上にマウスを置いたり、タッチしてデータセットを切り替える事ができます。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-multiple-data-sets.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-multiple-data-sets.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>注意してほしいのは突出したいくつかの奇妙なデータポイントがあります。</p>
+<p>これは何が起きてるのでしょう！？</p>
+<p>いずれにしてもこの4つのデータセットをラベルから切り替えた際にクロスフェードアニメーションさせるにはどうすればいいのでしょうか。</p>
+<p>たくさんのアイデアがあります。</p>
+<ul>
+<li><p><code class="notranslate" translate="no">Material.opacity</code> でクロスフェードアニメーションする</p>
+<p>この解決策の問題点はキューブが完全に重なっているため、Z軸の戦いの問題を意味します。
+depth関数とブレンディングを使い修正できる可能性があります。調べてみた方が良さそうですね。</p>
+</li>
+<li><p>見たいデータセットをスケールアップして他のデータセットをスケールダウンする</p>
+<p>全てのボックスは惑星の中心に位置しているので、1.0以下に縮小すると惑星の中に沈んでしまいます。
+最初は良いアイデアのように聞こえますが、高さの低いボックスはほとんどすぐに消えてしまい、新しいデータセットが1.0までスケールアップするまで置き換えできません。
+このため、アニメーション遷移があまり気持ち良くありません。派手なカスタムシェーダーで修正できるかもしれません。</p>
+</li>
+<li><p>モーフターゲットを使用する</p>
+<p>モーフターゲットはジオメトリ内の各頂点に複数の値を与え、それらの中間を <em>モーフ</em> または lerp (線形補間) する方法です。
+モーフターゲットは3Dキャラクターの表情アニメーションに最も一般的に使用されていますがそれだけではありません。</p>
+</li>
+</ul>
+<p>モーフターゲットを使ってみましょう。</p>
+<p>これまで通りにデータセットごとにジオメトリを作成しますが、それぞれのデータから <code class="notranslate" translate="no">position</code> を抜き出してモーフターゲットとして使用します。</p>
+<p>まず <code class="notranslate" translate="no">addBoxes</code> を変更してマージされたジオメトリを返すだけに変更してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function addBoxes(file, hueRange) {
++function makeBoxes(file, hueRange) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  ...
+
+-  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+-      geometries, false);
+-  const material = new THREE.MeshBasicMaterial({
+-    vertexColors: THREE.VertexColors,
+-  });
+-  const mesh = new THREE.Mesh(mergedGeometry, material);
+-  scene.add(mesh);
+-  return mesh;
++  return BufferGeometryUtils.mergeBufferGeometries(
++     geometries, false);
+}
+</code></pre>
+<p>ここでもう1つやるべき事があります。モーフターゲットは全ての頂点数が全く同じである必要があります。
+あるターゲットの頂点#123は、他の全てのターゲットに対応する頂点#123を持つ必要があります。
+しかし、異なるデータセットにはデータのないデータポイントがあるかもしれないので、
+そのポイントに対してはボックスが生成されず、別のデータセットに対応する頂点も生成されません。</p>
+<p>そこで全てのデータセットをチェックし、どのセットにもデータがある場合は常に何かを生成するか、
+またはどのセットにもデータがない場合は何も生成しないかのどちらかを選択する必要があります。後者をやってみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function dataMissingInAnySet(fileInfos, latNdx, lonNdx) {
++  for (const fileInfo of fileInfos) {
++    if (fileInfo.file.data[latNdx][lonNdx] === undefined) {
++      return true;
++    }
++  }
++  return false;
++}
+
+-function makeBoxes(file, hueRange) {
++function makeBoxes(file, hueRange, fileInfos) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  ...
+
+  const geometries = [];
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
++      if (dataMissingInAnySet(fileInfos, latNdx, lonNdx)) {
++        return;
++      }
+      const amount = (value - min) / range;
+
+  ...
+</code></pre>
+<p><code class="notranslate" translate="no">addBoxes</code> を呼び出していたコードを <code class="notranslate" translate="no">makeBoxes</code> に変更し、モーフターゲットを設定します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+// make geometry for each data set
++const geometries = fileInfos.map((info) =&gt; {
++  return makeBoxes(info.file, info.hueRange, fileInfos);
++});
++
++// use the first geometry as the base
++// and add all the geometries as morphtargets
++const baseGeometry = geometries[0];
++baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
++  const attribute = geometry.getAttribute(&#39;position&#39;);
++  const name = `target${ndx}`;
++  attribute.name = name;
++  return attribute;
++});
++const material = new THREE.MeshBasicMaterial({
++  vertexColors: THREE.VertexColors,
++  morphTargets: true,
++});
++const mesh = new THREE.Mesh(baseGeometry, material);
++scene.add(mesh);
+
+const uiElem = document.querySelector(&#39;#ui&#39;);
+fileInfos.forEach((info) =&gt; {
+-  const boxes = addBoxes(info.file, info.hueRange);
+-  info.root = boxes;
+  const div = document.createElement(&#39;div&#39;);
+  info.elem = div;
+  div.textContent = info.name;
+  uiElem.appendChild(div);
+  function show() {
+    showFileInfo(fileInfos, info);
+  }
+  div.addEventListener(&#39;mouseover&#39;, show);
+  div.addEventListener(&#39;touchstart&#39;, show);
+});
+// show the first set of data
+showFileInfo(fileInfos, fileInfos[0]);
+</code></pre>
+<p>上記では最初のデータセットをベースとしたジオメトリを作成し、各ジオメトリから <code class="notranslate" translate="no">position</code> を取得し、
+それを <code class="notranslate" translate="no">position</code> のベースジオメトリにモーフターゲットとして追加します。
+あとはデータセットの表示・非表示の仕方を変える必要があります。
+メッシュを表示・非表示するのではなく、モーフターゲットの影響を変える必要があります。
+見たいデータセットは1の影響を持つ必要があり、見たくないデータセットは0の影響を持つ必要があります。</p>
+<p>直接0か1にすれば良いのですがそうするとクロスフェードアニメーションが見られなくなり、すでに持っている値に変更がなくスナップします。
+または簡単にカスタムアニメーションのコードを書く事ができますが、
+オリジナルのwebgl globeでは<a href="https://github.com/tweenjs/tween.js/">アニメーションライブラリ</a>を使っているので合わせましょう。</p>
+<p>アニメーションライブラリをimportする必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
+import {BufferGeometryUtils} from &#39;./resources/threejs/r119/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
++import {TWEEN} from &#39;./resources/threejs/r119/examples/jsm/libs/tween.min.js&#39;;
+</code></pre>
+<p>そして、影響を与えるアニメーションの <code class="notranslate" translate="no">Tween</code> を作成します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+-    info.root.visible = visible;
+    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
++    const targets = {};
++    fileInfos.forEach((info, i) =&gt; {
++      targets[i] = info === fileInfo ? 1 : 0;
++    });
++    const durationInMs = 1000;
++    new TWEEN.Tween(mesh.morphTargetInfluences)
++      .to(targets, durationInMs)
++      .start();
+  });
+  requestRenderIfNotRequested();
+}
+</code></pre>
+<p>レンダリングループ内でフレームごとに <code class="notranslate" translate="no">TWEEN.update</code> を呼び出しますが問題があります。
+&quot;tween.js&quot;は連続的なレンダリング用に設計されていますが、ここでは<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>をしています。
+連続的なレンダリングに切り替えれますが、何も起きていない時にはレンダリングコストを下げた方が良いため、要求されたレンダリングだけにするのもいいかもしれません。
+これを助けるために <code class="notranslate" translate="no">TweenManager</code> を作ります。
+TweenManagerは <code class="notranslate" translate="no">update</code> メソッドを持ち、再度呼び出す必要がある場合は <code class="notranslate" translate="no">true</code> を返し、全てのアニメーションが終了した場合は <code class="notranslate" translate="no">false</code> を返します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class TweenManger {
+  constructor() {
+    this.numTweensRunning = 0;
+  }
+  _handleComplete() {
+    --this.numTweensRunning;
+    console.assert(this.numTweensRunning &gt;= 0);
+  }
+  createTween(targetObject) {
+    const self = this;
+    ++this.numTweensRunning;
+    let userCompleteFn = () =&gt; {};
+    // create a new tween and install our own onComplete callback
+    const tween = new TWEEN.Tween(targetObject).onComplete(function(...args) {
+      self._handleComplete();
+      userCompleteFn.call(this, ...args);
+    });
+    // replace the tween&#39;s onComplete function with our own
+    // so we can call the user&#39;s callback if they supply one.
+    tween.onComplete = (fn) =&gt; {
+      userCompleteFn = fn;
+      return tween;
+    };
+    return tween;
+  }
+  update() {
+    TWEEN.update();
+    return this.numTweensRunning &gt; 0;
+  }
+}
+</code></pre>
+<p>TweenMangerを使用するために次のようなコードにします。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+  const renderer = new THREE.WebGLRenderer({canvas});
++  const tweenManager = new TweenManger();
+
+  ...
+</code></pre>
+<p>TweenMangerを使って <code class="notranslate" translate="no">Tween</code> を作成します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+    const targets = {};
+    fileInfos.forEach((info, i) =&gt; {
+      targets[i] = info === fileInfo ? 1 : 0;
+    });
+    const durationInMs = 1000;
+-    new TWEEN.Tween(mesh.morphTargetInfluences)
++    tweenManager.createTween(mesh.morphTargetInfluences)
+      .to(targets, durationInMs)
+      .start();
+  });
+  requestRenderIfNotRequested();
+}
+</code></pre>
+<p>次にtweenManagerを更新するためにレンダーループを修正し、アニメーションが実行されている場合はレンダリングを継続します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
++  if (tweenManager.update()) {
++    requestRenderIfNotRequested();
++  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+render();
+</code></pre>
+<p>そして、データセットでクロスフェードアニメーションを行う必要があります。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>これでクロスフェードアニメーションが上手く動くようですが、残念ながら色を失ってしまいました。</p>
+<p>Three.jsはモーフターゲットの色をサポートしておらず、これはオリジナルの<a href="https://github.com/dataarts/webgl-globe">webgl globe</a>側の問題です。
+基本的には最初のデータセットの色を作るだけです。他のデータセットは色が大きく異なっていても同じ色を使用しています。</p>
+<p>色のモーフィングのサポートを追加できるかどうか見てみましょう。これは壊れやすいかもしれませんね。
+最も壊れやすい方法はおそらく100%独自のシェーダを書く事でしょうが、内蔵シェーダーをどのように修正するかを見るのは有用だと思います。</p>
+<p>まず最初に行う必要があるのは各データセットのジオメトリから色を <code class="notranslate" translate="no">BufferAttribute</code> として抽出するコードを作成する事です。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// use the first geometry as the base
+// and add all the geometries as morphtargets
+const baseGeometry = geometries[0];
+baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
+  const attribute = geometry.getAttribute(&#39;position&#39;);
+  const name = `target${ndx}`;
+  attribute.name = name;
+  return attribute;
+});
++const colorAttributes = geometries.map((geometry, ndx) =&gt; {
++  const attribute = geometry.getAttribute(&#39;color&#39;);
++  const name = `morphColor${ndx}`;
++  attribute.name = `color${ndx}`;  // just for debugging
++  return {name, attribute};
++});
+const material = new THREE.MeshBasicMaterial({
+  vertexColors: THREE.VertexColors,
+  morphTargets: true,
+});
+</code></pre>
+<p>次にthree.jsのシェーダーを修正する必要があります。
+Three.jsのマテリアルには <code class="notranslate" translate="no">Material.onBeforeCompile</code> プロパティがあり、関数を割り当てる事ができます。
+これはWebGLに渡される前にマテリアルのシェーダーを修正する機会を与えてくれます。
+実際に提供されているシェーダーはthree.js独自の特殊なシェーダー構文になっており、
+シェーダーの<em>チャンク</em>の束をリストアップし、three.jsが各チャンクに対して実際のGLSLコードで置換します。
+以下は変更されていない頂点シェーダーのコードで <code class="notranslate" translate="no">onBeforeCompile</code> に渡されるように見えます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">#include &lt;common&gt;
+#include &lt;uv_pars_vertex&gt;
+#include &lt;uv2_pars_vertex&gt;
+#include &lt;envmap_pars_vertex&gt;
+#include &lt;color_pars_vertex&gt;
+#include &lt;fog_pars_vertex&gt;
+#include &lt;morphtarget_pars_vertex&gt;
+#include &lt;skinning_pars_vertex&gt;
+#include &lt;logdepthbuf_pars_vertex&gt;
+#include &lt;clipping_planes_pars_vertex&gt;
+void main() {
+    #include &lt;uv_vertex&gt;
+    #include &lt;uv2_vertex&gt;
+    #include &lt;color_vertex&gt;
+    #include &lt;skinbase_vertex&gt;
+    #ifdef USE_ENVMAP
+    #include &lt;beginnormal_vertex&gt;
+    #include &lt;morphnormal_vertex&gt;
+    #include &lt;skinnormal_vertex&gt;
+    #include &lt;defaultnormal_vertex&gt;
+    #endif
+    #include &lt;begin_vertex&gt;
+    #include &lt;morphtarget_vertex&gt;
+    #include &lt;skinning_vertex&gt;
+    #include &lt;project_vertex&gt;
+    #include &lt;logdepthbuf_vertex&gt;
+    #include &lt;worldpos_vertex&gt;
+    #include &lt;clipping_planes_vertex&gt;
+    #include &lt;envmap_vertex&gt;
+    #include &lt;fog_vertex&gt;
+}
+</code></pre>
+<p>上記のシェーダーチャンクから
+<a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_pars_vertex.glsl.js"><code class="notranslate" translate="no">morphtarget_pars_vertex</code> チャンク</a>、
+<a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphnormal_vertex.glsl.js"><code class="notranslate" translate="no">morphnormal_vertex</code> チャンク</a>、
+<a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_vertex.glsl.js"><code class="notranslate" translate="no">morphtarget_vertex</code> チャンク</a>、
+<a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_pars_vertex.glsl.js"><code class="notranslate" translate="no">color_pars_vertex</code> チャンク</a>、
+<a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js"><code class="notranslate" translate="no">color_vertex</code> チャンク</a>
+を置き換えたいと思います。</p>
+<p>これを行うには単純な置換の配列を作成して <code class="notranslate" translate="no">Material.onBeforeCompile</code> で適用します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({
+  vertexColors: THREE.VertexColors,
+  morphTargets: true,
+});
++const vertexShaderReplacements = [
++  {
++    from: &#39;#include &lt;morphtarget_pars_vertex&gt;&#39;,
++    to: `
++      uniform float morphTargetInfluences[8];
++    `,
++  },
++  {
++    from: &#39;#include &lt;morphnormal_vertex&gt;&#39;,
++    to: `
++    `,
++  },
++  {
++    from: &#39;#include &lt;morphtarget_vertex&gt;&#39;,
++    to: `
++      transformed += (morphTarget0 - position) * morphTargetInfluences[0];
++      transformed += (morphTarget1 - position) * morphTargetInfluences[1];
++      transformed += (morphTarget2 - position) * morphTargetInfluences[2];
++      transformed += (morphTarget3 - position) * morphTargetInfluences[3];
++    `,
++  },
++  {
++    from: &#39;#include &lt;color_pars_vertex&gt;&#39;,
++    to: `
++      varying vec3 vColor;
++      attribute vec3 morphColor0;
++      attribute vec3 morphColor1;
++      attribute vec3 morphColor2;
++      attribute vec3 morphColor3;
++    `,
++  },
++  {
++    from: &#39;#include &lt;color_vertex&gt;&#39;,
++    to: `
++      vColor.xyz = morphColor0 * morphTargetInfluences[0] +
++                   morphColor1 * morphTargetInfluences[1] +
++                   morphColor2 * morphTargetInfluences[2] +
++                   morphColor3 * morphTargetInfluences[3];
++    `,
++  },
++];
++material.onBeforeCompile = (shader) =&gt; {
++  vertexShaderReplacements.forEach((rep) =&gt; {
++    shader.vertexShader = shader.vertexShader.replace(rep.from, rep.to);
++  });
++};
+</code></pre>
+<p>また、Three.jsはモーフターゲットをソートし、最も影響の高いものだけを適用します。
+これにより1度に数個しか使用されない限り、より多くのモーフターゲットを使用する事ができます。
+残念ながらthree.jsではモーフターゲットが何個使われるのか、どの属性に割り当てられるのかを知る方法は提供されていません。
+そこでコードを調べて、ここで何をしているのかを再現してみましょう。
+もしそのアルゴリズムがthree.jsで変更されたら、このコードをリファクタリングする必要があります。</p>
+<p>まず色の属性を全て削除します。今まで追加していなかった属性は削除しても大丈夫なので問題ありません。
+次にthree.jsが使用すると思われるターゲットを計算し、最後にそのターゲットをthree.jsが割り当てる属性に割り当てます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">
+const mesh = new THREE.Mesh(baseGeometry, material);
+scene.add(mesh);
+
++function updateMorphTargets() {
++  // remove all the color attributes
++  for (const {name} of colorAttributes) {
++    baseGeometry.deleteAttribute(name);
++  }
++
++  // three.js provides no way to query this so we have to guess and hope it doesn&#39;t change.
++  const maxInfluences = 8;
++
++  // three provides no way to query which morph targets it will use
++  // nor which attributes it will assign them to so we&#39;ll guess.
++  // If the algorithm in three.js changes we&#39;ll need to refactor this.
++  mesh.morphTargetInfluences
++    .map((influence, i) =&gt; [i, influence])            // map indices to influence
++    .sort((a, b) =&gt; Math.abs(b[1]) - Math.abs(a[1]))  // sort by highest influence first
++    .slice(0, maxInfluences)                          // keep only top influences
++    .sort((a, b) =&gt; a[0] - b[0])                      // sort by index
++    .filter(a =&gt; !!a[1])                              // remove no influence entries
++    .forEach(([ndx], i) =&gt; {                          // assign the attributes
++      const name = `morphColor${i}`;
++      baseGeometry.setAttribute(name, colorAttributes[ndx].attribute);
++    });
++}
+</code></pre>
+<p>この関数は <code class="notranslate" translate="no">loadAll</code> 関数から返します。この方法では変数をリークする必要はありません。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadAll() {
+  ...
+
++  return updateMorphTargets;
+}
+
++// use a no-op update function until the data is ready
++let updateMorphTargets = () =&gt; {};
+-loadAll();
++loadAll().then(fn =&gt; {
++  updateMorphTargets = fn;
++});
+</code></pre>
+<p>最後にtweenManagerで値を更新した後、レンダリング前に <code class="notranslate" translate="no">updateMorphTargets</code> を呼び出す必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+
+  ...
+
+  if (tweenManager.update()) {
+    requestRenderIfNotRequested();
+  }
+
++  updateMorphTargets();
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+</code></pre>
+<p>これで色をクロスフェードアニメーションさせる事ができます。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets-w-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets-w-colors.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>これがお役に立てれば幸いです。
+three.jsが提供するサービスを利用するか、カスタムシェーダーを使ってモーフターゲットを使うのは多くのオブジェクトを移動させるための一般的なテクニックです。
+例として全てのキューブに別の目標を設定し、そこから地球上での最初の位置へと変化します。
+地球儀を紹介するにはかっこいいかもしれません。</p>
+<p>次は<a href="threejs-align-html-elements-to-3d.html">HTML要素を3Dに整列させる</a>で説明している地球儀にラベルを追加します。</p>
+<p>注: 男性や女性の割合、または正の差をグラフ化する事もできますが、情報を表示する方法に基づいて地表から成長するキューブはほとんどのキューブが低い方が良いでしょう。
+これらの他の比較を使用した場合、ほとんどのキューブは最大高さの約1/2の大きさになり可視化として良くありません。
+<code class="notranslate" translate="no">amountGreaterThan</code> を変えたように感じますが、このような場合は <code class="notranslate" translate="no">Math.max(a - b, 0)</code> を <code class="notranslate" translate="no">(a - b)</code> &quot;正の差&quot; や <code class="notranslate" translate="no">a / (a +b)</code> &quot;パーセント&quot; のようなものに変えると何を言っているのかわかるでしょう。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +834,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -217,7 +870,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li>最適化</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a></li>
-<li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+<li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">アニメーションする多くのオブジェクトを最適化</a></li>
 <li><a href="/threejs/lessons/ja/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
         </ul>
   <li>解決策</li>
@@ -255,6 +908,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsでアニメーションする多くのオブジェクトを最適化';
+            var disqus_title = 'Three.jsでアニメーションする多くのオブジェクトを最適化';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
