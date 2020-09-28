@@ -413,9 +413,9 @@ objects.push(earthMesh);
 +moonOrbit.add(moonMesh);
 +objects.push(moonMesh);
 </code></pre>
-<p>Again we added another invisible scene graph node, an <code class="notranslate" translate="no">Object3D</code> called <code class="notranslate" translate="no">earthOrbit</code>
-and added both the <code class="notranslate" translate="no">earthMesh</code> and the <code class="notranslate" translate="no">moonMesh</code> to it. The new scene graph looks like
-this.</p>
+<p>Again we added more invisible scene graph nodes. The first, an <code class="notranslate" translate="no">Object3D</code> called <code class="notranslate" translate="no">earthOrbit</code>
+and added both the <code class="notranslate" translate="no">earthMesh</code> and the <code class="notranslate" translate="no">moonOrbit</code> to it, also new. We then added the <code class="notranslate" translate="no">mooMesh</code>
+to the <code class="notranslate" translate="no">moonRobit</code>. The new scene graph looks like this.</p>
 <p><img src="resources/images/scenegraph-sun-earth-moon.svg" align="center"></p>
 <p>and here&#39;s that</p>
 <p><div translate="no" class="threejs_example_container notranslate">
@@ -488,6 +488,7 @@ some function to add the helpers for each node</p>
 +makeAxisGrid(sunMesh, &#39;sunMesh&#39;);
 +makeAxisGrid(earthOrbit, &#39;earthOrbit&#39;);
 +makeAxisGrid(earthMesh, &#39;earthMesh&#39;);
++makeAxisGrid(moonOrbit, &#39;moonOrbit&#39;);
 +makeAxisGrid(moonMesh, &#39;moonMesh&#39;);
 </code></pre>
 <p><code class="notranslate" translate="no">makeAxisGrid</code> makes an <code class="notranslate" translate="no">AxisGridHelper</code> which is a class we&#39;ll create

@@ -31,6 +31,8 @@
   "scripts": {
     "build": "ld-check-dependencies && grunt",
     "build-ci": "grunt",
+    "copymain": "grunt copy:main",
+    "buildlessons": "grunt buildlessons",
     "watch": "ld-check-dependencies && grunt buildwatch",
     "watch-no-check": "grunt buildwatch",
     "start": "servez out",
