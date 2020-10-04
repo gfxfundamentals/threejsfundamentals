@@ -2,23 +2,21 @@ Title: Three.jsのOffscreenCanvas
 Description: three.jsでweb workerを使う方法
 TOC: Web WorkerでOffscreenCanvasを使用する
 
-[`OffscreenCanvas`](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)は新しいブラウザの機能で現在はChromeでしか利用できませんが、他のブラウザでも利用できるようになるようです。
+[`OffscreenCanvas`](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)は新しいブラウザの機能で現在はChromeでしか利用できませんが、他のブラウザにも来るようです。
+`OffscreenCanvas` はWeb Workerでキャンバスにレンダリングできます。
+複雑な3Dシーンのレンダリングなど重い作業をWeb Workerで行い負荷を軽減させ、ブラウザのレスポンスを低下させない方法です。
+また、データが読み込まれWorkerで解析されてるのでページ読み込み中にページ表示の途切れは少ないでしょう。
 
-`OffscreenCanvas` でweb workerがキャンバスにレンダリングできます。
-これは複雑な3Dシーンのレンダリングなどの重い作業をWeb workerにオフロードし、ブラウザのレスポンスを低下させないようにする方法です。
-また、データが読み込まれworkerで解析されてるのでページ読み込み中にページ表示の途切れは少ないでしょう。
+OffscreenCanvasの利用を*開始*するのは非常に簡単です。
+[レスポンシブデザインの記事](threejs-responsive.html)から3つのキューブを回転させるコードに修正してみましょう。
 
-OffscreenCanvasの使用を*開始*するのは非常に簡単です。
-[レスポンシブデザインの記事](threejs-responsive.html)からキューブを3回転させるようにしてみましょう。
-
-通常はWorkersのコードを別ファイルに分離しますが、このサイトのほとんどのサンプルコードではスクリプトをHTMLファイルに埋め込んでいます。
+通常はWorkerのコードを別ファイルに分離しますが、このサイトのほとんどのサンプルコードではスクリプトをHTMLファイルに埋め込んでいます。
 
 ここでは `offscreencanvas-cubes.js` というファイルを作成し、[レスポンシブデザインの例](threejs-responsive.html)から全てのJavaScriptをコピーして下さい。
-そして、ワーカーで実行するために必要な変更を行います。
+そして、Workerで実行するために必要な変更を行います。
 
-HTMLファイルにはまだJavaScriptが必要です。
-
-まず最初に行う必要があるのはキャンバスを検索し、そのキャンバスのコントロールで `canvas.transferControlToOffscreen` 呼び出しオフスクリーンに転送する事です。
+HTMLファイルにはJavaScriptのいくつかの処理が必要です。
+まず最初に行う必要があるのはキャンバスを検索し、`canvas.transferControlToOffscreen` 呼び出してキャンバスのコントロールをオフスクリーンに転送します。
 
 ```js
 function main() {
@@ -28,8 +26,7 @@ function main() {
   ...
 ```
 
-`new Worker(pathToScript, {type: 'module'})`でworkerを起動します。
-そしてworkerを起動し、`offscreen` オブジェクトを渡します。
+`new Worker(pathToScript, {type: 'module'})`でWorkerを起動し、`offscreen` オブジェクトを渡します。
 
 ```js
 function main() {
@@ -41,23 +38,24 @@ function main() {
 main();
 ```
 
-ここで重要なのはworkerが `DOM` にアクセスできない事です。
-HTML要素を見る事もマウスイベントやキーボードイベントを受け取ることもできません。
-workerができる事は、workerに送られたメッセージに返信してWebページにメッセージを送り返す事だけです。
+ここで重要なのはWorkerが `DOM` にアクセスできない事です。
+HTML要素の参照やマウスイベントやキーボードイベントを受け取る事もできません。
+Workerは、送られたメッセージに返信してWebページにメッセージを送り返す事だけです。
 
-workerにメッセージを送信するには [`worker.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage)を呼び出し、1つまたは2つの引数を渡します。
-1つ目の引数は [クローン](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm)されるJavaScriptオブジェクトです。そして、workerに送られてきます。
-2番目の引数はworkerに *転送* したい最初のオブジェクトのオプション配列です。
+Workerにメッセージを送信するには[`worker.postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage)を呼び出し、1つまたは2つの引数を渡します。
+1つ目の引数は[クローン](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm)されるJavaScriptオブジェクトでWorkerに送ります。
+2番目の引数は任意でWorkerに *転送* したい最初のオブジェクトです。
 このオブジェクトはクローンされません。
 その代わりに *転送* され、メインページには存在しなくなります。
-存在しなくなるというのはおそらく間違った説明であり、むしろ彼らは去勢されています。
+存在しなくなるというのはおそらく間違った説明であり、むしろ取り除かれます。
 クローンではなく、特定のタイプのオブジェクトのみを転送する事ができます。
-このオブジェクトには `OffscreenCanvas` が含まれているので、1度転送した `offscreen` オブジェクトをメインページに戻しても意味がありません。
-上記のコードではworkerに渡すオブジェクトに `type: 'main'` を宣言しています。
+転送するオブジェクトには `OffscreenCanvas` が含まれているので、1度転送した `offscreen` オブジェクトをメインページに戻しても意味がありません。
 
-Workersは `onmessage` ハンドラからメッセージを受け取ります。
-`postMessage` に渡したオブジェクトはWorkerの `onmessage` ハンドラに渡された `event.data` を更新します。
-このオブジェクトはブラウザには何の意味もありません。完全に自分達で使うためのものです。
+Workerは `onmessage` ハンドラからメッセージを受け取ります。
+`postMessage` に渡したオブジェクトはWorkerの `onmessage` ハンドラに渡され `event.data` を更新します。
+上記のコードではWorkerに渡すオブジェクトに `type: 'main'` を宣言しています。
+このオブジェクトはブラウザには何の意味もありません。Workerで使うためだけのものです。
+`type` に基づいて、Worker内で別の関数を呼び出すハンドラを作成します。
 あとは必要に応じて関数を追加し、メインページから簡単に呼び出す事ができます。
 
 ```js
@@ -74,8 +72,8 @@ self.onmessage = function(e) {
 };
 ```
 
-上記で見たように `type` に基づいてハンドラを検索し、メインページから送られてきた `data` を渡すだけです。
-あとは `offscreencanvas-cubes.js` に貼り付けた `main` を [レスポンシブデザインの記事](threejs-responsive.html) から変更するだけです。
+上記コードのように `type` に基づいてハンドラを検索し、メインページから送られてきた `data` を渡します。
+あとは[レスポンシブデザインの記事](threejs-responsive.html)から `offscreencanvas-cubes.js` に貼り付けた `main` を変更するだけです。
 
 DOMからキャンバスを探すのではなく、イベントデータからキャンバスを受け取ります。
 
@@ -90,9 +88,10 @@ DOMからキャンバスを探すのではなく、イベントデータから�
 
 ```
 
-workerがDOMを見る事ができないのを覚えておくと、
-最初の問題は `resizeRendererToDisplaySize` が `canvas.clientWidth` と `canvas.clientHeight` を見れない事です。
- 元のコードは以下の通りです。
+最初の問題はWorkerからDOMを参照できず、`resizeRendererToDisplaySize` が `canvas.clientWidth` と `canvas.clientHeight` を参照できない事です。
+`clientWidth` と `canvas.clientHeight` はDOMの値です。
+
+元のコードは以下の通りです。
 
 ```js
 function resizeRendererToDisplaySize(renderer) {
@@ -107,7 +106,7 @@ function resizeRendererToDisplaySize(renderer) {
 }
 ```
 
-その代わりにサイズを変更した値をworkerに送る必要があります。
+DOMを参照できないため、変更したサイズの値をWorkerに送る必要があります。
 そこでグローバルな状態を追加し、幅と高さを維持するようにしましょう。
 
 ```js
@@ -117,7 +116,7 @@ const state = {
 };
 ```
 
-これらの値を更新するための `'size'` ハンドラを追加してみましょう。
+これらの値を更新するための `'size'` ハンドラを追加してみます。
 
 ```js
 +function size(data) {
@@ -131,7 +130,7 @@ const handlers = {
 };
 ```
 
-これで `resizeRendererToDisplaySize` を変更し、 `state.width` と `state.height` を使用するようになりました。
+これで `resizeRendererToDisplaySize` を変更すると `state.width` と `state.height` が使えるようになりました。
 
 ```js
 function resizeRendererToDisplaySize(renderer) {
@@ -148,7 +147,7 @@ function resizeRendererToDisplaySize(renderer) {
 }
 ```
 
-同様の変更が必要です。
+以下も同様の変更が必要です。
 
 ```js
 function render(time) {
@@ -163,7 +162,7 @@ function render(time) {
   ...
 ```
 
-メインページに戻り、ページのリサイズの度に `size` イベントを送信します。
+メインページに戻りページのリサイズの度に `size` イベントを送信します。
 
 ```js
 const worker = new Worker('offscreencanvas-picking.js', {type: 'module'});
@@ -181,11 +180,11 @@ worker.postMessage({type: 'main', canvas: offscreen}, [offscreen]);
 +sendSize();
 ```
 
-初期サイズを送るために1度呼んでいます。
+初期サイズを送るために1度sendSizeを呼んでいます。
 
 ブラウザが `OffscreenCanvas` を完全にサポートしていると仮定して、これらの変更を行うだけで動作するはずです。
-実行する前にブラウザが `OffscreenCanvas` を実際にサポートしているかどうかを確認し、サポートしていない場合はエラーを表示してみましょう。
-まずはエラーを表示するためのHTMLを追加してみましょう。
+実行する前にブラウザが `OffscreenCanvas` を実際にサポートしているか確認し、サポートしていない場合はエラーを表示してみましょう。
+まずはエラーを表示するためのHTMLを追加します。
 
 ```html
 <body>
@@ -196,7 +195,7 @@ worker.postMessage({type: 'main', canvas: offscreen}, [offscreen]);
 </body>
 ```
 
-そして、いくつかのCSSを追加します。
+そして、CSSを追加します。
 
 ```css
 #noOffscreenCanvas {
@@ -231,22 +230,22 @@ function main() {
 
 {{{example url="../threejs-offscreencanvas.html" }}}
 
-これは素晴らしい事ですが、今の所は全てのブラウザが `OffscreenCanvas` をサポートしているわけではないので、
-`OffscreenCanvas` と `OffscreenCanvas` でない場合の両方で動作するようにコードを変更し、動作しない場合はメインページのキャンバスを通常のように表示します。
+これは素晴らしい事ですが、今の所は全てのブラウザが `OffscreenCanvas` をサポートしている訳ではなく、
+`OffscreenCanvas` サポートありとサポートなしの両方で動作するコードに変更し、サポートなしの場合はメインページのキャンバスを通常のように表示します。
 
 > 余談ですがページをレスポンシブにするためにOffscreenCanvasが必要な場合、フォールバックを持つ意味がよくわかりません。
-> メインページで実行するかWorkerで実行するかには、Workerで実行している時にメインページで実行している時よりも多くのことができるように
-> 作業量を調整するかもしれません。何をするかは本当にあなた次第です。
+> メインページで実行するかWorkerで実行するかには、Workerで実行している時にメインページで実行している時よりも多くの事ができるように
+> 調整するかもしれません。何をするかは本当にあなた次第です。
 
-まず最初にすべき事はthree.jsのコードとWorkerに固有のコードを分離することでしょう。
+まず最初にthree.jsのコードとWorkerの固有コードを分離しましょう。
 これでメインページとWorkerの両方で同じコードを使う事ができます。
-言い換えると3つのファイルを持つ事になります。
+つまり、3つのファイルを持つ事になります。
 
 1. htmlファイル
 
    `threejs-offscreencanvas-w-fallback.html`
 
-2. three.jsのコードを含むJavaScript
+2. three.jsを含むJavaScriptコード
 
    `shared-cubes.js`
 
@@ -254,7 +253,8 @@ function main() {
 
    `offscreencanvas-worker-cubes.js`
 
-`shared-cubes.js` と `offscreencanvas-worker-cubes.js` は基本的に以前の `offscreencanvas-cubes.js` ファイルを分割したものです。
+`shared-cubes.js` と `offscreencanvas-worker-cubes.js` は前の `offscreencanvas-cubes.js` ファイルを分割したものです。
+
 まず `offscreencanvas-cubes.js` を全て `shared-cube.js` にコピーします。
 次にHTMLファイルには既に `main` があり、`init` と `state` をエクスポートする必要があるため `main` の名前を `init` に変更します。
 
@@ -326,7 +326,7 @@ self.onmessage = function(e) {
 <script type="module">
 +import {init, state} from './shared-cubes.js';
 ```
-以前に追加したHTMLとCSSを削除します。
+前に追加したHTMLとCSSを削除します。
 
 ```html
 <body>
@@ -337,7 +337,7 @@ self.onmessage = function(e) {
 </body>
 ```
 
-CSSは以下のようになります。
+そして、CSSは以下のようになります。
 
 ```css
 -#noOffscreenCanvas {
@@ -351,8 +351,7 @@ CSSは以下のようになります。
 -}
 ```
 
-次にメインページのコードを変更し、1つのstartを呼び出すようにしましょう。
-関数を使用するか、またはブラウザが `OffscreenCanvas` をサポートしているかどうかに応じて別の関数を使用します。
+次にブラウザが `OffscreenCanvas` をサポートありなしに応じて、メインページのコードを変更して起動関数を呼び出すようにしてみましょう。
 
 ```js
 function main() {
@@ -373,7 +372,7 @@ function main() {
   ...
 ```
 
-Workerをセットアップするために必要だったコードを全て `startWorker` の中に移動します。
+Workerのセットアップコードを全て `startWorker` の中に移動します。
 
 ```js
 function startWorker(canvas) {
@@ -396,7 +395,7 @@ function startWorker(canvas) {
 }
 ```
 
-`main` の代わりに `init` を送信します。
+そして `main` の代わりに `init` を送信します。
 
 ```js
 -  worker.postMessage({type: 'main', canvas: offscreen}, [offscreen]);
@@ -420,14 +419,14 @@ function startMainPage(canvas) {
 }
 ```
 
-このサンプルコードではOffscreenCanvasで実行されるか、メインページで実行されるようにフォールバックされます。
+このサンプルコードではOffscreenCanvasで実行、またはメインページで実行されるようにフォールバックしています。
 
 {{{example url="../threejs-offscreencanvas-w-fallback.html" }}}
 
 比較的簡単でした。ピッキングしてみましょう。
 [ピッキングの記事](threejs-picking.html)にある `RayCaster` の例からコードをいくつか取り出し、画面外でオフスクリーンが動作するようにします。
 
-`shared-cube.js` を `shared-picking.js` にコピーし、ピッキング部分を追加してみましょう。 
+`shared-cube.js` を `shared-picking.js` にコピーし、ピッキング部分を追加してみましょう。
 この例では `PickHelper` をコピーします。
 
 ```js
@@ -511,7 +510,7 @@ self.onmessage = function(e) {
 };
 ```
 
-メインページに戻ってマウスをWorkerやメインページに渡すコードを追加する必要があります。
+メインページに戻ってマウスをWorkerやメインページに渡すコードを追加します。
 
 ```js
 +let sendMouse;
@@ -563,7 +562,7 @@ function startMainPage(canvas) {
 
 ```
 
-全てのマウス操作コードをメインページにコピーし、`sendMouse` を使用するようにマイナーチェンジを加えるだけです。
+全てのマウス操作コードをメインページにコピーし、`sendMouse` を使用するようにマイナーチェンジを加えます。
 
 ```js
 function setPickPosition(event) {
@@ -605,12 +604,11 @@ window.addEventListener('touchend', clearPickPosition);
 
 {{{example url="../threejs-offscreencanvas-w-picking.html" }}}
 
-もう一歩踏み込んで `OrbitControls` を追加してみましょう。
-
+もう1歩踏み込んで `OrbitControls` を追加してみましょう。
 これはもう少し複雑です。
-`OrbitControls` はDOMをマウス、タッチイベント、キーボードをかなり広範囲にチェックしています。
+`OrbitControls` はマウス、タッチイベント、キーボードなどDOMをかなり広範囲にチェックしています。
 
-これまでのコードとは異なり、グローバルな `state` オブジェクトを使うことはできません。
+これまでのコードとは異なり、グローバルな `state` オブジェクトを使う事はできません。
 これを使用して動作するようにOrbitControlsのコードを全て書き換える必要はありません。
 OrbitControlsは `HTMLElement` を取り、それに使用するDOMイベントのほとんどをアタッチします。
 OrbitControlsが必要とする機能をサポートする必要があります。
@@ -628,6 +626,7 @@ OrbitControlsが必要とする機能をサポートする必要があります�
 * keydown
 
 マウスイベントには `ctrlKey`、 `metaKey`、 `shiftKey`、 `button`、 `clientX`、 `clientY`、 `pageX`、 `pageY` プロパティが必要です。
+
 キーダウンイベントには `ctrlKey`, `metaKey`, `shiftKey`, `keyCode` プロパティが必要です。
 
 ホイールイベントに必要なのは `deltaY` プロパティだけです。
@@ -635,11 +634,10 @@ OrbitControlsが必要とする機能をサポートする必要があります�
 また、タッチイベントに必要なのは `touches` プロパティの `pageX` と `pageY` だけです。
 
 そこでproxyオブジェクトのペアを作ってみましょう。
-あるパーツはメインページで実行されそれらのイベントを全て取得し、関連するプロパティ値をWorkerに渡します。
-他の部分はWorkerで実行されこれらのイベントを受信し、オリジナルのDOMイベントと同じ構造を持つイベントを使用してそれらを渡します。
-違いを見分けることができます。
+ある時はメインページで実行され、全てのイベント、関連するプロパティ値をWorkerに渡します。
+また、ある時はWorkerで実行され、全てのイベント、DOMイベントと同じ構造をもつイベントをメインページに渡すので、OrbitControlsは違いを見分けられません。
 
-Worker部分のコードです。
+ここにWorker部分のコードがあります。
 
 ```js
 import {EventDispatcher} from './resources/threejs/r119/build/three.module.js';
@@ -654,13 +652,12 @@ class ElementProxyReceiver extends EventDispatcher {
 }
 ```
 
-メッセージを受信した場合にそれを送信するだけです。
-
-これは `EventDispatcher` を継承しており、DOM要素のように `addEventListener` や `removeEventListener` のようなメソッドを提供しているので、
-OrbitControlsに渡せば動作するはずです。
+メッセージを受信した場合にdataを送信するだけです。
+これは `EventDispatcher` を継承しており、DOM要素のように `addEventListener` や `removeEventListener` のようなメソッドを提供しているので、OrbitControlsに渡せば動作するはずです。
 
 `ElementProxyReceiver` は1つの要素を扱います。
-私たちの場合は1人でいいのですが頭を使って考えた方がいいので、複数の管理者を作って管理するようにしています。
+私たちの場合は1つの頭しか必要ありませんが、頭で考えるのがベストです。
+つまり、マネージャーを作って複数のElementProxyReceiverを管理するようにしましょう。
 
 ```js
 class ProxyManager {
@@ -682,8 +679,7 @@ class ProxyManager {
 }
 ```
 
-`ProxyManager`のインスタンスを作成し、その `makeProxy` メソッドをidを指定して呼び出す事で、
-そのidを持つメッセージに応答する `ElementProxyReceiver` を作成できます。
+`ProxyManager`のインスタンスを作成し `makeProxy` メソッドにidを指定して呼び出す事で、そのidを持つメッセージに応答する `ElementProxyReceiver` を作成できます。
 
 Workerのメッセージハンドラに接続してみましょう。
 
@@ -738,8 +734,8 @@ export function init(data) {
 +  controls.update();
 ```
 
-OffscreenCanvas以外の例のようにキャンバスを渡すのではなく、
-`inputElement` を介してOrbitControlsをProxyに渡している事に注目してください。
+OffscreenCanvas以外のサンプルコード例のようにキャンバスを渡すのではなく、
+`inputElement` を介してOrbitControlsをProxyに渡している事に注目して下さい。
 
 次に `canvas` を `inputElement` に変更し、HTMLファイルから全てのピッキングイベントのコードを共有のthree.jsコードに移動させます。
 
@@ -818,8 +814,9 @@ class ElementProxy {
   }
 }
 ```
+
 `ElementProxy` はProxyしたいイベントの要素を受け取ります。
-次にWorkerにIDを登録し、先ほど設定した `makeProxy` メッセージを使って送信します。
+次にWorkerにidを登録し、先ほど設定した `makeProxy` メッセージを使って送信します。
 Workerは `ElementProxyReceiver` を作成しそのidに登録します。
 
 そして登録するイベントハンドラのオブジェクトを用意します。
@@ -856,7 +853,7 @@ function startWorker(canvas) {
 以下はイベントハンドラです。
 受信したイベントからプロパティのリストをコピーするだけです。
 `sendEvent` 関数に渡され作成したデータを渡します。
-この関数は正しいidを追加してワーカーに送信します
+この関数は正しいidを追加してWorkerに送信します。
 
 ```js
 const mouseEventHandler = makeSendPropertiesHandler([
@@ -932,7 +929,7 @@ function filteredKeydownEventHandler(event, sendFn) {
 }
 ```
 
-これは実行に近いと思われるが、実際に試してみると、`OrbitControls` がもう少し必要なものがある事を示しています。
+これで動くと思われるが、実際に試してみると `OrbitControls` がもう少し必要なものがあると分かります。
 
 1つは `element.focus` です。Workerには必要ないのでStubを追加しておきましょう。
 
@@ -951,7 +948,7 @@ class ElementProxyReceiver extends THREE.EventDispatcher {
 ```
 
 もう1つは `event.preventDefault` と `event.stopPropagation` を呼び出す事です。
-メインページでは既に対応してるのでそれらも役に立たなくなります。
+メインページでは既に対応してるのでそれらも不要になります。
 
 ```js
 +function noop() {
@@ -1017,7 +1014,7 @@ class ElementProxyReceiver extends THREE.EventDispatcher {
 ```
 
 メインページに戻るにはサイズと左と上の位置も送信する必要があります。
-このままではキャンバスを移動しても処理されず、サイズが変更されても処理されないです。
+このままではキャンバスを移動しても処理されず、サイズを変更しても処理されないです。
 移動を処理したい場合は何かがキャンバスを移動する度に `sendSize` を呼び出す必要があります。
 
 ```js
@@ -1097,9 +1094,9 @@ function render(time) {
 ```
 
 他にもいくつかのハックがあります。
-OrbitControlsは `mousemove` と `mouseup` イベントをマウスキャプチャ(マウスがウィンドウの外に出た時)を処理するための要素の `ownerDocument` です。
+OrbitControlsは `mousemove` と `mouseup` イベントをマウスキャプチャ（マウスがウィンドウの外に出た時）を処理するための要素の `ownerDocument` です。
 
-さらにコードはグローバルな `document` を参照していますが、Workerにはグローバルなドキュメントはありません。
+さらにコードはグローバルな `document` を参照していますが、Workerにはグローバルなdocumentはありません。
 
 これは2つの簡単なハックで全て解決できます。
 Workerコードでは両方の問題に対してProxyを再利用します。
@@ -1116,10 +1113,11 @@ function start(data) {
 }
 ```
 
-これで `OrbitControls` が期待に沿った検査を行うための何かを提供します。
+これで `OrbitControls` が期待に沿った検査を行うための機能を提供します。
 
 難しいのは分かっていますが手短に言うと:
-`ElementProxy` はメインページ上で動作し、DOM イベントを転送します。
+
+`ElementProxy` はメインページ上で動作し、DOMイベントを転送します。
 Worker内の `ElementProxyReceiver` は一緒に使うことができる `HTMLElement` を装っています。
 `OrbitControls` と独自のコードを使用しています。
 
@@ -1142,5 +1140,5 @@ function startMainPage(canvas) {
 各サンプルには3つのファイルが含まれているので少しわかりにくいです。
 HTMLファイル、Workerファイル、共有のthree.jsコードなどです。
 
-難しいことではなく、少しでも参考になれば幸いです。
-three.js、OffscreenCanvas、Web Workerを使った作業の便利な例を紹介しました。
+理解する事が難し過ぎず、少しでも参考になれば幸いです。
+three.js、OffscreenCanvas、Web Workerを使った動作の便利な例を紹介しました。
