@@ -349,8 +349,8 @@ worker.postMessage({ type: &#39;main&#39;, canvas: offscreen }, [ offscreen ]);
 <p>간단한 스타일도 넣어주도록 하죠.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-css">#noOffscreenCanvas {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: center;
     background: red;
@@ -463,8 +463,8 @@ self.onmessage = function(e) {
 </code></pre>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-css">-#noOffscreenCanvas {
 -    display: flex;
--    width: 100vw;
--    height: 100vh;
+-    width: 100%;
+-    height: 100%;
 -    align-items: center;
 -    justify-content: center;
 -    background: red;

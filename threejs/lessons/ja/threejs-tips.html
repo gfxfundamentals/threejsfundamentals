@@ -450,8 +450,8 @@ const renderer = new THREE.WebGLRenderer({
     margin: 0;
 }
 #c {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: block;
 +    position: fixed;
 +    left: 0;
@@ -463,8 +463,8 @@ const renderer = new THREE.WebGLRenderer({
 +  font-size: 7vw;
 +  font-family: sans-serif;
 +  text-align: center;
-+  width: 100vw;
-+  height: 100vh;
++  width: 100%;
++  height: 100%;
 +  display: flex;
 +  justify-content: center;
 +  align-items: center;
@@ -508,8 +508,8 @@ const renderer = new THREE.WebGLRenderer({
 <p>これは基本的には上記でキャンバスに使用したのと同じコードですが、iframeにはデフォルトでborderがあるので <code class="notranslate" translate="no">border</code> を <code class="notranslate" translate="no">none</code> にする必要があります。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">#background {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     left: 0;
     top: 0;
     z-index: -1;

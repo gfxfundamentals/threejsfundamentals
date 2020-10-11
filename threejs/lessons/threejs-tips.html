@@ -471,8 +471,8 @@ Let&#39;s also make the materials more transparent.</p>
     margin: 0;
 }
 #c {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: block;
 +    position: fixed;
 +    left: 0;
@@ -484,8 +484,8 @@ Let&#39;s also make the materials more transparent.</p>
 +  font-size: 7vw;
 +  font-family: sans-serif;
 +  text-align: center;
-+  width: 100vw;
-+  height: 100vh;
++  width: 100%;
++  height: 100%;
 +  display: flex;
 +  justify-content: center;
 +  align-items: center;
@@ -536,8 +536,8 @@ except we also need to set <code class="notranslate" translate="no">border</code
 a border by default.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">#background {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     left: 0;
     top: 0;
     z-index: -1;
