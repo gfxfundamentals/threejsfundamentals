@@ -450,7 +450,7 @@ scene.add(helper);
 для вызова в любое время, а dat.GUI обновляет значение.</p>
 <p>Затем мы можем использовать это как для положения источника света, 
 так и для цели, как тут</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function updateLight{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function updateLight() {
 +  light.target.updateMatrixWorld();
 +  helper.update();
 +}
@@ -492,7 +492,7 @@ scene.add(light);
 scene.add(helper);
 </code></pre>
 <p>и поскольку нет цели, то <code class="notranslate" translate="no">onChange</code> функция может быть проще.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateLight{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateLight() {
 -  light.target.updateMatrixWorld();
   helper.update();
 }

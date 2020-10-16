@@ -431,7 +431,7 @@ scene.add(helper);
 인자로 넘겨준 <code class="notranslate" translate="no">onChangeFn</code>에서 헬퍼 객체의 <code class="notranslate" translate="no">update</code> 메서드를
 호출할 수 있죠.</p>
 <p>그리고 조명의 위치, 목표의 위치 객체에 방금 만든 함수를 각각 적용합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function updateLight{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function updateLight() {
 +  light.target.updateMatrixWorld();
 +  helper.update();
 +}
@@ -474,7 +474,7 @@ scene.add(helper);
 </code></pre>
 <p><code class="notranslate" translate="no">PointLight</code>에는 목표가 없으므로 <code class="notranslate" translate="no">onChange</code> 함수도 훨씬 간단하게
 짤 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateLight{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateLight() {
 -  light.target.updateMatrixWorld();
   helper.update();
 }

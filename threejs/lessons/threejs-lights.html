@@ -451,7 +451,7 @@ itself. As such we pass in an <code class="notranslate" translate="no">onChangeF
 get called anytime dat.GUI updates a value.</p>
 <p>Then we can use that for both the light&#39;s position
 and the target&#39;s position like this</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function updateLight{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function updateLight() {
 +  light.target.updateMatrixWorld();
 +  helper.update();
 +}
@@ -494,7 +494,7 @@ scene.add(light);
 scene.add(helper);
 </code></pre>
 <p>and as there is no target the <code class="notranslate" translate="no">onChange</code> function can be simpler.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateLight{
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateLight() {
 -  light.target.updateMatrixWorld();
   helper.update();
 }
