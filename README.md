@@ -178,14 +178,45 @@ The site is built into the `out` folder
 Steps
 
     git clone https://github.com/gfxfundamentals/threejsfundamentals.git
+    cd threejsfundamentals
     npm install
     npm run build
     npm start
 
 now open your browser to `http://localhost:8080`
 
-### Continuous build
+#### Continuous build
 
 You can run `npm run watch` to get continuous building.
 Only the article .md files and files that are normally copied are supported.
 The table of contents, templates, and index pages are not watched.
+
+#### Building without checking for dependencies
+
+By default the build checks if there are new dependencies but sometimes it
+fails. You can try building without checking for dependencies with
+`npm run build-ci`
+
+#### Building just the lessons
+
+The normal build copies all the required static files to the `out` folder
+and the builds the lessons. With virus scanning on this can take 2-4 minutes
+on Windows. If the required files are already in the out folder you can
+skip that step and just build the lessons with `npm run buildlessons`
+
+#### Building just one article
+
+Generally you should use the continuous build above but you can also build
+individual articles by setting the `ARTICLE_FILTER` environment variable.
+Example: MacOS/Linux
+
+```
+ARTICLE_FILTER=scenegraph npm run buildlessons
+```
+
+On Windows
+
+```
+set ARTICLE_FILTER=scenegraph
+npm run buildlessons
+```
