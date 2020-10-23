@@ -237,7 +237,37 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>人们在学习大多数编程语言的时候第一件事就是让电脑打印<code class="notranslate" translate="no">&quot;Hello World!&quot;</code>。
 对于三维来说第一件事往往是创建一个三维的立方体。
 所以我们从&quot;Hello Cube!&quot;开始。</p>
-<p>首先我们需要一个canvas标签。</p>
+<p>在我们开始前，让我们试着让你了解一下three.js应用的结构。一个three.js应用要求你创建很多的对象，并且将他们联系在一起。这有一个图例来表示一个小的three.js的应用。</p>
+<div class="threejs_center"><img src="../resources/images/threejs-structure.svg" style="width: 768px;"></div>
+
+<p>上图需要注意的事项。</p>
+<ul>
+<li><p>有一个<code class="notranslate" translate="no">Renderer</code>。这可以说是three.js的主要对象。你传入了一个<code class="notranslate" translate="no">Scene</code>和一个<code class="notranslate" translate="no">Camera</code>到<code class="notranslate" translate="no">Renderer</code>里面，然后他来渲染 （画）出在相机视椎体中的3D场景，作为一个2D的图片在画布上。</p>
+</li>
+<li><p>有一个<a href="threejs-scenegraph.html">场景图</a> 它是一个类似结构的树，由很多对象组成，比如一个<code class="notranslate" translate="no">Scene</code>对象 ，多个<code class="notranslate" translate="no">Mesh</code>对象，<code class="notranslate" translate="no">Light</code>对象，<code class="notranslate" translate="no">Group</code>，<code class="notranslate" translate="no">Object3D</code>，和<code class="notranslate" translate="no">Camera</code>对象。一个<code class="notranslate" translate="no">Scene</code>对象定义了场景图最基本的要素，并包含背景色和雾等属性。这些对象定义了一个分层的父/子树的结构，并且展现出对象出现的地方和他们的方向。子对象的位置和方向是相对于父对象而言的。比如说汽车的轮子是汽车的子对象，这样移动和定位汽车就会自动移动轮子。你可以了解更多在<a href="threejs-scenegraph.html">场景图的文章</a>中。</p>
+<p>注意图中<code class="notranslate" translate="no">Camera</code>是一半在场景图中，一半在场景图外的。这表示在three.js中，不像其他的对象一样，一个<code class="notranslate" translate="no">Camera</code>不一定要在场景图中起作用。就像其他的对象一样，一个<code class="notranslate" translate="no">Camera</code>，作为一些其他对象的子对象，将会跟随他的父对象移动和朝向。这有一个例子，放置多个<code class="notranslate" translate="no">Camera</code>对象在一个场景图中在<a href="threejs-scenegraph.html">场景图的文章</a>的结尾部分。</p>
+</li>
+<li><p><code class="notranslate" translate="no">Mesh</code>对象代表用一个特定的<code class="notranslate" translate="no">Material</code>绘制一个特定的<code class="notranslate" translate="no">Geometry</code>。<code class="notranslate" translate="no">Material</code>对象和<code class="notranslate" translate="no">Geometry</code>对象可以被多个<code class="notranslate" translate="no">Mesh</code>对象使用。比如在不同的位置画两个蓝色立方体，我们会需要两个<code class="notranslate" translate="no">Mesh</code>对象来代表每一个立方体的位置和方向。我们只需要一个<code class="notranslate" translate="no">Geometry</code>来存放立方体的顶点数据，和一个<code class="notranslate" translate="no">Material</code>来定义蓝色就可以了。两个<code class="notranslate" translate="no">Mesh</code>对象都涉及到相同的<code class="notranslate" translate="no">Geometry</code>对象和<code class="notranslate" translate="no">Material</code>对象。</p>
+</li>
+<li><p><code class="notranslate" translate="no">Geometry</code>对象代表一些几何体，比如说球体、立方体、平面、狗、猫、人、树、建筑等的顶点信息。Three.js提供了多种内置的<a href="threejs-primitives.html">基本元素</a> 。你也可以<a href="threejs-custom-geometry.html">创建自定义几何体</a>并且<a href="threejs-load-obj.html">从文件中加载几何体</a>。</p>
+</li>
+<li><p><code class="notranslate" translate="no">Material</code>对象代表<a href="threejs-materials.html">绘制几何体的表面属性</a>，包括使用的颜色，和光亮程度。一个<code class="notranslate" translate="no">Material</code>可以引用一个或多个<code class="notranslate" translate="no">Texture</code>对象，这些对象可以用来，例如，将图像包裹到几何体的表面。</p>
+</li>
+<li><p><code class="notranslate" translate="no">Texture</code>对象通常代表图片要么<a href="threejs-textures.html">从图像文件中加载</a>，<a href="threejs-canvas-textures.html">在画布上形成</a>，要么 <a href="threejs-rendertargets.html">由另一个场景渲染出</a>。</p>
+</li>
+<li><p><code class="notranslate" translate="no">Light</code>对象代表<a href="threejs-lights.html">不同种类的光</a>。</p>
+</li>
+</ul>
+<p>考虑以上所有注意事项，我们接下来要做一个最小的<em>&quot;Hello Cube&quot;</em> 设置，像下面这样</p>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
+
+<p>首先让我们先来加载three.js</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+&lt;/script&gt;
+</code></pre>
+<p>把<code class="notranslate" translate="no">type=&quot;module&quot;</code>放到script标签中很重要。这可以让我们使用<code class="notranslate" translate="no">import</code>关键字加载three.js。还有其他的方法可以加载three.js，但是r106开始，推荐使用模块的方式。模块的优点是可以很方便地导入需要的其他模块。这样我们就不用再手动加载它们所依赖的额外脚本了。</p>
+<p>下一步我们需要一个<code class="notranslate" translate="no">&lt;canvas&gt;</code>标签。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
   &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
 &lt;/body&gt;
@@ -246,10 +276,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
 import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
 
-function main() {
-  const canvas = document.querySelector(&#39;#c&#39;);
-  const renderer = new THREE.WebGLRenderer({canvas});
-  ...
++function main() {
++  const canvas = document.querySelector(&#39;#c&#39;);
++  const renderer = new THREE.WebGLRenderer({canvas});
++  ...
 &lt;/script&gt;
 </code></pre>
 <p>注意这里有一些细节。如果你没有给three.js传canvas，three.js会自己创建一个
@@ -273,9 +303,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 canvas是300x150像素，所以aspect为300/150或者说2.。</p>
 <p><code class="notranslate" translate="no">near</code>和<code class="notranslate" translate="no">far</code>代表摄像机前方将要被渲染的空间。
 任何在这个范围前面或者后面的物体都将被裁剪(不绘制)。</p>
-<p>这四个参数定义了一个<em>&quot;frustum&quot;</em>。一个<em>frustum</em>是指一个像被削去顶部
-的金字塔形状。换句话说把<em>&quot;frustum&quot;</em>想象成其他形状比如球体、
-立方体、棱柱体、截椎体。 </p>
+<p>这四个参数定义了一个 <em>&quot;frustum&quot;</em>（译者注：视椎体）。 <em>frustum</em>是指一个像被削去顶部
+的金字塔形状。换句话说，可以把&quot;frustum&quot;想象成其他形状比如球体、立方体、棱柱体、截椎体。 </p>
 <p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
 <p>近平面和远平面的高度由fov决定。
 两个平面的宽度由fov和aspect决定。</p>
@@ -286,10 +315,7 @@ canvas是300x150像素，所以aspect为300/150或者说2.。</p>
 </code></pre>
 <p>下面是我们想要达到的效果。</p>
 <p><img src="../resources/scene-down.svg" width="500" class="threejs_center"/></p>
-<p>上面的示意图中我们能看到摄像机的位置在<code class="notranslate" translate="no">z = 2</code>。它朝向
-Z轴负方向。我们的截椎体从摄像机前方的0.1到5。因为这张图是俯视图,
-fov会受到aspect的影响。canvas的宽度是高度的两倍，
-所以水平视角会比我们设置的垂直视角75要大。</p>
+<p>上面的示意图中我们能看到摄像机的位置在<code class="notranslate" translate="no">z = 2</code>。它朝向Z轴负方向。我们的截椎体从摄像机前方的0.1到5。因为这张图是俯视图,fov会受到aspect的影响。canvas的宽度是高度的两倍，所以水平视角会比我们设置的垂直视角75度要大。</p>
 <p>然后我们创建一个<code class="notranslate" translate="no">Scene</code>(场景)。<code class="notranslate" translate="no">Scene</code>是three.js最基本的组成.
 需要three.js绘制的东西都需要加入到scene中。 我们将会
 在<a href="threejs-scenegraph.html">scene是如何工作的</a>中详细讨论。</p>
@@ -306,16 +332,18 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 用css方式和十六进制来表示。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </code></pre>
-<p>然后创建一个<code class="notranslate" translate="no">Mesh</code>. <code class="notranslate" translate="no">Mesh</code>代表了<code class="notranslate" translate="no">Geometry</code>(物体的形状)和<code class="notranslate" translate="no">Material</code> (怎么
-绘制物体, 光滑还是平整, 什么颜色, 什么贴图等等)的组合，
-以及物体在场景中的位置、朝向、和缩放。</p>
+<p>然后创建一个<code class="notranslate" translate="no">Mesh</code>。一个<code class="notranslate" translate="no">Mesh</code>代表了三件事情的合集</p>
+<ol>
+<li><code class="notranslate" translate="no">Geometry</code>(物体的形状)</li>
+<li><code class="notranslate" translate="no">Material</code> (怎么绘制物体, 光滑还是平整, 什么颜色, 什么贴图等等)的组合</li>
+<li>对象在场景中相对于他父对象的位置、朝向、和缩放。下面的代码父对象是场景。</li>
+</ol>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cube = new THREE.Mesh(geometry, material);
 </code></pre>
 <p>最后我们将mesh添加到场景中。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">scene.add(cube);
 </code></pre>
-<p>然后我们通过将scene和camera传递给renderer的render方法
-来渲染整个场景。</p>
+<p>然后我们通过scene和camera传递给renderer的render方法来渲染整个场景。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">renderer.render(scene, camera);
 </code></pre>
 <p>这里有一个实例。</p>
@@ -384,6 +412,9 @@ requestAnimationFrame(render);
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({color: 0x44aa88});  // greenish blue
 +const material = new THREE.MeshPhongMaterial({color: 0x44aa88});  // greenish blue
 </code></pre>
+<p>这是我们新的项目结构</p>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
+
 <p>下面开始生效了。</p>
 <p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fundamentals-with-light.html"></iframe></div>
@@ -442,9 +473,78 @@ requestAnimationFrame(render);
 效果符合我们的预想。位置为X = -2 和 X = +2
 的立方体有一部分在我们的截椎体外面。他们大部分是被
 包裹的，因为水平方向的视角非常大。</p>
-<p>希望这个简短的介绍能帮助你起步。 <a href="threejs-responsive.html">Next up we&#39;ll cover
-making our code responsive so it is adaptable to multiple situations</a>.</p>
+<p>我们的项目现在有了这样的结构</p>
+<div class="threejs_center"><img src="../resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
 
+<p>正如你看见的那样，我们有三个<code class="notranslate" translate="no">Mesh</code>引用了相同的<code class="notranslate" translate="no">BoxGeometry</code>。每个<code class="notranslate" translate="no">Mesh</code>引用了一个单独的
+<code class="notranslate" translate="no">MeshPhongMaterial</code>来显示不同的颜色。</p>
+<p>希望这个简短的介绍能帮助你起步。<a href="threejs-responsive.html">接下来我们将介绍如何使我们的代码具有响应性，从而使其能够适应多种情况</a>.</p>
+<div id="es6" class="threejs_bottombar">
+<h3>es6模块，three.js，和文件夹结构</h3>
+<p>从r106版本开始，使用three.js的首选方式是通过<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">es6模块</a>。</p>
+<p>
+在一个脚本中，es6模块可以通过<code class="notranslate" translate="no">import</code>关键字加载或者通过<code class="notranslate" translate="no">&lt;script type="module"&gt;</code>行内标签。这有一个两种方法都用的例子。
+</p>
+<pre class=prettyprint>
+&lt;script type="module"&gt;
+import * as THREE from './resources/threejs/r119/build/three.module.js';
+
+...
+
+&lt;/script&gt;
+</pre>
+<p>
+路径必须是绝对或相对的。相对路径通常由<code class="notranslate" translate="no">./</code>或者<code class="notranslate" translate="no">../</code>开头，和其他标签不同如<code class="notranslate" translate="no">&lt;img&gt;</code>和<code class="notranslate" translate="no">&lt;a&gt;</code>.
+</p>
+<p>
+只要它们的绝对路径完全相同，对同一脚本的引用将只被加载一次。对于three.js这意味着它需要你把所有的实例的库放在正确的文件夹结构中。
+</p>
+<pre class="dos">
+someFolder
+ |
+ ├-build
+ | |
+ | +-three.module.js
+ |
+ +-examples
+   |
+   +-jsm
+     |
+     +-controls
+     | |
+     | +-OrbitControls.js
+     | +-TrackballControls.js
+     | +-...
+     |
+     +-loaders
+     | |
+     | +-GLTFLoader.js
+     | +-...
+     |
+     ...
+</pre>
+<p>
+之所以需要这种文件夹结构，是因为像<a href="https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls.js</code></a>这样的示例中的脚本有一个复杂的相对路径，像下面这样
+</p>
+<pre class="prettyprint">
+import * as THREE from '../../../build/three.module.js';
+</pre>
+<p>
+使用相同的结构保证了当你导入three和任一示例库时，它们都会引用同一个three.module.js文件。
+</p>
+<pre class="prettyprint">
+import * as THREE from './someFolder/build/three.module.js';
+import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>在使用CDN时，是同样的道理。确保<code class="notranslate" translate="no">three.modules.js</code>的路径以
+<code class="notranslate" translate="no">/build/three.modules.js</code>结尾，比如</p>
+<pre class="prettyprint">
+import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
+import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>如果你偏向于旧式的<code class="notranslate" translate="no">&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code>样式，你可以查看<a href="https://r105.threejsfundamentals.org">这个网站的旧版本</a>。
+Three.js的政策是不担心向后的兼容性。他们希望你使用特定的版本，就像希望你下载代码并把它放在你的项目中一样。当升级到较新的版本时，你可以阅读 <a href="https://github.com/mrdoob/three.js/wiki/Migration-Guide">迁移指南</a> 看看你需要改变什么。如果要同时维护一个es6模块和一个类脚本版本的网站，那工作量就太大了，所以今后本网站将只显示es6模块样式。正如其他地方说过的那样，为了支持旧版浏览器，请考虑使用<a href="https://babeljs.io">转换器</a>。</p>
+</div>
     </div>
     <div class="lesson-sidebar">
         <select class="language">
