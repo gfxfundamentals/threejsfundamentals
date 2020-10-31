@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-backgrounds.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Backgrounds and Skyboxes" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to add a background in THREE.js" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Backgrounds and Skyboxes" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html" />
-<meta name="twitter:description" content="How to add a background in THREE.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="Three.jsで背景を追加する方法">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-backgrounds_ja.jpg">
+
+<meta property="og:title" content="Three.jsの背景とスカイボックス">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-backgrounds_ja.jpg">
+<meta property="og:description" content="Three.jsで背景を追加する方法">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsの背景とスカイボックス">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html">
+<meta name="twitter:description" content="Three.jsで背景を追加する方法">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-backgrounds_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-backgrounds.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-backgrounds.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-backgrounds.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-backgrounds.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-backgrounds.html">
 
 
-<title>Three.js Backgrounds and Skyboxes</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-backgrounds_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html",
+      "inLanguage":"ja",
+      "name":"Three.jsの背景とスカイボックス",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-backgrounds.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsの背景とスカイボックス</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,12 +216,216 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Backgrounds and Skyboxes</h1>
+    <h1>Three.jsの背景とスカイボックス</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-backgrounds.html">ここに元の英語の記事があります</a>.</p>
+      <p>このサイトのほとんどの記事では、背景に無地の色を使っています。</p>
+<p>静的な背景として追加するには、CSSを設定するだけで簡単にできます。
+<a href="threejs-responsive.html">Three.jsのレスポンシブデザインの記事</a>を例にすると、変更が必要なのは2箇所だけです。</p>
+<p>キャンバスにCSSを追加して背景を画像に設定する必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;style&gt;
+body {
+    margin: 0;
+}
+#c {
+    width: 100%;
+    height: 100%;
+    display: block;
++    background: url(resources/images/daikanyama.jpg) no-repeat center center;
++    background-size: cover;
+}
+&lt;/style&gt;
+</code></pre>
+<p>そして、何も描画していない場所が透明になるように <code class="notranslate" translate="no">WebGLRenderer</code> に <code class="notranslate" translate="no">alpha</code> を指定します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
+  const canvas = document.querySelector(&#39;#c&#39;);
+-  const renderer = new THREE.WebGLRenderer({canvas});
++  const renderer = new THREE.WebGLRenderer({
++    canvas,
++    alpha: true,
++  });
+</code></pre>
+<p>これで背景を設定できました。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-css.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-css.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>背景に<a href="threejs-post-processing.html">ポストプロセス効果</a>を与えたい場合は、Three.jsを使い背景を描画する必要があります。</p>
+<p>THREE.jsで簡単にできます。シーンの背景をテクスチャに設定すれば良いのです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const loader = new THREE.TextureLoader();
+const bgTexture = loader.load(&#39;resources/images/daikanyama.jpg&#39;);
+scene.background = bgTexture;
+</code></pre>
+<p>このようになります。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-scene-background.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-scene-background.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>背景画像がありますが、画面に合わせて引き伸ばされています。</p>
+<p>この問題はテクスチャの <code class="notranslate" translate="no">repeat</code> と <code class="notranslate" translate="no">offset</code> プロパティを設定して画像の一部だけを表示する事で解決できます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+
+   ...
+
++  // Set the repeat and offset properties of the background texture
++  // to keep the image&#39;s aspect correct.
++  // Note the image may not have loaded yet.
++  const canvasAspect = canvas.clientWidth / canvas.clientHeight;
++  const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
++  const aspect = imageAspect / canvasAspect;
++
++  bgTexture.offset.x = aspect &gt; 1 ? (1 - 1 / aspect) / 2 : 0;
++  bgTexture.repeat.x = aspect &gt; 1 ? 1 / aspect : 1;
++
++  bgTexture.offset.y = aspect &gt; 1 ? 0 : (1 - aspect) / 2;
++  bgTexture.repeat.y = aspect &gt; 1 ? 1 : aspect;
+
+  ...
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>今度はThree.jsで背景を描画してます。
+CSSの時と比べて目に見える違いはありませんが、<a href="threejs-post-processing.html">ポストプロセス効果</a>を使うと背景にも影響が出て違いがわかります。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-scene-background-fixed-aspect.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-scene-background-fixed-aspect.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>もちろん、静的な背景は通常は3Dシーンに求めるものではありません。
+その代わりに何らかの <em>スカイボックス</em> が欲しいです。
+スカイボックスとは空の絵が描かれたキューブの事です。
+キューブの中にカメラを入れると背景に空があるように見えます。</p>
+<p>スカイボックスを実装する最も一般的な方法は、キューブを作りテクスチャを適用して内側から描画する事です。
+キューブの各面に地平線の画像のようなテクスチャ（テクスチャ座標を使用）を貼り付けます。
+また、スカイボックスの代わりに天球やスカイドームを使う事もよくあります。
+それらでの実装は自分で調べればわかると思います。
+キューブや球体を作り<a href="threejs-textures.html">テクスチャを適用</a>し、<code class="notranslate" translate="no">THREE.BackSide</code> としてマークを付けます。
+そして、外側ではなく内側にレンダリングし、直接シーンに入れるか、上記のようにするか、2つのシーンを作るか、スカイボックス/球体/ドームを描くための特別なシーンと
+他の全てのものを描画するために使用します。
+描画には通常の <code class="notranslate" translate="no">PerspectiveCamera</code> を使います。<code class="notranslate" translate="no">OrthographicCamera</code> は必要ないです。</p>
+<p>もう1つの解決策は <em>キューブマップ</em> を使用する事です。
+キューブマップは、キューブの側面である6つの側面を持つ特殊な種類のテクスチャです。
+標準的なテクスチャ座標を使用するのではなく、中心から外側に向けた方向を使用し、どこで色を取得するかを決定します。</p>
+<p>カリフォルニア州マウンテンビューにあるコンピュータ歴史博物館のキューブマップの画像6枚をご紹介します。</p>
+<div class="threejs_center">
+  <img src="../../resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
+  <img src="../../resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
+  <img src="../../resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
+</div>
+<div class="threejs_center">
+  <img src="../../resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
+  <img src="../../resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
+  <img src="../../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
+</div>
+
+<p><code class="notranslate" translate="no">CubeTextureLoader</code> を使用してキューブマップ画像を読み込み、シーンの背景として使用します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+  const loader = new THREE.CubeTextureLoader();
+  const texture = loader.load([
+    &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/neg-x.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/pos-y.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/neg-y.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/pos-z.jpg&#39;,
+    &#39;resources/images/cubemaps/computer-history-museum/neg-z.jpg&#39;,
+  ]);
+  scene.background = texture;
+}
+</code></pre>
+<p>レンダリング時には、repeatやoffsetプロパティでテクスチャを調整する必要はありません。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+
+   ...
+
+-  // Set the repeat and offset properties of the background texture
+-  // to keep the image&#39;s aspect correct.
+-  // Note the image may not have loaded yet.
+-  const canvasAspect = canvas.clientWidth / canvas.clientHeight;
+-  const imageAspect = bgTexture.image ? bgTexture.image.width / bgTexture.image.height : 1;
+-  const aspect = imageAspect / canvasAspect;
+-
+-  bgTexture.offset.x = aspect &gt; 1 ? (1 - 1 / aspect) / 2 : 0;
+-  bgTexture.repeat.x = aspect &gt; 1 ? 1 / aspect : 1;
+-
+-  bgTexture.offset.y = aspect &gt; 1 ? 0 : (1 - aspect) / 2;
+-  bgTexture.repeat.y = aspect &gt; 1 ? 1 : aspect;
+
+  ...
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(render);
+}
+</code></pre>
+<p>カメラを回転できるようにコントロールを追加してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+</code></pre>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.z = 3;
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</code></pre>
+<p>これを試してみて下さい。
+ドラッグしてカメラを回転させ、キューブマップが周囲を取り囲んでいるのを見てみましょう。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-cubemap.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-cubemap.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>もう1つの方法は正距円筒図を使用する事です。
+<a href="https://google.com/search?q=360+camera">360カメラ</a>で撮るとこんな感じの写真になります。</p>
+<p><a href="https://hdrihaven.com">このサイト</a>で見つけたのが<a href="https://hdrihaven.com/hdri/?h=tears_of_steel_bridge">こちら</a>です。</p>
+<div class="threejs_center"><img src="../../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
+
+<p>たいして変わらないですね。
+まず、正距円筒図をテクスチャとして読み込み、読み込み後のコールバックで <code class="notranslate" translate="no">WebGLCubeRenderTarget.fromEquirectangularTexture</code> を呼び出して、正距円筒図テクスチャからキューブマップを生成します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+-  const loader = new THREE.CubeTextureLoader();
+-  const texture = loader.load([
+-    &#39;resources/images/cubemaps/computer-history-museum/pos-x.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/neg-x.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/pos-y.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/neg-y.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/pos-z.jpg&#39;,
+-    &#39;resources/images/cubemaps/computer-history-museum/neg-z.jpg&#39;,
+-  ]);
+-  scene.background = texture;
++  const loader = new THREE.TextureLoader();
++  const texture = loader.load(
++    &#39;resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg&#39;,
++    () =&gt; {
++      const rt = new THREE.WebGLCubeRenderTarget(texture.image.height);
++      rt.fromEquirectangularTexture(renderer, texture);
++      scene.background = rt;
++    });
+}
+</code></pre>
+<p>そして、これが全てです。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-background-equirectangularmap.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-background-equirectangularmap.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>テクスチャを読み込み時に行うのではなく、あらかじめ等角画像をキューブマップに変換しておく事ともできます。<a href="https://matheowis.github.io/HDRI-to-CubeMap/">こんなサイトもあります</a>。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +439,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -224,7 +482,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-load-obj.html">OBJファイルの読み込み</a></li>
 <li><a href="/threejs/lessons/ja/threejs-load-gltf.html">GLTFファイルの読み込み</a></li>
-<li><a href="/threejs/lessons/ja/threejs-backgrounds.html">Add a Background or Skybox</a></li>
+<li><a href="/threejs/lessons/ja/threejs-backgrounds.html">背景やスカイボックスを追加する</a></li>
 <li><a href="/threejs/lessons/ja/threejs-transparency.html">How to Draw Transparent Objects</a></li>
 <li><a href="/threejs/lessons/ja/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
 <li><a href="/threejs/lessons/ja/threejs-picking.html">Picking Objects with the mouse</a></li>
@@ -255,6 +513,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsの背景とスカイボックス';
+            var disqus_title = 'Three.jsの背景とスカイボックス';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
