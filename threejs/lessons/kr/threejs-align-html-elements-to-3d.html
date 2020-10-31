@@ -237,8 +237,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>이 글에서는 맨 마지막 방법에 대해 다룰 겁니다.</p>
 <p>간단한 것부터 시작해보죠. 원시 모델 위에 이름표를 붙인 3D 장면을 구현할 겁니다. 예제는 <a href="threejs-responsive.html">반응형 디자인에 관한 글</a>의 예제를 수정해 쓰도록 하죠.</p>
 <p>여기에 <code class="notranslate" translate="no">OrbitControls</code>를 넣습니다. <a href="threejs-lights.html">조명에 관한 글</a>에서 다뤘었죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-+import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
++import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 0, 0);
@@ -780,8 +780,8 @@ for (const countryInfo of countryInfos) {
   ...
 </code></pre>
 <p>마지막으로 어떤 값이 적당한지 알기 어려우니 이 값을 조정할 수 있도록 GUI를 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
+import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 +import { GUI } from &#39;../3rdparty/dat.gui.module.js&#39;;
 </code></pre>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const settings = {

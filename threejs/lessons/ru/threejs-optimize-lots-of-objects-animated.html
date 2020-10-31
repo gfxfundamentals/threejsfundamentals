@@ -516,10 +516,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 но поскольку оригинальный глобус webgl использует
 <a href="https://github.com/tweenjs/tween.js/">библиотеку анимации</a> давайте используем тот же самый здесь.</p>
 <p>Нам нужно включить библиотеку </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-import {BufferGeometryUtils} from &#39;./resources/threejs/r119/examples/jsm/utils/BufferGeometryUtils.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
-+import {TWEEN} from &#39;./resources/threejs/r119/examples/jsm/libs/tween.min.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
+import {BufferGeometryUtils} from &#39;./resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
++import {TWEEN} from &#39;./resources/threejs/r122/examples/jsm/libs/tween.min.js&#39;;
 </code></pre>
 <p>А затем создайте <code class="notranslate" translate="no">Tween</code> чтобы оживить влияние.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest

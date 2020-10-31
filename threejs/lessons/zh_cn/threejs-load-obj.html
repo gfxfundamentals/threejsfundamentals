@@ -238,7 +238,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>让我们一起来尝试将它展示出来。</p>
 <p>基于<a href="threejs-lights.html">光线文章</a>中的定向光线（<code class="notranslate" translate="no">DirectionalLight</code>）示例，结合半球光线（<code class="notranslate" translate="no">HemisphereLight</code>）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。</p>
 <p>第一件要做的事就是将<code class="notranslate" translate="no">OBJLoader2</code>添加到代码中。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
 <p>然后创建<code class="notranslate" translate="no">OBJLoader2</code>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
@@ -304,11 +304,11 @@ map_Ns windmill_001_base_SPEC.jpg
 
 <p>现在.MTL文件就能加载到这些纹理。</p>
 <p>首先要引用 <code class="notranslate" translate="no">MTLLoader</code> 和 <code class="notranslate" translate="no">MtlObjBridge</code>;</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
-import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
-+import {MTLLoader} from &#39;./resources/threejs/r119/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {MtlObjBridge} from &#39;./resources/threejs/r119/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
+import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
++import {MTLLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
++import {MtlObjBridge} from &#39;./resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
 <p>然后我们先加载.MTL文件，在它加载完材质后利用<code class="notranslate" translate="no">MtlObjBridge</code>将材质传给<code class="notranslate" translate="no">OBJLoader2</code>，再加载.OBJ文件。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">{

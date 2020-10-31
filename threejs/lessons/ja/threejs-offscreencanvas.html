@@ -426,7 +426,7 @@ worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 <p><code class="notranslate" translate="no">shared-cubes.js</code> と <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> は前の <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> ファイルを分割したものです。</p>
 <p>まず <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> を全て <code class="notranslate" translate="no">shared-cube.js</code> にコピーします。
 次にHTMLファイルには既に <code class="notranslate" translate="no">main</code> があり、<code class="notranslate" translate="no">init</code> と <code class="notranslate" translate="no">state</code> をエクスポートする必要があるため <code class="notranslate" translate="no">main</code> の名前を <code class="notranslate" translate="no">init</code> に変更します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 -const state = {
 +export const state = {
@@ -740,7 +740,7 @@ window.addEventListener(&#39;touchend&#39;, clearPickPosition);
 これを使用して動作するようにOrbitControlsのコードを全て書き換える必要はありません。
 OrbitControlsは <code class="notranslate" translate="no">HTMLElement</code> を取り、それに使用するDOMイベントのほとんどをアタッチします。
 OrbitControlsが必要とする機能をサポートする必要があります。</p>
-<p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r119/examples/js/controls/OrbitControls.js">OrbitControlsのソースコード</a>を掘り下げてみると、次のイベントを処理する必要があるように見えます。</p>
+<p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r122/examples/js/controls/OrbitControls.js">OrbitControlsのソースコード</a>を掘り下げてみると、次のイベントを処理する必要があるように見えます。</p>
 <ul>
 <li>contextmenu</li>
 <li>mousedown</li>
@@ -760,7 +760,7 @@ OrbitControlsが必要とする機能をサポートする必要があります�
 ある時はメインページで実行され、全てのイベント、関連するプロパティ値をWorkerに渡します。
 また、ある時はWorkerで実行され、全てのイベント、DOMイベントと同じ構造をもつイベントをメインページに渡すので、OrbitControlsは違いを見分けられません。</p>
 <p>ここにWorker部分のコードがあります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -830,8 +830,8 @@ self.onmessage = function(e) {
 };
 </code></pre>
 <p>共有のthree.jsコードでは <code class="notranslate" translate="no">OrbitControls</code> をインポートして設定する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 
 export function init(data) {
 -  const {canvas} = data;

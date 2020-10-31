@@ -256,7 +256,7 @@ the hemispherical lighting example so I ended up with one
 related to adjusting the lights. I also removed the cube and sphere
 that were being added to the scene.</p>
 <p>From that the first thing we need to do is include the <code class="notranslate" translate="no">OBJLoader2</code> loader in our script.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
 <p>Then to load the .OBJ file we create an instance of <code class="notranslate" translate="no">OBJLoader2</code>,
 pass it the URL of our .OBJ file, and pass in a callback that adds
@@ -338,11 +338,11 @@ file to.</p>
 
 <p>Now that we have the textures available we can load the .MTL file.</p>
 <p>First we need to include the <code class="notranslate" translate="no">MTLLoader</code> and the <code class="notranslate" translate="no">MtlObjBridge</code>;</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
-import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
-+import {MTLLoader} from &#39;./resources/threejs/r119/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {MtlObjBridge} from &#39;./resources/threejs/r119/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
+import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
++import {MTLLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
++import {MtlObjBridge} from &#39;./resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
 <p>Then we first load the .MTL file. When it&#39;s finished loading we add
 the just loaded materials on to the <code class="notranslate" translate="no">OBJLoader2</code> itself via the <code class="notranslate" translate="no">MtlObjBridge</code>

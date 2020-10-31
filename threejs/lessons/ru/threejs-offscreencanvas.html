@@ -419,7 +419,7 @@ worker.postMessage({type: &#39;main&#39;, canvas: offscreen}, [offscreen]);
 </ol>
 <p><code class="notranslate" translate="no">shared-cubes.js</code> и <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code> по сути являются разделением нашего 
 предыдущего файла <code class="notranslate" translate="no">offscreencanvas-cubes.js</code>. Сначала мы копируем весь файл <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> в <code class="notranslate" translate="no">shared-cube.js</code>. Затем мы переименовываем <code class="notranslate" translate="no">main</code> в <code class="notranslate" translate="no">init</code>, так как у нас уже есть <code class="notranslate" translate="no">main</code> в нашем HTML-файле, и нам нужно экспортировать <code class="notranslate" translate="no">init</code> и состояние</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 -const state = {
 +export const state = {
@@ -730,7 +730,7 @@ window.addEventListener(&#39;touchend&#39;, clearPickPosition);
 <p>Сделаем еще один шаг и добавим <code class="notranslate" translate="no">OrbitControls</code>. Это будет немного больше.
 <code class="notranslate" translate="no">OrbitControls</code> довольно широко используют DOM для проверки мыши, событий касания и клавиатуры.</p>
 <p>В отличие от нашего кода, мы не можем использовать объект глобального <code class="notranslate" translate="no">state</code>, не переписав весь код <code class="notranslate" translate="no">OrbitControls</code> для работы с ним. <code class="notranslate" translate="no">OrbitControls</code> принимают элемент, к которому они присоединяют большинство используемых ими событий DOM. Возможно, мы могли бы передать наш собственный объект, имеющий ту же поверхность API, что и элемент DOM. Нам нужно только поддерживать функции, которые необходимы <code class="notranslate" translate="no">OrbitControls</code>.</p>
-<p>Копаясь в  <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r119/examples/js/controls/OrbitControls.js">исходном коде OrbitControls</a>
+<p>Копаясь в  <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r122/examples/js/controls/OrbitControls.js">исходном коде OrbitControls</a>
 похоже, что нам нужно обработать следующие события.</p>
 <ul>
 <li>contextmenu</li>
@@ -751,7 +751,7 @@ window.addEventListener(&#39;touchend&#39;, clearPickPosition);
 <p>А для событий касания нам понадобятся только <code class="notranslate" translate="no">pageX</code> и <code class="notranslate" translate="no">pageY</code> из свойства <code class="notranslate" translate="no">touches</code>.</p>
 <p>Итак, создадим пару прокси-объектов. Одна часть будет работать на главной странице, получать все эти события и передавать соответствующие значения свойств воркеру. Другая часть будет запускаться в воркере, получать эти события и передавать их, используя события, которые имеют ту же структуру, что и исходные события DOM, поэтому <code class="notranslate" translate="no">OrbitControls</code> не сможет определить разницу.</p>
 <p>Вот код рабочей части.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -818,8 +818,8 @@ self.onmessage = function(e) {
 };
 </code></pre>
 <p>Нам также нужно добавить <code class="notranslate" translate="no">OrbitControls</code> в начало скрипта.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 
 export function init(data) {
 -  const {canvas} = data;

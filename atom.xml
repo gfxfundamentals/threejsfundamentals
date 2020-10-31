@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js fundamentals</title>
-    <updated>2020-10-11T13:28:17.000Z</updated>
+    <updated>2020-10-31T10:39:50.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,7 +16,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-align-html-elements-to-3d.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-align-html-elements-to-3d.html">
         </link>
-        <updated>2020-10-11T13:28:17.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -28,7 +28,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-backgrounds.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-backgrounds.html">
         </link>
-        <updated>2020-10-11T13:28:17.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -64,7 +64,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-canvas-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-canvas-textures.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -100,7 +100,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-custom-geometry.html">
         </link>
-        <updated>2020-09-12T09:56:58.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -148,7 +148,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-fundamentals.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -160,7 +160,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-game.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-game.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -184,7 +184,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-lights.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-lights.html">
         </link>
-        <updated>2020-10-16T19:26:31.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -196,7 +196,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-load-gltf.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -208,7 +208,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-load-obj.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -244,7 +244,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-multiple-scenes.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-multiple-scenes.html">
         </link>
-        <updated>2020-10-11T13:28:17.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -256,7 +256,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-offscreencanvas.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-offscreencanvas.html">
         </link>
-        <updated>2020-10-11T13:28:17.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -268,7 +268,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">
         </link>
-        <updated>2020-08-19T06:43:15.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -280,7 +280,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -316,7 +316,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -328,7 +328,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-prerequisites.html">
         </link>
-        <updated>2020-10-28T04:00:58.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -352,7 +352,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -460,7 +460,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-transparency.html">
         </link>
-        <updated>2020-08-15T17:18:54.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
@@ -508,7 +508,7 @@
         <id>https://threejsfundamentals.org/threejs/lessons/threejs-webvr.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/threejs-webvr.html">
         </link>
-        <updated>2020-10-11T13:28:17.000Z</updated>
+        <updated>2020-10-31T10:39:50.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>

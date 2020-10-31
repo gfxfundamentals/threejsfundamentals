@@ -395,7 +395,7 @@ worker.postMessage({ type: &#39;main&#39;, canvas: offscreen }, [ offscreen ]);
 </li>
 </ol>
 <p><code class="notranslate" translate="no">shared-cubes.js</code>와 <code class="notranslate" translate="no">offscreencanvas-worker-cubes.js</code>는 단순히 이전 <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> 파일을 쪼갠 것입니다. 먼저 <code class="notranslate" translate="no">offscreencanvas-cube.js</code>를 <code class="notranslate" translate="no">shared-cube.js</code>로 옮긴 뒤, 메인 HTML 파일에 이미 <code class="notranslate" translate="no">main</code> 함수가 있어 <code class="notranslate" translate="no">main</code> 함수의 이름만 <code class="notranslate" translate="no">init</code>으로 바꿔야 하죠. 여기에 추가로 <code class="notranslate" translate="no">init</code>과 <code class="notranslate" translate="no">state</code> 함수를 export 시켜줘야 합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 -const state = {
 +export const state = {
@@ -701,7 +701,7 @@ window.addEventListener(&#39;touchend&#39;, clearPickPosition);
 </p>
 <p>좀 더 욕심을 내 <code class="notranslate" translate="no">OrbitControls</code>까지 추가해봅시다. <code class="notranslate" translate="no">OrbitControls</code>는 DOM에 꽤 다양하게 접근하기에 처리해줘야 할 것이 좀 많습니다. 제대로 작동하려면 마우스 이벤트, 터치 이벤트, 키보드 이벤트를 모두 처리해줘야 하죠.</p>
 <p>여태까지는 전역 <code class="notranslate" translate="no">state</code> 객체를 사용했지만, <code class="notranslate" translate="no">OrbitControls</code>의 경우는 객체 속성이 너무 많아 그걸 전부 다 하드 코딩하는 건 너무 번거롭습니다. <code class="notranslate" translate="no">OrbitControls</code>는 필요한 DOM 이벤트의 대부분을 인자로 받는 <code class="notranslate" translate="no">HTMLElement</code>에 바인딩합니다. 이를 이용해 DOM 요소와 같은 구조의 객체를 넘겨준다면 어떨까요? <code class="notranslate" translate="no">OrbitControls</code>에 필요한 기능만 살려서 말이죠.</p>
-<p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r119/examples/js/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls</code>의 소스 코드</a>를 분석해보니 아래의 이벤트만 지원하면 될 듯합니다.</p>
+<p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r122/examples/js/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls</code>의 소스 코드</a>를 분석해보니 아래의 이벤트만 지원하면 될 듯합니다.</p>
 <ul>
 <li>contextmenu</li>
 <li>mousedown</li>
@@ -719,7 +719,7 @@ window.addEventListener(&#39;touchend&#39;, clearPickPosition);
 <p>터치 이벤트의 경우는 <code class="notranslate" translate="no">touches</code> 속성의 <code class="notranslate" translate="no">pageX</code>, <code class="notranslate" translate="no">pageY</code> 속성이 필요하네요.</p>
 <p>이를 처리할 경유(proxy) 객체를 한 쌍 만들어봅시다. 한쪽은 메인 페이지에서 위 이벤트를 받아 필요한 속성을 워커에 넘겨주는 역할을 할 겁니다. 그리고 다른 한쪽은 워커 안에서 이 이벤트를 받아 <code class="notranslate" translate="no">OrbitControls</code>에 넘겨줄 겁니다. 이벤트 객체가 DOM 이벤트와 같은 구조이기에 <code class="notranslate" translate="no">OrbitControls</code>는 이 이벤트가 DOM 이벤트가 아니란 걸 눈치채지 못하겠죠.</p>
 <p>아래는 워커 안의 코드입니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import { EventDispatcher } from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import { EventDispatcher } from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -786,8 +786,8 @@ self.onmessage = function(e) {
 };
 </code></pre>
 <p>Three.js의 공통 코드에 <code class="notranslate" translate="no">OrbitControls</code> 모듈도 불러와 설정해야 합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
-+import { OrbitControls } from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
++import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 
 export function init(data) {
 -  const { canvas } = data;

@@ -295,10 +295,10 @@ objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, 
 </code></pre>
 <p>自動フレーミングのコードは以前のままです。</p>
 <p>また <code class="notranslate" translate="no">OBJLoader2</code> を取り除き <code class="notranslate" translate="no">GLTFLoader</code> を含める必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r119/examples/jsm/loaders/LoaderSupport.js&#39;;
--import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
--import {MTLLoader} from &#39;./resources/threejs/r119/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {GLTFLoader} from &#39;./resources/threejs/r119/examples/jsm/loaders/GLTFLoader.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r122/examples/jsm/loaders/LoaderSupport.js&#39;;
+-import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
+-import {MTLLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
++import {GLTFLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js&#39;;
 </code></pre>
 <p>実行すると以下になりました。</p>
 <p><div translate="no" class="threejs_example_container notranslate">
@@ -330,7 +330,7 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
   scene.add(root);
   console.log(dumpObject(root).join(&#39;\n&#39;));
 </code></pre>
-<p><a href="./threejs-load-gltf-dump-scenegraph.html">実行すると</a> このようなリストが得られました。</p>
+<p><a href="../../threejs-load-gltf-dump-scenegraph.html">実行すると</a> このようなリストが得られました。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-text">OSG_Scene [Scene]
   └─RootNode_(gltf_orientation_matrix) [Object3D]
     └─RootNode_(model_correction_matrix) [Object3D]
@@ -562,7 +562,7 @@ let curveObject;
 </code></pre>
 <p>このコードの最初の部分は曲線を作ります。
 コードの2番目の部分は曲線から250頂点を生成し、その250頂点を結んで作られた線を表示するオブジェクトを作成します。</p>
-<p><a href="./threejs-load-gltf-car-path.html">このサンプル</a>を実行してもカーブが見えませんでした。
+<p><a href="../../threejs-load-gltf-car-path.html">このサンプル</a>を実行してもカーブが見えませんでした。
 見えるようにするために、深度テストを無視して最後にレンダリングするようにしました。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">    curveObject = new THREE.Line(geometry, material);
 +    material.depthTest = false;

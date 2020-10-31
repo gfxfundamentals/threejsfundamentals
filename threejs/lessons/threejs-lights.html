@@ -240,8 +240,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 or <em>orbit</em> the camera around some point. The <code class="notranslate" translate="no">OrbitControls</code> are
 an optional feature of three.js so first we need to include them
 in our page</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 </code></pre>
 <p>Then we can use them. We pass the <code class="notranslate" translate="no">OrbitControls</code> a camera to
 control and the DOM element to use to get input events</p>
@@ -612,9 +612,9 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
 </code></pre>
 <p>To use the <code class="notranslate" translate="no">RectAreaLight</code> we need to include some extra three.js optional data and we&#39;ll
 include the <code class="notranslate" translate="no">RectAreaLightHelper</code> to help us visualize the light</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-+import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r119/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
-+import {RectAreaLightHelper} from &#39;./resources/threejs/r119/examples/jsm/helpers/RectAreaLightHelper.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
++import {RectAreaLightUniformsLib} from &#39;./resources/threejs/r122/examples/jsm/lights/RectAreaLightUniformsLib.js&#39;;
++import {RectAreaLightHelper} from &#39;./resources/threejs/r122/examples/jsm/helpers/RectAreaLightHelper.js&#39;;
 </code></pre>
 <p>and we need to call <code class="notranslate" translate="no">RectAreaLightUniformsLib.init</code></p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {

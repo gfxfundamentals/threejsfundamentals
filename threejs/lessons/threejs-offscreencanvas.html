@@ -448,7 +448,7 @@ the split of our previous <code class="notranslate" translate="no">offscreencanv
 copy all of <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> to <code class="notranslate" translate="no">shared-cube.js</code>. Then
 we rename <code class="notranslate" translate="no">main</code> to <code class="notranslate" translate="no">init</code> since we already have a <code class="notranslate" translate="no">main</code> in our
 HTML file and we need to export <code class="notranslate" translate="no">init</code> and <code class="notranslate" translate="no">state</code></p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 -const state = {
 +export const state = {
@@ -772,7 +772,7 @@ The OrbitControls take an <code class="notranslate" translate="no">HTMLElement</
 of the DOM events they use. Maybe we could pass in our own
 object that has the same API surface as a DOM element. 
 We only need to support the features the OrbitControls need.</p>
-<p>Digging through the <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r119/examples/js/controls/OrbitControls.js">OrbitControls source code</a>
+<p>Digging through the <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r122/examples/js/controls/OrbitControls.js">OrbitControls source code</a>
 it looks like we need to handle the following events.</p>
 <ul>
 <li>contextmenu</li>
@@ -799,7 +799,7 @@ events and pass them on using events that have the same structure
 as the original DOM events so the OrbitControls won&#39;t be able to
 tell the difference.</p>
 <p>Here&#39;s the code for the worker part.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {EventDispatcher} from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -873,8 +873,8 @@ self.onmessage = function(e) {
 };
 </code></pre>
 <p>In our shared three.js code we need to import the <code class="notranslate" translate="no">OrbitControls</code> and set them up.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
++import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
 
 export function init(data) {
 -  const {canvas} = data;

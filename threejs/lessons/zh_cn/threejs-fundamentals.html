@@ -263,7 +263,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>首先让我们先来加载three.js</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
-import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 &lt;/script&gt;
 </code></pre>
 <p>把<code class="notranslate" translate="no">type=&quot;module&quot;</code>放到script标签中很重要。这可以让我们使用<code class="notranslate" translate="no">import</code>关键字加载three.js。还有其他的方法可以加载three.js，但是r106开始，推荐使用模块的方式。模块的优点是可以很方便地导入需要的其他模块。这样我们就不用再手动加载它们所依赖的额外脚本了。</p>
@@ -274,7 +274,7 @@ import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
 </code></pre>
 <p>Three.js将会使用这个canvas标签所以我们要先获取它然后传给three.js。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
-import * as THREE from &#39;./resources/threejs/r119/build/three.module.js&#39;;
+import * as THREE from &#39;./resources/threejs/r122/build/three.module.js&#39;;
 
 +function main() {
 +  const canvas = document.querySelector(&#39;#c&#39;);
@@ -487,7 +487,7 @@ requestAnimationFrame(render);
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r119/build/three.module.js';
+import * as THREE from './resources/threejs/r122/build/three.module.js';
 
 ...
 

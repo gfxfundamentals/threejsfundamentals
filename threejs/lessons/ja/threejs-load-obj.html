@@ -242,7 +242,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p><a href="threejs-lights.html">ライティングの記事</a> にあるディレクショナルライティングの例から始めて、半球ライティングの例と組み合わせて <code class="notranslate" translate="no">HemisphereLight</code> と <code class="notranslate" translate="no">DirectionalLight</code> を1つ作る事にしました。その結果として <code class="notranslate" translate="no">HemisphereLight</code> は1つ、<code class="notranslate" translate="no">DirectionalLight</code> は1つになりました。
 また、ライトの調整に関連する全てのGUIを削除しました。シーンに追加していたキューブとスフィアも削除しました。</p>
 <p>まず最初に <code class="notranslate" translate="no">OBJLoader2</code> のローダーをコードに含める必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
 </code></pre>
 <p>次にOBJファイルをロードするために <code class="notranslate" translate="no">OBJLoader2</code> のインスタンスを作成し、OBJファイルのURLを渡し、ロードされたモデルをシーンに追加するコールバックを渡します。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
@@ -314,11 +314,11 @@ blenderで <strong>File-&gt;External Data-&gt;Unpack All Into Files</strong> を
 
 <p>テクスチャを利用できるようになったのでMTLファイルをロードします。
 <code class="notranslate" translate="no">MTLLoader</code> と <code class="notranslate" translate="no">MtlObjBridge</code> をimportする必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
-import {OBJLoader2} from &#39;./resources/threejs/r119/examples/jsm/loaders/OBJLoader2.js&#39;;
-+import {MTLLoader} from &#39;./resources/threejs/r119/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {MtlObjBridge} from &#39;./resources/threejs/r119/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
+import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
+import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
++import {MTLLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
++import {MtlObjBridge} from &#39;./resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
 </code></pre>
 <p>まず、MTLファイルをロードします。
 読込後にロードしたマテリアルを <code class="notranslate" translate="no">MtlObjBridge</code> を通して <code class="notranslate" translate="no">OBJLoader2</code> をロードしOBJファイルをロードします。</p>
