@@ -451,7 +451,7 @@ scene.background = new THREE.Color(&#39;white&#39;);
 const pickingScene = new THREE.Scene();
 pickingScene.background = new THREE.Color(0);
 </code></pre>
-<p>Then, for each cube we place in the main scene we make a corresponding &quot;picking cube&quot; at the same position as the original cube, put it in the <code class="notranslate" translate="no">pickingScene</code>, and set it&#39;s material to something that will draw the object&#39;s id as its color. Also we keep a map of ids to objects so when we look up an id later we can map it back to its corresponding object.</p>
+<p>Then, for each cube we place in the main scene we make a corresponding &quot;picking cube&quot; at the same position as the original cube, put it in the <code class="notranslate" translate="no">pickingScene</code>, and set its material to something that will draw the object&#39;s id as its color. Also we keep a map of ids to objects so when we look up an id later we can map it back to its corresponding object.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const idToObject = {};
 +const numObjects = 100;
 for (let i = 0; i &lt; numObjects; ++i) {

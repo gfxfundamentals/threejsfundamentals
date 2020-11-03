@@ -352,7 +352,7 @@ I actually had to move the camera from 50 units above to 150 units above to see 
 its scale set to 5x with <code class="notranslate" translate="no">sunMesh.scale.set(5, 5, 5)</code>. That means the
 <code class="notranslate" translate="no">sunMesh</code>s local space is 5 times as big. Anything put in that space
  will be multiplied by 5. That means the earth is now 5x larger and
- it&#39;s distance from the sun (<code class="notranslate" translate="no">earthMesh.position.x = 10</code>) is also
+ its distance from the sun (<code class="notranslate" translate="no">earthMesh.position.x = 10</code>) is also
  5x as well.</p>
 <p> Our scene graph currently looks like this</p>
 <p><img src="resources/images/scenegraph-sun-earth.svg" align="center"></p>
@@ -572,7 +572,7 @@ to the scene graph.</p>
 offset from the <code class="notranslate" translate="no">targetOrbit</code> and a base elevation. Childed to that is another
 <code class="notranslate" translate="no">Object3D</code> called <code class="notranslate" translate="no">targetBob</code> which just bobs up and down relative to the
 <code class="notranslate" translate="no">targetElevation</code>. Finally there&#39;s the <code class="notranslate" translate="no">targetMesh</code> which is just a cube we
-rotate and change it&#39;s colors</p>
+rotate and change its colors</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">// move target
 targetOrbit.rotation.y = time * .27;
 targetBob.position.y = Math.sin(time * 2) * 4;
@@ -617,7 +617,7 @@ aim at the target.</p>
 turretCamera.lookAt(targetPosition);
 </code></pre>
 <p>There is also a <code class="notranslate" translate="no">targetCameraPivot</code> which is a child of <code class="notranslate" translate="no">targetBob</code> so it floats
-around with the target. We aim that back at the tank. It&#39;s purpose is to allow the
+around with the target. We aim that back at the tank. Its purpose is to allow the
 <code class="notranslate" translate="no">targetCamera</code> to be offset from the target itself. If we instead made the camera
 a child of <code class="notranslate" translate="no">targetBob</code> and just aimed the camera itself it would be inside the
 target.</p>

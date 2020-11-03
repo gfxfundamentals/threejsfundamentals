@@ -557,7 +557,7 @@ otherwise the cursor won&#39;t be rendered.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">+scene.add(camera);
 </code></pre>
 <p>We then check if the thing we&#39;re picking this time is the same as it was last
-time. If so we add the elapsed time to a timer and if the timer reaches it&#39;s
+time. If so we add the elapsed time to a timer and if the timer reaches its
 limit we return the selected item.</p>
 <p>Now let&#39;s use that to pick the cubes. As a simple example
 we&#39;ll add 3 spheres as well. When a cube is picked with hide
@@ -574,7 +574,7 @@ const boxDepth = 1;
 </code></pre>
 <p>Then let&#39;s create 3 pairs of box and sphere meshes. We&#39;ll
 use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"><code class="notranslate" translate="no">Map</code></a>
-so that we can associate each <code class="notranslate" translate="no">Mesh</code> with it&#39;s partner.</p>
+so that we can associate each <code class="notranslate" translate="no">Mesh</code> with its partner.</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
