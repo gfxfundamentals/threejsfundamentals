@@ -38,6 +38,7 @@
     "start": "servez out",
     "eslint": "ld-check-dependencies && grunt eslint",
     "pre-push": "ld-check-dependencies && grunt eslint",
+    "pre-build": "grunt eslint",
     "bumpthree": "grunt bumpthree",
     "test": "check-all-the-errors --follow-links=both --output=threejsfundamentals.check.json out \"*.html\""
   },
