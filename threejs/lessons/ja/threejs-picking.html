@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly -->
+<!-- this file is auto-generated from threejs/lessons/ja/threejs-picking.md. Do not edited directly -->
 <!--
 Copyright 2018, Google Inc.
 All rights reserved.
@@ -8,17 +8,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -36,25 +36,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Picking" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="Selecting Objects with the Mouse in Three.js" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Picking" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html" />
-<meta name="twitter:description" content="Selecting Objects with the Mouse in Three.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="description" content="Three.jsでマウスからオブジェクトを選択する">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_ja.jpg">
+
+<meta property="og:title" content="Three.jsでピッキング">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_ja.jpg">
+<meta property="og:description" content="Three.jsでマウスからオブジェクトを選択する">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.jsでピッキング">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html">
+<meta name="twitter:description" content="Three.jsでマウスからオブジェクトを選択する">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-picking.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-picking.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-picking.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-picking.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-picking.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html">
 
 
-<title>Three.js Picking</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html",
+      "inLanguage":"ja",
+      "name":"Three.jsでピッキング",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-picking.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsでピッキング</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
@@ -163,12 +216,400 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Picking</h1>
+    <h1>Three.jsでピッキング</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-picking.html">ここに元の英語の記事があります</a>.</p>
+      <p><em>ピッキング</em>とはユーザーがどのオブジェクトをクリックしたか、またはタッチしたかを把握するプロセスの事です。
+ピッキングする方法のそれぞれにトレードオフがありますが、実装の仕方はたくさんあります。最も一般的な2つの方法を見てみましょう。</p>
+<p>おそらく、最も一般的な<em>ピッキング</em>はレイキャスティングでマウスからシーンの錐台を通して光線を<em>キャスト</em>し、その光線が交差するオブジェクトを計算する方法です。
+概念的には非常にシンプルです。</p>
+<p>まずはマウスの位置を決めます。
+それをカメラの投影と向きをワールド座標に変換します。
+カメラの錐台の近くの面から遠くの面までの光線を計算します。
+そして、シーン内の全ての三角形オブジェクトで光線と交差するかチェックします。
+もしシーンに1000個のオブジェクトがあり、各オブジェクトに1000個の三角形がある場合、100万個の三角形をチェックする必要があります。</p>
+<p>光線がオブジェクトのバウンディングスフィアやバウンディングボックス、つまりオブジェクト全体を含む球やボックスと交差するかを最初にチェックする事は最適化になります。
+もし光線がオブジェクトと交差しなければ、そのオブジェクトの三角形をチェックする必要はありません。</p>
+<p>Three.jsにはこれを行う <code class="notranslate" translate="no">RayCaster</code> クラスを提供しています。</p>
+<p>100個のオブジェクトがあるシーンを作ってピッキングしてみましょう。
+<a href="threejs-responsive.html">レスポンシブデザインの記事</a>のコード例から始めてみます。</p>
+<p>いくつかの変更点</p>
+<p>カメラを別のオブジェクトの親にして、そのオブジェクトを回転させるとカメラが自撮り棒のようにシーンの周りを動き回るようになります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">*const fov = 60;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+*const far = 200;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+*camera.position.z = 30;
+
+const scene = new THREE.Scene();
++scene.background = new THREE.Color(&#39;white&#39;);
+
++// put the camera on a pole (parent it to an object)
++// so we can spin the pole to move the camera around the scene
++const cameraPole = new THREE.Object3D();
++scene.add(cameraPole);
++cameraPole.add(camera);
+</code></pre>
+<p>そして、<code class="notranslate" translate="no">render</code> 関数でcameraPoleを回転させます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">cameraPole.rotation.y = time * .1;
+</code></pre>
+<p>カメラにライトを追加し、ライトが動くようにしましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-scene.add(light);
++camera.add(light);
+</code></pre>
+<p>ランダムな色、位置、向き、スケールの100個のキューブを生成してみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+
+function rand(min, max) {
+  if (max === undefined) {
+    max = min;
+    min = 0;
+  }
+  return min + (max - min) * Math.random();
+}
+
+function randomColor() {
+  return `hsl(${rand(360) | 0}, ${rand(50, 100) | 0}%, 50%)`;
+}
+
+const numObjects = 100;
+for (let i = 0; i &lt; numObjects; ++i) {
+  const material = new THREE.MeshPhongMaterial({
+    color: randomColor(),
+  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.set(rand(-20, 20), rand(-20, 20), rand(-20, 20));
+  cube.rotation.set(rand(Math.PI), rand(Math.PI), 0);
+  cube.scale.set(rand(3, 6), rand(3, 6), rand(3, 6));
+}
+</code></pre>
+<p>最後にピックします。</p>
+<p>ピッキングを管理する簡単なクラスを作ってみましょう。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class PickHelper {
+  constructor() {
+    this.raycaster = new THREE.Raycaster();
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(normalizedPosition, scene, camera, time) {
+    // restore the color if there is a picked object
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
+    // cast a ray through the frustum
+    this.raycaster.setFromCamera(normalizedPosition, camera);
+    // get the list of objects the ray intersected
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+    if (intersectedObjects.length) {
+      // pick the first object. It&#39;s the closest one
+      this.pickedObject = intersectedObjects[0].object;
+      // save its color
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // set its emissive color to flashing red/yellow
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+</code></pre>
+<p><code class="notranslate" translate="no">RayCaster</code> を作成し、<code class="notranslate" translate="no">pick</code> 関数を呼び出してシーンに光線をキャストできます。
+光線が何かに当たった場合、最初に当たったオブジェクトの色を変更します。</p>
+<p>もちろん、マウスを <em>down</em> した時だけこの関数を呼べますが、今回は全てのフレームでマウスの下に何かあるかピックします。
+そのためにはまずマウスがどこにあるかを追跡する必要があります。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const pickPosition = {x: 0, y: 0};
+clearPickPosition();
+
+...
+
+function getCanvasRelativePosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (event.clientX - rect.left) * canvas.width  / rect.width,
+    y: (event.clientY - rect.top ) * canvas.height / rect.height,
+  };
+}
+
+function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+  pickPosition.x = (pos.x / canvas.width ) *  2 - 1;
+  pickPosition.y = (pos.y / canvas.height) * -2 + 1;  // note we flip Y
+}
+
+function clearPickPosition() {
+  // unlike the mouse which always has a position
+  // if the user stops touching the screen we want
+  // to stop picking. For now we just pick a value
+  // unlikely to pick something
+  pickPosition.x = -100000;
+  pickPosition.y = -100000;
+}
+
+window.addEventListener(&#39;mousemove&#39;, setPickPosition);
+window.addEventListener(&#39;mouseout&#39;, clearPickPosition);
+window.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
+</code></pre>
+<p>正規化されたマウスの位置を記録している事に注意して下さい。
+キャンバスの大きさに関わらず、leftの-1からrightの+1までの値が必要です。
+同様にbottomが-1からtopが+1になるような値が必要です。</p>
+<p>これでモバイル端末もサポートできます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
+  // prevent the window from scrolling
+  event.preventDefault();
+  setPickPosition(event.touches[0]);
+}, {passive: false});
+
+window.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
+  setPickPosition(event.touches[0]);
+});
+
+window.addEventListener(&#39;touchend&#39;, clearPickPosition);
+</code></pre>
+<p>最後に <code class="notranslate" translate="no">render</code> 関数で <code class="notranslate" translate="no">PickHelper</code> の <code class="notranslate" translate="no">pick</code> 関数を呼び出します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const pickHelper = new PickHelper();
+
+function render(time) {
+  time *= 0.001;  // convert to seconds;
+
+  ...
+
++  pickHelper.pick(pickPosition, scene, camera, time);
+
+  renderer.render(scene, camera);
+
+  ...
+</code></pre>
+<p>その結果がこれです。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-raycaster.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-picking-raycaster.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>望んだ動作でおそらく多くのユースケースに対応できますが、いくつか問題点があります。</p>
+<ol>
+<li><p>CPUベース</p>
+<p>JavaScriptは各オブジェクトを通過し、光線がそのオブジェクトのバウンディングボックス、またはバウンディングスフィアと交差するかをチェックしています。
+そのオブジェクト内の各三角形を通過し、光線が三角形と交差するかチェックしなければなりません。</p>
+<p>これの良い点はJavaScriptが簡単に光線が三角形と交差する場所を正確に計算し、その結果が分かります。
+例えば交差する点があった場所に目印をつけたい場合などです。</p>
+<p>悪い点はCPUの負担が大きい所ですね。
+三角形がたくさんあるオブジェクトを持っている場合は遅いかもしれません。</p>
+</li>
+<li><p>変なシェーダーやズレを処理しません</p>
+<p>ジオメトリを変形またはモーフィングするシェーダーがある場合、JavaScriptはその変形を認識できなく、間違った答えを返してしまいます。
+例えばAFAIKのように、メソッドはスキニングされたオブジェクトでは使えません。</p>
+</li>
+<li><p>透明な穴には対応しません</p>
+</li>
+</ol>
+<p>例として、このテクスチャをキューブに適用してみましょう。</p>
+<div class="threejs_center"><img class="checkerboard" src="../../resources/images/frame.png"></div>
+
+<p>以下のように変更します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const loader = new THREE.TextureLoader();
++const texture = loader.load(&#39;resources/images/frame.png&#39;);
+
+const numObjects = 100;
+for (let i = 0; i &lt; numObjects; ++i) {
+  const material = new THREE.MeshPhongMaterial({
+    color: randomColor(),
+    +map: texture,
+    +transparent: true,
+    +side: THREE.DoubleSide,
+    +alphaTest: 0.1,
+  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  ...
+</code></pre>
+<p>以下の例で動作確認をすると、すぐにこの問題が分かると思います。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-raycaster-transparency.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-picking-raycaster-transparency.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>ボックスの穴の部分でピックしてみて下さい。</p>
+<div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
+
+<p>この原因は、JavaScriptがテクスチャやマテリアルを調べて、オブジェクトの一部が本当に透明か判断できないからです。</p>
+<p>これらの問題を全て解決するのが、GPUベースのピッキングです。
+概念的には簡単ですが、残念ながら上記のレイキャスティングよりも使用方法が複雑になっています。</p>
+<p>GPUピッキングを行うには、各オブジェクトをオフスクリーンでユニークな色でレンダリングします。
+次にマウスの位置に対応するピクセルの色を調べます。
+色でどのオブジェクトが選ばれたか分かります。</p>
+<p>これで上記の2と3の問題を解決できます。問題1は速度に依存しています。
+全てのオブジェクトは2回描画されなければなりません。
+1回は見るための描画、もう1回はピッキングの描画です。
+洗練された解決策は、その両方を同時に行う事ですが今回はそれを試しません。</p>
+<p>1つのやり方としては、1つのピクセルしか読まないのでそのピクセルだけ描画されるようにカメラを設定します。
+これを行うには <code class="notranslate" translate="no">PerspectiveCamera.setViewOffset</code> を使用します。
+これでカメラを計算できます。
+これで時間を節約できるはずです。</p>
+<p>現時点ではこのピッキングを行うには、2つのシーンを作成する必要があります。
+1つは通常のメッシュで埋めます。
+もう1つはピッキングマテリアルを使用したメッシュで埋めます。</p>
+<p>そこでまず2つ目のシーンを作り黒でクリアします。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+scene.background = new THREE.Color(&#39;white&#39;);
+const pickingScene = new THREE.Scene();
+pickingScene.background = new THREE.Color(0);
+</code></pre>
+<p>次にメインシーンに配置する各キューブでオリジナルのキューブと同じ位置に対応する&quot;ピッキングキューブ&quot;を作成し、<code class="notranslate" translate="no">pickingScene</code> に配置します。
+オブジェクトのidを色として描画するようにマテリアルを設定します。
+また、idとオブジェクトのマップがあるので、後でidを調べた時に対応するオブジェクトにマップを戻す事ができます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const idToObject = {};
++const numObjects = 100;
+for (let i = 0; i &lt; numObjects; ++i) {
++  const id = i + 1;
+  const material = new THREE.MeshPhongMaterial({
+    color: randomColor(),
+    map: texture,
+    transparent: true,
+    side: THREE.DoubleSide,
+    alphaTest: 0.1,
+  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
++  idToObject[id] = cube;
+
+  cube.position.set(rand(-20, 20), rand(-20, 20), rand(-20, 20));
+  cube.rotation.set(rand(Math.PI), rand(Math.PI), 0);
+  cube.scale.set(rand(3, 6), rand(3, 6), rand(3, 6));
+
++  const pickingMaterial = new THREE.MeshPhongMaterial({
++    emissive: new THREE.Color(id),
++    color: new THREE.Color(0, 0, 0),
++    specular: new THREE.Color(0, 0, 0),
++    map: texture,
++    transparent: true,
++    side: THREE.DoubleSide,
++    alphaTest: 0.5,
++    blending: THREE.NoBlending,
++  });
++  const pickingCube = new THREE.Mesh(geometry, pickingMaterial);
++  pickingScene.add(pickingCube);
++  pickingCube.position.copy(cube.position);
++  pickingCube.rotation.copy(cube.rotation);
++  pickingCube.scale.copy(cube.scale);
+}
+</code></pre>
+<p>ここでは <code class="notranslate" translate="no">MeshPhongMaterial</code> を悪用している事に注意して下さい。
+<code class="notranslate" translate="no">emissive</code> をidにし、<code class="notranslate" translate="no">color</code> と <code class="notranslate" translate="no">specular</code> を0に設定しテクスチャのアルファ値が <code class="notranslate" translate="no">alphaTest</code> よりも大きい場合にのみ、idをレンダリングできます。
+また、<code class="notranslate" translate="no">blending</code> を <code class="notranslate" translate="no">NoBlending</code> に設定し、idにアルファが乗算しないようにする必要があります。</p>
+<p><code class="notranslate" translate="no">MeshPhongMaterial</code>を悪用する事は、最良の解決策でない事に注意して下さい。
+さらに最適化された解決策は、テクスチャのアルファ値が <code class="notranslate" translate="no">alphaTest</code> よりも大きい場合にidを書き込むカスタムシェーダーを作成する事です。</p>
+<p>レイキャスティングではなくピクセルからピックしているので、ピック位置を設定するコードを変更してピクセルだけを使用できます。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+-  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+-  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
++  pickPosition.x = pos.x;
++  pickPosition.y = pos.y;
+}
+</code></pre>
+<p><code class="notranslate" translate="no">PickHelper</code> を <code class="notranslate" translate="no">GPUPickHelper</code> に変更してみましょう。
+<a href="threejs-rendertargets.html">レンダーターゲットの記事</a>で説明したように <code class="notranslate" translate="no">WebGLRenderTarget</code> を使います。
+ここでのレンダーターゲットは1 x 1の1ピクセルのサイズしかありません。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-class PickHelper {
++class GPUPickHelper {
+  constructor() {
+-    this.raycaster = new THREE.Raycaster();
++    // create a 1x1 pixel render target
++    this.pickingTexture = new THREE.WebGLRenderTarget(1, 1);
++    this.pixelBuffer = new Uint8Array(4);
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(cssPosition, scene, camera, time) {
++    const {pickingTexture, pixelBuffer} = this;
+
+    // restore the color if there is a picked object
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
++    // set the view offset to represent just a single pixel under the mouse
++    const pixelRatio = renderer.getPixelRatio();
++    camera.setViewOffset(
++        renderer.getContext().drawingBufferWidth,   // full width
++        renderer.getContext().drawingBufferHeight,  // full top
++        cssPosition.x * pixelRatio | 0,             // rect x
++        cssPosition.y * pixelRatio | 0,             // rect y
++        1,                                          // rect width
++        1,                                          // rect height
++    );
++    // render the scene
++    renderer.setRenderTarget(pickingTexture)
++    renderer.render(scene, camera);
++    renderer.setRenderTarget(null);
++
++    // clear the view offset so rendering returns to normal
++    camera.clearViewOffset();
++    //read the pixel
++    renderer.readRenderTargetPixels(
++        pickingTexture,
++        0,   // x
++        0,   // y
++        1,   // width
++        1,   // height
++        pixelBuffer);
++
++    const id =
++        (pixelBuffer[0] &lt;&lt; 16) |
++        (pixelBuffer[1] &lt;&lt;  8) |
++        (pixelBuffer[2]      );
+
+-    // cast a ray through the frustum
+-    this.raycaster.setFromCamera(normalizedPosition, camera);
+-    // get the list of objects the ray intersected
+-    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+-    if (intersectedObjects.length) {
+-      // pick the first object. It&#39;s the closest one
+-      this.pickedObject = intersectedObjects[0].object;
+
++    const intersectedObject = idToObject[id];
++    if (intersectedObject) {
++      // pick the first object. It&#39;s the closest one
++      this.pickedObject = intersectedObject;
+      // save its color
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // set its emissive color to flashing red/yellow
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+</code></pre>
+<p>それならば、それを使えばいいだけです。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const pickHelper = new PickHelper();
++const pickHelper = new GPUPickHelper();
+</code></pre>
+<p>これを指定し <code class="notranslate" translate="no">scene</code> の代わりに <code class="notranslate" translate="no">pickScene</code> を渡します。</p>
+<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-  pickHelper.pick(pickPosition, scene, camera, time);
++  pickHelper.pick(pickPosition, pickScene, camera, time);
+</code></pre>
+<p>そして、透明な部分を選択するようにする必要があります。</p>
+<p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-gpu.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-picking-gpu.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+</p>
+<p>ピッキングを実装する方法のアイデアをいくつか得られたと思います。
+今後の記事ではマウスを使ってオブジェクトを操作する方法を取り上げるかもしれません。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -182,7 +623,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -227,7 +669,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/ja/threejs-backgrounds.html">背景やスカイボックスを追加する</a></li>
 <li><a href="/threejs/lessons/ja/threejs-transparency.html">透明なオブジェクトの描画方法</a></li>
 <li><a href="/threejs/lessons/ja/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
-<li><a href="/threejs/lessons/ja/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/ja/threejs-picking.html">マウスでオブジェクトをピッキング</a></li>
 <li><a href="/threejs/lessons/ja/threejs-post-processing.html">Post Processing</a></li>
 <li><a href="/threejs/lessons/ja/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
 <li><a href="/threejs/lessons/ja/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
@@ -255,6 +697,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsでピッキング';
+            var disqus_title = 'Three.jsでピッキング';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
