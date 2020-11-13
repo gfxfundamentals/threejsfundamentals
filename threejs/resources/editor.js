@@ -594,6 +594,59 @@ function openInJSFiddle() {
   window.frameElement.ownerDocument.body.removeChild(elem);
 }
 
+function openInJSGist() {
+  const comment = `// ${g.title}
+// from ${g.url}
+
+
+`;
+  getSourcesFromEditor();
+  const scripts = makeScriptsForWorkers(g.rootScriptInfo);
+  const gist = {
+    name: g.title,
+    settings: {},
+    files: [
+      { name: 'index.html', content: scripts.html + fixHTMLForCodeSite(htmlParts.html.sources[0].source), },
+      { name: 'index.css', content: htmlParts.css.sources[0].source, },
+      { name: 'index.js', content: comment + fixJSForCodeSite(scripts.js), },
+    ],
+  };
+
+  window.open('https://jsgist.org/?newGist=true', '_blank');
+  const send = (e) => {
+    e.source.postMessage({type: 'newGist', data: gist}, '*');
+  };
+  window.addEventListener('message', send, {once: true});
+}
+
+document.querySelectorAll('.dialog').forEach(dialogElem => {
+  dialogElem.addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.style.display = 'none';
+    }
+  });
+  dialogElem.addEventListener('keydown', function(e) {
+    console.log(e.keyCode);
+    if (e.keyCode === 27) {
+      this.style.display = 'none';
+    }
+  })
+});
+const exportDialogElem = document.querySelector('.export');
+
+function openExport() {
+  exportDialogElem.style.display = '';
+  exportDialogElem.firstElementChild.focus();
+}
+
+function closeExport(fn) {
+  return () => {
+    exportDialogElem.style.display = 'none';
+    fn();
+  };
+}
+document.querySelector('.button-export').addEventListener('click', openExport);
+
 function selectFile(info, ndx, fileDivs) {
   if (info.editors.length <= 1) {
     return;
@@ -651,8 +704,9 @@ function setupEditor() {
   g.iframe = document.querySelector('.result>iframe');
   g.other = document.querySelector('.panes .other');
 
-  document.querySelector('.button-codepen').addEventListener('click', openInCodepen);
-  document.querySelector('.button-jsfiddle').addEventListener('click', openInJSFiddle);
+  document.querySelector('.button-codepen').addEventListener('click', closeExport(openInCodepen));
+  document.querySelector('.button-jsfiddle').addEventListener('click', closeExport(openInJSFiddle));
+  document.querySelector('.button-jsgist').addEventListener('click', closeExport(openInJSGist));
 
   g.result = document.querySelector('.panes .result');
   g.resultButton = document.querySelector('.button-result');
