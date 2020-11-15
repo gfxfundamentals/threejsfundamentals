@@ -1,77 +1,77 @@
 Title: Three.jsの3DLUTポストプロセス
-Description: Three.jsでの3DLUTポストプロセスのやり方
+Description: Three.jsで3DLUTポストプロセスを実装する方法
 TOC: エフェクトにLUTファイルを適用する
 
 前回の記事では[ポストプロセス](threejs-post-processing.html)の説明をしました。
-一般的なポストプロセスの方法の1つにLUTや3DLUTと呼ばれるものがあります。
-LUTはLookUp Tableの略です。したがって、3DLUTは3次元ルックアップテーブルです。
+ポストプロセスの一般的な方法の1つにLUT（ラット）や3DLUT（3次元ラット）と呼ばれるものがあります。
+LUTはルックアップテーブル（参照対応表）の略です。したがって、3DLUTは3次元のルックアップテーブルです。
 
-どのように機能するかというと色の立方体を作る事です。
-次にソースとなる画像の色を使用し、立方体にインデックスを作成します。
-元の画像の各ピクセルについて、元のピクセルの赤、緑、青の色に基づいて立方体の位置を調べます。
-3DLUTから引き出す値が新色になります。
+3DLUTがどのように機能するかというとカラーの立方体を作ります。
+元となる画像のカラーを使い、立方体にインデックスを作成します。
+元画像の各ピクセルに対して、赤、緑、青のカラーに基づいて立方体の位置を調べます。
+立方体の位置が3DLUTから引き出した新しいカラーとなります。
 
-Javascriptでは、次のようにします。
-色が0から255までの整数で指定されていて、サイズが256 x 256 x 256の大きな3次元配列があると想像して下さい。
-その後、ルックアップテーブルを介して色を変換します。
+Javascriptでは次のようにします。
+カラーは0〜255までの整数で指定されており、サイズが256 x 256 x 256の大きな3次元配列があると想像して下さい。
+ルックアップテーブルを通してカラーを変換します。
 
     const newColor = lut[origColor.red][origColor.green][origColor.bue]
 
-もちろん、256 x 256 x 256 x 256の配列はかなり大きくなりますが、[テクスチャの記事](threejs-textures.html)で指摘したようにテクスチャは0の値から参照されます。
-テクスチャの寸法に関係なく、0～1.0の値になります。
+もちろん、256 x 256 x 256の配列はかなり大きいですが、[テクスチャの記事](threejs-textures.html)で指摘したようにテクスチャの寸法に関係なく0.0～1.0の値を参照します。
 
-8 × 8 × 8 × 8の立方体を想像してみましょう。
+8 × 8 × 8の立方体を想像してみましょう。
 
 <div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
 
-最初に0, 0, 0のコーナーは真っ黒で、反対の1, 1, 1, 1のコーナーは真っ白なので角を埋めるかもしれません。
-1, 0, 0は純粋な<span style="color:red;">赤</span>です。
-0, 1, 0は純粋な<span style="color:green;">緑</span>で、0, 0, 1は<span style="color:blue;">青</span>です。
+最初に0, 0, 0の位置の角は黒にし、反対の1, 1, 1の角は白にします。
+1, 0, 0は<span style="color:red;">赤</span>です。
+0, 1, 0は<span style="color:green;">緑</span>で0, 0, 1は<span style="color:blue;">青</span>にします。
 
 <div class="threejs_center"><img src="resources/images/3dlut-axis.svg" class="noinvertdark" style="width: 500px"></div>
 
-各軸の下に色を入れていきます。
+各軸線にカラーを追加していきます。
 
 <div class="threejs_center"><img src="resources/images/3dlut-edges.svg" class="noinvertdark" style="width: 500px"></div>
 
-2チャンネル以上を使用するエッジの色です。
+2チャンネル以上を使用するエッジのカラーです。
 
 <div class="threejs_center"><img src="resources/images/3dlut-standard.svg" class="noinvertdark" style="width: 500px"></div>
 
-最後にその間にある色を全て埋めます。
-これは"アイデンティティ"の3DLUTです。入力と全く同じ出力を生成します。
-調べれば同じ色が出てきます。
+最後に中間にあるカラーも全て埋めます。
+これは"同一性"の3DLUTです。入力と全く同じ出力を生成します。
+もし色を入力して調べれば、入力と同じカラーが出力されます。
 
 <div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-standard-lookup.svg" class="noinvertdark" data-diagram="lookup" style="width: 600px"></object></div>
 
-キューブを琥珀色に変更して色を調べると3Dルックアップテーブルの同じ場所を調べますが、異なる出力が得られます。
+立方体をシェーダーで琥珀色に変更し3D ルックアップテーブルの同じ場所を調べると、異なる出力が得られます。
 
 <div class="threejs_center"><object type="image/svg+xml" data="resources/images/3dlut-amber-lookup.svg" class="noinvertdark" data-diagram="lookup" style="width: 600px"></object></div>
 
-別のルックアップテーブルを提供して、この技術を使用すると全ての種類の効果を適用する事ができます。
-基本的には単一のカラー入力のみに基づいて計算できるエフェクトです。
-これらのエフェクトには色相、コントラスト、彩度、カラーキャスト、色合い、明るさ、露出、レベル、カーブ、ポスタライズ、シャドウ、ハイライト、その他多くの調整が含まれます。
-さらに優れているのはそれらを全て1つのルックアップテーブルにまとめられます。
+別のルックアップテーブルを提供してこの技術を使用すると、全種類の効果を適用できます。
+基本的には単一のカラー入力のみを計算できる効果です。
+これらの効果には色相、コントラスト、彩度、カラーキャスト、色合い、明るさ、露出、レベル、カーブ、ポスタライズ、シャドウ、ハイライト、その他多くの調整が含まれます。
+これが優れている点は全て1つのルックアップテーブルにまとめられてます。
 
-これを使用するには、適用するシーンが必要です。
-ざっくりとしたシーンをまとめてみましょう。
+これを使用するには適用するシーンが必要です。
+ちょっとしたシーンにこれを適用してみましょう。
 まずは[glTFを読み込む記事](threejs-load-gltf.html)で取り上げたようにglTFファイルを表示する所から始めてみます。
 載せているモデルは[氷の狼](https://sketchfab.com/sarath.irn.kat005)の[このモデル](https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee)です。
-ライトを使わないので外しました。
+ライトは使わないので削除しました。
 
-[背景とスカイボックス](threejs-backgrounds.html)で説明したような背景画像も入れていきます。
+[背景とスカイボックス](threejs-backgrounds.html)で説明したような背景画像も追加します。
 
 {{{example url="../threejs-postprocessing-3dlut-prep.html" }}}
 
 シーンがあるので3DLUTが必要です。
-最も単純な3DLUTは、2 x 2 x 2 x 2のアイデンティティーLUTで、*アイデンティティー*は何も起こらない事を意味します。
-それは1を掛けるようなもので、LUT内の各色を同じ色にマップしているにも関わらず、1を掛けたり何もしなかったりしているようなものです。
+最も単純な3DLUTは2 x 2 x 2の同一性LUTです。*同一性*とは何も起こらない事を意味します。
+1を掛けるようなもので、LUTでカラーを調べているにも関わらず、入力カラーと同じ出力カラーがマップされてます。
 
 <div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
 
-WebGL1は3Dテクスチャをサポートしていないので、4 x 2の2Dテクスチャを使用し、立方体の各スライスがテクスチャ全体に水平に広がっているカスタムシェーダ内で3Dテクスチャとして扱います。
+WebGL1は3Dテクスチャは非サポートのため、4 x 2の2Dテクスチャを使用しカスタムシェーダーの中で3Dテクスチャとして扱います。
+カスタムシェーダーでは立方体の各切片がテクスチャ全体に水平に広がっています。
 
-アイデンティティLUTに必要な色で4 x 2の2Dテクスチャを作るコードです。
+以下はidentityLUTに必要なカラーで4 x 2の2Dテクスチャを作るコードです。
 
 ```js
 const makeIdentityLutTexture = function() {
@@ -97,7 +97,7 @@ const makeIdentityLutTexture = function() {
 }();
 ```
 
-フィルターをかけたもの、かけていないものの2つを作ってみましょう。
+フィルターをかけたテクステャ、かけていないテクステャの2つを作ります。
 
 ```js
 const lutTextures = [
@@ -106,7 +106,7 @@ const lutTextures = [
 ];
 ```
 
-[ポストプロセスの記事](threejs-post-processing.html)のカスタムシェーダを使った例を参考の代わりに2つのカスタムシェーダーを使ってみましょう。
+[ポストプロセスの記事](threejs-post-processing.html)のカスタムシェーダーを使った例を参考に、2つのカスタムシェーダーを使ってみましょう。
 
 ```js
 const lutShader = {
@@ -181,7 +181,7 @@ const lutNearestShader = {
 
 2番目のシェーダーを生成するためにその行をコメントアウトします。
 
-それらを使用して2つのカスタムエフェクトを作成します。
+これらを使用して2つのカスタムエフェクトを作成します。
 
 ```js
 const effectLUT = new THREE.ShaderPass(lutShader);
@@ -190,7 +190,7 @@ const effectLUTNearest = new THREE.ShaderPass(lutNearestShader);
 effectLUTNearest.renderToScreen = true;
 ```
 
-背景を別のシーンとして描画する既存のコードを変換し、glTFを描画するシーンと背景を描画するシーンの両方に `RenderPass` を適用します。
+背景を別のシーンに描画する既存コードを変更し、glTFと背景を描画するシーンの両方に `RenderPass` を適用します。
 
 ```js
 const renderModel = new THREE.RenderPass(scene, camera);
@@ -198,7 +198,7 @@ renderModel.clear = false;  // so we don't clear out the background
 const renderBG = new THREE.RenderPass(sceneBG, cameraBG);
 ```
 
-全てのパスを使用するように `EffectComposer` を設定する事ができます。
+全てのパスを使用するように `EffectComposer` を設定できます。
 
 ```js
 const rtParameters = {
@@ -229,7 +229,7 @@ const gui = new GUI({ width: 300 });
 gui.add(lutSettings, 'lut', lutNameIndexMap);
 ```
 
-最後にフィルタリングするかに応じてエフェクトをオンにし、選択したテクスチャを使用するようにエフェクトを設定して、`EffectComposer` を通してレンダリングします。
+最後にfilterするかに応じてeffectをオンにし、選択したテクスチャを使用するようにeffectを設定して、`EffectComposer` を通してレンダリングします。
 
 ```js
 const lutInfo = lutTextures[lutSettings.lut];
@@ -245,21 +245,21 @@ effect.uniforms.lutMapSize.value = lutInfo.size;
 composer.render(delta);
 ```
 
-それが3DLUTのアイデンティティである事を考えると何も変わりません。
+同一性の3DLUTである事を考えると何も変わりません。
 
 {{{example url="../threejs-postprocessing-3dlut-identity.html" }}}
 
-しかし、フィルタリングされていないLUTを選択するとより興味深いものが得られます。
+しかし、GUIでidentity not filteredを選択すると興味深い結果になります。
 
 <div class="threejs_center"><img src="resources/images/unfiltered-3dlut.jpg" style="width: 500px"></div>
 
 なぜこのようなことが起こるのでしょうか？
-フィルタリングをオンにするとGPUは色の間を直線的に補間するからです。
-フィルタリングをオフにすると補間を行わないので、3DLUT内の色を検索しても3DLUT内の正確な色のうちの1つしか得られません。
+filterをオンにするとGPUはカラーの中間を線形補間します。
+filterをオフにすると補間は行わなわれず、3DLUT内のカラーを探しても3DLUT内の正確なカラーの1つしか得られません。
 
 もっと面白い3DLUTを作るにはどうすれば良いでしょうか？
 
-まず、必要なテーブルの解像度を決定し、簡単なスクリプトを使用してルックアップ・キューブのスライスを生成します。
+まず必要なテーブルの解像度を決定し、簡単なスクリプトを使用しルックアップの立方体の切片を生成します。
 
 ```js
 const ctx = document.querySelector('canvas').getContext('2d');
@@ -293,51 +293,51 @@ drawColorCubeImage(ctx, 8);
 <canvas></canvas>
 ```
 
-これで任意のサイズのアイデンティティー3Dルックアップテーブルを生成する事ができます。
+これで任意のサイズで同一性の3Dルックアップテーブルを生成できます。
 
 {{{example url="../3dlut-base-cube-maker.html" }}}
 
 解像度が大きいほど微調整が可能ですが、データの立方体であるため必要なサイズはすぐに大きくなります。
-サイズ8のキューブでは2kしか必要ありませんが、サイズ64のキューブでは1MBが必要です。
-したがって、あなたが望む効果を再現する最小のものを使用して下さい。
+サイズ8の立方体では2KBしか必要ありませんが、サイズ64の立方体では1MB必要です。
+したがって、望む効果を再現する最小のものを使用して下さい。
 
-サイズを16に設定し保存をクリックするとこのようなファイルができあがります。
+サイズを16に設定しSaveをクリックすると以下のようなファイルができます。
 
 <div class="threejs_center"><img src="resources/images/identity-lut-s16.png"></div>
 
-また、LUTを適用したいもののイメージをキャプチャする必要があります。
-通常は上のシーンを右クリックして "名前を付けて保存... "を選択する事ができますが、`OrbitControls` がOSによっては右クリックを妨げているかもしれない事に注意して下さい。
-私の場合は、スクリーンショットを取得するためにOSのスクリーンキャプチャ機能を使用しています。
+また、LUTを適用したい部分の画像キャプチャをする必要があります。
+通常は上記のシーンを右クリックして "名前を付けて保存... "を選択できますが、`OrbitControls` がOSによっては右クリック防止してるかもしれない事に注意して下さい。
+私の場合は、スクリーンショットを取得するためにOSのスクリーンキャプチャ機能を使用しました。
 
 <div class="threejs_center"><img src="resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
 
-次に画像エディタ（私の場合はPhotoshop）でサンプル画像を読み込み、左上隅に3DLUTを貼り付けます。
+次に画像エディタ（私の場合はPhotoshop）で上記の画像を読み込み、左上に3DLUTの画像を貼り付けます。
 
-> メモ: 最初にPhotoshop上でLUTファイルをドラッグ＆ドロップしてみましたが、上手くいきませんでした。
-> Photoshopで画像を2倍にしてしまいました。
-> DPIか何かに合わせようとしているのだろう。
-> LUTファイルを個別に読み込み、コピーしてスクリーンキャプチャに貼り付けると上手くいきました。
+> 備考: 最初にPhotoshop上でLUTファイルをドラッグ＆ドロップしてみましたが、上手くいきませんでした。
+> Photoshopで2倍の大きさにしてみました。
+> DPIか何かに合わせようとしているのかもしれません。
+> LUTファイルを個別に読み込み、コピーして画面キャプチャに貼り付けると上手くいきました。
 
 <div class="threejs_center"><img src="resources/images/3dlut-photoshop-before.jpg" style="width: 600px"></div>
 
-次にカラーベースのフルイメージ調整を使って画像を調整します。
+カラーベースのフルイメージ調整を使い画像調整します。
 Photoshopの場合、使用できる調整のほとんどは画像 → 調整メニューにあります。
 
 <div class="threejs_center"><img src="resources/images/3dlut-photoshop-after.jpg" style="width: 600px"></div>
 
-好みに合わせて画像を調整後、左上に配置した3DLUTスライスにも同じ調整が適用されているのが分かります。
+好みに合わせて画像を調整して、左上に配置した3DLUTスライスにも同じ調整が適用されているのが分かります。
 
-分かったけど、どうやって使うのでしょうか？
+分かりましたがどうやって使うのでしょうか？
 
-最初にpngを`3dlut-red-only-s16.png`として保存しました。
-メモリを節約するために、LUTテーブルの16 x 256の左上隅だけにトリミングできましたが、楽しむためにロード後にトリミングしておきます。
-この方法の良い点はpngファイルを見るだけで、LUTの効果をある程度把握できます。
-悪い点はもちろん帯域幅を無駄にしてしまいます。
+最初にpngを`3dlut-red-only-s16.png`で保存しました。
+メモリを節約するために左上にLUTテーブルを16 x 256でトリミングしましたが、もっと楽しむためにロード後にトリミングしておきます。
+これの良い点はpngファイルを見ると、LUTの効果をある程度把握できます。
+悪い点はもちろん帯域の無駄遣いです。
 
-ロードするためのコードです。
-このコードはテクスチャをすぐに使用できるようにアイデンティティLUTから始まります。
-次に画像をロードし3DLUT部分だけをキャンバスにコピーします。
-キャンバスからデータを取得してテクスチャに設定し、`needsUpdate` をtrueに設定してThree.jsに新しいデータを取得させます。
+以下はそれをロードするためのコードです。
+このコードはテクスチャをすぐに使用できるように、同一性のLUTから始まります。
+次に画像をロードし3D LUT部分だけをキャンバスにコピーします。
+キャンバスからデータを取得してテクスチャに設定し、`needsUpdate` をtrueに設定して新しいデータを取得させます。
 
 ```js
 const makeLUTTexture = function() {
@@ -407,10 +407,10 @@ const lutTextures = [
 +});
 ```
 
-上の図ではLUTのサイズをファイル名の最後にエンコードしているのが分かります。
+上記ではLUTのサイズをファイル名の最後にエンコードしてます。
 これでLUTをpngとして渡すのが簡単になります。
 
-今のうちに、既存のLUTのpngファイルをたくさん追加しておきましょう。
+既存のLUTのpngファイルをたくさん追加しておきましょう。
 
 ```js
 const lutTextures = [
@@ -448,14 +448,14 @@ const lutTextures = [
 
 {{{example url="../threejs-postprocessing-3dlut.html" }}}
 
-最後にもう1つ、ちょっとした楽しい事としてAdobeが定義した標準LUTフォーマットがあることが分かりました。
+最後にもう1つ、ただのお遊びですがAdobeが定義した標準LUTフォーマットがあります。
 [ネットで検索するとたくさんのLUTファイル](https://www.google.com/search?q=lut+files)が見つかります。
 
 クイックローダーを書いてみました。
-残念ながらフォーマットのバリエーションは4つありますが、私は1つのバリエーションの例しか見つけられなかったので、全てのバリエーションが動作するかどうかを簡単にテストする事はできませんでした。
+フォーマットの種類は4つありますが、残念ながら私は1種類の例しか見つけられなかったので、全ての種類が動作するかを簡単にテストできませんでした。
 
-クイックドラッグ＆ドロップライブラリも書いています。
-両方を使って、Adobe LUTファイルをドラッグ＆ドロップして効果を確認できるようにしてみましょう。
+ドラッグ＆ドロップライブラリも書いてみます。
+両方を使いAdobe LUTファイルをドラッグ＆ドロップして効果を確認できるようにしてみましょう。
 
 まず2つのライブラリが必要です。
 
@@ -464,7 +464,7 @@ import * as lutParser from './resources/lut-reader.js';
 import * as dragAndDrop from './resources/drag-and-drop.js';
 ```
 
-そして次のように使用する事ができます。
+そして次のように利用できます。
 
 ```js
 dragAndDrop.setup({msg: 'Drop LUT File here'});
@@ -522,28 +522,25 @@ function updateGUI() {
 updateGUI();
 ```
 
-[Adobe LUTをダウンロード](https://www.google.com/search?q=lut+files)して、下の例の上にドラッグ＆ドロップする事ができるはずです。
+[Adobe LUTをダウンロード](https://www.google.com/search?q=lut+files)し、下の例にドラッグ＆ドロップできます。
 
 {{{example url="../threejs-postprocessing-3dlut-w-loader.html" }}}
 
-Adobe LUTはオンラインでの使用を想定して設計されていません。
+Adobe LUTはWeb上のオンライン利用を想定して設計されていません。
 これらは大きなファイルです。
-下のサンプルの上にドラッグ＆ドロップしてサイズを選択し、"Save... "をクリックする事でより小さなファイルに変換し、当社のPNG形式で保存できます。
+下のサンプルの上にドラッグ＆ドロップしてサイズを選択し、"Save... "をクリックし小さなファイルに変換し、PNG形式で保存できます。
 
-以下のサンプルは、上記のコードを改造したものです。
-背景絵を描くだけでglTFファイルはありません。
+以下のサンプルは上記のコードを変更したものです。
+背景の絵を描くだけでglTFファイルはありません。
+同一性のLUT画像です。
 
-この画像は、上記のスクリプトから作成されたID LUT画像です。
-次に読み込まれたLUTファイルを適用するためにエフェクトを使用しているので、結果はLUTファイルをPNGとして再現するために必要な画像になります。
+この画像は上記スクリプトから作成された同一性のLUT画像です。
+次に読み込まれたLUTファイルを適用するための効果を使用しているので、結果はLUTファイルをPNGとして再現するために必要な画像になります。
 
 {{{example url="../threejs-postprocessing-adobe-lut-to-png-converter.html" }}}
 
-1つはシェーダ自体がどのように動作するかという事です。
-上手くいけば将来的にはもう少しGLSLをカバーできると思います。
-今の所は興味があれば[ポストプロセスの記事](threejs-post-processing.html)のリンクをたどったり[この動画を見て下さい](https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s)。
-
-完全にスキップされているのはシェーダー自体がどのように動作するかです。
-願わくば今後もう少しGLSLをカバーできるといいですね。
-とりあえず気になる方は[ポストプロセスの記事](threejs-post-processing.html)のリンクをたどってみて下さい。
+1つ解説を完全に飛ばしてるのは、シェーダー自体がどのように動作するかです。
+将来的にはもう少しGLSLをカバーできると良いと思います。
+今の所は興味があれば[ポストプロセスの記事](threejs-post-processing.html)のリンクを見たり[この動画を見て下さい](https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s)。
 
 <script type="module" src="resources/threejs-post-processing-3dlut.js"></script>
