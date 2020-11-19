@@ -81,10 +81,24 @@ Current fields are
       link: 'http://threejsfundamentals.org/threejs/lessons/ja',  // replace `ja` with country code
 
       // html that appears after the article and before the comments
-      commentSectionHeader: '<div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>\n        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">Create an issue on github</a>.</div>',
+      commentSectionHeader: `
+        <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
+        <div>
+           <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>?
+           <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>?
+           <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>?
+           <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?
+        </div>
+        <div class="lesson-comment-notes">
+           Use <b>&lt;pre&gt;&lt;code&gt;</b>code goes here<b>&lt;/code&gt;&lt;/pre&gt;</b> for code blocks
+        </div>
+      `,
 
       // markdown that appears for untranslated articles
       missing: "Sorry this article has not been translated yet. [Translations Welcome](https://github.com/gfxfundamentals/threejsfundamentals)! 😄\n\n[Here's the original English article for now]({{{origLink}}}).",
+
+      // html that appear at the top right
+      contribTemplate: 'Thank you <a href="${html_url}"><img src="${avatar_url}"> ${login}</a><br>for <a href="https://github.com/${owner}/${repo}/commits?author=${login}">${contributions} contributions</a>',
 
       // the phrase "Table of Contents"
       toc: "Table of Contents",
