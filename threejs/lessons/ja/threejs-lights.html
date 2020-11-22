@@ -510,11 +510,11 @@ makeXYZGUI(gui, light.position, &#39;position&#39;, updateLight);
 </p>
 <p><code class="notranslate" translate="no">distance</code> が &gt; 0 の時にライトがフェードアウトしている事に注目して下さい。</p>
 <h2 id="-spotlight-"><code class="notranslate" translate="no">SpotLight（集中光線）</code></h2>
-<p>集中光源はコーン形状にライティングする時に効果的です。
-実際は2つのコーン形状があります。外側と内側のコーン形状です。
-内側と外側のコーン形状の間では、ライトは強度のMAX値から0にフェードします。</p>
+<p>集中光源は円錐体にライティングする時に効果的です。
+実際は2つの円錐体があります。外側と内側の円錐体です。
+内側と外側の円錐体の間では、ライトは強度のMAX値から0にフェードします。</p>
 <p><code class="notranslate" translate="no">SpotLight</code> を使うには、平行光源と同じようにターゲットが必要です。
-ライトのコーン形状がターゲットに向かって照らされます。</p>
+ライトの円錐体がターゲットに向かって照らされます。</p>
 <p>上記のヘルパーを使って <code class="notranslate" translate="no">DirectionalLight</code> を修正します。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">const color = 0xFFFFFF;
 const intensity = 1;
@@ -527,13 +527,13 @@ scene.add(light.target);
 +const helper = new THREE.SpotLightHelper(light);
 scene.add(helper);
 </code></pre>
-<p>集中光源のコーン形状の角度は <a href="SpotLight.angle"><code class="notranslate" translate="no">angle</code></a>プロパティでラジアン単位で設定します。
+<p>集中光源の円錐体の角度は <a href="SpotLight.angle"><code class="notranslate" translate="no">angle</code></a>プロパティでラジアン単位で設定します。
 <a href="threejs-textures.html">テクスチャ記事</a>の <code class="notranslate" translate="no">DegRadHelper</code> を使い、度数でUIに表示します。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">gui.add(new DegRadHelper(light, &#39;angle&#39;), &#39;value&#39;, 0, 90).name(&#39;angle&#39;).onChange(updateLight);
 </code></pre>
 <p>内側の円錐は<a href="SpotLight.penumbra"><code class="notranslate" translate="no">penumbra</code></a>プロパティを外側の円錐からの%として設定します。
 <code class="notranslate" translate="no">penumbra</code> が1の時、ライトは円錐の中心から外側の円錐に向かってフェードしていきます。
-<code class="notranslate" translate="no">penumbra</code> が5の時、ライトは外側のコーン形状の中心から50%からフェードしていきます。</p>
+<code class="notranslate" translate="no">penumbra</code> が5の時、ライトは外側の円錐体の中心から50%からフェードしていきます。</p>
 <pre class="prettyprint notranslate" translate="no"><code class="lang-js">gui.add(light, &#39;penumbra&#39;, 0, 1, 0.01);
 </code></pre>
 <p><div translate="no" class="threejs_example_container notranslate">
@@ -543,9 +543,9 @@ scene.add(helper);
 
 </p>
 <p>デフォルトの <code class="notranslate" translate="no">penumbra</code> が0の場合、集中光源は非常にシャープなエッジを持っていますが、1 に向けて <code class="notranslate" translate="no">penumbra</code> を調整するとエッジがぼやけます。</p>
-<p>集中光源の<em>コーン</em>形状が見えにくいかもしれません。
+<p>集中光源の<em>円錐体</em>が見えにくいかもしれません。
 その理由は地面にあります。
-距離を5くらいまで縮めると、コーン形状の端が開いているのが見えてきます。</p>
+距離を5くらいまで縮めると、円錐体の端が開いているのが見えてきます。</p>
 <h2 id="-rectarealight-"><code class="notranslate" translate="no">RectAreaLight（矩形光源）</code></h2>
 <p>もう1種類のライトに <code class="notranslate" translate="no">RectAreaLight</code> があります。
 これはまさにその名の通り、長い蛍光灯のような長方形のエリアのライトや天井にある曇り空のライトです。</p>
@@ -700,7 +700,7 @@ gui.add(light, &#39;power&#39;, 0, 2000);
 <li><a href="/threejs/lessons/ja/threejs-materials.html">マテリアル</a></li>
 <li><a href="/threejs/lessons/ja/threejs-textures.html">テクスチャ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-lights.html">ライト</a></li>
-<li><a href="/threejs/lessons/ja/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/ja/threejs-cameras.html">カメラ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">Render Targets</a></li>
