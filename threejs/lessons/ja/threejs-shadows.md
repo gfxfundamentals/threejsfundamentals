@@ -1,69 +1,50 @@
-Title: Three.jsの影
-Description: Three.jsの影
-TOC: 影
+Title: Three.jsのシャドウ
+Description: Three.jsのシャドウ
+TOC: シャドウ
 
 この記事はThree.jsの連載記事の1つです。
 最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
 まだ読んでいない場合、そこから始めると良いかもしれません。
 [前回はカメラの記事](threejs-cameras.html)でした。
-この記事を読む前に[ライトの記事](threejs-lights.html)も読んでおく事が重要です。
+この記事を読む前に、カメラの記事と同じく[ライトの記事](threejs-lights.html)も読んでおく事が重要です。
 
-This article is part of a series of articles about three.js. The
-first article is [three.js fundamentals](threejs-fundamentals.html). If
-you haven't read that yet and you're new to three.js you might want to
-consider starting there. The
-[previous article was about cameras](threejs-cameras.html) which is
-important to have read before you read this article as well as
-the [article before that one about lights](threejs-lights.html).
+コンピュータ上でのシャドウは複雑なトピックになります。
+three.jsで利用できる解決策も含め様々な解決策がありますが、どれもトレードオフがあります。
 
-Shadows on computers can be a complicated topic. There are various
-solutions and all of them have tradeoffs including the solutions
-available in three.js.
+Three.jsは *シャドウマップ* をデフォルトで使用してます。
+シャドウマップを機能させるには、*シャドウを落とす全てのライトに対して、シャドウを落とすようにマークされた全てのオブジェクトがシャドウをレンダリングします*。
+急ぐ必要はないので ** もう一度読んでみて下さい！ **
 
-Three.js by default uses *shadow maps*. The way a shadow map works
-is, *for every light that casts shadows all objects marked to cast
-shadows are rendered from the point of view of the light*. **READ THAT
-AGAIN!** and let it sink in.
+つまり、20個のオブジェクトと5個のライトがあって、オブジェクト全てにシャドウを落とし、ライトが全てシャドウを落としている場合、シーン全体が6回描画されます。
+全てのオブジェクトがライト#1に描画され、全てのオブジェクトがライト#2に描画され、#3などのために描画され、最後に最初の5つのレンダーからのデータを使って実際のシーンが描画されます。
 
-In other words, if you have 20 objects, and 5 lights, and
-all 20 objects are casting shadows and all 5 lights are casting
-shadows then your entire scene will be drawn 6 times. All 20 objects
-will be drawn for light #1, then all 20 objects will be drawn for
-light #2, then #3, etc and finally the actual scene will be drawn
-using data from the first 5 renders.
+さらに悪い事に点光源がシャドウを落としている場合、6回もシーンを描画しなければならないのです。
 
-It gets worse, if you have a point light casting shadows the scene
-has to be drawn 6 times just for that light!
+これらの理由から全てのシャドウを生成するライトをたくさん持っているより、他の解決策を見つける事が一般的です。
+一般的な解決策は複数のライトがあるが、シャドウを発生させる方向性のあるライトは1つだけという方法があります。
 
-For these reasons it's common to find other solutions than to have
-a bunch of lights all generating shadows. One common solution
-is to have multiple lights but only one directional light generating
-shadows.
+別の解決策として、ライトマップやアンビエントオクルージョンマップを使用して、オフラインでライティングの効果を事前に計算する方法もあります。
+その結果、静的なライティングのヒントになりますが、少なくともそれは速いです。
+その両方については別の記事で取り上げます。
 
-Yet another solution is to use lightmaps and or ambient occlusion maps
-to pre-compute the effects of lighting offline. This results in static
-lighting or static lighting hints but at least it's fast. We'll
-cover both of those in another article.
+もう1つの解決策は、フェイクシャドウする事です。
+平面を作り、シャドウに似たグレースケールのテクスチャを入れて、オブジェクトの下の地面の上に描画します。
 
-Another solution is to use fake shadows. Make a plane, put a grayscale
-texture in the plane that approximates a shadow,
-draw it above the ground below your object.
-
-For example let's use this texture as a fake shadow
+例えば、このテクスチャをフェイクシャドウしてみましょう。
 
 <div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
 
-We'll use some of the code from [the previous article](threejs-cameras.html).
+[前回の記事](threejs-cameras.html)のコードの一部を使用します。
+.
 
-Let's set the background color to white.
+背景色を白に設定してみましょう。
 
 ```js
 const scene = new THREE.Scene();
 +scene.background = new THREE.Color('white');
 ```
 
-Then we'll setup the same checkerboard ground but this time it's using
-a `MeshBasicMaterial` as we don't need lighting for the ground.
+同じチェッカーボードの地面を設定しますが、今回の地面には照明は必要ないので `MeshBasicMaterial` を使用します。
 
 ```js
 +const loader = new THREE.TextureLoader();
@@ -91,24 +72,23 @@ a `MeshBasicMaterial` as we don't need lighting for the ground.
 }
 ```
 
-Note we're setting the color to `1.5, 1.5, 1.5`. This will multiply the checkerboard
-texture's colors by 1.5, 1.5, 1.5. Since the texture's colors are 0x808080 and 0xC0C0C0
-which is medium gray and light gray, multiplying them by 1.5 will give us a white and
-light grey checkerboard.
+色を `1.5, 1.5, 1.5` に設定している事に注意して下さい。
+これによって、チェッカーボードのテクスチャの色がそれぞれ1.5倍になります。
+テクスチャの色は 0x808080 と 0xC0C0C0 でミディアムグレーとライトグレーなので、1.5を掛けると白とライトグレーのチェッカーボードになります。
 
-Let's load the shadow texture
+シャドウテクスチャを読み込んでみましょう。
 
 ```js
 const shadowTexture = loader.load('resources/images/roundshadow.png');
 ```
 
-and make an array to remember each sphere and associated objects.
+各球体と関連するオブジェクトを記憶するための配列を作成します。
 
 ```js
 const sphereShadowBases = [];
 ```
 
-Then we'll make a sphere geometry
+そして、球体のジオメトリを作ります。
 
 ```js
 const sphereRadius = 1;
@@ -117,23 +97,22 @@ const sphereHeightDivisions = 16;
 const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 ```
 
-And a plane geometry for the fake shadow
+フェイクシャドウのための平面のジオメトリも作ります。
 
 ```js
 const planeSize = 1;
 const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
 ```
 
-Now we'll make a bunch of spheres. For each sphere we'll create a `base`
-`THREE.Object3D` and we'll make both the shadow plane mesh and the sphere mesh
-children of the base. That way if we move the base both the sphere and the shadow
-will move. We need to put the shadow slightly above the ground to prevent z-fighting.
-We also set `depthWrite` to false so that the shadows don't mess each other up.
-We'll go over both of these issues in [another article](threejs-transparency.html).
-The shadow is a `MeshBasicMaterial` because it doesn't need lighting.
+たくさんの球体を作ります。
+各球体に対して `THREE.Object3D` を作成し `base` に格納して、シャドウの平面メッシュと球体メッシュの両方をbaseの子にします。
+そうすると、baseを動かすと球体とシャドウの両方が動きます。
+Ｚファイティングを防ぐためにシャドウを少し上に置きます。
+また、`depthWrite` をfalseにし、シャドウがお互いに混乱しないようにします。
+この2つの問題は、[別の記事](threejs-transparency.html)で解説します。
+このシャドウはライティングを必要としないので `MeshBasicMaterial` です。
 
-We make each sphere a different hue and then save off the base, the sphere mesh,
-the shadow mesh and the initial y position of each sphere.
+各球体を異なる色相にして、ベース、球体メッシュ、シャドウのメッシュ、各球体のyの初期位置を保存します。
 
 ```js
 const numSpheres = 15;
@@ -172,8 +151,8 @@ for (let i = 0; i < numSpheres; ++i) {
 }
 ```
 
-We setup 2 lights. One is a `HemisphereLight` with the intensity set to 2 to really
-brighten things up.
+2つのライトを設定しました。
+1つは `HemisphereLight` で強度を2にして明るくしました。
 
 ```js
 {
@@ -185,7 +164,7 @@ brighten things up.
 }
 ```
 
-The other is a `DirectionalLight` so the spheres get some definition
+もう1つは `DirectionalLight` で、球体は何らかの定義を得られます。
 
 ```js
 {
@@ -199,11 +178,10 @@ The other is a `DirectionalLight` so the spheres get some definition
 }
 ```
 
-It would render as is but let's animate there spheres.
-For each sphere, shadow, base set we move the base in the xz plane, we
-move the sphere up and down using `Math.abs(Math.sin(time))`
-which gives us a bouncy animation. And, we also set the shadow material's
-opacity so that as each sphere goes higher its shadow fades out.
+このままだとレンダリングされてしまいますが、球体をアニメーション化してみましょう。
+それぞれの球体、シャドウ、baseのセットに対して、
+baseをxz平面内で移動させて `Math.abs(Math.sin(time))` で球体を上下に移動させると弾むようなアニメーションをします。
+また、シャドウのマテリアルの不透明度を設定し、各球体が高くなるにつれてシャドウが薄くなるようにしています。
 
 ```js
 function render(time) {
@@ -235,30 +213,30 @@ function render(time) {
   ...
 ```
 
-And here's 15 kind of bouncing balls.
+ここに15種類の跳ねるボールがあります。
 
 {{{example url="../threejs-shadows-fake.html" }}}
 
-In some apps it's common to use a round or oval shadow for everything but
-of course you could also use different shaped shadow textures. You might also
-give the shadow a harder edge. A good example of using this type
-of shadow is [Animal Crossing Pocket Camp](https://www.google.com/search?tbm=isch&q=animal+crossing+pocket+camp+screenshots)
-where you can see each character has a simple round shadow. It's effective and cheap.
-[Monument Valley](https://www.google.com/search?q=monument+valley+screenshots&tbm=isch)
-appears to also use this kind of shadow for the main character.
+全てのオブジェクトに丸や楕円形のシャドウを使用するのが一般的です。
+異なる形状のシャドウのテクスチャを使用する事もできます。
+シャドウをハードエッジでギザギザにしてもいいかもしれません。
+このタイプのシャドウを使った良い例が[どうぶつの森 ポケットキャンプ](https://www.google.com/search?tbm=isch&q=animal+crossing+pocket+camp+screenshots)です。
+それぞれのキャラクターがシンプルな丸いシャドウになっており、効果的でレンダリングコストが低いです。
+[モニュメントバレー](https://www.google.com/search?q=monument+valley+screenshots&tbm=isch)では、メインキャラクターにもこのようなシャドウが使われているようです。
 
-So, moving on to shadow maps, there are 3 lights which can cast shadows. The `DirectionalLight`,
-the `PointLight`, and the `SpotLight`.
+そこでシャドウマップに移りますが、シャドウを落とす事ができるライトが3つあります。
+`DirectionalLight` と `PointLight` と `SpotLight` です。
 
-Let's start with the `DirectionalLight` with the helper example from [the lights article](threejs-lights.html).
+まずは、[ライトの記事](threejs-lights.html)のヘルパーの例を参考に `DirectionalLight` を使ってみましょう。
 
-The first thing we need to do is turn on shadows in the renderer.
+最初にレンダラーのシャドウをオンにします。
 
 ```js
 const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.shadowMap.enabled = true;
 ```
 
+そして、シャドウを落とすためにライトをcastShadowします。
 Then we also need to tell the light to cast a shadow
 
 ```js
@@ -266,18 +244,16 @@ const light = new THREE.DirectionalLight(color, intensity);
 +light.castShadow = true;
 ```
 
-We also need to go to each mesh in the scene and decide if it should
-both cast shadows and/or receive shadows.
+シーン内の各メッシュを見て、それがcastShadowとreceiveShadowするか決めます。
 
-Let's make the plane (the ground) only receive shadows since we don't
-really care what happens underneath.
+下敷きになっているものはあまり気にせず、平面（地面）はシャドウだけを受けるようにしましょう。
 
 ```js
 const mesh = new THREE.Mesh(planeGeo, planeMat);
 mesh.receiveShadow = true;
 ```
 
-For the cube and the sphere let's have them both receive and cast shadows
+立方体と球体はcastShadowとreceiveShadowを受け取るようにしましょう。
 
 ```js
 const mesh = new THREE.Mesh(cubeGeo, cubeMat);
@@ -291,48 +267,45 @@ mesh.castShadow = true;
 mesh.receiveShadow = true;
 ```
 
-And then we run it.
+これを実行します。
 
 {{{example url="../threejs-shadows-directional-light.html" }}}
 
-What happened? Why are parts of the shadows missing?
+何が起こったのか？
+なぜシャドウの一部が欠けているのか？
 
-The reason is shadow maps are created by rendering the scene from the point
-of view of the light. In this case there is a camera at the `DirectionalLight`
-that is looking at its target. Just like [the camera's we previously covered](threejs-cameras.html)
-the light's shadow camera defines an area inside of which
-the shadows get rendered. In the example above that area is too small.
+これはシャドウマップは光の視点からシーンをレンダリングする事で作成されるからです。
+この場合、`DirectionalLight`にカメラがあり、ターゲットを見ています。
+[以前取り上げたカメラと同じように](threejs-cameras.html)
+ライトのシャドウカメラはシャドウがレンダリングされる内部の領域を定義します。
+上記の例では、その面積が小さすぎます。
 
-In order to visualize that area we can get the light's shadow camera and add
-a `CameraHelper` to the scene.
+その領域を可視化するために、ライトのシャドウカメラを取得して `CameraHelper` をシーンに追加します。
 
 ```js
 const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
 scene.add(cameraHelper);
 ```
 
-And now you can see the area for which shadows are cast and received.
+これでシャドウがキャストされ受け取られる領域が見えるようになりました。
 
 {{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
 
-Adjust the target x value back and forth and it should be pretty clear that only
-what's inside the light's shadow camera box is where shadows are drawn.
+ターゲットのX値を前後に調整すると、ライトのシャドウカメラボックスの中にあるものだけがシャドウを描画する場所である事が明確になるはずです。
 
-We can adjust the size of that box by adjusting the light's shadow camera.
+ライトのシャドウカメラを調整すると、その箱の大きさを調整できます。
 
-Let's add some GUI setting to adjust the light's shadow camera box. Since a
-`DirectionalLight` represents light all going in a parallel direction, the
-`DirectionalLight` uses an `OrthographicCamera` for its shadow camera.
-We went over how an `OrthographicCamera` works in [the previous article about cameras](threejs-cameras.html).
+ライトのシャドウカメラボックスを調整するためのGUIを追加してみましょう。
+`DirectionLight` は全ての光が平行な方向に進むので、`DirectionalLight` はそのシャドウカメラに `OrthographicCamera` を使います。
+[以前のカメラの記事](threejs-cameras.html)で `OrthographicCamera` がどのように動作するかを説明しました。
 
-Recall an `OrthographicCamera` defines
-its box or *view frustum* by its `left`, `right`, `top`, `bottom`, `near`, `far`,
-and `zoom` properties.
+`OrthographicCamera` は、`left`、`right`、`top`、`bottom`、`near`、`far`、`zoom` プロパティによって、
+そのボックスまたは *錐台の視点* を定義する事を思い出して下さい。
 
-Again let's make a helper class for the dat.GUI. We'll make a `DimensionGUIHelper`
-that we'll pass an object and 2 properties. It will present one property that dat.GUI
-can adjust and in response will set the two properties one positive and one negative.
-We can use this to set `left` and `right` as `width` and `up` and `down` as `height`.
+ここでもdat.GUIのヘルパークラスを作ってみましょう。
+オブジェクトと2つのプロパティを渡す `DimensionGUIHelper` を作ります。
+dat.GUIが調整できるプロパティを追加し、2つのプロパティの正と負の値を設定します。
+これを使い `left` と `right` を `width` に、`up` と `down` を `height` に設定します。
 
 ```js
 class DimensionGUIHelper {
@@ -351,8 +324,7 @@ class DimensionGUIHelper {
 }
 ```
 
-We'll also use the `MinMaxGUIHelper` we created in the [camera article](threejs-cameras.html)
-to adjust `near` and `far`.
+[カメラの記事](threejs-cameras.html)で作成した `MinMaxGUIHelper` を使って `near` と `far` を調整します。
 
 ```js
 const gui = new GUI();
@@ -374,9 +346,8 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 +}
 ```
 
-We tell the GUI to call our `updateCamera` function anytime anything changes.
-Let's write that function to update the light, the helper for the light, the
-light's shadow camera, and the helper showing the light's shadow camera.
+何か値が変更された時は `updateCamera` 関数を呼び出すようにします。
+ライトやヘルパー、ライトのシャドウカメラやカメラのヘルパーを更新するupdateCamera関数を書いてみましょう。
 
 ```js
 function updateCamera() {
@@ -391,51 +362,50 @@ function updateCamera() {
 updateCamera();
 ```
 
-And now that we've given the light's shadow camera a GUI we can play with the values.
+これでライトのシャドウカメラにGUIを与えたので、値を変更できます。
 
 {{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
 
-Set the `width` and `height` to about 30 and you can see the shadows are correct
-and the areas that need to be in shadow for this scene are entirely covered.
+`width` と `height` を30ぐらいにすると、シャドウが正しく描画され、このシーンでシャドウにする設定が完全にカバーできました。
 
-But this brings up the question, why not just set `width` and `height` to some
-giant numbers to just cover everything? Set the `width` and `height` to 100
-and you might see something like this
+しかし、ここで疑問が湧いてきます
+なぜ `width` と `height` に巨大な数値を設定して全てをカバーしないのでしょうか？
+`width` と `height` を100にすると、以下のようなものが表示されます。
 
 <div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
-What's going on with these low-res shadows?!
+この低解像度のシャドウはどうなっているんだ！？
 
-This issue is yet another shadow related setting to be aware of.
-Shadow maps are textures the shadows get drawn into.
-Those textures have a size. The shadow camera's area we set above is stretched
-across that size. That means the larger area you set, the more blocky your shadows will
-be.
+この問題は、シャドウに関連した設定を意識する必要があります。
+シャドウマップとは、シャドウが描かれるテクスチャの事です。
+このテクスチャにはサイズがあります。
+上記で設定したシャドウカメラの領域は、その大きさに張り巡らされています。
+つまり、設定した面積が大きいほどシャドウのブロックが多くなります。
 
-You can set the resolution of the shadow map's texture by setting `light.shadow.mapSize.width`
-and `light.shadow.mapSize.height`. They default to 512x512.
-The larger you make them the more memory they take and the slower they are to compute so you want
-to set them as small as you can and still make your scene work. The same is true with the
-light's shadow camera area. Smaller means better looking shadows so make the area as small as you
-can and still cover your scene. Be aware that each user's machine has a maximum texture size
-allowed which is available on the renderer as [`renderer.capabilities.maxTextureSize`](WebGLRenderer.capabilities).
+シャドウマップのテクスチャの解像度は `light.shadow.mapSize.width` と `light.shadow.mapSize.height` で設定できます。
+デフォルトは512 x 512です。
+大きくすればするほどメモリを消費し計算が遅くなるので、できるだけ小さく設定しシーンを動作させたいです。
+ライトのシャドウカメラ領域も同様です。
+小さくするとシャドウの見栄えが良くなるので、できるだけ面積を小さくしてシーンをカバーしましょう。
+各ユーザーのコンピューターには、利用可能な最大テクスチャサイズがある事に注意して下さい。
+[`renderer.capabilities.maxTextureSize`](WebGLRenderer.capabilities)で利用可能な最大テクスチャサイズがわかります。
 
 <!--
 Ok but what about `near` and `far` I hear you thinking. Can we set `near` to 0.00001 and far to `100000000`
 -->
 
-Switching to the `SpotLight` the light's shadow camera becomes a `PerspectiveCamera`. Unlike the `DirectionalLight`'s shadow camera
-where we could manually set most its settings, `SpotLight`'s shadow camera is controlled by the `SpotLight` itself. The `fov` for the shadow
-camera is directly connected to the `SpotLight`'s `angle` setting.
-The `aspect` is set automatically based on the size of the shadow map.
+`SpotLight` に切り替えると、ライトのシャドウカメラは `PerspectiveCamera` になります。
+`DirectionalLight` のシャドウカメラはほとんどの設定を手動で行えます。
+ただ、`SpotLight` のシャドウカメラは `SpotLight` 自身によって制御されます。
+シャドウカメラの `fov` は `SpotLight` の `angle` に接続しています。
+`aspect` はシャドウマップのサイズによって自動的に設定されます。
 
 ```js
 -const light = new THREE.DirectionalLight(color, intensity);
 +const light = new THREE.SpotLight(color, intensity);
 ```
 
-and we added back in the `penumbra` and `angle` settings
-from our [article about lights](threejs-lights.html).
+[ライトの記事](threejs-lights.html)にあった `penumbra` と `angle` の設定を元に戻しました。
 
 {{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
 
@@ -452,20 +422,16 @@ also blur the result
 {{{example url="../threejs-shadows-spot-light-with-shadow-radius" }}}
 -->
 
+そして最後に `PointLight` でシャドウをつけます。
+`PointLight` は全方向に光を放つので、関連する設定は `near` と `far` だけです。
+それ以外の場合、`PointLight` のシャドウは、効果的な6つの `SpotLight` のシャドウになります。
+これは `PointLight` のシャドウの描画が非常に遅くなる事を意味します。
 
-And finally there's shadows with a `PointLight`. Since a `PointLight`
-shines in all directions the only relevant settings are `near` and `far`.
-Otherwise the `PointLight` shadow is effectively 6 `SpotLight` shadows
-each one pointing to the face of a cube around the light. This means
-`PointLight` shadows are much slower since the entire scene must be
-drawn 6 times, one for each direction.
-
-Let's put a box around our scene so we can see shadows on the walls
-and ceiling. We'll set the material's `side` property to `THREE.BackSide`
-so we render the inside of the box instead of the outside. Like the floor
-we'll set it only to receive shadows. Also we'll set the position of the
-box so its bottom is slightly below the floor so the floor and the bottom
-of the box don't z-fight.
+シーンの周りにボックスを置いて、壁や天井にシャドウが見えるようにしてみましょう。
+マテリアルの `side` プロパティを `THREE.BackSide` に設定します。
+これでボックスの外側ではなく内側をレンダリングしています。
+床のようにシャドウを受けるためだけに設定します。
+また、ボックスの底が床より少し下になるようにボックスの位置を設定し、床とボックスの底がズレないようにします。
 
 ```js
 {
@@ -482,7 +448,7 @@ of the box don't z-fight.
 }
 ```
 
-And of course we need to switch the light to a `PointLight`.
+そして、ライトを `PointLight` に切り替える必要があります。
 
 ```js
 -const light = new THREE.SpotLight(color, intensity);
@@ -497,12 +463,9 @@ And of course we need to switch the light to a `PointLight`.
 
 {{{example url="../threejs-shadows-point-light.html" }}}
 
-Use the `position` GUI settings to move the light around
-and you'll see the shadows fall on all the walls. You can
-also adjust `near` and `far` settings and see just like
-the other shadows when things are closer than `near` they
-no longer receive a shadow and they are further than `far`
-they are always in shadow.
+GUIの `position` を使ってライトを移動させると、壁一面にシャドウが落ちていくのがわかります。
+また、`near` と `far` の設定を調整することができます。
+`near` よりも近い時にはシャドウを受け取らず、`far` よりも遠い時には常にシャドウになっています。
 
 <!--
 self shadow, shadow acne
