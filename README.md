@@ -44,8 +44,6 @@ passing in values from 0 to 1 for each of `hue`, `saturation` and `level`.
 
 The `[stuff](Material.setHSL)` will get turned into a link to the docs
 
-Currently this happens in the browser, not at build time.
-
 ### Translating
 
 Each translation goes in a folder under `threejs/lessons/<country-code>`.
