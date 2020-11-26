@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-cameras.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-cameras.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-cameras.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-cameras.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-cameras.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-cameras.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-cameras.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-cameras.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-cameras.html">English
+    </option><option value="/threejs/lessons/fr/threejs-cameras.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-cameras.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-cameras.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-cameras.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-cameras.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -243,7 +239,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a href="threejs-fundamentals.html">最初の記事</a>でいくつか取り上げましたが、ここではもっと詳しく取り上げます。</p>
 <p><code class="notranslate" translate="no">PerspectiveCamera（透視投影カメラ）</code> はthree.jsで最も一般的なカメラで、今までの記事で使ってきました。
 遠くのものが近くのものよりも小さく見える3Dビューを提供します。</p>
-<p><code class="notranslate" translate="no">PerspectiveCamera</code> は <em>錐台</em> を定義します。
+<p><a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a> は <em>錐台</em> を定義します。
 <a href="https://en.wikipedia.org/wiki/Frustum">錐台とは先端が切り取られたピラミッドのような3D形状の事です</a>。
 つまり、cube(立方体)、cone(円錐体)、sphere(球体)、cylinder(円柱)、frustum(錐台)は全て異なる種類の固体名です。</p>
 <div class="spread">
@@ -256,20 +252,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>私はこの事を何年も知らなかったです。
 どこかの本やページで <em>錐台</em> について書かれていると目が点になります。
-錐台が固体名と理解すると、それらの記述を急に理解できるようになりました &#128517;</p>
-<p><code class="notranslate" translate="no">PerspectiveCamera</code> には4つのプロパティをもとに錐台が定義されています。
+錐台が固体名と理解すると、それらの記述を急に理解できるようになりました 😅</p>
+<p><a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a> には4つのプロパティをもとに錐台が定義されています。
 <code class="notranslate" translate="no">near</code> は錐台の正面がどこから始まるかを定義します。
 <code class="notranslate" translate="no">far</code> は錐台が終了する場所です。
 <code class="notranslate" translate="no">fov</code> は視野角で、カメラから <code class="notranslate" translate="no">near</code> 単位で指定された視野角を得るために正しい高さが計算され、錐台の前面と背面の高さを定義します。
 <code class="notranslate" translate="no">aspect</code> は錐台の前面と背面の幅です。
 錐台の幅は高さにaspectを掛けたものです。</p>
-<p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/></p>
+<p><img src="../resources/frustum-3d.svg" width="500" class="threejs_center"></p>
 <p><a href="threejs-lights.html">前回の記事</a>から地面となる平面、球体、立方体のあるシーンを利用し、カメラの設定を調整してみましょう。</p>
 <p><code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> の設定用に <code class="notranslate" translate="no">MinMaxGUIHelper</code> を作成します。
 <code class="notranslate" translate="no">far</code> が常に <code class="notranslate" translate="no">near</code> よりも大きい値になるようにします。
 MinMaxGUIHelperは <code class="notranslate" translate="no">min</code> と <code class="notranslate" translate="no">max</code> のプロパティがあり、dat.GUIで調整します。
 GUIで値を調整すると2つのプロパティに設定されます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class MinMaxGUIHelper {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class MinMaxGUIHelper {
   constructor(obj, minProp, maxProp, minDif) {
     this.obj = obj;
     this.minProp = minProp;
@@ -291,26 +287,26 @@ GUIで値を調整すると2つのプロパティに設定されます。</p>
     this.min = this.min;  // this will call the min setter
   }
 }
-</code></pre>
+</pre>
 <p>これでGUIを以下のように設定できます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function updateCamera() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function updateCamera() {
   camera.updateProjectionMatrix();
 }
 
 const gui = new GUI();
-gui.add(camera, &#39;fov&#39;, 1, 180).onChange(updateCamera);
-const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39;, 0.1);
-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
-gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChange(updateCamera);
-</code></pre>
-<p>カメラ設定の変更時、カメラの <a href="PerspectiveCamera.updateProjectionMatrix"><code class="notranslate" translate="no">updateProjectionMatrix</code></a> 関数を呼び出す必要があります。
+gui.add(camera, 'fov', 1, 180).onChange(updateCamera);
+const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
+gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
+gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
+</pre>
+<p>カメラ設定の変更時、カメラの <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera#updateProjectionMatrix"><code class="notranslate" translate="no">updateProjectionMatrix</code></a> 関数を呼び出す必要があります。
 <code class="notranslate" translate="no">updateCamera</code> という関数を作り、それをdat.GUI変更時に呼び出すようにします。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-perspective.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-perspective.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>値を調整すると動作が確認できます。
 <code class="notranslate" translate="no">aspect</code> を調整したい場合は、新しいウィンドウでサンプルを開いてからウィンドウサイズを変更して下さい。</p>
 <p>それでもまだ少し見づらいので、2つのカメラを持つサンプルに変えます。
@@ -318,17 +314,17 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
 <p>そのためにthree.jsのシザー関数を利用します。
 シザー機能を使い、カメラを2台並べて2つのシーンを描画するように変更してみましょう。</p>
 <p>まず、HTMLとCSSを使って2つの並んでるDOM要素を定義してみましょう。
-両方のカメラが簡単に独自の <code class="notranslate" translate="no">OrbitControls</code> を持てるようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
-  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
-+  &lt;div class=&quot;split&quot;&gt;
-+     &lt;div id=&quot;view1&quot; tabindex=&quot;1&quot;&gt;&lt;/div&gt;
-+     &lt;div id=&quot;view2&quot; tabindex=&quot;2&quot;&gt;&lt;/div&gt;
+両方のカメラが簡単に独自の <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を持てるようにします。</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+  &lt;canvas id="c"&gt;&lt;/canvas&gt;
++  &lt;div class="split"&gt;
++     &lt;div id="view1" tabindex="1"&gt;&lt;/div&gt;
++     &lt;div id="view2" tabindex="2"&gt;&lt;/div&gt;
 +  &lt;/div&gt;
 &lt;/body&gt;
-</code></pre>
+</pre>
 <p>このview1とview2をキャンバスの上に重ねて表示させます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">.split {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">.split {
   position: absolute;
   left: 0;
   top: 0;
@@ -340,26 +336,26 @@ gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChan
   width: 100%;
   height: 100%;
 }
-</code></pre>
-<p>次に <code class="notranslate" translate="no">CameraHelper</code> を追加します。
-<code class="notranslate" translate="no">CameraHelper</code> は <code class="notranslate" translate="no">Camera</code> の錐台を描画します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cameraHelper = new THREE.CameraHelper(camera);
+</pre>
+<p>次に <a href="https://threejs.org/docs/#api/en/helpers/CameraHelper"><code class="notranslate" translate="no">CameraHelper</code></a> を追加します。
+<a href="https://threejs.org/docs/#api/en/helpers/CameraHelper"><code class="notranslate" translate="no">CameraHelper</code></a> は <a href="https://threejs.org/docs/#api/en/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a> の錐台を描画します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cameraHelper = new THREE.CameraHelper(camera);
 
 ...
 
 scene.add(cameraHelper);
-</code></pre>
+</pre>
 <p>view1とview2のDOM要素をquerySelectorしましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const view1Elem = document.querySelector(&#39;#view1&#39;);
-const view2Elem = document.querySelector(&#39;#view2&#39;);
-</code></pre>
-<p>既存の <code class="notranslate" translate="no">OrbitControls</code> をview1にのみ反応するようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const controls = new OrbitControls(camera, canvas);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const view1Elem = document.querySelector('#view1');
+const view2Elem = document.querySelector('#view2');
+</pre>
+<p>既存の <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> をview1にのみ反応するようにします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const controls = new OrbitControls(camera, canvas);
 +const controls = new OrbitControls(camera, view1Elem);
-</code></pre>
-<p>2つ目の <code class="notranslate" translate="no">PerspectiveCamera</code> と <code class="notranslate" translate="no">OrbitControls</code> を作ってみましょう。
-2つ目の <code class="notranslate" translate="no">OrbitControls</code> は2つ目のカメラに関連付けし、view2から入力を取得します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const camera2 = new THREE.PerspectiveCamera(
+</pre>
+<p>2つ目の <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a> と <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を作ってみましょう。
+2つ目の <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> は2つ目のカメラに関連付けし、view2から入力を取得します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const camera2 = new THREE.PerspectiveCamera(
   60,  // fov
   2,   // aspect
   0.1, // near
@@ -371,11 +367,11 @@ camera2.lookAt(0, 5, 0);
 const controls2 = new OrbitControls(camera2, view2Elem);
 controls2.target.set(0, 5, 0);
 controls2.update();
-</code></pre>
+</pre>
 <p>最後にキャンバスの一部だけをレンダリングするために、シザー機能を使い各カメラの視点からシーンをレンダリングします。</p>
 <p>ここにDOM要素を渡すと、キャンバスに重なる矩形を計算する関数があります。
 その矩形にシザーとビューポートを設定し、アスペクト比を返します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function setScissorForElement(elem) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function setScissorForElement(elem) {
   const canvasRect = canvas.getBoundingClientRect();
   const elemRect = elem.getBoundingClientRect();
 
@@ -396,9 +392,9 @@ controls2.update();
   // return the aspect
   return width / height;
 }
-</code></pre>
+</pre>
 <p>この関数を使って <code class="notranslate" translate="no">render</code> 関数でシーンを2回描画できます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">  function render() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  function render() {
 
 -    if (resizeRendererToDisplaySize(renderer)) {
 -      const canvas = renderer.domElement;
@@ -420,7 +416,7 @@ controls2.update();
 +      camera.updateProjectionMatrix();
 +      cameraHelper.update();
 +
-+      // don&#39;t draw the camera helper in the original view
++      // don't draw the camera helper in the original view
 +      cameraHelper.visible = false;
 +
 +      scene.background.set(0x000000);
@@ -452,29 +448,29 @@ controls2.update();
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p>上記のコードはview1とview2を区別するために、view2をレンダリング時のシーンの背景色を紺色にしています。</p>
 <p>また、<code class="notranslate" translate="no">render</code> 関数内で全て更新しているため、<code class="notranslate" translate="no">updateCamera</code> のコードを削除できます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function updateCamera() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function updateCamera() {
 -  camera.updateProjectionMatrix();
 -}
 
 const gui = new GUI();
--gui.add(camera, &#39;fov&#39;, 1, 180).onChange(updateCamera);
-+gui.add(camera, &#39;fov&#39;, 1, 180);
-const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39;, 0.1);
--gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
--gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;).onChange(updateCamera);
-+gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;);
-+gui.add(minMaxGUIHelper, &#39;max&#39;, 0.1, 50, 0.1).name(&#39;far&#39;);
-</code></pre>
+-gui.add(camera, 'fov', 1, 180).onChange(updateCamera);
++gui.add(camera, 'fov', 1, 180);
+const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
+-gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
+-gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
++gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near');
++gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far');
+</pre>
 <p>片方のviewを使い、もう片方の錐台を見るれるようになりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-perspective-2-scenes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-perspective-2-scenes.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>左側はオリジナルのビュー、右側はカメラの錐台を表示するビューがあります。
 マウスで <code class="notranslate" translate="no">near</code>、<code class="notranslate" translate="no">far</code>、<code class="notranslate" translate="no">fov</code> を調整してカメラを動かすと、右側に表示されている錐台の内側だけが左側のシーンに表示されています。</p>
 <p><code class="notranslate" translate="no">near</code> を20くらいに調整すると、錐台に入らずオブジェクトの正面が消えます。
@@ -486,7 +482,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
 さらに悪い事にデフォルトではカメラの近くの精度は細かく、カメラから遠い精度は粗くなっています。
 単位の値は <code class="notranslate" translate="no">near</code> から始まり、<code class="notranslate" translate="no">far</code> に近づくにつれて徐々に拡大していきます。</p>
 <p>上記のサンプルから始めて、20個の球体を1列に挿入するコードに変更してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
@@ -500,45 +496,45 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, &#39;near&#39;, &#39;far&#39
     scene.add(mesh);
   }
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">near</code> を0.00001に設定してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 45;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 45;
 const aspect = 2;  // the canvas default
 -const near = 0.1;
 +const near = 0.00001;
 const far = 100;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-</code></pre>
+</pre>
 <p>値の編集時に0.00001を許容するようにGUIコードを微調整します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-gui.add(minMaxGUIHelper, &#39;min&#39;, 0.1, 50, 0.1).name(&#39;near&#39;).onChange(updateCamera);
-+gui.add(minMaxGUIHelper, &#39;min&#39;, 0.00001, 50, 0.00001).name(&#39;near&#39;).onChange(updateCamera);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
++gui.add(minMaxGUIHelper, 'min', 0.00001, 50, 0.00001).name('near').onChange(updateCamera);
+</pre>
 <p>何が起こると思いますか？</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-z-fighting.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-z-fighting.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これはGPUがどのピクセルが前後にあるか判断する精度が不足してる時に <em>Zファイティング</em> が発生する例です。</p>
 <p>あなたのマシンでは問題が表示されない可能性がありますが、私のマシンでは以下のように表示されます。</p>
 <div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
 
 <p>1つ目の解決策はどのピクセルが前後にあるかを計算するために、three.jsの別メソッドを使用します。
-これは <code class="notranslate" translate="no">WebGLRenderer</code> の作成時に <code class="notranslate" translate="no">logarithmicDepthBuffer</code> を有効にします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const renderer = new THREE.WebGLRenderer({canvas});
+これは <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer"><code class="notranslate" translate="no">WebGLRenderer</code></a> の作成時に <code class="notranslate" translate="no">logarithmicDepthBuffer</code> を有効にします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const renderer = new THREE.WebGLRenderer({canvas});
 +const renderer = new THREE.WebGLRenderer({
 +  canvas,
 +  logarithmicDepthBuffer: true,
 +});
-</code></pre>
+</pre>
 <p>これで上手く動くかもしれません。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-logarithmic-depth-buffer.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-logarithmic-depth-buffer.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これで問題が解決しない場合、この解決策が使えない理由の1つに遭遇した事になります。
 その理由は、特定のGPUのみをサポートしているためです。
 2018年9月現在、ほとんどのデスクトップがこの解決策をサポートしていますが、モバイルデバイスはほとんどサポートしていません。</p>
@@ -554,9 +550,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <p>2番目に一般的なカメラは <code class="notranslate" translate="no">OrthographicCamera(平行投影カメラ)</code> です。
 錐台を指定するのではなく、<code class="notranslate" translate="no">left</code>、<code class="notranslate" translate="no">right</code>、<code class="notranslate" translate="no">top</code>、<code class="notranslate" translate="no">bottom</code>、<code class="notranslate" translate="no">near</code>、<code class="notranslate" translate="no">far</code> の設定でボックスを指定します。
 ボックスを投影しているので遠近感はありません。</p>
-<p>上記のview1とview2のサンプルを変更し、最初のビューで <code class="notranslate" translate="no">OrthographicCamera</code> を使うようにしましょう。</p>
-<p>最初に <code class="notranslate" translate="no">OrthographicCamera</code> を設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const left = -1;
+<p>上記のview1とview2のサンプルを変更し、最初のビューで <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> を使うようにしましょう。</p>
+<p>最初に <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> を設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const left = -1;
 const right = 1;
 const top = 1;
 const bottom = -1;
@@ -564,19 +560,19 @@ const near = 5;
 const far = 50;
 const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
 camera.zoom = 0.2;
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">left</code> と <code class="notranslate" translate="no">bottom</code> を-1、<code class="notranslate" translate="no">right</code> と <code class="notranslate" translate="no">top</code> を1にしました。
 これで箱の幅が2、高さが2になりますが、描画している矩形のアスペクト比で <code class="notranslate" translate="no">left</code> と <code class="notranslate" translate="no">top</code> を調整します。
 <code class="notranslate" translate="no">zoom</code> プロパティでカメラで実際に表示される値を簡単に調整できます。</p>
 <p>GUIに <code class="notranslate" translate="no">zoom</code> の設定を追加してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
-+gui.add(camera, &#39;zoom&#39;, 0.01, 1, 0.01).listen();
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
++gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
+</pre>
 <p><code class="notranslate" translate="no">listen</code> 呼び出しはdat.GUIに変更を監視するようにします。
-これは <code class="notranslate" translate="no">OrbitControls</code> がズームも制御できるからです。
-例えばマウスのスクロールホイールは <code class="notranslate" translate="no">OrbitControls</code> でズームします。</p>
-<p>最後に左側をレンダリングする部分を変更して <code class="notranslate" translate="no">OrthographicCamera</code> を更新します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+これは <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> がズームも制御できるからです。
+例えばマウスのスクロールホイールは <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> でズームします。</p>
+<p>最後に左側をレンダリングする部分を変更して <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> を更新します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const aspect = setScissorForElement(view1Elem);
 
   // update the camera for this aspect
@@ -586,44 +582,44 @@ camera.zoom = 0.2;
   camera.updateProjectionMatrix();
   cameraHelper.update();
 
-  // don&#39;t draw the camera helper in the original view
+  // don't draw the camera helper in the original view
   cameraHelper.visible = false;
 
   scene.background.set(0x000000);
   renderer.render(scene, camera);
 }
-</code></pre>
-<p>これで <code class="notranslate" translate="no">OrthographicCamera</code> が動作しているのが見れるようになりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p>これで <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> が動作しているのが見れるようになりました。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-orthographic-2-scenes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-orthographic-2-scenes.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
-<p>three.jsで2次元のものを描画する場合には、<code class="notranslate" translate="no">OrthographicCamera</code> が最もよく使われます。
+<p></p>
+<p>three.jsで2次元のものを描画する場合には、<a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> が最もよく使われます。
 カメラの表示台数を決める必要があります。
 例えば、1ピクセルのキャンバスをカメラの1単位と一致させたい場合、次のような事ができます。</p>
 <p>原点を中心に置き、1ピクセル = three.jsの1単位とするには次のようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">camera.left = -canvas.width / 2;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">camera.left = -canvas.width / 2;
 camera.right = canvas.width / 2;
 camera.top = canvas.height / 2;
 camera.bottom = -canvas.height / 2;
 camera.near = -1;
 camera.far = 1;
 camera.zoom = 1;
-</code></pre>
+</pre>
 <p>原点を2Dキャンバスのように左上に配置したい場合は、次のようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">camera.left = 0;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">camera.left = 0;
 camera.right = canvas.width;
 camera.top = 0;
 camera.bottom = canvas.height;
 camera.near = -1;
 camera.far = 1;
 camera.zoom = 1;
-</code></pre>
+</pre>
 <p>この場合、左上の角は2Dキャンバスのように0, 0になります。</p>
 <p>やってみましょう！まずはカメラの設定をします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const left = 0;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const left = 0;
 const right = 300;  // default canvas size
 const top = 0;
 const bottom = 150;  // default canvas size
@@ -631,17 +627,17 @@ const near = -1;
 const far = 1;
 const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
 camera.zoom = 1;
-</code></pre>
+</pre>
 <p>続いて、6枚のテクスチャをロードし、6枚の平面を作ってみましょう。
-各平面は <code class="notranslate" translate="no">THREE.Object3D</code> を親にし、平面の中心を左上にして簡単にオフセットできるようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const loader = new THREE.TextureLoader();
+各平面は <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a> を親にし、平面の中心を左上にして簡単にオフセットできるようにします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const loader = new THREE.TextureLoader();
 const textures = [
-  loader.load(&#39;resources/images/flower-1.jpg&#39;),
-  loader.load(&#39;resources/images/flower-2.jpg&#39;),
-  loader.load(&#39;resources/images/flower-3.jpg&#39;),
-  loader.load(&#39;resources/images/flower-4.jpg&#39;),
-  loader.load(&#39;resources/images/flower-5.jpg&#39;),
-  loader.load(&#39;resources/images/flower-6.jpg&#39;),
+  loader.load('resources/images/flower-1.jpg'),
+  loader.load('resources/images/flower-2.jpg'),
+  loader.load('resources/images/flower-3.jpg'),
+  loader.load('resources/images/flower-4.jpg'),
+  loader.load('resources/images/flower-5.jpg'),
+  loader.load('resources/images/flower-6.jpg'),
 ];
 const planeSize = 256;
 const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
@@ -659,9 +655,9 @@ const planes = textures.map((texture) =&gt; {
   mesh.position.set(planeSize / 2, planeSize / 2, 0);
   return planePivot;
 });
-</code></pre>
+</pre>
 <p>キャンバスサイズの変更時、カメラを更新する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
 
   if (resizeRendererToDisplaySize(renderer)) {
     camera.right = canvas.width;
@@ -670,10 +666,10 @@ const planes = textures.map((texture) =&gt; {
   }
 
   ...
-</code></pre>
-<p><code class="notranslate" translate="no">planes</code> は <code class="notranslate" translate="no">THREE.Mesh</code> の配列であり、各平面に1つずつあります。
+</pre>
+<p><code class="notranslate" translate="no">planes</code> は <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">THREE.Mesh</code></a> の配列であり、各平面に1つずつあります。
 これらを時間に応じて移動させてみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   time *= 0.001;  // convert to seconds;
 
   ...
@@ -703,15 +699,15 @@ const planes = textures.map((texture) =&gt; {
   });
 
   renderer.render(scene, camera);
-</code></pre>
+</pre>
 <p>2Dキャンバスのようにピクセル計算を使い、画像がキャンバスの縁からピクセルのように跳ね返っているのが分かります。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-cameras-orthographic-canvas-top-left-origin.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-cameras-orthographic-canvas-top-left-origin.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
-<p><code class="notranslate" translate="no">OrthographicCamera</code> のもう1つの一般的な用途は3Dモデリングツールやゲームエンジンで、上、下、左、右、正面、背面のビューを描画する場合です。</p>
+<p></p>
+<p><a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> のもう1つの一般的な用途は3Dモデリングツールやゲームエンジンで、上、下、左、右、正面、背面のビューを描画する場合です。</p>
 <div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 
 <p>上記のスクリーンショットでは右上のビューが透視投影図、左上のビューが平行投影図です。</p>
@@ -724,13 +720,13 @@ const planes = textures.map((texture) =&gt; {
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-cameras.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-cameras.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-cameras.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-cameras.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-cameras.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-cameras.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-cameras.html">English
+    </option><option value="/threejs/lessons/fr/threejs-cameras.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-cameras.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-cameras.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-cameras.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-cameras.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -835,7 +831,7 @@ const planes = textures.map((texture) =&gt; {
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -877,7 +873,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

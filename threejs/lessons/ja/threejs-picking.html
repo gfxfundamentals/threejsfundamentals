@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-picking.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-picking.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-picking.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-picking.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-picking.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-picking.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-picking.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-picking.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-picking.html">English
+    </option><option value="/threejs/lessons/fr/threejs-picking.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-picking.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-picking.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-picking.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-picking.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -252,7 +248,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <a href="threejs-responsive.html">レスポンシブデザインの記事</a>のコード例から始めてみます。</p>
 <p>いくつかの変更点</p>
 <p>カメラを別のオブジェクトの親にして、そのオブジェクトを回転させるとカメラが自撮り棒のようにシーンの周りを動き回るようになります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">*const fov = 60;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">*const fov = 60;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 *const far = 200;
@@ -260,23 +256,23 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 *camera.position.z = 30;
 
 const scene = new THREE.Scene();
-+scene.background = new THREE.Color(&#39;white&#39;);
++scene.background = new THREE.Color('white');
 
 +// put the camera on a pole (parent it to an object)
 +// so we can spin the pole to move the camera around the scene
 +const cameraPole = new THREE.Object3D();
 +scene.add(cameraPole);
 +cameraPole.add(camera);
-</code></pre>
+</pre>
 <p>そして、<code class="notranslate" translate="no">render</code> 関数でcameraPoleを回転させます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">cameraPole.rotation.y = time * .1;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">cameraPole.rotation.y = time * .1;
+</pre>
 <p>カメラにライトを追加し、ライトが動くようにしましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-scene.add(light);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-scene.add(light);
 +camera.add(light);
-</code></pre>
+</pre>
 <p>ランダムな色、位置、向き、スケールの100個のキューブを生成してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const boxWidth = 1;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const boxWidth = 1;
 const boxHeight = 1;
 const boxDepth = 1;
 const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
@@ -306,10 +302,10 @@ for (let i = 0; i &lt; numObjects; ++i) {
   cube.rotation.set(rand(Math.PI), rand(Math.PI), 0);
   cube.scale.set(rand(3, 6), rand(3, 6), rand(3, 6));
 }
-</code></pre>
+</pre>
 <p>最後にピックします。</p>
 <p>ピッキングを管理する簡単なクラスを作ってみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class PickHelper {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class PickHelper {
   constructor() {
     this.raycaster = new THREE.Raycaster();
     this.pickedObject = null;
@@ -327,7 +323,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
     // get the list of objects the ray intersected
     const intersectedObjects = this.raycaster.intersectObjects(scene.children);
     if (intersectedObjects.length) {
-      // pick the first object. It&#39;s the closest one
+      // pick the first object. It's the closest one
       this.pickedObject = intersectedObjects[0].object;
       // save its color
       this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
@@ -336,12 +332,12 @@ for (let i = 0; i &lt; numObjects; ++i) {
     }
   }
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">RayCaster</code> を作成し、<code class="notranslate" translate="no">pick</code> 関数を呼び出してシーンに光線をキャストできます。
 光線が何かに当たった場合、最初に当たったオブジェクトの色を変更します。</p>
 <p>もちろん、マウスを <em>down</em> した時だけこの関数を呼べますが、今回は全てのフレームでマウスの下に何かあるかピックします。
 そのためにはまずマウスがどこにあるかを追跡する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const pickPosition = {x: 0, y: 0};
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const pickPosition = {x: 0, y: 0};
 clearPickPosition();
 
 ...
@@ -369,28 +365,28 @@ function clearPickPosition() {
   pickPosition.y = -100000;
 }
 
-window.addEventListener(&#39;mousemove&#39;, setPickPosition);
-window.addEventListener(&#39;mouseout&#39;, clearPickPosition);
-window.addEventListener(&#39;mouseleave&#39;, clearPickPosition);
-</code></pre>
+window.addEventListener('mousemove', setPickPosition);
+window.addEventListener('mouseout', clearPickPosition);
+window.addEventListener('mouseleave', clearPickPosition);
+</pre>
 <p>正規化されたマウスの位置を記録している事に注意して下さい。
 キャンバスの大きさに関わらず、leftの-1からrightの+1までの値が必要です。
 同様にbottomが-1からtopが+1になるような値が必要です。</p>
 <p>これでモバイル端末もサポートできます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;touchstart&#39;, (event) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">window.addEventListener('touchstart', (event) =&gt; {
   // prevent the window from scrolling
   event.preventDefault();
   setPickPosition(event.touches[0]);
 }, {passive: false});
 
-window.addEventListener(&#39;touchmove&#39;, (event) =&gt; {
+window.addEventListener('touchmove', (event) =&gt; {
   setPickPosition(event.touches[0]);
 });
 
-window.addEventListener(&#39;touchend&#39;, clearPickPosition);
-</code></pre>
+window.addEventListener('touchend', clearPickPosition);
+</pre>
 <p>最後に <code class="notranslate" translate="no">render</code> 関数で <code class="notranslate" translate="no">PickHelper</code> の <code class="notranslate" translate="no">pick</code> 関数を呼び出します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const pickHelper = new PickHelper();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const pickHelper = new PickHelper();
 
 function render(time) {
   time *= 0.001;  // convert to seconds;
@@ -402,14 +398,14 @@ function render(time) {
   renderer.render(scene, camera);
 
   ...
-</code></pre>
+</pre>
 <p>その結果がこれです。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-raycaster.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-picking-raycaster.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>望んだ動作でおそらく多くのユースケースに対応できますが、いくつか問題点があります。</p>
 <ol>
 <li><p>CPUベース</p>
@@ -431,8 +427,8 @@ function render(time) {
 <div class="threejs_center"><img class="checkerboard" src="../../resources/images/frame.png"></div>
 
 <p>以下のように変更します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const loader = new THREE.TextureLoader();
-+const texture = loader.load(&#39;resources/images/frame.png&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loader = new THREE.TextureLoader();
++const texture = loader.load('resources/images/frame.png');
 
 const numObjects = 100;
 for (let i = 0; i &lt; numObjects; ++i) {
@@ -448,14 +444,14 @@ for (let i = 0; i &lt; numObjects; ++i) {
   scene.add(cube);
 
   ...
-</code></pre>
+</pre>
 <p>以下の例で動作確認をすると、すぐにこの問題が分かると思います。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-raycaster-transparency.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-picking-raycaster-transparency.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>ボックスの穴の部分でピックしてみて下さい。</p>
 <div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
 
@@ -470,22 +466,22 @@ for (let i = 0; i &lt; numObjects; ++i) {
 1回は見るための描画、もう1回はピッキングの描画です。
 洗練された解決策は、その両方を同時に行う事ですが今回はそれを試しません。</p>
 <p>1つのやり方としては、1つのピクセルしか読まないのでそのピクセルだけ描画されるようにカメラを設定します。
-これを行うには <code class="notranslate" translate="no">PerspectiveCamera.setViewOffset</code> を使用します。
+これを行うには <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera.setViewOffset"><code class="notranslate" translate="no">PerspectiveCamera.setViewOffset</code></a> を使用します。
 これでカメラを計算できます。
 これで時間を節約できるはずです。</p>
 <p>現時点ではこのピッキングを行うには、2つのシーンを作成する必要があります。
 1つは通常のメッシュで埋めます。
 もう1つはピッキングマテリアルを使用したメッシュで埋めます。</p>
 <p>そこでまず2つ目のシーンを作り黒でクリアします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
-scene.background = new THREE.Color(&#39;white&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+scene.background = new THREE.Color('white');
 const pickingScene = new THREE.Scene();
 pickingScene.background = new THREE.Color(0);
-</code></pre>
-<p>次にメインシーンに配置する各キューブでオリジナルのキューブと同じ位置に対応する&quot;ピッキングキューブ&quot;を作成し、<code class="notranslate" translate="no">pickingScene</code> に配置します。
+</pre>
+<p>次にメインシーンに配置する各キューブでオリジナルのキューブと同じ位置に対応する"ピッキングキューブ"を作成し、<code class="notranslate" translate="no">pickingScene</code> に配置します。
 オブジェクトのidを色として描画するようにマテリアルを設定します。
 また、idとオブジェクトのマップがあるので、後でidを調べた時に対応するオブジェクトにマップを戻す事ができます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const idToObject = {};
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const idToObject = {};
 +const numObjects = 100;
 for (let i = 0; i &lt; numObjects; ++i) {
 +  const id = i + 1;
@@ -521,25 +517,25 @@ for (let i = 0; i &lt; numObjects; ++i) {
 +  pickingCube.rotation.copy(cube.rotation);
 +  pickingCube.scale.copy(cube.scale);
 }
-</code></pre>
-<p>ここでは <code class="notranslate" translate="no">MeshPhongMaterial</code> を悪用している事に注意して下さい。
+</pre>
+<p>ここでは <a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a> を悪用している事に注意して下さい。
 <code class="notranslate" translate="no">emissive</code> をidにし、<code class="notranslate" translate="no">color</code> と <code class="notranslate" translate="no">specular</code> を0に設定しテクスチャのアルファ値が <code class="notranslate" translate="no">alphaTest</code> よりも大きい場合にのみ、idをレンダリングできます。
 また、<code class="notranslate" translate="no">blending</code> を <code class="notranslate" translate="no">NoBlending</code> に設定し、idにアルファが乗算しないようにする必要があります。</p>
-<p><code class="notranslate" translate="no">MeshPhongMaterial</code>を悪用する事は、最良の解決策でない事に注意して下さい。
+<p><a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a>を悪用する事は、最良の解決策でない事に注意して下さい。
 さらに最適化された解決策は、テクスチャのアルファ値が <code class="notranslate" translate="no">alphaTest</code> よりも大きい場合にidを書き込むカスタムシェーダーを作成する事です。</p>
 <p>レイキャスティングではなくピクセルからピックしているので、ピック位置を設定するコードを変更してピクセルだけを使用できます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function setPickPosition(event) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function setPickPosition(event) {
   const pos = getCanvasRelativePosition(event);
 -  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
 -  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // note we flip Y
 +  pickPosition.x = pos.x;
 +  pickPosition.y = pos.y;
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">PickHelper</code> を <code class="notranslate" translate="no">GPUPickHelper</code> に変更してみましょう。
-<a href="threejs-rendertargets.html">レンダーターゲットの記事</a>で説明したように <code class="notranslate" translate="no">WebGLRenderTarget</code> を使います。
+<a href="threejs-rendertargets.html">レンダーターゲットの記事</a>で説明したように <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderTarget"><code class="notranslate" translate="no">WebGLRenderTarget</code></a> を使います。
 ここでのレンダーターゲットは1 x 1の1ピクセルのサイズしかありません。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-class PickHelper {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-class PickHelper {
 +class GPUPickHelper {
   constructor() {
 -    this.raycaster = new THREE.Raycaster();
@@ -594,12 +590,12 @@ for (let i = 0; i &lt; numObjects; ++i) {
 -    // get the list of objects the ray intersected
 -    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
 -    if (intersectedObjects.length) {
--      // pick the first object. It&#39;s the closest one
+-      // pick the first object. It's the closest one
 -      this.pickedObject = intersectedObjects[0].object;
 
 +    const intersectedObject = idToObject[id];
 +    if (intersectedObject) {
-+      // pick the first object. It&#39;s the closest one
++      // pick the first object. It's the closest one
 +      this.pickedObject = intersectedObject;
       // save its color
       this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
@@ -608,35 +604,35 @@ for (let i = 0; i &lt; numObjects; ++i) {
     }
   }
 }
-</code></pre>
+</pre>
 <p>それならば、それを使えばいいだけです。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const pickHelper = new PickHelper();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const pickHelper = new PickHelper();
 +const pickHelper = new GPUPickHelper();
-</code></pre>
+</pre>
 <p>これを指定し <code class="notranslate" translate="no">scene</code> の代わりに <code class="notranslate" translate="no">pickScene</code> を渡します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-  pickHelper.pick(pickPosition, scene, camera, time);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-  pickHelper.pick(pickPosition, scene, camera, time);
 +  pickHelper.pick(pickPosition, pickScene, camera, time);
-</code></pre>
+</pre>
 <p>そして、透明な部分を選択するようにする必要があります。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-gpu.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-picking-gpu.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>ピッキングを実装する方法のアイデアをいくつか得られたと思います。
 今後の記事ではマウスを使ってオブジェクトを操作する方法を取り上げるかもしれません。</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-picking.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-picking.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-picking.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-picking.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-picking.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-picking.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-picking.html">English
+    </option><option value="/threejs/lessons/fr/threejs-picking.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-picking.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-picking.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-picking.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-picking.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -741,7 +737,7 @@ for (let i = 0; i &lt; numObjects; ++i) {
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -783,7 +779,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

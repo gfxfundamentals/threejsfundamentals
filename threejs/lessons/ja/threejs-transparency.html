@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-transparency.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-transparency.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-transparency.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-transparency.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-transparency.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-transparency.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-transparency.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-transparency.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-transparency.html">English
+    </option><option value="/threejs/lessons/fr/threejs-transparency.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-transparency.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-transparency.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-transparency.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-transparency.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -241,7 +237,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 2 x 2 x 2のグリッドに8個のキューブを配置したシーンを作ってみましょう。</p>
 <p><a href="threejs-rendering-on-demand.html">要求されたレンダリングの記事</a>の例から始めて、3個から8個のキューブになるように修正します。
 まず <code class="notranslate" translate="no">makeInstance</code> 関数の引数に x, y, z を追加しましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function makeInstance(geometry, color) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeInstance(geometry, color) {
 +function makeInstance(geometry, color, x, y, z) {
   const material = new THREE.MeshPhongMaterial({color});
 
@@ -253,9 +249,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   return cube;
 }
-</code></pre>
+</pre>
 <p>これで8個のキューブを作れます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function hsl(h, s, l) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function hsl(h, s, l) {
 +  return (new THREE.Color()).setHSL(h, s, l);
 +}
 
@@ -274,9 +270,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 +  makeInstance(geometry, hsl(6 / 8, 1, .5), -d,  d,  d);
 +  makeInstance(geometry, hsl(7 / 8, 1, .5),  d,  d,  d);
 +}
-</code></pre>
+</pre>
 <p>カメラの調整もしました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 -const far = 5;
@@ -284,13 +280,13 @@ const near = 0.1;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 -camera.position.z = 4;
 +camera.position.z = 2;
-</code></pre>
+</pre>
 <p>背景を白に設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
-+scene.background = new THREE.Color(&#39;white&#39;);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
++scene.background = new THREE.Color('white');
+</pre>
 <p>そして2つ目のライトを追加したので、キューブの全ての側面が照らされるようになりました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-{
 +function addLight(...pos) {
   const color = 0xFFFFFF;
   const intensity = 1;
@@ -301,9 +297,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 }
 +addLight(-1, 2, 4);
 +addLight( 1, -1, -2);
-</code></pre>
-<p>キューブを透過するには <a href="Material.transparent"><code class="notranslate" translate="no">transparent</code></a>フラグを設定し、<a href="Material.opacity"><code class="notranslate" translate="no">opacity</code></a>を設定する必要があります。opacityは1は完全な不透明、0は完全な透明です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x, y, z) {
+</pre>
+<p>キューブを透過するには <a href="https://threejs.org/docs/#api/en/materials/Material#transparent"><code class="notranslate" translate="no">transparent</code></a>フラグを設定し、<a href="https://threejs.org/docs/#api/en/materials/Material#opacity"><code class="notranslate" translate="no">opacity</code></a>を設定する必要があります。opacityは1は完全な不透明、0は完全な透明です。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x, y, z) {
 -  const material = new THREE.MeshPhongMaterial({color});
 +  const material = new THREE.MeshPhongMaterial({
 +    color,
@@ -318,36 +314,36 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
   return cube;
 }
-</code></pre>
+</pre>
 <p>8個の透明なキューブになりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-transparency.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>上記の動作サンプルの上でドラッグしてビューを回転してみて下さい。</p>
 <p>簡単に修正できたようですが...よく見て下さい。キューブの裏面がないです。</p>
 <div class="threejs_center"><img src="../resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
 <div class="threejs_center">no backs</div>
 
-<p><a href="threejs-materials.html">マテリアルの記事</a>でマテリアルのプロパティ<a href="Material.side"><code class="notranslate" translate="no">side</code></a>について学びました。
+<p><a href="threejs-materials.html">マテリアルの記事</a>でマテリアルのプロパティ<a href="https://threejs.org/docs/#api/en/materials/Material#side"><code class="notranslate" translate="no">side</code></a>について学びました。
 <code class="notranslate" translate="no">THREE.DoubleSide</code> に設定し、各キューブの両面が描画されるようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshPhongMaterial({
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshPhongMaterial({
   color,
   map: loader.load(url),
   opacity: 0.5,
   transparent: true,
 +  side: THREE.DoubleSide,
 });
-</code></pre>
+</pre>
 <p>これが結果です。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-doubleside.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-doubleside.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>回転させてみて下さい。
 裏面を見ると上手く動作してるように見えますが、時々できない事があります。</p>
 <div class="threejs_center"><img src="../resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
@@ -360,7 +356,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 次の三角形が描画される時、以前に記録された深さよりも各ピクセルの深さが深い場合は描画されません。</p>
 <p>不透明なものには効果的ですが、透明なものには失敗します。</p>
 <p>解決策としては、透明なものを並べ替えて手前より奥のものから描画する事です。
-Three.jsでは <code class="notranslate" translate="no">Mesh</code> のようなオブジェクトに対してこれを行います。
+Three.jsでは <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> のようなオブジェクトに対してこれを行います。
 そうでなければ、最初のサンプルではいくつかのキューブが他のキューブをブロックし、描画に失敗していたでしょう。
 残念ながら、個々の三角形が破綻し非常に遅くなります。</p>
 <p>キューブには12個の三角形が各面に2個ずつあり、描画される順番は<a href="threejs-custom-buffergeometry.html">ジオメトリで作られた順番と同じ</a>です。
@@ -368,7 +364,7 @@ Three.jsでは <code class="notranslate" translate="no">Mesh</code> のような
 その場合、裏面の三角形は描画されません。これにより時々裏面が見えない事があります。</p>
 <p>球体やキューブのような凸状のオブジェクトの場合は、全てのキューブをシーンに2個ずつ追加するのが1つの解決法です。
 裏面の三角形だけを描画するマテリアルで1個、表面の三角形だけを描画するマテリアルで1個です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x, y, z) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x, y, z) {
 +  [THREE.BackSide, THREE.FrontSide].forEach((side) =&gt; {
     const material = new THREE.MeshPhongMaterial({
       color,
@@ -383,19 +379,19 @@ Three.jsでは <code class="notranslate" translate="no">Mesh</code> のような
     cube.position.set(x, y, z);
 +  });
 }
-</code></pre>
+</pre>
 <p>それは <em>動作してるように見えます</em> 。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-doubleside-hack.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-doubleside-hack.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>この方法はThree.jsの並び順が安定している事が前提です。</p>
 <p>つまり、最初に <code class="notranslate" translate="no">side. THREE.BackSide</code> のメッシュを描画し、その後に <code class="notranslate" translate="no">side.THREE.FrontSide</code> のメッシュを描画し、2つとも同じ位置にある場合です。</p>
 <p>交差する平面を2つ作ってみましょう（キューブに関連するコードを全て削除後）。
 各面に<a href="threejs-textures.html">テクスチャを追加</a>します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const planeWidth = 1;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeWidth = 1;
 const planeHeight = 1;
 const geometry = new THREE.PlaneBufferGeometry(planeWidth, planeHeight);
 
@@ -417,24 +413,24 @@ function makeInstance(geometry, color, rotY, url) {
   mesh.rotation.y = rotY;
 }
 
-makeInstance(geometry, &#39;pink&#39;,       0,             &#39;resources/images/happyface.png&#39;);
-makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/images/hmmmface.png&#39;);
-</code></pre>
+makeInstance(geometry, 'pink',       0,             'resources/images/happyface.png');
+makeInstance(geometry, 'lightblue',  Math.PI * 0.5, 'resources/images/hmmmface.png');
+</pre>
 <p>平面は一度に片側しか見れないため、今回は <code class="notranslate" translate="no">side: THREE.DoubleSide</code> を使えます。
 また、<code class="notranslate" translate="no">render</code> 関数にテクスチャ読み込み関数を渡し、読み込みの終了時に再レンダリングする事にも注意して下さい。
 このサンプルが連続したレンダリングではなく、<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>になっているためです。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-intersecting-planes.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-intersecting-planes.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>そしてまたしても同じような問題が発生しています。</p>
 <div class="threejs_center"><img src="../resources/images/transparency-planes.png" style="width: 408px;"></div>
 <div class="threejs_center">half a face is missing</div>
 
 <p>この解決策は各表面を手動で2つの表面に分割し、交差しないようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, rotY, url) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, rotY, url) {
 +  const base = new THREE.Object3D();
 +  scene.add(base);
 +  base.rotation.y = rotY;
@@ -459,20 +455,20 @@ makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/image
 +    mesh.position.x = x * .25;
   });
 }
-</code></pre>
+</pre>
 <p>どうやって達成するかはあなた次第です。
 <a href="https://blender.org">Blender</a>のようなモデリングツールを使用していた場合は、テクスチャ座標を手動で調整すると思います。
-ここでは <code class="notranslate" translate="no">PlaneBufferGeometry</code> を使用していますが、デフォルトではテクスチャを平面全体に引き伸ばします。
-<a href="threejs-textures.html">テクステャの記事で説明</a>したように <a href="Texture.repeat"><code class="notranslate" translate="no">texture.repeat</code></a> と <a href="Texture.offset"><code class="notranslate" translate="no">texture.offset</code></a> を設定し、
+ここでは <a href="https://threejs.org/docs/#api/en/geometries/PlaneBufferGeometry"><code class="notranslate" translate="no">PlaneBufferGeometry</code></a> を使用していますが、デフォルトではテクスチャを平面全体に引き伸ばします。
+<a href="threejs-textures.html">テクステャの記事で説明</a>したように <a href="https://threejs.org/docs/#api/en/textures/Texture#repeat"><code class="notranslate" translate="no">texture.repeat</code></a> と <a href="https://threejs.org/docs/#api/en/textures/Texture#offset"><code class="notranslate" translate="no">texture.offset</code></a> を設定し、
 各平面上の表面のテクスチャから正しい半分が得られるようにテクスチャを拡大縮小したり移動させたりできます。</p>
-<p>上記のコードでは <code class="notranslate" translate="no">Object3D</code> を作成し、その親となる2つの平面を作成しています。
-親の <code class="notranslate" translate="no">Object3D</code> を回転させた方が必要な計算するよりも簡単そうです。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p>上記のコードでは <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> を作成し、その親となる2つの平面を作成しています。
+親の <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> を回転させた方が必要な計算するよりも簡単そうです。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-intersecting-planes-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-intersecting-planes-fixed.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>この解決策は、交点の位置を変えない2つの平面のような単純なものにしか機能しません。</p>
 <p>テクスチャのあるオブジェクトの場合は、アルファテストを設定するのがもう1つの解決法です。</p>
 <p>アルファテストでは、指定した<em>アルファ</em>の値以下ではピクセルを描画しません。
@@ -486,8 +482,8 @@ makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/image
   <div><img class="checkerboard" src="../../resources/images/tree-02.png"></div>
 </div>
 
-<p>交差する2つの平面（分割する前）に戻り、これらのテクスチャを使用して <a href="Material.alphaTest"><code class="notranslate" translate="no">alphaTest</code></a> を設定してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, rotY, url) {
+<p>交差する2つの平面（分割する前）に戻り、これらのテクスチャを使用して <a href="https://threejs.org/docs/#api/en/materials/Material#alphaTest"><code class="notranslate" translate="no">alphaTest</code></a> を設定してみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, rotY, url) {
   const texture = loader.load(url, render);
   const material = new THREE.MeshPhongMaterial({
     color,
@@ -504,15 +500,15 @@ makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/image
   mesh.rotation.y = rotY;
 }
 
--makeInstance(geometry, &#39;pink&#39;,       0,             &#39;resources/images/happyface.png&#39;);
--makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/images/hmmmface.png&#39;);
-+makeInstance(geometry, &#39;white&#39;, 0,             &#39;resources/images/tree-01.png&#39;);
-+makeInstance(geometry, &#39;white&#39;, Math.PI * 0.5, &#39;resources/images/tree-02.png&#39;);
-</code></pre>
+-makeInstance(geometry, 'pink',       0,             'resources/images/happyface.png');
+-makeInstance(geometry, 'lightblue',  Math.PI * 0.5, 'resources/images/hmmmface.png');
++makeInstance(geometry, 'white', 0,             'resources/images/tree-01.png');
++makeInstance(geometry, 'white', Math.PI * 0.5, 'resources/images/tree-02.png');
+</pre>
 <p>これを実行する前に小さなUIを追加し、<code class="notranslate" translate="no">alphaTest</code> と <code class="notranslate" translate="no">transparent</code> の設定をもっと簡単に操作できるようにしましょう。
 今回は<a href="threejs-scenegraph.html">シーングラフの記事</a>で紹介したようにdat.guiを使います。</p>
 <p>まず、シーン内の全てのマテリアルに値を設定するdat.guiのヘルパーを作ります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class AllMaterialPropertyGUIHelper {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class AllMaterialPropertyGUIHelper {
   constructor(prop, scene) {
     this.prop = prop;
     this.scene = scene;
@@ -537,28 +533,28 @@ makeInstance(geometry, &#39;lightblue&#39;,  Math.PI * 0.5, &#39;resources/image
     });
   }
 }
-</code></pre>
+</pre>
 <p>そして、guiを追加します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
-gui.add(new AllMaterialPropertyGUIHelper(&#39;alphaTest&#39;, scene), &#39;value&#39;, 0, 1)
-    .name(&#39;alphaTest&#39;)
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.add(new AllMaterialPropertyGUIHelper('alphaTest', scene), 'value', 0, 1)
+    .name('alphaTest')
     .onChange(requestRenderIfNotRequested);
-gui.add(new AllMaterialPropertyGUIHelper(&#39;transparent&#39;, scene), &#39;value&#39;)
-    .name(&#39;transparent&#39;)
+gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
+    .name('transparent')
     .onChange(requestRenderIfNotRequested);
-</code></pre>
+</pre>
 <p>もちろん、dat.guiを含める必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r119/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/OrbitControls.js&#39;;
-+import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r119/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r119/examples/jsm/controls/OrbitControls.js';
++import {GUI} from '../3rdparty/dat.gui.module.js';
+</pre>
 <p>その結果がこちらです。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-transparency-intersecting-planes-alphatest.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-transparency-intersecting-planes-alphatest.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>動作していますが、ズームしてみると1つの平面に白い線が入っているのがわかります。</p>
 <div class="threejs_center"><img src="../resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
 
@@ -577,13 +573,13 @@ import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-transparency.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-transparency.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-transparency.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-transparency.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-transparency.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-transparency.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-transparency.html">English
+    </option><option value="/threejs/lessons/fr/threejs-transparency.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-transparency.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-transparency.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-transparency.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-transparency.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -688,7 +684,7 @@ import {OrbitControls} from &#39;./resources/threejs/r119/examples/jsm/controls/
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -730,7 +726,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

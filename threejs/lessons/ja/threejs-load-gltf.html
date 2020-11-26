@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-load-gltf.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-load-gltf.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-load-gltf.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-load-gltf.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-load-gltf.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-load-gltf.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-load-gltf.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-load-gltf.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-load-gltf.html">English
+    </option><option value="/threejs/lessons/fr/threejs-load-gltf.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-load-gltf.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-load-gltf.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-load-gltf.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-load-gltf.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -288,49 +284,49 @@ OBJとは異なり、gLTFではマテリアルはフォーマットの直接的�
 
 <p><a href="threejs-load-obj.html">OBJファイルの読み込みのコード例</a>から始めて、OBJを読み込むコードを削除し、GLTFを読み込むコードに置き換えました。</p>
 <p>以前のOBJコードは</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const objLoader = new OBJLoader2();
-objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, (materials) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const objLoader = new OBJLoader2();
+objLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', null, (materials) =&gt; {
   materials.Material.side = THREE.DoubleSide;
   objLoader.setMaterials(materials);
-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (event) =&gt; {
+  objLoader.load('resources/models/windmill/windmill.obj', (event) =&gt; {
     const root = event.detail.loaderRootNode;
     scene.add(root);
     ...
   });
 });
-</code></pre>
+</pre>
 <p>新しいGLTFのコードは</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const gltfLoader = new GLTFLoader();
-  const url = &#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;;
+  const url = 'resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf';
   gltfLoader.load(url, (gltf) =&gt; {
     const root = gltf.scene;
     scene.add(root);
     ...
   });
-</code></pre>
+</pre>
 <p>自動フレーミングのコードは以前のままです。</p>
-<p>また <code class="notranslate" translate="no">OBJLoader2</code> を取り除き <code class="notranslate" translate="no">GLTFLoader</code> を含める必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">-import {LoaderSupport} from &#39;./resources/threejs/r122/examples/jsm/loaders/LoaderSupport.js&#39;;
--import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
--import {MTLLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {GLTFLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js&#39;;
-</code></pre>
+<p>また <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> を取り除き <a href="https://threejs.org/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a> を含める必要があります。</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from './resources/threejs/r122/examples/jsm/loaders/LoaderSupport.js';
+-import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+-import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
++import {GLTFLoader} from './resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+</pre>
 <p>実行すると以下になりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>魔法だ！テクスチャーも含めて上手くいっています。</p>
 <p>次に走り回る車をアニメーションしたかったので、シーンに車が別のエンティティとして設定されているか、それが使用できるように設定されているか確認する必要があります。</p>
 <p><a href="threejs-debugging-javascript.html">JavaScriptコンソール</a>にシーングラフをダンプするコードを書いてみました。</p>
 <p>シーングラフを表示するコードです。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function dumpObject(obj, lines = [], isLast = true, prefix = &#39;&#39;) {
-  const localPrefix = isLast ? &#39;└─&#39; : &#39;├─&#39;;
-  lines.push(`${prefix}${prefix ? localPrefix : &#39;&#39;}${obj.name || &#39;*no-name*&#39;} [${obj.type}]`);
-  const newPrefix = prefix + (isLast ? &#39;  &#39; : &#39;│ &#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function dumpObject(obj, lines = [], isLast = true, prefix = '') {
+  const localPrefix = isLast ? '└─' : '├─';
+  lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
+  const newPrefix = prefix + (isLast ? '  ' : '│ ');
   const lastNdx = obj.children.length - 1;
   obj.children.forEach((child, ndx) =&gt; {
     const isLast = ndx === lastNdx;
@@ -338,16 +334,16 @@ objLoader.loadMtl(&#39;resources/models/windmill/windmill-fixed.mtl&#39;, null, 
   });
   return lines;
 }
-</code></pre>
+</pre>
 <p>そして、シーンを読み込み直後に呼び出します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gltfLoader = new GLTFLoader();
-gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gltfLoader = new GLTFLoader();
+gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) =&gt; {
   const root = gltf.scene;
   scene.add(root);
-  console.log(dumpObject(root).join(&#39;\n&#39;));
-</code></pre>
+  console.log(dumpObject(root).join('\n'));
+</pre>
 <p><a href="../../threejs-load-gltf-dump-scenegraph.html">実行すると</a> このようなリストが得られました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-text">OSG_Scene [Scene]
+<pre class="prettyprint showlinemods notranslate lang-text" translate="no">OSG_Scene [Scene]
   └─RootNode_(gltf_orientation_matrix) [Object3D]
     └─RootNode_(model_correction_matrix) [Object3D]
       └─4d4100bcb1c640e69699a87140df79d7fbx [Object3D]
@@ -385,28 +381,28 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
           │ ├─Car_04_2_2 [Object3D]
           │ │ └─Car_04_2_2_World_ap_0 [Mesh]
           ...
-</code></pre>
-<p>この結果から全ての車が <code class="notranslate" translate="no">&quot;Cars&quot;</code> という名前の親の下にある事がわかります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-text">*          ├─Cars [Object3D]
+</pre>
+<p>この結果から全ての車が <code class="notranslate" translate="no">"Cars"</code> という名前の親の下にある事がわかります。</p>
+<pre class="prettyprint showlinemods notranslate lang-text" translate="no">*          ├─Cars [Object3D]
           │ ├─CAR_03_1 [Object3D]
           │ │ └─CAR_03_1_World_ap_0 [Mesh]
           │ ├─CAR_03 [Object3D]
           │ │ └─CAR_03_World_ap_0 [Mesh]
           │ ├─Car_04 [Object3D]
           │ │ └─Car_04_World_ap_0 [Mesh]
-</code></pre>
-<p>そこで簡単なテストとして、&quot;Cars&quot;ノードの全ての子をY軸の周りに回転させようと思いました。</p>
-<p>シーンを読み込み後に&quot;Cars&quot;ノードを調べて結果を保存しました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+let cars;
+</pre>
+<p>そこで簡単なテストとして、"Cars"ノードの全ての子をY軸の周りに回転させようと思いました。</p>
+<p>シーンを読み込み後に"Cars"ノードを調べて結果を保存しました。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+let cars;
 {
   const gltfLoader = new GLTFLoader();
-  gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
+  gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) =&gt; {
     const root = gltf.scene;
     scene.add(root);
-+    cars = root.getObjectByName(&#39;Cars&#39;);
-</code></pre>
++    cars = root.getObjectByName('Cars');
+</pre>
 <p><code class="notranslate" translate="no">render</code> 関数で <code class="notranslate" translate="no">cars</code> の全ての子の回転を設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function render(time) {
 +  time *= 0.001;  // convert to seconds
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -425,38 +421,38 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p>これが結果です。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-rotate-cars.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-rotate-cars.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>うーん、残念ながら子のオリジンが回転目的のために設定されておらず、アニメーション用に設計されてないようです。トラックの回転方向が間違っています。</p>
 <p>3Dで何かする場合の重要なポイントは、事前に計画を立ててアセットを設計する必要があります。アセットを正しい場所に配置し、正しいスケールになるようにデザインします。</p>
 <p>私は3DCGアーティストではなくBlenderもよく知らないので、ハックしてみます。
-それぞれの車で別の <code class="notranslate" translate="no">Object3D</code> を親にします。
-次に <code class="notranslate" translate="no">Object3D</code> オブジェクトを移動させて車を移動させます。
-個々に車のオリジンに <code class="notranslate" translate="no">Object3D</code> を設定して向きを変えられるので、必要な位置に設定する事ができます。</p>
-<p>シーングラフのリストを見返すと &quot;Car_08&quot;, &quot;CAR_03&quot;, &quot;Car_04&quot; の3種類しかないようです。上手くいけば3種類の調整で済みます。</p>
+それぞれの車で別の <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> を親にします。
+次に <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> オブジェクトを移動させて車を移動させます。
+個々に車のオリジンに <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> を設定して向きを変えられるので、必要な位置に設定する事ができます。</p>
+<p>シーングラフのリストを見返すと "Car_08", "CAR_03", "Car_04" の3種類しかないようです。上手くいけば3種類の調整で済みます。</p>
 <p>コードを以下のように変更しました。
-それぞれの車でインスタンス作成した <code class="notranslate" translate="no">Object3D</code> を親にし、その <code class="notranslate" translate="no">Object3D</code> をシーンに追加します。
-<em>車種</em>ごとの設定で向きを固定し、車の親の <code class="notranslate" translate="no">Object3D</code> の <code class="notranslate" translate="no">cars</code> 配列を追加します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-let cars;
+それぞれの車でインスタンス作成した <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> を親にし、その <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> をシーンに追加します。
+<em>車種</em>ごとの設定で向きを固定し、車の親の <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> の <code class="notranslate" translate="no">cars</code> 配列を追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-let cars;
 +const cars = [];
 {
   const gltfLoader = new GLTFLoader();
-  gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
+  gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) =&gt; {
     const root = gltf.scene;
     scene.add(root);
 
--    cars = root.getObjectByName(&#39;Cars&#39;);
-+    const loadedCars = root.getObjectByName(&#39;Cars&#39;);
+-    cars = root.getObjectByName('Cars');
++    const loadedCars = root.getObjectByName('Cars');
 +    const fixes = [
-+      { prefix: &#39;Car_08&#39;, rot: [Math.PI * .5, 0, Math.PI +* .5], },
-+      { prefix: &#39;CAR_03&#39;, rot: [0, Math.PI, 0], },
-+      { prefix: &#39;Car_04&#39;, rot: [0, Math.PI, 0], },
++      { prefix: 'Car_08', rot: [Math.PI * .5, 0, Math.PI +* .5], },
++      { prefix: 'CAR_03', rot: [0, Math.PI, 0], },
++      { prefix: 'Car_04', rot: [0, Math.PI, 0], },
 +    ];
 +
 +    root.updateMatrixWorld();
@@ -471,14 +467,14 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
 +      cars.push(obj);
 +    }
      ...
-</code></pre>
+</pre>
 <p>これで車の向きを修正しました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-rotate-cars-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-rotate-cars-fixed.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>さあ、追い回してみましょう。</p>
 <p>簡単なドライビングシステムを作るのはこの記事では無理がありますが、
 その代わりに入り組んだパスを1本にし、そのパスに車を乗せる事ができそうです。
@@ -486,11 +482,11 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
 <div class="threejs_center"><img src="../resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
 
 <p>Blenderからパスのデータを取り出す方法が必要でした。
-幸運な事にパスだけを選択し、&quot;write nurbs&quot;をチェックしてobjをエクスポートできました。</p>
+幸運な事にパスだけを選択し、"write nurbs"をチェックしてobjをエクスポートできました。</p>
 <div class="threejs_center"><img src="../resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
 
 <p>OBJファイルを開くと頂点のリストを得る事ができました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const controlPoints = [
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const controlPoints = [
   [1.118281, 5.115846, -3.681386],
   [3.948875, 5.115846, -3.641834],
   [3.960072, 5.115846, -0.240352],
@@ -513,21 +509,21 @@ gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene
   [-5.373599, 5.115846, -3.704133],
   [1.004861, 5.115846, -3.641834],
 ];
-</code></pre>
+</pre>
 <p>THREE.jsにはいくつかの曲線クラスがあります。
-<code class="notranslate" translate="no">CatmullRomCurve3</code> が使えそうな気がしたので <code class="notranslate" translate="no">CatmullRomCurve3</code> を使ってみた。
+<a href="https://threejs.org/docs/#api/en/extras/curves/CatmullRomCurve3"><code class="notranslate" translate="no">CatmullRomCurve3</code></a> が使えそうな気がしたので <a href="https://threejs.org/docs/#api/en/extras/curves/CatmullRomCurve3"><code class="notranslate" translate="no">CatmullRomCurve3</code></a> を使ってみた。
 この曲線は頂点を通る滑らかな曲線を作ります。</p>
 <p>実際にはこれらの頂点を直接入力すると次のような曲線が生成されます。</p>
 <div class="threejs_center"><img src="../resources/images/car-curves-before.png" style="width: 400px"></div>
 
 <p>しかし、もっと角をシャープにして欲しいです。
 いくつかの頂点を追加し計算すれば、望んだ角度が得られる気がします。
-各頂点のペアで2つのポイントの間の10%と90%の道を計算し、その結果を <code class="notranslate" translate="no">CatmullRomCurve3</code> に渡します。</p>
+各頂点のペアで2つのポイントの間の10%と90%の道を計算し、その結果を <a href="https://threejs.org/docs/#api/en/extras/curves/CatmullRomCurve3"><code class="notranslate" translate="no">CatmullRomCurve3</code></a> に渡します。</p>
 <p>このような曲線が得られます。</p>
 <div class="threejs_center"><img src="../resources/images/car-curves-after.png" style="width: 400px"></div>
 
 <p>曲線を作成するコードは以下の通りです。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">let curve;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">let curve;
 let curveObject;
 {
   const controlPoints = [
@@ -575,15 +571,15 @@ let curveObject;
     scene.add(curveObject);
   }
 }
-</code></pre>
+</pre>
 <p>このコードの最初の部分は曲線を作ります。
 コードの2番目の部分は曲線から250頂点を生成し、その250頂点を結んで作られた線を表示するオブジェクトを作成します。</p>
 <p><a href="../../threejs-load-gltf-car-path.html">このサンプル</a>を実行してもカーブが見えませんでした。
 見えるようにするために、深度テストを無視して最後にレンダリングするようにしました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">    curveObject = new THREE.Line(geometry, material);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">    curveObject = new THREE.Line(geometry, material);
 +    material.depthTest = false;
 +    curveObject.renderOrder = 1;
-</code></pre>
+</pre>
 <p>そして、カーブがあまりにも小さすぎる事に気がつきました。</p>
 <div class="threejs_center"><img src="../resources/images/car-curves-too-small.png" style="width: 498px"></div>
 
@@ -600,20 +596,20 @@ let curveObject;
 はっきり言うと、この場合はワールド座標で車を走らせたいのでこの問題が出てきます。
 月が地球を中心に回転しているようなローカル座標で操作される場合、これはあまり問題ではありません。</p>
 <p>上記で書いたシーングラフをダンプする関数に戻り、各ノードの位置、回転、スケールをダンプしてみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function dumpVec3(v3, precision = 3) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function dumpVec3(v3, precision = 3) {
 +  return `${v3.x.toFixed(precision)}, ${v3.y.toFixed(precision)}, ${v3.z.toFixed(precision)}`;
 +}
 
-function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
-  const localPrefix = isLast ? &#39;└─&#39; : &#39;├─&#39;;
-  lines.push(`${prefix}${prefix ? localPrefix : &#39;&#39;}${obj.name || &#39;*no-name*&#39;} [${obj.type}]`);
+function dumpObject(obj, lines, isLast = true, prefix = '') {
+  const localPrefix = isLast ? '└─' : '├─';
+  lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
 +  const dataPrefix = obj.children.length
-+     ? (isLast ? &#39;  │ &#39; : &#39;│ │ &#39;)
-+     : (isLast ? &#39;    &#39; : &#39;│   &#39;);
++     ? (isLast ? '  │ ' : '│ │ ')
++     : (isLast ? '    ' : '│   ');
 +  lines.push(`${prefix}${dataPrefix}  pos: ${dumpVec3(obj.position)}`);
 +  lines.push(`${prefix}${dataPrefix}  rot: ${dumpVec3(obj.rotation)}`);
 +  lines.push(`${prefix}${dataPrefix}  scl: ${dumpVec3(obj.scale)}`);
-  const newPrefix = prefix + (isLast ? &#39;  &#39; : &#39;│ &#39;);
+  const newPrefix = prefix + (isLast ? '  ' : '│ ');
   const lastNdx = obj.children.length - 1;
   obj.children.forEach((child, ndx) =&gt; {
     const isLast = ndx === lastNdx;
@@ -621,9 +617,9 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
   });
   return lines;
 }
-</code></pre>
+</pre>
 <p><a href="../../threejs-load-gltf-dump-scenegraph-extra.html">それを実行</a>した結果です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-text">OSG_Scene [Scene]
+<pre class="prettyprint showlinemods notranslate lang-text" translate="no">OSG_Scene [Scene]
   │   pos: 0.000, 0.000, 0.000
   │   rot: 0.000, 0.000, 0.000
   │   scl: 1.000, 1.000, 1.000
@@ -655,13 +651,13 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
           │ │       pos: 0.000, 0.000, 0.000
           │ │       rot: 0.000, 0.000, 0.000
           │ │       scl: 1.000, 1.000, 1.000
-</code></pre>
+</pre>
 <p>これは元のシーンの <code class="notranslate" translate="no">Cars</code> の回転とスケールが削除され、子に適用されています。
 この原因は、GLTFファイルを作成するために使用されたエクスポータが何か特別な作業をしたか、または3DCGアーティストが対応するblendファイルとは異なるバージョンのファイルをエクスポートした可能性が高いです。</p>
 <p>この事から学ぶ教訓は、blendファイルをダウンロードして自分でエクスポートするべきという事です。
 エクスポートする前に主要なノードを全て検査し、変換を削除しておくべきでした。</p>
 <p>Topにあるこれら全てのノードは以下の通りです。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-text">OSG_Scene [Scene]
+<pre class="prettyprint showlinemods notranslate lang-text" translate="no">OSG_Scene [Scene]
   │   pos: 0.000, 0.000, 0.000
   │   rot: 0.000, 0.000, 0.000
   │   scl: 1.000, 1.000, 1.000
@@ -677,15 +673,15 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
         │   pos: 0.000, 0.000, 0.000
         │   rot: 1.571, 0.000, 0.000
         │   scl: 1.000, 1.000, 1.000
-</code></pre>
+</pre>
 <p>この階層構造はもったいないですね。</p>
-<p>理想的にはシーンは位置、回転、スケールのない単一の&quot;ルート&quot;ノードで構成される事です。
+<p>理想的にはシーンは位置、回転、スケールのない単一の"ルート"ノードで構成される事です。
 実行時にはそのルートから全ての子を取り出し、シーン自体を親にする事ができます。
-&quot;Cars&quot;のようなルートの子があるかもしれませんが、全ての車を見つけるのに役立ちます。理想的には平行移動、回転、スケールがないので、最小限の作業でシーンを車の親にする事ができます。</p>
+"Cars"のようなルートの子があるかもしれませんが、全ての車を見つけるのに役立ちます。理想的には平行移動、回転、スケールがないので、最小限の作業でシーンを車の親にする事ができます。</p>
 <p>いずれにしても、カーブを表示するために使用しているオブジェクトを調整するのが一番手っ取り早いのですが、最善の方法ではないかもしれません。</p>
 <p>結局はこんな感じですね。</p>
 <p>最初にカーブの位置を調整し、上手くいきそうな値を見つけました。そして隠しました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const points = curve.getPoints(250);
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
   const material = new THREE.LineBasicMaterial({color: 0xff0000});
@@ -697,12 +693,12 @@ function dumpObject(obj, lines, isLast = true, prefix = &#39;&#39;) {
   curveObject.renderOrder = 1;
   scene.add(curveObject);
 }
-</code></pre>
+</pre>
 <p>それからカーブに沿って移動させるコードを書きました。
 それぞれの車で曲線に沿って0から1までの位置を選び <code class="notranslate" translate="no">curveObject</code> を用いてワールド座標上の頂点を計算して変換します。
 次にカーブの少し下の方にある別の頂点を選びます。
 車の向きを <code class="notranslate" translate="no">lookAt</code> で設定し、2点間の中間点に車を配置します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// create 2 Vector3s we can use for path calculations
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// create 2 Vector3s we can use for path calculations
 const carPosition = new THREE.Vector3();
 const carTarget = new THREE.Vector3();
 
@@ -737,16 +733,16 @@ function render(time) {
 +      car.position.lerpVectors(carPosition, carTarget, 0.5);
 +    });
 +  }
-</code></pre>
+</pre>
 <p>そしてそれを実行すると、それぞれの車のオリジンの上に高さが一貫して設定されていなかったので、少しオフセットする必要がありました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const loadedCars = root.getObjectByName(&#39;Cars&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const loadedCars = root.getObjectByName('Cars');
 const fixes = [
--  { prefix: &#39;Car_08&#39;, rot: [Math.PI * .5, 0, Math.PI * .5], },
--  { prefix: &#39;CAR_03&#39;, rot: [0, Math.PI, 0], },
--  { prefix: &#39;Car_04&#39;, rot: [0, Math.PI, 0], },
-+  { prefix: &#39;Car_08&#39;, y: 0,  rot: [Math.PI * .5, 0, Math.PI * .5], },
-+  { prefix: &#39;CAR_03&#39;, y: 33, rot: [0, Math.PI, 0], },
-+  { prefix: &#39;Car_04&#39;, y: 40, rot: [0, Math.PI, 0], },
+-  { prefix: 'Car_08', rot: [Math.PI * .5, 0, Math.PI * .5], },
+-  { prefix: 'CAR_03', rot: [0, Math.PI, 0], },
+-  { prefix: 'Car_04', rot: [0, Math.PI, 0], },
++  { prefix: 'Car_08', y: 0,  rot: [Math.PI * .5, 0, Math.PI * .5], },
++  { prefix: 'CAR_03', y: 33, rot: [0, Math.PI, 0], },
++  { prefix: 'Car_04', y: 40, rot: [0, Math.PI, 0], },
 ];
 
 root.updateMatrixWorld();
@@ -761,21 +757,21 @@ for (const car of loadedCars.children.slice()) {
   scene.add(obj);
   cars.push(obj);
 }
-</code></pre>
+</pre>
 <p>その結果です。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-animated-cars.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-animated-cars.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>数分間の作業にしては悪くない結果です。</p>
 <p>最後にやりたいのはシャドウをつける事です。</p>
-<p>これを行うために<a href="threejs-shadows.html">シャドウの記事</a>にある <code class="notranslate" translate="no">DirectionalLight</code> の例から全てのGUIコードを取得し、最新のコードに貼り付けました。</p>
+<p>これを行うために<a href="threejs-shadows.html">シャドウの記事</a>にある <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> の例から全てのGUIコードを取得し、最新のコードに貼り付けました。</p>
 <p>読み込み後に全てのオブジェクトにシャドウをオンにする必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const gltfLoader = new GLTFLoader();
-  gltfLoader.load(&#39;resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf&#39;, (gltf) =&gt; {
+  gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) =&gt; {
     const root = gltf.scene;
     scene.add(root);
 
@@ -785,15 +781,15 @@ for (const car of loadedCars.children.slice()) {
 +        obj.receiveShadow = true;
 +      }
 +    });
-</code></pre>
+</pre>
 <p>シャドウヘルパーが機能していない理由を探るのに4時間近くを費やしました。
 シャドウを有効にするのを忘れていたのが原因でした。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">renderer.shadowMap.enabled = true;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">renderer.shadowMap.enabled = true;
+</pre>
 <p>😭</p>
 <p>そのあと、<code class="notranslate" translate="no">DirectionLight</code> のシャドウカメラがシーン全体を覆うようになるまで値を調整しました。
 これらの設定は私が最終的にたどり着いたものです。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const color = 0xFFFFFF;
   const intensity = 1;
   const light = new THREE.DirectionalLight(color, intensity);
@@ -815,19 +811,19 @@ for (const car of loadedCars.children.slice()) {
 +  cam.top = 1500;
 +  cam.bottom = -1500;
 ...
-</code></pre>
+</pre>
 <p>また、背景色を水色に設定してみました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
--scene.background = new THREE.Color(&#39;black&#39;);
-+scene.background = new THREE.Color(&#39;#DEFEFF&#39;);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+-scene.background = new THREE.Color('black');
++scene.background = new THREE.Color('#DEFEFF');
+</pre>
 <p>そして、シャドウをつけた結果です。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-gltf-shadows.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-gltf-shadows.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>このプロジェクトを説明する事で、シーングラフを使ってファイルを読込する際の問題点・解決事例をいくつか示せたと思います。</p>
 <p>興味深いのはblendファイルとgltfファイルの場合、blendファイルにはいくつかのライトがありますが、シーンに読み込み後はライトがありません。
 GLTFファイルはただのJSONファイルなので簡単に中身を見れます。
@@ -841,13 +837,13 @@ GLTFファイルはただのJSONファイルなので簡単に中身を見れま
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-load-gltf.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-load-gltf.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-load-gltf.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-load-gltf.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-load-gltf.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-load-gltf.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-load-gltf.html">English
+    </option><option value="/threejs/lessons/fr/threejs-load-gltf.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-load-gltf.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-load-gltf.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-load-gltf.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-load-gltf.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -952,7 +948,7 @@ GLTFファイルはただのJSONファイルなので簡単に中身を見れま
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -994,7 +990,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

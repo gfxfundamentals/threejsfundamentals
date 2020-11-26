@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/threejs-multiple-scenes.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/kr/threejs-multiple-scenes.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ko">
-<head>
+--><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,13 +110,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-multiple-scenes.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-multiple-scenes.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-multiple-scenes.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-multiple-scenes.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-multiple-scenes.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-multiple-scenes.html">English
+    </option><option value="/threejs/lessons/fr/threejs-multiple-scenes.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-multiple-scenes.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-multiple-scenes.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-multiple-scenes.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html">中文
+</option></select>
 
 
     <a href="#toc">목차</a>
@@ -219,11 +215,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -238,9 +234,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <div class="lesson">
     <div class="lesson-main">
       <p>사람들이 자주 하는 질문 중 하나는 Three.js로 여러 개의 캔버스(canvas)를 렌더링하려면
-어떻게 해야 하나요?&quot;입니다. 쇼핑몰 사이트나 3D 도표가 여러 개 있는 웹 페이지를
+어떻게 해야 하나요?"입니다. 쇼핑몰 사이트나 3D 도표가 여러 개 있는 웹 페이지를
 제작한다고 해봅시다. 얼핏 그리 어려울 건 없어 보입니다. 그냥 도표가 들어갈 곳마다
-각각 캔버스를 만들고, 각 캔버스마다 <code class="notranslate" translate="no">Renderer</code>를 생성하면 되지 않을까요?</p>
+각각 캔버스를 만들고, 각 캔버스마다 <a href="https://threejs.org/docs/#api/en/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a>를 생성하면 되지 않을까요?</p>
 <p>하지만 이 방법을 적용하자마자 문제가 생깁니다.</p>
 <ol>
 <li><p>브라우저의 WebGL 컨텍스트(context)는 제한적이다.</p>
@@ -255,27 +251,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </li>
 </ol>
 <p>그렇다면 어떻게 해야 할까요?</p>
-<p>방법 중 하나는 캔버스 하나로 화면 전체를 채우고, 각 &quot;가상&quot; 캔버스를 대신할 HTML 요소(element)를
-두는 겁니다. <code class="notranslate" translate="no">Renderer</code>는 하나만 만들되 가상 캔버스에 각각 <code class="notranslate" translate="no">Scene</code>을 만드는 거죠. 그리고
+<p>방법 중 하나는 캔버스 하나로 화면 전체를 채우고, 각 "가상" 캔버스를 대신할 HTML 요소(element)를
+두는 겁니다. <a href="https://threejs.org/docs/#api/en/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a>는 하나만 만들되 가상 캔버스에 각각 <a href="https://threejs.org/docs/#api/en/scenes/Scene"><code class="notranslate" translate="no">Scene</code></a>을 만드는 거죠. 그리고
 가상 HTML 요소의 좌표를 계산해 요소가 화면에 보인다면 Three.js가 해당 장면(scene)을 가상
 요소의 좌표에 맞춰 렌더링하도록 합니다.</p>
 <p>이 방법은 캔버스를 하나만 사용하므로 위 1번과 2번 문제 모두 해결할 수 있습니다. 컨텍스트를
 하나만 사용하니 WebGL 컨텍스트 제한을 걱정할 일도 없고, 자원을 몇 배씩 더 사용할 일도 없죠.</p>
 <p>2개의 장면만 만들어 간단히 테스트를 해보겠습니다. 먼저 HTML을 작성합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;canvas id="c"&gt;&lt;/canvas&gt;
 &lt;p&gt;
-  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
+  &lt;span id="box" class="diagram left"&gt;&lt;/span&gt;
   I love boxes. Presents come in boxes.
-  When I find a new box I&#39;m always excited to find out what&#39;s inside.
+  When I find a new box I'm always excited to find out what's inside.
 &lt;/p&gt;
 &lt;p&gt;
-  &lt;span id=&quot;pyramid&quot; class=&quot;diagram right&quot;&gt;&lt;/span&gt;
+  &lt;span id="pyramid" class="diagram right"&gt;&lt;/span&gt;
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 &lt;/p&gt;
-</code></pre>
+</pre>
 <p>다음으로 CSS를 작성합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#c {
   position: fixed;
   left: 0;
   top: 0;
@@ -298,12 +294,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   float: right;
   margin-left: .25em;
 }
-</code></pre>
+</pre>
 <p>캔버스가 화면 전체를 채우도록 하고 <code class="notranslate" translate="no">z-index</code>를 -1로 설정해 다른 요소 뒤로 가도록 했습니다.
 가상 요소에 컨텐츠가 없어 크기가 0이니 별도의 width와 height도 지정해줬습니다.</p>
 <p>이제 각각의 카메라와 조명이 있는 장면 2개를 만듭니다. 하나에는 정육면체, 다른 하나에는
 다이아몬드 모양을 넣을 겁니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeScene(elem) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeScene(elem) {
   const scene = new THREE.Scene();
 
   const fov = 45;
@@ -327,9 +323,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 function setupScene1() {
-  const sceneInfo = makeScene(document.querySelector(&#39;#box&#39;));
+  const sceneInfo = makeScene(document.querySelector('#box'));
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const material = new THREE.MeshPhongMaterial({color: 'red'});
   const mesh = new THREE.Mesh(geometry, material);
   sceneInfo.scene.add(mesh);
   sceneInfo.mesh = mesh;
@@ -337,13 +333,13 @@ function setupScene1() {
 }
 
 function setupScene2() {
-  const sceneInfo = makeScene(document.querySelector(&#39;#pyramid&#39;));
+  const sceneInfo = makeScene(document.querySelector('#pyramid'));
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
   const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
-    color: &#39;blue&#39;,
+    color: 'blue',
     flatShading: true,
   });
   const mesh = new THREE.Mesh(geometry, material);
@@ -354,12 +350,12 @@ function setupScene2() {
 
 const sceneInfo1 = setupScene1();
 const sceneInfo2 = setupScene2();
-</code></pre>
-<p>이제 각 요소가 화면에 보일 때만 장면을 렌더링할 함수를 만듭니다. <code class="notranslate" translate="no">Renderer.setScissorTest</code>를
+</pre>
+<p>이제 각 요소가 화면에 보일 때만 장면을 렌더링할 함수를 만듭니다. <a href="https://threejs.org/docs/#api/en/constants/Renderer.setScissorTest"><code class="notranslate" translate="no">Renderer.setScissorTest</code></a>를
 호출해 <em>가위(scissor)</em> 테스트를 활성화하면 Three.js가 캔버스의 특정 부분만 렌더링하도록
-할 수 있습니다. 그리고 <code class="notranslate" translate="no">Renderer.setScissor</code>로 가위를 설정한 뒤 <code class="notranslate" translate="no">Renderer.setViewport</code>로
+할 수 있습니다. 그리고 <a href="https://threejs.org/docs/#api/en/constants/Renderer.setScissor"><code class="notranslate" translate="no">Renderer.setScissor</code></a>로 가위를 설정한 뒤 <a href="https://threejs.org/docs/#api/en/constants/Renderer.setViewport"><code class="notranslate" translate="no">Renderer.setViewport</code></a>로
 장면의 좌표를 설정합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function renderSceneInfo(sceneInfo) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function renderSceneInfo(sceneInfo) {
   const { scene, camera, elem } = sceneInfo;
 
   // 해당 요소의 화면 대비 좌표를 가져옵니다
@@ -385,9 +381,9 @@ const sceneInfo2 = setupScene2();
 
   renderer.render(scene, camera);
 }
-</code></pre>
+</pre>
 <p>다음으로 <code class="notranslate" translate="no">render</code> 함수 안에서 먼저 캔버스 전체를 비운 뒤 각 장면을 렌더링합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   time *= 0.001;
 
   resizeRendererToDisplaySize(renderer);
@@ -404,49 +400,49 @@ const sceneInfo2 = setupScene2();
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p>결과를 확인해볼까요?</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-v1.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-v1.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>첫 번째 <code class="notranslate" translate="no">&lt;span&gt;</code> 요소가 있는 곳에는 빨간 정육면체가, 두 번째 <code class="notranslate" translate="no">&lt;span&gt;</code> 요소가 있는 곳에는
 파란 다이아몬드가 보일 겁니다.</p>
 <h2 id="-">동기화하기</h2>
 <p>위 코드는 나쁘지 않지만 작은 문제가 있습니다. 복잡한 장면 등 무슨 이유라도 렌더링하는
 데 시간이 오래 걸린다면, 장면의 좌표는 페이지의 다른 컨텐츠에 비해 더디게 내려올 겁니다.</p>
 <p>각 가상 요소에 테두리를 넣고</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">.diagram {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">.diagram {
   display: inline-block;
   width: 5em;
   height: 3em;
 +  border: 1px solid black;
 }
-</code></pre>
+</pre>
 <p>각 장면에 배경색도 넣어줍니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
-+scene.background = new THREE.Color(&#39;red&#39;);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
++scene.background = new THREE.Color('red');
+</pre>
 <p>그런 다음 <a href="../../threejs-multiple-scenes-v2.html" target="_blank">빠르게 스크롤을 위아래로 반복해보면</a>
 문제가 보일겁니다. 아래는 스크롤 애니메이션 캡쳐본의 속도를 10배 낮춘 예시입니다.</p>
 <div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
 
 <p>추가로 처리해줘야 할 것이 있긴 하지만, 캔버스의 CSS를 <code class="notranslate" translate="no">position: fixed</code>에서 <code class="notranslate" translate="no">position: absolute</code>로
 바꿔 문제를 해결할 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#c {
 -  position: fixed;
 +  position: absolute;
-</code></pre>
+</pre>
 <p>그리고 페이지 스크롤에 상관 없이 캔버스가 항상 화면의 상단에 위치할 수 있도록 캔버스에
 transform 스타일을 지정해줍니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   ...
 
   const transform = `translateY(${ window.scrollY }px)`;
   renderer.domElement.style.transform = transform;
-</code></pre>
+</pre>
 <p>캔버스에 <code class="notranslate" translate="no">position: fixed</code>를 적용하면 캔버스는 스크롤의 영향을 받지 않습니다. <code class="notranslate" translate="no">position: absolute</code>를
 적용하면 렌더링하는 데 시간이 걸리더라도 일단 다른 페이지와 같이 스크롤이 되겠죠. 그리고
 렌더링하기 전에 캔버스를 다시 움직여 화면 전체에 맞춘 뒤 캔버스를 렌더링하는 겁니다. 이러면
@@ -462,7 +458,7 @@ transform 스타일을 지정해줍니다.</p>
 화면에 보이는지 확인한 뒤, 가상 요소가 화면에 보인다면 상응하는 렌더링 함수를 호출합니다. 이러면
 확장성은 물론 각 장면의 렌더링 함수를 작성할 때도 전체를 신경쓸 필요가 없죠.</p>
 <p>아래는 전체를 담당하는 <code class="notranslate" translate="no">render</code> 함수입니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({ elem, fn });
 }
@@ -502,16 +498,16 @@ function render(time) {
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">render</code> 함수는 <code class="notranslate" translate="no">elem</code>과 <code class="notranslate" translate="no">fn</code> 속성의 객체로 이루어진 <code class="notranslate" translate="no">sceneElements</code> 배열을 순회합니다.</p>
 <p>그리고 각 요소가 화면에 보이는지 확인하고, 화면에 보인다면 <code class="notranslate" translate="no">fn</code>에 해당 장면이 들어가야할
 사각 좌표와 현재 시간값을 넘겨주어 호출합니다.</p>
 <p>이제 각 장면을 만들고 상응하는 요소와 렌더링 함수를 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
-  const elem = document.querySelector(&#39;#box&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const elem = document.querySelector('#box');
   const { scene, camera } = makeScene();
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-  const material = new THREE.MeshPhongMaterial({ color: &#39;red&#39; });
+  const material = new THREE.MeshPhongMaterial({ color: 'red' });
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
   addScene(elem, (time, rect) =&gt; {
@@ -523,14 +519,14 @@ function render(time) {
 }
 
 {
-  const elem = document.querySelector(&#39;#pyramid&#39;);
+  const elem = document.querySelector('#pyramid');
   const { scene, camera } = makeScene();
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
   const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
-    color: &#39;blue&#39;,
+    color: 'blue',
     flatShading: true,
   });
   const mesh = new THREE.Mesh(geometry, material);
@@ -542,48 +538,48 @@ function render(time) {
     renderer.render(scene, camera);
   });
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">sceneInfo1</code>, <code class="notranslate" translate="no">sceneInfo2</code>는 더 이상 필요 없으니 제거합니다. 대신 각 mesh의 회전은 해당
 장면에서 처리해야 합니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-generic.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-generic.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <h2 id="html-dataset-">HTML Dataset 사용하기</h2>
 <p>HTML의 <a href="https://developer.mozilla.org/ko/docs/Web/API/HTMLElement/dataset">dataset</a>을
-이용하면 좀 더 확장하기 쉬운 환경을 만들 수 있습니다. <code class="notranslate" translate="no">id=&quot;...&quot;</code> 대신 <code class="notranslate" translate="no">data-diagram=&quot;...&quot;</code>을
+이용하면 좀 더 확장하기 쉬운 환경을 만들 수 있습니다. <code class="notranslate" translate="no">id="..."</code> 대신 <code class="notranslate" translate="no">data-diagram="..."</code>을
 이용해 데이터를 직접 HTML 요소에 지정하는 거죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;canvas id="c"&gt;&lt;/canvas&gt;
 &lt;p&gt;
--  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
-+  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
+-  &lt;span id="box" class="diagram left"&gt;&lt;/span&gt;
++  &lt;span data-diagram="box" class="left"&gt;&lt;/span&gt;
   I love boxes. Presents come in boxes.
-  When I find a new box I&#39;m always excited to find out what&#39;s inside.
+  When I find a new box I'm always excited to find out what's inside.
 &lt;/p&gt;
 &lt;p&gt;
--  &lt;span id=&quot;pyramid&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
-+  &lt;span data-diagram=&quot;pyramid&quot; class=&quot;right&quot;&gt;&lt;/span&gt;
+-  &lt;span id="pyramid" class="diagram left"&gt;&lt;/span&gt;
++  &lt;span data-diagram="pyramid" class="right"&gt;&lt;/span&gt;
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 &lt;/p&gt;
-</code></pre>
+</pre>
 <p>요소의 id를 제거했으니 CSS 셀렉터도 다음처럼 바꾸어야 합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">-.diagram
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">-.diagram
 +*[data-diagram] {
   display: inline-block;
   width: 5em;
   height: 3em;
 }
-</code></pre>
+</pre>
 <p>또한 각 장면을 만드는 코드를 <em>scene initialization functions</em>라는 맵으로 만듭니다.
 이 맵은 키값에 대응하는 <em>장면 렌더링 함수</em>를 반환할 겁니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneInitFunctionsByName = {
-  &#39;box&#39;: () =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneInitFunctionsByName = {
+  'box': () =&gt; {
     const { scene, camera } = makeScene();
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
     return (time, rect) =&gt; {
@@ -593,14 +589,14 @@ function render(time) {
       renderer.render(scene, camera);
     };
   },
-  &#39;pyramid&#39;: () =&gt; {
+  'pyramid': () =&gt; {
     const { scene, camera } = makeScene();
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
     const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
-      color: &#39;blue&#39;,
+      color: 'blue',
       flatShading: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
@@ -613,25 +609,25 @@ function render(time) {
     };
   },
 };
-</code></pre>
+</pre>
 <p>그리고 <code class="notranslate" translate="no">querySelectorAll</code>로 가상 요소를 전부 불러와 해당 요소에 상응하는 렌더링 함수를
 실행합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">document.querySelectorAll('[data-diagram]').forEach((elem) =&gt; {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
   addScene(elem, sceneRenderFunction);
 });
-</code></pre>
+</pre>
 <p>이제 코드를 확장하기가 한결 편해졌습니다.</p>
 <p></p>
 <h2 id="-">각 요소에 액션 추가하기</h2>
 <p>사용자 액션, 예를 들어 <code class="notranslate" translate="no">TrackballControls</code>를 추가하는 건 아주 간단합니다. 먼저 스크립트를
 불러옵니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import { TrackballControls } from &#39;./resources/threejs/r122/examples/jsm/controls/TrackballControls.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { TrackballControls } from './resources/threejs/r122/examples/jsm/controls/TrackballControls.js';
+</pre>
 <p>그리고 각 장면에 대응하는 요소에 <code class="notranslate" translate="no">TrackballControls</code>를 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function makeScene() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {
 +function makeScene(elem) {
   const scene = new THREE.Scene();
 
@@ -660,18 +656,18 @@ function render(time) {
 -  return { scene, camera };
 + return { scene, camera, controls };
 }
-</code></pre>
+</pre>
 <p>위 코드에서는 카메라를 장면에 추가하고, 카메라에 조명을 추가했습니다. 이러면 조명이 카메라를
 따라다니겠죠. <code class="notranslate" translate="no">TrackballControls</code>는 카메라를 조정하기 때문에 이렇게 해야 빛이 계속 우리가
 바라보는 방향에서 나갑니다.</p>
 <p>또한 컨트롤을 렌더링 함수에서 업데이트해줘야 합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneInitFunctionsByName = {
-- &#39;box&#39;: () =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneInitFunctionsByName = {
+- 'box': () =&gt; {
 -    const {scene, camera} = makeScene();
-+ &#39;box&#39;: (elem) =&gt; {
++ 'box': (elem) =&gt; {
 +    const { scene, camera, controls } = makeScene(elem);
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
     return (time, rect) =&gt; {
@@ -683,16 +679,16 @@ function render(time) {
       renderer.render(scene, camera);
     };
   },
--  &#39;pyramid&#39;: () =&gt; {
+-  'pyramid': () =&gt; {
 -    const { scene, camera } = makeScene();
-+  &#39;pyramid&#39;: (elem) =&gt; {
++  'pyramid': (elem) =&gt; {
 +    const { scene, camera, controls } = makeScene(elem);
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
     const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
-      color: &#39;blue&#39;,
+      color: 'blue',
       flatShading: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
@@ -707,14 +703,14 @@ function render(time) {
     };
   },
 };
-</code></pre>
+</pre>
 <p>이제 각 물체를 자유롭게 회전시킬 수 있습니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-controls.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-controls.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>이 기법은 이 사이트 전체에 사용한 기법입니다. <a href="threejs-primitives.html">원시 모델에 관한 글</a>과
 <a href="threejs-materials.html">재질에 관한 글</a>에서 다양한 예시를 보여주기 위해 사용했죠.</p>
 <p>다른 방법으로는 화면 밖의 캔버스에서 장면을 렌더링해 각 요소에 2D 캔버스 형태로 넘겨주는
@@ -725,13 +721,13 @@ function render(time) {
 GPU 성능에 따라 다르죠.</p>
 <p>바꿔야 하는 건 생각보다 많지 않습니다.</p>
 <p>먼저 배경에서 캔버스 요소를 제거합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
--  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+-  &lt;canvas id="c"&gt;&lt;/canvas&gt;
   ...
 &lt;/body&gt;
-</code></pre>
+</pre>
 <p>CSS도 바꿔줍니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">-#c {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">-#c {
 -  position: absolute;
 -  left: 0;
 -  top: 0;
@@ -750,31 +746,31 @@ canvas {
   width: 5em;
   height: 3em;
 }
-</code></pre>
+</pre>
 <p>캔버스 요소가 부모에 꽉 차도록 변경했습니다.</p>
 <p>이제 자바스크립트를 변경해봅시다. 먼저 캔버스를 참조할 필요가 없으니 대신 캔버스 요소를
 새로 만듭니다. 또한 가위 테스트를 처음에 활성화합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
--  const canvas = document.querySelector(&#39;#c&#39;);
-+  const canvas = document.createElement(&#39;canvas&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
+-  const canvas = document.querySelector('#c');
++  const canvas = document.createElement('canvas');
   const renderer = new THREE.WebGLRenderer({canvas, alpha: true});
 +  renderer.setScissorTest(true);
 
   ...
-</code></pre>
+</pre>
 <p>다음으로 각 장면에 2D 렌더링 컨텍스트를 생성하고 장면에 대응하는 요소에 캔버스를 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneElements = [];
 function addScene(elem, fn) {
-+  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
++  const ctx = document.createElement('canvas').getContext('2d');
 +  elem.appendChild(ctx.canvas);
 -  sceneElements.push({ elem, fn });
 +  sceneElements.push({ elem, ctx, fn });
 }
-</code></pre>
+</pre>
 <p>만약 렌더링 시 렌더링용 캔버스의 크기가 장면의 크기보다 작을 경우, 렌더링용 캔버스의 크기를
 키웁니다. 또한 2D 캔버스의 크기가 부모 요소와 다르다면 2D 캔버스의 크기를 조정합니다. 마지막으로
 가위와 화면을 설정하고, 해당 장면을 렌더링한 뒤, 요소의 캔버스로 렌더링 결과물을 복사합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   time *= 0.001;
 
 -  resizeRendererToDisplaySize(renderer);
@@ -824,7 +820,7 @@ function addScene(elem, fn) {
       fn(time, rect);
 
 +      // 렌더링된 장면을 2D 캔버스에 복사
-+      ctx.globalCompositeOperation = &#39;copy&#39;;
++      ctx.globalCompositeOperation = 'copy';
 +      ctx.drawImage(
 +          rendererCanvas,
 +          0, rendererCanvas.height - height, width, height,  // 원본 사각 좌표
@@ -834,14 +830,14 @@ function addScene(elem, fn) {
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p>결과물은 위와 다르지 않습니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-copy-canvas.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-copy-canvas.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>이 기법의 다른 장점은 <a href="https://developer.mozilla.org/ko/docs/Web/API/OffscreenCanvas"><code class="notranslate" translate="no">OffscreenCanvas</code></a>
 웹 워커를 이용해 이 기능을 별도 스레드에서 구현할 수 있다는 겁니다. 하지만 아쉽게도
 2020년 7월을 기준으로 <code class="notranslate" translate="no">OffscreenCanvas</code>는 아직 크로미움 기반 브라우저에서만 지원합니다.</p>
@@ -849,13 +845,13 @@ function addScene(elem, fn) {
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-multiple-scenes.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-multiple-scenes.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-multiple-scenes.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-multiple-scenes.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-multiple-scenes.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-multiple-scenes.html">English
+    </option><option value="/threejs/lessons/fr/threejs-multiple-scenes.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-multiple-scenes.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-multiple-scenes.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-multiple-scenes.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -968,7 +964,7 @@ function addScene(elem, fn) {
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -1010,7 +1006,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/threejs-load-obj.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/kr/threejs-load-obj.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ko">
-<head>
+--><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,13 +110,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-load-obj.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-load-obj.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-load-obj.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-load-obj.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-load-obj.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-load-obj.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-load-obj.html">English
+    </option><option value="/threejs/lessons/fr/threejs-load-obj.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-load-obj.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-load-obj.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-load-obj.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-load-obj.html">中文
+</option></select>
 
 
     <a href="#toc">목차</a>
@@ -219,11 +215,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -264,29 +260,29 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>자 이제 한 번 화면에 띄워보죠!</p>
 <p><a href="threejs-lights.html">조명에 관한 글</a>에서 썼던 예제를 가져와 이 예제를
-반구광(hemisphere light) 예제와 합칩니다. 그러면 장면에는 <code class="notranslate" translate="no">HemisphereLight</code>
-하나, <code class="notranslate" translate="no">DirectionalLight</code> 하나가 있는 셈입니다. 또 GUI 관련 코드와 정육면체,
+반구광(hemisphere light) 예제와 합칩니다. 그러면 장면에는 <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>
+하나, <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> 하나가 있는 셈입니다. 또 GUI 관련 코드와 정육면체,
 구체 관련 코드도 지웁니다.</p>
-<p>다음으로 먼저 <code class="notranslate" translate="no">OBJLoader2</code> 모듈을 스크립트에 로드합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import { OBJLoader2 } from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
-</code></pre>
-<p><code class="notranslate" translate="no">OBJLoader2</code>의 인스턴스를 생성한 뒤 .OBJ 파일의 경로와 콜백 함수를 넘겨
+<p>다음으로 먼저 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> 모듈을 스크립트에 로드합니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { OBJLoader2 } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+</pre>
+<p><a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>의 인스턴스를 생성한 뒤 .OBJ 파일의 경로와 콜백 함수를 넘겨
 <code class="notranslate" translate="no">load</code> 메서드를 실행합니다. 그리고 콜백 함수에서 불러온 모델을 장면에
 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const objLoader = new OBJLoader2();
-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
+  objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
     scene.add(root);
   });
 }
-</code></pre>
+</pre>
 <p>어떤 결과가 나올까요?</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-no-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-no-materials.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>뭔가 성공한 듯하지만 재질(materials)이 없어 오류가 납니다. .OBJ 파일에도
 재질이 없고 따로 재질을 지정하지도 않았기 때문이죠.</p>
 <p>위에서 생성한 .OBJ 로더에는 이름 : 재질 쌍을 객체로 지정할 수 있습니다.
@@ -295,7 +291,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>.OBJ 파일을 생성할 때 재질에 대한 데이터를 담은 .MTL 파일이 같이 생성되기도
 합니다. 방금의 경우에도 .MTL 파일이 같이 생성되었죠. MTL 파일은 ASCII 인코딩이므로
 일반 텍스트 파일처럼 열어볼 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no"># Blender MTL File: 'windmill_001.blend'
 # Material Count: 2
 
 newmtl Material
@@ -322,7 +318,7 @@ illum 1
 map_Kd windmill_001_base_COL.jpg
 map_Bump windmill_001_base_NOR.jpg
 map_Ns windmill_001_base_SPEC.jpg
-</code></pre>
+</pre>
 <p>파일을 살펴보면 2개의 재질과 5개의 jpg 텍스처가 보이는데, 텍스처 파일은
 디렉토리 내에 보이지 않습니다. 대체 어디에 있는 걸까요?</p>
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files.png"></div>
@@ -344,32 +340,32 @@ map_Ns windmill_001_base_SPEC.jpg
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>이제 .MTL 파일에서 사용할 텍스처를 생성했으니 .MTL 파일을 불러오도록 합시다.</p>
-<p><code class="notranslate" translate="no">MTLLoader</code>와 <code class="notranslate" translate="no">MTLObjBridge</code> 모듈을 불러옵니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-import { OBJLoader2 } from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
-+import { MTLLoader } from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
-+import { MtlObjBridge } from &#39;./resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
-</code></pre>
-<p>우선 .MTL 파일을 불러와 <code class="notranslate" translate="no">MtlObjBridge</code>로 재질을 만듭니다. 그리고 <code class="notranslate" translate="no">OBJLoader2</code>
+<p><a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a>와 <code class="notranslate" translate="no">MTLObjBridge</code> 모듈을 불러옵니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import { OBJLoader2 } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
++import { MTLLoader } from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
++import { MtlObjBridge } from './resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
+</pre>
+<p>우선 .MTL 파일을 불러와 <code class="notranslate" translate="no">MtlObjBridge</code>로 재질을 만듭니다. 그리고 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>
 인스턴스에 방금 만든 재질을 추가한 뒤 .OBJ 파일을 불러옵니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
++  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
 +    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
 +    objLoader.addMaterials(materials);
-    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
+    objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       scene.add(root);
     });
 +  });
 }
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>얼핏 제대로 불러온 것 같지만 아직 부족한 점이 있습니다. 모델을 이리저리
 회전시켜 보면 풍차의 날개 뒷면이 사라지는 것을 볼 수 있을 겁니다.</p>
 <div class="threejs_center"><img style="width: 528px;" src="../resources/images/windmill-missing-cloth.jpg"></div>
@@ -380,33 +376,33 @@ import { OBJLoader2 } from &#39;./resources/threejs/r122/examples/jsm/loaders/OB
 3가지 정도죠.</p>
 <ol>
 <li><p>모든 재질을 불러온 뒤 반복문으로 처리한다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    for (const material of Object.values(materials)) {
      material.side = THREE.DoubleSide;
    }
    ...
-</code></pre><p>문제가 해결되긴 하겠지만, 양면 렌더링은 단면 렌더링에 비해 성능이 느립니다.
+</pre><p>문제가 해결되긴 하겠지만, 양면 렌더링은 단면 렌더링에 비해 성능이 느립니다.
 양면일 필요가 있는 재질만 양면으로 렌더링하는 게 이상적이겠죠.</p>
 </li>
 <li><p>특정 재질을 골라 설정한다.</p>
-<p>.MTL 파일에는 <code class="notranslate" translate="no">&quot;windmill&quot;</code>, <code class="notranslate" translate="no">&quot;Material&quot;</code> 2개의 재질이 있습니다. 여러 번의 시도와
-에러 끝에 날개가 <code class="notranslate" translate="no">&quot;Material&quot;</code>이라는 이름의 재질을 쓴다는 것을 알아낸 뒤, 이 재질에만
+<p>.MTL 파일에는 <code class="notranslate" translate="no">"windmill"</code>, <code class="notranslate" translate="no">"Material"</code> 2개의 재질이 있습니다. 여러 번의 시도와
+에러 끝에 날개가 <code class="notranslate" translate="no">"Material"</code>이라는 이름의 재질을 쓴다는 것을 알아낸 뒤, 이 재질에만
 양면 속성을 설정할 수도 있을 겁니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    materials.Material.side = THREE.DoubleSide;
    ...
-</code></pre></li>
+</pre></li>
 <li><p>.MTL 파일의 한계에 굴복하고 직접 재질을 만든다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> const materials = {
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const materials = {
    Material: new THREE.MeshPhongMaterial({...}),
    windmill: new THREE.MeshPhongMaterial({...}),
  };
  objLoader.setMaterials(materials);
-</code></pre></li>
+</pre></li>
 </ol>
 <p>뭘 선택하든 그건 여러분의 선택입니다. 1번이 가장 간단하고, 3번이 가장
 확장성이 좋죠. 2번은 그 중간입니다. 지금은 2번 해결책을 사용하도록 하죠.</p>
@@ -424,7 +420,7 @@ import { OBJLoader2 } from &#39;./resources/threejs/r122/examples/jsm/loaders/OB
 <p><a href="https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432">MTLLoader의 소스 코드</a>를
 살펴보면 법선 맵의 키(key)가 <code class="notranslate" translate="no">norm</code>이어야 한다고 합니다. 간단히 .MTL 파일을
 수정해보죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no"># Blender MTL File: 'windmill_001.blend'
 # Material Count: 2
 
 newmtl Material
@@ -453,14 +449,14 @@ map_Kd windmill_001_base_COL.jpg
 -map_Bump windmill_001_base_NOR.jpg
 +norm windmill_001_base_NOR.jpg
 map_Ns windmill_001_base_SPEC.jpg
-</code></pre>
+</pre>
 <p>이제 법선 맵이 정상적으로 적용되었고, 날개의 뒷면도 제대로 보입니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-fixed.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>다른 파일도 불러와봅시다.</p>
 <p>인터넷을 뒤져 <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC</a>
 풍차 3D 모델을 발견했습니다(작가: <a href="http://www.gerzi.ch/">Roger Gerzner / GERIZ.3D Art</a>).</p>
@@ -468,20 +464,20 @@ map_Ns windmill_001_base_SPEC.jpg
 
 <p>.OBJ 형식으로 다운 받을 수 있으므로, 해당 형식으로 받아 불러오겠습니다(잠깐
 .MTL 로더를 제거했습니다).</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, ...
-+  objLoader.load(&#39;resources/models/windmill-2/windmill.obj&#39;, ...
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-  objLoader.load('resources/models/windmill/windmill.obj', ...
++  objLoader.load('resources/models/windmill-2/windmill.obj', ...
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-wat.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-wat.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>음, 아무것도 나타나지 않습니다. 뭐가 문제일까요? 모델의 원래 크기 때문일까요?
 Three.js로부터 모델 사이즈를 구해 카메라를 한 번 업데이트해보겠습니다.</p>
 <p>먼저 Three.js가 방금 불러온 모델을 감싸는 육면체를 계산해 모델의 크기와 중심점을
 구하는 코드를 작성합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
   scene.add(root);
 
 +  const box = new THREE.Box3().setFromObject(root);
@@ -489,12 +485,12 @@ Three.js로부터 모델 사이즈를 구해 카메라를 한 번 업데이트�
 +  const boxCenter = box.getCenter(new THREE.Vector3());
 +  console.log(boxSize);
 +  console.log(boxCenter);
-</code></pre>
+</pre>
 <p><a href="threejs-debugging-javascript.html">자바스크립트 콘솔</a>을 확인해보면 아래와
 같은 결과가 보일 겁니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">size 2123.6499788469982
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">size 2123.6499788469982
 center p { x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125 }
-</code></pre>
+</pre>
 <p>이 카메라는 현재 <code class="notranslate" translate="no">near</code> 0.1, <code class="notranslate" translate="no">far</code>가 100 이므로 약 100칸 정도를 투사합니다.
 땅도 40x40칸인데 이 모델은 2000칸이죠. 카메라의 시야보다 훨씬 크니 절두체 영역
 밖에 있는 게 당연합니다.</p>
@@ -524,12 +520,12 @@ Cos = Adjacent(밑변) 나누기 Hypotenuse, Tan = Oppsite 나누기 Adjacent와
 <div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 <p>그림을 기반으로 계산식을 짜보겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">distance = halfSizeToFitOnScreen / tangent(halfFovY) // 거리 = 화면 크기의 반 / 탄젠트(시야각의 절반)
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">distance = halfSizeToFitOnScreen / tangent(halfFovY) // 거리 = 화면 크기의 반 / 탄젠트(시야각의 절반)
+</pre>
 <p>이제 위 계산식을 코드로 옮겨야 합니다. 먼저 <code class="notranslate" translate="no">distance(거리)</code>를 구한 뒤
 카메라를 육면체의 중심에서 <code class="notranslate" translate="no">distance</code>값만큼 옮깁니다. 그리고 카메라가 육면체의
 <code class="notranslate" translate="no">center(중심)</code>을 바라보게 설정합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
   const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
   const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
@@ -549,14 +545,14 @@ Cos = Adjacent(밑변) 나누기 Hypotenuse, Tan = Oppsite 나누기 Adjacent와
   // 카메라가 육면체의 중심을 바라보게 합니다
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
-</code></pre>
+</pre>
 <p>이 함수는 <code class="notranslate" translate="no">boxSize</code>와 <code class="notranslate" translate="no">sizeToFitOnScreen</code>, 두 개의 크기값을 매개변수로 받습니다.
 <code class="notranslate" translate="no">boxSize</code> 값으로 <code class="notranslate" translate="no">sizeToFitOnScreen</code> 값을 대체할 수도 있지만, 이러면 육면체가
 화면에 꽉 차게 됩니다. 조금 여유가 있는 편이 보기 편하므로 조금 더 큰 값을 넘겨주도록
 하겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const objLoader = new OBJLoader2();
-  objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
+  objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
     scene.add(root);
 +    // 모든 요소를 포함하는 육면체를 계산합니다
 +    const box = new THREE.Box3().setFromObject(root);
@@ -573,16 +569,16 @@ Cos = Adjacent(밑변) 나누기 Hypotenuse, Tan = Oppsite 나누기 Adjacent와
 +    controls.update();
   });
 }
-</code></pre>
+</pre>
 <p>위 예제에서는 <code class="notranslate" translate="no">boxSize * 1.2</code> 값을 넘겨주어 20% 정도 빈 공간을 더 만들었습니다.
-또 카메라가 장면의 중심을 기준으로 회전하도록 <code class="notranslate" translate="no">OrbitControls</code>도 업데이트했죠.</p>
+또 카메라가 장면의 중심을 기준으로 회전하도록 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>도 업데이트했죠.</p>
 <p>이제 코드를 실행하면...</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>성공했습니다. 마우스로 장면을 드래그하면 풍차가 보일 거예요. 하지만 카메라가 풍차의
 정면이 아닌 아래쪽을 먼저 보여줍니다. 이는 풍차가 너무 커서 육면체의 중심이 약
 (0, 770, 0)인데, 카메라를 육면체의 중심에서 기존 위치 (0, 10, 20) 방향으로 <code class="notranslate" translate="no">distance</code>만큼
@@ -593,47 +589,47 @@ Cos = Adjacent(밑변) 나누기 Hypotenuse, Tan = Oppsite 나누기 Adjacent와
 단순히 카메라와 육면체 간 벡터의 <code class="notranslate" translate="no">y</code> 요소를 0으로 만들면 됩니다. <code class="notranslate" translate="no">y</code> 요소를 0으로
 만든 뒤 벡터를 정규화(normalize)하면, XZ 면에 평행한 벡터, 그러니까 바닥에 평행한
 벡터가 되겠죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-// 육면체의 중심에서 카메라가 있는 곳으로 향하는 방향 벡터를 계산합니다
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-// 육면체의 중심에서 카메라가 있는 곳으로 향하는 방향 벡터를 계산합니다
 -const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
 +// 카메라와 육면체 사이의 방향 벡터를 항상 XZ 면에 평행하게 만듭니다
 +const direction = (new THREE.Vector3())
 +    .subVectors(camera.position, boxCenter)
 +    .multiply(new THREE.Vector3(1, 0, 1))
 +    .normalize();
-</code></pre>
+</pre>
 <p>풍차의 아랫면을 보면 작은 정사각형이 하나 보일 겁니다. 원래 땅으로 썼던 평면이죠.</p>
 <div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
 <p>원래 땅은 40x40칸이었으니 풍차에 비해 훨씬 작은 것이 당연합니다. 풍차의 크기는
 2000칸이 넘습니다. 땅을 풍차에 맞게 키워야 겠네요. 또 크기만 키우면 체크무늬가
 너무 작아 확대하지 않는 한 보기가 어려울 테니 체스무늬 한 칸의 크기도 키우겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const planeSize = 40;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const planeSize = 40;
 +const planeSize = 4000;
 
 const loader = new THREE.TextureLoader();
-const texture = loader.load(&#39;resources/images/checker.png&#39;);
+const texture = loader.load('resources/images/checker.png');
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
 texture.magFilter = THREE.NearestFilter;
 -const repeats = planeSize / 2;
 +const repeats = planeSize / 200;
 texture.repeat.set(repeats, repeats);
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera-xz.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera-xz.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>이제 재질을 다시 붙여봅시다. 이전 모델과 마찬가지로 텍스처에 대한 데이터를 담은
 .MTL 파일이 보입니다. 하지만 동시에 다른 문제도 보이네요.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-shell"> $ ls -l windmill
+<pre class="prettyprint showlinemods notranslate lang-shell" translate="no"> $ ls -l windmill
  -rw-r--r--@ 1 gregg  staff       299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff    142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_diffuse.tga
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 20  2009 windmill_normal.tga
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_spec.tga
-</code></pre>
+</pre>
 <p>어마어마하게 큰 TARGA (.tga) 파일이 있습니다.</p>
 <p>THREE.js에 TGA 로더가 있기는 하나 대부분의 경우 이를 사용하는 건 좋지 않습니다.
 아주 소수의 경우, 예를 들어 사용자가 임의의 3D 모델 파일을 불러와 확인할 수 있는
@@ -651,18 +647,18 @@ texture.repeat.set(repeats, repeats);
 <p>파일을 열어보니 각각 해상도가 2048x2048입니다. 쓰기에 따라 다르겠지만, 저는 이게 다소
 낭비라는 생각에 해상도를 1024x1024로 낯추고 포토샵의 퀄리티 설정을 50%로 지정했습니다.
 다시 파일 구조를 살펴보죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-shell"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+<pre class="prettyprint showlinemods notranslate lang-shell" translate="no"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
  -rw-r--r--@ 1 gregg  staff   98013 Nov  7 18:38 windmill_normal.jpg
  -rw-r--r--@ 1 gregg  staff  191864 Nov  7 18:39 windmill_spec.jpg
-</code></pre>
+</pre>
 <p>36MB에서 0.55MB가 되었네요! 물론 디자너이너의 생각은 다를 수 있으니 절충안을
 찾기 전에 상의를 하는 것이 좋습니다.</p>
 <p>이제 .MTL 파일을 열어 .TGA 파일 경로를 .JPG 파일로 바꿉니다. 다행히 .MTL 파일은
 텍스트라 수정이 어렵지 않습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">newmtl blinn1SG
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">newmtl blinn1SG
 Ka 0.10 0.10 0.10
 
 Kd 0.00 0.00 0.00
@@ -684,16 +680,16 @@ illum 2
 -bump windmill_normal.tga 
 +map_bump windmill_normal.jpg 
 +bump windmill_normal.jpg
-</code></pre>
+</pre>
 <p>텍스처의 용량을 최적화했으니 이제 불러올 일만 남았습니다. 먼저 아까 했던 것처럼
-재질을 불러와 <code class="notranslate" translate="no">OBJLoader2</code>에 지정합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+재질을 불러와 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>에 지정합니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load(&#39;resources/models/windmill_2/windmill-fixed.mtl&#39;, (mtlParseResult) =&gt; {
++  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) =&gt; {
 +    const objLoader = new OBJLoader2();
 +    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
 +    objLoader.addMaterials(materials);
-    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
+    objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);
       // 모든 요소를 포함하는 육면체를 계산합니다
@@ -712,20 +708,20 @@ illum 2
     });
 +  });
 }
-</code></pre>
+</pre>
 <p>결과를 확인했는데 문제가 발생했습니다. 여러분에게 직접 보여주기보다 하나하나
 짚어보도록 하죠.</p>
-<p>문제 #1: 3개의 <code class="notranslate" translate="no">MTLLoader</code>가 각각 디퓨즈(diffuse) 색과 디퓨즈 텍스처 맵으로
+<p>문제 #1: 3개의 <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a>가 각각 디퓨즈(diffuse) 색과 디퓨즈 텍스처 맵으로
 혼합하는 재질을 만듬.</p>
 <p>이는 유용한 기능이지만, .MTL 파일의 디퓨즈 색상은 0입니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">Kd 0.00 0.00 0.00
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">Kd 0.00 0.00 0.00
+</pre>
 <p>(텍스처 맵 * 0 = 검정)이죠. 모델링 프로그램에서는 디퓨즈 텍스처 맵과 디퓨즈 색을 혼합하지
 않아도 모델이 제대로 보입니다. 이 풍차를 만든 디자이너 입장에서는 이 파일이 문제가
 없다고 생각하는 것이 당연하죠.</p>
 <p>.MTL 파일을 다음과 같이 수정해 문제를 해결할 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">Kd 1.00 1.00 1.00
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">Kd 1.00 1.00 1.00
+</pre>
 <p>(텍스처 맵 * 1 = 텍스처 맵)이니까요.</p>
 <p>문제 #2: 스페큘러(specular) 색이 검정임.</p>
 <p><code class="notranslate" translate="no">Ks</code>로 시작하는 줄은 스페큘러 색을 나타냅니다. 이 역시 디자이너가 사용한 모델링
@@ -733,22 +729,22 @@ illum 2
 색을 얼마나 많이 반사할지 결정할 때 스페큘러 맵의 빨강(red) 채널만 사용하기는
 하나, 3가지 색상 채널을 모두 지정하긴 해야 합니다.</p>
 <p>디퓨즈 색과 마찬가지로 .MTL 파일을 다음과 같이 수정하겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">-Ks 0.00 0.00 0.00
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">-Ks 0.00 0.00 0.00
 +Ks 1.00 1.00 1.00
-</code></pre>
+</pre>
 <p>문제 #3: <code class="notranslate" translate="no">windmill_normal.jpg</code>가 법선 맵이 아닌 범프 맵임.</p>
 <p>마찬가지로 .MTL 파일을 수정해줍니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">-map_bump windmill_normal.jpg 
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">-map_bump windmill_normal.jpg 
 -bump windmill_normal.jpg 
 +norm windmill_normal.jpg
-</code></pre>
+</pre>
 <p>위 변경 사항을 모두 반영하면 재질이 정상적으로 적용될 겁니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-windmill2.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-windmill2.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>모델을 불러올 때 주의해야 하는 점을 몇 가지만 적어보겠습니다.</p>
 <ul>
 <li><p>크기를 알아야 한다</p>
@@ -790,13 +786,13 @@ illum 2
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-load-obj.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-load-obj.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-load-obj.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-load-obj.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-load-obj.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-load-obj.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-load-obj.html">English
+    </option><option value="/threejs/lessons/fr/threejs-load-obj.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-load-obj.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-load-obj.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-load-obj.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-load-obj.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -909,7 +905,7 @@ illum 2
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -951,7 +947,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

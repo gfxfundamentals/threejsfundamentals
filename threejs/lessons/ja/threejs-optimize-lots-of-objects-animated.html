@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">English
+    </option><option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -244,21 +240,21 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>まず、複数のデータセットを取得する必要があります。
 オフラインでデータの前処理をするのが理想的ですが、今回は2つのデータセットをロードしてさらに2つのデータを生成してみましょう。</p>
 <p>以下は古いデータロードのコードです。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc')
   .then(parseData)
   .then(addBoxes)
   .then(render);
-</code></pre>
+</pre>
 <p>このような感じに変更してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadData(info) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadData(info) {
   const text = await loadFile(info.url);
   info.file = parseData(text);
 }
 
 async function loadAll() {
   const fileInfos = [
-    {name: &#39;men&#39;,   hueRange: [0.7, 0.3], url: &#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39; },
-    {name: &#39;women&#39;, hueRange: [0.9, 1.1], url: &#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014ft_2010_cntm_1_deg.asc&#39; },
+    {name: 'men',   hueRange: [0.7, 0.3], url: 'resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc' },
+    {name: 'women', hueRange: [0.9, 1.1], url: 'resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014ft_2010_cntm_1_deg.asc' },
   ];
 
   await Promise.all(fileInfos.map(loadData));
@@ -266,7 +262,7 @@ async function loadAll() {
   ...
 }
 loadAll();
-</code></pre>
+</pre>
 <p>上記のコードでは <code class="notranslate" translate="no">fileInfos</code> 内の各オブジェクトがローティングされたファイルを <code class="notranslate" translate="no">file</code> プロパティに持ち、Promise.allで全てのファイルをロードします。
 <code class="notranslate" translate="no">name</code> と <code class="notranslate" translate="no">hueRange</code> プロパティはあとで使います。<code class="notranslate" translate="no">name</code> はUIフィールドです。<code class="notranslate" translate="no">hueRange</code> は色相の範囲をマップし選択するために使います。</p>
 <p>上記2ファイルは2010年時点でのエリア別の男性数と女性数を示しています。</p>
@@ -275,18 +271,18 @@ loadAll();
 <p>さらに2つのデータセットを生成してみましょう。
 1つは女性数よりも男性数が多い場所、逆にもう1つは男性数より女性数が多い場所です。</p>
 <p>まず先ほどのデータで新しい2次元配列をマップする前に、2次元配列を生成する関数を書いてみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function mapValues(data, fn) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function mapValues(data, fn) {
   return data.map((row, rowNdx) =&gt; {
     return row.map((value, colNdx) =&gt; {
       return fn(value, rowNdx, colNdx);
     });
   });
 }
-</code></pre>
+</pre>
 <p>通常の <code class="notranslate" translate="no">Array.map</code> 関数と同様に <code class="notranslate" translate="no">mapValues</code> 関数は配列の各値に対して関数 <code class="notranslate" translate="no">fn</code> を呼び出します。
 fnには値と行と列のインデックスを渡します。</p>
 <p>2つのファイルを比較した新しいファイルを生成するコードを作成します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeDiffFile(baseFile, otherFile, compareFn) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeDiffFile(baseFile, otherFile, compareFn) {
   let min;
   let max;
   const baseData = baseFile.data;
@@ -305,11 +301,11 @@ fnには値と行と列のインデックスを渡します。</p>
   // with the new data
   return {...baseFile, min, max, data};
 }
-</code></pre>
+</pre>
 <p>上記のコードは <code class="notranslate" translate="no">compareFn</code> 関数で比較された値を元に <code class="notranslate" translate="no">mapValues</code> 関数で新しいデータセットを生成しています。また <code class="notranslate" translate="no">min</code> と <code class="notranslate" translate="no">max</code> の比較結果も持っています。
 最後のreturnで新しく <code class="notranslate" translate="no">min</code>、<code class="notranslate" translate="no">max</code>、<code class="notranslate" translate="no">data</code> を追加した以外は <code class="notranslate" translate="no">baseFile</code> と同じプロパティを持つ新しいファイルを作成します。</p>
 <p>それを使って2つの新しいデータセットを作りましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const menInfo = fileInfos[0];
   const womenInfo = fileInfos[1];
   const menFile = menInfo.file;
@@ -319,29 +315,29 @@ fnには値と行と列のインデックスを渡します。</p>
     return Math.max(a - b, 0);
   }
   fileInfos.push({
-    name: &#39;&gt;50%men&#39;,
+    name: '&gt;50%men',
     hueRange: [0.6, 1.1],
     file: makeDiffFile(menFile, womenFile, (men, women) =&gt; {
       return amountGreaterThan(men, women);
     }),
   });
   fileInfos.push({
-    name: &#39;&gt;50% women&#39;, 
+    name: '&gt;50% women', 
     hueRange: [0.0, 0.4],
     file: makeDiffFile(womenFile, menFile, (women, men) =&gt; {
       return amountGreaterThan(women, men);
     }),
   });
 }
-</code></pre>
+</pre>
 <p>これらのデータセットを選択するUIを生成しましょう。まず、いくつかのhtmlのUIが必要です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
-  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
-+  &lt;div id=&quot;ui&quot;&gt;&lt;/div&gt;
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+  &lt;canvas id="c"&gt;&lt;/canvas&gt;
++  &lt;div id="ui"&gt;&lt;/div&gt;
 &lt;/body&gt;
-</code></pre>
+</pre>
 <p>次に左上のエリアに表示するためにCSSを追加しました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#ui {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#ui {
   position: absolute;
   left: 1em;
   top: 1em;
@@ -354,36 +350,36 @@ fnには値と行と列のインデックスを渡します。</p>
 #ui&gt;div.selected {
   color: red;
 }
-</code></pre>
+</pre>
 <p>各ファイルを調べてデータセットごとにマージされたボックスのセットを生成します。
 これでラベル上にマウスカーソルを置くとそのデータセットを表示し、他の全てのデータセットを非表示にするラベルUIを生成できます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
 function showFileInfo(fileInfos, fileInfo) {
   fileInfos.forEach((info) =&gt; {
     const visible = fileInfo === info;
     info.root.visible = visible;
-    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+    info.elem.className = visible ? 'selected' : '';
   });
   requestRenderIfNotRequested();
 }
 
-const uiElem = document.querySelector(&#39;#ui&#39;);
+const uiElem = document.querySelector('#ui');
 fileInfos.forEach((info) =&gt; {
   const boxes = addBoxes(info.file, info.hueRange);
   info.root = boxes;
-  const div = document.createElement(&#39;div&#39;);
+  const div = document.createElement('div');
   info.elem = div;
   div.textContent = info.name;
   uiElem.appendChild(div);
-  div.addEventListener(&#39;mouseover&#39;, () =&gt; {
+  div.addEventListener('mouseover', () =&gt; {
     showFileInfo(fileInfos, info);
   });
 });
 // show the first set of data
 showFileInfo(fileInfos, fileInfos[0]);
-</code></pre>
+</pre>
 <p>もう1つ変更が必要で <code class="notranslate" translate="no">addBoxes</code> の引数に <code class="notranslate" translate="no">hueRange</code> があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function addBoxes(file) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function addBoxes(file) {
 +function addBoxes(file, hueRange) {
 
   ...
@@ -393,20 +389,20 @@ showFileInfo(fileInfos, fileInfos[0]);
 +    const hue = THREE.MathUtils.lerp(...hueRange, amount);
 
   ...
-</code></pre>
+</pre>
 <p>これで4つのデータセットを表示できるようになるはずです。ラベルの上にマウスを置いたり、タッチしてデータセットを切り替える事ができます。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-multiple-data-sets.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-multiple-data-sets.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>注意してほしいのは突出したいくつかの奇妙なデータポイントがあります。</p>
 <p>これは何が起きてるのでしょう！？</p>
 <p>いずれにしてもこの4つのデータセットをラベルから切り替えた際にクロスフェードアニメーションさせるにはどうすればいいのでしょうか。</p>
 <p>たくさんのアイデアがあります。</p>
 <ul>
-<li><p><code class="notranslate" translate="no">Material.opacity</code> でクロスフェードアニメーションする</p>
+<li><p><a href="https://threejs.org/docs/#api/en/materials/Material.opacity"><code class="notranslate" translate="no">Material.opacity</code></a> でクロスフェードアニメーションする</p>
 <p>この解決策の問題点はキューブが完全に重なっているため、Z軸の戦いの問題を意味します。
 depth関数とブレンディングを使い修正できる可能性があります。調べてみた方が良さそうですね。</p>
 </li>
@@ -423,7 +419,7 @@ depth関数とブレンディングを使い修正できる可能性がありま
 <p>モーフターゲットを使ってみましょう。</p>
 <p>これまで通りにデータセットごとにジオメトリを作成しますが、それぞれのデータから <code class="notranslate" translate="no">position</code> を抜き出してモーフターゲットとして使用します。</p>
 <p>まず <code class="notranslate" translate="no">addBoxes</code> を変更してマージされたジオメトリを返すだけに変更してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function addBoxes(file, hueRange) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function addBoxes(file, hueRange) {
 +function makeBoxes(file, hueRange) {
   const {min, max, data} = file;
   const range = max - min;
@@ -441,14 +437,14 @@ depth関数とブレンディングを使い修正できる可能性がありま
 +  return BufferGeometryUtils.mergeBufferGeometries(
 +     geometries, false);
 }
-</code></pre>
+</pre>
 <p>ここでもう1つやるべき事があります。モーフターゲットは全ての頂点数が全く同じである必要があります。
 あるターゲットの頂点#123は、他の全てのターゲットに対応する頂点#123を持つ必要があります。
 しかし、異なるデータセットにはデータのないデータポイントがあるかもしれないので、
 そのポイントに対してはボックスが生成されず、別のデータセットに対応する頂点も生成されません。</p>
 <p>そこで全てのデータセットをチェックし、どのセットにもデータがある場合は常に何かを生成するか、
 またはどのセットにもデータがない場合は何も生成しないかのどちらかを選択する必要があります。後者をやってみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+function dataMissingInAnySet(fileInfos, latNdx, lonNdx) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function dataMissingInAnySet(fileInfos, latNdx, lonNdx) {
 +  for (const fileInfo of fileInfos) {
 +    if (fileInfo.file.data[latNdx][lonNdx] === undefined) {
 +      return true;
@@ -473,9 +469,9 @@ depth関数とブレンディングを使い修正できる可能性がありま
       const amount = (value - min) / range;
 
   ...
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">addBoxes</code> を呼び出していたコードを <code class="notranslate" translate="no">makeBoxes</code> に変更し、モーフターゲットを設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+// make geometry for each data set
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+// make geometry for each data set
 +const geometries = fileInfos.map((info) =&gt; {
 +  return makeBoxes(info.file, info.hueRange, fileInfos);
 +});
@@ -484,7 +480,7 @@ depth関数とブレンディングを使い修正できる可能性がありま
 +// and add all the geometries as morphtargets
 +const baseGeometry = geometries[0];
 +baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
-+  const attribute = geometry.getAttribute(&#39;position&#39;);
++  const attribute = geometry.getAttribute('position');
 +  const name = `target${ndx}`;
 +  attribute.name = name;
 +  return attribute;
@@ -496,23 +492,23 @@ depth関数とブレンディングを使い修正できる可能性がありま
 +const mesh = new THREE.Mesh(baseGeometry, material);
 +scene.add(mesh);
 
-const uiElem = document.querySelector(&#39;#ui&#39;);
+const uiElem = document.querySelector('#ui');
 fileInfos.forEach((info) =&gt; {
 -  const boxes = addBoxes(info.file, info.hueRange);
 -  info.root = boxes;
-  const div = document.createElement(&#39;div&#39;);
+  const div = document.createElement('div');
   info.elem = div;
   div.textContent = info.name;
   uiElem.appendChild(div);
   function show() {
     showFileInfo(fileInfos, info);
   }
-  div.addEventListener(&#39;mouseover&#39;, show);
-  div.addEventListener(&#39;touchstart&#39;, show);
+  div.addEventListener('mouseover', show);
+  div.addEventListener('touchstart', show);
 });
 // show the first set of data
 showFileInfo(fileInfos, fileInfos[0]);
-</code></pre>
+</pre>
 <p>上記では最初のデータセットをベースとしたジオメトリを作成し、各ジオメトリから <code class="notranslate" translate="no">position</code> を取得し、
 それを <code class="notranslate" translate="no">position</code> のベースジオメトリにモーフターゲットとして追加します。
 あとはデータセットの表示・非表示の仕方を変える必要があります。
@@ -522,18 +518,18 @@ showFileInfo(fileInfos, fileInfos[0]);
 または簡単にカスタムアニメーションのコードを書く事ができますが、
 オリジナルのwebgl globeでは<a href="https://github.com/tweenjs/tween.js/">アニメーションライブラリ</a>を使っているので合わせましょう。</p>
 <p>アニメーションライブラリをimportする必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-import {BufferGeometryUtils} from &#39;./resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-+import {TWEEN} from &#39;./resources/threejs/r122/examples/jsm/libs/tween.min.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import {BufferGeometryUtils} from './resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from './resources/threejs/r122/examples/jsm/libs/tween.min.js';
+</pre>
 <p>そして、影響を与えるアニメーションの <code class="notranslate" translate="no">Tween</code> を作成します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
 function showFileInfo(fileInfos, fileInfo) {
   fileInfos.forEach((info) =&gt; {
     const visible = fileInfo === info;
 -    info.root.visible = visible;
-    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+    info.elem.className = visible ? 'selected' : '';
 +    const targets = {};
 +    fileInfos.forEach((info, i) =&gt; {
 +      targets[i] = info === fileInfo ? 1 : 0;
@@ -545,13 +541,13 @@ function showFileInfo(fileInfos, fileInfo) {
   });
   requestRenderIfNotRequested();
 }
-</code></pre>
+</pre>
 <p>レンダリングループ内でフレームごとに <code class="notranslate" translate="no">TWEEN.update</code> を呼び出しますが問題があります。
-&quot;tween.js&quot;は連続的なレンダリング用に設計されていますが、ここでは<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>をしています。
+"tween.js"は連続的なレンダリング用に設計されていますが、ここでは<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>をしています。
 連続的なレンダリングに切り替えれますが、何も起きていない時にはレンダリングコストを下げた方が良いため、要求されたレンダリングだけにするのもいいかもしれません。
 これを助けるために <code class="notranslate" translate="no">TweenManager</code> を作ります。
 TweenManagerは <code class="notranslate" translate="no">update</code> メソッドを持ち、再度呼び出す必要がある場合は <code class="notranslate" translate="no">true</code> を返し、全てのアニメーションが終了した場合は <code class="notranslate" translate="no">false</code> を返します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">class TweenManger {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class TweenManger {
   constructor() {
     this.numTweensRunning = 0;
   }
@@ -568,8 +564,8 @@ TweenManagerは <code class="notranslate" translate="no">update</code> メソッ
       self._handleComplete();
       userCompleteFn.call(this, ...args);
     });
-    // replace the tween&#39;s onComplete function with our own
-    // so we can call the user&#39;s callback if they supply one.
+    // replace the tween's onComplete function with our own
+    // so we can call the user's callback if they supply one.
     tween.onComplete = (fn) =&gt; {
       userCompleteFn = fn;
       return tween;
@@ -581,21 +577,21 @@ TweenManagerは <code class="notranslate" translate="no">update</code> メソッ
     return this.numTweensRunning &gt; 0;
   }
 }
-</code></pre>
+</pre>
 <p>TweenMangerを使用するために次のようなコードにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
-  const canvas = document.querySelector(&#39;#c&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
+  const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas});
 +  const tweenManager = new TweenManger();
 
   ...
-</code></pre>
+</pre>
 <p>TweenMangerを使って <code class="notranslate" translate="no">Tween</code> を作成します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// show the selected data, hide the rest
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
 function showFileInfo(fileInfos, fileInfo) {
   fileInfos.forEach((info) =&gt; {
     const visible = fileInfo === info;
-    info.elem.className = visible ? &#39;selected&#39; : &#39;&#39;;
+    info.elem.className = visible ? 'selected' : '';
     const targets = {};
     fileInfos.forEach((info, i) =&gt; {
       targets[i] = info === fileInfo ? 1 : 0;
@@ -608,9 +604,9 @@ function showFileInfo(fileInfos, fileInfo) {
   });
   requestRenderIfNotRequested();
 }
-</code></pre>
+</pre>
 <p>次にtweenManagerを更新するためにレンダーループを修正し、アニメーションが実行されている場合はレンダリングを継続します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
   renderRequested = false;
 
   if (resizeRendererToDisplaySize(renderer)) {
@@ -627,31 +623,31 @@ function showFileInfo(fileInfos, fileInfo) {
   renderer.render(scene, camera);
 }
 render();
-</code></pre>
+</pre>
 <p>そして、データセットでクロスフェードアニメーションを行う必要があります。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これでクロスフェードアニメーションが上手く動くようですが、残念ながら色を失ってしまいました。</p>
 <p>Three.jsはモーフターゲットの色をサポートしておらず、これはオリジナルの<a href="https://github.com/dataarts/webgl-globe">webgl globe</a>側の問題です。
 基本的には最初のデータセットの色を作るだけです。他のデータセットは色が大きく異なっていても同じ色を使用しています。</p>
 <p>色のモーフィングのサポートを追加できるかどうか見てみましょう。これは壊れやすいかもしれませんね。
 最も壊れやすい方法はおそらく100%独自のシェーダを書く事でしょうが、内蔵シェーダーをどのように修正するかを見るのは有用だと思います。</p>
-<p>まず最初に行う必要があるのは各データセットのジオメトリから色を <code class="notranslate" translate="no">BufferAttribute</code> として抽出するコードを作成する事です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// use the first geometry as the base
+<p>まず最初に行う必要があるのは各データセットのジオメトリから色を <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> として抽出するコードを作成する事です。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// use the first geometry as the base
 // and add all the geometries as morphtargets
 const baseGeometry = geometries[0];
 baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
-  const attribute = geometry.getAttribute(&#39;position&#39;);
+  const attribute = geometry.getAttribute('position');
   const name = `target${ndx}`;
   attribute.name = name;
   return attribute;
 });
 +const colorAttributes = geometries.map((geometry, ndx) =&gt; {
-+  const attribute = geometry.getAttribute(&#39;color&#39;);
++  const attribute = geometry.getAttribute('color');
 +  const name = `morphColor${ndx}`;
 +  attribute.name = `color${ndx}`;  // just for debugging
 +  return {name, attribute};
@@ -660,14 +656,14 @@ const material = new THREE.MeshBasicMaterial({
   vertexColors: THREE.VertexColors,
   morphTargets: true,
 });
-</code></pre>
+</pre>
 <p>次にthree.jsのシェーダーを修正する必要があります。
-Three.jsのマテリアルには <code class="notranslate" translate="no">Material.onBeforeCompile</code> プロパティがあり、関数を割り当てる事ができます。
+Three.jsのマテリアルには <a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a> プロパティがあり、関数を割り当てる事ができます。
 これはWebGLに渡される前にマテリアルのシェーダーを修正する機会を与えてくれます。
 実際に提供されているシェーダーはthree.js独自の特殊なシェーダー構文になっており、
 シェーダーの<em>チャンク</em>の束をリストアップし、three.jsが各チャンクに対して実際のGLSLコードで置換します。
 以下は変更されていない頂点シェーダーのコードで <code class="notranslate" translate="no">onBeforeCompile</code> に渡されるように見えます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">#include &lt;common&gt;
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">#include &lt;common&gt;
 #include &lt;uv_pars_vertex&gt;
 #include &lt;uv2_pars_vertex&gt;
 #include &lt;envmap_pars_vertex&gt;
@@ -698,7 +694,7 @@ void main() {
     #include &lt;envmap_vertex&gt;
     #include &lt;fog_vertex&gt;
 }
-</code></pre>
+</pre>
 <p>上記のシェーダーチャンクから
 <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_pars_vertex.glsl.js"><code class="notranslate" translate="no">morphtarget_pars_vertex</code> チャンク</a>、
 <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphnormal_vertex.glsl.js"><code class="notranslate" translate="no">morphnormal_vertex</code> チャンク</a>、
@@ -706,25 +702,25 @@ void main() {
 <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_pars_vertex.glsl.js"><code class="notranslate" translate="no">color_pars_vertex</code> チャンク</a>、
 <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js"><code class="notranslate" translate="no">color_vertex</code> チャンク</a>
 を置き換えたいと思います。</p>
-<p>これを行うには単純な置換の配列を作成して <code class="notranslate" translate="no">Material.onBeforeCompile</code> で適用します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const material = new THREE.MeshBasicMaterial({
+<p>これを行うには単純な置換の配列を作成して <a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a> で適用します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({
   vertexColors: THREE.VertexColors,
   morphTargets: true,
 });
 +const vertexShaderReplacements = [
 +  {
-+    from: &#39;#include &lt;morphtarget_pars_vertex&gt;&#39;,
++    from: '#include &lt;morphtarget_pars_vertex&gt;',
 +    to: `
 +      uniform float morphTargetInfluences[8];
 +    `,
 +  },
 +  {
-+    from: &#39;#include &lt;morphnormal_vertex&gt;&#39;,
++    from: '#include &lt;morphnormal_vertex&gt;',
 +    to: `
 +    `,
 +  },
 +  {
-+    from: &#39;#include &lt;morphtarget_vertex&gt;&#39;,
++    from: '#include &lt;morphtarget_vertex&gt;',
 +    to: `
 +      transformed += (morphTarget0 - position) * morphTargetInfluences[0];
 +      transformed += (morphTarget1 - position) * morphTargetInfluences[1];
@@ -733,7 +729,7 @@ void main() {
 +    `,
 +  },
 +  {
-+    from: &#39;#include &lt;color_pars_vertex&gt;&#39;,
++    from: '#include &lt;color_pars_vertex&gt;',
 +    to: `
 +      varying vec3 vColor;
 +      attribute vec3 morphColor0;
@@ -743,7 +739,7 @@ void main() {
 +    `,
 +  },
 +  {
-+    from: &#39;#include &lt;color_vertex&gt;&#39;,
++    from: '#include &lt;color_vertex&gt;',
 +    to: `
 +      vColor.xyz = morphColor0 * morphTargetInfluences[0] +
 +                   morphColor1 * morphTargetInfluences[1] +
@@ -757,7 +753,7 @@ void main() {
 +    shader.vertexShader = shader.vertexShader.replace(rep.from, rep.to);
 +  });
 +};
-</code></pre>
+</pre>
 <p>また、Three.jsはモーフターゲットをソートし、最も影響の高いものだけを適用します。
 これにより1度に数個しか使用されない限り、より多くのモーフターゲットを使用する事ができます。
 残念ながらthree.jsではモーフターゲットが何個使われるのか、どの属性に割り当てられるのかを知る方法は提供されていません。
@@ -765,8 +761,7 @@ void main() {
 もしそのアルゴリズムがthree.jsで変更されたら、このコードをリファクタリングする必要があります。</p>
 <p>まず色の属性を全て削除します。今まで追加していなかった属性は削除しても大丈夫なので問題ありません。
 次にthree.jsが使用すると思われるターゲットを計算し、最後にそのターゲットをthree.jsが割り当てる属性に割り当てます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">
-const mesh = new THREE.Mesh(baseGeometry, material);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mesh = new THREE.Mesh(baseGeometry, material);
 scene.add(mesh);
 
 +function updateMorphTargets() {
@@ -775,12 +770,12 @@ scene.add(mesh);
 +    baseGeometry.deleteAttribute(name);
 +  }
 +
-+  // three.js provides no way to query this so we have to guess and hope it doesn&#39;t change.
++  // three.js provides no way to query this so we have to guess and hope it doesn't change.
 +  const maxInfluences = 8;
 +
 +  // three provides no way to query which morph targets it will use
-+  // nor which attributes it will assign them to so we&#39;ll guess.
-+  // If the algorithm in three.js changes we&#39;ll need to refactor this.
++  // nor which attributes it will assign them to so we'll guess.
++  // If the algorithm in three.js changes we'll need to refactor this.
 +  mesh.morphTargetInfluences
 +    .map((influence, i) =&gt; [i, influence])            // map indices to influence
 +    .sort((a, b) =&gt; Math.abs(b[1]) - Math.abs(a[1]))  // sort by highest influence first
@@ -792,9 +787,9 @@ scene.add(mesh);
 +      baseGeometry.setAttribute(name, colorAttributes[ndx].attribute);
 +    });
 +}
-</code></pre>
+</pre>
 <p>この関数は <code class="notranslate" translate="no">loadAll</code> 関数から返します。この方法では変数をリークする必要はありません。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadAll() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadAll() {
   ...
 
 +  return updateMorphTargets;
@@ -806,9 +801,9 @@ scene.add(mesh);
 +loadAll().then(fn =&gt; {
 +  updateMorphTargets = fn;
 +});
-</code></pre>
+</pre>
 <p>最後にtweenManagerで値を更新した後、レンダリング前に <code class="notranslate" translate="no">updateMorphTargets</code> を呼び出す必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
 
   ...
 
@@ -821,14 +816,14 @@ scene.add(mesh);
   controls.update();
   renderer.render(scene, camera);
 }
-</code></pre>
+</pre>
 <p>これで色をクロスフェードアニメーションさせる事ができます。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets-w-colors.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets-w-colors.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これがお役に立てれば幸いです。
 three.jsが提供するサービスを利用するか、カスタムシェーダーを使ってモーフターゲットを使うのは多くのオブジェクトを移動させるための一般的なテクニックです。
 例として全てのキューブに別の目標を設定し、そこから地球上での最初の位置へと変化します。
@@ -836,18 +831,18 @@ three.jsが提供するサービスを利用するか、カスタムシェーダ
 <p>次は<a href="threejs-align-html-elements-to-3d.html">HTML要素を3Dに整列させる</a>で説明している地球儀にラベルを追加します。</p>
 <p>注: 男性や女性の割合、または正の差をグラフ化する事もできますが、情報を表示する方法に基づいて地表から成長するキューブはほとんどのキューブが低い方が良いでしょう。
 これらの他の比較を使用した場合、ほとんどのキューブは最大高さの約1/2の大きさになり可視化として良くありません。
-<code class="notranslate" translate="no">amountGreaterThan</code> を変えたように感じますが、このような場合は <code class="notranslate" translate="no">Math.max(a - b, 0)</code> を <code class="notranslate" translate="no">(a - b)</code> &quot;正の差&quot; や <code class="notranslate" translate="no">a / (a +b)</code> &quot;パーセント&quot; のようなものに変えると何を言っているのかわかるでしょう。</p>
+<code class="notranslate" translate="no">amountGreaterThan</code> を変えたように感じますが、このような場合は <a href="https://threejs.org/docs/#api/en/math/Math.max(a - b, 0)"><code class="notranslate" translate="no">Math.max(a - b, 0)</code></a> を <code class="notranslate" translate="no">(a - b)</code> "正の差" や <code class="notranslate" translate="no">a / (a +b)</code> "パーセント" のようなものに変えると何を言っているのかわかるでしょう。</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">English
+    </option><option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -952,7 +947,7 @@ three.jsが提供するサービスを利用するか、カスタムシェーダ
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -994,7 +989,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

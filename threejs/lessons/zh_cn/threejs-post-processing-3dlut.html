@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,42 +29,40 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="zh_cn">
-<head>
+--><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Post Processing 3DLUT" />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
-<meta property="og:description" content="How to implement a 3DLUT Post Process in THREE.js" />
-<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html" />
+<meta property="og:title" content="Three.js Post Processing 3DLUT">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta property="og:description" content="How to implement a 3DLUT Post Process in THREE.js">
+<meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@greggman" />
-<meta name="twitter:creator" content="@greggman" />
-<meta name="twitter:domain" content="threejsfundamentals.org" />
-<meta name="twitter:title" content="Three.js Post Processing 3DLUT" />
-<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html" />
-<meta name="twitter:description" content="How to implement a 3DLUT Post Process in THREE.js" />
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@greggman">
+<meta name="twitter:creator" content="@greggman">
+<meta name="twitter:domain" content="threejsfundamentals.org">
+<meta name="twitter:title" content="Three.js Post Processing 3DLUT">
+<meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html">
+<meta name="twitter:description" content="How to implement a 3DLUT Post Process in THREE.js">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 
 
 <title>Three.js Post Processing 3DLUT</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
-<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css" />
+<link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-post-processing-3dlut.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-post-processing-3dlut.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-post-processing-3dlut.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-post-processing-3dlut.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-post-processing-3dlut.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html" selected>中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-post-processing-3dlut.html">English
+    </option><option value="/threejs/lessons/fr/threejs-post-processing-3dlut.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-post-processing-3dlut.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-post-processing-3dlut.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-post-processing-3dlut.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html" selected="">中文
+</option></select>
 
 
     <a href="#toc">目录</a>
@@ -165,11 +161,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -189,13 +185,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-post-processing-3dlut.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-post-processing-3dlut.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-post-processing-3dlut.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-post-processing-3dlut.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-post-processing-3dlut.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html" selected>中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-post-processing-3dlut.html">English
+    </option><option value="/threejs/lessons/fr/threejs-post-processing-3dlut.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-post-processing-3dlut.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-post-processing-3dlut.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-post-processing-3dlut.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html" selected="">中文
+</option></select>
 
 
         <ul>  <li>基础</li>
@@ -274,7 +270,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </div>
   </div>
 </div>
-</body>
+
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
@@ -308,7 +304,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

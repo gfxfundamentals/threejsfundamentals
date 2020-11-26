@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/threejs-rendering-on-demand.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/threejs-rendering-on-demand.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="en">
-<head>
+--><html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-rendering-on-demand.html" selected>English</a>
-    <option value="/threejs/lessons/fr/threejs-rendering-on-demand.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html" selected="">English
+    </option><option value="/threejs/lessons/fr/threejs-rendering-on-demand.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-rendering-on-demand.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-rendering-on-demand.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-rendering-on-demand.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">中文
+</option></select>
 
 
     <a href="#toc">Table of Contents</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -238,29 +234,29 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <div class="lesson-main">
       <p>The topic might be obvious to many people but just in case ... most Three.js
 examples render continuously. In other words they setup a
-<code class="notranslate" translate="no">requestAnimationFrame</code> loop or &quot;<em>rAF loop</em>&quot; something like this</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+<code class="notranslate" translate="no">requestAnimationFrame</code> loop or "<em>rAF loop</em>" something like this</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
   ...
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);
-</code></pre>
+</pre>
 <p>For something that animates this makes sense but what about for something that
 does not animate? In that case rendering continuously is a waste of the devices
-power and if the user is on portable device it wastes the user&#39;s battery. </p>
+power and if the user is on portable device it wastes the user's battery. </p>
 <p>The most obvious way to solve this is to render once at the start and then
 render only when something changes. Changes include textures or models finally
 loading, data arriving from some external source, the user adjusting a setting
 or the camera or giving other relevant input.</p>
-<p>Let&#39;s take an example from <a href="threejs-responsive.html">the article on responsiveness</a>
+<p>Let's take an example from <a href="threejs-responsive.html">the article on responsiveness</a>
 and modify it to render on demand.</p>
-<p>First we&#39;ll add in the <code class="notranslate" translate="no">OrbitControls</code> so there is something that could change
+<p>First we'll add in the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> so there is something that could change
 that we can render in response to.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+</pre>
 <p>and set them up</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
@@ -270,9 +266,9 @@ camera.position.z = 2;
 +const controls = new OrbitControls(camera, canvas);
 +controls.target.set(0, 0, 0);
 +controls.update();
-</code></pre>
-<p>Since we won&#39;t be animating the cubes anymore we no longer need to keep track of them</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const cubes = [
+</pre>
+<p>Since we won't be animating the cubes anymore we no longer need to keep track of them</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -280,9 +276,9 @@ camera.position.z = 2;
 +makeInstance(geometry, 0x44aa88,  0);
 +makeInstance(geometry, 0x8844aa, -2);
 +makeInstance(geometry, 0xaa8844,  2);
-</code></pre>
+</pre>
 <p>We can remove the code to animate the cubes and the calls to <code class="notranslate" translate="no">requestAnimationFrame</code></p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function render(time) {
 -  time *= 0.001;
 +function render() {
 
@@ -305,41 +301,41 @@ camera.position.z = 2;
 }
 
 -requestAnimationFrame(render);
-</code></pre>
+</pre>
 <p>then we need to render once</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">render();
-</code></pre>
-<p>We need to render anytime the <code class="notranslate" translate="no">OrbitControls</code> change the camera settings.
-Fortunately the <code class="notranslate" translate="no">OrbitControls</code> dispatch a <code class="notranslate" translate="no">change</code> event anytime something
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">render();
+</pre>
+<p>We need to render anytime the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> change the camera settings.
+Fortunately the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> dispatch a <code class="notranslate" translate="no">change</code> event anytime something
 changes.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.addEventListener('change', render);
+</pre>
 <p>We also need to handle the case where the user resizes the window. That was
 handled automatically before since we were rendering continuously but now what
 we are not we need to render when the window changes size.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">window.addEventListener('resize', render);
+</pre>
 <p>And with that we get something that renders on demand.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">click here to open in a separate window</a>
 </div>
 
-</p>
-<p>The <code class="notranslate" translate="no">OrbitControls</code> have options to add a kind of inertia to make them feel less
+<p></p>
+<p>The <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> have options to add a kind of inertia to make them feel less
 stiff. We can enable this by setting the <code class="notranslate" translate="no">enableDamping</code> property to true.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.enableDamping = true;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.enableDamping = true;
+</pre>
 <p>With <code class="notranslate" translate="no">enableDamping</code> on we need to call <code class="notranslate" translate="no">controls.update</code> in our render function
-so that the <code class="notranslate" translate="no">OrbitControls</code> can continue to give us new camera settings as they
-smooth out the movement. But, that means we can&#39;t call <code class="notranslate" translate="no">render</code> directly from
-the <code class="notranslate" translate="no">change</code> event because we&#39;ll end up in an infinite loop. The controls will
+so that the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> can continue to give us new camera settings as they
+smooth out the movement. But, that means we can't call <code class="notranslate" translate="no">render</code> directly from
+the <code class="notranslate" translate="no">change</code> event because we'll end up in an infinite loop. The controls will
 send us a <code class="notranslate" translate="no">change</code> event and call <code class="notranslate" translate="no">render</code>, <code class="notranslate" translate="no">render</code> will call <code class="notranslate" translate="no">controls.update</code>.
 <code class="notranslate" translate="no">controls.update</code> will send another <code class="notranslate" translate="no">change</code> event.</p>
 <p>We can fix that by using <code class="notranslate" translate="no">requestAnimationFrame</code> to call <code class="notranslate" translate="no">render</code> but we need to
 make sure we only ask for a new frame if one has not already been requested
-which we can do by keeping a variable that tracks if we&#39;ve already requested a frame.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+let renderRequested = false;
+which we can do by keeping a variable that tracks if we've already requested a frame.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+let renderRequested = false;
 
 function render() {
 +  renderRequested = false;
@@ -361,38 +357,38 @@ render();
 +  }
 +}
 
--controls.addEventListener(&#39;change&#39;, render);
-+controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
-</code></pre>
+-controls.addEventListener('change', render);
++controls.addEventListener('change', requestRenderIfNotRequested);
+</pre>
 <p>We should probably also use <code class="notranslate" translate="no">requestRenderIfNotRequested</code> for resizing as well</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
-+window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-window.addEventListener('resize', render);
++window.addEventListener('resize', requestRenderIfNotRequested);
+</pre>
 <p>It might be hard to see the difference. Try clicking on the example below and
 use the arrow keys to move around or dragging to spin. Then try clicking on the
 example above and do the same thing and you should be able to tell the
 difference. The one above snaps when you press an arrow key or drag, the one
 below slides.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">click here to open in a separate window</a>
 </div>
 
-</p>
-<p>Let&#39;s also add a simple dat.GUI GUI and make its changes render on demand.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-+import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
-</code></pre>
-<p>Let&#39;s allow setting the color and x scale of each cube. To be able to set the
-color we&#39;ll use the <code class="notranslate" translate="no">ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
+<p></p>
+<p>Let's also add a simple dat.GUI GUI and make its changes render on demand.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
++import {GUI} from '../3rdparty/dat.gui.module.js';
+</pre>
+<p>Let's allow setting the color and x scale of each cube. To be able to set the
+color we'll use the <code class="notranslate" translate="no">ColorGUIHelper</code> we created in the <a href="threejs-lights.html">article on
 lights</a>.</p>
 <p>First we need to create a GUI</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
-</code></pre>
-<p>and then for each cube we&#39;ll create a folder and add 2 controls, one for
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+</pre>
+<p>and then for each cube we'll create a folder and add 2 controls, one for
 <code class="notranslate" translate="no">material.color</code> and another for <code class="notranslate" translate="no">cube.scale.x</code>.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -401,27 +397,27 @@ lights</a>.</p>
   cube.position.x = x;
 
 +  const folder = gui.addFolder(`Cube${x}`);
-+  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
-+      .name(&#39;color&#39;)
++  folder.addColor(new ColorGUIHelper(material, 'color'), 'value')
++      .name('color')
 +      .onChange(requestRenderIfNotRequested);
-+  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
-+      .name(&#39;scale x&#39;)
++  folder.add(cube.scale, 'x', .1, 1.5)
++      .name('scale x')
 +      .onChange(requestRenderIfNotRequested);
 +  folder.open();
 
   return cube;
 }
-</code></pre>
+</pre>
 <p>You can see above dat.GUI controls have an <code class="notranslate" translate="no">onChange</code> method that you can pass a
 callback to be called when the GUI changes a value. In our case we just need it
 to call <code class="notranslate" translate="no">requestRenderIfNotRequested</code>. The call to <code class="notranslate" translate="no">folder.open</code> makes the
 folder start expanded.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">click here to open in a separate window</a>
 </div>
 
-</p>
+<p></p>
 <p>I hope this gives some idea of how to make three.js render on demand instead of
 continuously. Apps/pages that render three.js on demand are not as common as
 most pages using three.js are either games or 3D animated art but examples of
@@ -431,13 +427,13 @@ editor, a 3d graph generator, a product catalog, etc...</p>
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-rendering-on-demand.html" selected>English</a>
-    <option value="/threejs/lessons/fr/threejs-rendering-on-demand.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html" selected="">English
+    </option><option value="/threejs/lessons/fr/threejs-rendering-on-demand.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-rendering-on-demand.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-rendering-on-demand.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-rendering-on-demand.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -520,10 +516,10 @@ editor, a 3d graph generator, a product catalog, etc...</p>
         
     <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
     <div>
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?
     </div>
     <div class="lesson-comment-notes">
        Use <b>&lt;pre&gt;&lt;code&gt;</b>code goes here<b>&lt;/code&gt;&lt;/pre&gt;</b> for code blocks
@@ -552,7 +548,7 @@ editor, a 3d graph generator, a product catalog, etc...</p>
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -594,7 +590,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

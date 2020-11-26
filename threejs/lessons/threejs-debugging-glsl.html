@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/threejs-debugging-glsl.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/threejs-debugging-glsl.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="en">
-<head>
+--><html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-debugging-glsl.html" selected>English</a>
-    <option value="/threejs/lessons/fr/threejs-debugging-glsl.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-debugging-glsl.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-debugging-glsl.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-debugging-glsl.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-debugging-glsl.html" selected="">English
+    </option><option value="/threejs/lessons/fr/threejs-debugging-glsl.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-debugging-glsl.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-debugging-glsl.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-debugging-glsl.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">中文
+</option></select>
 
 
     <a href="#toc">Table of Contents</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -240,39 +236,39 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Those are really large topics. If you want to learn GLSL consider checking out
 <a href="https://webglfundamentals.org">these articles</a> as a starting place.</p>
 <p>If you already know GLSL then here are a few tips for debugging.</p>
-<p>When I&#39;m making a new GLSL shader and nothing appears generally
+<p>When I'm making a new GLSL shader and nothing appears generally
 the first thing I do is change the fragment shader to return a solid
 color. For example at the very bottom of the shader I might put</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">void main() {
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">void main() {
 
   ...
 
   gl_FragColor = vec4(1, 0, 0, 1);  // red
 }
-</code></pre>
+</pre>
 <p>If I see the object I was trying to draw then I know the issue is
 related to my fragment shader. It could be anything like bad textures,
 uninitialized uniforms, uniforms with the wrong values but at least
 I have a direction to look.</p>
 <p>To test some of those I might start trying to draw some of the inputs.
-For example if I&#39;m using normals in the fragment shader then I might
+For example if I'm using normals in the fragment shader then I might
 add</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
+</pre>
 <p>Normals go from -1 to +1 so by multiplying by 0.5 and adding 0.5 we get
 values that go from 0.0 to 1.0 which makes them useful for colors.</p>
-<p>Try this with some things you know work and you&#39;ll start getting an idea
-of what normals <em>normally</em> look like. If your normals don&#39;t look normal
-then you have some clue where to look. If you&#39;re manipulating normals
+<p>Try this with some things you know work and you'll start getting an idea
+of what normals <em>normally</em> look like. If your normals don't look normal
+then you have some clue where to look. If you're manipulating normals
 in the fragments shader you can use the same technique to draw the
 result of that manipulation.</p>
 <div class="threejs_center"><img src="resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
-<p>Similarly if we&#39;re using textures there will be texture coordinates and we
+<p>Similarly if we're using textures there will be texture coordinates and we
 can draw them with something like</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(fract(vUv), 0, 1);
-</code></pre>
-<p>The <code class="notranslate" translate="no">fract</code> is there in case we&#39;re using texture coordinates that go outside
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">gl_FragColor = vec4(fract(vUv), 0, 1);
+</pre>
+<p>The <code class="notranslate" translate="no">fract</code> is there in case we're using texture coordinates that go outside
 the 0 to 1 range. This is common if <code class="notranslate" translate="no">texture.repeat</code> is set to something greater
 than 1.</p>
 <div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
@@ -280,17 +276,17 @@ than 1.</p>
 <p>You can do similar things for all values in your fragment shader. Figure out
 what their range is likely to be, add some code to set <code class="notranslate" translate="no">gl_FragColor</code> with
 that range scaled to 0.0 to 1.0</p>
-<p>To check textures try a <code class="notranslate" translate="no">CanvasTexture</code> or a <code class="notranslate" translate="no">DataTexture</code> that you 
+<p>To check textures try a <a href="https://threejs.org/docs/#api/en/textures/CanvasTexture"><code class="notranslate" translate="no">CanvasTexture</code></a> or a <a href="https://threejs.org/docs/#api/en/textures/DataTexture"><code class="notranslate" translate="no">DataTexture</code></a> that you 
 know works.</p>
 <p>Conversely, if after setting <code class="notranslate" translate="no">gl_FragColor</code> to red I still see nothing
 then I have a hint my issue might be in the direction of the things
 related to the vertex shader. Some matrices might be wrong or my
 attributes might have bad data or be setup incorrectly.</p>
-<p>I&#39;d first look at the matrices. I might put a breakpoint right after
+<p>I'd first look at the matrices. I might put a breakpoint right after
 my call to <code class="notranslate" translate="no">renderer.render(scene, camera)</code> and then start expanding
-things in the inspector. Is the camera&#39;s world matrix and projection
+things in the inspector. Is the camera's world matrix and projection
 matrix at least not full of <code class="notranslate" translate="no">NaN</code>s? Expanding the scene and looking
-at its <code class="notranslate" translate="no">children</code> I&#39;d check that the world matrices look reasonable (no <code class="notranslate" translate="no">NaN</code>s)
+at its <code class="notranslate" translate="no">children</code> I'd check that the world matrices look reasonable (no <code class="notranslate" translate="no">NaN</code>s)
 and last 4 values of each matrix look reasonable for my scene. If I 
 expect my scene to be 50x50x50 units and some matrix shows 552352623.123 
 clearly something is wrong there.</p>
@@ -298,35 +294,35 @@ clearly something is wrong there.</p>
 
 <p>Just like we did for the fragment shader we can also draw values from the
 vertex shader by passing them to the fragment shader. Declare a varying
-in both and pass the value you&#39;re not sure is correct. In fact if my
-shader use using normals I&#39;ll change the fragment shader to display them
+in both and pass the value you're not sure is correct. In fact if my
+shader use using normals I'll change the fragment shader to display them
 like is mentioned above and then just set <code class="notranslate" translate="no">vNormal</code> to the value I want 
 to display but scaled so the values go from 0.0 to 1.0. I then look at the
 results and see if they fit my expectations.</p>
 <p>Another good thing to do is use a simpler shader. Can you draw your data
-with <code class="notranslate" translate="no">MeshBasicMaterial</code>? If you can then try it and make sure it shows
+with <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>? If you can then try it and make sure it shows
 up as expected.</p>
-<p>If not what&#39;s the simplest vertex shader that will let you visualize your
-geometry? Usually it&#39;s as simple as</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_Position = projection * modelView * vec4(position.xyz, 1);
-</code></pre>
+<p>If not what's the simplest vertex shader that will let you visualize your
+geometry? Usually it's as simple as</p>
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">gl_Position = projection * modelView * vec4(position.xyz, 1);
+</pre>
 <p>If that works start adding in your changes a little at a time.</p>
 <p>Yet another thing you can do is use the
 <a href="https://chrome.google.com/webstore/detail/shader-editor/ggeaidddejpbakgafapihjbgdlbbbpob?hl=en">Shader Editor extension for Chrome</a>
-or similar for other browsers. It&#39;s a great way to look at how other shaders
-are working. It&#39;s also good as you can make some of the changes suggested above
+or similar for other browsers. It's a great way to look at how other shaders
+are working. It's also good as you can make some of the changes suggested above
 live while the code is running.</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-debugging-glsl.html" selected>English</a>
-    <option value="/threejs/lessons/fr/threejs-debugging-glsl.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-debugging-glsl.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-debugging-glsl.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-debugging-glsl.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-debugging-glsl.html" selected="">English
+    </option><option value="/threejs/lessons/fr/threejs-debugging-glsl.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-debugging-glsl.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-debugging-glsl.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-debugging-glsl.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -409,10 +405,10 @@ live while the code is running.</p>
         
     <div>Questions? <a href="http://stackoverflow.com/questions/tagged/three.js">Ask on stackoverflow</a>.</div>
     <div>
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>?
+       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?
     </div>
     <div class="lesson-comment-notes">
        Use <b>&lt;pre&gt;&lt;code&gt;</b>code goes here<b>&lt;/code&gt;&lt;/pre&gt;</b> for code blocks
@@ -441,7 +437,7 @@ live while the code is running.</p>
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -483,7 +479,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

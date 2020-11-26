@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-rendering-on-demand.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-rendering-on-demand.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-rendering-on-demand.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-rendering-on-demand.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html">English
+    </option><option value="/threejs/lessons/fr/threejs-rendering-on-demand.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-rendering-on-demand.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-rendering-on-demand.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -237,24 +233,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <div class="lesson">
     <div class="lesson-main">
       <p>多くの人にとって当然かもしれませんが、ほとんどのThree.js exampleでは連続したレンダリングをします。
-言い換えると <code class="notranslate" translate="no">requestAnimationFrame</code> ループ、または&quot;<em>rAF loop</em>&quot;ループは以下のようになります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+言い換えると <code class="notranslate" translate="no">requestAnimationFrame</code> ループ、または"<em>rAF loop</em>"ループは以下のようになります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
   ...
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);
-</code></pre>
+</pre>
 <p>アニメーションする時は意味がありますがしない時はどうでしょう？
 連続したレンダリングはデバイスの電力浪費になり、ポータブルデバイスを使用している場合はバッテリーを浪費します。</p>
 <p>これを解決する最も明確な方法は、最初に一度レンダリングして何か変更された時だけレンダリングする事です。
 変更にはテクスチャやモデルの読込完了、外部ソースからのデータ受取、ユーザーによる設定やカメラ調整などその他の関連する入力などが含まれます。</p>
 <p><a href="threejs-responsive.html">レスポンシブデザインの記事</a>を例に要求に応じてレンダリングするように修正してみましょう。</p>
-<p>最初に <code class="notranslate" translate="no">OrbitControls</code> を追加します。これで何かの変更を反映してレンダリングする事ができます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-+import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-</code></pre>
+<p>最初に <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を追加します。これで何かの変更を反映してレンダリングする事ができます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+</pre>
 <p>次に以下のように設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // the canvas default
 const near = 0.1;
 const far = 5;
@@ -264,9 +260,9 @@ camera.position.z = 2;
 +const controls = new OrbitControls(camera, canvas);
 +controls.target.set(0, 0, 0);
 +controls.update();
-</code></pre>
+</pre>
 <p>cubesのアニメーションは必要がないのでトラッキングは必要はありません。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const cubes = [
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -274,9 +270,9 @@ camera.position.z = 2;
 +makeInstance(geometry, 0x44aa88,  0);
 +makeInstance(geometry, 0x8844aa, -2);
 +makeInstance(geometry, 0xaa8844,  2);
-</code></pre>
+</pre>
 <p>cubesをアニメーションさせるコードと <code class="notranslate" translate="no">requestAnimationFrame</code> の呼出を削除する事ができます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function render(time) {
 -  time *= 0.001;
 +function render() {
 
@@ -299,37 +295,37 @@ camera.position.z = 2;
 }
 
 -requestAnimationFrame(render);
-</code></pre>
+</pre>
 <p>そして、もう一度レンダリングする必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">render();
-</code></pre>
-<p><code class="notranslate" translate="no">OrbitControls</code> がカメラ設定を変更する時はレンダリングする必要があります。
-幸いな事に <code class="notranslate" translate="no">OrbitControls</code> は何か変更された時に <code class="notranslate" translate="no">change</code> イベントをdispatchします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">render();
+</pre>
+<p><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> がカメラ設定を変更する時はレンダリングする必要があります。
+幸いな事に <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> は何か変更された時に <code class="notranslate" translate="no">change</code> イベントをdispatchします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.addEventListener('change', render);
+</pre>
 <p>ウィンドウのリサイズ時の対応も必要です。
 前は連続したレンダリングで自動的な処理でしたが、ウィンドウのリサイズ時にレンダリングする必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">window.addEventListener('resize', render);
+</pre>
 <p>これで要求されたらレンダリングする事ができます。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
-<p><code class="notranslate" translate="no">OrbitControls</code> には慣性のようなものを追加して動きを滑らかにするオプションがあります。
+<p></p>
+<p><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> には慣性のようなものを追加して動きを滑らかにするオプションがあります。
 これを有効にするには <code class="notranslate" translate="no">enableDamping</code> プロパティをtrueに設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.enableDamping = true;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.enableDamping = true;
+</pre>
 <p><code class="notranslate" translate="no">enableDamping</code> をオンにした状態で、render関数内で <code class="notranslate" translate="no">controls.update</code> を呼び出す必要があります。
-これで動きを滑らかにする新しいカメラ設定を <code class="notranslate" translate="no">OrbitControls</code> に与えてくれます。
+これで動きを滑らかにする新しいカメラ設定を <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> に与えてくれます。
 この設定は動きを滑らかにしてくれますが、無限ループになってしまうので <code class="notranslate" translate="no">change</code> イベントから直接 <code class="notranslate" translate="no">render</code> を呼び出す事はできません。
 controlsは <code class="notranslate" translate="no">change</code> イベントを送信し <code class="notranslate" translate="no">render</code> を呼び出します。 <code class="notranslate" translate="no">render</code> は <code class="notranslate" translate="no">controls.update</code> を呼び出します。
 <code class="notranslate" translate="no">controltrols.update</code> は別の <code class="notranslate" translate="no">change</code> イベントを送信します。</p>
 <p>この問題は <code class="notranslate" translate="no">requestAnimationFrame</code> を使い <code class="notranslate" translate="no">render</code> を呼び出す事で解決できます。
 まだ新しいフレームが要求されていない場合、新しいフレームを要求するようにしなければなりません。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+let renderRequested = false;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+let renderRequested = false;
 
 function render() {
 +  renderRequested = false;
@@ -351,35 +347,35 @@ render();
 +  }
 +}
 
--controls.addEventListener(&#39;change&#39;, render);
-+controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
-</code></pre>
+-controls.addEventListener('change', render);
++controls.addEventListener('change', requestRenderIfNotRequested);
+</pre>
 <p>リサイズにも <code class="notranslate" translate="no">requestRenderIfNotRequested</code> を使うべきでしょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
-+window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-window.addEventListener('resize', render);
++window.addEventListener('resize', requestRenderIfNotRequested);
+</pre>
 <p>違いがわかりにくいかもしれません。以下のサンプルで矢印キーを使って移動したりドラッグして回転させてみて下さい。
 次にこのページの一番上のサンプルで同じ事をしてみて下さい。
 一番上のサンプルでは矢印キーを押したりドラッグしたりするとスナップし、以下のサンプルではスライドします。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>シンプルなdat.GUIを追加し、GUIで値の変更時にレンダリングを要求してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-+import {GUI} from &#39;../3rdparty/dat.gui.module.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
++import {GUI} from '../3rdparty/dat.gui.module.js';
+</pre>
 <p>各キューブの色と×スケールを設定できるようにしましょう。
 色を設定するには<a href="threejs-lights.html">照明の記事</a>で作成した <code class="notranslate" translate="no">ColorGUIHelper</code> を使います。</p>
 <p>まずはGUIを作成する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+</pre>
 <p>次に各キューブに対してフォルダを作成し、2つのコントロールを追加します。
 1つは <code class="notranslate" translate="no">material.color</code>、もう1つは <code class="notranslate" translate="no">cube.scale.x</code>です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -388,38 +384,38 @@ import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/
   cube.position.x = x;
 
 +  const folder = gui.addFolder(`Cube${x}`);
-+  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
-+      .name(&#39;color&#39;)
++  folder.addColor(new ColorGUIHelper(material, 'color'), 'value')
++      .name('color')
 +      .onChange(requestRenderIfNotRequested);
-+  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
-+      .name(&#39;scale x&#39;)
++  folder.add(cube.scale, 'x', .1, 1.5)
++      .name('scale x')
 +      .onChange(requestRenderIfNotRequested);
 +  folder.open();
 
   return cube;
 }
-</code></pre>
+</pre>
 <p>dat.GUIには <code class="notranslate" translate="no">onChange</code> メソッドがあり、GUIで値を変更時にコールバックを渡す事ができます。今回は <code class="notranslate" translate="no">requestRenderIfNotRequested</code> をコールバックするだけです。
 <code class="notranslate" translate="no">folder.open</code> でフォルダ展開できます。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>three.jsを連続したレンダリングでなく、要求に応じてレンダリングさせる方法のヒントになれば幸いです。
 three.jsを要求に応じてレンダリングするアプリ/ページはあまり一般的ではありませんが、three.jsを使用しているページの多くはゲームや3Dアニメーション、エディタ、3Dグラフ生成、商品カタログなどのアートです。</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-rendering-on-demand.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-rendering-on-demand.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html">English
+    </option><option value="/threejs/lessons/fr/threejs-rendering-on-demand.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-rendering-on-demand.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-rendering-on-demand.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -524,7 +520,7 @@ three.jsを要求に応じてレンダリングするアプリ/ページはあ�
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -566,7 +562,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

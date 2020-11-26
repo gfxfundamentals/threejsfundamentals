@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/threejs-rendering-on-demand.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/kr/threejs-rendering-on-demand.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ko">
-<head>
+--><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,13 +110,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-rendering-on-demand.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-rendering-on-demand.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html">English
+    </option><option value="/threejs/lessons/fr/threejs-rendering-on-demand.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-rendering-on-demand.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-rendering-on-demand.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">中文
+</option></select>
 
 
     <a href="#toc">목차</a>
@@ -219,11 +215,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -241,12 +237,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 글을 써보려 합니다. 대부분의 Three.js 예제는 렌더링 과정을 계속 반복합니다.
 그러니까 아래와 같이 재귀적으로 <code class="notranslate" translate="no">requestAnimationFrame</code> 함수를 사용한다는
 거죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
   ...
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);
-</code></pre>
+</pre>
 <p>계속 애니메이션이 있는 경우에야 별 상관이 없지만, 애니메이션이 없는 경우라면
 어떨까요? 이 경우 불필요한 렌더링을 반복하는 것은 연산 낭비일 뿐더러 사용
 환경이 모바일이라면 사용자의 배터리까지 낭비하는 셈입니다.</p>
@@ -256,9 +252,9 @@ requestAnimationFrame(render);
 변경된 경우 등 다양하겠죠.</p>
 <p><a href="threejs-responsive.html">반응형 디자인에 관한 글</a>에서 썼던 예제를 수정해
 필요에 따른 렌더링을 구현해봅시다.</p>
-<p>먼저 뭔가 변화를 일으킬 수 있는 요소가 필요하니 <code class="notranslate" translate="no">OrbitControls</code>를 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-+import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
+<p>먼저 뭔가 변화를 일으킬 수 있는 요소가 필요하니 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>를 추가합니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
 
 ...
 
@@ -272,9 +268,9 @@ camera.position.z = 2;
 +const controls = new OrbitControls(camera, canvas);
 +controls.target.set(0, 0, 0);
 +controls.update();
-</code></pre>
+</pre>
 <p>정육면체에 애니메이션을 넣지 않을 것이니 이들을 참조할 필요가 없습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const cubes = [
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -282,9 +278,9 @@ camera.position.z = 2;
 +makeInstance(geometry, 0x44aa88,  0);
 +makeInstance(geometry, 0x8844aa, -2);
 +makeInstance(geometry, 0xaa8844,  2);
-</code></pre>
+</pre>
 <p>애니메이션과 <code class="notranslate" translate="no">requestAnimationFrame</code> 관련 코드도 제거합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function render(time) {
 -  time *= 0.001;
 +function render() {
 
@@ -307,32 +303,32 @@ camera.position.z = 2;
 }
 
 -requestAnimationFrame(render);
-</code></pre>
+</pre>
 <p>그리고 <code class="notranslate" translate="no">render</code> 함수를 직접 호출합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">render();
-</code></pre>
-<p>이제 <code class="notranslate" translate="no">OrbitControls</code>가 카메라 설정을 바꿀 때마다 직접 <code class="notranslate" translate="no">render</code> 함수를 호출해야
-합니다. 뭔가 복잡할 것 같지만 다행히 <code class="notranslate" translate="no">OrbitControls</code>에는 <code class="notranslate" translate="no">change</code> 이벤트가 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.addEventListener(&#39;change&#39;, render);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">render();
+</pre>
+<p>이제 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>가 카메라 설정을 바꿀 때마다 직접 <code class="notranslate" translate="no">render</code> 함수를 호출해야
+합니다. 뭔가 복잡할 것 같지만 다행히 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>에는 <code class="notranslate" translate="no">change</code> 이벤트가 있습니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.addEventListener('change', render);
+</pre>
 <p>또한 창 크기가 바뀔 때의 동작도 직접 처리해야 합니다. <code class="notranslate" translate="no">render</code> 함수를 계속 호출할
 때는 해당 동작을 자동으로 처리했지만, 지금은 <code class="notranslate" translate="no">render</code> 함수를 수동으로 호출하므로
 창의 크기가 바뀔 때 <code class="notranslate" translate="no">render</code> 함수를 호출하도록 하겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">window.addEventListener(&#39;resize&#39;, render);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">window.addEventListener('resize', render);
+</pre>
 <p>이제 불필요한 렌더링을 반복하지 않습니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
-<p><code class="notranslate" translate="no">OrbitControls</code>에는 관성(inertia) 옵션이 있습니다. <code class="notranslate" translate="no">enableDamping</code> 속성을 ture로
+<p></p>
+<p><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>에는 관성(inertia) 옵션이 있습니다. <code class="notranslate" translate="no">enableDamping</code> 속성을 ture로
 설정하면 동작이 좀 더 부드러워지죠.</p>
 <p>※ damping: 감쇠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">controls.enableDamping = true;
-</code></pre>
-<p>또한 <code class="notranslate" translate="no">OrbitControls</code>가 부드러운 동작을 구현할 때 변경된 카메라 값을 계속 넘겨주도록
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.enableDamping = true;
+</pre>
+<p>또한 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>가 부드러운 동작을 구현할 때 변경된 카메라 값을 계속 넘겨주도록
 <code class="notranslate" translate="no">render</code> 함수 안에서 <code class="notranslate" translate="no">controls.update</code> 메서드를 호출해야 합니다. 하지만 이렇게 하면
 <code class="notranslate" translate="no">change</code> 이벤트가 발생했을 때 <code class="notranslate" translate="no">render</code> 함수가 무한정 호출될 겁니다. controls가 <code class="notranslate" translate="no">change</code>
 이벤트를 보내면 <code class="notranslate" translate="no">render</code> 함수가 호출되고, <code class="notranslate" translate="no">render</code> 함수는 <code class="notranslate" translate="no">controls.update</code> 메서드를
@@ -340,7 +336,7 @@ camera.position.z = 2;
 <p><code class="notranslate" translate="no">requestAnimationFrame</code>이 직접 <code class="notranslate" translate="no">render</code> 함수를 호출하게 하면 이 문제를 해결 할 수
 있습니다. 너무 많은 프레임을 막기 위해 변수 하나를 두어 요청한 프레임이 없을 경우에만
 프레임을 요청하도록 하면 되겠네요.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+let renderRequested = false;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+let renderRequested = false;
 
 function render() {
 +  renderRequested = false;
@@ -363,35 +359,35 @@ render();
 +  }
 +}
 
--controls.addEventListener(&#39;change&#39;, render);
-+controls.addEventListener(&#39;change&#39;, requestRenderIfNotRequested);
-</code></pre>
+-controls.addEventListener('change', render);
++controls.addEventListener('change', requestRenderIfNotRequested);
+</pre>
 <p>창 크기 변화가 일어났을 때도 <code class="notranslate" translate="no">requestRenderIfNotRequested</code>를 호출하도록 합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-window.addEventListener(&#39;resize&#39;, render);
-+window.addEventListener(&#39;resize&#39;, requestRenderIfNotRequested);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-window.addEventListener('resize', render);
++window.addEventListener('resize', requestRenderIfNotRequested);
+</pre>
 <p>차이점을 느끼기 어려울지도 모르겠습니다. 화살표 키를 쓰거나 예제를 드래그해 보고
 다시 위 예제를 이리저리 돌려보세요. 차이점이 느껴질 거예요. 위 예제는 화살표 키를
 눌렀을 때 일정 거리만큼 순간이동하지만 아래의 예제는 약간 미끄러집니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>간단한 dat.GUI를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-+import { GUI } from &#39;../3rdparty/dat.gui.module.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
++import { GUI } from '../3rdparty/dat.gui.module.js';
+</pre>
 <p>먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. <a href="threejs-lights.html">조명에 관한 글</a>에서
 썼던 <code class="notranslate" translate="no">ColorGUIHelper</code>를 가져와 쓰도록 하죠.</p>
 <p>먼저 GUI를 생성합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const gui = new GUI();
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+</pre>
 <p>그리고 각 정육면체에 <code class="notranslate" translate="no">material.color</code>, <code class="notranslate" translate="no">cube.scale.x</code> 설정을 폴더로 묶어
 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
   const cube = new THREE.Mesh(geometry, material);
@@ -400,26 +396,26 @@ import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/control
   cube.position.x = x;
 
 +  const folder = gui.addFolder(`Cube${ x }`);
-+  folder.addColor(new ColorGUIHelper(material, &#39;color&#39;), &#39;value&#39;)
-+      .name(&#39;color&#39;)
++  folder.addColor(new ColorGUIHelper(material, 'color'), 'value')
++      .name('color')
 +      .onChange(requestRenderIfNotRequested);
-+  folder.add(cube.scale, &#39;x&#39;, .1, 1.5)
-+      .name(&#39;scale x&#39;)
++  folder.add(cube.scale, 'x', .1, 1.5)
++      .name('scale x')
 +      .onChange(requestRenderIfNotRequested);
 +  folder.open();
 
   return cube;
 }
-</code></pre>
+</pre>
 <p>dat.GUI 컨트롤(control)의 <code class="notranslate" translate="no">onChange</code> 메서드에 콜백 함수를 넘겨주면 GUI 값이 바뀔
 때마다 콜백 함수를 호출합니다. 예제의 경우에는 단순히 <code class="notranslate" translate="no">requestRenderIfNotRequested</code>
 함수를 넘겨주면 되죠. 그리고 <code class="notranslate" translate="no">folder.open</code> 메서드를 호출해 폴더를 열어 둡니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>이 글이 불필요한 렌더링 제거에 대한 개념을 조금이라도 잡아주었길 바랍니다. 보통
 Three.js를 사용할 때는 이렇게 렌더링 루프를 제어할 일이 없습니다. 대게 게임 또는
 애니메이션이 들어간 3D 컨텐츠이기 때문이죠. 하지만 지도나, 3D 에디터, 3D 그래프,
@@ -428,13 +424,13 @@ Three.js를 사용할 때는 이렇게 렌더링 루프를 제어할 일이 없�
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-rendering-on-demand.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-rendering-on-demand.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-rendering-on-demand.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-rendering-on-demand.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-rendering-on-demand.html">English
+    </option><option value="/threejs/lessons/fr/threejs-rendering-on-demand.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-rendering-on-demand.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-rendering-on-demand.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-rendering-on-demand.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -547,7 +543,7 @@ Three.js를 사용할 때는 이렇게 렌더링 루프를 제어할 일이 없�
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -589,7 +585,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

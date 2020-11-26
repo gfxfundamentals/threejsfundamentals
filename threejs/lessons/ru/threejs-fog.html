@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/threejs-fog.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ru/threejs-fog.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ru">
-<head>
+--><html lang="ru"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-fog.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-fog.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-fog.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-fog.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-fog.html" selected>Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-fog.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-fog.html">English
+    </option><option value="/threejs/lessons/fr/threejs-fog.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-fog.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-fog.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-fog.html" selected="">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-fog.html">中文
+</option></select>
 
 
     <a href="#toc">Оглавление</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -240,30 +236,30 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Если вы еще не читали их, и вы новичок в three.js, возможно, вы захотите начать с них. 
 Если вы еще не читали о камерах, вы можете начать с <a href="threejs-cameras.html">этой статьи</a>.</p>
 <p>Туман в 3D-движке - это, как правило, способ затухания до определенного цвета в зависимости от расстояния до камеры. 
-В three.js вы добавляете туман, создавая объект <code class="notranslate" translate="no">Fog</code> или <code class="notranslate" translate="no">FogExp2</code> и устанавливая его в свойстве сцены 
-<a href="Scene.fog"><code class="notranslate" translate="no">fog</code></a>.</p>
-<p><code class="notranslate" translate="no">Fog</code>  позволяет выбирать <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> настройки, которые находятся на расстоянии от камеры. 
+В three.js вы добавляете туман, создавая объект <a href="https://threejs.org/docs/#api/en/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> или <a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> и устанавливая его в свойстве сцены 
+<a href="https://threejs.org/docs/#api/en/scenes/Scene#fog"><code class="notranslate" translate="no">fog</code></a>.</p>
+<p><a href="https://threejs.org/docs/#api/en/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a>  позволяет выбирать <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> настройки, которые находятся на расстоянии от камеры. 
 Все, что <code class="notranslate" translate="no">near</code>  не подвержено влиянию тумана. 
 Все, что <code class="notranslate" translate="no">far</code>  - это цвет тумана. Части между <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>  переходят от их материального цвета к цвету тумана. </p>
-<p>Есть также <code class="notranslate" translate="no">FogExp2</code>, который растет экспоненциально с расстоянием от камеры.</p>
+<p>Есть также <a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a>, который растет экспоненциально с расстоянием от камеры.</p>
 <p>Чтобы использовать любой тип тумана, вы создаете его и назначаете его сцене, как в </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;  // white
   const near = 10;
   const far = 100;
   scene.fog = new THREE.Fog(color, near, far);
 }
-</code></pre>
-<p>или для <code class="notranslate" translate="no">FogExp2</code> это будет</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+</pre>
+<p>или для <a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> это будет</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
 {
   const color = 0xFFFFFF;
   const density = 0.1;
   scene.fog = new THREE.FogExp2(color, density);
 }
-</code></pre>
-<p><code class="notranslate" translate="no">FogExp2</code> ближе к реальности, но <code class="notranslate" translate="no">Fog</code> используется чаще, поскольку он позволяет вам выбрать место для нанесения тумана, 
+</pre>
+<p><a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> ближе к реальности, но <a href="https://threejs.org/docs/#api/en/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> используется чаще, поскольку он позволяет вам выбрать место для нанесения тумана, 
 чтобы вы могли решить показать чистую сцену на определенном расстоянии, а затем исчезновение до некоторого цвета за этим расстоянием. </p>
 <div class="spread">
   <div>
@@ -279,9 +275,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Важно отметить, что туман применяется к <em>вещам, которые отображаются</em>.
 Это часть расчета каждого пикселя цвета объекта.
  Это означает, что если вы хотите, чтобы ваша сцена стала блеклой, вам нужно установить туман  <strong>и</strong> цвет фона на один и тот же цвет.
-Цвет фона устанавливается с помощью свойства <a href="Scene.background"><code class="notranslate" translate="no">scene.background</code></a>. Чтобы выбрать цвет фона, вы прикрепляете к нему <code class="notranslate" translate="no">THREE.Color</code>. Например </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">scene.background = new THREE.Color(&#39;#F00&#39;);  // red
-</code></pre>
+Цвет фона устанавливается с помощью свойства <a href="https://threejs.org/docs/#api/en/scenes/Scene#background"><code class="notranslate" translate="no">scene.background</code></a>. Чтобы выбрать цвет фона, вы прикрепляете к нему <a href="https://threejs.org/docs/#api/en/math/Color"><code class="notranslate" translate="no">THREE.Color</code></a>. Например </p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">scene.background = new THREE.Color('#F00');  // red
+</pre>
 <div class="spread">
   <div>
     <div data-diagram="fogBlueBackgroundRed" style="height: 300px;" class="border"></div>
@@ -295,31 +291,31 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>Вот один из наших предыдущих примеров с добавленным туманом.
 Единственное добавление - сразу после настройки сцены мы добавляем туман и устанавливаем цвет фона сцены </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
 
 +{
 +  const near = 1;
 +  const far = 2;
-+  const color = &#39;lightblue&#39;;
++  const color = 'lightblue';
 +  scene.fog = new THREE.Fog(color, near, far);
 +  scene.background = new THREE.Color(color);
 +}
-</code></pre>
+</pre>
 <p>В приведенном ниже примере <code class="notranslate" translate="no">near</code> камеры равен 0,1, а <code class="notranslate" translate="no">far</code> - 5. Камера находится в точке <code class="notranslate" translate="no">z = 2</code>. 
 Кубики имеют размер 1 и имеют значение <code class="notranslate" translate="no">z = 0</code>. 
 Это означает, что при настройке тумана <code class="notranslate" translate="no">near = 1</code> и <code class="notranslate" translate="no">far = 2</code> кубики исчезнут прямо вокруг их центра. </p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
-</p>
+<p></p>
 <p>Давайте добавим интерфейс, чтобы мы могли настроить туман. Мы снова будем использовать
 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>. dat.GUI принимает объект и свойство и автоматически создает интерфейс для этого типа свойства.
 Мы могли бы просто позволить ему манипулировать свойствами <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> тумана, но недопустимо иметь <code class="notranslate" translate="no">near</code> больше, чем <code class="notranslate" translate="no">far</code>, поэтому давайте создадим помощник, 
 чтобы dat.GUI мог манипулировать свойством <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code>, 
 но мы убедимся, что <code class="notranslate" translate="no">near</code> меньше или равно <code class="notranslate" translate="no">far</code> и <code class="notranslate" translate="no">far</code> больше или равно <code class="notranslate" translate="no">near</code>. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
 class FogGUIHelper {
@@ -341,20 +337,20 @@ class FogGUIHelper {
     this.fog.near = Math.min(this.fog.near, v);
   }
 }
-</code></pre>
+</pre>
 <p>Затем мы можем добавить это так</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const near = 1;
   const far = 2;
-  const color = &#39;lightblue&#39;;
+  const color = 'lightblue';
   scene.fog = new THREE.Fog(color, near, far);
   scene.background = new THREE.Color(color);
 +
 +  const fogGUIHelper = new FogGUIHelper(scene.fog);
-+  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
-+  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
++  gui.add(fogGUIHelper, 'near', near, far).listen();
++  gui.add(fogGUIHelper, 'far', near, far).listen();
 }
-</code></pre>
+</pre>
 <p>Параметры <code class="notranslate" translate="no">near</code> и <code class="notranslate" translate="no">far</code> задают минимальные и максимальные значения для регулировки тумана. Они устанавливаются при настройке камеры. </p>
 <p><code class="notranslate" translate="no">.Listen ()</code> в конце последних 2 строк указывает dat.GUI <em>прослушивать</em>
 изменения. Таким образом, когда мы меняем <code class="notranslate" translate="no">near</code> на <code class="notranslate" translate="no">far</code> или мы меняем <code class="notranslate" translate="no">far</code> на <code class="notranslate" translate="no">near</code> dat.GUI обновит интерфейс другого свойства для нас. </p>
@@ -364,12 +360,12 @@ class FogGUIHelper {
 Как тон, насыщенность, яркость объекта (например: <code class="notranslate" translate="no">{h: 60, s: 1, v:}</code>). 
 Как массив RGB (например: <code class="notranslate" translate="no">[255, 128, 64]</code>). Или как массив RGBA (например: <code class="notranslate" translate="no">[127, 200, 75, 0.3]</code>). </p>
 <p>Для нашей цели проще всего использовать шестнадцатеричную версию, поскольку таким образом dat.GUI манипулирует только одним значением. 
-К счастью, <code class="notranslate" translate="no">THREE.Color</code> как метод <a href="Color.getHexString"><code class="notranslate" translate="no">getHexString</code></a>
+К счастью, <a href="https://threejs.org/docs/#api/en/math/Color"><code class="notranslate" translate="no">THREE.Color</code></a> как метод <a href="https://threejs.org/docs/#api/en/math/Color#getHexString"><code class="notranslate" translate="no">getHexString</code></a>
 который мы используем, чтобы легко получить такую cтроку - нам просто нужно добавить <code class="notranslate" translate="no">«#»</code> вперед. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">// We use this class to pass to dat.gui
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// We use this class to pass to dat.gui
 // so when it manipulates near or far
 // near is never &gt; far and far is never &lt; near
-+// Also when dat.gui manipulates color we&#39;ll
++// Also when dat.gui manipulates color we'll
 +// update both the fog and background colors.
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {
@@ -398,30 +394,30 @@ class FogGUIHelper {
 +    this.backgroundColor.set(hexString);
 +  }
 }
-</code></pre>
+</pre>
 <p>Затем мы вызываем <code class="notranslate" translate="no">gui.addColor</code>, чтобы добавить интерфейс цвета для виртуального свойства нашего помощника.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const near = 1;
   const far = 2;
-  const color = &#39;lightblue&#39;;
+  const color = 'lightblue';
   scene.fog = new THREE.Fog(color, near, far);
   scene.background = new THREE.Color(color);
 
 *  const fogGUIHelper = new FogGUIHelper(scene.fog, scene.background);
-  gui.add(fogGUIHelper, &#39;near&#39;, near, far).listen();
-  gui.add(fogGUIHelper, &#39;far&#39;, near, far).listen();
-+  gui.addColor(fogGUIHelper, &#39;color&#39;);
+  gui.add(fogGUIHelper, 'near', near, far).listen();
+  gui.add(fogGUIHelper, 'far', near, far).listen();
++  gui.addColor(fogGUIHelper, 'color');
 }
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
-</p>
+<p></p>
 <p>Вы можете видеть <code class="notranslate" translate="no">near</code> до 1,9, а <code class="notranslate" translate="no">far</code> до 2,0 дает очень резкий переход между незатуманенным и полностью затуманенным. 
 где <code class="notranslate" translate="no">near</code> = 1,1 и <code class="notranslate" translate="no">far</code> = 2,9 должны быть примерно самыми гладкими, учитывая, что наши кубики вращаются на 2 единицы от камеры. </p>
-<p>И последнее: на материале существует логическое свойство <a href="Material.fog"><code class="notranslate" translate="no">fog</code></a>,
+<p>И последнее: на материале существует логическое свойство <a href="https://threejs.org/docs/#api/en/materials/Material#fog"><code class="notranslate" translate="no">fog</code></a>,
 определяющее, влияет ли туман на объекты, созданные с этим материалом. 
 По умолчанию это <code class="notranslate" translate="no">true</code> для большинства материалов. В качестве примера того, почему вы можете захотеть отключить туман, представьте, 
 что вы делаете 3D-симулятор автомобиля с видом с места водителя или из кабины.
@@ -450,13 +446,13 @@ class FogGUIHelper {
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-fog.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-fog.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-fog.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-fog.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-fog.html" selected>Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-fog.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-fog.html">English
+    </option><option value="/threejs/lessons/fr/threejs-fog.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-fog.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-fog.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-fog.html" selected="">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-fog.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -561,7 +557,7 @@ class FogGUIHelper {
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -603,7 +599,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

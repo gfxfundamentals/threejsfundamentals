@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-multiple-scenes.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-multiple-scenes.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-multiple-scenes.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-multiple-scenes.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-multiple-scenes.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-multiple-scenes.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-multiple-scenes.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-multiple-scenes.html">English
+    </option><option value="/threejs/lessons/fr/threejs-multiple-scenes.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-multiple-scenes.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-multiple-scenes.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-multiple-scenes.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -240,7 +236,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ECサイトを作りたい、3Dダイアグラムをたくさん使ったページを作りたいとしましょう。
 一見簡単そうに見えます。
 ダイアグラムが欲しい所にキャンバスを作るだけです。
-それぞれのキャンバスで <code class="notranslate" translate="no">Renderer</code> を作成します。</p>
+それぞれのキャンバスで <a href="https://threejs.org/docs/#api/en/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a> を作成します。</p>
 <p>以下の問題にすぐに気づくでしょう。</p>
 <ol>
 <li><p>ブラウザはWebGLコンテキスト数を制限している</p>
@@ -256,27 +252,27 @@ ECサイトを作りたい、3Dダイアグラムをたくさん使ったペー�
 </li>
 </ol>
 <p>何か解決策はないでしょうか？</p>
-<p>解決策としては、背景のViewPortを埋める1つのキャンバスと、キャンバス以外のHTML要素で&quot;仮想&quot;のキャンバスを持つ事です。
-仮想キャンバスごとに <code class="notranslate" translate="no">Renderer</code> と <code class="notranslate" translate="no">Scene</code> を1つずつ作成します。
+<p>解決策としては、背景のViewPortを埋める1つのキャンバスと、キャンバス以外のHTML要素で"仮想"のキャンバスを持つ事です。
+仮想キャンバスごとに <a href="https://threejs.org/docs/#api/en/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a> と <a href="https://threejs.org/docs/#api/en/scenes/Scene"><code class="notranslate" translate="no">Scene</code></a> を1つずつ作成します。
 次に仮想キャンバス要素の位置を確認し、その要素が画面上にある場合はシーンの正しい場所に描画するようにします。</p>
 <p>この解決策はキャンバスが1つしかないため、上記の1と2の問題を解決します。
 1つのコンテキストだけなので、WebGLコンテキストの制限は問題ありません。
 同じ理由で共有の問題もありません。</p>
 <p>2つのシーンだけの簡単な例から始めましょう。まずはHTMLを作成します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;canvas id="c"&gt;&lt;/canvas&gt;
 &lt;p&gt;
-  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
+  &lt;span id="box" class="diagram left"&gt;&lt;/span&gt;
   I love boxes. Presents come in boxes.
-  When I find a new box I&#39;m always excited to find out what&#39;s inside.
+  When I find a new box I'm always excited to find out what's inside.
 &lt;/p&gt;
 &lt;p&gt;
-  &lt;span id=&quot;pyramid&quot; class=&quot;diagram right&quot;&gt;&lt;/span&gt;
+  &lt;span id="pyramid" class="diagram right"&gt;&lt;/span&gt;
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 &lt;/p&gt;
-</code></pre>
+</pre>
 <p>次にCSSを次のように設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#c {
   position: fixed;
   left: 0;
   top: 0;
@@ -299,12 +295,12 @@ ECサイトを作りたい、3Dダイアグラムをたくさん使ったペー�
   float: right;
   margin-left: .25em;
 }
-</code></pre>
+</pre>
 <p>キャンバスを画面一杯にし、<code class="notranslate" translate="no">z-index</code> を-1に設定し他のDOM要素よりも後に表示されるようにします。
 仮想キャンバスにはサイズ指定がないため、幅と高さを指定する必要があります。</p>
 <p>次にライトとカメラをそれぞれ2つのシーンに作成します。
 1つ目のシーンにキューブを追加し、もう1つのシーンにはひし形を追加します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeScene(elem) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeScene(elem) {
   const scene = new THREE.Scene();
 
   const fov = 45;
@@ -328,9 +324,9 @@ ECサイトを作りたい、3Dダイアグラムをたくさん使ったペー�
 }
 
 function setupScene1() {
-  const sceneInfo = makeScene(document.querySelector(&#39;#box&#39;));
+  const sceneInfo = makeScene(document.querySelector('#box'));
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const material = new THREE.MeshPhongMaterial({color: 'red'});
   const mesh = new THREE.Mesh(geometry, material);
   sceneInfo.scene.add(mesh);
   sceneInfo.mesh = mesh;
@@ -338,13 +334,13 @@ function setupScene1() {
 }
 
 function setupScene2() {
-  const sceneInfo = makeScene(document.querySelector(&#39;#pyramid&#39;));
+  const sceneInfo = makeScene(document.querySelector('#pyramid'));
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
   const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
-    color: &#39;blue&#39;,
+    color: 'blue',
     flatShading: true,
   });
   const mesh = new THREE.Mesh(geometry, material);
@@ -355,11 +351,11 @@ function setupScene2() {
 
 const sceneInfo1 = setupScene1();
 const sceneInfo2 = setupScene2();
-</code></pre>
+</pre>
 <p>DOM要素が画面上にある場合のみ、各シーンをレンダリングする関数を作成します。
-<code class="notranslate" translate="no">Renderer.setScissorTest</code> で <em>シザー</em> テストを有効にし、キャンバスの一部だけをレンダリングするように指定できます。
-<code class="notranslate" translate="no">Renderer.setViewport</code> と <code class="notranslate" translate="no">Renderer.setScissor</code> でシザーとビューポートの両方を設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function renderSceneInfo(sceneInfo) {
+<a href="https://threejs.org/docs/#api/en/constants/Renderer.setScissorTest"><code class="notranslate" translate="no">Renderer.setScissorTest</code></a> で <em>シザー</em> テストを有効にし、キャンバスの一部だけをレンダリングするように指定できます。
+<a href="https://threejs.org/docs/#api/en/constants/Renderer.setViewport"><code class="notranslate" translate="no">Renderer.setViewport</code></a> と <a href="https://threejs.org/docs/#api/en/constants/Renderer.setScissor"><code class="notranslate" translate="no">Renderer.setScissor</code></a> でシザーとビューポートの両方を設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function renderSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
   // get the viewport relative position of this element
@@ -385,9 +381,9 @@ const sceneInfo2 = setupScene2();
 
   renderer.render(scene, camera);
 }
-</code></pre>
+</pre>
 <p>render関数で最初に画面をクリア後、各シーンをレンダリングします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   time *= 0.001;
 
   resizeRendererToDisplaySize(renderer);
@@ -404,47 +400,47 @@ const sceneInfo2 = setupScene2();
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p>その結果がこれです。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-v1.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-v1.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>最初の <code class="notranslate" translate="no">&lt;span&gt;</code> が赤いキューブ、2つ目の <code class="notranslate" translate="no">span</code> が青いひし形です。</p>
 <h2 id="-">同期する</h2>
 <p>上記のコードは動作していますが、1つだけ小さな問題があります。
 シーンが複雑だったり、何らかの理由でレンダリングに時間がかかり過ぎる場合、
 キャンバスに描画したシーンの位置が他のページよりも遅れてしまいます。</p>
 <p>各エリアにborderを与えて</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">.diagram {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">.diagram {
   display: inline-block;
   width: 5em;
   height: 3em;
 +  border: 1px solid black;
 }
-</code></pre>
+</pre>
 <p>各シーンに背景色を設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const scene = new THREE.Scene();
-+scene.background = new THREE.Color(&#39;red&#39;);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
++scene.background = new THREE.Color('red');
+</pre>
 <p>そして、<a href="../../threejs-multiple-scenes-v2.html" target="_blank">素早く上下にスクロール</a>すると問題が分かります。以下はスクロールが10倍に遅くなった動画です。</p>
 <div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
 
 <p>別のトレードオフになる別の方法に切り替える事もできます。
 キャンバスのCSSを <code class="notranslate" translate="no">position: fixed</code> から <code class="notranslate" translate="no">position: absolute</code> に切り替えます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">#c {
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#c {
 -  position: fixed;
 +  position: absolute;
-</code></pre>
+</pre>
 <p>キャンバスの変形を設定し、キャンバス上部が現在のページスクロールしている部分の上部にくるように移動させます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   ...
 
   const transform = `translateY(${window.scrollY}px)`;
   renderer.domElement.style.transform = transform;
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">position: fixed</code> はページの残りの部分がスクロールしている間、キャンバスがスクロールしないようにしていました。
 <code class="notranslate" translate="no">position: absolute</code> は、キャンバスをページの残りの部分と一緒にスクロールさせます。
 これはレンダリングに時間がかかりすぎても、描画したものがスクロールしてもページに密着します。
@@ -458,7 +454,7 @@ const sceneInfo2 = setupScene2();
 各要素に対して画面上に表示されているかチェックし、表示されている場合は対応するrender関数を呼び出します。
 この方法は個々のシーンが小さな空間でレンダリングされている事を意識せず、汎用的なシステムになります。</p>
 <p>これがメインのrender関数です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({elem, fn});
 }
@@ -498,16 +494,16 @@ function render(time) {
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">elem</code> と<code class="notranslate" translate="no">fn</code> プロパティを持つオブジェクトの配列があり、<code class="notranslate" translate="no">sceneElements</code> でループしているのが分かります。</p>
 <p>要素が画面上にあるかどうかをチェックします。
 画面上にある場合は <code class="notranslate" translate="no">fn</code> を呼び出し、引数に現在の時刻と矩形を渡します。</p>
 <p>これで各シーン設定のコードがシーンのリストに追加されます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
-  const elem = document.querySelector(&#39;#box&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const elem = document.querySelector('#box');
   const {scene, camera} = makeScene();
   const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-  const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+  const material = new THREE.MeshPhongMaterial({color: 'red'});
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
   addScene(elem, (time, rect) =&gt; {
@@ -519,14 +515,14 @@ function render(time) {
 }
 
 {
-  const elem = document.querySelector(&#39;#pyramid&#39;);
+  const elem = document.querySelector('#pyramid');
   const {scene, camera} = makeScene();
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
   const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
-    color: &#39;blue&#39;,
+    color: 'blue',
     flatShading: true,
   });
   const mesh = new THREE.Mesh(geometry, material);
@@ -538,47 +534,47 @@ function render(time) {
     renderer.render(scene, camera);
   });
 }
-</code></pre>
+</pre>
 <p><code class="notranslate" translate="no">sceneInfo1</code> と <code class="notranslate" translate="no">sceneInfo2</code> が不要になり、メッシュを回転させていたコードがシーンごとに固有になりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-generic.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-generic.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <h2 id="html-dataset-">HTML Datasetを使う</h2>
 <p>最後にもっと汎用的にするためにHTML <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset</a>を使います。
 これはHTML要素に独自のデータを追加する方法です。
-<code class="notranslate" translate="no">id=&quot;....&quot;</code> の代わりに <code class="notranslate" translate="no">data-diagram=&quot;....&quot;</code> を使います。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<code class="notranslate" translate="no">id="...."</code> の代わりに <code class="notranslate" translate="no">data-diagram="...."</code> を使います。</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;canvas id="c"&gt;&lt;/canvas&gt;
 &lt;p&gt;
--  &lt;span id=&quot;box&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
-+  &lt;span data-diagram=&quot;box&quot; class=&quot;left&quot;&gt;&lt;/span&gt;
+-  &lt;span id="box" class="diagram left"&gt;&lt;/span&gt;
++  &lt;span data-diagram="box" class="left"&gt;&lt;/span&gt;
   I love boxes. Presents come in boxes.
-  When I find a new box I&#39;m always excited to find out what&#39;s inside.
+  When I find a new box I'm always excited to find out what's inside.
 &lt;/p&gt;
 &lt;p&gt;
--  &lt;span id=&quot;pyramid&quot; class=&quot;diagram left&quot;&gt;&lt;/span&gt;
-+  &lt;span data-diagram=&quot;pyramid&quot; class=&quot;right&quot;&gt;&lt;/span&gt;
+-  &lt;span id="pyramid" class="diagram left"&gt;&lt;/span&gt;
++  &lt;span data-diagram="pyramid" class="right"&gt;&lt;/span&gt;
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 &lt;/p&gt;
-</code></pre>
+</pre>
 <p>CSSのセレクタを変更し、それを選択するようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-css">-.diagram
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">-.diagram
 +*[data-diagram] {
   display: inline-block;
   width: 5em;
   height: 3em;
 }
-</code></pre>
+</pre>
 <p>シーン設定のコードを変更して <em>シーン初期化関数</em> への名前のマップにします。
 そして、<em>シーンのレンダリング関数</em> を返すようにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneInitFunctionsByName = {
-  &#39;box&#39;: () =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneInitFunctionsByName = {
+  'box': () =&gt; {
     const {scene, camera} = makeScene();
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
     return (time, rect) =&gt; {
@@ -588,14 +584,14 @@ function render(time) {
       renderer.render(scene, camera);
     };
   },
-  &#39;pyramid&#39;: () =&gt; {
+  'pyramid': () =&gt; {
     const {scene, camera} = makeScene();
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
     const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
-      color: &#39;blue&#39;,
+      color: 'blue',
       flatShading: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
@@ -608,24 +604,24 @@ function render(time) {
     };
   },
 };
-</code></pre>
+</pre>
 <p>次に <code class="notranslate" translate="no">querySelectorAll</code> で全てのdiagramを見つけ、対応するinit関数を呼び出します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">document.querySelectorAll(&#39;[data-diagram]&#39;).forEach((elem) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">document.querySelectorAll('[data-diagram]').forEach((elem) =&gt; {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
   addScene(elem, sceneRenderFunction);
 });
-</code></pre>
+</pre>
 <p>見た目の変更はありませんが、コードはさらに汎用的になっています。</p>
 <p></p>
 <h2 id="-">各要素にコントロールを追加する</h2>
 <p><code class="notranslate" translate="no">TrackballControls</code> のようなインタラクティブな要素を追加するのは簡単です。
 最初にコントロール用のスクリプトを追加します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {TrackballControls} from &#39;./resources/threejs/r122/examples/jsm/controls/TrackballControls.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from './resources/threejs/r122/examples/jsm/controls/TrackballControls.js';
+</pre>
 <p>そして <code class="notranslate" translate="no">TrackballControls</code> を各シーンに追加し、シーンに関連付けられた要素を渡します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-function makeScene() {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {
 +function makeScene(elem) {
   const scene = new THREE.Scene();
 
@@ -654,19 +650,19 @@ function render(time) {
 -  return {scene, camera};
 + return {scene, camera, controls};
 }
-</code></pre>
+</pre>
 <p>シーンにカメラを追加し、カメラにライティングを追加しました。
 これにより、カメラに対する相対的な光を受けます。
 <code class="notranslate" translate="no">TrackballControls</code> がカメラを動かしているので、これが望んだ形です。
 見ている対象物の側に光を当て続けます。</p>
 <p>render関数でこれらのコントロールを更新する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneInitFunctionsByName = {
-- &#39;box&#39;: () =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneInitFunctionsByName = {
+- 'box': () =&gt; {
 -    const {scene, camera} = makeScene();
-+ &#39;box&#39;: (elem) =&gt; {
++ 'box': (elem) =&gt; {
 +    const {scene, camera, controls} = makeScene(elem);
     const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
-    const material = new THREE.MeshPhongMaterial({color: &#39;red&#39;});
+    const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
     return (time, rect) =&gt; {
@@ -678,16 +674,16 @@ function render(time) {
       renderer.render(scene, camera);
     };
   },
--  &#39;pyramid&#39;: () =&gt; {
+-  'pyramid': () =&gt; {
 -    const {scene, camera} = makeScene();
-+  &#39;pyramid&#39;: (elem) =&gt; {
++  'pyramid': (elem) =&gt; {
 +    const {scene, camera, controls} = makeScene(elem);
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
     const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
-      color: &#39;blue&#39;,
+      color: 'blue',
       flatShading: true,
     });
     const mesh = new THREE.Mesh(geometry, material);
@@ -702,14 +698,14 @@ function render(time) {
     };
   },
 };
-</code></pre>
+</pre>
 <p>オブジェクトをドラッグすると回転するようになりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-controls.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-controls.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これらのテクニックはこのサイト自体にも使われています。
 特に<a href="threejs-primitives.html">プリミティブの記事</a>と<a href="threejs-materials.html">マテリアルの記事</a>では、このテクニックを使ってページ全体に様々なサンプルを追加しています。</p>
 <p>もう1つの解決策はオフスクリーンのキャンバスにレンダリングし、各要素で結果を2Dキャンバスにコピーする事です。
@@ -720,13 +716,13 @@ function render(time) {
 どのくらい遅くなるかはブラウザとGPUに依存します。</p>
 <p>必要な変更は非常に小さいです。</p>
 <p>まず、ページ内にキャンバスが不要になったのでHTMLを変更します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-html">&lt;body&gt;
--  &lt;canvas id=&quot;c&quot;&gt;&lt;/canvas&gt;
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+-  &lt;canvas id="c"&gt;&lt;/canvas&gt;
   ...
 &lt;/body&gt;
-</code></pre>
+</pre>
 <p>CSSも変更します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">-#c {
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">-#c {
 -  position: absolute;
 -  left: 0;
 -  top: 0;
@@ -745,32 +741,32 @@ canvas {
   width: 5em;
   height: 3em;
 }
-</code></pre><p>全てのキャンバスは作成し、コンテナとなる変数に格納する形にします。</p>
+</pre><p>全てのキャンバスは作成し、コンテナとなる変数に格納する形にします。</p>
 <p>では、JavaScriptを変更してみましょう。
 もはやキャンバスを探す事は不要になりました。
 代わりに私たちは1つのキャンバスを作ります。
 また、最初にシザーテストをONにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function main() {
--  const canvas = document.querySelector(&#39;#c&#39;);
-+  const canvas = document.createElement(&#39;canvas&#39;);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
+-  const canvas = document.querySelector('#c');
++  const canvas = document.createElement('canvas');
   const renderer = new THREE.WebGLRenderer({canvas, alpha: true});
 +  renderer.setScissorTest(true);
 
   ...
-</code></pre>
+</pre>
 <p>次に各シーンに対して2Dレンダリングのコンテキストを作成し、そのシーンの要素にキャンバスを追加します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const sceneElements = [];
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneElements = [];
 function addScene(elem, fn) {
-+  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
++  const ctx = document.createElement('canvas').getContext('2d');
 +  elem.appendChild(ctx.canvas);
 -  sceneElements.push({elem, fn});
 +  sceneElements.push({elem, ctx, fn});
 }
-</code></pre>
+</pre>
 <p>レンダリング時に、レンダラーのキャンバスがレンダリングするのに十分な大きさでない場合はサイズを大きくします。
 また、キャンバスのサイズが間違っている場合はそのサイズを変更します。
 最後にシザーとビューポートを設定し、シーンをレンダリングしその結果をキャンバスにコピーします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function render(time) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   time *= 0.001;
 
 -  resizeRendererToDisplaySize(renderer);
@@ -803,7 +799,7 @@ function addScene(elem, fn) {
 -      renderer.setScissor(left, positiveYUpBottom, width, height);
 -      renderer.setViewport(left, positiveYUpBottom, width, height);
 
-+      // make sure the renderer&#39;s canvas is big enough
++      // make sure the renderer's canvas is big enough
 +      if (rendererCanvas.width &lt; width || rendererCanvas.height &lt; height) {
 +        renderer.setSize(width, height, false);
 +      }
@@ -819,8 +815,8 @@ function addScene(elem, fn) {
 
       fn(time, rect);
 
-+      // copy the rendered scene to this element&#39;s canvas
-+      ctx.globalCompositeOperation = &#39;copy&#39;;
++      // copy the rendered scene to this element's canvas
++      ctx.globalCompositeOperation = 'copy';
 +      ctx.drawImage(
 +          rendererCanvas,
 +          0, rendererCanvas.height - height, width, height,  // src rect
@@ -830,27 +826,27 @@ function addScene(elem, fn) {
 
   requestAnimationFrame(render);
 }
-</code></pre>
+</pre>
 <p>結果は同じように見えます。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-multiple-scenes-copy-canvas.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-multiple-scenes-copy-canvas.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>この解決策のもう1つの利点は、Web workerでレンダリングするために<a href="https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas"><code class="notranslate" translate="no">OffscreenCanvas</code></a>のテクニックも使用しています。
 残念ながら2020年7月現在、<code class="notranslate" translate="no">OffscreenCanvas</code> はChromeのみの対応となっています。</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-multiple-scenes.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-multiple-scenes.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-multiple-scenes.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-multiple-scenes.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-multiple-scenes.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-multiple-scenes.html">English
+    </option><option value="/threejs/lessons/fr/threejs-multiple-scenes.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-multiple-scenes.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-multiple-scenes.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-multiple-scenes.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-multiple-scenes.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -955,7 +951,7 @@ function addScene(elem, fn) {
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -997,7 +993,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

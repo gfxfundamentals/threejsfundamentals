@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/threejs-custom-geometry.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/kr/threejs-custom-geometry.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ko">
-<head>
+--><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,13 +110,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-custom-geometry.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-custom-geometry.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-custom-geometry.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-custom-geometry.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-custom-geometry.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-custom-geometry.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-custom-geometry.html">English
+    </option><option value="/threejs/lessons/fr/threejs-custom-geometry.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-custom-geometry.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-custom-geometry.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-custom-geometry.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-custom-geometry.html">中文
+</option></select>
 
 
     <a href="#toc">목차</a>
@@ -219,11 +215,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -250,36 +246,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 3주 정도는 해당 프로그램의 튜토리얼을 익히는 데 투자하기 바랍니다.</p>
 <p>하지만 때로는 모델링 프로그램을 쓰는 것보다 직접 3D geometry를
 만드는 게 유리할 수 있을 겁니다.</p>
-<p>먼저 정육면체를 하나 만들어보겠습니다. 이미 원시 모델에 <code class="notranslate" translate="no">BoxGeometry</code>와
-<code class="notranslate" translate="no">BoxBufferGeometry</code>가 있긴 하지만, 기본 개념을 이해하는 데는 간단한 게
+<p>먼저 정육면체를 하나 만들어보겠습니다. 이미 원시 모델에 <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>와
+<a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry"><code class="notranslate" translate="no">BoxBufferGeometry</code></a>가 있긴 하지만, 기본 개념을 이해하는 데는 간단한 게
 훨씬 효과적일 테니까요.</p>
-<p>Three.js에서 사용자 지정 geometry는 <code class="notranslate" translate="no">Geometry</code> 또는 <code class="notranslate" translate="no">BufferGeometry</code>,
-2가지 클래스를 이용해 만들 수 있습니다. <code class="notranslate" translate="no">Geometry</code>는 분명 사용하기에는
+<p>Three.js에서 사용자 지정 geometry는 <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 또는 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>,
+2가지 클래스를 이용해 만들 수 있습니다. <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>는 분명 사용하기에는
 편하지만 느리고 메모리도 많이 차지합니다. 삼각형 천 개 정도까지야 그냥
-써도 나쁠 것이 없지만, 만 개가 넘어간다면 <code class="notranslate" translate="no">BufferGeometry</code>를 고려하는
+써도 나쁠 것이 없지만, 만 개가 넘어간다면 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>를 고려하는
 것이 좋죠.</p>
-<p>당연하게도 <code class="notranslate" translate="no">BufferGeometry</code>는 훨씬 쓰기 어렵지만, 비교적 메모리도 덜 차지하고
-훨씬 빠릅니다. 대략 구상하기에 삼각형을 10000개 이상 쓰겠다 싶으면 <code class="notranslate" translate="no">BufferGeometry</code>를
+<p>당연하게도 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 훨씬 쓰기 어렵지만, 비교적 메모리도 덜 차지하고
+훨씬 빠릅니다. 대략 구상하기에 삼각형을 10000개 이상 쓰겠다 싶으면 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>를
 고려하기 바랍니다.</p>
-<p>아까 <code class="notranslate" translate="no">Geometry</code>가 느리다고 했는데, 이는 처음 로드할 때와 수정할 때 느리다는
+<p>아까 <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>가 느리다고 했는데, 이는 처음 로드할 때와 수정할 때 느리다는
 것이지, 렌더링 속도가 느리다는 말이 아닙니다. geometry를 수정하지 않고 geometry가
-무지막지하게 크지 않은 한, <code class="notranslate" translate="no">Geometry</code>는 <code class="notranslate" translate="no">BufferGeometry</code>에 비해 프로그램 초기화
+무지막지하게 크지 않은 한, <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>는 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>에 비해 프로그램 초기화
 단계에서만 약간 더 느릴 뿐입니다. 결국에는 둘 다 살펴보겠지만, 일단-제 생각에-훨씬
-간단하고 이해하기 쉬운 <code class="notranslate" translate="no">Geometry</code>를 먼저 써봅시다.</p>
+간단하고 이해하기 쉬운 <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>를 먼저 써봅시다.</p>
 <p>먼저 정육면체를 만들겠습니다. <a href="threejs-responsive.html">반응형 디자인에 관한 글</a>에서
 썼던 예제를 일부 가져오도록 하죠.</p>
-<p>먼저 <code class="notranslate" translate="no">BoxGeometry</code>를 <code class="notranslate" translate="no">Geometry</code>로 교체합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const boxWidth = 1;
+<p>먼저 <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>를 <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>로 교체합니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const boxWidth = 1;
 -const boxHeight = 1;
 -const boxDepth = 1;
 -const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 +const geometry = new THREE.Geometry();
-</code></pre>
+</pre>
 <p>이제 정육면체의 꼭지점를 추가합니다. 정육면체의 모서리는 총 8개이죠.</p>
 <div class="threejs_center"><img src="../resources/cube-vertex-positions.svg" style="width: 500px"></div>
 
 <p>중점을 중심으로 각 꼭지점을 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const geometry = new THREE.Geometry();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.Geometry();
 +geometry.vertices.push(
 +  new THREE.Vector3(-1, -1,  1),  // 0
 +  new THREE.Vector3( 1, -1,  1),  // 1
@@ -290,11 +286,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 +  new THREE.Vector3(-1,  1, -1),  // 6
 +  new THREE.Vector3( 1,  1, -1),  // 7
 +);
-</code></pre>
+</pre>
 <p>다음으로 정육면체 한 면에 2개씩, 총 삼각형 12개를 추가해야 합니다.</p>
 <div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
-<p><code class="notranslate" translate="no">Face3</code> 인스턴스를 만들어 3 꼭지점의 인덱스(index)를 넘겨주면 삼각형
+<p><a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a> 인스턴스를 만들어 3 꼭지점의 인덱스(index)를 넘겨주면 삼각형
 면(face)을 만들 수 있습니다.</p>
 <p>꼭지점의 인덱스를 넘겨줄 때는 순서에 유의해야 합니다. 삼각형이 카메라를
 바라볼 때, 면이 정육면체의 바깥쪽을 향하려면 시계 반대 방향 순으로 인덱스를
@@ -302,7 +298,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
 <p>이 패턴대로 정육면체를 구성할 삼각형 12개를 만들어봅시다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">geometry.faces.push(
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces.push(
   // 앞쪽
   new THREE.Face3(0, 3, 2),
   new THREE.Face3(0, 1, 3),
@@ -322,11 +318,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   new THREE.Face3(4, 1, 0),
   new THREE.Face3(4, 5, 1),
 );
-</code></pre>
+</pre>
 <p>이제 몇 가지만 더 고치면 됩니다.</p>
-<p>이 정육면체들은 <code class="notranslate" translate="no">BoxGeometry</code>보다 두 배 더 크므로, 카메라를 약간
+<p>이 정육면체들은 <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>보다 두 배 더 크므로, 카메라를 약간
 더 뒤로 옮겨줍니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // canvas 기본값
 const near = 0.1;
 -const far = 5;
@@ -334,9 +330,9 @@ const near = 0.1;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 -camera.position.z = 2;
 +camera.position.z = 5;
-</code></pre>
+</pre>
 <p>커진 만큼 간격을 띄우고, 바꾸는 김에 색상도 바꿔주겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cubes = [
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cubes = [
 -  makeInstance(geometry, 0x44aa88,  0),
 -  makeInstance(geometry, 0x8844aa, -2),
 -  makeInstance(geometry, 0xaa8844,  2),
@@ -344,10 +340,10 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +  makeInstance(geometry, 0x4444FF, -4),
 +  makeInstance(geometry, 0xFF4444,  4),
 ];
-</code></pre>
+</pre>
 <p>아직 법선(normal)을 넣지 않았는데, 법선이 없으면 빛은 소용이 없으니 마지막으로
-재질(material)을 <code class="notranslate" translate="no">MeshBasicMaterial</code>로 바꿔줍니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function makeInstance(geometry, color, x) {
+재질(material)을 <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>로 바꿔줍니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
 -  const material = new THREE.MeshPhongMaterial({ color });
 +  const material = new THREE.MeshBasicMaterial({ color });
 
@@ -355,97 +351,97 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   scene.add(cube);
 
   ...
-</code></pre>
+</pre>
 <p>자, 이제 실행해보죠.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>각 삼각형 면의 <code class="notranslate" translate="no">color</code> 속성을 바꿔 색을 따로 지정할 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">geometry.faces[ 0].color = geometry.faces[ 1].color = new THREE.Color(&#39;red&#39;);
-geometry.faces[ 2].color = geometry.faces[ 3].color = new THREE.Color(&#39;yellow&#39;);
-geometry.faces[ 4].color = geometry.faces[ 5].color = new THREE.Color(&#39;green&#39;);
-geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color(&#39;cyan&#39;);
-geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color(&#39;blue&#39;);
-geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magenta&#39;);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces[ 0].color = geometry.faces[ 1].color = new THREE.Color('red');
+geometry.faces[ 2].color = geometry.faces[ 3].color = new THREE.Color('yellow');
+geometry.faces[ 4].color = geometry.faces[ 5].color = new THREE.Color('green');
+geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color('cyan');
+geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color('blue');
+geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta');
+</pre>
 <p>추가로 재질을 생성할 때 <code class="notranslate" translate="no">FaceColors</code>를 사용한다고 명시해야 하죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({ color });
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({ color });
 +const material = new THREE.MeshBasicMaterial({ vertexColors: THREE.FaceColors });
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-colors.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-face-colors.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>또는 삼각형 면의 <code class="notranslate" translate="no">vertextColors</code> 속성에 각 꼭지점의 색상을 지정할 수도 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">geometry.faces.forEach((face, ndx) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces.forEach((face, ndx) =&gt; {
   face.vertexColors = [
     (new THREE.Color()).setHSL(ndx / 12      , 1, 0.5),
     (new THREE.Color()).setHSL(ndx / 12 + 0.1, 1, 0.5),
     (new THREE.Color()).setHSL(ndx / 12 + 0.2, 1, 0.5),
   ];
 });
-</code></pre>
+</pre>
 <p>이 또한 꼭지점 색을 사용한다고 명시해야 하죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
 +const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-colors.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-colors.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>빛을 사용하려면 법선을 추가해야 합니다. 법선이란 특정 방향을 나타내는 벡터값으로,
 색과 마찬가지로 법선도 각 삼각형 면의 <code class="notranslate" translate="no">normal</code> 속성을 지정해 추가할 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">face.normal = new THREE.Vector3(...)
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">face.normal = new THREE.Vector3(...)
+</pre>
 <p>또는 <code class="notranslate" translate="no">vertexNormals</code> 속성에 각 꼭지점의 법선을 배열로 지정할 수도 있죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">face.vertexNormals = [
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">face.vertexNormals = [
   new THREE.Vector3(...),
   new THREE.Vector3(...),
   new THREE.Vector3(...),
 ]
-</code></pre>
+</pre>
 <p>하지만 대게 우리가 지정한 좌표에 따라 알아서 법선을 계산해달라고 하는 게
 훨씬 편합니다.</p>
-<p>삼각형 면 법선의 경우 <code class="notranslate" translate="no">Geometry.computeFaceNormals</code>를 호출하면 되죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">geometry.computeFaceNormals();
-</code></pre>
-<p>꼭지점 색을 제거하고 다시 재질을 <code class="notranslate" translate="no">MeshPhongMaterial</code>로 바꾸겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors });
+<p>삼각형 면 법선의 경우 <a href="https://threejs.org/docs/#api/en/core/Geometry.computeFaceNormals"><code class="notranslate" translate="no">Geometry.computeFaceNormals</code></a>를 호출하면 되죠.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.computeFaceNormals();
+</pre>
+<p>꼭지점 색을 제거하고 다시 재질을 <a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a>로 바꾸겠습니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({ vertexColors: THREE.VertexColors });
 +const material = new THREE.MeshPhongMaterial({ color });
-</code></pre>
+</pre>
 <p>이제 정육면체들이 빛의 영향을 받습니다.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-normals.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-face-normals.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>삼각형 면 법선을 사용하면 물체가 각진 느낌을 줍니다. 꼭지점 법선을 사용하면
-훨씬 부드러워 보일 수 있죠. 꼭지점 법선은 <code class="notranslate" translate="no">Geometry.computeVertexNormals</code>를
+훨씬 부드러워 보일 수 있죠. 꼭지점 법선은 <a href="https://threejs.org/docs/#api/en/core/Geometry.computeVertexNormals"><code class="notranslate" translate="no">Geometry.computeVertexNormals</code></a>를
 호출해 사용합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-geometry.computeFaceNormals();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-geometry.computeFaceNormals();
 +geometry.computeVertexNormals();
-</code></pre>
+</pre>
 <p>아쉽게도 정육면체는 꼭지점 법선의 예제로 적당하지 않습니다. 각 꼭지점이 같은
 꼭지점을 쓰는 모든 삼각형 면에서 법선을 가져오기 때문이죠.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-normals.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-normals.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
-<p>UV라고도 불리는, 텍스처 좌표는 <code class="notranslate" translate="no">Geometry.faceVertexUvs</code> 속성에 삼각형 면들의
+<p></p>
+<p>UV라고도 불리는, 텍스처 좌표는 <a href="https://threejs.org/docs/#api/en/core/Geometry.faceVertexUvs"><code class="notranslate" translate="no">Geometry.faceVertexUvs</code></a> 속성에 삼각형 면들의
 층(layer)을 배열로 지정해 추가할 수 있습니다. 정육면체의 경우 다음처럼 지정할
 수 있죠.</p>
 <p>(※ 참고: <a href="https://ko.wikipedia.org/wiki/UV_%EB%A7%A4%ED%95%91">UV 매핑</a>. 역주)</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">geometry.faceVertexUvs[0].push(
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faceVertexUvs[0].push(
   // 앞쪽
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
@@ -465,15 +461,15 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color(&#39;magen
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
 );
-</code></pre>
+</pre>
 <p>중요한 건 <code class="notranslate" translate="no">faceVertexUvs</code>는 층의 배열이라는 점입니다. 하나의 층은 별도의 UV 좌표이죠.
 기본적으로 하나의 UV 층, 층 0이 있어, 예제에서는 그냥 그 층에 UV를 추가했습니다.</p>
 <p>다시 삼각형 면 법선을 계산하도록 코드를 바꾸고, 이번에는 재질에 <a href="threejs-textures.html">텍스처를 추가</a>하겠습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-geometry.computeVertexNormals();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-geometry.computeVertexNormals();
 +geometry.computeFaceNormals();
 
 +const loader = new THREE.TextureLoader();
-+const texture = loader.load(&#39;resources/images/star.png&#39;);
++const texture = loader.load('resources/images/star.png');
 
 function makeInstance(geometry, color, x) {
 -  const material = new THREE.MeshPhongMaterial({color});
@@ -483,13 +479,13 @@ function makeInstance(geometry, color, x) {
   scene.add(cube);
 
   ...
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-texcoords.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-texcoords.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
+<p></p>
 <p>다음으로는 이 글에서 배운 것을 총 동원해 지형 mesh를 기반으로 높이 맵(heightmap)을
 만들어보겠습니다.</p>
 <p>높이 맵을 기반으로 한 지형이란, 이차원 높이 배열을 격자 형태로 만든 것을
@@ -498,13 +494,13 @@ function makeInstance(geometry, color, x) {
 <div class="threejs_center"><img src="../../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 <p>이 이미지의 데이터를 불러와 높이 맵 mesh를 만들겠습니다. 이미지 데이터를
-불러올 때는 <code class="notranslate" translate="no">ImageLoader</code>를 활용합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const imgLoader = new THREE.ImageLoader();
-imgLoader.load(&#39;resources/images/heightmap-96x64.png&#39;, createHeightmap);
+불러올 때는 <a href="https://threejs.org/docs/#api/en/loaders/ImageLoader"><code class="notranslate" translate="no">ImageLoader</code></a>를 활용합니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const imgLoader = new THREE.ImageLoader();
+imgLoader.load('resources/images/heightmap-96x64.png', createHeightmap);
 
 function createHeightmap(image) {
   // canvas에 이미지를 렌더링한 후, getImageData 메서드를 호출해 픽셀 데이터를 추출합니다
-  const ctx = document.createElement(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  const ctx = document.createElement('canvas').getContext('2d');
   const { width, height } = image;
   ctx.canvas.width = width;
   ctx.canvas.height = height;
@@ -512,14 +508,14 @@ function createHeightmap(image) {
   const { data } = ctx.getImageData(0, 0, width, height);
 
   const geometry = new THREE.Geometry();
-</code></pre>
+</pre>
 <p>이미지에서 데이터를 추출했으니, 이제 격자를 만들어야 합니다. 이미지의 픽셀
 하나당 정사각형 격자 한 칸을 만듭니다.</p>
 <div class="threejs_center"><img src="../resources/heightmap-points.svg" style="width: 500px"></div>
 
 <p>격자 한 칸당 꼭지점 5개를 만듭니다. 정사각형의 각 꼭지점 당 하나씩 총 4개를 두고,
 네 꼭지점의 높이를 평균내 중앙에 하나를 둡니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const cellsAcross = width - 1;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cellsAcross = width - 1;
 const cellsDeep = height - 1;
 for (let z = 0; z &lt; cellsDeep; ++z) {
   for (let x = 0; x &lt; cellsAcross; ++x) {
@@ -555,11 +551,11 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
       new THREE.Vector3(x1, h11, z1),
       new THREE.Vector3((x0 + x1) / 2, hm, (z0 + z1) / 2),
     );
-</code></pre>
+</pre>
 <p>다음으로 방금 만든 5개의 정점을 모아 4개의 삼각형을 만들어야 합니다.</p>
 <div class="threejs_center"><img src="../resources/heightmap-triangles.svg" style="width: 500px"></div>
 
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">    // 삼각형 4개를 만듭니다
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">    // 삼각형 4개를 만듭니다
     geometry.faces.push(
       new THREE.Face3(ndx + 0, ndx + 4, ndx + 1),
       new THREE.Face3(ndx + 1, ndx + 4, ndx + 3),
@@ -582,28 +578,28 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
     );
   }
 }
-</code></pre>
+</pre>
 <p>이제 마무리 지어보죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">  geometry.computeFaceNormals();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  geometry.computeFaceNormals();
 
   // geometry를 중점에 배치
   geometry.translate(width / -2, 0, height / -2);
 
   const loader = new THREE.TextureLoader();
-  const texture = loader.load(&#39;resources/images/star.png&#39;);
+  const texture = loader.load('resources/images/star.png');
 
-  const material = new THREE.MeshPhongMaterial({ color: &#39;green&#39;, map: texture });
+  const material = new THREE.MeshPhongMaterial({ color: 'green', map: texture });
 
   const cube = new THREE.Mesh(geometry, material);
   scene.add(cube);
 }
-</code></pre>
+</pre>
 <p>장면을 보기 쉽도록 몇 가지 요소를 추가하겠습니다.</p>
-<p><code class="notranslate" translate="no">OrbitControls</code>를 추가하고,</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-+import { OrbitControls } from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-</code></pre>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const fov = 75;
+<p><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>를 추가하고,</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+</pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // canvas 기본 비율
 const near = 0.1;
 -const far = 100;
@@ -615,9 +611,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 +const controls = new OrbitControls(camera, canvas);
 +controls.target.set(0, 0, 0);
 +controls.update();
-</code></pre>
+</pre>
 <p>조명도 두 개 추가합니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-{
 +function addLight(...pos) {
   const color = 0xFFFFFF;
   const intensity = 1;
@@ -629,28 +625,28 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 +addLight(-1, 2, 4);
 +addLight(1, 2, -2);
-</code></pre>
+</pre>
 <p>정육면체를 회전시키는 코드는 필요없으니 삭제하도록 하죠.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-heightmap.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-heightmap.html" target="_blank">새 탭에서 보기</a>
 </div>
 
-</p>
-<p>이 글이 <code class="notranslate" translate="no">Geometry</code>를 활용하는 데 도움이 되었으면 합니다.</p>
-<p>글이 길어졌으니 <code class="notranslate" translate="no">BufferGeometry</code>는 <a href="threejs-custom-buffergeometry.html">다음 글</a>에서
+<p></p>
+<p>이 글이 <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>를 활용하는 데 도움이 되었으면 합니다.</p>
+<p>글이 길어졌으니 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 <a href="threejs-custom-buffergeometry.html">다음 글</a>에서
 살펴보도록 하겠습니다.</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-custom-geometry.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-custom-geometry.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-custom-geometry.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-custom-geometry.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-custom-geometry.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-custom-geometry.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-custom-geometry.html">English
+    </option><option value="/threejs/lessons/fr/threejs-custom-geometry.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-custom-geometry.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-custom-geometry.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-custom-geometry.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-custom-geometry.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -763,7 +759,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -805,7 +801,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

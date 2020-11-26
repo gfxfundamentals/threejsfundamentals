@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ru/threejs-optimize-lots-of-objects.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ru/threejs-optimize-lots-of-objects.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ru">
-<head>
+--><html lang="ru"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-optimize-lots-of-objects.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects.html" selected>Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-optimize-lots-of-objects.html">English
+    </option><option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects.html" selected="">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">中文
+</option></select>
 
 
     <a href="#toc">Оглавление</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -247,7 +243,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Проверяя сайт, я увидел  <a href="https://beta.sedac.ciesin.columbia.edu/data/set/gpw-v4-basic-demographic-characteristics-rev10">демографические данные в виде сетки</a>.
 Я загрузил данные с 60-минутным разрешением. Затем я посмотрел на данные </p>
 <p>Это выглядит так </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-txt"> ncols         360
+<pre class="prettyprint showlinemods notranslate lang-txt" translate="no"> ncols         360
  nrows         145
  xllcorner     -180
  yllcorner     -60
@@ -269,24 +265,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  9.241768 8.790958 2.095345 -9999 0.05114867 -9999 -9999 -9999 -9999 -999...
  1.287993 0.4395509 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999...
  -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 -9999 ...
-</code></pre>
+</pre>
 <p>Есть несколько строк, похожих на пары ключ / значение, за которыми следуют строки со значением для каждой точки сетки, по одной строке для каждой строки точек данных. </p>
 <p>Чтобы убедиться, что мы понимаем данные, давайте попробуем построить их в 2D. </p>
 <p>Сначала немного кода для загрузки текстового файла </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">async function loadFile(url) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadFile(url) {
   const req = await fetch(url);
   return req.text();
 }
-</code></pre>
+</pre>
 <p>Приведенный выше код возвращает <code class="notranslate" translate="no">Promise</code> с содержимым файла по адресу <code class="notranslate" translate="no">url</code>; </p>
 <p>Тогда нам нужен код для разбора файла </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function parseData(text) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function parseData(text) {
   const data = [];
   const settings = {data};
   let max;
   let min;
   // split into lines
-  text.split(&#39;\n&#39;).forEach((line) =&gt; {
+  text.split('\n').forEach((line) =&gt; {
     // split the line by whitespace
     const parts = line.trim().split(/\s+/);
     if (parts.length === 2) {
@@ -308,22 +304,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   });
   return Object.assign(settings, {min, max});
 }
-</code></pre>
+</pre>
 <p>Приведенный выше код возвращает объект со всеми парами ключ / значение из файла,
 а также свойство <code class="notranslate" translate="no">data</code> со всеми данными в одном большом массиве и значениями <code class="notranslate" translate="no">min</code> и <code class="notranslate" translate="no">max</code>, найденными в данных. </p>
 <p>Тогда нам нужен код для рисования этих данных </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function drawData(file) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function drawData(file) {
   const {min, max, data} = file;
   const range = max - min;
-  const ctx = document.querySelector(&#39;canvas&#39;).getContext(&#39;2d&#39;);
+  const ctx = document.querySelector('canvas').getContext('2d');
   // make the canvas the same size as the data
   ctx.canvas.width = ncols;
   ctx.canvas.height = nrows;
-  // but display it double size so it&#39;s not too small
+  // but display it double size so it's not too small
   ctx.canvas.style.width = px(ncols * 2);
   ctx.canvas.style.height = px(nrows * 2);
   // fill the canvas to dark gray
-  ctx.fillStyle = &#39;#444&#39;;
+  ctx.fillStyle = '#444';
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   // draw each data point
   data.forEach((row, latNdx) =&gt; {
@@ -348,37 +344,37 @@ function px(v) {
 function hsl(h, s, l) {
   return `hsl(${h * 360 | 0},${s * 100 | 0}%,${l * 100 | 0}%)`;
 }
-</code></pre>
+</pre>
 <p>И, наконец, склеив все это </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc')
   .then(parseData)
   .then(drawData);
-</code></pre>
+</pre>
 <p>Дает нам этот результат </p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fgpw-data-viewer.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../gpw-data-viewer.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
-</p>
+<p></p>
 <p>Так что, кажется, это работает. </p>
 <p>Давайте попробуем это в 3D. Начиная с кода от <a href="threejs-rendering-on-demand.html">рендеринга по требованию</a> мы сделаем один блок на данные в файле. </p>
 <p>Сначала давайте сделаем простую сферу с текстурой мира. Вот текстура </p>
 <div class="threejs_center"><img src="../../resources/images/world.jpg" style="width: 600px"></div>
 
 <p>И код для его настройки. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const loader = new THREE.TextureLoader();
-  const texture = loader.load(&#39;resources/images/world.jpg&#39;, render);
+  const texture = loader.load('resources/images/world.jpg', render);
   const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
   const material = new THREE.MeshBasicMaterial({map: texture});
   scene.add(new THREE.Mesh(geometry, material));
 }
-</code></pre>
+</pre>
 <p>Обратите внимание на вызов для рендеринга после завершения загрузки текстуры. Нам это нужно, потому что мы выполняем  <a href="threejs-rendering-on-demand.html">рендеринг по требованию</a> 
 а не постоянно, поэтому нам нужно рендерить один раз при загрузке текстуры. </p>
 <p>Затем нам нужно изменить код, который рисует точку на точку данных выше, чтобы вместо этого создать прямоугольник для точки данных. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function addBoxes(file) {
   const {min, max, data} = file;
   const range = max - min;
 
@@ -431,7 +427,7 @@ function hsl(h, s, l) {
     });
   });
 }
-</code></pre>
+</pre>
 <p>Код в основном прямо из нашего тестового кода рисования. </p>
 <p>Мы делаем одну коробку и корректируем ее центр так, чтобы она масштабировалась от положительного Z. 
 Если бы мы этого не делали, она бы масштабировалась от центра, но мы хотим, чтобы они росли от начала координат. </p>
@@ -460,8 +456,8 @@ THREE.Object3D, как мы покрывали в <a href="threejs-scenegraph.ht
 <span style="color: red;">Красная сфера</span> представляет смещение, которое обеспечивает этот <code class="notranslate" translate="no">positionHelper</code>.</p>
 <p>Мы могли бы сделать всю математику вручную, чтобы выяснить позиции на земном шаре, но, делая это таким образом,
 мы оставляем большую часть математики самой библиотеке, поэтому нам не нужно иметь с ней дело. </p>
-<p>Для каждой точки данных мы создаем <code class="notranslate" translate="no">MeshBasicMaterial</code> и <code class="notranslate" translate="no">Mesh</code>, а затем запрашиваем мировую матрицу
-<code class="notranslate" translate="no">positionHelper</code> и применяем ее к новой <code class="notranslate" translate="no">Mesh</code>. Наконец мы масштабируем сетку в новой позиции. </p>
+<p>Для каждой точки данных мы создаем <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a> и <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>, а затем запрашиваем мировую матрицу
+<code class="notranslate" translate="no">positionHelper</code> и применяем ее к новой <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>. Наконец мы масштабируем сетку в новой позиции. </p>
 <p>Как и выше, мы могли бы также создать <code class="notranslate" translate="no">latHelper</code>, <code class="notranslate" translate="no">lonHelper</code> и <code class="notranslate" translate="no">positionHelper</code> для каждого нового окна, но это было бы еще медленнее. </p>
 <p>Мы собираемся создать до 360х145 коробок. Это до 52000 коробок. 
 Поскольку некоторые точки данных помечены как «NO_DATA», фактическое
@@ -475,19 +471,19 @@ THREE.Object3D, как мы покрывали в <a href="threejs-scenegraph.ht
 с другого смещения по всему земному шару. <code class="notranslate" translate="no">latFudge</code> с другой стороны, я понятия не имею, 
 почему он должен быть π * -0,135, это просто количество, которое выровняло боксы с текстурой. </p>
 <p>Последнее, что нам нужно сделать, это вызвать нашего загрузчика </p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no">loadFile(&#39;resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc&#39;)
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc')
   .then(parseData)
 -  .then(drawData)
 +  .then(addBoxes)
 +  .then(render);
-</code></pre><p>После того, как данные закончили загрузку и анализ, нам нужно выполнить рендеринг хотя бы один раз, поскольку мы выполняем 
+</pre><p>После того, как данные закончили загрузку и анализ, нам нужно выполнить рендеринг хотя бы один раз, поскольку мы выполняем 
  <a href="threejs-rendering-on-demand.html">рендеринг по требованию</a>.</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-slow.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-slow.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
-</p>
+<p></p>
 <p>Если вы попытаетесь повернуть приведенный выше пример, перетащив образец, вы, вероятно, заметите, что он медленный. </p>
 <p>Мы можем проверить частоту кадров, <a href="threejs-debugging-javascript.html">открыв devtools</a> и включив индикатор частоты кадров браузера.</p>
 <div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
@@ -499,7 +495,7 @@ THREE.Object3D, как мы покрывали в <a href="threejs-scenegraph.ht
 <p>Для этой конкретной задачи мы можем объединить все блоки в одну геометрию. 
 В настоящее время мы рисуем около 19000 коробок. Объединяя их в одну геометрию, мы удалили 18999 операций. </p>
 <p>Вот новый код для объединения блоков в одну геометрию. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function addBoxes(file) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function addBoxes(file) {
   const {min, max, data} = file;
   const range = max - min;
 
@@ -573,12 +569,12 @@ THREE.Object3D, как мы покрывали в <a href="threejs-scenegraph.ht
 
 +  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
 +      geometries, false);
-+  const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
++  const material = new THREE.MeshBasicMaterial({color:'red'});
 +  const mesh = new THREE.Mesh(mergedGeometry, material);
 +  scene.add(mesh);
 
 }
-</code></pre>
+</pre>
 <p>Выше мы удалили код, который изменял центральную точку геометрии бокса,
 и вместо этого делаем это, добавляя <code class="notranslate" translate="no">originHelper</code>. Раньше мы использовали 
 одну и ту же геометрию 19000 раз. На этот раз мы создаем новую геометрию
@@ -586,21 +582,21 @@ THREE.Object3D, как мы покрывали в <a href="threejs-scenegraph.ht
 для перемещения вершин каждой геометрии блока, мы могли бы сделать это один раз, а не два. </p>
 <p>В конце мы передаем массив всех геометрий в <code class="notranslate" translate="no">BufferGeometryUtils.mergeBufferGeometries</code>, который объединит их все в одну сетку. </p>
 <p>Нам также нужно включить <code class="notranslate" translate="no">BufferGeometryUtils</code> </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {BufferGeometryUtils} from &#39;./resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js&#39;;
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {BufferGeometryUtils} from './resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js';
+</pre>
 <p>И теперь, по крайней мере на моей машине, я получаю 60 кадров в секунду </p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
-</p>
+<p></p>
 <p>Так что это сработало, но поскольку это одна сетка, мы получаем только один материал, 
 что означает, что мы получаем только один цвет, тогда как раньше у нас был другой цвет 
 на каждой коробке. Мы можем исправить это, используя цвета вершин. </p>
 <p>Цвета вершин добавляют цвет для каждой вершины. Установив все цвета каждой 
 вершины каждого блока на определенные цвета, каждый блок будет иметь другой цвет. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">+const color = new THREE.Color();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const color = new THREE.Color();
 
 const lonFudge = Math.PI * .5;
 const latFudge = Math.PI * -0.135;
@@ -636,7 +632,7 @@ data.forEach((row, latNdx) =&gt; {
 +    const rgb = color.toArray().map(v =&gt; v * 255);
 +
 +    // make an array to store colors for each vertex
-+    const numVerts = geometry.getAttribute(&#39;position&#39;).count;
++    const numVerts = geometry.getAttribute('position').count;
 +    const itemSize = 3;  // r, g, b
 +    const colors = new Uint8Array(itemSize * numVerts);
 +
@@ -647,33 +643,33 @@ data.forEach((row, latNdx) =&gt; {
 +
 +    const normalized = true;
 +    const colorAttrib = new THREE.BufferAttribute(colors, itemSize, normalized);
-+    geometry.setAttribute(&#39;color&#39;, colorAttrib);
++    geometry.setAttribute('color', colorAttrib);
 
     geometries.push(geometry);
   });
 });
-</code></pre>
+</pre>
 <p>Приведенный выше код ищет количество или вершины, 
 необходимые для получения атрибута <code class="notranslate" translate="no">position</code> из геометрии. 
 Затем мы создаем <code class="notranslate" translate="no">Uint8Array</code> для размещения цветов.
 Затем он добавляет это как атрибут, вызывая <code class="notranslate" translate="no">geometry.setAttribute</code>. </p>
 <p>Наконец, нам нужно указать three.js использовать цвета вершин. </p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
     geometries, false);
--const material = new THREE.MeshBasicMaterial({color:&#39;red&#39;});
+-const material = new THREE.MeshBasicMaterial({color:'red'});
 +const material = new THREE.MeshBasicMaterial({
 +  vertexColors: THREE.VertexColors,
 +});
 const mesh = new THREE.Mesh(mergedGeometry, material);
 scene.add(mesh);
-</code></pre>
+</pre>
 <p>И с этим мы получаем наши цвета обратно </p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-merged-vertexcolors.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-merged-vertexcolors.html" target="_blank">нажмите здесь, чтобы открыть в отдельном окне</a>
 </div>
 
-</p>
+<p></p>
 <p>Объединение геометрии является распространенным методом оптимизации.
 Например, вместо 100 деревьев вы можете объединить деревья в одну геометрию, 
 кучу отдельных камней в одну геометрию камней, частокол из отдельных пикетов в одну сетку. 
@@ -688,13 +684,13 @@ scene.add(mesh);
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-optimize-lots-of-objects.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects.html" selected>Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-optimize-lots-of-objects.html">English
+    </option><option value="/threejs/lessons/fr/threejs-optimize-lots-of-objects.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-optimize-lots-of-objects.html" selected="">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -799,7 +795,7 @@ scene.add(mesh);
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -841,7 +837,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

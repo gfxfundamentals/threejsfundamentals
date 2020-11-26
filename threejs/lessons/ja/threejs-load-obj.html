@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/ja/threejs-load-obj.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-load-obj.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ja">
-<head>
+--><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -113,13 +109,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-load-obj.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-load-obj.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-load-obj.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-load-obj.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-load-obj.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-load-obj.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-load-obj.html">English
+    </option><option value="/threejs/lessons/fr/threejs-load-obj.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-load-obj.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-load-obj.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-load-obj.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-load-obj.html">中文
+</option></select>
 
 
     <a href="#toc">目次</a>
@@ -218,11 +214,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -255,26 +251,26 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_center"><img style="width: 239px;" src="../resources/images/windmill-export-options.jpg"></div>
 
 <p>それでは表示してみましょう！</p>
-<p><a href="threejs-lights.html">ライティングの記事</a> にあるディレクショナルライティングの例から始めて、半球ライティングの例と組み合わせて <code class="notranslate" translate="no">HemisphereLight</code> と <code class="notranslate" translate="no">DirectionalLight</code> を1つ作る事にしました。その結果として <code class="notranslate" translate="no">HemisphereLight</code> は1つ、<code class="notranslate" translate="no">DirectionalLight</code> は1つになりました。
+<p><a href="threejs-lights.html">ライティングの記事</a> にあるディレクショナルライティングの例から始めて、半球ライティングの例と組み合わせて <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> と <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> を1つ作る事にしました。その結果として <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> は1つ、<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> は1つになりました。
 また、ライトの調整に関連する全てのGUIを削除しました。シーンに追加していたキューブとスフィアも削除しました。</p>
-<p>まず最初に <code class="notranslate" translate="no">OBJLoader2</code> のローダーをコードに含める必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
-</code></pre>
-<p>次にOBJファイルをロードするために <code class="notranslate" translate="no">OBJLoader2</code> のインスタンスを作成し、OBJファイルのURLを渡し、ロードされたモデルをシーンに追加するコールバックを渡します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<p>まず最初に <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> のローダーをコードに含める必要があります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+</pre>
+<p>次にOBJファイルをロードするために <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> のインスタンスを作成し、OBJファイルのURLを渡し、ロードされたモデルをシーンに追加するコールバックを渡します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const objLoader = new OBJLoader2();
-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
+  objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
     scene.add(root);
   });
 }
-</code></pre>
+</pre>
 <p>それを実行したらどうなりますか？</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-no-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-no-materials.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これはやりたい事に近いですが、シーンにマテリアルとOBJファイルにマテリアルのパラメーターがなく、マテリアルのエラーが発生しています。</p>
 <p>OBJローダーには名前とマテリアルのペアのオブジェクトを渡す事ができます。
 OBJファイルをロードした時に見つけたマテリアル名で、ローダーに設定されたマテリアルのマップ内で対応するマテリアルを探します。
@@ -283,7 +279,7 @@ OBJファイルをロードした時に見つけたマテリアル名で、ロ�
 <p>OBJファイルにはマテリアルを定義するMTLファイルが付属している事があります。
 今回はエクスポーターでMTLファイルも作成しました。
 MTL形式はプレーンなASCIIコードなので見やすいです。MTLファイルの中身を見てみると</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no"># Blender MTL File: 'windmill_001.blend'
 # Material Count: 2
 
 newmtl Material
@@ -310,7 +306,7 @@ illum 1
 map_Kd windmill_001_base_COL.jpg
 map_Bump windmill_001_base_NOR.jpg
 map_Ns windmill_001_base_SPEC.jpg
-</code></pre>
+</pre>
 <p>5つのjpgテクスチャを参照しているマテリアルが2つありますが、テクスチャのファイルはどこにあるのでしょうか？</p>
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files.png"></div>
 
@@ -329,33 +325,33 @@ blenderで <strong>File-&gt;External Data-&gt;Unpack All Into Files</strong> を
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>テクスチャを利用できるようになったのでMTLファイルをロードします。
-<code class="notranslate" translate="no">MTLLoader</code> と <code class="notranslate" translate="no">MtlObjBridge</code> をimportする必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">import * as THREE from &#39;./resources/three/r122/build/three.module.js&#39;;
-import {OrbitControls} from &#39;./resources/threejs/r122/examples/jsm/controls/OrbitControls.js&#39;;
-import {OBJLoader2} from &#39;./resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js&#39;;
-+import {MTLLoader} from &#39;./resources/threejs/r122/examples/jsm/loaders/MTLLoader.js&#39;;
-+import {MtlObjBridge} from &#39;./resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js&#39;;
-</code></pre>
+<a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> と <code class="notranslate" translate="no">MtlObjBridge</code> をimportする必要があります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
++import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
++import {MtlObjBridge} from './resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
+</pre>
 <p>まず、MTLファイルをロードします。
-読込後にロードしたマテリアルを <code class="notranslate" translate="no">MtlObjBridge</code> を通して <code class="notranslate" translate="no">OBJLoader2</code> をロードしOBJファイルをロードします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+読込後にロードしたマテリアルを <code class="notranslate" translate="no">MtlObjBridge</code> を通して <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> をロードしOBJファイルをロードします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
++  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
 +    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
 +    objLoader.addMaterials(materials);
-    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
+    objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       scene.add(root);
     });
 +  });
 }
-</code></pre>
+</pre>
 <p>それを試してみると...</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>モデルを回転させると風車の布が消える事に注意して下さい。</p>
 <div class="threejs_center"><img style="width: 528px;" src="../resources/images/windmill-missing-cloth.jpg"></div>
 
@@ -364,32 +360,32 @@ MTLファイルを簡単に修正する方法はありません。
 私の思いつきではこの問題を修正する3つの方法があります。</p>
 <ol>
 <li><p>マテリアルの読込後、全てのマテリアルをループさせて両面を適用する</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    for (const material of Object.values(materials)) {
      material.side = THREE.DoubleSide;
    }
    ...
-</code></pre><p>この解決策は動作しますが、理想的には両面描画は片面描画よりも遅く、両面描画が必要なマテリアルだけを両面にしたいです。</p>
+</pre><p>この解決策は動作しますが、理想的には両面描画は片面描画よりも遅く、両面描画が必要なマテリアルだけを両面にしたいです。</p>
 </li>
 <li><p>特定のマテリアルを手動で設定する</p>
 <p>MTLファイルを見ると2つのマテリアルがあります。
-1つは <code class="notranslate" translate="no">&quot;winddmill&quot;</code> と呼び、もう1つは <code class="notranslate" translate="no">&quot;Material&quot;</code> と呼びます。
-試行錯誤の結果、風車の羽根は <code class="notranslate" translate="no">&quot;Material&quot;</code> というマテリアル名を使う事が分かりました。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load(&#39;resources/models/windmill/windmill.mtl&#39;, (mtlParseResult) =&gt; {
+1つは <code class="notranslate" translate="no">"winddmill"</code> と呼び、もう1つは <code class="notranslate" translate="no">"Material"</code> と呼びます。
+試行錯誤の結果、風車の羽根は <code class="notranslate" translate="no">"Material"</code> というマテリアル名を使う事が分かりました。</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
    materials.Material.side = THREE.DoubleSide;
    ...
-</code></pre></li>
+</pre></li>
 <li><p>MTLファイルには制限がある事に気付き、MTLファイルを使わず自前でマテリアルを作成する</p>
-<pre class="prettyprint notranslate" translate="no"><code class="notranslate" translate="no"> const materials = {
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const materials = {
    Material: new THREE.MeshPhongMaterial({...}),
    windmill: new THREE.MeshPhongMaterial({...}),
  };
  objLoader.setMaterials(materials);
-</code></pre></li>
+</pre></li>
 </ol>
 <p>どれを選ぶかはあなた次第です。
 1が1番簡単です。3が最も柔軟です。2はその中間で今回は2を選びます。</p>
@@ -405,7 +401,7 @@ MTLファイルを簡単に修正する方法はありません。
 <div class="threejs_center"><img style="width: 256px;" src="../../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
 <p><a href="https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432">MTLLoaderのソースを見ると</a>ノーマルマップのキーワード <code class="notranslate" translate="no">norm</code> を期待しているのでMTLファイルを編集してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl"># Blender MTL File: &#39;windmill_001.blend&#39;
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no"># Blender MTL File: 'windmill_001.blend'
 # Material Count: 2
 
 newmtl Material
@@ -434,34 +430,34 @@ map_Kd windmill_001_base_COL.jpg
 -map_Bump windmill_001_base_NOR.jpg
 +norm windmill_001_base_NOR.jpg
 map_Ns windmill_001_base_SPEC.jpg
-</code></pre>
+</pre>
 <p>これでロードするとノーマルマップとして扱うようになり、風車の羽根の裏が描画されるようになりました。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-fixed.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-fixed.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>別のファイルを読み込んでみましょう。</p>
 <p>ネットで検索すると<a href="http://www.gerzi.ch/">Roger Gerzner / GERIZ.3D Art</a>で作られた<a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC</a>の風車の3Dモデルを見つけました。</p>
 <div class="threejs_center"><img src="../resources/images/windmill-obj-2.jpg"></div>
 
 <p>これにはOBJファイルが既にありました。
 それをロードしてみましょう（ここでMTLローダーを削除した事に注意して下さい）</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-  objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, ...
-+  objLoader.load(&#39;resources/models/windmill-2/windmill.obj&#39;, ...
-</code></pre>
-<p><div translate="no" class="threejs_example_container notranslate">
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-  objLoader.load('resources/models/windmill/windmill.obj', ...
++  objLoader.load('resources/models/windmill-2/windmill.obj', ...
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-wat.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-wat.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>うーん、何も出てこない...。何が問題でしょうか？
 モデルのサイズはどれくらいなんだろう？</p>
 <p>Three.jsにモデルのサイズを確認してカメラを自動設定してみます。</p>
 <p>まず最初にThree.jsに先ほど読み込んだシーンを含むボックスを計算し、そのサイズと中心座標を確認してみましょう。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
   scene.add(root);
 
 +  const box = new THREE.Box3().setFromObject(root);
@@ -469,11 +465,11 @@ map_Ns windmill_001_base_SPEC.jpg
 +  const boxCenter = box.getCenter(new THREE.Vector3());
 +  console.log(boxSize);
 +  console.log(boxCenter);
-</code></pre>
+</pre>
 <p><a href="threejs-debugging-javascript.html">JavaScriptコンソール</a>を見ると</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">size 2123.6499788469982
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">size 2123.6499788469982
 center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
-</code></pre>
+</pre>
 <p>現在カメラは <code class="notranslate" translate="no">near</code> が0.1、<code class="notranslate" translate="no">far</code> が100で約100ユニットしか表示されていません。
 地上は40ユニットしかなく、この風車のモデルは2000ユニットと非常に大きく、カメラとその全ての部分が錐台の外にあります。</p>
 <div class="threejs_center"><img style="width: 280px;" src="../resources/images/camera-inside-windmill.svg"></div>
@@ -497,12 +493,12 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 <div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 <p>この図に基づいて距離を計算する式は次のようになります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">distance = halfSizeToFitOnScreen / tangent(halfFovY)
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">distance = halfSizeToFitOnScreen / tangent(halfFovY)
+</pre>
 <p>コードに変換してみましょう。
 まずは <code class="notranslate" translate="no">距離</code> を計算する関数を作り、ボックスの中心から <code class="notranslate" translate="no">距離</code> 単位でカメラを移動させてみましょう。
 次にカメラをボックスの <code class="notranslate" translate="no">中心</code> に向けます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
   const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
   const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
   const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
@@ -525,14 +521,14 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
   // point the camera to look at the center of the box
   camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
 }
-</code></pre>
+</pre>
 <p>2つのサイズを引数に渡しています。
 <code class="notranslate" translate="no">boxSize</code> と <code class="notranslate" translate="no">sizeToFitOnScreen</code> の事です。
 <code class="notranslate" translate="no">boxSize</code> を渡し <code class="notranslate" translate="no">sizeToFitOnScreen</code> として使用すれば、計算でボックスが錐台の中に完全に収まるようになります。
 上下に少し余分なスペースが欲しいので少し大きめのサイズにします。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const objLoader = new OBJLoader2();
-  objLoader.load(&#39;resources/models/windmill_2/windmill.obj&#39;, (root) =&gt; {
+  objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
     scene.add(root);
 +    // compute the box that contains all the stuff
 +    // from root and below
@@ -550,16 +546,16 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 +    controls.update();
   });
 }
-</code></pre>
+</pre>
 <p>上記の図のように <code class="notranslate" translate="no">boxSize * 1.2</code> を渡しボックスを錐台内に収める際にボックスの上下に20%のスペースを確保する事ができます。
-また <code class="notranslate" translate="no">OrbitControls</code> を更新し、カメラがシーンの中心を周回するようにしました。</p>
+また <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を更新し、カメラがシーンの中心を周回するようにしました。</p>
 <p>それを試してみると...</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>これはほぼ動作してますね。
 カメラを回転させるためにマウスを使用し、風車が表示されるはずです。
 問題は風車が大きく、箱の中心が(0,770,0)くらいにあります。
@@ -570,7 +566,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 そのために必要なのはボックスからカメラまでのベクトルの <code class="notranslate" translate="no">y</code> をゼロにする事です。
 ベクトルを正規化するとXZ平面に平行なベクトルになります。
 言い換えれば地面と平行になります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-// compute a unit vector that points in the direction the camera is now
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-// compute a unit vector that points in the direction the camera is now
 -// from the center of the box
 -const direction = (new THREE.Vector3()).subVectors(camera.position, boxCenter).normalize();
 +// compute a unit vector that points in the direction the camera is now
@@ -579,7 +575,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 +    .subVectors(camera.position, boxCenter)
 +    .multiply(new THREE.Vector3(1, 0, 1))
 +    .normalize();
-</code></pre>
+</pre>
 <p>風車の底を見ると小さな四角いものが見えます。それが地上面です。</p>
 <div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
@@ -587,34 +583,34 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 風車の大きさが2000ユニットを超えているので、地上面の大きさをもっとピッタリしたものに変えてみましょう。
 また、テクスチャのrepeatを調整する必要があります。
 チェッカーボードはズームインしない限り、見る事さえできないような細かいものになります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">-const planeSize = 40;
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const planeSize = 40;
 +const planeSize = 4000;
 
 const loader = new THREE.TextureLoader();
-const texture = loader.load(&#39;resources/images/checker.png&#39;);
+const texture = loader.load('resources/images/checker.png');
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
 texture.magFilter = THREE.NearestFilter;
 -const repeats = planeSize / 2;
 +const repeats = planeSize / 200;
 texture.repeat.set(repeats, repeats);
-</code></pre>
+</pre>
 <p>これで風車を見る事ができます。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-auto-camera-xz.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-auto-camera-xz.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>マテリアルを元に戻してみましょう。
 先ほどと同じようにテクスチャを参照しているMTLファイルがありますが、ファイルを見てみるとすぐに問題点が浮き上がります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-shell"> $ ls -l windmill
+<pre class="prettyprint showlinemods notranslate lang-shell" translate="no"> $ ls -l windmill
  -rw-r--r--@ 1 gregg  staff       299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff    142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_diffuse.tga
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 20  2009 windmill_normal.tga
  -rw-r--r--@ 1 gregg  staff  12582956 Apr 19  2009 windmill_spec.tga
-</code></pre>
+</pre>
 <p>TARGA(.tga)ファイルが巨大です！</p>
 <p>Three.jsにはTGAローダーがありますが、ほとんどのユースケースでそれを使うのは間違いです。
 ネット上で見つけたランダムな3Dファイルを閲覧できるようなビューアを作っているのであれば、TGAファイルを読み込んだ方がいいかもしれません。(<a href="#loading-scenes">*</a>)</p>
@@ -631,19 +627,19 @@ JPGはダウンロードするためにファイルをロス有り圧縮を行�
 私には無駄に大きいサイズに思えましたが、もちろん使用ケースによります。
 1024 x 1024にしPhotoshopで50%の画質設定で保存してみました。
 ファイルリストを取得すると</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-shell"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+<pre class="prettyprint showlinemods notranslate lang-shell" translate="no"> $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
  -rw-r--r--@ 1 gregg  staff   98013 Nov  7 18:38 windmill_normal.jpg
  -rw-r--r--@ 1 gregg  staff  191864 Nov  7 18:39 windmill_spec.jpg
-</code></pre>
+</pre>
 <p>36MEGから0.55MEGまで圧縮できました！
 3DCGデザイナーなどのアーティストはこの圧縮に満足していないかもしれませんので、トレードオフについて相談するようにして下さい。</p>
 <p>さてMTLファイルを使用するには、JPGファイルを参照するように編集する必要があります。
 TGAファイルの代わりにJPGファイルを使用します。
 幸いな事にこれは単純なテキストファイル編集のみで簡単です。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">newmtl blinn1SG
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">newmtl blinn1SG
 Ka 0.10 0.10 0.10
 
 Kd 0.00 0.00 0.00
@@ -665,16 +661,16 @@ illum 2
 -bump windmill_normal.tga 
 +map_bump windmill_normal.jpg 
 +bump windmill_normal.jpg
-</code></pre>
+</pre>
 <p>MTLファイルが適度なサイズのテクスチャを指しているので、それをロードする必要があります。
-上記で行ったようにまずマテリアルをロードしてから <code class="notranslate" translate="no">OBJLoader2</code> に設定します。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-js">{
+上記で行ったようにまずマテリアルをロードしてから <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> に設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load(&#39;resources/models/windmill_2/windmill-fixed.mtl&#39;, (mtlParseResult) =&gt; {
++  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) =&gt; {
 +    const objLoader = new OBJLoader2();
 +    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
 +    objLoader.addMaterials(materials);
-    objLoader.load(&#39;resources/models/windmill/windmill.obj&#39;, (root) =&gt; {
+    objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);
       // compute the box that contains all the stuff
@@ -694,19 +690,19 @@ illum 2
     });
 +  });
 }
-</code></pre>
+</pre>
 <p>実際にやってみる前にいくつかの問題にぶつかりました。</p>
-<p>問題1: 3つの <code class="notranslate" translate="no">MTLLoader</code> は、マテリアルのディフューズカラーにディフューズテクスチャマップを乗算したマテリアルを作成します。</p>
+<p>問題1: 3つの <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> は、マテリアルのディフューズカラーにディフューズテクスチャマップを乗算したマテリアルを作成します。</p>
 <p>これは便利な機能ですがMTLファイルの上記の行を見ると</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">Kd 0.00 0.00 0.00
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">Kd 0.00 0.00 0.00
+</pre>
 <p>ディフューズ色を0に設定します。
 テクスチャマップ * 0 = 黒です!
 風車を作るのに使われたモデリングツールがディフューズテクスチャマップにディフューズカラーを掛けていなかった可能性があります。
 だからこそ、この風車を作った3DCGデザイナーなどのアーティストの3DCG Tool上では動作してました。</p>
 <p>これを修正するには、次の行を修正する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">Kd 1.00 1.00 1.00
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">Kd 1.00 1.00 1.00
+</pre>
 <p>テクスチャ マップ * 1 = テクスチャマップです。</p>
 <p>問題点その2：スペキュラカラーも黒である</p>
 <p><code class="notranslate" translate="no">Ks</code> で始まる行はスペキュラカラーを指定します。
@@ -714,22 +710,22 @@ illum 2
 Three.jsではスペキュラカラーをどの程度反射させるかの入力値は、スペキュラマップの赤チャンネルのみを使用しています。
 つまり、スペキュラカラーセットが必要です。</p>
 <p>上記のようにMTLファイルを以下のように修正する事ができます。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">-Ks 0.00 0.00 0.00
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">-Ks 0.00 0.00 0.00
 +Ks 1.00 1.00 1.00
-</code></pre>
+</pre>
 <p>問題 #3: <code class="notranslate" translate="no">windmill_normal.jpg</code> はバンプマップではなくノーマルマップです</p>
 <p>上記のようにMTLファイルを編集する必要があります。</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-mtl">-map_bump windmill_normal.jpg 
+<pre class="prettyprint showlinemods notranslate lang-mtl" translate="no">-map_bump windmill_normal.jpg 
 -bump windmill_normal.jpg 
 +norm windmill_normal.jpg
-</code></pre>
+</pre>
 <p>それを考慮し試してみるとマテリアルが一杯になるはずです。</p>
-<p><div translate="no" class="threejs_example_container notranslate">
+<p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-load-obj-materials-windmill2.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-load-obj-materials-windmill2.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
 </div>
 
-</p>
+<p></p>
 <p>モデルをロードするとこのような問題が発生することがよくあります。
 よくある問題には以下のようなものがあります。</p>
 <ul>
@@ -768,13 +764,13 @@ Webページはできるだけ速く読みたいので、テクスチャをで�
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-load-obj.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-load-obj.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-load-obj.html" selected>日本語</a>
-    <option value="/threejs/lessons/kr/threejs-load-obj.html" >한국어</a>
-    <option value="/threejs/lessons/ru/threejs-load-obj.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-load-obj.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-load-obj.html">English
+    </option><option value="/threejs/lessons/fr/threejs-load-obj.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-load-obj.html" selected="">日本語
+    </option><option value="/threejs/lessons/kr/threejs-load-obj.html">한국어
+    </option><option value="/threejs/lessons/ru/threejs-load-obj.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-load-obj.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -879,7 +875,7 @@ Webページはできるだけ速く読みたいので、テクスチャをで�
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -921,7 +917,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>

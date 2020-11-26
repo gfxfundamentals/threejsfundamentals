@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<!-- this file is auto-generated from threejs/lessons/kr/threejs-debugging-glsl.md. Do not edited directly -->
-<!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/kr/threejs-debugging-glsl.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -31,9 +29,7 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
--->
-<html lang="ko">
-<head>
+--><html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,13 +110,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div class="threejs_navbar">
   <div>
     <select class="language">
-    <option value="/threejs/lessons/threejs-debugging-glsl.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-debugging-glsl.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-debugging-glsl.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-debugging-glsl.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-debugging-glsl.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-debugging-glsl.html">English
+    </option><option value="/threejs/lessons/fr/threejs-debugging-glsl.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-debugging-glsl.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-debugging-glsl.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-debugging-glsl.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">中文
+</option></select>
 
 
     <a href="#toc">목차</a>
@@ -219,11 +215,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }
 
 </style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+
 <svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
     <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"/>
+        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
     </g>
 </svg>
 </a></div></div></div>
@@ -240,50 +236,50 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>이 사이트에서 자바스크립트 자체에 대해 다루지 않듯, 아직까지 이 사이트에는 GLSL에 대한 글이 없습니다. GLSL은 간단히 다루기 어려운 주제이기에 GLSL을 배우고 싶다면 <a href="https://webglfundamentals.org/webgl/lessons/ko/">이 시리즈</a>를 참고하기 바랍니다.</p>
 <p>GLSL에 대해 어느 정도 안다면 이 글이 GLSL 디버깅에 도움이 될 겁니다.</p>
 <p>GLSL 쉐이더를 만들었는데 아무것도 나타나지 않을 때, 저는 보통 쉐이더를 fragment 쉐이더로 바꾼 뒤 특정 색상만 반환하게 합니다. 예를 들어 쉐이더의 가장 마지막에 다음과 같은 코드를 넣는 것이죠.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">void main() {
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">void main() {
 
   ...
 
   gl_FragColor = vec4(1, 0, 0, 1);  // 빨강
 }
-</code></pre>
+</pre>
 <p>만약 저렇게 해서 요소가 보인다면 fragment 쉐이더에 문제가 있는 겁니다. 텍스처가 깨진 건지, 균등 변수(uniform)를 지정하지 않은 건지, 균등 변수에 잘못된 값을 지정한 건지는 알 수 없지만 적어도 어디서 문제를 찾아야 할지는 알 수 있죠.</p>
 <p>어디가 틀렸는지 확인하기 위해 몇 가지 요소를 실제로 렌더링해볼 수 있습니다. 예를 들어 fragment 쉐이더의 법선(normal)을 사용한다면 저는 다음과 같은 코드를 추가할 겁니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
+</pre>
 <p>법선의 값은 -1 에서 +1 사이이기에 0.5를 곱한 뒤 0.5를 더하면 값을 0.0 에서 0.1로 만들어 색으로 표현할 수 있습니다.</p>
 <p>실행이 잘 된 예제에 이 쉐이더를 적용해보면 법선이 <em>보통(normally)</em> 어떻게 생겼는지 알 수 있습니다. 만약 법선이 정상적으로 보이지 않는다면 그게 다음 문제를 찾을 단서가 되겠죠. fragment 쉐이더에서 법선의 값을 변경하는 경우 같은 방법을 이용해 결과값을 렌더링할 수 있습니다.</p>
 <div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
 <p>마찬가지로 텍스처를 사용하는 경우에는 텍스처 좌표가 있으니 그걸로 다음과 같이 활용할 수 있습니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_FragColor = vec4(fract(vUv), 0, 1);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">gl_FragColor = vec4(fract(vUv), 0, 1);
+</pre>
 <p>텍스처 좌표를 사용하는 경우, <code class="notranslate" translate="no">fract</code>를 실행한 값은 0부터 1 사이의 값이 아닐 수 있습니다. 대상 물체가 텍스처보다 크고 <code class="notranslate" translate="no">texture.repeat</code>을 사용한 경우 1보다 큰 숫자가 나올 수 있겠죠.</p>
 <div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 <p>fragment 쉐이더의 다른 값으로도 비슷한 방법을 사용할 수 있습니다. 해당 값의 범위를 알아낸 뒤 해당 값을 0.0부터 1.0 사이의 값으로 변환해 <code class="notranslate" translate="no">gl_FragColor</code>에 지정하는 거죠.</p>
-<p>텍스처를 확인하려면 <code class="notranslate" translate="no">CanvasTexture</code>나 <code class="notranslate" translate="no">DataTexture</code>를 사용해보기 바랍니다.</p>
+<p>텍스처를 확인하려면 <a href="https://threejs.org/docs/#api/en/textures/CanvasTexture"><code class="notranslate" translate="no">CanvasTexture</code></a>나 <a href="https://threejs.org/docs/#api/en/textures/DataTexture"><code class="notranslate" translate="no">DataTexture</code></a>를 사용해보기 바랍니다.</p>
 <p>만약 <code class="notranslate" translate="no">gl_FragColor</code>에 빨간색을 지정했는데도 아무것도 보이지 않는다면, vertex 쉐이더 관련 물체의 방향 문제일 수 있습니다. 특정 행렬 좌표(matrix)가 잘못되었거나 어떤 속성의 값이 잘못되었거나 설정이 이상할 수 있죠.</p>
 <p>그럼 먼저 행렬 좌표를 살펴봐야 합니다. <code class="notranslate" translate="no">renderer.render(scene, camera)</code>를 한 번만 호출한 뒤 콘솔에서 객체를 펼쳐 보는 것이죠. 카메라의 전역 행렬 좌표나 투사 행렬 좌표에 <code class="notranslate" translate="no">NaN</code>이 있는 걸까요? 장면 객체를 펼쳐 <code class="notranslate" translate="no">children</code> 속성을 확인하니 전역 행렬 좌표는 멀쩡해 보입니다(<code class="notranslate" translate="no">NaN</code>이 없음). 또한 다른 행렬 좌표의 4가지 값들도 모두 멀쩡해 보입니다. 만약 장면의 크기가 50x50x50인데 어떤 좌표값이 552352623.123이라면 확실히 뭔가 잘못된 겁니다.</p>
 <div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
 
 <p>fragment 쉐이더와 마찬가지로 vertex 쉐이더에서도 값을 fragment 쉐이더에 넘겨주는 방식으로 값을 시각화할 수 있습니다. 양 쉐이더에 동일하게 변수를 생성한 뒤, 의심되는 값을 넘겨주는 거죠. 저라면 fragment 쉐이더가 그 값을 표시하도록 의심되는 값을 <code class="notranslate" translate="no">vNormal</code>에 0.0에서 1.0 사이의 값으로 바꿔 지정할 겁니다. 그런 다음 결과를 보고 예상과 일치하는지 확인하는 것이죠.</p>
 <p>이 방법이 통하지 않는다면 어떤 vertex 쉐이더가 geometry를 가장 간단하게 표시할 수 있을까요? 아주 간단하게 다음처럼 할 수 있을 겁니다.</p>
-<pre class="prettyprint notranslate" translate="no"><code class="lang-glsl">gl_Position = projection * modelView * vec4(position.xyz, 1);
-</code></pre>
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">gl_Position = projection * modelView * vec4(position.xyz, 1);
+</pre>
 <p>저 코드가 잘 작동한다면 변경사항을 조금씩 적용해보기 바랍니다.</p>
 <p>추가로 <a href="https://chrome.google.com/webstore/detail/shader-editor/ggeaidddejpbakgafapihjbgdlbbbpob?hl=ko">크롬의 확장 프로그램 중 쉐이더 에디터</a>나 다른 브라우저의 비슷한 프로그램을 찾아 사용하는 방법도 있습니다. 이는 다른 쉐이더가 어떻게 작동하는지 볼 때도 유용하죠. 또한 위 변경 사항을 바로 적용해볼 수 있다는 것도 장점입니다.</p>
 
     </div>
     <div class="lesson-sidebar">
         <select class="language">
-    <option value="/threejs/lessons/threejs-debugging-glsl.html" >English</a>
-    <option value="/threejs/lessons/fr/threejs-debugging-glsl.html" >Français</a>
-    <option value="/threejs/lessons/ja/threejs-debugging-glsl.html" >日本語</a>
-    <option value="/threejs/lessons/kr/threejs-debugging-glsl.html" selected>한국어</a>
-    <option value="/threejs/lessons/ru/threejs-debugging-glsl.html" >Русский</a>
-    <option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html" >中文</a>
-</select>
+    <option value="/threejs/lessons/threejs-debugging-glsl.html">English
+    </option><option value="/threejs/lessons/fr/threejs-debugging-glsl.html">Français
+    </option><option value="/threejs/lessons/ja/threejs-debugging-glsl.html">日本語
+    </option><option value="/threejs/lessons/kr/threejs-debugging-glsl.html" selected="">한국어
+    </option><option value="/threejs/lessons/ru/threejs-debugging-glsl.html">Русский
+    </option><option value="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">中文
+</option></select>
 
 
         <div id="toc">
@@ -396,7 +392,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     </div>
   </div>
 </div>
-</body>
+
 <script>
 const settings = {
   contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
@@ -438,7 +434,8 @@ const settings = {
 </script>
 
 
-</html>
 
 
 
+
+</body></html>
