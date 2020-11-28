@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-shadows.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,77 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Shadows">
+
+<meta name="description" content="Three.jsのシャドウ">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_ja.jpg">
+
+<meta property="og:title" content="Three.jsのシャドウ">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Shadows in Three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_ja.jpg">
+<meta property="og:description" content="Three.jsのシャドウ">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-shadows.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Shadows">
+<meta name="twitter:title" content="Three.jsのシャドウ">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-shadows.html">
-<meta name="twitter:description" content="Shadows in Three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="Three.jsのシャドウ">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-shadows.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-shadows.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-shadows.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-shadows.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-shadows.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html">
 
 
-<title>Three.js Shadows</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-shadows.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-shadows.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-shadows.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのシャドウ",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-shadows.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsのシャドウ</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +228,404 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Shadows</h1>
+    <h1>Three.jsのシャドウ</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-shadows.html">ここに元の英語の記事があります</a>.</p>
+      <p>この記事はThree.jsの連載記事の1つです。
+最初の記事は<a href="threejs-fundamentals.html">Three.jsの基礎知識</a>です。
+まだ読んでいない場合、そこから始めると良いかもしれません。
+この記事を読む前に、<a href="threejs-cameras.html">前回のカメラの記事</a>と<a href="threejs-lights.html">ライトの記事</a>も読んでおくと良いです。</p>
+<p>コンピュータ上での影の表現は複雑なトピックになります。
+three.jsで利用できる解決策も含め様々な解決策がありますが、どれもトレードオフがあります。</p>
+<p>Three.jsは <em>シャドウマップ</em> をデフォルトで使用してます。
+シャドウマップを機能させるには、<em>全てのライトにシャドウを落とし、光源に対して全てのオブジェクトもシャドウを落としてレンダリングします</em>。
+急ぐ必要はないので <strong> もう一度読んでみて下さい！ </strong></p>
+<p>つまり、20個のオブジェクトと5個のライトがあり、全てのオブジェクトとライトにシャドウを落としている場合、シーン全体が6回描画されます。
+全てのオブジェクトがライト#1、ライト#2、ライト#3に描画され、最初の5回の描画からデータを使って実際のシーンが描画されます。</p>
+<p>さらに悪い事に点光源がシャドウを落としている場合、6回もシーン描画しなければならないのです。</p>
+<p>これらの理由からシャドウを生成するライトをたくさん持つよりも、他の解決策を見つけるのが一般的です。
+一般的な解決策は複数ライトを持つ事ですが、ディレクショナルライトでシャドウを生成する方法があります。</p>
+<p>もう1つの解決策はライトマップやアンビエントオクルージョンマップを使用し、オフラインでライティングの効果を事前計算する方法もあります。
+静的なライティングのヒントになりますが、少なくともそれは速いです。
+その両方に関しては別の記事で取り上げます。</p>
+<p>もう1つの解決策はフェイクシャドウです。
+平面を作り影に似たグレースケールのテクスチャを入れて、オブジェクト下の地面の上に描画します。</p>
+<p>例えばこのテクスチャをフェイクシャドウしてみましょう。</p>
+<div class="threejs_center"><img src="../../resources/images/roundshadow.png"></div>
+
+<p><a href="threejs-cameras.html">前回の記事</a>のコードの一部を使用します。</p>
+<p>背景色を白に設定してみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
++scene.background = new THREE.Color('white');
+</pre>
+<p>同じチェッカーボードの地面を使いますが、今回の地面には照明は必要ないので <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a> を使用します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loader = new THREE.TextureLoader();
+
+{
+  const planeSize = 40;
+
+-  const loader = new THREE.TextureLoader();
+  const texture = loader.load('resources/images/checker.png');
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.magFilter = THREE.NearestFilter;
+  const repeats = planeSize / 2;
+  texture.repeat.set(repeats, repeats);
+
+  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+  const planeMat = new THREE.MeshBasicMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+  });
++  planeMat.color.setRGB(1.5, 1.5, 1.5);
+  const mesh = new THREE.Mesh(planeGeo, planeMat);
+  mesh.rotation.x = Math.PI * -.5;
+  scene.add(mesh);
+}
+</pre>
+<p>色が <code class="notranslate" translate="no">1.5, 1.5, 1.5</code> である事に注意して下さい。
+これにより、チェッカーボードのテクスチャの色がそれぞれ1.5倍になります。
+テクスチャの色は 0x808080 と 0xC0C0C0 でミディアムグレーとライトグレーなので、1.5を掛けると白とライトグレーのチェッカーボードになります。</p>
+<p>シャドウテクスチャを読み込んでみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const shadowTexture = loader.load('resources/images/roundshadow.png');
+</pre>
+<p>各球体と関連するオブジェクトを保持する配列を作成します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereShadowBases = [];
+</pre>
+<p>そして、球体のジオメトリを作ります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereRadius = 1;
+const sphereWidthDivisions = 32;
+const sphereHeightDivisions = 16;
+const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+</pre>
+<p>フェイクシャドウのための平面のジオメトリも作ります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 1;
+const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+</pre>
+<p>そして、たくさんの球体を作ります。
+各球体に対して <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a> を作成し <code class="notranslate" translate="no">base</code> に格納しシャドウの平面と球体メッシュの両方をbaseの子にします。
+これでbaseを動かすと、球体とシャドウの両方が動きます。
+Ｚファイティングを防ぐためにシャドウを少し上にします。
+また、<code class="notranslate" translate="no">depthWrite</code> をfalseにしてシャドウがお互いに混乱しないようにします。
+この2つの問題は<a href="threejs-transparency.html">別の記事</a>で解説します。
+このシャドウは照明が不要なので <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a> にします。</p>
+<p>各球体を異なる色相、ベース、球体メッシュ、シャドウのメッシュ、各球体のyの初期位置を保存します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const numSpheres = 15;
+for (let i = 0; i &lt; numSpheres; ++i) {
+  // make a base for the shadow and the sphere
+  // so they move together.
+  const base = new THREE.Object3D();
+  scene.add(base);
+
+  // add the shadow to the base
+  // note: we make a new material for each sphere
+  // so we can set that sphere's material transparency
+  // separately.
+  const shadowMat = new THREE.MeshBasicMaterial({
+    map: shadowTexture,
+    transparent: true,    // so we can see the ground
+    depthWrite: false,    // so we don't have to sort
+  });
+  const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+  shadowMesh.position.y = 0.001;  // so we're above the ground slightly
+  shadowMesh.rotation.x = Math.PI * -.5;
+  const shadowSize = sphereRadius * 4;
+  shadowMesh.scale.set(shadowSize, shadowSize, shadowSize);
+  base.add(shadowMesh);
+
+  // add the sphere to the base
+  const u = i / numSpheres;   // goes from 0 to 1 as we iterate the spheres.
+  const sphereMat = new THREE.MeshPhongMaterial();
+  sphereMat.color.setHSL(u, 1, .75);
+  const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+  sphereMesh.position.set(0, sphereRadius + 2, 0);
+  base.add(sphereMesh);
+
+  // remember all 3 plus the y position
+  sphereShadowBases.push({base, sphereMesh, shadowMesh, y: sphereMesh.position.y});
+}
+</pre>
+<p>2つのライトを設定しました。
+1つは <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> で強度2にしました。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const skyColor = 0xB1E1FF;  // light blue
+  const groundColor = 0xB97A20;  // brownish orange
+  const intensity = 2;
+  const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+  scene.add(light);
+}
+</pre>
+<p>もう1つは <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> で球体はいくつかの定義を得られます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(0, 10, 5);
+  light.target.position.set(-5, 0, 0);
+  scene.add(light);
+  scene.add(light.target);
+}
+</pre>
+<p>そのままレンダリングしてますが、球体をアニメーション化してみましょう。
+それぞれの球体、シャドウ、baseのセットに対して、
+baseをxz平面内で移動させて <a href="https://threejs.org/docs/#api/en/math/Math.abs(Math.sin(time))"><code class="notranslate" translate="no">Math.abs(Math.sin(time))</code></a> で球体を上下に移動させると弾むようなアニメーションします。
+シャドウのマテリアルの不透明度を設定し、各球体が高くなるにつれてシャドウを薄くなるようにしています。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
+  time *= 0.001;  // convert to seconds
+
+  ...
+
+  sphereShadowBases.forEach((sphereShadowBase, ndx) =&gt; {
+    const {base, sphereMesh, shadowMesh, y} = sphereShadowBase;
+
+    // u is a value that goes from 0 to 1 as we iterate the spheres
+    const u = ndx / sphereShadowBases.length;
+
+    // compute a position for the base. This will move
+    // both the sphere and its shadow
+    const speed = time * .2;
+    const angle = speed + u * Math.PI * 2 * (ndx % 1 ? 1 : -1);
+    const radius = Math.sin(speed - ndx) * 10;
+    base.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+
+    // yOff is a value that goes from 0 to 1
+    const yOff = Math.abs(Math.sin(time * 2 + ndx));
+    // move the sphere up and down
+    sphereMesh.position.y = y + THREE.MathUtils.lerp(-2, 2, yOff);
+    // fade the shadow as the sphere goes up
+    shadowMesh.material.opacity = THREE.MathUtils.lerp(1, .25, yOff);
+  });
+
+  ...
+</pre>
+<p>そして、ここに15種類の跳ねるボールがあります。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-fake.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-fake.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>全てのオブジェクトに丸や楕円形のシャドウを使用するのが一般的です。
+異なる形状のシャドウのテクスチャを使用できます。
+シャドウをハードエッジでギザギザにしてもいいかもしれません。
+このタイプのシャドウを使った良い例が<a href="https://www.google.com/search?tbm=isch&amp;q=animal+crossing+pocket+camp+screenshots">どうぶつの森 ポケットキャンプ</a>です。
+それぞれのキャラクターがシンプルな丸いシャドウになっており、レンダリングコストが低く効果的です。
+<a href="https://www.google.com/search?q=monument+valley+screenshots&amp;tbm=isch">モニュメントバレー</a>では、メインキャラクターにもこのシャドウが使われているようです。</p>
+<p>そこでシャドウマップに移りますが、シャドウを落とす事ができるライトが3つあります。
+<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> と <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> と <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> です。</p>
+<p>まずは、<a href="threejs-lights.html">ライトの記事</a>のヘルパーの例を参考に <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> を使ってみましょう。</p>
+<p>最初にレンダラーのシャドウを有効にします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const renderer = new THREE.WebGLRenderer({canvas});
++renderer.shadowMap.enabled = true;
+</pre>
+<p>そして、シャドウを落とすためにライトのcastShadowを有効にします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const light = new THREE.DirectionalLight(color, intensity);
++light.castShadow = true;
+</pre>
+<p>シーン内の各メッシュを見て、シャドウを落とすか受け取るか決めます。</p>
+<p>下敷きになっているものはあまり気にせず、平面（地面）はシャドウだけを受けるようにしましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mesh = new THREE.Mesh(planeGeo, planeMat);
+mesh.receiveShadow = true;
+</pre>
+<p>立方体と球体はシャドウを落とし受け取るようにしましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+mesh.castShadow = true;
+mesh.receiveShadow = true;
+
+...
+
+const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+mesh.castShadow = true;
+mesh.receiveShadow = true;
+</pre>
+<p>これを実行してみます。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>何が起こったのでしょうか？
+なぜ影の一部が欠けているのでしょうか？</p>
+<p>これはシャドウマップは光の視点でシーンをレンダリングし作成されるからです。
+この場合、<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> にカメラがあり、ターゲットを見ています。
+<a href="threejs-cameras.html">以前取り上げたカメラと同じように</a>
+ライトのシャドウカメラは影がレンダリングされ、内部の領域を定義します。
+上記の例ではその面積が小さすぎます。</p>
+<p>その領域を可視化するために、ライトのシャドウカメラを取得して <a href="https://threejs.org/docs/#api/en/helpers/CameraHelper"><code class="notranslate" translate="no">CameraHelper</code></a> をシーンに追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
+scene.add(cameraHelper);
+</pre>
+<p>これでシャドウが落とされ受け取れる領域が見えるようになりました。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-helper.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-helper.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>ターゲットのX値を前後に調整すると、ライトのシャドウカメラボックスの中にあるものだけが影を描画する場所が明確になります。</p>
+<p>ライトのシャドウカメラを調整するとその箱の大きさを調整できます。</p>
+<p>ライトのシャドウカメラボックスを調整するためのGUIを追加してみましょう。
+<code class="notranslate" translate="no">DirectionLight</code> は全ての光が平行な方向に進むので、<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> はシャドウカメラに <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> を使います。
+<a href="threejs-cameras.html">以前のカメラの記事</a>で <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> がどのように動作するかを説明しました。</p>
+<p><a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a> は、<code class="notranslate" translate="no">left</code>、<code class="notranslate" translate="no">right</code>、<code class="notranslate" translate="no">top</code>、<code class="notranslate" translate="no">bottom</code>、<code class="notranslate" translate="no">near</code>、<code class="notranslate" translate="no">far</code>、<code class="notranslate" translate="no">zoom</code> プロパティでその箱、または <em>錐台の視点</em> を定義してる事を思い出して下さい。</p>
+<p>ここでもdat.GUIのヘルパークラスを作ってみましょう。
+オブジェクトと2つのプロパティを渡す <code class="notranslate" translate="no">DimensionGUIHelper</code> を作ります。
+dat.GUIが調整できるプロパティを追加し、2つのプロパティの正と負の値を設定します。
+これを使い <code class="notranslate" translate="no">left</code> と <code class="notranslate" translate="no">right</code> を <code class="notranslate" translate="no">width</code> に、<code class="notranslate" translate="no">up</code> と <code class="notranslate" translate="no">down</code> を <code class="notranslate" translate="no">height</code> に設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class DimensionGUIHelper {
+  constructor(obj, minProp, maxProp) {
+    this.obj = obj;
+    this.minProp = minProp;
+    this.maxProp = maxProp;
+  }
+  get value() {
+    return this.obj[this.maxProp] * 2;
+  }
+  set value(v) {
+    this.obj[this.maxProp] = v /  2;
+    this.obj[this.minProp] = v / -2;
+  }
+}
+</pre>
+<p><a href="threejs-cameras.html">カメラの記事</a>で作成した <code class="notranslate" translate="no">MinMaxGUIHelper</code> を使い <code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> を調整します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
++{
++  const folder = gui.addFolder('Shadow Camera');
++  folder.open();
++  folder.add(new DimensionGUIHelper(light.shadow.camera, 'left', 'right'), 'value', 1, 100)
++    .name('width')
++    .onChange(updateCamera);
++  folder.add(new DimensionGUIHelper(light.shadow.camera, 'bottom', 'top'), 'value', 1, 100)
++    .name('height')
++    .onChange(updateCamera);
++  const minMaxGUIHelper = new MinMaxGUIHelper(light.shadow.camera, 'near', 'far', 0.1);
++  folder.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
++  folder.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
++  folder.add(light.shadow.camera, 'zoom', 0.01, 1.5, 0.01).onChange(updateCamera);
++}
+</pre>
+<p>何か値が変更された時は <code class="notranslate" translate="no">updateCamera</code> 関数を呼び出すようにします。
+ライトやヘルパー、ライトのシャドウカメラやカメラのヘルパーを更新するupdateCamera関数を書いてみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function updateCamera() {
+  // update the light target's matrixWorld because it's needed by the helper
+  light.target.updateMatrixWorld();
+  helper.update();
+  // update the light's shadow camera's projection matrix
+  light.shadow.camera.updateProjectionMatrix();
+  // and now update the camera helper we're using to show the light's shadow camera
+  cameraHelper.update();
+}
+updateCamera();
+</pre>
+<p>これでライトのシャドウカメラにGUIを追加したので値を変更できます。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-gui.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p><code class="notranslate" translate="no">width</code> と <code class="notranslate" translate="no">height</code> を30ぐらいにすると、シャドウが正しく描画されこのシーンでシャドウにする設定が完全にカバーできました。</p>
+<p>しかし、ここで疑問が湧いてきます。
+なぜ <code class="notranslate" translate="no">width</code> と <code class="notranslate" translate="no">height</code> に巨大な数値を設定して全てをカバーしないのでしょうか？
+<code class="notranslate" translate="no">width</code> と <code class="notranslate" translate="no">height</code> を100にすると、以下のようなものが表示されます。</p>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+
+<p>この低解像度のシャドウはどうなっているでしょうか！？</p>
+<p>この問題はシャドウに関連した設定を意識する必要があります。
+シャドウマップとはシャドウが描かれるテクスチャです。
+このテクスチャはサイズがあります。
+上記で設定したシャドウカメラの領域はその大きさになっています。
+つまり、設定した面積が大きいほどシャドウのブロックが多くなります。</p>
+<p>シャドウマップのテクスチャの解像度は <code class="notranslate" translate="no">light.shadow.mapSize.width</code> と <code class="notranslate" translate="no">light.shadow.mapSize.height</code> で設定できます。
+デフォルトは512 x 512です。
+大きくするほどメモリを消費し計算が遅くなるので、できるだけ小さく設定しシーンを動作させたいです。
+ライトのシャドウカメラ領域も同様です。
+小さくすると影の見栄えが良くなるので、面積を小さくしてシーンをカバーしましょう。
+各ユーザーのコンピューターには、利用可能な最大テクスチャサイズがある事に注意して下さい。
+<a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer#capabilities"><code class="notranslate" translate="no">renderer.capabilities.maxTextureSize</code></a>で利用可能な最大テクスチャサイズがわかります。</p>
+<!--
+Ok but what about `near` and `far` I hear you thinking. Can we set `near` to 0.00001 and far to `100000000`
+-->
+<p><a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> に切り替えると、ライトのシャドウカメラは <a href="https://threejs.org/docs/#api/en/cameras/PerspectiveCamera"><code class="notranslate" translate="no">PerspectiveCamera</code></a> になります。
+<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> のシャドウカメラの設定を手動で行えます。
+ただ、<a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> のシャドウカメラは <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> 自身によって制御されます。
+シャドウカメラの <code class="notranslate" translate="no">fov</code> は <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> の <code class="notranslate" translate="no">angle</code> に接続しています。
+<code class="notranslate" translate="no">aspect</code> はシャドウマップのサイズによって自動的に設定されます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const light = new THREE.DirectionalLight(color, intensity);
++const light = new THREE.SpotLight(color, intensity);
+</pre>
+<p><a href="threejs-lights.html">ライトの記事</a>にあった <code class="notranslate" translate="no">penumbra</code> と <code class="notranslate" translate="no">angle</code> の設定を元に戻しました。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-spot-light-with-camera-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-spot-light-with-camera-gui.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<!--
+You can notice, just like the last example if we set the angle high
+then the shadow map, the texture is spread over a very large area and
+the resolution of our shadows gets really low.
+
+div class="threejs_center"><img src="../resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
+
+You can increase the size of the shadow map as mentioned above. You can
+also blur the result
+
+<div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-spot-light-with-shadow-radius"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-spot-light-with-shadow-radius" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+
+-->
+<p>そして最後に <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> でシャドウをつけます。
+<a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> は全方向に光を放つので関連する設定は <code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> だけです。
+それ以外の場合、<a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> のシャドウは、効果的な6つの <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> のシャドウになります。
+これは <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> のシャドウの描画が非常に遅くなります。</p>
+<p>シーンの周りに箱を置いて、壁や天井にシャドウが見えるようにしてみましょう。
+マテリアルの <code class="notranslate" translate="no">side</code> プロパティを <code class="notranslate" translate="no">THREE.BackSide</code> に設定します。
+これで箱の外側ではなく内側をレンダリングしています。
+床のようにシャドウを受けるように設定します。
+また、箱の底が床より少し下になるように箱の位置を設定し、床と箱がズレないようにします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const cubeSize = 30;
+  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeMat = new THREE.MeshPhongMaterial({
+    color: '#CCC',
+    side: THREE.BackSide,
+  });
+  const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  mesh.receiveShadow = true;
+  mesh.position.set(0, cubeSize / 2 - 0.1, 0);
+  scene.add(mesh);
+}
+</pre>
+<p>そして、ライトを <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> に切り替えます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const light = new THREE.SpotLight(color, intensity);
++const light = new THREE.PointLight(color, intensity);
+
+....
+
+// so we can easily see where the point light is
++const helper = new THREE.PointLightHelper(light);
++scene.add(helper);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-point-light.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-point-light.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>GUIの <code class="notranslate" translate="no">position</code> を使ってライトを移動させると、壁一面にシャドウが落ちます。
+また、<code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> の設定を調整できます。
+<code class="notranslate" translate="no">near</code> よりも近い時にはシャドウを受け取らず、<code class="notranslate" translate="no">far</code> よりも遠い時には常にシャドウになっています。</p>
+<!--
+self shadow, shadow acne
+-->
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +639,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -209,7 +655,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/ja/threejs-textures.html">テクスチャ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-lights.html">ライト</a></li>
 <li><a href="/threejs/lessons/ja/threejs-cameras.html">カメラ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">Custom Geometry</a></li>
@@ -267,10 +713,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのシャドウ';
+            var disqus_title = 'Three.jsのシャドウ';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
