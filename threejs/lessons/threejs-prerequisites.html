@@ -491,8 +491,8 @@ VSCode via ESLint will warn you of many undefined variables. </p>
 <p>Above you can see I mis-spelled <code class="notranslate" translate="no">doTheThing</code> as <code class="notranslate" translate="no">doThing</code>. There's a red squiggle
 under <code class="notranslate" translate="no">doThing</code> and hovering over it it tells me it's undefined. One error
 avoided.</p>
-<p>You'll get warnings using <code class="notranslate" translate="no">THREE</code> so add <code class="notranslate" translate="no">/* global THREE */</code> at the top of your
-JavaScript files to tell eslint that <code class="notranslate" translate="no">THREE</code> exists.</p>
+<p>If you're using <code class="notranslate" translate="no">&lt;script&gt;</code> tags to include three.js you'll get warnings using <code class="notranslate" translate="no">THREE</code> so add <code class="notranslate" translate="no">/* global THREE */</code> at the top of your
+JavaScript files to tell eslint that <code class="notranslate" translate="no">THREE</code> exists. (or better, use <code class="notranslate" translate="no">import</code> 😉)</p>
 <div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 <p>Above you can see eslint knows the rule that <code class="notranslate" translate="no">UpperCaseNames</code> are constructors
