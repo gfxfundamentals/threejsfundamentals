@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-fog.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,77 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Fog">
+
+<meta name="description" content="Three.jsでのフォグ">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ja.jpg">
+
+<meta property="og:title" content="Three.jsのフォグ">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Fog in Three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ja.jpg">
+<meta property="og:description" content="Three.jsでのフォグ">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-fog.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Fog">
+<meta name="twitter:title" content="Three.jsのフォグ">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-fog.html">
-<meta name="twitter:description" content="Fog in Three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="Three.jsでのフォグ">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-fog.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-fog.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-fog.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-fog.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-fog.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html">
 
 
-<title>Three.js Fog</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-fog.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-fog.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-fog.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのフォグ",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-fog.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsのフォグ</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +228,235 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Fog</h1>
+    <h1>Three.jsのフォグ</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-fog.html">ここに元の英語の記事があります</a>.</p>
+      <p>この記事はThree.jsの連載記事の1つです。
+最初の記事は<a href="threejs-fundamentals.html">Three.jsの基礎知識</a>です。
+まだ読んでいない場合、そこから始めると良いかもしれません。
+カメラの記事を読んでない方は、まずは<a href="threejs-cameras.html">この記事</a>を読んでみて下さい。</p>
+<p>一般的には3Dエンジンでのフォグ（霧）は、カメラからの距離によって特定の色にフェードアウトする方法です。
+three.jsでは <a href="https://threejs.org/docs/#api/en/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> または <a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> オブジェクトを作成し、シーンに<a href="https://threejs.org/docs/#api/en/scenes/Scene#fog"><code class="notranslate" translate="no">fog</code></a> プロパティを設定してフォグを追加します。</p>
+<p><a href="https://threejs.org/docs/#api/en/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> はカメラからの距離を表す <code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> があります。
+<code class="notranslate" translate="no">near</code> よりも近いものはフォグの影響を受けません。
+<code class="notranslate" translate="no">far</code> より遠いものはフォグの影響を受けます。
+<code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> の中間部分では、マテリアルの色からフォグの色にグラデーションします。</p>
+<p>また、カメラからの距離で急激にグラデーションする <a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> もあります。</p>
+<p>どちらのタイプのフォグも使用するにはフォグを作成してシーンに割り当てます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;  // white
+  const near = 10;
+  const far = 100;
+  scene.fog = new THREE.Fog(color, near, far);
+}
+</pre>
+<p><a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> の場合は次のようなコードになります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;
+  const density = 0.1;
+  scene.fog = new THREE.FogExp2(color, density);
+}
+</pre>
+<p><a href="https://threejs.org/docs/#api/en/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> は現実表現に近いですが、<a href="https://threejs.org/docs/#api/en/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> の方が一般的によく使われています。
+Fogは適用する場所を選択できるので、ある距離まではクリアなシーンを表示し、その距離を過ぎるとフェードアウトした色にできます。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fog" style="height: 300px;"></div>
+    <div class="code">THREE.Fog</div>
+  </div>
+  <div>
+    <div data-diagram="fogExp2" style="height: 300px;"></div>
+    <div class="code">THREE.FogExp2</div>
+  </div>
+</div>
+
+<p>ここで注意すべき点は、フォグは <em>レンダリングされる</em> ものに適用される事です。
+以下はオブジェクトの色の各ピクセルの計算の一部です。
+つまり、シーンを特定の色にフェードさせたい場合、フォグ <strong>と</strong> 背景色を同じ色に設定します。
+背景色は <a href="https://threejs.org/docs/#api/en/scenes/Scene#background"><code class="notranslate" translate="no">scene.background</code></a> プロパティで設定します。
+背景色は <a href="https://threejs.org/docs/#api/en/math/Color"><code class="notranslate" translate="no">THREE.Color</code></a> で指定します。例えば</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">scene.background = new THREE.Color('#F00');  // red
+</pre>
+<div class="spread">
+  <div>
+    <div data-diagram="fogBlueBackgroundRed" style="height: 300px;" class="border"></div>
+    <div class="code">fog blue, background red</div>
+  </div>
+  <div>
+    <div data-diagram="fogBlueBackgroundBlue" style="height: 300px;" class="border"></div>
+    <div class="code">fog blue, background blue</div>
+  </div>
+</div>
+
+<p>以下はフォグを追加した例です。
+シーンにフォグを追加し背景色を設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+
++{
++  const near = 1;
++  const far = 2;
++  const color = 'lightblue';
++  scene.fog = new THREE.Fog(color, near, far);
++  scene.background = new THREE.Color(color);
++}
+</pre>
+<p>以下の例ではカメラの <code class="notranslate" translate="no">near</code> は 0.1、<code class="notranslate" translate="no">far</code> は 5です。
+カメラは <code class="notranslate" translate="no">z = 2</code> にあります。
+立方体は1の大きさで z = 0 です。
+つまり、フォグを <code class="notranslate" translate="no">near = 1</code> と <code class="notranslate" translate="no">far = 2</code> と設定し、立方体の中心付近でフェードアウトしています。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>フォグを調整するインターフェースを追加してみましょう。
+ここでも<a href="https://github.com/dataarts/dat.gui">dat.GUI</a>を使用します。
+dat.GUIはオブジェクトとプロパティを受け取り、インタフェースを自動生成します。
+これでフォグの <code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> プロパティを簡単に操作できます。
+しかし、 <code class="notranslate" translate="no">near</code> が <code class="notranslate" translate="no">far</code> より大きい場合は無効になります。
+dat.GUIで <code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> を操作するヘルパーを作ってみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// We use this class to pass to dat.gui
+// so when it manipulates near or far
+// near is never &gt; far and far is never &lt; near
+class FogGUIHelper {
+  constructor(fog) {
+    this.fog = fog;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
+}
+</pre>
+<p>次のコードを追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const near = 1;
+  const far = 2;
+  const color = 'lightblue';
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
++
++  const fogGUIHelper = new FogGUIHelper(scene.fog);
++  gui.add(fogGUIHelper, 'near', near, far).listen();
++  gui.add(fogGUIHelper, 'far', near, far).listen();
+}
+</pre>
+<p><code class="notranslate" translate="no">near</code> と <code class="notranslate" translate="no">far</code> のパラメーターは、フォグを調整する最小値と最大値を設定します。
+これはカメラ設定時にセットします。</p>
+<p>最後の2行の <code class="notranslate" translate="no">.listen()</code> をdat.GUIに変更し  <em>listen</em> するようにします。
+これで <code class="notranslate" translate="no">near</code> や <code class="notranslate" translate="no">far</code> の変更時、dat.GUIが他のプロパティのUIを更新してくれます。</p>
+<p>フォグの色を変更できますが、上記で述べたようにフォグの色と背景色を同期させる必要があります。
+dat.GUI操作時に両方の色を変更する <em>virtual</em> プロパティをヘルパーに追加してみましょう。</p>
+<p>dat.GUIでは4つの方法で色を操作できます。</p>
+<ol>
+<li><p>CSSの6桁の16進数(例: <code class="notranslate" translate="no">#112233</code>)</p>
+</li>
+<li><p>色相、彩度、値、オブジェクト (例: <code class="notranslate" translate="no">{h: 60, s: 1, v: }</code>)</p>
+</li>
+<li><p>RGB (例: <code class="notranslate" translate="no">[255, 128, 64]</code>)</p>
+</li>
+<li><p>RGBA（例：<code class="notranslate" translate="no">[127, 200, 75, 0.3]</code>）</p>
+</li>
+</ol>
+<p>dat.GUIが単一の値を操作するので、16進数を使うのが一番簡単です。
+幸運な事に <a href="https://threejs.org/docs/#api/en/math/Color"><code class="notranslate" translate="no">THREE.Color</code></a> で <a href="https://threejs.org/docs/#api/en/math/Color#getHexString"><code class="notranslate" translate="no">getHexString</code></a> を使用でき、文字列を簡単に取得できます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// We use this class to pass to dat.gui
+// so when it manipulates near or far
+// near is never &gt; far and far is never &lt; near
++// Also when dat.gui manipulates color we'll
++// update both the fog and background colors.
+class FogGUIHelper {
+*  constructor(fog, backgroundColor) {
+    this.fog = fog;
++    this.backgroundColor = backgroundColor;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
++  get color() {
++    return `#${this.fog.color.getHexString()}`;
++  }
++  set color(hexString) {
++    this.fog.color.set(hexString);
++    this.backgroundColor.set(hexString);
++  }
+}
+</pre>
+<p><code class="notranslate" translate="no">gui.addColor</code> を呼び出し、ヘルパーのvirtualプロパティにcolorのdat.GUIを追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const near = 1;
+  const far = 2;
+  const color = 'lightblue';
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
+
+*  const fogGUIHelper = new FogGUIHelper(scene.fog, scene.background);
+  gui.add(fogGUIHelper, 'near', near, far).listen();
+  gui.add(fogGUIHelper, 'far', near, far).listen();
++  gui.addColor(fogGUIHelper, 'color');
+}
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p><code class="notranslate" translate="no">near</code> を1.9、<code class="notranslate" translate="no">far</code> を2.0にすると以下のようになりました。
+曇っていない状態と完全に曇っている状態との中間では、シャープなグラデーションします。
+<code class="notranslate" translate="no">near</code> = 1.1、<code class="notranslate" translate="no">far</code> = 2.9 とすると、カメラから 2 離れて回転する立方体で最も滑らかになります。</p>
+<p>最後に、マテリアルでレンダリングされたオブジェクトがフォグの影響を受けるか判断するために、マテリアルにはboolean型の<a href="https://threejs.org/docs/#api/en/materials/Material#fog"><code class="notranslate" translate="no">fog</code></a>プロパティがあります。
+そのマテリアルを使用してる場合は、フォグの影響を受けます。
+ほとんどのマテリアルのデフォルトは <code class="notranslate" translate="no">true</code> です。
+フォグを消去する理由は、運転席やコックピットからの視点で3Dの車のシミュレーターを作っている時を想像して下さい。
+車内から見ると、車内の全てのものはフォグを外しておきたいと思うでしょう。</p>
+<p>フォグの良い例としては、家の外に濃いフォグが出ている場合が挙げられます。
+例えば、フォグが2m先（near = 2）から始まり、4m先（far = 4）でフォグがあるとします。
+部屋の長さは2メートル以上、家の長さは4メートル以上で、家の中にフォグがかからないように設定が必要です。
+設定しない場合に家の中に立っている時に部屋の奥の壁の外を見ると、フォグの中にいるように見えてしまいます。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseAll" style="height: 300px;" class="border"></div>
+    <div class="code">fog: true, all</div>
+  </div>
+</div>
+
+<p>部屋の奥の壁と天井にフォグがかかっています。
+家のマテリアルのフォグをオフにすると、この問題が解決できます。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseInsideNoFog" style="height: 300px;" class="border"></div>
+    <div class="code">fog: true, only outside materials</div>
+  </div>
+</div>
+
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-fog.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +470,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -210,7 +487,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/ja/threejs-lights.html">ライト</a></li>
 <li><a href="/threejs/lessons/ja/threejs-cameras.html">カメラ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
@@ -267,10 +544,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのフォグ';
+            var disqus_title = 'Three.jsのフォグ';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
