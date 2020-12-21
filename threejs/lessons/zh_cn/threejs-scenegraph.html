@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-scenegraph.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Scene Graph">
+
+<meta name="description" content="什么是场景图?">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 场景图">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="What's a scene graph?">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_zh_cn.jpg">
+<meta property="og:description" content="什么是场景图?">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Scene Graph">
+<meta name="twitter:title" content="Three.js 场景图">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html">
-<meta name="twitter:description" content="What's a scene graph?">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="什么是场景图?">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-scenegraph.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-scenegraph.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-scenegraph.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html">
 
 
-<title>Three.js Scene Graph</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-scenegraph_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 场景图",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 场景图</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +229,334 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Scene Graph</h1>
+    <h1>Three.js 场景图</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-scenegraph.html">英文原文链接</a>.</p>
+      <p>本文是关于 three.js 系列文章的一部分。第一篇文章是 <a href="threejs-fundamentals.html">three.js 基础</a>。 如果你还没有读过它，建议先从那里开始。</p>
+<p>Three.js 的核心可以说是它的场景图。场景图在 3D 引擎是一个图中节点的层次结构，其中每个节点代表了一个局部空间（local space）。</p>
+<p><img src="../resources/images/scenegraph-generic.svg" align="center"></p>
+<p>这有点抽象，所以我们试着举一些例子。</p>
+<p>比如这样一个例子：太阳系、太阳、地球、月亮。</p>
+<p><img src="../resources/images/scenegraph-solarsystem.svg" align="center"></p>
+<p>地球绕着太阳转，月球绕着地球转，月球绕着地球转了一圈。从月球的角度看，它是在地球的 "局部空间 "中旋转。尽管它相对于太阳的运动是一些疯狂的像螺线图一样的曲线，但从月球的角度来看，它只需要关注自身围绕地球这个局部空间的旋转即可。</p>
+<p></p><div class="threejs_diagram_container">
+  <iframe class="threejs_diagram " style="width: 400px; height: 300px;" src="/threejs/lessons/resources/moon-orbit.html"></iframe>
+</div>
+
+<p></p>
+<p>换个角度想，生活在地球上的你，不用思考关于地球自转和绕太阳公转的问题。你只是走路或开车或游泳或跑步，好像地球从未移动或者旋转。你走路、开车、游泳、跑步、生活在地球这个 "局部空间"，即使相对于太阳来说，你是以每小时 1000 英里的速度绕着地球旋转，并以每小时 6 万 7 千英里的速度围绕太阳旋转。你在太阳系中的位置与头上的月亮相似，但你不必担心自己的位置。你只需担心你在地球 "局部空间 "中相对于地球的位置。</p>
+<p>让我们一步一步来吧。想象一下，我们要做一个太阳、地球和月亮的图。我们先从太阳开始，只需制作一个球体，并将其置于原点。注意：我们用太阳、地球、月亮来演示如何使用场景图。当然，真正的太阳、地球和月亮使用的是物理学，但为了我们的目的，我们将用场景图来伪造它。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 要更新旋转角度的对象数组
+const objects = [];
+
+// 一球多用
+const radius = 1;
+const widthSegments = 6;
+const heightSegments = 6;
+const sphereGeometry = new THREE.SphereBufferGeometry(
+  radius,
+  widthSegments,
+  heightSegments
+);
+
+const sunMaterial = new THREE.MeshPhongMaterial({ emissive: 0xffff00 });
+const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+sunMesh.scale.set(5, 5, 5); // 扩大太阳的大小
+scene.add(sunMesh);
+objects.push(sunMesh);
+</pre>
+<p>我们使用的是一个低多边形球体（low-polygon sphere）。赤道周围只有 6 个分段。这是为了便于观察旋转情况。</p>
+<p>因为我们会重用同一个球体，所以我们将太阳网格（sunMesh）的比例设置为 5x。</p>
+<p>我们还将 phong 材质的 <code class="notranslate" translate="no">emissive</code> 属性设置为黄色。phong 材质的放射属性（emissive）是基本上不受其他光照影响的固有颜色。光照会被添加到该颜色上。</p>
+<p>我们也在场景的中心放置了一个点光源（point light）。稍后我们会介绍更多关于点光源的细节，但现在简单地说，点光源代表从一个点向各个方向发射的光源。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const color = 0xffffff;
+  const intensity = 3;
+  const light = new THREE.PointLight(color, intensity);
+  scene.add(light);
+}
+</pre>
+<p>为了便于观察，我们要把摄像头放在原点的正上方向下看。最简单的方法是使用 <code class="notranslate" translate="no">lookAt</code> 函数。 <code class="notranslate" translate="no">lookAt</code> 函数让摄像机从它的位置“看向”我们传递 <code class="notranslate" translate="no">lookAt</code> 的位置。在这样做之前，我们需要告诉摄像机的顶部朝向哪个方向，或者说哪个方向是摄像机的 "上"。对于大多数情况来说，正 Y 是向上的就足够了，但是由于我们是直视下方，我们需要告诉摄像机正 Z 是向上的。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.set(0, 50, 0);
+camera.up.set(0, 0, 1);
+camera.lookAt(0, 0, 0);
+</pre>
+<p>在渲染循环中，根据之前的例子进行了调整，我们用这段代码旋转 <code class="notranslate" translate="no">objects</code> 数组中的所有对象。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">objects.forEach((obj) =&gt; {
+  obj.rotation.y = time;
+});
+</pre>
+<p>由于我们将 <code class="notranslate" translate="no">sunMesh</code> 添加到 <code class="notranslate" translate="no">objects</code> 数组中，它将会旋转。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>现在让我们把地球（earth）也加进去。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const earthMaterial = new THREE.MeshPhongMaterial({
+  color: 0x2233ff,
+  emissive: 0x112244,
+});
+const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+earthMesh.position.x = 10;
+scene.add(earthMesh);
+objects.push(earthMesh);
+</pre>
+<p>我们做的材料是蓝色的，但是我们给它加了少量的放射蓝（<em>emissive</em> blue），这样它就会在我们的黑色背景下显示出来。</p>
+<p>我们使用相同的 <code class="notranslate" translate="no">sphereGeometry</code> 和新的蓝色的 <code class="notranslate" translate="no">earthMaterial</code> 来制作一个 <code class="notranslate" translate="no">earthMesh</code> 。我们将其定位在太阳的左边 10 个单位，并将其添加到场景中。由于我们将它添加到了我们的 <code class="notranslate" translate="no">objects</code> 数组中，所以它也会旋转。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>你可以看到太阳和地球都在自转，但地球并没有绕着太阳转。让我们把地球变成太阳的子节点吧。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-scene.add(earthMesh);
++sunMesh.add(earthMesh);
+</pre>
+<p>然后...</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>到底发生了什么？为什么地球和太阳一样大？为什么离太阳这么远？我居然要把摄像机从 50 单位移到 150 单位以上才能看到地球。</p>
+<p>我们让 <code class="notranslate" translate="no">earthMesh</code> 成为 <code class="notranslate" translate="no">sunMesh</code> 的一个子节点。<code class="notranslate" translate="no">sunMesh.scale.set(5, 5, 5)</code> 将其比例设置为 5x。这意味着 <code class="notranslate" translate="no">sunMeshs</code> 的局部空间是 5 倍大。这表示地球现在大了 5 倍，它与太阳的距离 ( <code class="notranslate" translate="no">earthMesh.position.x = 10</code> ) 也是 5 倍。</p>
+<p>目前，我们的场景图是这样的：</p>
+<p><img src="../resources/images/scenegraph-sun-earth.svg" align="center"></p>
+<p>为了解决这个问题，我们添加一个空的场景图节点。我们将把太阳和地球都作为该节点的子节点。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const solarSystem = new THREE.Object3D();
++scene.add(solarSystem);
++objects.push(solarSystem);
+
+const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xFFFF00});
+const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
+sunMesh.scale.set(5, 5, 5);
+-scene.add(sunMesh);
++solarSystem.add(sunMesh);
+objects.push(sunMesh);
+
+const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+earthMesh.position.x = 10;
+-sunMesh.add(earthMesh);
++solarSystem.add(earthMesh);
+objects.push(earthMesh);
+</pre>
+<p>这里我们创建了一个 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> 。像 <a href="https://threejs.org/docs/#api/zh/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> 一样，它也是场景图中的一个节点，但与 <a href="https://threejs.org/docs/#api/zh/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> 不同的是，它没有材质（material）和几何体（geometry）。它只是代表一个局部空间。</p>
+<p>我们的新场景图是这样的：</p>
+<p><img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center"></p>
+<p><code class="notranslate" translate="no">sunMesh</code> 和 <code class="notranslate" translate="no">earthMesh</code> 都是 <code class="notranslate" translate="no">solarSystem</code> 的子网格。三者都在旋转，现在因为 <code class="notranslate" translate="no">earthMesh</code> 不是 <code class="notranslate" translate="no">sunMesh</code> 的子网格，所以不再按 5 倍比例缩放。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-orbit-fixed.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-orbit-fixed.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>好多了。地球比太阳小，而且绕着太阳转的同时自转。</p>
+<p>延续同样的模式，我们再加一个月亮。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const earthOrbit = new THREE.Object3D();
++earthOrbit.position.x = 10;
++solarSystem.add(earthOrbit);
++objects.push(earthOrbit);
+
+const earthMaterial = new THREE.MeshPhongMaterial({color: 0x2233FF, emissive: 0x112244});
+const earthMesh = new THREE.Mesh(sphereGeometry, earthMaterial);
+-earthMesh.position.x = 10; // 注意，这个偏移量已经在它的父对象THREE.Object3D "earthOrbit "中设置了。
+-solarSystem.add(earthMesh);
++earthOrbit.add(earthMesh);
+objects.push(earthMesh);
+
++const moonOrbit = new THREE.Object3D();
++moonOrbit.position.x = 2;
++earthOrbit.add(moonOrbit);
+
++const moonMaterial = new THREE.MeshPhongMaterial({color: 0x888888, emissive: 0x222222});
++const moonMesh = new THREE.Mesh(sphereGeometry, moonMaterial);
++moonMesh.scale.set(.5, .5, .5);
++moonOrbit.add(moonMesh);
++objects.push(moonMesh);
+</pre>
+<p>我们再次添加了更多的隐形场景图节点。首先是一个名为 <code class="notranslate" translate="no">earthOrbit</code> 的 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> ，并将新增 <code class="notranslate" translate="no">earthMesh</code> 和 <code class="notranslate" translate="no">moonOrbit</code> 都添加到其中。然后，我们把 <code class="notranslate" translate="no">moonMesh</code> 添加到 <code class="notranslate" translate="no">moonOrbit</code> 上。</p>
+<p>新的场景图是这样的：</p>
+<p><img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center"></p>
+<p>就是这样</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>你可以看到月亮照着本文开头所提到的螺线图形式旋转，但我们不必手动计算它。我们只需要设置我们的场景图来为我们做这件事。</p>
+<p>绘制一些东西来可视化场景图中的节点通常很有用。Three.js 有一些很有帮助的，ummmm, 帮助工具可以用来 ummmm，...帮助我们实现这个功能。</p>
+<p>其中一个叫做 <a href="https://threejs.org/docs/#api/zh/helpers/AxesHelper"><code class="notranslate" translate="no">AxesHelper</code></a> 。它画了 3 条线，分别代表本地的
+<span style="color:red">X</span>，
+<span style="color:green">Y</span>， 以及
+<span style="color:blue">Z</span>轴。让我们为我们创建的每个节点都加上一个。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 为每个节点添加一个AxesHelper
+objects.forEach((node) =&gt; {
+  const axes = new THREE.AxesHelper();
+  axes.material.depthTest = false;
+  axes.renderOrder = 1;
+  node.add(axes);
+});
+</pre>
+<p>在我们的例子中，我们希望轴即使在球体内部也能出现。要做到这一点，我们将其材质（material）的 <code class="notranslate" translate="no">depthTest</code> 属性设置为 false，这意味着它们不会检查其是否在其他东西后面进行绘制。我们还将它们的 <code class="notranslate" translate="no">renderOrder</code> 属性设置为 1（默认值为 0），这样它们就会在所有球体之后被绘制。否则一个球体可能会画在它们上面，把它们遮住。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>我们可以看到<span style="color:red">x (红色)</span> 和
+<span style="color:blue">z (蓝色)</span>轴。由于我们是直视下方，而每个物体只是围绕 y 轴旋转，所以我们看不到<span style="color:green">y (绿色)</span>轴。</p>
+<p>可能很难看到其中一些轴，因为有 2 对重叠的轴。<code class="notranslate" translate="no">sunMesh</code> 和 <code class="notranslate" translate="no">solarSystem</code> 都在同一位置。同样地，<code class="notranslate" translate="no">earthMesh</code> 和 <code class="notranslate" translate="no">earthOrbit</code> 也在同一位置。让我们添加一些简单的控制方法，让我们可以为每个节点打开/关闭它们。同时，我们还可以添加另一个名为 <a href="https://threejs.org/docs/#api/zh/helpers/GridHelper"><code class="notranslate" translate="no">GridHelper</code></a> 的帮助工具。它可以在 X,Z 平面上创建一个 2D 网格。默认情况下，网格是 10x10 单位。</p>
+<p>我们还将使用<a href="https://github.com/dataarts/dat.gui">dat.GUI</a>，这是一个在 three.js 项目中非常流行的 UI 库。dat.GUI 会获取一个对象和该对象上的属性名，并根据属性的类型自动生成一个 UI 来操作该属性。</p>
+<p>我们要为每个节点制作一个 <a href="https://threejs.org/docs/#api/zh/helpers/GridHelper"><code class="notranslate" translate="no">GridHelper</code></a> 和一个 <a href="https://threejs.org/docs/#api/zh/helpers/AxesHelper"><code class="notranslate" translate="no">AxesHelper</code></a>。我们需要为每个节点添加一个标签，所以我们将删除旧的循环，转而调用一些函数为每个节点添加帮助程序。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-// 为每个节点添加一个AxesHelper
+-objects.forEach((node) =&gt; {
+-  const axes = new THREE.AxesHelper();
+-  axes.material.depthTest = false;
+-  axes.renderOrder = 1;
+-  node.add(axes);
+-});
+
++function makeAxisGrid(node, label, units) {
++  const helper = new AxisGridHelper(node, units);
++  gui.add(helper, 'visible').name(label);
++}
++
++makeAxisGrid(solarSystem, 'solarSystem', 25);
++makeAxisGrid(sunMesh, 'sunMesh');
++makeAxisGrid(earthOrbit, 'earthOrbit');
++makeAxisGrid(earthMesh, 'earthMesh');
++makeAxisGrid(moonOrbit, 'moonOrbit');
++makeAxisGrid(moonMesh, 'moonMesh');
+</pre>
+<p><code class="notranslate" translate="no">makeAxisGrid</code> 创建了一个 <code class="notranslate" translate="no">AxisGridHelper</code> 类，这是一个我们将创建的让 dat.GUI 满意的类。就像上面说的那样，dat.GUI 会自动地生成一个 UI 来操作某个对象的命名属性。它将根据属性的类型创建不同的 UI。我们希望它创建一个复选框，所以我们需要指定一个 <code class="notranslate" translate="no">bool</code> 属性。但是，我们希望坐标轴和网格都能基于一个单一的属性出现/消失，所以我们将创建一个类，其有一个属性绑定了 getter 和 setter。这样我们就可以让 dat.GUI 认为它在操作一个单一的属性，但是在内部我们可以为一个节点设置 <a href="https://threejs.org/docs/#api/zh/helpers/AxesHelper"><code class="notranslate" translate="no">AxesHelper</code></a> 和 <a href="https://threejs.org/docs/#api/zh/helpers/GridHelper"><code class="notranslate" translate="no">GridHelper</code></a> 的可见（visible）属性。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 打开/关闭轴和网格的可见性
+// dat.GUI 要求一个返回类型为bool型的属性
+// 来创建一个复选框，所以我们为 `visible`属性
+// 绑定了一个setter 和 getter。 从而让dat.GUI
+// 去操作该属性.
+class AxisGridHelper {
+  constructor(node, units = 10) {
+    const axes = new THREE.AxesHelper();
+    axes.material.depthTest = false;
+    axes.renderOrder = 2; // 在网格渲染之后再渲染
+    node.add(axes);
+
+    const grid = new THREE.GridHelper(units, units);
+    grid.material.depthTest = false;
+    grid.renderOrder = 1;
+    node.add(grid);
+
+    this.grid = grid;
+    this.axes = axes;
+    this.visible = false;
+  }
+  get visible() {
+    return this._visible;
+  }
+  set visible(v) {
+    this._visible = v;
+    this.grid.visible = v;
+    this.axes.visible = v;
+  }
+}
+</pre>
+<p>需要注意的是，我们将 <a href="https://threejs.org/docs/#api/zh/helpers/AxesHelper"><code class="notranslate" translate="no">AxesHelper</code></a> 的 <code class="notranslate" translate="no">renderOrder</code> 设置为 2，将<a href="https://threejs.org/docs/#api/zh/helpers/GridHelper"><code class="notranslate" translate="no">GridHelper</code></a>的设置为 1，这样轴就会在网格之后绘制。否则网格可能会覆盖轴。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-sun-earth-moon-axes-grids.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-sun-earth-moon-axes-grids.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>选中 <code class="notranslate" translate="no">solarSystem</code>，你会看到地球是如何像我们上面设定的那样，从中心出发正好 10 个单位。你可以看到地球是如何处在 <code class="notranslate" translate="no">solarSystem</code> 的局部空间（<em>local space</em>）内。同样地，如果你打开 <code class="notranslate" translate="no">earthOrbit</code>，你会看到月球距离 <code class="notranslate" translate="no">earthOrbit</code> 的局部空间（<em>local space</em>）的中心正好 2 个单位。</p>
+<p>再举几个场景图的例子。在一个简单的游戏世界中，一辆汽车可能有这样的场景图。</p>
+<p><img src="../resources/images/scenegraph-car.svg" align="center"></p>
+<p>如果你移动车体，所有的轮子都会随之移动。如果你想让车身和轮子分开弹跳，你可以将车身和轮子作为代表汽车框架的框架（frame）节点的子节点。</p>
+<p>另一个例子是游戏世界中的人类。</p>
+<p><img src="../resources/images/scenegraph-human.svg" align="center"></p>
+<p>你可以看到对于人来说，场景图会变得很复杂。事实上，上面的场景图已经被简化了。例如，你可以把它扩展到覆盖每根手指（至少还有 28 个节点）和每个脚趾（还有 28 个节点），再加上脸部和下巴、眼睛，也许还有更多。</p>
+<p>我们来做一个稍微复杂的场景图。我们来做一辆坦克。坦克将有 6 个轮子和一个炮塔。坦克会沿着一条路径行驶。会有一个球体在周围移动，坦克会瞄准球体。</p>
+<p>这是场景图。网格的颜色为绿色，<a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> 为蓝色，灯光为金色，摄像机为紫色。还有一台摄像机未被添加进场景图。</p>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+
+<p>在代码中查看这些节点的设置。</p>
+<p>对于目标，也就是坦克要瞄准的东西，有一个 <code class="notranslate" translate="no">targetOrbit</code> ( <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> )，它的旋转方式与上面的 <code class="notranslate" translate="no">earthOrbit</code> 一样。<code class="notranslate" translate="no">targetElevation</code> ( <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> )是 <code class="notranslate" translate="no">targetOrbit</code> 的一个子节点，它提供了一个从 <code class="notranslate" translate="no">targetOrbit</code> 的偏移量和一个基准高度。它的子节点是另一个叫做 <code class="notranslate" translate="no">targetBob</code> 的 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>，它只是相对于 <code class="notranslate" translate="no">targetElevation</code> 上下摆动。最后是 <code class="notranslate" translate="no">targetMesh</code>，它只是一个立方体，我们可以旋转并改变它的颜色。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 移动目标
+targetOrbit.rotation.y = time * 0.27;
+targetBob.position.y = Math.sin(time * 2) * 4;
+targetMesh.rotation.x = time * 7;
+targetMesh.rotation.y = time * 13;
+targetMaterial.emissive.setHSL((time * 10) % 1, 1, 0.25);
+targetMaterial.color.setHSL((time * 10) % 1, 1, 0.25);
+</pre>
+<p>对于坦克来说，有一个叫做 <code class="notranslate" translate="no">tank</code> 的 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>，用来移动它下面的所有东西。代码中使用了 <a href="https://threejs.org/docs/#api/zh/extras/curves/SplineCurve"><code class="notranslate" translate="no">SplineCurve</code></a>，其接受用来定义曲线的一系列坐标为参数。0.0 是曲线的起始点，1.0 是曲线的终点。它首先获取当前的位置，也就是放置坦克的位置。然后获取在曲线稍远处的位置，并使用 <a href="https://threejs.org/docs/#api/zh/core/Object3D.lookAt"><code class="notranslate" translate="no">Object3D.lookAt</code></a> 将坦克指向该方向。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const tankPosition = new THREE.Vector2();
+const tankTarget = new THREE.Vector2();
+
+...
+
+// 移动坦克
+const tankTime = time * .05;
+curve.getPointAt(tankTime % 1, tankPosition);
+curve.getPointAt((tankTime + 0.01) % 1, tankTarget);
+tank.position.set(tankPosition.x, 0, tankPosition.y);
+tank.lookAt(tankTarget.x, 0, tankTarget.y);
+</pre>
+<p>The turret on top of the tank is moved automatically by being a child
+of the tank. To point it at the target we just ask for the target's world position
+and then again use <a href="https://threejs.org/docs/#api/zh/core/Object3D.lookAt"><code class="notranslate" translate="no">Object3D.lookAt</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const targetPosition = new THREE.Vector3();
+
+...
+
+// 炮台瞄准目标
+targetMesh.getWorldPosition(targetPosition);
+turretPivot.lookAt(targetPosition);
+</pre>
+<p>有一个 <code class="notranslate" translate="no">turretCamera</code>，它是 <code class="notranslate" translate="no">turretMesh</code> 的一个子节点，所以它会随着炮塔上下移动和旋转。我们让它瞄准目标。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 让turretCamera瞄准目标
+turretCamera.lookAt(targetPosition);
+</pre>
+<p>还有一个 <code class="notranslate" translate="no">targetCameraPivot</code>，它是 <code class="notranslate" translate="no">targetBob</code> 的子节点，所以它随着目标漂浮。我们将其瞄准坦克。它的目的是让 <code class="notranslate" translate="no">targetCamera</code> 与目标本身偏移。如果我们把摄像头变成 <code class="notranslate" translate="no">targetBob</code> 的子节点，并且只瞄准摄像头本身，那么它就会在目标内部。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 让targetCameraPivot看向坦克
+tank.getWorldPosition(targetPosition);
+targetCameraPivot.lookAt(targetPosition);
+</pre>
+<p>最后，我们旋转所有的轮子</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">wheelMeshes.forEach((obj) =&gt; {
+  obj.rotation.x = time * 3;
+});
+</pre>
+<p>对于摄像机，我们在初始化时设置了一个包含所有 4 台摄像机的数组，并附有描述。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cameras = [
+  { cam: camera, desc: "detached camera" },
+  { cam: turretCamera, desc: "on turret looking at target" },
+  { cam: targetCamera, desc: "near target looking at tank" },
+  { cam: tankCamera, desc: "above back of tank" },
+];
+
+const infoElem = document.querySelector("#info");
+</pre>
+<p>并在渲染时循环使用我们的摄像机。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const camera = cameras[(time * 0.25) % cameras.length | 0];
+infoElem.textContent = camera.desc;
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-scenegraph-tank.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-scenegraph-tank.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>我希望这能让你对场景图的工作原理以及你可能使用它们的方法有一些了解。制作 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> 节点，并将东西作为它们的子节点，是使用好 three.js 这样的 3D 引擎的重要一步。通常来说，让东西按照你想要的方式移动和旋转可能需要一些复杂的数学来。例如，如果没有场景图，计算月亮的运动或者汽车的轮子相对于车身的位置会非常复杂，但是使用场景图就会变得简单很多。</p>
+<p><a href="threejs-materials.html">接下来，我们会介绍一下材质</a>.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +570,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -204,7 +581,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-primitives.html">图元</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-scenegraph.html">Scenegraph</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-scenegraph.html">场景图</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-materials.html">Materials</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-textures.html">Textures</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-lights.html">Lights</a></li>
@@ -267,10 +644,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>有问题？ <a href="http://stackoverflow.com/questions/tagged/three.js">在 Stackoverflow 上提问</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 场景图';
+            var disqus_title = 'Three.js 场景图';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
