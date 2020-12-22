@@ -234,7 +234,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <div class="lesson">
     <div class="lesson-main">
       <p>本文是关于 three.js 系列文章的一部分。第一篇文章是 <a href="threejs-fundamentals.html">three.js 基础</a>。 如果你还没有读过它，建议先从那里开始。</p>
-<p>Three.js 的核心可以说是它的场景图。场景图在 3D 引擎是一个图中节点的层次结构，其中每个节点代表了一个局部空间（local space）。</p>
+<p>Three.js 的核心可以说是它的场景图（scene gprah）。场景图在 3D 引擎是一个图中节点的层次结构，其中每个节点代表了一个局部空间（local space）。</p>
 <p><img src="../resources/images/scenegraph-generic.svg" align="center"></p>
 <p>这有点抽象，所以我们试着举一些例子。</p>
 <p>比如这样一个例子：太阳系、太阳、地球、月亮。</p>
@@ -482,9 +482,9 @@ class AxisGridHelper {
 <p>如果你移动车体，所有的轮子都会随之移动。如果你想让车身和轮子分开弹跳，你可以将车身和轮子作为代表汽车框架的框架（frame）节点的子节点。</p>
 <p>另一个例子是游戏世界中的人类。</p>
 <p><img src="../resources/images/scenegraph-human.svg" align="center"></p>
-<p>你可以看到对于人来说，场景图会变得很复杂。事实上，上面的场景图已经被简化了。例如，你可以把它扩展到覆盖每根手指（至少还有 28 个节点）和每个脚趾（还有 28 个节点），再加上脸部和下巴、眼睛，也许还有更多。</p>
+<p>你可以看到对于人类来说，场景图会变得很复杂。事实上，上面的场景图已经被简化了。例如，你可以把它扩展到覆盖每根手指（至少还有 28 个节点）和每个脚趾（还有 28 个节点），再加上脸部和下巴、眼睛，也许还有更多。</p>
 <p>我们来做一个稍微复杂的场景图。我们来做一辆坦克。坦克将有 6 个轮子和一个炮塔。坦克会沿着一条路径行驶。会有一个球体在周围移动，坦克会瞄准球体。</p>
-<p>这是场景图。网格的颜色为绿色，<a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> 为蓝色，灯光为金色，摄像机为紫色。还有一台摄像机未被添加进场景图。</p>
+<p>这是场景图。网格（mesh）的颜色为绿色，<a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> 为蓝色，灯光（light）为金色，摄像机（camera）为紫色。其中一台摄像机没有被添加进场景图。</p>
 <div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 <p>在代码中查看这些节点的设置。</p>
@@ -497,7 +497,7 @@ targetMesh.rotation.y = time * 13;
 targetMaterial.emissive.setHSL((time * 10) % 1, 1, 0.25);
 targetMaterial.color.setHSL((time * 10) % 1, 1, 0.25);
 </pre>
-<p>对于坦克来说，有一个叫做 <code class="notranslate" translate="no">tank</code> 的 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>，用来移动它下面的所有东西。代码中使用了 <a href="https://threejs.org/docs/#api/zh/extras/curves/SplineCurve"><code class="notranslate" translate="no">SplineCurve</code></a>，其接受用来定义曲线的一系列坐标为参数。0.0 是曲线的起始点，1.0 是曲线的终点。它首先获取当前的位置，也就是放置坦克的位置。然后获取在曲线稍远处的位置，并使用 <a href="https://threejs.org/docs/#api/zh/core/Object3D.lookAt"><code class="notranslate" translate="no">Object3D.lookAt</code></a> 将坦克指向该方向。</p>
+<p>对于坦克来说，有一个叫做 <code class="notranslate" translate="no">tank</code> 的 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>，用来移动它下面的所有子节点。代码中使用了 <a href="https://threejs.org/docs/#api/zh/extras/curves/SplineCurve"><code class="notranslate" translate="no">SplineCurve</code></a>，其接受用来定义曲线的一系列坐标为参数。0.0 是曲线的起始点，1.0 是曲线的终点。它首先获取当前的位置，也就是放置坦克的位置。然后获取在曲线稍远处的位置，并使用 <a href="https://threejs.org/docs/#api/zh/core/Object3D.lookAt"><code class="notranslate" translate="no">Object3D.lookAt</code></a> 将坦克指向该方向。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const tankPosition = new THREE.Vector2();
 const tankTarget = new THREE.Vector2();
 
@@ -510,9 +510,7 @@ curve.getPointAt((tankTime + 0.01) % 1, tankTarget);
 tank.position.set(tankPosition.x, 0, tankPosition.y);
 tank.lookAt(tankTarget.x, 0, tankTarget.y);
 </pre>
-<p>The turret on top of the tank is moved automatically by being a child
-of the tank. To point it at the target we just ask for the target's world position
-and then again use <a href="https://threejs.org/docs/#api/zh/core/Object3D.lookAt"><code class="notranslate" translate="no">Object3D.lookAt</code></a></p>
+<p>由于坦克顶部的炮塔是坦克的子节点，所以它会自动移动。如果要将它指向目标，我们只需要获取目标的世界位置（world position），然后再次使用 <a href="https://threejs.org/docs/#api/zh/core/Object3D.lookAt"><code class="notranslate" translate="no">Object3D.lookAt</code></a>。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const targetPosition = new THREE.Vector3();
 
 ...
@@ -530,7 +528,7 @@ turretCamera.lookAt(targetPosition);
 tank.getWorldPosition(targetPosition);
 targetCameraPivot.lookAt(targetPosition);
 </pre>
-<p>最后，我们旋转所有的轮子</p>
+<p>最后，我们旋转所有的车轮</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">wheelMeshes.forEach((obj) =&gt; {
   obj.rotation.x = time * 3;
 });
