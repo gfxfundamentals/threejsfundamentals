@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-textures.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Textures">
+
+<meta name="description" content="在three.js中使用纹理">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-textures_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 纹理">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Using textures in three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-textures_zh_cn.jpg">
+<meta property="og:description" content="在three.js中使用纹理">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Textures">
+<meta name="twitter:title" content="Three.js 纹理">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html">
-<meta name="twitter:description" content="Using textures in three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="在three.js中使用纹理">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-textures_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-textures.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-textures.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-textures.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-textures.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-textures.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html">
 
 
-<title>Three.js Textures</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-textures_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 纹理",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 纹理</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +229,426 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Textures</h1>
+    <h1>Three.js 纹理</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-textures.html">英文原文链接</a>.</p>
+      <p>本文是关于 three.js 系列文章的一部分。第一篇文章是 <a href="threejs-fundamentals.html">three.js 基础</a>。上一篇<a href="threejs-setup.html">文章</a>是关于本文的环境搭建。如果你还没有读过它，建议先从那里开始。</p>
+<p>纹理是Three.js中的一种大话题，我还不能100%地确定在什么层面上解释它们，但我会试着去做它。这里面有很多主题，而且很多主题是相互关联的，所以很难一下子解释清楚。下面是本文的快速目录。</p>
+<ul>
+<li><a href="#hello">你好，纹理</a></li>
+<li><a href="#six">6种纹理，在立方体的每个面上都有不同的纹理。</a></li>
+<li><a href="#loading">加载纹理</a></li>
+<ul>
+  <li><a href="#easy">简单的方法</a></li>
+  <li><a href="#wait1">等待一个纹理加载</a></li>
+  <li><a href="#waitmany">等待多个纹理加载</a></li>
+  <li><a href="#cors">从其他源加载纹理</a></li>
+</ul>
+<li><a href="#memory">内存使用</a></li>
+<li><a href="#format">JPG vs PNG</a></li>
+<li><a href="#filtering-and-mips">过滤和mips</a></li>
+<li><a href="#uvmanipulation">重复，偏移，旋转，包裹</a></li>
+</ul>
+
+<h2 id="-a-name-hello-a-"><a name="hello"></a> 你好，纹理</h2>
+<p>纹理一般是指我们常见的在一些第三方程序中创建的图像，如Photoshop或GIMP。比如我们把这张图片放在立方体上。</p>
+<div class="threejs_center">
+  <img src="../../resources/images/wall.jpg" style="width: 600px;" class="border">
+</div>
+
+<p>我们将修改我们的第一个例子中的其中一个。我们需要做的就是创建一个<a href="https://threejs.org/docs/#api/zh/loaders/TextureLoader"><code class="notranslate" translate="no">TextureLoader</code></a>。调用它的<a href="https://threejs.org/docs/#api/zh/loaders/TextureLoader#load"><code class="notranslate" translate="no">load</code></a>方法，同时传入图像的URL，并将材质的 <code class="notranslate" translate="no">map</code> 属性设置为该方法的返回值，而不是设置它的 <code class="notranslate" translate="no">color</code>属性。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loader = new THREE.TextureLoader();
+
+const material = new THREE.MeshBasicMaterial({
+-  color: 0xFF8844,
++  map: loader.load('resources/images/wall.jpg'),
+});
+</pre>
+<p>注意，我们使用的是 <a href="https://threejs.org/docs/#api/zh/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>， 所以没有必要增加光线</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<h2 id="-a-name-six-a-6-"><a name="six"></a> 6种纹理，在立方体的每个面上都有不同的纹理。</h2>
+<p>6个纹理，一个立方体的每个面都有一个，怎么样？</p>
+<div class="threejs_center">
+  <div>
+    <img src="../../resources/images/flower-1.jpg" style="width: 100px;" class="border">
+    <img src="../../resources/images/flower-2.jpg" style="width: 100px;" class="border">
+    <img src="../../resources/images/flower-3.jpg" style="width: 100px;" class="border">
+  </div>
+  <div>
+    <img src="../../resources/images/flower-4.jpg" style="width: 100px;" class="border">
+    <img src="../../resources/images/flower-5.jpg" style="width: 100px;" class="border">
+    <img src="../../resources/images/flower-6.jpg" style="width: 100px;" class="border">
+  </div>
+</div>
+
+<p>我们只需制作6种材料，并在创建 <a href="https://threejs.org/docs/#api/zh/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> 时将它们作为一个数组传递给它们。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const loader = new THREE.TextureLoader();
+
+-const material = new THREE.MeshBasicMaterial({
+-  map: loader.load('resources/images/wall.jpg'),
+-});
++const materials = [
++  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-1.jpg')}),
++  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-2.jpg')}),
++  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-3.jpg')}),
++  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-4.jpg')}),
++  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-5.jpg')}),
++  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-6.jpg')}),
++];
+-const cube = new THREE.Mesh(geometry, material);
++const cube = new THREE.Mesh(geometry, materials);
+</pre>
+<p>有效果了！</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-6-textures.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube-6-textures.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>但需要注意的是，并不是所有的几何体类型都支持多种材质。<a href="https://threejs.org/docs/#api/zh/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> 和 <a href="https://threejs.org/docs/#api/zh/geometries/BoxBufferGeometry"><code class="notranslate" translate="no">BoxBufferGeometry</code></a> 可以使用6种材料，每个面一个。<a href="https://threejs.org/docs/#api/zh/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> 和 <a href="https://threejs.org/docs/#api/zh/geometries/ConeBufferGeometry"><code class="notranslate" translate="no">ConeBufferGeometry</code></a> 可以使用2种材料，一种用于底部，一种用于侧面。 <a href="https://threejs.org/docs/#api/zh/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> 和 <a href="https://threejs.org/docs/#api/zh/geometries/CylinderBufferGeometry"><code class="notranslate" translate="no">CylinderBufferGeometry</code></a> 可以使用3种材料，分别是底部、顶部和侧面。对于其他情况，你需要建立或加载自定义几何体和（或）修改纹理坐标。</p>
+<p>在其他3D引擎中，如果你想在一个几何体上使用多个图像，使用 <a href="https://en.wikipedia.org/wiki/Texture_atlas">纹理图集（Texture Atlas）</a> 更为常见，性能也更高。纹理图集是将多个图像放在一个单一的纹理中，然后使用几何体顶点上的纹理坐标来选择在几何体的每个三角形上使用纹理的哪些部分。</p>
+<p>什么是纹理坐标？它们是添加到一块几何体的每个顶点上的数据，用于指定该顶点对应的纹理的哪个部分。当我们开始<a href="threejs-custom-geometry.html">构建自定义几何体时（building custom geometry）</a>，我们会介绍它们。</p>
+<h2 id="-a-name-loading-a-"><a name="loading"></a> 加载纹理</h2>
+<h3 id="-a-name-easy-a-"><a name="easy"></a> 简单的方法</h3>
+<p>本文的大部分代码都使用最简单的加载纹理的方法。我们创建一个 <a href="https://threejs.org/docs/#api/zh/loaders/TextureLoader"><code class="notranslate" translate="no">TextureLoader</code></a> ，然后调用它的<a href="https://threejs.org/docs/#api/zh/loaders/TextureLoader#load"><code class="notranslate" translate="no">load</code></a>方法。
+这将返回一个 <a href="https://threejs.org/docs/#api/zh/textures/Texture"><code class="notranslate" translate="no">Texture</code></a> 对象。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const texture = loader.load('resources/images/flower-1.jpg');
+</pre>
+<p>需要注意的是，使用这个方法，我们的纹理将是透明的，直到图片被three.js异步加载完成，这时它将用下载的图片更新纹理。</p>
+<p>这有一个很大的好处，就是我们不必等待纹理加载，我们的页面会立即开始渲染。这对于很多用例来说可能都没问题，但如果我们想要的话，我们可以让three.js告诉我们何时纹理已经下载完毕。</p>
+<h3 id="-a-name-wait1-a-"><a name="wait1"></a> 等待一个纹理加载</h3>
+<p>为了等待贴图加载，贴图加载器的 <code class="notranslate" translate="no">load</code> 方法会在贴图加载完成后调用一个回调。回到上面的例子，我们可以在创建Mesh并将其添加到场景之前等待贴图加载，就像这样。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const loader = new THREE.TextureLoader();
+loader.load('resources/images/wall.jpg', (texture) =&gt; {
+  const material = new THREE.MeshBasicMaterial({
+    map: texture,
+  });
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+  cubes.push(cube);  // 添加到我们要旋转的立方体数组中
+});
+</pre>
+<p>除非你清除你的浏览器的缓存并且连接缓慢，你不太可能看到任何差异，但放心，它正在等待纹理加载。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-wait-for-texture.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube-wait-for-texture.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<h3 id="-a-name-waitmany-a-"><a name="waitmany"></a> 等待多个纹理加载</h3>
+<p>要等到所有纹理都加载完毕，你可以使用 <a href="https://threejs.org/docs/#api/zh/loaders/managers/LoadingManager"><code class="notranslate" translate="no">LoadingManager</code></a> 。创建一个并将其传递给 <a href="https://threejs.org/docs/#api/zh/loaders/TextureLoader"><code class="notranslate" translate="no">TextureLoader</code></a>，然后将其<a href="https://threejs.org/docs/#api/zh/loaders/managers/LoadingManager#onLoad"><code class="notranslate" translate="no">onLoad</code></a>属性设置为回调。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loadManager = new THREE.LoadingManager();
+*const loader = new THREE.TextureLoader(loadManager);
+
+const materials = [
+  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-1.jpg')}),
+  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-2.jpg')}),
+  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-3.jpg')}),
+  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-4.jpg')}),
+  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-5.jpg')}),
+  new THREE.MeshBasicMaterial({map: loader.load('resources/images/flower-6.jpg')}),
+];
+
++loadManager.onLoad = () =&gt; {
++  const cube = new THREE.Mesh(geometry, materials);
++  scene.add(cube);
++  cubes.push(cube);  // 添加到我们要旋转的立方体数组中
++};
+</pre>
+<p><a href="https://threejs.org/docs/#api/zh/loaders/managers/LoadingManager"><code class="notranslate" translate="no">LoadingManager</code></a> 也有一个 <a href="https://threejs.org/docs/#api/zh/loaders/managers/LoadingManager#onProgress"><code class="notranslate" translate="no">onProgress</code></a> 属性，我们可以设置为另一个回调来显示进度指示器。</p>
+<p>首先，我们在HTML中添加一个进度条</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+  &lt;canvas id="c"&gt;&lt;/canvas&gt;
++  &lt;div id="loading"&gt;
++    &lt;div class="progress"&gt;&lt;div class="progressbar"&gt;&lt;/div&gt;&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+<p>然后给它加上CSS</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#loading .progress {
+    margin: 1.5em;
+    border: 1px solid white;
+    width: 50vw;
+}
+#loading .progressbar {
+    margin: 2px;
+    background: white;
+    height: 1em;
+    transform-origin: top left;
+    transform: scaleX(0);
+}
+</pre>
+<p>然后在代码中，我们将在 <code class="notranslate" translate="no">onProgress</code> 回调中更新 <code class="notranslate" translate="no">progressbar</code> 的比例。调用它有如下几个参数：最后加载的项目的URL，目前加载的项目数量，以及加载的项目总数。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loadingElem = document.querySelector('#loading');
++const progressBarElem = loadingElem.querySelector('.progressbar');
+
+loadManager.onLoad = () =&gt; {
++  loadingElem.style.display = 'none';
+  const cube = new THREE.Mesh(geometry, materials);
+  scene.add(cube);
+  cubes.push(cube);  // 添加到我们要旋转的立方体数组中
+};
+
++loadManager.onProgress = (urlOfLastItemLoaded, itemsLoaded, itemsTotal) =&gt; {
++  const progress = itemsLoaded / itemsTotal;
++  progressBarElem.style.transform = `scaleX(${progress})`;
++};
+</pre>
+<p>除非你清除了你的缓存，而且连接速度很慢，否则你可能看不到加载栏。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-wait-for-all-textures.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube-wait-for-all-textures.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<h2 id="-a-name-cors-a-"><a name="cors"></a> 从其他源加载纹理</h2>
+<p>要使用其他服务器上的图片，这些服务器需要发送正确的头文件。如果他们不发送，你就不能在three.js中使用这些图片，并且会得到一个错误。如果你运行提供图片的服务器，请确保它<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">发送正确的头文件</a>.。如果你不控制托管图片的服务器，而且它没有发送权限头文件，那么你就不能使用该服务器上的图片。</p>
+<p>例如 <a href="https://imgur.com">imgur</a>、<a href="https://flickr.com">flickr</a> 和 <a href="https://github.com">github</a> 都会发送头文件，允许你在 three.js 中使用他们服务器上托管的图片，使用 three.js。而其他大多数网站则不允许。</p>
+<h2 id="-a-name-memory-a-"><a name="memory"></a> 内存管理</h2>
+<p>纹理往往是three.js应用中使用内存最多的部分。重要的是要明白，<em>一般来说</em>，纹理会占用 <code class="notranslate" translate="no">宽度 * 高度 * 4 * 1.33</code> 字节的内存。</p>
+<p>注意，这里没有提到任何关于压缩的问题。我可以做一个.jpg的图片，然后把它的压缩率设置的超级高。比如说我在做一个房子的场景。在房子里面有一张桌子，我决定在桌子的顶面放上这个木质的纹理</p>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+
+<p>那张图片只有157k，所以下载起来会比较快，但<a href="../resources/images/compressed-but-large-wood-texture.jpg">实际上它的大小是3024×3761像素</a>.。按照上面的公式，那就是</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">3024 * 3761 * 4 * 1.33 = 60505764.5
+</pre><p>在three.js中，这张图片会占用<strong>60兆（meg）的内存！</strong>。只要几个这样的纹理，你就会用完内存。</p>
+<p>我之所以提出这个问题，是因为要知道使用纹理是有隐性成本的。为了让three.js使用纹理，必须把纹理交给GPU，而GPU<em>一般</em>都要求纹理数据不被压缩。</p>
+<p>这个故事的寓意在于，不仅仅要让你的纹理的文件大小小，还得让你的纹理尺寸小。文件大小小=下载速度快。尺寸小=占用的内存少。你应该把它们做得多小？越小越好，而且看起来仍然是你需要的样子。</p>
+<h2 id="-a-name-format-a-jpg-vs-png"><a name="format"></a> JPG vs PNG</h2>
+<p>这和普通的HTML差不多，JPG有损压缩，PNG有无损压缩，所以PNG的下载速度一般比较慢。但是，PNG支持透明度。PNG可能也适合作为非图像数据（non-image data）的格式，比如法线图，以及其他种类的非图像图，我们后面会介绍。</p>
+<p>请记住，在WebGL中JPG使用的内存并不比PNG少。参见上文。</p>
+<h2 id="-a-name-filtering-and-mips-a-mips"><a name="filtering-and-mips"></a> 过滤和mips</h2>
+<p>让我们把这个16x16的纹理应用到</p>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
+
+<p>一个立方体上。</p>
+<div class="spread"><div data-diagram="filterCube"></div></div>
+
+<p>让我们把这个立方体画得非常小</p>
+<div class="spread"><div data-diagram="filterCubeSmall"></div></div>
+
+<p>嗯，我想这很难看得清楚。让我们把这个小方块放大</p>
+<div class="spread"><div data-diagram="filterCubeSmallLowRes"></div></div>
+
+<p>GPU怎么知道小立方体的每一个像素需要使用哪些颜色？如果立方体小到只有1、2个像素呢？</p>
+<p>这就是过滤（filtering）的意义所在。</p>
+<p>如果是Photoshop，Photoshop会把几乎所有的像素平均在一起，来计算出这1、2个像素的颜色。这将是一个非常缓慢的操作。GPU用mipmaps解决了这个问题。</p>
+<p>Mips 是纹理的副本，每一个都是前一个 mip 的一半宽和一半高，其中的像素已经被混合以制作下一个较小的 mip。Mips一直被创建，直到我们得到1x1像素的Mip。对于上面的图片，所有的Mip最终会变成这样的样子</p>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+
+<p>现在，当立方体被画得很小，只有1或2个像素大时，GPU可以选择只用最小或次小级别的mip来决定让小立方体变成什么颜色。</p>
+<p>在three.js中，当纹理绘制的尺寸大于其原始尺寸时，或者绘制的尺寸小于其原始尺寸时，你都可以做出相应的处理。</p>
+<p>当纹理绘制的尺寸大于其原始尺寸时，你可以将 <a href="https://threejs.org/docs/#api/zh/textures/Texture#magFilter"><code class="notranslate" translate="no">texture.magFilter</code></a> 属性设置为 <code class="notranslate" translate="no">THREE.NearestFilter</code> 或 <code class="notranslate" translate="no">THREE.LinearFilter</code> 。<code class="notranslate" translate="no">NearestFilter</code> 意味着只需从原始纹理中选取最接近的一个像素。对于低分辨率的纹理，这给你一个非常像素化的外观，就像Minecraft。</p>
+<p><code class="notranslate" translate="no">LinearFilter</code> 是指从纹理中选择离我们应该选择颜色的地方最近的4个像素，并根据实际点与4个像素的距离，以适当的比例进行混合。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="filterCubeMagNearest" style="height: 250px;"></div>
+    <div class="code">Nearest</div>
+  </div>
+  <div>
+    <div data-diagram="filterCubeMagLinear" style="height: 250px;"></div>
+    <div class="code">Linear</div>
+  </div>
+</div>
+
+<p>为了在绘制的纹理小于其原始尺寸时设置过滤器，你可以将 <a href="https://threejs.org/docs/#api/zh/textures/Texture#minFilter"><code class="notranslate" translate="no">texture.minFilter</code></a> 属性设置为下面6个值之一。</p>
+<ul>
+<li><p><code class="notranslate" translate="no">THREE.NearestFilter</code></p>
+<p> 同上，在纹理中选择最近的像素。</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.LinearFilter</code></p>
+<p> 和上面一样，从纹理中选择4个像素，然后混合它们</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.NearestMipmapNearestFilter</code></p>
+<p> 选择合适的mip，然后选择一个像素。</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.NearestMipmapLinearFilter</code></p>
+<p> 选择2个mips，从每个mips中选择一个像素，混合这2个像素。</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.LinearMipmapNearestFilter</code></p>
+<p> 选择合适的mip，然后选择4个像素并将它们混合。</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.LinearMipmapLinearFilter</code></p>
+<p>选择2个mips，从每个mips中选择4个像素，然后将所有8个像素混合成1个像素。</p>
+</li>
+</ul>
+<p>下面是一个分别使用上面6个设置的例子</p>
+<div class="spread">
+  <div data-diagram="filterModes" style="
+    height: 450px;
+    position: relative;
+  ">
+    <div style="
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    ">
+      <div style="
+        background: rgba(255,0,0,.8);
+        color: white;
+        padding: .5em;
+        margin: 1em;
+        font-size: small;
+        border-radius: .5em;
+        line-height: 1.2;
+        user-select: none;">click to<br>change<br>texture</div>
+    </div>
+    <div class="filter-caption" style="left: 0.5em; top: 0.5em;">nearest</div>
+    <div class="filter-caption" style="width: 100%; text-align: center; top: 0.5em;">linear</div>
+    <div class="filter-caption" style="right: 0.5em; text-align: right; top: 0.5em;">nearest<br>mipmap<br>nearest</div>
+    <div class="filter-caption" style="left: 0.5em; text-align: left; bottom: 0.5em;">nearest<br>mipmap<br>linear</div>
+    <div class="filter-caption" style="width: 100%; text-align: center; bottom: 0.5em;">linear<br>mipmap<br>nearest</div>
+    <div class="filter-caption" style="right: 0.5em; text-align: right; bottom: 0.5em;">linear<br>mipmap<br>linear</div>
+  </div>
+</div>
+
+<p>需要注意的是，使用 <code class="notranslate" translate="no">NearestFilter</code> 和 <code class="notranslate" translate="no">LinearFilter</code> 的左上方和中上方没有使用mips。正因为如此，它们在远处会闪烁，因为GPU是从原始纹理中挑选像素。左边只有一个像素被选取，中间有4个像素被选取并混合，但这还不足以得出一个好的代表颜色。其他4条做得比较好，右下角的<code class="notranslate" translate="no">LinearMipmapLinearFilter</code>最好。</p>
+<p>如果你点击上面的图片，它将在我们上面一直使用的纹理和每一个mip级别都是不同颜色的纹理之间切换。</p>
+<div class="threejs_center">
+  <div data-texture-diagram="differentColoredMips"></div>
+</div>
+
+<p>这样就更清楚了。在左上角和中上角你可以看到第一个mip一直用到了远处。右上角和中下角你可以清楚地看到哪里使用了不同的mip。</p>
+<p>切换回原来的纹理，你可以看到右下角是最平滑的，质量最高的。你可能会问为什么不总是使用这种模式。最明显的原因是有时你希望东西是像素化的，以达到复古的效果或其他原因。其次最常见的原因是，读取8个像素并混合它们比读取1个像素并混合要慢。虽然单个纹理不太可能成为快和慢的区别，但随着我们在这些文章中的进一步深入，我们最终会有同时使用4或5个纹理的材料的情况。4个纹理*每个纹理8个像素，就是查找32个像素的永远渲染的像素。在移动设备上，这一嗲可能需要被重点考虑。</p>
+<h2 id="-a-name-uvmanipulation-a-"><a name="uvmanipulation"></a> 重复，偏移，旋转，包裹一个纹理</h2>
+<p>纹理有重复、偏移和旋转纹理的设置。</p>
+<p>默认情况下，three.js中的纹理是不重复的。要设置纹理是否重复，有2个属性，<a href="https://threejs.org/docs/#api/zh/textures/Texture#wrapS"><code class="notranslate" translate="no">wrapS</code></a> 用于水平包裹，<a href="https://threejs.org/docs/#api/zh/textures/Texture#wrapT"><code class="notranslate" translate="no">wrapT</code></a> 用于垂直包裹。</p>
+<p>它们可以被设置为一下其中一个：</p>
+<ul>
+<li><p><code class="notranslate" translate="no">THREE.ClampToEdgeWrapping</code></p>
+<p> 每条边上的最后一个像素无限重复。</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.RepeatWrapping</code></p>
+<p> 纹理重复</p>
+</li>
+<li><p><code class="notranslate" translate="no">THREE.MirroredRepeatWrapping</code></p>
+<p> 在每次重复时将进行镜像</p>
+</li>
+</ul>
+<p>比如说，要开启两个方向的包裹。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">someTexture.wrapS = THREE.RepeatWrapping;
+someTexture.wrapT = THREE.RepeatWrapping;
+</pre>
+<p>重复是用[repeat]重复属性设置的。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const timesToRepeatHorizontally = 4;
+const timesToRepeatVertically = 2;
+someTexture.repeat.set(timesToRepeatHorizontally, timesToRepeatVertically);
+</pre>
+<p>纹理的偏移可以通过设置 <code class="notranslate" translate="no">offset</code> 属性来完成。纹理的偏移是以单位为单位的，其中1个单位=1个纹理大小。换句话说，0 = 没有偏移，1 = 偏移一个完整的纹理数量。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const xOffset = .5;   // offset by half the texture
+const yOffset = .25;  // offset by 1/4 the texture
+someTexture.offset.set(xOffset, yOffset);
+</pre>
+<p>通过设置以弧度为单位的 <code class="notranslate" translate="no">rotation</code> 属性以及用于选择旋转中心的 <code class="notranslate" translate="no">center</code> 属性，可以设置纹理的旋转。它的默认值是0,0，从左下角开始旋转。像偏移一样，这些单位是以纹理大小为单位的，所以将它们设置为 <code class="notranslate" translate="no">.5</code>，<code class="notranslate" translate="no">.5</code> 将会围绕纹理中心旋转。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">someTexture.center.set(.5, .5);
+someTexture.rotation = THREE.MathUtils.degToRad(45);
+</pre>
+<p>让我们修改一下上面的示例，来试试这些属性吧</p>
+<p>首先，我们要保留一个对纹理的引用，这样我们就可以对它进行操作。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const texture = loader.load('resources/images/wall.jpg');
+const material = new THREE.MeshBasicMaterial({
+-  map: loader.load('resources/images/wall.jpg');
++  map: texture,
+});
+</pre>
+<p>然后，我们会再次使用 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> 来提供一个简单的界面。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {GUI} from '../3rdparty/dat.gui.module.js';
+</pre>
+<p>正如我们在之前的dat.GUI例子中所做的那样，我们将使用一个简单的类来给dat.GUI提供一个可以以度数为单位进行操作的对象，但它将以弧度为单位设置该属性。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class DegRadHelper {
+  constructor(obj, prop) {
+    this.obj = obj;
+    this.prop = prop;
+  }
+  get value() {
+    return THREE.MathUtils.radToDeg(this.obj[this.prop]);
+  }
+  set value(v) {
+    this.obj[this.prop] = THREE.MathUtils.degToRad(v);
+  }
+}
+</pre>
+<p>我们还需要一个类，将 <code class="notranslate" translate="no">"123"</code> 这样的字符串转换为 <code class="notranslate" translate="no">123</code> 这样的数字，因为three.js的枚举设置需要数字，比如 <code class="notranslate" translate="no">wrapS</code> 和 <code class="notranslate" translate="no">wrapT</code>，但dat.GUI只使用字符串来设置枚举。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class StringToNumberHelper {
+  constructor(obj, prop) {
+    this.obj = obj;
+    this.prop = prop;
+  }
+  get value() {
+    return this.obj[this.prop];
+  }
+  set value(v) {
+    this.obj[this.prop] = parseFloat(v);
+  }
+}
+</pre>
+<p>利用这些类，我们可以为上面的设置设置一个简单的GUI。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const wrapModes = {
+  'ClampToEdgeWrapping': THREE.ClampToEdgeWrapping,
+  'RepeatWrapping': THREE.RepeatWrapping,
+  'MirroredRepeatWrapping': THREE.MirroredRepeatWrapping,
+};
+
+function updateTexture() {
+  texture.needsUpdate = true;
+}
+
+const gui = new GUI();
+gui.add(new StringToNumberHelper(texture, 'wrapS'), 'value', wrapModes)
+  .name('texture.wrapS')
+  .onChange(updateTexture);
+gui.add(new StringToNumberHelper(texture, 'wrapT'), 'value', wrapModes)
+  .name('texture.wrapT')
+  .onChange(updateTexture);
+gui.add(texture.repeat, 'x', 0, 5, .01).name('texture.repeat.x');
+gui.add(texture.repeat, 'y', 0, 5, .01).name('texture.repeat.y');
+gui.add(texture.offset, 'x', -2, 2, .01).name('texture.offset.x');
+gui.add(texture.offset, 'y', -2, 2, .01).name('texture.offset.y');
+gui.add(texture.center, 'x', -.5, 1.5, .01).name('texture.center.x');
+gui.add(texture.center, 'y', -.5, 1.5, .01).name('texture.center.y');
+gui.add(new DegRadHelper(texture, 'rotation'), 'value', -360, 360)
+  .name('texture.rotation');
+</pre>
+<p>最后需要注意的是，如果你改变了纹理上的 <code class="notranslate" translate="no">wrapS</code> 或 <code class="notranslate" translate="no">wrapT</code>，你还必须设置 <a href="https://threejs.org/docs/#api/zh/textures/Texture#needsUpdate"><code class="notranslate" translate="no">texture.needsUpdate</code></a>，以便three.js知道并应用这些设置。其他的设置会自动应用。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-textured-cube-adjust.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-textured-cube-adjust.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>这只是进入纹理主题的一个步骤。在某些时候，我们将介绍纹理坐标以及其他9种可应用于材料的纹理类型。</p>
+<p>现在我们继续说说<a href="threejs-lights.html">灯光</a>。</p>
+<!--
+alpha
+ao
+env
+light
+specular
+bumpmap ?
+normalmap ?
+metalness
+roughness
+-->
+<p><link rel="stylesheet" href="../resources/threejs-textures.css"></p>
+<script type="module" src="../resources/threejs-textures.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +662,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -206,7 +675,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
           <li><a href="/threejs/lessons/zh_cn/threejs-primitives.html">图元</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-scenegraph.html">场景图</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-materials.html">材质</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-textures.html">Textures</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-textures.html">纹理</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-lights.html">Lights</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">Cameras</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
@@ -267,10 +736,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>有问题？ <a href="http://stackoverflow.com/questions/tagged/three.js">在 Stackoverflow 上提问</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 纹理';
+            var disqus_title = 'Three.js 纹理';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
