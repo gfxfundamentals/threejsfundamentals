@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-custom-geometry.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,77 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Custom Geometry">
+
+<meta name="description" content="カスタムジオメトリを作る">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_ja.jpg">
+
+<meta property="og:title" content="Three.jsのカスタムジオメトリ">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="How to make your own geometry.">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_ja.jpg">
+<meta property="og:description" content="カスタムジオメトリを作る">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Custom Geometry">
+<meta name="twitter:title" content="Three.jsのカスタムジオメトリ">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html">
-<meta name="twitter:description" content="How to make your own geometry.">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="カスタムジオメトリを作る">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-custom-geometry.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-custom-geometry.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-custom-geometry.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-custom-geometry.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-custom-geometry.html">
 
 
-<title>Three.js Custom Geometry</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-geometry_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのカスタムジオメトリ",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-geometry.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsのカスタムジオメトリ</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +228,396 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Custom Geometry</h1>
+    <h1>Three.jsのカスタムジオメトリ</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-custom-geometry.html">ここに元の英語の記事があります</a>.</p>
+      <p>前回の<a href="threejs-primitives.html">記事</a>ではTHREE.jsにある基本ジオメトリであるプリミティブジオメトリを紹介しました。この記事ではカスタムジオメトリを紹介します。</p>
+<p>まず最初に断っておきますが、本格的な３Dコンテンツを作りたい場合は
+３Dモデリングツールを使うべきです。３Dモデリングツールには
+<a href="https://blender.org">Blender</a>,
+<a href="https://www.autodesk.com/products/maya/overview">Maya</a>,
+<a href="https://www.autodesk.com/products/3ds-max/overview">3D Studio Max</a>,
+<a href="https://www.maxon.net/en-us/">Cinema4D</a>などがあります。</p>
+<p>これらのモデリングツールでモデルを作ってから<a href="threejs-load-gltf.html">gLTF</a>や<a href="threejs-load-obj.html">.obj</a> 
+にエクスポートしたものをTHREE.jsにインポートすることもできます。
+どのモデリングツールも習得にそれなりの時間がかかります。</p>
+<p>ここまで簡単なカスタムジオメトリであれば大袈裟なモデリングツールを使わずにTHREE.jsのコードで作れます。</p>
+<p>まずは立方体を作ってみましょう。THREE.jsの<a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>や<a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry"><code class="notranslate" translate="no">BoxBufferGeometry</code></a>を使えば一発で
+立方体を作れますが、簡単な例としてカスタムジオメトリで作ってみましょう。</p>
+<p>THREE.jsにはカスタムジオメトリを作る方法が２つあります。１つ目は<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>クラスで２つ目が<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>です。
+それぞれに利点があります。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>は簡単に使えますが遅く、メモリをより消費します。1000個以下の三角形を作る際は
+よいですが、10,000個の三角形を作る時には<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>が良いでしょう。</p>
+<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>は使うのが難しいですがメモリの消費が小さく速いです。１万個の三角形を作る時にはこれを使いましょう。</p>
+<p>ただし変形などがない場合はそれほど変わりません。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>が遅いというのはジオメトリが編集された
+場合に遅いと言う意味で、もし編集が必要なくそれほど大きくなければこの両者はあまり変わりません。
+この記事では両方紹介します。最初は簡単な<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>を紹介します。</p>
+<p>まずは<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>で立方体を作ってみましょう。<a href="threejs-responsive.html">レスポンシブの記事</a>の例を使います。</p>
+<p><a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>を使っている部分を消して<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>で置き換えてみます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const boxWidth = 1;
+-const boxHeight = 1;
+-const boxDepth = 1;
+-const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
++const geometry = new THREE.Geometry();
+</pre>
+<p>まずは８つの角を追加してみます。</p>
+<div class="threejs_center"><img src="../resources/cube-vertex-positions.svg" style="width: 500px"></div>
+
+<p>中心の周囲にこのようにvertexを追加します。（訳註：vertexとはジオメトリを構成する頂点です。３つの頂点を結ぶことでface＝面ができます）。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.Geometry();
++geometry.vertices.push(
++  new THREE.Vector3(-1, -1,  1),  // 0
++  new THREE.Vector3( 1, -1,  1),  // 1
++  new THREE.Vector3(-1,  1,  1),  // 2
++  new THREE.Vector3( 1,  1,  1),  // 3
++  new THREE.Vector3(-1, -1, -1),  // 4
++  new THREE.Vector3( 1, -1, -1),  // 5
++  new THREE.Vector3(-1,  1, -1),  // 6
++  new THREE.Vector3( 1,  1, -1),  // 7
++);
+</pre>
+<p>vertexを結んで三角形を作ります。１面につき２つの三角形を使います。
+（訳註：立方体は６つの正方形で構成されます。１つの正方形は２つの三角形で構成されます。）</p>
+<div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
+
+<p>vertexを結んで三角形を作るには<a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>を使います。<a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>の３は３つのvertexでfaceを作ると言う意味です。</p>
+<p>vertexを指定する順序は重要です。faceには表面と裏面があります。立方体を構成するfaceの
+面が外に向くためには反時計回りの順序でvertexを指定します。</p>
+<div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
+
+<p>同じように１２個の三角形を作って立方体を作ります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces.push(
+  // front
+  new THREE.Face3(0, 3, 2),
+  new THREE.Face3(0, 1, 3),
+  // right
+  new THREE.Face3(1, 7, 3),
+  new THREE.Face3(1, 5, 7),
+  // back
+  new THREE.Face3(5, 6, 7),
+  new THREE.Face3(5, 4, 6),
+  // left
+  new THREE.Face3(4, 2, 6),
+  new THREE.Face3(4, 0, 2),
+  // top
+  new THREE.Face3(2, 7, 6),
+  new THREE.Face3(2, 3, 7),
+  // bottom
+  new THREE.Face3(4, 1, 0),
+  new THREE.Face3(4, 5, 1),
+);
+</pre>
+<p>ちょっとコードを変えるだけで動きます。</p>
+<p>これらの立方体は前に使った<a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>の立方体より２倍のサイズがあります。
+全体が映るようにカメラを引きます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 5;
++const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 2;
++camera.position.z = 5;
+</pre>
+<p>わかりやすいようにそれぞれを離して色を変えます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
++  makeInstance(geometry, 0x44FF44,  0),
++  makeInstance(geometry, 0x4444FF, -4),
++  makeInstance(geometry, 0xFF4444,  4),
+];
+</pre>
+<p>この状態ではnormal（法線）がないのでライトが当たりません。
+そこでライトが必要ないマテリアルに変えます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshBasicMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  ...
+</pre>
+<p>これで自分で作った立方体ができました。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>それぞれのfaceに対して<code class="notranslate" translate="no">color</code>を設定することで色を変えられます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces[ 0].color = geometry.faces[ 1].color = new THREE.Color('red');
+geometry.faces[ 2].color = geometry.faces[ 3].color = new THREE.Color('yellow');
+geometry.faces[ 4].color = geometry.faces[ 5].color = new THREE.Color('green');
+geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color('cyan');
+geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color('blue');
+geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta');
+</pre>
+<p>マテリアルには<code class="notranslate" translate="no">FaceColors</code>を使うように設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({color});
++const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-face-colors.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p><code class="notranslate" translate="no">vertexcolors</code>を設定すればvertexそれぞれに色を設定できます。
+３つのvertexに対して３つの色を設定してみます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces.forEach((face, ndx) =&gt; {
+  face.vertexColors = [
+    (new THREE.Color()).setHSL(ndx / 12      , 1, 0.5),
+    (new THREE.Color()).setHSL(ndx / 12 + 0.1, 1, 0.5),
+    (new THREE.Color()).setHSL(ndx / 12 + 0.2, 1, 0.5),
+  ];
+});
+</pre>
+<p>マテリアルにはvertex colorを使うように設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
++const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-colors.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>ライトを適用する時はnormalが必要です。normalはfaceの向きを示すベクトルです。
+色を設定したのと同じようにそれぞれのfaceにのnormalを設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">face.normal = new THREE.Vector3(...)
+</pre>
+<p><code class="notranslate" translate="no">vertexNormals</code>でvertexに対してnormalを設定することもできます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">face.vertexNormals = [
+  new THREE.Vector3(...),
+  new THREE.Vector3(...),
+  new THREE.Vector3(...),
+]
+</pre>
+<p>しかしTHREE.jsに自動的にnormalを設定してもらうこともできます。
+faceのnormalに対しては<a href="https://threejs.org/docs/#api/en/core/Geometry.computeFaceNormals"><code class="notranslate" translate="no">Geometry.computeFaceNormals</code></a>を使います。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.computeFaceNormals();
+</pre>
+<p>vertex colorを消してマテリアルを<a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a>に戻します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
++const material = new THREE.MeshPhongMaterial({color});
+</pre>
+<p>ライトが適用できました。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-normals.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-face-normals.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>vertex normalsを使うことで滑らかな表面を表現できます。
+<a href="https://threejs.org/docs/#api/en/core/Geometry.computeVertexNormals"><code class="notranslate" translate="no">Geometry.computeVertexNormals</code></a>を設定してください。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-geometry.computeFaceNormals();
++geometry.computeVertexNormals();
+</pre>
+<p>ここまで説明しておいてなんですが立方体はvertex normalの例としてはあまり適切ではありません。
+なぜなら１つのvertex normalがそのvertexが接する全ての面に依存しているからです。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-normals.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-vertex-normals.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>テクスチャの座標（UVと呼ばれる）を設定するには<code class="notranslate" translate="no">faces</code>に対応した配列を用意します。
+<a href="https://threejs.org/docs/#api/en/core/Geometry.faceVertexUvs"><code class="notranslate" translate="no">Geometry.faceVertexUvs</code></a>で設定します。
+これらのテクニックを使うと以下のような立方体ができます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faceVertexUvs[0].push(
+  // front
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // right
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // back
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // left
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // top
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+  // bottom
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
+  [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 0), new THREE.Vector2(1, 1) ],
+);
+</pre>
+<p><code class="notranslate" translate="no">faceVertexUvs</code>は配列の配列によってUV座標がレイヤー状に格納されています。それぞれの配列にはUV座標が入っています。デフォルトではレイヤー数は１です。もう１つレイヤーを追加してみます。</p>
+<p>マテリアルに<a href="threejs-textures.html">テクスチャを追加</a> してください。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-geometry.computeVertexNormals();
++geometry.computeFaceNormals();
+
++const loader = new THREE.TextureLoader();
++const texture = loader.load('resources/images/star.png');
+
+function makeInstance(geometry, color, x) {
+-  const material = new THREE.MeshPhongMaterial({color});
++  const material = new THREE.MeshPhongMaterial({color, map: texture});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  ...
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-texcoords.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-cube-texcoords.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>OKです。単純なハイトマップをterrain meshから作りましょう。</p>
+<p>terrain meshからつくるハイトマップとは詰まるところ二次元配列です。配列の数値は高さの表現に使います。二次元配列を取得するには画像編集ソフトで適当な画像を作ってしまうのが楽です。96x96の画像を作ってみました。</p>
+<div class="threejs_center"><img src="../../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+
+<p>このPNG画像をロードして二次元配列にしてハイトマップとして使います。
+画像をロードするには<a href="https://threejs.org/docs/#api/en/loaders/ImageLoader"><code class="notranslate" translate="no">ImageLoader</code></a>を使います。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const imgLoader = new THREE.ImageLoader();
+imgLoader.load('resources/images/heightmap-96x64.png', createHeightmap);
+
+function createHeightmap(image) {
+  // extract the data from the image by drawing it to a canvas
+  // and calling getImageData
+  const ctx = document.createElement('canvas').getContext('2d');
+  const {width, height} = image;
+  ctx.canvas.width = width;
+  ctx.canvas.height = height;
+  ctx.drawImage(image, 0, 0);
+  const {data} = ctx.getImageData(0, 0, width, height);
+
+  const geometry = new THREE.Geometry();
+</pre>
+<p>画像から二次元配列を取り出しました。次に粗い正方形で区切られたグリッドを作ります。このグリッドはそれぞれのピクセルの中心点を四隅とした正方形で構成されています。</p>
+<div class="threejs_center"><img src="../resources/heightmap-points.svg" style="width: 500px"></div>
+
+<p>それぞれの正方形に対して５つのvertexを作ります。４つは正方形の四隅のピクセル値で、のこり１つはその四隅の平均です。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cellsAcross = width - 1;
+const cellsDeep = height - 1;
+for (let z = 0; z &lt; cellsDeep; ++z) {
+  for (let x = 0; x &lt; cellsAcross; ++x) {
+    // compute row offsets into the height data
+    // we multiply by 4 because the data is R,G,B,A but we
+    // only care about R
+    const base0 = (z * width + x) * 4;
+    const base1 = base0 + (width * 4);
+
+    // look up the height for the for points
+    // around this cell
+    const h00 = data[base0] / 32;
+    const h01 = data[base0 + 4] / 32;
+    const h10 = data[base1] / 32;
+    const h11 = data[base1 + 4] / 32;
+    // compute the average height
+    const hm = (h00 + h01 + h10 + h11) / 4;
+
+    // the corner positions
+    const x0 = x;
+    const x1 = x + 1;
+    const z0 = z;
+    const z1 = z + 1;
+
+    // remember the first index of these 5 vertices
+    const ndx = geometry.vertices.length;
+
+    // add the 4 corners for this cell and the midpoint
+    geometry.vertices.push(
+      new THREE.Vector3(x0, h00, z0),
+      new THREE.Vector3(x1, h01, z0),
+      new THREE.Vector3(x0, h10, z1),
+      new THREE.Vector3(x1, h11, z1),
+      new THREE.Vector3((x0 + x1) / 2, hm, (z0 + z1) / 2),
+    );
+</pre>
+<p>この５つのvertexを元に４つの三角形を作ります。</p>
+<div class="threejs_center"><img src="../resources/heightmap-triangles.svg" style="width: 500px"></div>
+
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">    // create 4 triangles
+    geometry.faces.push(
+      new THREE.Face3(ndx + 0, ndx + 4, ndx + 1),
+      new THREE.Face3(ndx + 1, ndx + 4, ndx + 3),
+      new THREE.Face3(ndx + 3, ndx + 4, ndx + 2),
+      new THREE.Face3(ndx + 2, ndx + 4, ndx + 0),
+    );
+
+    // add the texture coordinates for each vertex of each face
+    const u0 = x / cellsAcross;
+    const v0 = z / cellsDeep;
+    const u1 = (x + 1) / cellsAcross;
+    const v1 = (z + 1) / cellsDeep;
+    const um = (u0 + u1) / 2;
+    const vm = (v0 + v1) / 2;
+    geometry.faceVertexUvs[0].push(
+      [ new THREE.Vector2(u0, v0), new THREE.Vector2(um, vm), new THREE.Vector2(u1, v0) ],
+      [ new THREE.Vector2(u1, v0), new THREE.Vector2(um, vm), new THREE.Vector2(u1, v1) ],
+      [ new THREE.Vector2(u1, v1), new THREE.Vector2(um, vm), new THREE.Vector2(u0, v1) ],
+      [ new THREE.Vector2(u0, v1), new THREE.Vector2(um, vm), new THREE.Vector2(u0, v0) ],
+    );
+  }
+}
+</pre>
+<p>仕上げです。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  geometry.computeFaceNormals();
+
+  // center the geometry
+  geometry.translate(width / -2, 0, height / -2);
+
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load('resources/images/star.png');
+
+  const material = new THREE.MeshPhongMaterial({color: 'green', map: texture});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+}
+</pre>
+<p>すこし視点を変えるとみやすくなります。</p>
+<ul>
+<li><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>を追加してください。</li>
+</ul>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+</pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+-const far = 100;
++const far = 200;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+-camera.position.z = 5;
++camera.position.set(20, 20, 20);
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</pre>
+<p>ライトも２つ入れましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-{
++function addLight(...pos) {
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+-  light.position.set(-1, 2, 4\);
++  light.position.set(...pos);
+  scene.add(light);
+}
+
++addLight(-1, 2, 4);
++addLight(1, 2, -2);
+</pre>
+<p>立方体を回転を止めました。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-heightmap.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-geometry-heightmap.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p><a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>の使用方法をおわかりいただけたでしょうか？</p>
+<p><a href="threejs-custom-buffergeometry.html">この記事</a>では<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>について説明します。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +631,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -211,8 +649,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/ja/threejs-cameras.html">カメラ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">Custom Geometry</a></li>
+<li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
+<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>
@@ -267,10 +705,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのカスタムジオメトリ';
+            var disqus_title = 'Three.jsのカスタムジオメトリ';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
