@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three.js, notions de base</title>
-    <updated>2020-12-28T04:52:55.000Z</updated>
+    <updated>2020-12-28T06:42:09.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,47 +16,47 @@
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html">
         </link>
-        <updated>2020-12-28T04:52:55.000Z</updated>
+        <updated>2020-12-28T06:42:09.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-12-28T04:52:55.000Z</published>
+        <published>2020-12-28T06:42:09.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Pré-requis pour Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html">
         </link>
-        <updated>2020-12-28T04:52:55.000Z</updated>
+        <updated>2020-12-28T06:42:09.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-12-28T04:52:55.000Z</published>
+        <published>2020-12-28T06:42:09.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Primitives de Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-primitives.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-primitives.html">
         </link>
-        <updated>2020-12-28T04:52:55.000Z</updated>
+        <updated>2020-12-28T06:42:09.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-12-28T04:52:55.000Z</published>
+        <published>2020-12-28T06:42:09.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Design réactif et Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html">
         </link>
-        <updated>2020-12-28T04:52:55.000Z</updated>
+        <updated>2020-12-28T06:42:09.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2020-12-28T04:52:55.000Z</published>
+        <published>2020-12-28T06:42:09.000Z</published>
     </entry>
 </feed>
