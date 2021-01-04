@@ -186,6 +186,13 @@ note we need to tell the material we want to use `FaceColors`
 +const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
 ```
 
+**Notes:** In the latest version of ThreeJS, Material.vertexColors is now a boolean.
+
+```diff
+-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
++const material = new THREE.MeshBasicMaterial({vertexColors: true});
+```
+
 {{{example url="../threejs-custom-geometry-cube-face-colors.html" }}}
 
 We can instead set the color of each individual vertex by setting the `vertexColors`
