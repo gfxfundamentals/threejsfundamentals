@@ -429,7 +429,7 @@ depth関数とブレンディングを使い修正できる可能性がありま
 -  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
 -      geometries, false);
 -  const material = new THREE.MeshBasicMaterial({
--    vertexColors: THREE.VertexColors,
+-    vertexColors: true,
 -  });
 -  const mesh = new THREE.Mesh(mergedGeometry, material);
 -  scene.add(mesh);
@@ -486,7 +486,7 @@ depth関数とブレンディングを使い修正できる可能性がありま
 +  return attribute;
 +});
 +const material = new THREE.MeshBasicMaterial({
-+  vertexColors: THREE.VertexColors,
++  vertexColors: true,
 +  morphTargets: true,
 +});
 +const mesh = new THREE.Mesh(baseGeometry, material);
@@ -653,7 +653,7 @@ baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
 +  return {name, attribute};
 +});
 const material = new THREE.MeshBasicMaterial({
-  vertexColors: THREE.VertexColors,
+  vertexColors: true,
   morphTargets: true,
 });
 </pre>
@@ -704,7 +704,7 @@ void main() {
 を置き換えたいと思います。</p>
 <p>これを行うには単純な置換の配列を作成して <a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a> で適用します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({
-  vertexColors: THREE.VertexColors,
+  vertexColors: true,
   morphTargets: true,
 });
 +const vertexShaderReplacements = [

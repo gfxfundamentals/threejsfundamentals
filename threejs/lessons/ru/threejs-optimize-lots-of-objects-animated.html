@@ -438,7 +438,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 -  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
 -      geometries, false);
 -  const material = new THREE.MeshBasicMaterial({
--    vertexColors: THREE.VertexColors,
+-    vertexColors: true,
 -  });
 -  const mesh = new THREE.Mesh(mergedGeometry, material);
 -  scene.add(mesh);
@@ -494,7 +494,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 +  return attribute;
 +});
 +const material = new THREE.MeshBasicMaterial({
-+  vertexColors: THREE.VertexColors,
++  vertexColors: true,
 +  morphTargets: true,
 +});
 +const mesh = new THREE.Mesh(baseGeometry, material);
@@ -667,7 +667,7 @@ baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
 +  return {name, attribute};
 +});
 const material = new THREE.MeshBasicMaterial({
-  vertexColors: THREE.VertexColors,
+  vertexColors: true,
   morphTargets: true,
 });
 </pre>
@@ -716,7 +716,7 @@ void main() {
 и <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js"><code class="notranslate" translate="no">color_vertex</code> блок</a></p>
 <p>Для этого мы сделаем простой массив замен и применим их в <a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a>. </p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({
-  vertexColors: THREE.VertexColors,
+  vertexColors: true,
   morphTargets: true,
 });
 +const vertexShaderReplacements = [

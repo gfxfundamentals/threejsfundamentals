@@ -413,7 +413,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 -  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
 -      geometries, false);
 -  const material = new THREE.MeshBasicMaterial({
--    vertexColors: THREE.VertexColors,
+-    vertexColors: true,
 -  });
 -  const mesh = new THREE.Mesh(mergedGeometry, material);
 -  scene.add(mesh);
@@ -464,7 +464,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 +  return attribute;
 +});
 +const material = new THREE.MeshBasicMaterial({
-+  vertexColors: THREE.VertexColors,
++  vertexColors: true,
 +  morphTargets: true,
 +});
 +const mesh = new THREE.Mesh(baseGeometry, material);
@@ -620,7 +620,7 @@ baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
 +  return { name, attribute };
 +});
 const material = new THREE.MeshBasicMaterial({
-  vertexColors: THREE.VertexColors,
+  vertexColors: true,
   morphTargets: true,
 });
 </pre>
@@ -667,7 +667,7 @@ void main() {
 </ul>
 <p>이 쉐이더 묶음을 교체하기 위해 간단한 교체용 배열을 만들어 <a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a>에 적용합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({
-  vertexColors: THREE.VertexColors,
+  vertexColors: true,
   morphTargets: true,
 });
 +const vertexShaderReplacements = [

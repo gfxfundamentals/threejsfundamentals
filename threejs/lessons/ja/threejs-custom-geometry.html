@@ -355,9 +355,9 @@ geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color('cyan');
 geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color('blue');
 geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta');
 </pre>
-<p>マテリアルには<code class="notranslate" translate="no">FaceColors</code>を使うように設定します。</p>
+<p>マテリアルには<code class="notranslate" translate="no">vertexColors</code>を使うように設定します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({color});
-+const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
++const material = new THREE.MeshBasicMaterial({vertexColors: true});
 </pre>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-colors.html"></iframe></div>
@@ -374,10 +374,6 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
     (new THREE.Color()).setHSL(ndx / 12 + 0.2, 1, 0.5),
   ];
 });
-</pre>
-<p>マテリアルにはvertex colorを使うように設定します。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
-+const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
 </pre>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-colors.html"></iframe></div>
@@ -401,7 +397,7 @@ faceのnormalに対しては<a href="https://threejs.org/docs/#api/en/core/Geome
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.computeFaceNormals();
 </pre>
 <p>vertex colorを消してマテリアルを<a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a>に戻します。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: true});
 +const material = new THREE.MeshPhongMaterial({color});
 </pre>
 <p>ライトが適用できました。</p>

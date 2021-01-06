@@ -378,9 +378,9 @@ geometry.faces[ 6].color = geometry.faces[ 7].color = new THREE.Color('cyan');
 geometry.faces[ 8].color = geometry.faces[ 9].color = new THREE.Color('blue');
 geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta');
 </pre>
-<p>note we need to tell the material we want to use <code class="notranslate" translate="no">FaceColors</code></p>
+<p>note we need to tell the material we want to use vertex colors</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({color});
-+const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
++const material = new THREE.MeshBasicMaterial({vertexColors: true});
 </pre>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-face-colors.html"></iframe></div>
@@ -389,7 +389,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 
 <p></p>
 <p>We can instead set the color of each individual vertex by setting the <code class="notranslate" translate="no">vertexColors</code>
-property to an array of the 3 colors for the 3 vertices.</p>
+property of a <code class="notranslate" translate="no">Face</code> to an array of the 3 colors for the 3 vertices.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faces.forEach((face, ndx) =&gt; {
   face.vertexColors = [
     (new THREE.Color()).setHSL(ndx / 12      , 1, 0.5),
@@ -397,10 +397,6 @@ property to an array of the 3 colors for the 3 vertices.</p>
     (new THREE.Color()).setHSL(ndx / 12 + 0.2, 1, 0.5),
   ];
 });
-</pre>
-<p>and we need to tell the material to use vertex colors</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.FaceColors});
-+const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
 </pre>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-geometry-cube-vertex-colors.html"></iframe></div>
@@ -427,7 +423,7 @@ for us based on the positions we specified.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.computeFaceNormals();
 </pre>
 <p>Removing the vertex color stuff and changing the material back to <a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a></p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: THREE.VertexColors});
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({vertexColors: true});
 +const material = new THREE.MeshPhongMaterial({color});
 </pre>
 <p>and now our cubes can be lit.</p>
