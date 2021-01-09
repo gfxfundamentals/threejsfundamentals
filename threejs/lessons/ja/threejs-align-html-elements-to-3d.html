@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-align-html-elements-to-3d.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,77 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Aligning HTML Elements to 3D">
+
+<meta name="description" content="HTML要素を3D空間の点に合わせて並べる方法">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-align-html-elements-to-3d_ja.jpg">
+
+<meta property="og:title" content="Three.jsでHTML要素を3Dに揃える">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="How to line up an HTML Element to match a point in 3D space">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-align-html-elements-to-3d_ja.jpg">
+<meta property="og:description" content="HTML要素を3D空間の点に合わせて並べる方法">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Aligning HTML Elements to 3D">
+<meta name="twitter:title" content="Three.jsでHTML要素を3Dに揃える">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html">
-<meta name="twitter:description" content="How to line up an HTML Element to match a point in 3D space">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="HTML要素を3D空間の点に合わせて並べる方法">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-align-html-elements-to-3d_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-align-html-elements-to-3d.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-align-html-elements-to-3d.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-align-html-elements-to-3d.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-align-html-elements-to-3d.html">
 
 
-<title>Three.js Aligning HTML Elements to 3D</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-align-html-elements-to-3d_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html",
+      "inLanguage":"ja",
+      "name":"Three.jsでHTML要素を3Dに揃える",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-align-html-elements-to-3d.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsでHTML要素を3Dに揃える</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +228,671 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Aligning HTML Elements to 3D</h1>
+    <h1>Three.jsでHTML要素を3Dに揃える</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-align-html-elements-to-3d.html">ここに元の英語の記事があります</a>.</p>
+      <p>この記事はThree.jsの連載記事の1つです。
+最初の記事は<a href="threejs-fundamentals.html">Three.jsの基礎知識</a>です。
+まだ読んでいない場合、そこから始めると良いかもしれません。</p>
+<p>3Dシーンにテキスト表示させたい場合があると思います。
+メリットとデメリットを持つ多くの方法があります。</p>
+<ul>
+<li><p>3Dテキストを使用する</p>
+<p><a href="threejs-primitives.html">プリミティブの記事</a>を見ると <a href="https://threejs.org/docs/#api/en/geometries/TextBufferGeometry"><code class="notranslate" translate="no">TextBufferGeometry</code></a> があり、3Dテキストが作れます。
+ロゴを飛ばすには便利ですが、統計や情報、ラベル付けなどにはあまり便利でないかもしれません。</p>
+</li>
+<li><p>テキストが描かれたテクスチャを使用する</p>
+<p><a href="threejs-canvas-textures.html">この記事</a>ではキャンバスをテクスチャとして使いました。
+キャンバスにテキストを描画して<a href="threejs-billboards.html">ビルボードとして表示できます</a>。
+この方法のメリットは、3Dシーンにテキストが組み込まれている事かもしれません。
+3Dシーンの中でPC端末のようなものを描画するには最適かもしれません。</p>
+</li>
+<li><p>HTML要素を3D空間に合わせて配置する</p>
+<p>この方法のメリットは全てのHTMLを使えます。
+HTMLは複数の要素を持てます。
+また、CSSでスタイルを整えられます。
+実際のテキストなのでユーザーが選択する事もできます。</p>
+</li>
+</ul>
+<p>この記事では、HTML要素を3D空間に合わせて配置を取り上げます。</p>
+<p>まずは簡単に始めてみましょう。
+いくつかのプリミティブで3Dシーンを作り、それぞれのプリミティブにラベルを付けます。
+<a href="threejs-responsive.html">レスポンシブの記事</a>の例を使います。</p>
+<p><a href="threejs-lights.html">ライティングの記事</a>のように <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+</pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 0, 0);
+controls.update();
+</pre>
+<p>ラベル要素を含むHTML要素を追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+-  &lt;canvas id="c"&gt;&lt;/canvas&gt;
++  &lt;div id="container"&gt;
++    &lt;canvas id="c"&gt;&lt;/canvas&gt;
++    &lt;div id="labels"&gt;&lt;/div&gt;
++  &lt;/div&gt;
+&lt;/body&gt;
+</pre>
+<p>キャンバスと <code class="notranslate" translate="no">&lt;div id="labels"&gt;</code> の両方を親コンテナ配下に入れて、CSSで重なるように設定できます。</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#c {
+-    width: 100%;
+-    height: 100%;
++    width: 100%;  /* let our container decide our size */
++    height: 100%;
+    display: block;
+}
++#container {
++  position: relative;  /* makes this the origin of its children */
++  width: 100%;
++  height: 100%;
++  overflow: hidden;
++}
++#labels {
++  position: absolute;  /* let us position ourself inside the container */
++  left: 0;             /* make our position the top left of the container */
++  top: 0;
++  color: white;
++}
+</pre>
+<p>ラベル自体にもCSSを追加しましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#labels&gt;div {
+  position: absolute;  /* let us position them inside the container */
+  left: 0;             /* make their default position the top left of the container */
+  top: 0;
+  cursor: pointer;     /* change the cursor to a hand when over us */
+  font-size: large;
+  user-select: none;   /* don't let the text get selected */
+  text-shadow:         /* create a black outline */
+    -1px -1px 0 #000,
+     0   -1px 0 #000,
+     1px -1px 0 #000,
+     1px  0   0 #000,
+     1px  1px 0 #000,
+     0    1px 0 #000,
+    -1px  1px 0 #000,
+    -1px  0   0 #000;
+}
+#labels&gt;div:hover {
+  color: red;
+}
+</pre>
+<p>HTMLに多くのラベル要素を追加する必要はありません。
+立方体を生成する関数 <code class="notranslate" translate="no">makeInstance</code> があります。
+この関数にラベル要素も追加してみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const labelContainerElem = document.querySelector('#labels');
+
+-function makeInstance(geometry, color, x) {
++function makeInstance(geometry, color, x, name) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
++  const elem = document.createElement('div');
++  elem.textContent = name;
++  labelContainerElem.appendChild(elem);
+
+-  return cube;
++  return {cube, elem};
+}
+</pre>
+<p>立方体ごとに1つずつコンテナに <code class="notranslate" translate="no">&lt;div&gt;</code> を追加しています。
+ラベルのために <code class="notranslate" translate="no">cube</code> と <code class="notranslate" translate="no">elem</code> の両方を持つオブジェクトを返します。</p>
+<p>この関数を呼び出すには、ラベル名も指定する必要があります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
++  makeInstance(geometry, 0x44aa88,  0, 'Aqua'),
++  makeInstance(geometry, 0x8844aa, -2, 'Purple'),
++  makeInstance(geometry, 0xaa8844,  2, 'Gold'),
+];
+</pre>
+<p>あとはレンダリング時にラベル要素を配置します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const tempV = new THREE.Vector3();
+
+...
+
+-cubes.forEach((cube, ndx) =&gt; {
++cubes.forEach((cubeInfo, ndx) =&gt; {
++  const {cube, elem} = cubeInfo;
+  const speed = 1 + ndx * .1;
+  const rot = time * speed;
+  cube.rotation.x = rot;
+  cube.rotation.y = rot;
+
++  // get the position of the center of the cube
++  cube.updateWorldMatrix(true, false);
++  cube.getWorldPosition(tempV);
++
++  // get the normalized screen coordinate of that position
++  // x and y will be in the -1 to +1 range with x = -1 being
++  // on the left and y = -1 being on the bottom
++  tempV.project(camera);
++
++  // convert the normalized position to CSS coordinates
++  const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
++  const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
++
++  // move the elem to that position
++  elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+});
+</pre>
+<p>そして、ラベルを対応するオブジェクトに合わせて位置を指定します。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>動かしてみると対処したい問題がいくつか出ると思います。</p>
+<p>1つの問題は、オブジェクトを回転させると全てのラベルが重なってしまいます。</p>
+<div class="threejs_center"><img src="../resources/images/overlapping-labels.png" style="width: 307px;"></div>
+
+<p>もう1つの問題は、オブジェクトが錐台の外に出るようにズームアウトしても、ラベルが消えずに表示されたままです。</p>
+<p>オブジェクトが重なる問題の解決策は<a href="threejs-picking.html">ピッキング記事のピッキングコード</a>を使います。
+画面上のオブジェクトの位置を入力し、<code class="notranslate" translate="no">RayCaster</code> にどのオブジェクトが交差していたか教えてもらいます。
+オブジェクトが最初のものでなければ前面に表示されません。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const tempV = new THREE.Vector3();
++const raycaster = new THREE.Raycaster();
+
+...
+
+cubes.forEach((cubeInfo, ndx) =&gt; {
+  const {cube, elem} = cubeInfo;
+  const speed = 1 + ndx * .1;
+  const rot = time * speed;
+  cube.rotation.x = rot;
+  cube.rotation.y = rot;
+
+  // get the position of the center of the cube
+  cube.updateWorldMatrix(true, false);
+  cube.getWorldPosition(tempV);
+
+  // get the normalized screen coordinate of that position
+  // x and y will be in the -1 to +1 range with x = -1 being
+  // on the left and y = -1 being on the bottom
+  tempV.project(camera);
+
++  // ask the raycaster for all the objects that intersect
++  // from the eye toward this object's position
++  raycaster.setFromCamera(tempV, camera);
++  const intersectedObjects = raycaster.intersectObjects(scene.children);
++  // We're visible if the first intersection is this object.
++  const show = intersectedObjects.length &amp;&amp; cube === intersectedObjects[0].object;
++
++  if (!show) {
++    // hide the label
++    elem.style.display = 'none';
++  } else {
++    // un-hide the label
++    elem.style.display = '';
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+    const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+    // move the elem to that position
+    elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
++  }
+});
+</pre>
+<p>これで重なり問題に対応しました。</p>
+<p>以下は <code class="notranslate" translate="no">tempV.z</code> をチェックし、オブジェクトの原点が錐台の外にあるかをチェックします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-  if (!show) {
++  if (!show || Math.abs(tempV.z) &gt; 1) {
+    // hide the label
+    elem.style.display = 'none';
+</pre>
+<p>正規化された座標には計算した <code class="notranslate" translate="no">z</code> の値が含まれており、カメラの錐台の <code class="notranslate" translate="no">near</code> は-1、<code class="notranslate" translate="no">far</code> は+1の値になります。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d-w-hiding.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d-w-hiding.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>錐台のチェックではオブジェクトの原点をチェックしているだけなので、上記の解決策では失敗します。特に大きなオブジェクトの場合などです。
+オブジェクトの原点は錐台の外にあるかもしれませんが、オブジェクトの半分は錐台の中にあるかもしれません。</p>
+<p>正しい解決策は、オブジェクト自体が錐台に入っているか確認する事でしょう。
+ただし、残念ながらチェックの動作が遅いです。
+3つの立方体の場合は問題ないですが、オブジェクトがたくさんある場合は問題になるかもしれません。</p>
+<p>Three.jsには、球体オブジェクトが錐台内にあるかチェックする関数がいくつか用意されています。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// at init time
+const frustum = new THREE.Frustum();
+const viewProjection = new THREE.Matrix4();
+
+...
+
+// before checking
+camera.updateMatrix();
+camera.updateMatrixWorld();
+camera.matrixWorldInverse.getInverse(camera.matrixWorld);
+
+...
+
+// then for each mesh
+someMesh.updateMatrix();
+someMesh.updateMatrixWorld();
+
+viewProjection.multiplyMatrices(
+    camera.projectionMatrix, camera.matrixWorldInverse);
+frustum.setFromProjectionMatrix(viewProjection);
+const inFrustum = frustum.contains(someMesh));
+</pre>
+<p>現在の重なりの解決策にも同様の問題があります。
+ピッキングが遅いです。
+<a href="threejs-picking.html">ピッキングの記事</a>で取り上げたように、GPUベースのピッキングを使う事もできますがコストがかからない訳ではありません。
+どの解決策を選択するかはニーズによります。</p>
+<p>もう1つの問題はラベルの表示順序です。
+コードを変更してラベルを長くなると</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0, 'Aqua'),
+-  makeInstance(geometry, 0x8844aa, -2, 'Purple'),
+-  makeInstance(geometry, 0xaa8844,  2, 'Gold'),
++  makeInstance(geometry, 0x44aa88,  0, 'Aqua Colored Box'),
++  makeInstance(geometry, 0x8844aa, -2, 'Purple Colored Box'),
++  makeInstance(geometry, 0xaa8844,  2, 'Gold Colored Box'),
+];
+</pre>
+<p>折り返さないようにCSSで設定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#labels&gt;div {
++  white-space: nowrap;
+</pre>
+<p>そうすると次のような問題が発生します。</p>
+<div class="threejs_center"><img src="../resources/images/label-sorting-issue.png" style="width: 401px;"></div>
+
+<p>上記では紫のボックスは奥にありますが、紫のボックスのラベルはアクアのボックスの前にあります。</p>
+<p>これは各要素の <code class="notranslate" translate="no">zIndex</code> を設定して修正できます。
+投影された位置の <code class="notranslate" translate="no">z</code> は-1(手前)〜+1(奥)の値を持ちます。
+<code class="notranslate" translate="no">zIndex</code> は整数である必要があります。
+逆方向の意味で <code class="notranslate" translate="no">zIndex</code> の値が大きい方が手前にある事を意味します。
+以下のコードで動作するはずです。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// convert the normalized position to CSS coordinates
+const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+// move the elem to that position
+elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+
++// set the zIndex for sorting
++elem.style.zIndex = (-tempV.z * .5 + .5) * 100000 | 0;
+</pre>
+<p>zIndexを正しく動作させるには、値を分散させるために大きな数値を選ぶ必要があります。
+そうしないと多くの値が同じ値になってしまいます。
+ラベルがページの他の部分と重ならないように、ラベルのコンテナの <code class="notranslate" translate="no">z-index</code> を設定し、新しい<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context">スタッキングコンテキスト</a>を作成します。</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#labels {
+  position: absolute;  /* let us position ourself inside the container */
++  z-index: 0;          /* make a new stacking context so children don't sort with rest of page */
+  left: 0;             /* make our position the top left of the container */
+  top: 0;
+  color: white;
+  z-index: 0;
+}
+</pre>
+<p>これでラベルは常に正しい順序で表示されます。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-to-3d-w-sorting.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-to-3d-w-sorting.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>もう1つの問題を確認ために、もう1つの例をやってみましょう。
+Googleマップのような地球儀を描いて、国名のラベルを貼ってみましょう。</p>
+<p>国境を含む<a href="http://thematicmapping.org/downloads/world_borders.php">このデータ</a>を見つけました。
+このデータは<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>ライセンスです。</p>
+<p>データを読み込んで、国の概要と国名、その位置を含むJSONデータを生成するための<a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/">コード</a>を書いてみました。</p>
+<div class="threejs_center"><img src="../../resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
+
+<p>JSONデータは以下のような配列です。</p>
+<pre class="prettyprint showlinemods notranslate lang-json" translate="no">[
+  {
+    "name": "Algeria",
+    "min": [
+      -8.667223,
+      18.976387
+    ],
+    "max": [
+      11.986475,
+      37.091385
+    ],
+    "area": 238174,
+    "lat": 28.163,
+    "lon": 2.632,
+    "population": {
+      "2005": 32854159
+    }
+  },
+  ...
+</pre>
+<p>min、max、lat、lon、これは全て緯度と経度です。</p>
+<p>ロードしてみましょう。
+このコードは<a href="threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a>のコードの流用ですが、オブジェクトをたくさん描画しているわけではないので<a href="threejs-rendering-on-demand.html">要求されたレンダリング</a>と同じ解決策を使います。</p>
+<p>まずは球体を作り、アウトラインテクスチャを使います。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load('resources/data/world/country-outlines-4k.png', render);
+  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const material = new THREE.MeshBasicMaterial({map: texture});
+  scene.add(new THREE.Mesh(geometry, material));
+}
+</pre>
+<p>ローダー関数を作ってJSONファイルをロードしてみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadJSON(url) {
+  const req = await fetch(url);
+  return req.json();
+}
+</pre>
+<p>そして、その関数を呼び出します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">let countryInfos;
+async function loadCountryData() {
+  countryInfos = await loadJSON('resources/data/world/country-info.json');
+     ...
+  }
+  requestRenderIfNotRequested();
+}
+loadCountryData();
+</pre>
+<p>では、そのデータを使ってラベルを生成して配置してみましょう。</p>
+<p><a href="threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a>の記事ではヘルパーオブジェクトの小さなシーングラフを設定し、地球儀上の緯度と経度の位置を簡単に計算できるようにしました。
+仕組みの説明はその記事を参照して下さい。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const lonFudge = Math.PI * 1.5;
+const latFudge = Math.PI;
+// these helpers will make it easy to position the boxes
+// We can rotate the lon helper on its Y axis to the longitude
+const lonHelper = new THREE.Object3D();
+// We rotate the latHelper on its X axis to the latitude
+const latHelper = new THREE.Object3D();
+lonHelper.add(latHelper);
+// The position helper moves the object to the edge of the sphere
+const positionHelper = new THREE.Object3D();
+positionHelper.position.z = 1;
+latHelper.add(positionHelper);
+</pre>
+<p>これを使い、各ラベルの位置を計算します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const labelParentElem = document.querySelector('#labels');
+for (const countryInfo of countryInfos) {
+  const {lat, lon, name} = countryInfo;
+
+  // adjust the helpers to point to the latitude and longitude
+  lonHelper.rotation.y = THREE.MathUtils.degToRad(lon) + lonFudge;
+  latHelper.rotation.x = THREE.MathUtils.degToRad(lat) + latFudge;
+
+  // get the position of the lat/lon
+  positionHelper.updateWorldMatrix(true, false);
+  const position = new THREE.Vector3();
+  positionHelper.getWorldPosition(position);
+  countryInfo.position = position;
+
+  // add an element for each country
+  const elem = document.createElement('div');
+  elem.textContent = name;
+  labelParentElem.appendChild(elem);
+  countryInfo.elem = elem;
+</pre>
+<p>上記のコードは、立方体のラベルを作成するために書いたコードに非常に似てます。
+これで配列 <code class="notranslate" translate="no">countryInfos</code> ができました。
+国ごとのlabel要素に <code class="notranslate" translate="no">elem</code> プロパティを追加し、位置を表す <code class="notranslate" translate="no">position</code> を追加しました。</p>
+<p>立方体の場合と同じく、ラベルの位置とレンダリング時間を更新します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const tempV = new THREE.Vector3();
+
+function updateLabels() {
+  // exit if we have not yet loaded the JSON file
+  if (!countryInfos) {
+    return;
+  }
+
+  for (const countryInfo of countryInfos) {
+    const {position, elem} = countryInfo;
+
+    // get the normalized screen coordinate of that position
+    // x and y will be in the -1 to +1 range with x = -1 being
+    // on the left and y = -1 being on the bottom
+    tempV.copy(position);
+    tempV.project(camera);
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+    const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+    // move the elem to that position
+    elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+
+    // set the zIndex for sorting
+    elem.style.zIndex = (-tempV.z * .5 + .5) * 100000 | 0;
+  }
+}
+</pre>
+<p>上記のコードは、前の立方体のコードと実質的に似ています。
+唯一の大きな違いは、初期化時にラベルの位置を事前に計算しました。
+地球儀が動かないため可能です。カメラだけが動きます。</p>
+<p>最後にループ処理するrender関数の中で <code class="notranslate" translate="no">updateLabels</code> を呼び出します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
+  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  controls.update();
+
++  updateLabels();
+
+  renderer.render(scene, camera);
+}
+</pre>
+<p>そして、これが結果です。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-elements-to-3d-globe-too-many-labels.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-elements-to-3d-globe-too-many-labels.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>ラベルが多すぎる！</p>
+<p>問題は2つあります。</p>
+<ol>
+<li><p>地球儀の背面の国のラベルも表示されてる</p>
+</li>
+<li><p>ラベルが多すぎる</p>
+</li>
+</ol>
+<p>問題1では球体以外に交わるものがないので、上記で説明したように <code class="notranslate" translate="no">RayCaster</code> を使う事はできません。
+代わりにできるのは特定の国が離れているか確認する事です。
+これはラベルの位置が球体の周囲にあるために動作します。
+実際には単位球体を使っており、半径1.0の球体です。
+つまり、位置は単位方向になっており計算が比較的簡単になります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const tempV = new THREE.Vector3();
++const cameraToPoint = new THREE.Vector3();
++const cameraPosition = new THREE.Vector3();
++const normalMatrix = new THREE.Matrix3();
+
+function updateLabels() {
+  // exit if we have not yet loaded the JSON file
+  if (!countryInfos) {
+    return;
+  }
+
++  const minVisibleDot = 0.2;
++  // get a matrix that represents a relative orientation of the camera
++  normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
++  // get the camera's position
++  camera.getWorldPosition(cameraPosition);
+  for (const countryInfo of countryInfos) {
+    const {position, elem} = countryInfo;
+
++    // Orient the position based on the camera's orientation.
++    // Since the sphere is at the origin and the sphere is a unit sphere
++    // this gives us a camera relative direction vector for the position.
++    tempV.copy(position);
++    tempV.applyMatrix3(normalMatrix);
++
++    // compute the direction to this position from the camera
++    cameraToPoint.copy(position);
++    cameraToPoint.applyMatrix4(camera.matrixWorldInverse).normalize();
++
++    // get the dot product of camera relative direction to this position
++    // on the globe with the direction from the camera to that point.
++    // 1 = facing directly towards the camera
++    // 0 = exactly on tangent of the sphere from the camera
++    // &lt; 0 = facing away
++    const dot = tempV.dot(cameraToPoint);
++
++    // if the orientation is not facing us hide it.
++    if (dot &lt; minVisibleDot) {
++      elem.style.display = 'none';
++      continue;
++    }
++
++    // restore the element to its default display style
++    elem.style.display = '';
+
+    // get the normalized screen coordinate of that position
+    // x and y will be in the -1 to +1 range with x = -1 being
+    // on the left and y = -1 being on the bottom
+    tempV.copy(position);
+    tempV.project(camera);
+
+    // convert the normalized position to CSS coordinates
+    const x = (tempV.x *  .5 + .5) * canvas.clientWidth;
+    const y = (tempV.y * -.5 + .5) * canvas.clientHeight;
+
+    // move the elem to that position
+    countryInfo.elem.style.transform = `translate(-50%, -50%) translate(${x}px,${y}px)`;
+
+    // set the zIndex for sorting
+    elem.style.zIndex = (-tempV.z * .5 + .5) * 100000 | 0;
+  }
+}
+</pre>
+<p>上記では位置を方向として使用し、カメラに対して相対的にその方向を取得しています。
+カメラから地球儀上のその位置までのカメラの相対的な方向を取得し、<em>ドット積</em> を取得します。
+ドット積はベクトル間の角度のコサインを返します。
+これにより、-1 〜 +1までの値が与えられます。
+-1はラベルがカメラに向いており、0はラベルがカメラから見て球体の端にあって、0より大きいものは背面にあります。
+その値を使用してラベル要素の表示・非表示をします。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="dotProduct" style="height: 400px"></div>
+  </div>
+</div>
+
+<p>上記の図では、カメラからその位置までのラベルの向きのドット積を表しています。
+方向を回転させるとカメラに直接向いている時は、ドット積は-1.0になります。
+カメラに相対する球体の接線上にある時は0.0になります。
+別の言い方をすれば、2つのベクトルがお互いに90度垂直な時は0になります。</p>
+<p>問題2はラベルが多すぎて、どのラベルを表示するか決める方法が必要です。
+1つの方法は大きな国のラベルのみを表示します。
+読込中のデータには、国がカバーする領域の最小値と最大値が含まれています。
+そこから面積を計算し、その面積を使い表示するか決められます。</p>
+<p>初期化時に面積を計算してみましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const labelParentElem = document.querySelector('#labels');
+for (const countryInfo of countryInfos) {
+  const {lat, lon, min, max, name} = countryInfo;
+
+  // adjust the helpers to point to the latitude and longitude
+  lonHelper.rotation.y = THREE.MathUtils.degToRad(lon) + lonFudge;
+  latHelper.rotation.x = THREE.MathUtils.degToRad(lat) + latFudge;
+
+  // get the position of the lat/lon
+  positionHelper.updateWorldMatrix(true, false);
+  const position = new THREE.Vector3();
+  positionHelper.getWorldPosition(position);
+  countryInfo.position = position;
+
++  // compute the area for each country
++  const width = max[0] - min[0];
++  const height = max[1] - min[1];
++  const area = width * height;
++  countryInfo.area = area;
+
+  // add an element for each country
+  const elem = document.createElement('div');
+  elem.textContent = name;
+  labelParentElem.appendChild(elem);
+  countryInfo.elem = elem;
+}
+</pre>
+<p>レンダリング時にその領域を使い、ラベルを表示するか決めましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const large = 20 * 20;
+const maxVisibleDot = 0.2;
+// get a matrix that represents a relative orientation of the camera
+normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+// get the camera's position
+camera.getWorldPosition(cameraPosition);
+for (const countryInfo of countryInfos) {
+-  const {position, elem} = countryInfo;
++  const {position, elem, area} = countryInfo;
++  // large enough?
++  if (area &lt; large) {
++    elem.style.display = 'none';
++    continue;
++  }
+
+  ...
+</pre>
+<p>私にはこの設定のための良い値が何か分からないです。
+値を操作できるようにGUIを追加します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
++import {GUI} from '../3rdparty/dat.gui.module.js';
+</pre>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const settings = {
++  minArea: 20,
++  maxVisibleDot: -0.2,
++};
++const gui = new GUI({width: 300});
++gui.add(settings, 'minArea', 0, 50).onChange(requestRenderIfNotRequested);
++gui.add(settings, 'maxVisibleDot', -1, 1, 0.01).onChange(requestRenderIfNotRequested);
+
+function updateLabels() {
+  if (!countryInfos) {
+    return;
+  }
+
+-  const large = 20 * 20;
+-  const maxVisibleDot = -0.2;
++  const large = settings.minArea * settings.minArea;
+  // get a matrix that represents a relative orientation of the camera
+  normalMatrix.getNormalMatrix(camera.matrixWorldInverse);
+  // get the camera's position
+  camera.getWorldPosition(cameraPosition);
+  for (const countryInfo of countryInfos) {
+
+    ...
+
+    // if the orientation is not facing us hide it.
+-    if (dot &gt; maxVisibleDot) {
++    if (dot &gt; settings.maxVisibleDot) {
+      elem.style.display = 'none';
+      continue;
+    }
+</pre>
+<p>その結果が以下です。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-align-html-elements-to-3d-globe.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-align-html-elements-to-3d-globe.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>回転させて地球儀の背面にいったラベルが消えるようになりました。
+<code class="notranslate" translate="no">minVisibleDot</code> を調整してカットオフの変化を見る事ができます。
+また、<code class="notranslate" translate="no">minArea</code> の値を調整して大きな国や小さな国を表示したりもできます。</p>
+<p>このコード修正を通して、Googleマップにどれだけの労力が投入されているのかを実感しました。
+Googleマップの開発者は、どのラベルを表示するかを決定しなければなりません。
+色んな基準を使っているのは間違いないですね。
+例えば、あなたの現在地、デフォルトの言語設定、アカウントを持っている場合はアカウントの設定、人口や人気度を使用している可能性、ビューの中央にある国を優先している可能性など。
+考える事はたくさんあります。</p>
+<p>これらの例がHTML要素を3Dに配置する方法について、あなたにいくつかのアイデアを与えられたと思います。
+変更したい事がいくつかあります。</p>
+<p>次は<a href="threejs-indexed-textures.html">国を選んでハイライトする</a>ようにしてみましょう。</p>
+<p><link rel="stylesheet" href="../resources/threejs-align-html-elements-to-3d.css"></p>
+<script type="module" src="../resources/threejs-align-html-elements-to-3d.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +906,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -243,7 +956,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/ja/threejs-post-processing.html">ポストプロセス</a></li>
 <li><a href="/threejs/lessons/ja/threejs-post-processing-3dlut.html">エフェクトにLUTファイルを適用する</a></li>
 <li><a href="/threejs/lessons/ja/threejs-shadertoy.html">Shadertoyのシェーダーを使う</a></li>
-<li><a href="/threejs/lessons/ja/threejs-align-html-elements-to-3d.html">Aligning HTML Elements to 3D</a></li>
+<li><a href="/threejs/lessons/ja/threejs-align-html-elements-to-3d.html">HTML要素を3Dに揃える</a></li>
 <li><a href="/threejs/lessons/ja/threejs-indexed-textures.html">Using Indexed Textures for Picking and Color</a></li>
 <li><a href="/threejs/lessons/ja/threejs-canvas-textures.html">Using A Canvas for Dynamic Textures</a></li>
 <li><a href="/threejs/lessons/ja/threejs-billboards.html">Billboards and Facades</a></li>
@@ -267,10 +980,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsでHTML要素を3Dに揃える';
+            var disqus_title = 'Three.jsでHTML要素を3Dに揃える';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
