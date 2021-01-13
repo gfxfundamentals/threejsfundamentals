@@ -250,12 +250,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>让我们一起来尝试将它展示出来。</p>
 <p>基于<a href="threejs-lights.html">光线文章</a>中的定向光线（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）示例，结合半球光线（<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。</p>
-<p>第一件要做的事就是将<a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>添加到代码中。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+<p>第一件要做的事就是将<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>添加到代码中。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 </pre>
-<p>然后创建<a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
+<p>然后创建<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
     scene.add(root);
   });
@@ -316,19 +316,19 @@ map_Ns windmill_001_base_SPEC.jpg
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>现在.MTL文件就能加载到这些纹理。</p>
-<p>首先要引用 <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> 和 <code class="notranslate" translate="no">MtlObjBridge</code>;</p>
+<p>首先要引用 <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a>;</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 +import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
-+import {MtlObjBridge} from './resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
 </pre>
-<p>然后我们先加载.MTL文件，在它加载完材质后利用<code class="notranslate" translate="no">MtlObjBridge</code>将材质传给<a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>，再加载.OBJ文件。</p>
+<p></p><div class="warning">Sorry, the translation of this area is out of date. <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/zh_cn/threejs-load-obj.md">Please consider helping to fix it</a>.</div><p></p>
+<p>然后我们先加载.MTL文件，在它加载完材质后利用<code class="notranslate" translate="no">MtlObjBridge</code>将材质传给<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>，再加载.OBJ文件。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
++    mtl.preload();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       scene.add(root);
     });
@@ -350,9 +350,9 @@ import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoade
 <ol>
 <li><p>加载模型后，遍历所有材质，设置成双面。</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   for (const material of Object.values(materials)) {
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload();
+   for (const material of Object.values(mtl.materials)) {
      material.side = THREE.DoubleSide;
    }
    ...
@@ -361,17 +361,25 @@ import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoade
 <li><p>手动设置一个特定材质。</p>
 <p>看到.MTL里有两个材质，一个是<code class="notranslate" translate="no">"windmill"</code>另一个是<code class="notranslate" translate="no">"Material"</code>。经过反复尝试，发现可以单独设置一个材质。</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   materials.Material.side = THREE.DoubleSide;
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload();
+   mtl.materials.Material.side = THREE.DoubleSide;
    ...
 </pre></li>
 <li><p>在.MTL文件上无法解决，可以不使用它而使用自行创建的材质。</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const materials = {
-   Material: new THREE.MeshPhongMaterial({...}),
-   windmill: new THREE.MeshPhongMaterial({...}),
- };
- objLoader.setMaterials(materials);
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
+   const materials = {
+     Material: new THREE.MeshPhongMaterial({...}),
+     windmill: new THREE.MeshPhongMaterial({...}),
+   };
+   root.traverse(node =&gt; {
+     const material = materials[node.material?.name];
+     if (material) {
+       node.material = material;
+     }
+   })
+   scene.add(root);
+ });
 </pre></li>
 </ol>
 <p>采用哪个方案取决于你。1是最简单，3是最灵活，2是两者之间，现在我选择2 。</p>
@@ -491,7 +499,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 </pre>
 <p>我们传入了两种尺寸：盒子大小<code class="notranslate" translate="no">boxSize</code>和尺寸<code class="notranslate" translate="no">sizeToFitOnScreen</code>。如果我们只是传递<code class="notranslate" translate="no">boxSize</code>并将其用作<code class="notranslate" translate="no">sizeToFitOnScreen</code>，那么数学运算将使这个盒子完美地嵌入到截锥。我们想要在上面和下面留出一点额外的空间，所以我们要传一个稍微大一点的尺寸。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
     scene.add(root);
 +    // compute the box that contains all the stuff
@@ -602,13 +610,13 @@ illum 2
 +map_bump windmill_normal.jpg 
 +bump windmill_normal.jpg
 </pre>
-<p>现在。mtl文件指向一些合理大小的纹理，我们需要加载它，所以我们就像上面做的那样，首先加载材质，然后将它们设置在<a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>上。</p>
+<p>现在。mtl文件指向一些合理大小的纹理，我们需要加载它，所以我们就像上面做的那样，首先加载材质，然后将它们设置在<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>上。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) =&gt; {
-+    const objLoader = new OBJLoader2();
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtl) =&gt; {
++    mtl.preload();
++    const objLoader = new OBJLoader();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);

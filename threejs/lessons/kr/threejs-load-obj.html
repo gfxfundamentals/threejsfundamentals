@@ -263,14 +263,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 반구광(hemisphere light) 예제와 합칩니다. 그러면 장면에는 <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>
 하나, <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> 하나가 있는 셈입니다. 또 GUI 관련 코드와 정육면체,
 구체 관련 코드도 지웁니다.</p>
-<p>다음으로 먼저 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> 모듈을 스크립트에 로드합니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { OBJLoader2 } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+<p>다음으로 먼저 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> 모듈을 스크립트에 로드합니다.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { OBJLoader } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 </pre>
-<p><a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>의 인스턴스를 생성한 뒤 .OBJ 파일의 경로와 콜백 함수를 넘겨
+<p><a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>의 인스턴스를 생성한 뒤 .OBJ 파일의 경로와 콜백 함수를 넘겨
 <code class="notranslate" translate="no">load</code> 메서드를 실행합니다. 그리고 콜백 함수에서 불러온 모델을 장면에
 추가합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
     scene.add(root);
   });
@@ -340,20 +340,20 @@ map_Ns windmill_001_base_SPEC.jpg
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>이제 .MTL 파일에서 사용할 텍스처를 생성했으니 .MTL 파일을 불러오도록 합시다.</p>
-<p><a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a>와 <code class="notranslate" translate="no">MTLObjBridge</code> 모듈을 불러옵니다.</p>
+<p><a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> 모듈을 불러옵니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
 import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader2 } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+import { OBJLoader } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 +import { MTLLoader } from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
-+import { MtlObjBridge } from './resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
 </pre>
-<p>우선 .MTL 파일을 불러와 <code class="notranslate" translate="no">MtlObjBridge</code>로 재질을 만듭니다. 그리고 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>
+<p></p><div class="warning">Sorry, the translation of this area is out of date. <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/kr/threejs-load-obj.md">Please consider helping to fix it</a>.</div><p></p>
+<p>우선 .MTL 파일을 불러와 <code class="notranslate" translate="no">MtlObjBridge</code>로 재질을 만듭니다. 그리고 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>
 인스턴스에 방금 만든 재질을 추가한 뒤 .OBJ 파일을 불러옵니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
++    mtl.preload();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       scene.add(root);
     });
@@ -377,9 +377,9 @@ import { OBJLoader2 } from './resources/threejs/r122/examples/jsm/loaders/OBJLoa
 <ol>
 <li><p>모든 재질을 불러온 뒤 반복문으로 처리한다.</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   for (const material of Object.values(materials)) {
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload();
+   for (const material of Object.values(mtl.materials)) {
      material.side = THREE.DoubleSide;
    }
    ...
@@ -391,17 +391,25 @@ import { OBJLoader2 } from './resources/threejs/r122/examples/jsm/loaders/OBJLoa
 에러 끝에 날개가 <code class="notranslate" translate="no">"Material"</code>이라는 이름의 재질을 쓴다는 것을 알아낸 뒤, 이 재질에만
 양면 속성을 설정할 수도 있을 겁니다.</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   materials.Material.side = THREE.DoubleSide;
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload();
+   mtl.materials.Material.side = THREE.DoubleSide;
    ...
 </pre></li>
 <li><p>.MTL 파일의 한계에 굴복하고 직접 재질을 만든다.</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const materials = {
-   Material: new THREE.MeshPhongMaterial({...}),
-   windmill: new THREE.MeshPhongMaterial({...}),
- };
- objLoader.setMaterials(materials);
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
+   const materials = {
+     Material: new THREE.MeshPhongMaterial({...}),
+     windmill: new THREE.MeshPhongMaterial({...}),
+   };
+   root.traverse(node =&gt; {
+     const material = materials[node.material?.name];
+     if (material) {
+       node.material = material;
+     }
+   })
+   scene.add(root);
+ });
 </pre></li>
 </ol>
 <p>뭘 선택하든 그건 여러분의 선택입니다. 1번이 가장 간단하고, 3번이 가장
@@ -551,7 +559,7 @@ Cos = Adjacent(밑변) 나누기 Hypotenuse, Tan = Oppsite 나누기 Adjacent와
 화면에 꽉 차게 됩니다. 조금 여유가 있는 편이 보기 편하므로 조금 더 큰 값을 넘겨주도록
 하겠습니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
     scene.add(root);
 +    // 모든 요소를 포함하는 육면체를 계산합니다
@@ -682,13 +690,13 @@ illum 2
 +bump windmill_normal.jpg
 </pre>
 <p>텍스처의 용량을 최적화했으니 이제 불러올 일만 남았습니다. 먼저 아까 했던 것처럼
-재질을 불러와 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>에 지정합니다.</p>
+재질을 불러와 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>에 지정합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) =&gt; {
-+    const objLoader = new OBJLoader2();
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtl) =&gt; {
++    mtl.preload();
++    const objLoader = new OBJLoader();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);

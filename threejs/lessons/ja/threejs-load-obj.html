@@ -253,12 +253,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>それでは表示してみましょう！</p>
 <p><a href="threejs-lights.html">ライティングの記事</a> にあるディレクショナルライティングの例から始めて、半球ライティングの例と組み合わせて <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> と <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> を1つ作る事にしました。その結果として <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> は1つ、<a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> は1つになりました。
 また、ライトの調整に関連する全てのGUIを削除しました。シーンに追加していたキューブとスフィアも削除しました。</p>
-<p>まず最初に <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> のローダーをコードに含める必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+<p>まず最初に <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> のローダーをコードに含める必要があります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 </pre>
-<p>次にOBJファイルをロードするために <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> のインスタンスを作成し、OBJファイルのURLを渡し、ロードされたモデルをシーンに追加するコールバックを渡します。</p>
+<p>次にOBJファイルをロードするために <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> のインスタンスを作成し、OBJファイルのURLを渡し、ロードされたモデルをシーンに追加するコールバックを渡します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
     scene.add(root);
   });
@@ -325,20 +325,19 @@ blenderで <strong>File-&gt;External Data-&gt;Unpack All Into Files</strong> を
 <div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>テクスチャを利用できるようになったのでMTLファイルをロードします。
-<a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> と <code class="notranslate" translate="no">MtlObjBridge</code> をimportする必要があります。</p>
+<a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> をimportする必要があります。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 +import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
-+import {MtlObjBridge} from './resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
 </pre>
 <p>まず、MTLファイルをロードします。
-読込後にロードしたマテリアルを <code class="notranslate" translate="no">MtlObjBridge</code> を通して <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> をロードしOBJファイルをロードします。</p>
+読込後にロードしたマテリアルを <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>に設定して、<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> でOBJファイルをロードします。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
++    mtl.preload();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       scene.add(root);
     });
@@ -361,9 +360,9 @@ MTLファイルを簡単に修正する方法はありません。
 <ol>
 <li><p>マテリアルの読込後、全てのマテリアルをループさせて両面を適用する</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   for (const material of Object.values(materials)) {
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload()
+   for (const material of Object.values(mtl.materials)) {
      material.side = THREE.DoubleSide;
    }
    ...
@@ -374,17 +373,25 @@ MTLファイルを簡単に修正する方法はありません。
 1つは <code class="notranslate" translate="no">"winddmill"</code> と呼び、もう1つは <code class="notranslate" translate="no">"Material"</code> と呼びます。
 試行錯誤の結果、風車の羽根は <code class="notranslate" translate="no">"Material"</code> というマテリアル名を使う事が分かりました。</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   materials.Material.side = THREE.DoubleSide;
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.perload();
+   mtl.materials.Material.side = THREE.DoubleSide;
    ...
 </pre></li>
 <li><p>MTLファイルには制限がある事に気付き、MTLファイルを使わず自前でマテリアルを作成する</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const materials = {
-   Material: new THREE.MeshPhongMaterial({...}),
-   windmill: new THREE.MeshPhongMaterial({...}),
- };
- objLoader.setMaterials(materials);
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
+   const materials = {
+     Material: new THREE.MeshPhongMaterial({...}),
+     windmill: new THREE.MeshPhongMaterial({...}),
+   };
+   root.traverse(node =&gt; {
+     const material = materials[node.material?.name];
+     if (material) {
+       node.material = material;
+     }
+   })
+   scene.add(root);
+ });
 </pre></li>
 </ol>
 <p>どれを選ぶかはあなた次第です。
@@ -527,7 +534,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 <code class="notranslate" translate="no">boxSize</code> を渡し <code class="notranslate" translate="no">sizeToFitOnScreen</code> として使用すれば、計算でボックスが錐台の中に完全に収まるようになります。
 上下に少し余分なスペースが欲しいので少し大きめのサイズにします。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
     scene.add(root);
 +    // compute the box that contains all the stuff
@@ -663,13 +670,13 @@ illum 2
 +bump windmill_normal.jpg
 </pre>
 <p>MTLファイルが適度なサイズのテクスチャを指しているので、それをロードする必要があります。
-上記で行ったようにまずマテリアルをロードしてから <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> に設定します。</p>
+上記で行ったようにまずマテリアルをロードしてから <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> に設定します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) =&gt; {
-+    const objLoader = new OBJLoader2();
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtl) =&gt; {
++    const objLoader = new OBJLoader();
++    mtl.preload();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);

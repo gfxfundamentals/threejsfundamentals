@@ -290,10 +290,11 @@ might make a good example.</p>
 <p>Starting with <a href="threejs-load-obj.html">an example from the .OBJ article</a> I removed the code
 for loading .OBJ and replaced it with code for loading .GLTF</p>
 <p>The old .OBJ code was</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const objLoader = new OBJLoader2();
-objLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', null, (materials) =&gt; {
-  materials.Material.side = THREE.DoubleSide;
-  objLoader.setMaterials(materials);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mtlLoader = new MTLLoader();
+mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) =&gt; {
+  mtl.preload();
+  mtl.materials.Material.side = THREE.DoubleSide;
+  objLoader.setMaterials(mtl);
   objLoader.load('resources/models/windmill/windmill.obj', (event) =&gt; {
     const root = event.detail.loaderRootNode;
     scene.add(root);
@@ -312,9 +313,9 @@ objLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', null, (materia
   });
 </pre>
 <p>I kept the auto framing code as before</p>
-<p>We also need to include the <a href="https://threejs.org/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a> and we can get rid of the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>.</p>
+<p>We also need to include the <a href="https://threejs.org/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a> and we can get rid of the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>.</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from './resources/threejs/r122/examples/jsm/loaders/LoaderSupport.js';
--import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+-import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 -import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
 +import {GLTFLoader} from './resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
 </pre>

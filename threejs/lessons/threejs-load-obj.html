@@ -267,14 +267,14 @@ the hemispherical lighting example so I ended up with one
 <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> and one <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>. I also removed all the GUI stuff
 related to adjusting the lights. I also removed the cube and sphere
 that were being added to the scene.</p>
-<p>From that the first thing we need to do is include the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> loader in our script.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+<p>From that the first thing we need to do is include the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> loader in our script.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 </pre>
-<p>Then to load the .OBJ file we create an instance of <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a>,
+<p>Then to load the .OBJ file we create an instance of <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>,
 pass it the URL of our .OBJ file, and pass in a callback that adds
 the loaded model to our scene.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
     scene.add(root);
   });
@@ -349,21 +349,20 @@ file to.</p>
 <div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
 
 <p>Now that we have the textures available we can load the .MTL file.</p>
-<p>First we need to include the <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> and the <code class="notranslate" translate="no">MtlObjBridge</code>;</p>
+<p>First we need to include the <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a>;</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader2} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader2.js';
+import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
 +import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
-+import {MtlObjBridge} from './resources/threejs/r122/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js';
 </pre>
 <p>Then we first load the .MTL file. When it's finished loading we add
-the just loaded materials on to the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a> itself via the <code class="notranslate" translate="no">MtlObjBridge</code>
+the just loaded materials on to the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> itself via the <code class="notranslate" translate="no">setMaterials</code>
 and then load the .OBJ file.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
++    mtl.preload();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       scene.add(root);
     });
@@ -388,9 +387,9 @@ head I can think of 3 ways to fix this.</p>
 <ol>
 <li><p>Loop over all the materials after loading them and set them all to double sided.</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   for (const material of Object.values(materials)) {
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload();
+   for (const material of Object.values(mtl.materials)) {
      material.side = THREE.DoubleSide;
    }
    ...
@@ -404,18 +403,28 @@ and the other called <code class="notranslate" translate="no">"Material"</code>.
 out the blades use the material called <code class="notranslate" translate="no">"Material"</code>so we could set
 that one specifically </p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const mtlLoader = new MTLLoader();
- mtlLoader.load('resources/models/windmill/windmill.mtl', (mtlParseResult) =&gt; {
-   const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-   materials.Material.side = THREE.DoubleSide;
+ mtlLoader.load('resources/models/windmill/windmill.mtl', (mtl) =&gt; {
+   mtl.preload();
+   mtl.materials.Material.side = THREE.DoubleSide;
    ...
 </pre></li>
 <li><p>Realizing that the .MTL file is limited we could just not use it
-and instead create materials ourselves </p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> const materials = {
-   Material: new THREE.MeshPhongMaterial({...}),
-   windmill: new THREE.MeshPhongMaterial({...}),
- };
- objLoader.setMaterials(materials);
+and instead create materials ourselves.</p>
+<p>In this case we'd need to look up the <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> object after
+loading the obj file.</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no"> objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
+   const materials = {
+     Material: new THREE.MeshPhongMaterial({...}),
+     windmill: new THREE.MeshPhongMaterial({...}),
+   };
+   root.traverse(node =&gt; {
+     const material = materials[node.material?.name];
+     if (material) {
+       node.material = material;
+     }
+   })
+   scene.add(root);
+ });
 </pre></li>
 </ol>
 <p>Which one you pick is up to you. 1 is easiest. 3 is most flexible.
@@ -566,7 +575,7 @@ and used that as <code class="notranslate" translate="no">sizeToFitOnScreen</cod
 the frustum. We want a little extra space above and below so we'll pass in a slightly 
 larger size. </p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
-  const objLoader = new OBJLoader2();
+  const objLoader = new OBJLoader();
   objLoader.load('resources/models/windmill_2/windmill.obj', (root) =&gt; {
     scene.add(root);
 +    // compute the box that contains all the stuff
@@ -706,13 +715,13 @@ illum 2
 +bump windmill_normal.jpg
 </pre>
 <p>Now that the .MTL file points to some reasonable size textures we need to load it so we'll just do like we did above, first load the materials
-and then set them on the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader2"><code class="notranslate" translate="no">OBJLoader2</code></a></p>
+and then set them on the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a></p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();
-+  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtlParseResult) =&gt; {
-+    const objLoader = new OBJLoader2();
-+    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-+    objLoader.addMaterials(materials);
++  mtlLoader.load('resources/models/windmill_2/windmill-fixed.mtl', (mtl) =&gt; {
++    mtl.preload();
++    const objLoader = new OBJLoader();
++    objLoader.setMaterials(mtl);
     objLoader.load('resources/models/windmill/windmill.obj', (root) =&gt; {
       root.updateMatrixWorld();
       scene.add(root);
@@ -806,7 +815,7 @@ windmill are basically considered 1 single mesh. You can't spin the blades of th
 <p>This is one of the main reasons why .OBJ is not really a good format. If I was to guess, the reason it's more common than other formats
 is because it's simple and doesn't support many features it works more often than not. Especially if you're making something still like
 an architectural image and there's no need to animate anything it's not a bad way to get static props into a scene.</p>
-<p>Next up we'll try loading a gLTF scene. The gLTF format supports many more features.</p>
+<p>Next up we'll try <a href="threejs-load-gltf.html">loading a gLTF scene</a>. The gLTF format supports many more features.</p>
 
     </div>
     <div class="lesson-sidebar">
