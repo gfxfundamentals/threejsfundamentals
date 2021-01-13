@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/ja/threejs-custom-buffergeometry.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,77 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Custom BufferGeometry">
+
+<meta name="description" content="カスタムバッファジオメトリを作る">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ja.jpg">
+
+<meta property="og:title" content="Three.jsのカスタムバッファジオメトリ">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="How to make your own BufferGeometry.">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ja.jpg">
+<meta property="og:description" content="カスタムバッファジオメトリを作る">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Custom BufferGeometry">
+<meta name="twitter:title" content="Three.jsのカスタムバッファジオメトリ">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html">
-<meta name="twitter:description" content="How to make your own BufferGeometry.">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="カスタムバッファジオメトリを作る">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ja.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">
 
 
-<title>Three.js Custom BufferGeometry</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_ja.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html",
+      "inLanguage":"ja",
+      "name":"Three.jsのカスタムバッファジオメトリ",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.jsのカスタムバッファジオメトリ</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +228,361 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Custom BufferGeometry</h1>
+    <h1>Three.jsのカスタムバッファジオメトリ</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>すいません、この記事はまだ翻訳してません. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Translations Welcome</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-custom-buffergeometry.html">ここに元の英語の記事があります</a>.</p>
+      <p><a href="threejs-custom-geometry.html">前回の記事</a>では<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>を紹介しました。この記事では<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を紹介します。<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>とは<em>一般的に</em>高速で動きメモリ消費も低く抑えられます。が、設定は少し難しいです。</p>
+<p><a href="threejs-custom-geometry.html">ジオメトリの記事</a> のおさらいをしましょう。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>には<a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>を設定する必要がありました。これは頂点を表す三次元上の点です。次に<a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>を設定することで面を定義しました。これはvertexの配列のインデックス情報を使って３つの点を指定することで面を定義しています。光の反射方向などの設定するためにfaceにはnormal（法線）が必要でした。faceに対して１つのnormalを設定することもできますし、vertexに指定して滑らかな面を擬似的に作ることもできました。colorもnormalと同じようにfaceに指定したりvertexに指定したりできました。記事の最後では配列の配列を使ってテクスチャ座標（UV）を設定しました。配列の中の配列の１つが１つのfaceに対応しておりその配列の１つの要素がvertex１つに対応しています。</p>
+<div class="threejs_center"><img src="../resources/threejs-geometry.svg" style="width: 700px"></div>
+
+<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>は<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を使います。１つの<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>はジオメトリを作るための１種類のデータに対応しています。vertexの位置情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>、color情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>、normal情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>がそれぞれあります。</p>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
+
+<p>上の図では<code class="notranslate" translate="no">position</code>, <code class="notranslate" translate="no">normal</code>, <code class="notranslate" translate="no">color</code>, <code class="notranslate" translate="no">uv</code>それぞれのattribute情報を格納した<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を表しています。これらは<em>並列な配列</em>です。<em>並列な配列</em>というのはN番目にあるデータはN番目のvertexに対応しており、それがattributeの数だけあるという意味です。図ではindex=4のattributeがハイライトされています。</p>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
+
+<p>上の図のハイライトされたvertexにはこのvertexに接する全ての面のnormalが指定されています。UVを指定するときもすべてのfaceに対して指定する必要があります。これが<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>と<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>の大きな違いです。<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>では情報が共有されることはありません。単一のvertexはこれらの情報の合成として表現されます。</p>
+<p>実は<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>を使うときはthree.jsが自動的にこのフォーマットに変換しています。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>が<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>よりメモリを使うのはこの変換のためです。すべての<a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>, <a href="https://threejs.org/docs/#api/en/math/Vector2"><code class="notranslate" translate="no">Vector2</code></a>, <a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>を<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>配列に変換する際にメモリを使います。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>は簡単に書けるため便利ですが<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を使う時にはこれら全ての変換を自分でする必要があります。</p>
+<p>簡単な例として<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を使って立方体を作ってみましょう。立方体を例にするのはvertexがfaceによって共有されているように見えて実は共有されていないからです。この例ではまずすべてのvertexの情報をリストアップして並列の配列に変換して<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を作り、最後に<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を作ります。</p>
+<p><a href="threejs-custom-geometry.html">以前の記事</a>のサンプルコードを使います。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>を作っていた部分は全て消します。次に立方体に必要な情報をすべてリストアップします。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>では１つのvertexを複数のfaceで共有できましたが今回は共有できないことに注意してください。つまり１つの立方体を作るために３６個のvertexが必要になります。１つの面につき２つの三角形、１つの三角形につき３つのvertex、これが６面あるので３６個のvertexが必要になる計算です。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const vertices = [
+  // front
+  { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 0], },
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  0,  1], uv: [1, 1], },
+  // right
+  { pos: [ 1, -1,  1], norm: [ 1,  0,  0], uv: [0, 0], },
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  { pos: [ 1,  1, -1], norm: [ 1,  0,  0], uv: [1, 1], },
+  // back
+  { pos: [ 1, -1, -1], norm: [ 0,  0, -1], uv: [0, 0], },
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  { pos: [-1,  1, -1], norm: [ 0,  0, -1], uv: [1, 1], },
+  // left
+  { pos: [-1, -1, -1], norm: [-1,  0,  0], uv: [0, 0], },
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  { pos: [-1,  1,  1], norm: [-1,  0,  0], uv: [1, 1], },
+  // top
+  { pos: [ 1,  1, -1], norm: [ 0,  1,  0], uv: [0, 0], },
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], },
+
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], },
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], },
+  { pos: [-1,  1,  1], norm: [ 0,  1,  0], uv: [1, 1], },
+  // bottom
+  { pos: [ 1, -1,  1], norm: [ 0, -1,  0], uv: [0, 0], },
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], },
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], },
+
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], },
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], },
+  { pos: [-1, -1, -1], norm: [ 0, -1,  0], uv: [1, 1], },
+];
+</pre>
+<p>次にこれを３つの並列な配列に変換します。
+（訳註：並列な配列<em>parallel arrays</em>とは例えば頂点を指定する配列と色を指定する配列があり１つの頂点をレンダリングするために２つの配列の同じインデックスの要素を指定するような使われ方をする配列のことです。次の例ではpositions, normals, uvsの３つの配列が並列の配列として使われています）</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const positions = [];
+const normals = [];
+const uvs = [];
+for (const vertex of vertices) {
+  positions.push(...vertex.pos);
+  normals.push(...vertex.norm);
+  uvs.push(...vertex.uv);
+}
+</pre>
+<p>最後にそれぞれの配列に対して<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を作り<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>に指定します。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  const geometry = new THREE.BufferGeometry();
+  const positionNumComponents = 3;
+  const normalNumComponents = 3;
+  const uvNumComponents = 2;
+  geometry.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
+  geometry.setAttribute(
+      'normal',
+      new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
+  geometry.setAttribute(
+      'uv',
+      new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
+</pre>
+<p>名前の付け方に注意してください。three.jsで決められている名前以外を指定することはできません（カスタムシェーダーを使用する場合は別です）。<code class="notranslate" translate="no">position</code>, <code class="notranslate" translate="no">normal</code>, <code class="notranslate" translate="no">uv</code>はthree.jsで決められている名前です。ここでは指定していませんが<code class="notranslate" translate="no">color</code>も指定可能です。</p>
+<p>上の例では<code class="notranslate" translate="no">positions</code>, <code class="notranslate" translate="no">normals</code>, <code class="notranslate" translate="no">uvs</code>の３つのJavaScriptのネイティブ配列を作りました。次に<code class="notranslate" translate="no">Float32Array</code>型の<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>に変換します。<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>はネイティブ配列ではなくTypedArrayである必要があります。さらにそれぞれの<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>に対して「１つのvertexに対していくつの要素が必要か」を指定する必要があります。例えばpositionやnormalsは３次元なので１つのvertexつき３つの要素を必要とします。UVはテクスチャ上の２次元の点なので２つの要素を必要とします。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>かなり大量のデータです。この配列からvertexを選ぶときにはインデックスを使います。１つの三角形は３つのvertexで構成されていて２つの三角形が１つのfaceを作っています。これが６枚で１つの立方体を構成しています。１つのfaceを構成する２つの三角形を作っているvertexは２つが同じデータを持っています。position, normal, UVすべて同じです。そこで重複しているデータを１つ消して１つにして、そのデータを別のインデックスで指定します。</p>
+<p>ではまず重複したデータを１つにします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const vertices = [
+  // front
+  { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 0], }, // 0
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], }, // 1
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], }, // 2
+-
+-  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+-  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  0,  1], uv: [1, 1], }, // 3
+  // right
+  { pos: [ 1, -1,  1], norm: [ 1,  0,  0], uv: [0, 0], }, // 4
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], }, // 5
+-
+-  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+-  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], }, // 6
+  { pos: [ 1,  1, -1], norm: [ 1,  0,  0], uv: [1, 1], }, // 7
+  // back
+  { pos: [ 1, -1, -1], norm: [ 0,  0, -1], uv: [0, 0], }, // 8
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], }, // 9
+-
+-  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+-  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], }, // 10
+  { pos: [-1,  1, -1], norm: [ 0,  0, -1], uv: [1, 1], }, // 11
+  // left
+  { pos: [-1, -1, -1], norm: [-1,  0,  0], uv: [0, 0], }, // 12
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], }, // 13
+-
+-  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+-  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], }, // 14
+  { pos: [-1,  1,  1], norm: [-1,  0,  0], uv: [1, 1], }, // 15
+  // top
+  { pos: [ 1,  1, -1], norm: [ 0,  1,  0], uv: [0, 0], }, // 16
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], }, // 17
+-
+-  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], },
+-  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], }, // 18
+  { pos: [-1,  1,  1], norm: [ 0,  1,  0], uv: [1, 1], }, // 19
+  // bottom
+  { pos: [ 1, -1,  1], norm: [ 0, -1,  0], uv: [0, 0], }, // 20
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], }, // 21
+-
+-  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], },
+-  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], },
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], }, // 22
+  { pos: [-1, -1, -1], norm: [ 0, -1,  0], uv: [1, 1], }, // 23
+];
+</pre>
+<p>はい、24個になりました。これに対して36個のインデックスを指定して36個のvertexを作ります。<a href="https://threejs.org/docs/#api/en/core/BufferGeometry.setIndex"><code class="notranslate" translate="no">BufferGeometry.setIndex</code></a>により36個のインデックスを使って12個の三角形を作ります。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(positions, positionNumComponents));
+geometry.setAttribute(
+    'normal',
+    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setAttribute(
+    'uv',
+    new THREE.BufferAttribute(uvs, uvNumComponents));
+
++geometry.setIndex([
++   0,  1,  2,   2,  1,  3,  // front
++   4,  5,  6,   6,  5,  7,  // right
++   8,  9, 10,  10,  9, 11,  // back
++  12, 13, 14,  14, 13, 15,  // left
++  16, 17, 18,  18, 17, 19,  // top
++  20, 21, 22,  22, 21, 23,  // bottom
++]);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube-indexed.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube-indexed.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p><a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>と同じように<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>も<a href="https://threejs.org/docs/#api/en/core/BufferGeometry#computeVertexNormals"><code class="notranslate" translate="no">computeVertexNormals</code></a>メソッドを持っています。これは特に指定がない場合に自動的にnormalを計算するメソッドです。ただし<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>の場合と違いvertexがfaceによって共有されていないために<code class="notranslate" translate="no">computeVertexNormals</code>の結果も少し違います。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="bufferGeometryCylinder"></div>
+    <div class="code">BufferGeometry</div>
+  </div>
+  <div>
+    <div data-diagram="geometryCylinder"></div>
+    <div class="code">Geometry</div>
+  </div>
+</div>
+
+<p>シリンダーで<code class="notranslate" translate="no">computeVertexNormals</code>の違いを比較してみましょう。よく見ると左のシリンダーには縫い目が見えると思います。これはvertexを共有することができないためにUVも異なるためです。ちょっとしたことですが、気になるときは自分でnormalを指定すれば良いだけです。</p>
+<p>ネイティブの配列を使う代わりに<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>を使うこともできます。TypedArrayは最初に配列の大きさを指定する必要があるため少し面倒です。ネイティブの配列は<code class="notranslate" translate="no">push</code>で追加して<code class="notranslate" translate="no">length</code>で配列の長さを確認することができます。TypedArrayには<code class="notranslate" translate="no">push</code>メソッドがないのであらかじめ用意した配列に注意しながら要素を入れていく必要があります。</p>
+<p>この例では最初に大きなデータを使っているので配列の長さを意識することはそれほど大変ではありません。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const positions = [];
+-const normals = [];
+-const uvs = [];
++const numVertices = vertices.length;
++const positionNumComponents = 3;
++const normalNumComponents = 3;
++const uvNumComponents = 2;
++const positions = new Float32Array(numVertices * positionNumComponents);
++const normals = new Float32Array(numVertices * normalNumComponents);
++const uvs = new Float32Array(numVertices * uvNumComponents);
++let posNdx = 0;
++let nrmNdx = 0;
++let uvNdx = 0;
+for (const vertex of vertices) {
+-  positions.push(...vertex.pos);
+-  normals.push(...vertex.norm);
+-  uvs.push(...vertex.uv);
++  positions.set(vertex.pos, posNdx);
++  normals.set(vertex.norm, nrmNdx);
++  uvs.set(vertex.uv, uvNdx);
++  posNdx += positionNumComponents;
++  nrmNdx += normalNumComponents;
++  uvNdx += uvNumComponents;
+}
+
+geometry.setAttribute(
+    'position',
+-    new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
++    new THREE.BufferAttribute(positions, positionNumComponents));
+geometry.setAttribute(
+    'normal',
+-    new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
++    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setAttribute(
+    'uv',
+-    new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
++    new THREE.BufferAttribute(uvs, uvNumComponents));
+
+geometry.setIndex([
+   0,  1,  2,   2,  1,  3,  // front
+   4,  5,  6,   6,  5,  7,  // right
+   8,  9, 10,  10,  9, 11,  // back
+  12, 13, 14,  14, 13, 15,  // left
+  16, 17, 18,  18, 17, 19,  // top
+  20, 21, 22,  22, 21, 23,  // bottom
+]);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube-typedarrays.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube-typedarrays.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p>TypedArrayはプログラムが走っている状態でvertexの編集をしたいときに便利です。</p>
+<p>良い例が思いつかないのでとりあえずメッシュの四角形が出たり入ったりする球体を作ってみます。</p>
+<p>球体の位置とindexを生成するコードです。四角形の中でvertexを共有していますが四角形と四角形でvertexを共有することはありません。共有してしまうと１つの四角形が出たり入ったりするたびに隣の四角形が移動してしまいます。今回は別々に移動させたいのでそうしています。</p>
+<p>面倒なので３つの<a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>階層を用意して球体のvertexを計算します。くわしくは<a href="threejs-optimize-lots-of-objects.html">たくさんのオブジェクトを最適化するこの記事</a>をご覧ください。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeSpherePositions(segmentsAround, segmentsDown) {
+  const numVertices = segmentsAround * segmentsDown * 6;
+  const numComponents = 3;
+  const positions = new Float32Array(numVertices * numComponents);
+  const indices = [];
+
+  const longHelper = new THREE.Object3D();
+  const latHelper = new THREE.Object3D();
+  const pointHelper = new THREE.Object3D();
+  longHelper.add(latHelper);
+  latHelper.add(pointHelper);
+  pointHelper.position.z = 1;
+  const temp = new THREE.Vector3();
+
+  function getPoint(lat, long) {
+    latHelper.rotation.x = lat;
+    longHelper.rotation.y = long;
+    longHelper.updateMatrixWorld(true);
+    return pointHelper.getWorldPosition(temp).toArray();
+  }
+
+  let posNdx = 0;
+  let ndx = 0;
+  for (let down = 0; down &lt; segmentsDown; ++down) {
+    const v0 = down / segmentsDown;
+    const v1 = (down + 1) / segmentsDown;
+    const lat0 = (v0 - 0.5) * Math.PI;
+    const lat1 = (v1 - 0.5) * Math.PI;
+
+    for (let across = 0; across &lt; segmentsAround; ++across) {
+      const u0 = across / segmentsAround;
+      const u1 = (across + 1) / segmentsAround;
+      const long0 = u0 * Math.PI * 2;
+      const long1 = u1 * Math.PI * 2;
+
+      positions.set(getPoint(lat0, long0), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat1, long0), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat0, long1), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat1, long1), posNdx);  posNdx += numComponents;
+
+      indices.push(
+        ndx, ndx + 1, ndx + 2,
+        ndx + 2, ndx + 1, ndx + 3,
+      );
+      ndx += 4;
+    }
+  }
+  return {positions, indices};
+}
+</pre>
+<p>こんな感じです。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const segmentsAround = 24;
+const segmentsDown = 16;
+const {positions, indices} = makeSpherePositions(segmentsAround, segmentsDown);
+</pre>
+<p>returnされているpositionは単位球（半径が１の球体）なのでそのままこのデータをnormalに使えます。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const normals = positions.slice();
+</pre>
+<p>attributeも設定しましょう。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.BufferGeometry();
+const positionNumComponents = 3;
+const normalNumComponents = 3;
+
++const positionAttribute = new THREE.BufferAttribute(positions, positionNumComponents);
++positionAttribute.setUsage(THREE.DynamicDrawUsage);
+geometry.setAttribute(
+    'position',
++    positionAttribute);
+geometry.setAttribute(
+    'normal',
+    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setIndex(indices);
+</pre>
+<p>position attributeに対する参照を保存しています。dynamicに指定しているところも注意が必要です。これはTHREE.jsに「これからこのattributeは変更が加えられる」ことを教えます。renderループではpositionを毎度アップデートします。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const temp = new THREE.Vector3();
+
+...
+
+for (let i = 0; i &lt; positions.length; i += 3) {
+  const quad = (i / 12 | 0);
+  const ringId = quad / segmentsAround | 0;
+  const ringQuadId = quad % segmentsAround;
+  const ringU = ringQuadId / segmentsAround;
+  const angle = ringU * Math.PI * 2;
+  temp.fromArray(normals, i);
+  temp.multiplyScalar(THREE.MathUtils.lerp(1, 1.4, Math.sin(time + ringId + angle) * .5 + .5));
+  temp.toArray(positions, i);
+}
+positionAttribute.needsUpdate = true;
+</pre>
+<p>最後に<code class="notranslate" translate="no">positionAttribute.needsUpdate</code>を設定してTHREE.jsに変更が必要であることを伝えます。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-dynamic.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-dynamic.html" target="_blank">ここをクリックして別のウィンドウで開きます</a>
+</div>
+
+<p></p>
+<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を作って<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>をアップデートする方法を紹介しました。<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を使うか<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>はケースバイケースです。</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
+
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +596,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基本</li>
+        <div id="toc">
+          <ul>  <li>基本</li>
         <ul>
           <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
 <li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
@@ -213,7 +616,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+<li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>
         <ul>
@@ -267,10 +670,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>質問はありますか? <a href="http://stackoverflow.com/questions/tagged/three.js">何かあればstackoverflowで尋ねて下さい</a>.</div>
+        <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.jsのカスタムバッファジオメトリ';
+            var disqus_title = 'Three.jsのカスタムバッファジオメトリ';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
