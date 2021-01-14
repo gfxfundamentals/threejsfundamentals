@@ -98,6 +98,15 @@ Current fields are
       // html that appear at the top right
       contribTemplate: 'Thank you <a href="${html_url}"><img src="${avatar_url}"> ${login}</a><br>for <a href="https://github.com/${owner}/${repo}/commits?author=${login}">${contributions} contributions</a>',
 
+      // translations by id currently used for warning
+      translations: {
+        // Used when some small portion of a larger article is out of date
+        badTranslation: 'Sorry, the translation of this area is out of date. <a href="{{packageJSON.homepage}}/blob/master/{{contentFileName}}">Please consider helping to fix it</a>.',
+
+        // Used at the top of the article when it needs a new translation.
+        updateNeeded: 'The translation of this article is out of date. <a href="{{packageJSON.homepage}}/blob/master/{{contentFileName}}">Please consider helping to fix it</a>.',
+      },
+
       // the phrase "Table of Contents"
       toc: "Table of Contents",
 
@@ -200,6 +209,7 @@ now open your browser to `http://localhost:8080`
 #### Continuous build
 
 You can run `npm run watch` to get continuous building.
+Also `npm run watch-no-check` to skip the dependency check.
 Only the article .md files and files that are normally copied are supported.
 The table of contents, templates, and index pages are not watched.
 
