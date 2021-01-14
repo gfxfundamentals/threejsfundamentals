@@ -135,14 +135,15 @@ like `CSSRenderer`, a `CanvasRenderer` and in the future there may be a
 `WebGL2Renderer` or `WebGPURenderer`. For now there's the `WebGLRenderer`
 that uses WebGL to render 3D to the canvas.
 
-Note there are some esoteric details here. If you don't pass a canvas
-into three.js it will create one for you but then you have to add it
-to your document. Where to add it may change depending on your use case
-and you'll have to change your code so I find that passing a canvas
-to three.js feels a little more flexible. I can put the canvas anywhere
-and the code will find it where as if I had code to insert the canvas
-into to the document I'd likely have to change that code if my use case
-changed.
+Note there are some esoteric details here. For three.js to work, it must
+have a canvas. You have a choice of either passing a canvas into three.js 
+or not. If you decide not to pass a canvas into three.js, a canvas will be 
+created for you. The canvas that was created will still have to be added to 
+your document. I think passing a canvas to three.js feels more flexible 
+because the canvas can be put anywhere, and the code will still find it. 
+Otherwise, not passing in a canvas into three.js might cause two problems. 
+First, your use case might change. Lastly, changes will have to be made 
+to the code.
 
 Next up we need a camera. We'll create a `PerspectiveCamera`.
 
