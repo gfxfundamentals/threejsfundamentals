@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three.js 튜토리얼</title>
-    <updated>2021-01-14T09:39:00.000Z</updated>
+    <updated>2021-01-14T10:02:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,467 +16,467 @@
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-align-html-elements-to-3d.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 배경과 하늘 상자]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-backgrounds.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-backgrounds.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 빌보드(Billboards)]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-billboards.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-billboards.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 카메라]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-cameras.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 캔버스 텍스처]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-canvas-textures.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 메모리 해제하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-cleanup.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-cleanup.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 사용자 지정 BufferGeometry]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-custom-buffergeometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-custom-buffergeometry.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 사용자 지정 Geometry]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-custom-geometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-custom-geometry.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js GLSL 디버깅]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-debugging-glsl.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-debugging-glsl.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 자바스크립트 디버깅]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-debugging-javascript.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-debugging-javascript.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 안개]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-fog.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js란?]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-fundamentals.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js로 게임 만들기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-game.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-game.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[피킹과 색상에 인덱스 텍스처 사용하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-indexed-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-indexed-textures.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js의 조명]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-lights.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-lights.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js에서 .GLTF 파일 불러오기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-load-gltf.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-load-gltf.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js에서 .OBJ 파일 불러오기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-load-obj.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-load-obj.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[재질(Material) 속성표]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-material-table.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-material-table.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js의 재질(Materials)]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-materials.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-materials.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js로 캔버스, 장면 여러 개 만들기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-multiple-scenes.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-multiple-scenes.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js OffscreenCanvas]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-offscreencanvas.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[다중 애니메이션 요소 최적화하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[다중 요소 렌더링 최적화하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 피킹(Picking)]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-picking.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-picking.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[3DLUT로 후처리하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-post-processing-3dlut.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-post-processing-3dlut.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 후처리]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-post-processing.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-post-processing.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[먼저 알아야 할 것들]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-prerequisites.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js의 원시 모델]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-primitives.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-primitives.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[불필요한 렌더링 없애기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-rendering-on-demand.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-rendering-on-demand.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 렌더 타겟]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-rendertargets.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-rendertargets.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 반응형 디자인]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-responsive.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js의 씬 그래프]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-scenegraph.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 개발 환경 구성하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-setup.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-setup.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[쉐이더토이(Shadertoy) 활용하기]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-shadertoy.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-shadertoy.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 그림자]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-shadows.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-shadows.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js의 텍스처(Textures)]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-textures.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 팁]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-tips.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-tips.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 투명도]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-transparency.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-transparency.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 복셀 Geometry]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/kr/threejs-voxel-geometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/kr/threejs-voxel-geometry.html">
         </link>
-        <updated>2021-01-14T09:39:00.000Z</updated>
+        <updated>2021-01-14T10:02:00.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-14T09:39:00.000Z</published>
+        <published>2021-01-14T10:02:00.000Z</published>
     </entry>
 </feed>
