@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three.js 基础</title>
-    <updated>2021-01-16T02:47:06.000Z</updated>
+    <updated>2021-01-21T06:00:04.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,107 +16,107 @@
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fundamentals.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 加载 .OBJ 文件]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-load-obj.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-load-obj.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 材质]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-materials.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-materials.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js先决条件]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-prerequisites.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 图元]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-primitives.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-primitives.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js响应式设计]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-responsive.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 场景图]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-scenegraph.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js设置]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-setup.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-setup.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js 纹理]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-textures.html">
         </link>
-        <updated>2021-01-16T02:47:06.000Z</updated>
+        <updated>2021-01-21T06:00:04.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-01-16T02:47:06.000Z</published>
+        <published>2021-01-21T06:00:04.000Z</published>
     </entry>
 </feed>

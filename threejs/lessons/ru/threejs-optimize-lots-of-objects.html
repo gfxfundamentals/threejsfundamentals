@@ -270,8 +270,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>Чтобы убедиться, что мы понимаем данные, давайте попробуем построить их в 2D. </p>
 <p>Сначала немного кода для загрузки текстового файла </p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadFile(url) {
-  const req = await fetch(url);
-  return req.text();
+  const res = await fetch(url);
+  return res.text();
 }
 </pre>
 <p>Приведенный выше код возвращает <code class="notranslate" translate="no">Promise</code> с содержимым файла по адресу <code class="notranslate" translate="no">url</code>; </p>

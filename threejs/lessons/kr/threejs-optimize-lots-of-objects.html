@@ -267,8 +267,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>이해를 돕기 위해 데이터를 2D로 구현해보겠습니다.</p>
 <p>먼저 텍스트 파일을 불러옵니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadFile(url) {
-  const req = await fetch(url);
-  return req.text();
+  const res = await fetch(url);
+  return res.text();
 }
 </pre>
 <p>위 함수는 <code class="notranslate" translate="no">url</code>의 파일 내용을 반환하는 <code class="notranslate" translate="no">Promise</code>를 반환합니다.</p>

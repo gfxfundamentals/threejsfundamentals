@@ -267,8 +267,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 データをもっと理解するために2Dでプロットしてみましょう。</p>
 <p>最初にテキストファイルをロードするコードです。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadFile(url) {
-  const req = await fetch(url);
-  return req.text();
+  const res = await fetch(url);
+  return res.text();
 }
 </pre>
 <p>上記のコードは <code class="notranslate" translate="no">Promise</code> を返しファイルの内容は <code class="notranslate" translate="no">url</code> にあります。

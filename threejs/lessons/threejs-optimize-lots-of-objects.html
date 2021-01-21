@@ -276,8 +276,8 @@ per grid point, one line for each row of data points.</p>
 <p>To make sure we understand the data let's try to plot it in 2D.</p>
 <p>First some code to load the text file</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadFile(url) {
-  const req = await fetch(url);
-  return req.text();
+  const res = await fetch(url);
+  return res.text();
 }
 </pre>
 <p>The code above returns a <code class="notranslate" translate="no">Promise</code> with the contents of the file at <code class="notranslate" translate="no">url</code>;</p>
