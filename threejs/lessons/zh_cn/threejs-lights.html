@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-lights.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Lights">
+
+<meta name="description" content="设置光照">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 光照">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Setting up Lights">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_zh_cn.jpg">
+<meta property="og:description" content="设置光照">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Lights">
+<meta name="twitter:title" content="Three.js 光照">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html">
-<meta name="twitter:description" content="Setting up Lights">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="设置光照">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-lights.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-lights.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-lights.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-lights.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-lights.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html">
 
 
-<title>Three.js Lights</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 光照",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 光照</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +229,392 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Lights</h1>
+    <h1>Three.js 光照</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-lights.html">英文原文链接</a>.</p>
+      <p>本文是关于 three.js 系列文章的一部分。第一篇文章是 <a href="threejs-fundamentals.html">three.js 基础</a>。如果你还没看过而且对three.js 还不熟悉，那应该从那里开始，并且了解如何<a href="threejs-setup.html">设置开发环境</a>。上一篇文章介绍了 three.js 中的 <a href="threejs-textures.html">纹理</a>。</p>
+<p>接下来我们学习如何在 three.js 中使用各种不同类型的光照。</p>
+<p>在一个基本场景的基础上，我们调整一下相机的设置。将 fov 设置为 45， far 设置为 100，然后移动相机位置到 (0, 10, 20)。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">*const fov = 45;
+const aspect = 2;  // canvas 的默认宽高 300:150
+const near = 0.1;
+*const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
++camera.position.set(0, 10, 20);
+</pre>
+<p>然后我们添加一个 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>。<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> 让我们可以围绕某一个点旋转控制相机。<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> 是 three.js 的可选模块，所以我们首先需要引入这个模块。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>然后我们就可以使用了。创建 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> 时传入两个参数，一个是要控制的相机对象，第二个是检测事件的 DOM 元素。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 5, 0);
+controls.update();
+</pre>
+<p>我们还将 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> 的观察点设置为 (0, 5, 0) 的位置，设置完需要调用一下 <code class="notranslate" translate="no">controls.update</code>，这样才真正更新观察点位置。</p>
+<p>下面我们创建一些东西来打光。首先，创建一个地平面，并用下方展示的 2x2 像素的黑白格图片来作为纹理。</p>
+<div class="threejs_center">
+  <img src="../../resources/images/checker.png" class="border" style="
+    image-rendering: pixelated;
+    width: 128px;
+  ">
+</div>
+
+<p>首先加载这个纹理，设置重复模式（<a href="https://threejs.org/docs/#api/zh/textures/Texture#wrapS"><code class="notranslate" translate="no">wrapS</code></a>, <a href="https://threejs.org/docs/#api/zh/textures/Texture#wrapT"><code class="notranslate" translate="no">wrapT</code></a>），采样模式（<a href="https://threejs.org/docs/#api/zh/textures/Texture#magFilter"><code class="notranslate" translate="no">magFilter</code></a>）以及重复的次数。因为贴图是 2x2 大小，通过设置成平铺模式，并且重复次数是边长的一半，就可以让每个格子正好是1个单位的大小。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 40;
+
+const loader = new THREE.TextureLoader();
+const texture = loader.load('resources/images/checker.png');
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.magFilter = THREE.NearestFilter;
+const repeats = planeSize / 2;
+texture.repeat.set(repeats, repeats);
+</pre>
+<p>接着我们创建一个平面几何体，一个材质，再用这两个作为参数，创建一个 <a href="https://threejs.org/docs/#api/zh/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> 对象并且添加到场景中。因为创建的平面默认是在 XY 平面上（竖直平面），我们希望得到一个 XZ 平面（水平平面），所以我们将他旋转 90°。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const planeMat = new THREE.MeshPhongMaterial({
+  map: texture,
+  side: THREE.DoubleSide,
+});
+const mesh = new THREE.Mesh(planeGeo, planeMat);
+mesh.rotation.x = Math.PI * -.5;
+scene.add(mesh);
+</pre>
+<p>接着再添加一个立方体和一个球体，这样我们就有三个物体可以打光。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const cubeSize = 4;
+  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
+  const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
+  scene.add(mesh);
+}
+{
+  const sphereRadius = 3;
+  const sphereWidthDivisions = 32;
+  const sphereHeightDivisions = 16;
+  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
+  const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+  mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
+  scene.add(mesh);
+}
+</pre>
+<p>一切准备就绪，我们开始添加光源。</p>
+<h2 id="-ambientlight-">环境光（<a href="https://threejs.org/docs/#api/zh/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a>）</h2>
+<p>首先创建一个 <a href="https://threejs.org/docs/#api/zh/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+const light = new THREE.AmbientLight(color, intensity);
+scene.add(light);
+</pre>
+<p>我们添加一些控制代码，使我们可以动态地改变光照的参数，还是使用 <a href="https://github.com/dataarts/dat.gui">dat.GUI</a> 来实现。为了可以通过 <code class="notranslate" translate="no">dat.GUI</code> 调节颜色，我们创建一个辅助对象。对象内有一个 <code class="notranslate" translate="no">getter</code> 和 <code class="notranslate" translate="no">setter</code>，当 <code class="notranslate" translate="no">dat.GUI</code> 从对象内获取 <code class="notranslate" translate="no">value</code> 值的时候，触发了 <code class="notranslate" translate="no">getter</code>，会根据创建对象实例时传入的 <code class="notranslate" translate="no">object</code> 和 <code class="notranslate" translate="no">prop</code>，返回一个十六进制色值的字符串，当通过 <code class="notranslate" translate="no">dat.GUI</code> 控制改变这个 <code class="notranslate" translate="no">value</code> 的时候，就触发了 <code class="notranslate" translate="no">setter</code>，会用十六进制的色值字符串作为参数调用 <code class="notranslate" translate="no">object.prop.set</code>。</p>
+<p>以下是 helper 类的代码：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class ColorGUIHelper {
+  constructor(object, prop) {
+    this.object = object;
+    this.prop = prop;
+  }
+  get value() {
+    return `#${this.object[this.prop].getHexString()}`;
+  }
+  set value(hexString) {
+    this.object[this.prop].set(hexString);
+  }
+}
+</pre>
+<p>以及创建 dat.GUI 的代码：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+</pre>
+<p>结果如下所示：</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-ambient.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-ambient.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>可以在场景内点击和拖拽鼠标来改变相机的位置，观察场景。</p>
+<p>可以看到场景内的物体看起来没有立体感。环境光 （<a href="https://threejs.org/docs/#api/zh/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a>）只是简单地将材质的颜色与光照颜色进行叠加（PhotoShop 里的正片叠底模式），再乘以光照强度。</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">// 这里的颜色计算是 RBG 通道上的值分别对应相乘
+// 例: rgb(0.64,0.64,0.64) = rgb(0.8,0.8,0.8) * rgb(0.8,0.8,0.8) * 1
+color = materialColor * light.color * light.intensity;
+</pre><p>这就是环境光，它没有方向，无法产生阴影，场景内任何一点受到的光照强度都是相同的，除了改变场景内所有物体的颜色以外，不会使物体产生明暗的变化，看起来并不像真正意义上的光照。通常的作用是提亮场景，让暗部不要太暗。</p>
+<h2 id="-hemispherelight-">半球光（<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>）</h2>
+<p>接下来介绍半球光（<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>）。半球光（<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>）的颜色是从天空到地面两个颜色之间的渐变，与物体材质的颜色作叠加后得到最终的颜色效果。一个点受到的光照颜色是由所在平面的朝向（法向量）决定的 —— 面向正上方就受到天空的光照颜色，面向正下方就受到地面的光照颜色，其他角度则是两个颜色渐变区间的颜色。</p>
+<p>下面是修改后的代码：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const color = 0xFFFFFF;
++const skyColor = 0xB1E1FF;  // light blue
++const groundColor = 0xB97A20;  // brownish orange
+const intensity = 1;
+-const light = new THREE.AmbientLight(color, intensity);
++const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+scene.add(light);
+</pre>
+<p>同时修改一下 <code class="notranslate" translate="no">dat.GUI</code> 部分，使得可以控制两种颜色：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+-gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
++gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('skyColor');
++gui.addColor(new ColorGUIHelper(light, 'groundColor'), 'value').name('groundColor');
+gui.add(light, 'intensity', 0, 2, 0.01);
+</pre>
+<p>结果如下：</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-hemisphere.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-hemisphere.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>场景基本上也没有太大的立体感。半球光 （<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>） 与其他类型光照结合使用，可以很好地表现天空和地面颜色照射到物体上时的效果。所以最好的使用场景就是与其他光照结合使用，或者作为环境光（<a href="https://threejs.org/docs/#api/zh/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a>）的一种替代方案。</p>
+<h2 id="-directionallight-">方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）</h2>
+<p>下面介绍方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）。
+方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）常常用来表现太阳光照的效果。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+const light = new THREE.DirectionalLight(color, intensity);
+light.position.set(0, 10, 0);
+light.target.position.set(-5, 0, 0);
+scene.add(light);
+scene.add(light.target);
+</pre>
+<p>注意，不仅 <code class="notranslate" translate="no">light</code> ，我们还把 <a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight#target"><code class="notranslate" translate="no">light.target</code></a> 也添加到了场景中。方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）的方向是从它的位置照向目标点的位置。</p>
+<p>下面代码是将目标点坐标属性添加到 <code class="notranslate" translate="no">dat.GUI</code>，使得我们可以控制目标位置</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+gui.add(light.target.position, 'x', -10, 10);
+gui.add(light.target.position, 'z', -10, 10);
+gui.add(light.target.position, 'y', 0, 10);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-directional.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-directional.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>目前有点难以观察。Three.js 提供了一些辅助对象，添加到场景中之后就可以显示出场景中的不可见对象（例如光照、相机等）。在这里我们使用 <a href="https://threejs.org/docs/#api/zh/helpers/DirectionalLightHelper"><code class="notranslate" translate="no">DirectionalLightHelper</code></a>，它会绘制一个方形的小平面代表方向光的位置，一条连接光源与目标点的直线，代表了光的方向。创建对象时，传入光源对象作为参数，然后添加到场景中，就可以呈现。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const helper = new THREE.DirectionalLightHelper(light);
+scene.add(helper);
+</pre>
+<p>我们顺便实现一下对光源位置和目标点位置的控制逻辑。我们创建一个辅助函数，使得可以通过 <code class="notranslate" translate="no">dat.GUI</code> 改变传入的 <a href="https://threejs.org/docs/#api/zh/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a> 类型对象的 <code class="notranslate" translate="no">x</code>，<code class="notranslate" translate="no">y</code>，和 <code class="notranslate" translate="no">z</code> 的值。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeXYZGUI(gui, vector3, name, onChangeFn) {
+  const folder = gui.addFolder(name);
+  folder.add(vector3, 'x', -10, 10).onChange(onChangeFn);
+  folder.add(vector3, 'y', 0, 10).onChange(onChangeFn);
+  folder.add(vector3, 'z', -10, 10).onChange(onChangeFn);
+  folder.open();
+}
+</pre>
+<p>注意，当辅助对象所表示的不可见对象有所改变的时候，我们必须调用辅助对象的 <code class="notranslate" translate="no">update</code> 方法来更新辅助对象本身的状态。因此我们传入一个 <code class="notranslate" translate="no">onChangeFn</code> 函数，每当 <code class="notranslate" translate="no">dat.GUI</code> 改变了某个值的时候，就会被调用。</p>
+<p>应用到光照位置与目标点位置的控制，就如下所示：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function updateLight() {
++  light.target.updateMatrixWorld();
++  helper.update();
++}
++updateLight();
+
+const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+
++makeXYZGUI(gui, light.position, 'position', updateLight);
++makeXYZGUI(gui, light.target.position, 'target', updateLight);
+</pre>
+<p>现在我们可以控制光源以及目标点位置了。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-directional-w-helper.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-directional-w-helper.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>旋转相机可以看得更清楚。方形的小平面代表了一个方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>），方向光表示的是来自一个方向上的光，并不是从某个点发射出来的，而是从一个无限大的平面内，发射出全部相互平行的光线。</p>
+<h2 id="-pointlight-">点光源（<a href="https://threejs.org/docs/#api/zh/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a>）</h2>
+<p>点光源（<a href="https://threejs.org/docs/#api/zh/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a>）表示的是从一个点朝各个方向发射出光线的一种光照效果。我们修改一下代码：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+-const light = new THREE.DirectionalLight(color, intensity);
++const light = new THREE.PointLight(color, intensity);
+light.position.set(0, 10, 0);
+-light.target.position.set(-5, 0, 0);
+scene.add(light);
+-scene.add(light.target);
+</pre>
+<p>同时添加一个 <a href="https://threejs.org/docs/#api/zh/helpers/PointLightHelper"><code class="notranslate" translate="no">PointLightHelper</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const helper = new THREE.DirectionalLightHelper(light);
++const helper = new THREE.PointLightHelper(light);
+scene.add(helper);
+</pre>
+<p>因为点光源没有 <code class="notranslate" translate="no">target</code> 属性，所以 <code class="notranslate" translate="no">onChange</code> 函数可以简化。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function updateLight() {
+-  light.target.updateMatrixWorld();
+  helper.update();
+}
+-updateLight();
+</pre>
+<p><a href="https://threejs.org/docs/#api/zh/helpers/PointLightHelper"><code class="notranslate" translate="no">PointLightHelper</code></a> 不是一个点，而是在光源的位置绘制了一个小小的线框宝石体来代表点光源。也可以使用其他形状来表示点光源，只要给点光源添加一个自定义的 <a href="https://threejs.org/docs/#api/zh/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> 子节点即可。</p>
+<p>点光源（<a href="https://threejs.org/docs/#api/zh/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a>）有额外的一个范围（<a href="https://threejs.org/docs/#api/zh/lights/PointLight#distance"><code class="notranslate" translate="no">distance</code></a>）属性。
+如果 <code class="notranslate" translate="no">distance</code> 设为 0，则光线可以照射到无限远处。如果大于 0，则只可以照射到指定的范围，光照强度在这个过程中逐渐衰减，在光源位置时，<code class="notranslate" translate="no">intensity</code> 是设定的大小，在距离光源 <code class="notranslate" translate="no">distance</code> 位置的时候，<code class="notranslate" translate="no">intensity</code> 为 0。</p>
+<p>下面是添加对 distance 参数控制的代码：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
++gui.add(light, 'distance', 0, 40).onChange(updateLight);
+
+makeXYZGUI(gui, light.position, 'position', updateLight);
+-makeXYZGUI(gui, light.target.position, 'target', updateLight);
+</pre>
+<p>效果如下：</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-point.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-point.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>注意 <code class="notranslate" translate="no">distance</code> &gt; 0 时光照强度的衰减现象。</p>
+<h2 id="-spotlight-">聚光灯（<a href="https://threejs.org/docs/#api/zh/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>）</h2>
+<p>聚光灯可以看成是一个点光源被一个圆锥体限制住了光照的范围。实际上有两个圆锥，内圆锥和外圆锥。光照强度在两个锥体之间从设定的强度递减到 0（具体可以看下方 <a href="https://threejs.org/docs/#api/zh/lights/SpotLight#penumbra"><code class="notranslate" translate="no">penumbra</code></a> 参数）。</p>
+<p>聚光灯（<a href="https://threejs.org/docs/#api/zh/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>）类似方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）一样需要一个目标点，光源的位置是圆锥的顶点，目标点处于圆锥的中轴线上。</p>
+<p>修改上面 <a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> 的代码如下：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+-const light = new THREE.DirectionalLight(color, intensity);
++const light = new THREE.SpotLight(color, intensity);
+scene.add(light);
+scene.add(light.target);
+
+-const helper = new THREE.DirectionalLightHelper(light);
++const helper = new THREE.SpotLightHelper(light);
+scene.add(helper);
+</pre>
+<p>聚光灯的圆锥顶部角度大小通过 <a href="https://threejs.org/docs/#api/zh/lights/SpotLight#angle"><code class="notranslate" translate="no">angle</code></a> 属性设置，以弧度作单位。所以我们用介绍 <a href="threejs-textures.html">纹理</a> 时用到的 <code class="notranslate" translate="no">DegRadHelper</code> 来控制。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
+</pre>
+<p>内圆锥是通过设置 <a href="https://threejs.org/docs/#api/zh/lights/SpotLight#penumbra"><code class="notranslate" translate="no">penumbra</code></a> 属性来定义的，属性值代表了内圆锥相对外圆锥大小变化的百分比。当 <code class="notranslate" translate="no">penumbra</code> 为 0 时，内圆锥大小与外圆锥大小一致；当 <code class="notranslate" translate="no">penumbra</code> 为 1 时，内圆锥大小为 0，光照强度从中轴线就开始往外递减；当 <code class="notranslate" translate="no">penumbra</code> 为 0.5 时，光照强度从外圆锥半径的中点处开始往外递减。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">gui.add(light, 'penumbra', 0, 1, 0.01);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-spot-w-helper.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-spot-w-helper.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>注意观察，当 <code class="notranslate" translate="no">penumbra</code> 为默认值 0 的时候，聚光灯会有非常清晰的边缘，而当把 <code class="notranslate" translate="no">penumbra</code> 向 1 调节的时候，边缘会开始模糊。</p>
+<p>示例中有点难以看到聚光灯的整个圆锥体，因为圆锥底部在平面下方。将 <code class="notranslate" translate="no">distance</code> 减小到 5 左右，就可以看到圆锥的底部。</p>
+<h2 id="-rectarealight-">矩形区域光（<a href="https://threejs.org/docs/#api/zh/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a>）</h2>
+<p>Three.js 中还有一种类型的光照，矩形区域光（<a href="https://threejs.org/docs/#api/zh/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a>）, 顾名思义，表示一个矩形区域的发射出来的光照，例如长条的日光灯或者天花板上磨砂玻璃透进来的自然光。</p>
+<p><a href="https://threejs.org/docs/#api/zh/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> 只能影响 <a href="https://threejs.org/docs/#api/zh/materials/MeshStandardMaterial"><code class="notranslate" translate="no">MeshStandardMaterial</code></a> 和 <a href="https://threejs.org/docs/#api/zh/materials/MeshPhysicalMaterial"><code class="notranslate" translate="no">MeshPhysicalMaterial</code></a>，所以我们把所有的材质都改为 <a href="https://threejs.org/docs/#api/zh/materials/MeshStandardMaterial"><code class="notranslate" translate="no">MeshStandardMaterial</code></a>。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  ...
+
+  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+-  const planeMat = new THREE.MeshPhongMaterial({
++  const planeMat = new THREE.MeshStandardMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+  });
+  const mesh = new THREE.Mesh(planeGeo, planeMat);
+  mesh.rotation.x = Math.PI * -.5;
+  scene.add(mesh);
+}
+{
+  const cubeSize = 4;
+  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+- const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
++ const cubeMat = new THREE.MeshStandardMaterial({color: '#8AC'});
+  const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
+  scene.add(mesh);
+}
+{
+  const sphereRadius = 3;
+  const sphereWidthDivisions = 32;
+  const sphereHeightDivisions = 16;
+  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+-  const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
++ const sphereMat = new THREE.MeshStandardMaterial({color: '#CA8'});
+  const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+  mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
+  scene.add(mesh);
+}
+</pre>
+<p>为了使用 <a href="https://threejs.org/docs/#api/zh/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a>，我们需要引入 three.js 的<code class="notranslate" translate="no">RectAreaLightUniformsLib</code> 模块，同时使用 <a href="https://threejs.org/docs/#api/zh/helpers/RectAreaLightHelper"><code class="notranslate" translate="no">RectAreaLightHelper</code></a> 来辅助查看灯光对象。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
++import {RectAreaLightUniformsLib} from './resources/threejs/r122/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from './resources/threejs/r122/examples/jsm/helpers/RectAreaLightHelper.js';
+</pre>
+<p>我们需要先调用 <code class="notranslate" translate="no">RectAreaLightUniformsLib.init</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas});
++  RectAreaLightUniformsLib.init();
+</pre>
+<p>如果忘了引入和使用 <code class="notranslate" translate="no">RectAreaLightUniformsLib</code>，光照还是可以显示，但是会看起来很奇怪（译者注：在示例的简单场景中没有发现区别），所以要确保有使用。</p>
+<p>然后我们可以创建光照了</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+*const intensity = 5;
++const width = 12;
++const height = 4;
+*const light = new THREE.RectAreaLight(color, intensity, width, height);
+light.position.set(0, 10, 0);
++light.rotation.x = THREE.MathUtils.degToRad(-90);
+scene.add(light);
+
+*const helper = new RectAreaLightHelper(light);
+*light.add(helper);
+</pre>
+<p>需要注意的是，与方向光（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）和聚光灯（<a href="https://threejs.org/docs/#api/zh/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>）不同，矩形光不是使用目标点（<code class="notranslate" translate="no">target</code>），而是使用自身的旋转角度来确定光照方向。另外，矩形光的辅助对象（<a href="https://threejs.org/docs/#api/zh/helpers/RectAreaLightHelper"><code class="notranslate" translate="no">RectAreaLightHelper</code></a>）应该添加为光照的子节点，而不是添加为场景的子节点。</p>
+<p>同时我们修改一下 GUI 代码，使我们可以旋转光源，调整 <code class="notranslate" translate="no">width</code> 和 <code class="notranslate" translate="no">height</code> 属性。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 10, 0.01);
+gui.add(light, 'width', 0, 20).onChange(updateLight);
+gui.add(light, 'height', 0, 20).onChange(updateLight);
+gui.add(new DegRadHelper(light.rotation, 'x'), 'value', -180, 180).name('x rotation').onChange(updateLight);
+gui.add(new DegRadHelper(light.rotation, 'y'), 'value', -180, 180).name('y rotation').onChange(updateLight);
+gui.add(new DegRadHelper(light.rotation, 'z'), 'value', -180, 180).name('z rotation').onChange(updateLight);
+
+makeXYZGUI(gui, light.position, 'position', updateLight);
+</pre>
+<p>场景如下所示：</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-rectarea.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-rectarea.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>关于光照，我们尚未提及的是 <a href="https://threejs.org/docs/#api/zh/renderers/WebGLRenderer"><code class="notranslate" translate="no">WebGLRenderer</code></a> 中有一个设置项 <code class="notranslate" translate="no">physicallyCorrectLights</code>。这个设置会影响（随着离光源的距离增加）光照如何减弱。这个设置会影响点光源（<a href="https://threejs.org/docs/#api/zh/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a>）和聚光灯（<a href="https://threejs.org/docs/#api/zh/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>），矩形区域光（<a href="https://threejs.org/docs/#api/zh/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a>）会自动应用这个特性。</p>
+<p>在设置光照时，基本思路是不要设置 <code class="notranslate" translate="no">distance</code> 来表现光照的衰减，也不要设置 <code class="notranslate" translate="no">intensity</code>。而是设置光照的 <a href="https://threejs.org/docs/#api/zh/lights/PointLight#power"><code class="notranslate" translate="no">power</code></a> 属性，以流明为单位，three.js 会进行物理计算，从而表现出接近真实的光照效果。在这种情况下 three.js 参与计算的长度单位是米，一个 60瓦 的灯泡大概是 800 流明强度。并且光源有一个 <a href="https://threejs.org/docs/#api/zh/lights/PointLight#decay"><code class="notranslate" translate="no">decay</code></a> 属性，为了模拟真实效果，应该被设置为 <code class="notranslate" translate="no">2</code>。</p>
+<p>下面让我们测试看看。</p>
+<p>首先开启 <code class="notranslate" translate="no">physicallyCorrectLights</code> 模式</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const renderer = new THREE.WebGLRenderer({canvas});
++renderer.physicallyCorrectLights = true;
+</pre>
+<p>然后我们设置光照的参数，<code class="notranslate" translate="no">power</code> 设置为 800 流明，<code class="notranslate" translate="no">decay</code> 设置为 2，<code class="notranslate" translate="no">distance</code> 设置为 <code class="notranslate" translate="no">Infinity</code>。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+const light = new THREE.PointLight(color, intensity);
+light.power = 800;
+light.decay = 2;
+light.distance = Infinity;
+</pre>
+<p>并且添加 gui 控制 <code class="notranslate" translate="no">power</code> 和 <code class="notranslate" translate="no">decay</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'decay', 0, 4, 0.01);
+gui.add(light, 'power', 0, 2000);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-point-physically-correct.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-point-physically-correct.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>需要注意，每添加一个光源到场景中，都会降低 three.js 渲染场景的速度，所以应该尽量使用最少的资源来实现想要的效果。</p>
+<p>接下来我们学习 three.js 中的 <a href="threejs-cameras.html">相机</a>。</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-lights.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +628,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -207,7 +642,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-scenegraph.html">场景图</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-materials.html">材质</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-textures.html">纹理</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-lights.html">Lights</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-lights.html">光照</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">Cameras</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
@@ -267,10 +702,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>有问题？ <a href="http://stackoverflow.com/questions/tagged/three.js">在 Stackoverflow 上提问</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 光照';
+            var disqus_title = 'Three.js 光照';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
