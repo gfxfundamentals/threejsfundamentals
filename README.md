@@ -21,7 +21,7 @@ article.
 A code word in a paragraph, as in
 
 ```md
-A `BoxBufferGeometry` makes a box.
+A `BoxGeometry` makes a box.
 ```
 
 Will get automatically turned into a link to the THREE.js docs
