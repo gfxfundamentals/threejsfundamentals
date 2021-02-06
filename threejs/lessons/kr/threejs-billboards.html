@@ -233,8 +233,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p><a href="threejs-canvas-textures.html">이전 글</a>에서는 <a href="https://threejs.org/docs/#api/en/textures/CanvasTexture"><code class="notranslate" translate="no">CanvasTexture</code></a>를 이용해 캐릭터에 이름표/명찰을 붙이는 법을 알아봤습니다. 때로는 이 이름표가 항상 카메라를 향하게 해야 할 경우도 있겠죠. Three.js의 <a href="https://threejs.org/docs/#api/en/objects/Sprite"><code class="notranslate" translate="no">Sprite</code></a>와 <a href="https://threejs.org/docs/#api/en/materials/SpriteMaterial"><code class="notranslate" translate="no">SpriteMaterial</code></a>을 사용하면 이걸 쉽게 구현할 수 있습니다.</p>
-<p><a href="threejs-canvas-textures.html">캔버스 텍스처에 관한 글</a>의 명찰 예제를 가져와 여기에 <a href="https://threejs.org/docs/#api/en/objects/Sprite"><code class="notranslate" translate="no">Sprite</code></a>와 <a href="https://threejs.org/docs/#api/en/materials/SpriteMaterial"><code class="notranslate" translate="no">SpriteMaterial</code></a>을 사용해봅시다.</p>
+      <p><a href="threejs-canvas-textures.html">이전 글</a>에서는 <a href="https://threejs.org/docs/#api/ko/textures/CanvasTexture"><code class="notranslate" translate="no">CanvasTexture</code></a>를 이용해 캐릭터에 이름표/명찰을 붙이는 법을 알아봤습니다. 때로는 이 이름표가 항상 카메라를 향하게 해야 할 경우도 있겠죠. Three.js의 <a href="https://threejs.org/docs/#api/ko/objects/Sprite"><code class="notranslate" translate="no">Sprite</code></a>와 <a href="https://threejs.org/docs/#api/ko/materials/SpriteMaterial"><code class="notranslate" translate="no">SpriteMaterial</code></a>을 사용하면 이걸 쉽게 구현할 수 있습니다.</p>
+<p><a href="threejs-canvas-textures.html">캔버스 텍스처에 관한 글</a>의 명찰 예제를 가져와 여기에 <a href="https://threejs.org/docs/#api/ko/objects/Sprite"><code class="notranslate" translate="no">Sprite</code></a>와 <a href="https://threejs.org/docs/#api/ko/materials/SpriteMaterial"><code class="notranslate" translate="no">SpriteMaterial</code></a>을 사용해봅시다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makePerson(x, labelWidth, size, name, color) {
   const canvas = makeLabelCanvas(labelWidth, size, name);
   const texture = new THREE.CanvasTexture(canvas);
@@ -308,19 +308,19 @@ label.scale.y = canvas.height * labelBaseScale;
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const trunkRadius = .2;
 const trunkHeight = 1;
 const trunkRadialSegments = 12;
-const trunkGeometry = new THREE.CylinderBufferGeometry(
+const trunkGeometry = new THREE.CylinderGeometry(
     trunkRadius, trunkRadius, trunkHeight, trunkRadialSegments);
 
 const topRadius = trunkRadius * 4;
 const topHeight = trunkHeight * 2;
 const topSegments = 12;
-const topGeometry = new THREE.ConeBufferGeometry(
+const topGeometry = new THREE.ConeGeometry(
     topRadius, topHeight, topSegments);
 
 const trunkMaterial = new THREE.MeshPhongMaterial({ color: 'brown' });
 const topMaterial = new THREE.MeshPhongMaterial({ color: 'green' });
 </pre>
-<p>다음으로 함수를 하나 만듭니다. 이 함수는 나무 줄기 <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>와 윗부분 <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>를 만들고 이 둘을 <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>의 자식으로 넣는 역할입니다.</p>
+<p>다음으로 함수를 하나 만듭니다. 이 함수는 나무 줄기 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>와 윗부분 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>를 만들고 이 둘을 <a href="https://threejs.org/docs/#api/ko/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a>의 자식으로 넣는 역할입니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeTree(x, z) {
   const root = new THREE.Object3D();
   const trunk = new THREE.Mesh(trunkGeometry, trunkMaterial);
@@ -348,7 +348,7 @@ const topMaterial = new THREE.MeshPhongMaterial({ color: 'green' });
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 땅을 추가합니다.
 {
   const size = 400;
-  const geometry = new THREE.PlaneBufferGeometry(size, size);
+  const geometry = new THREE.PlaneGeometry(size, size);
   const material = new THREE.MeshPhongMaterial({ color: 'gray' });
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = Math.PI * -0.5;
@@ -506,7 +506,6 @@ for (let z = -50; z &lt;= 50; z += 10) {
 <li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
 <li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
         </ul>
   <li>팁</li>

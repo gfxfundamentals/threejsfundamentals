@@ -262,7 +262,7 @@ ES6的语法。<a href="threejs-prerequisites.html">点击这里查看你需要�
 </li>
 <li><p><a href="https://threejs.org/docs/#api/zh/objects/Mesh">网格(<code class="notranslate" translate="no">Mesh</code>)</a>对象可以理解为用一种特定的<a href="https://threejs.org/docs/#api/zh/materials/Material">材质(<code class="notranslate" translate="no">Material</code>)</a>来绘制的一个特定的<a href="https://threejs.org/docs/#api/zh/core/Geometry">几何体(<code class="notranslate" translate="no">Geometry</code>)</a>。<a href="https://threejs.org/docs/#api/zh/materials/Material">材质(<code class="notranslate" translate="no">Material</code>)</a>和<a href="https://threejs.org/docs/#api/zh/core/Geometry">几何体(<code class="notranslate" translate="no">Geometry</code>)</a>可以被多个<a href="https://threejs.org/docs/#api/zh/objects/Mesh">网格(<code class="notranslate" translate="no">Mesh</code>)</a>对象使用。比如在不同的位置画两个蓝色立方体，我们会需要两个<a href="https://threejs.org/docs/#api/zh/objects/Mesh">网格(<code class="notranslate" translate="no">Mesh</code>)</a>对象来代表每一个立方体的位置和方向。但只需一个<a href="https://threejs.org/docs/#api/zh/core/Geometry">几何体(<code class="notranslate" translate="no">Geometry</code>)</a>来存放立方体的顶点数据，和一种<a href="https://threejs.org/docs/#api/zh/materials/Material">材质(<code class="notranslate" translate="no">Material</code>)</a>来定义立方体的颜色为蓝色就可以了。两个<a href="https://threejs.org/docs/#api/zh/objects/Mesh">网格(<code class="notranslate" translate="no">Mesh</code>)</a>对象都引用了相同的<a href="https://threejs.org/docs/#api/zh/core/Geometry">几何体(<code class="notranslate" translate="no">Geometry</code>)</a>和<a href="https://threejs.org/docs/#api/zh/materials/Material">材质(<code class="notranslate" translate="no">Material</code>)</a>。</p>
 </li>
-<li><p><a href="https://threejs.org/docs/#api/zh/core/Geometry">几何体(<code class="notranslate" translate="no">Geometry</code>)</a>对象顾名思义代表一些几何体，如球体、立方体、平面、狗、猫、人、树、建筑等物体的顶点信息。Three.js内置了许多<a href="threejs-primitives.html">基本几何体</a> 。你也可以<a href="threejs-custom-geometry.html">创建自定义几何体</a>或<a href="threejs-load-obj.html">从文件中加载几何体</a>。</p>
+<li><p><a href="https://threejs.org/docs/#api/zh/core/Geometry">几何体(<code class="notranslate" translate="no">Geometry</code>)</a>对象顾名思义代表一些几何体，如球体、立方体、平面、狗、猫、人、树、建筑等物体的顶点信息。Three.js内置了许多<a href="threejs-primitives.html">基本几何体</a> 。你也可以<a href="threejs-custom-buffergeometry.html">创建自定义几何体</a>或<a href="threejs-load-obj.html">从文件中加载几何体</a>。</p>
 </li>
 <li><p><a href="https://threejs.org/docs/#api/zh/materials/Material">材质(<code class="notranslate" translate="no">Material</code>)</a>对象代表<a href="threejs-materials.html">绘制几何体的表面属性</a>，包括使用的颜色，和光亮程度。一个<a href="https://threejs.org/docs/#api/zh/materials/Material">材质(<code class="notranslate" translate="no">Material</code>)</a>可以引用一个或多个<a href="https://threejs.org/docs/#api/zh/textures/Texture">纹理(<code class="notranslate" translate="no">Texture</code>)</a>，这些纹理可以用来，打个比方，将图像包裹到几何体的表面。</p>
 </li>
@@ -276,7 +276,7 @@ ES6的语法。<a href="threejs-prerequisites.html">点击这里查看你需要�
 
 <p>首先是加载three.js</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 &lt;/script&gt;
 </pre>
 <p>把<code class="notranslate" translate="no">type="module"</code>放到script标签中很重要。这可以让我们使用<code class="notranslate" translate="no">import</code>关键字加载three.js。还有其他的方法可以加载three.js，但是自r106开始，使用模块是最推荐的方式。模块的优点是可以很方便地导入需要的其他模块。这样我们就不用再手动引入它们所依赖的其他文件了。</p>
@@ -287,7 +287,7 @@ import * as THREE from './resources/threejs/r122/build/three.module.js';
 </pre>
 <p>Three.js需要使用这个canvas标签来绘制，所以我们要先获取它然后传给three.js。</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -460,7 +460,7 @@ requestAnimationFrame(render);
 在一个脚本中，es6模块可以通过<code class="notranslate" translate="no">import</code>关键字加载或者通过<code class="notranslate" translate="no">&lt;script type="module"&gt;</code>行内标签。这有一个两种方法都用的例子。
 </p>
 <pre class="prettyprint">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 ...
 
@@ -545,7 +545,6 @@ Three.js的政策是不担心向后的兼容性。他们希望你使用特定的
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>技巧</li>

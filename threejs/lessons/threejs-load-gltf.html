@@ -314,10 +314,10 @@ mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) =&gt; {
 </pre>
 <p>I kept the auto framing code as before</p>
 <p>We also need to include the <a href="https://threejs.org/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a> and we can get rid of the <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>.</p>
-<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from './resources/threejs/r122/examples/jsm/loaders/LoaderSupport.js';
--import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
--import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
-+import {GLTFLoader} from './resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from './resources/threejs/r125/examples/jsm/loaders/LoaderSupport.js';
+-import {OBJLoader} from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
+-import {MTLLoader} from './resources/threejs/r125/examples/jsm/loaders/MTLLoader.js';
++import {GLTFLoader} from './resources/threejs/r125/examples/jsm/loaders/GLTFLoader.js';
 </pre>
 <p>And running that we get</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
@@ -930,7 +930,6 @@ whatever tool we're using to create the data into our app.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

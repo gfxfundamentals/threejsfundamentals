@@ -240,7 +240,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Вы создадите модель, а затем экспортируете в <a href="threejs-load-gltf.html">gLTF</a> или <a href="threejs-load-obj.html">.obj</a> и загрузите их. 
 Какой бы вариант вы ни выбрали, рассчитывайте потратить 2 или 3 недели на изучение соответствующих учебных пособий, поскольку все они имеют полезную кривую обучения. </p>
 <p>Тем не менее, бывают случаи, когда мы можем захотеть сгенерировать нашу собственную трехмерную геометрию в коде вместо использования пакета моделирования. </p>
-<p>Сначала давайте просто сделаем куб. Хотя Three.js уже предоставляет нам <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> и <a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry"><code class="notranslate" translate="no">BoxBufferGeometry</code></a>, куб легко понять, поэтому давайте начнем с него. </p>
+<p>Сначала давайте просто сделаем куб. Хотя Three.js уже предоставляет нам <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> и <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>, куб легко понять, поэтому давайте начнем с него. </p>
 <p>Есть два способа сделать пользовательскую геометрию в THREE.js. Один с классом <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>, другой - <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. У каждого есть свои преимущества. <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>, возможно, проще в использовании, но медленнее и использует больше памяти. Для нескольких тысяч треугольников это отличный выбор, но для десятков тысяч треугольников может быть лучше использовать <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
 <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>, возможно, сложнее в использовании, но использует меньше памяти и работает быстрее. Если вы хотите сгенерировать более 10000 треугольников, подумайте об использовании <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
 <p>Заметьте, когда я говорю, что <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но отрисовывается она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> против <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
@@ -557,8 +557,8 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
 <ul>
 <li>добавим <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a></li>
 </ul>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // the canvas default
@@ -629,7 +629,6 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
 <li><a href="/threejs/lessons/ru/threejs-fog.html">Туман</a></li>
 <li><a href="/threejs/lessons/ru/threejs-rendertargets.html">Цели рендеринга</a></li>
-<li><a href="/threejs/lessons/ru/threejs-custom-geometry.html">Пользовательская Geometry</a></li>
 <li><a href="/threejs/lessons/ru/threejs-custom-buffergeometry.html">Пользовательская BufferGeometry</a></li>
         </ul>
   <li>Советы</li>

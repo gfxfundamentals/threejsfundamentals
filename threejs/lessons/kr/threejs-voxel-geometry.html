@@ -255,7 +255,7 @@ const cell = new Uint8Array(cellSize * cellSize * cellSize);
 }
 </pre>
 <p>다음으로 모든 블럭을 돌면서 0이 아닐 경우 정육면체를 새로 만듭니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshPhongMaterial({ color: 'green' });
 
 for (let y = 0; y &lt; cellSize; ++y) {
@@ -1249,7 +1249,6 @@ function updateCellGeometry(x, y, z) {
 <li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
 <li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
         </ul>
   <li>팁</li>

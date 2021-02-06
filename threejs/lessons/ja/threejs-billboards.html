@@ -310,13 +310,13 @@ label.scale.y = canvas.height * labelBaseScale;
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const trunkRadius = .2;
 const trunkHeight = 1;
 const trunkRadialSegments = 12;
-const trunkGeometry = new THREE.CylinderBufferGeometry(
+const trunkGeometry = new THREE.CylinderGeometry(
     trunkRadius, trunkRadius, trunkHeight, trunkRadialSegments);
 
 const topRadius = trunkRadius * 4;
 const topHeight = trunkHeight * 2;
 const topSegments = 12;
-const topGeometry = new THREE.ConeBufferGeometry(
+const topGeometry = new THREE.ConeGeometry(
     topRadius, topHeight, topSegments);
 
 const trunkMaterial = new THREE.MeshPhongMaterial({color: 'brown'});
@@ -350,7 +350,7 @@ const topMaterial = new THREE.MeshPhongMaterial({color: 'green'});
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// add ground
 {
   const size = 400;
-  const geometry = new THREE.PlaneBufferGeometry(size, size);
+  const geometry = new THREE.PlaneGeometry(size, size);
   const material = new THREE.MeshPhongMaterial({color: 'gray'});
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = Math.PI * -0.5;
@@ -506,7 +506,6 @@ for (let z = -50; z &lt;= 50; z += 10) {
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

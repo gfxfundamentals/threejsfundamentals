@@ -273,7 +273,7 @@ three.jsで利用できる解決策も含め様々な解決策がありますが
   const repeats = planeSize / 2;
   texture.repeat.set(repeats, repeats);
 
-  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+  const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
   const planeMat = new THREE.MeshBasicMaterial({
     map: texture,
     side: THREE.DoubleSide,
@@ -297,11 +297,11 @@ three.jsで利用できる解決策も含め様々な解決策がありますが
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereRadius = 1;
 const sphereWidthDivisions = 32;
 const sphereHeightDivisions = 16;
-const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 </pre>
 <p>フェイクシャドウのための平面のジオメトリも作ります。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 1;
-const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 </pre>
 <p>そして、たくさんの球体を作ります。
 各球体に対して <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a> を作成し <code class="notranslate" translate="no">base</code> に格納しシャドウの平面と球体メッシュの両方をbaseの子にします。
@@ -593,7 +593,7 @@ also blur the result
 また、箱の底が床より少し下になるように箱の位置を設定し、床と箱がズレないようにします。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const cubeSize = 30;
-  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({
     color: '#CCC',
     side: THREE.BackSide,
@@ -658,7 +658,6 @@ self shadow, shadow acne
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

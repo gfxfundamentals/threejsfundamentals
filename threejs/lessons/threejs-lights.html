@@ -252,8 +252,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 or <em>orbit</em> the camera around some point. The <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> are
 an optional feature of three.js so first we need to include them
 in our page</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 </pre>
 <p>Then we can use them. We pass the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> a camera to
 control and the DOM element to use to get input events</p>
@@ -292,7 +292,7 @@ texture.repeat.set(repeats, repeats);
 <p>We then make a plane geometry, a material for the plane, and a mesh
 to insert it in the scene. Planes default to being in the XY plane
 but the ground is in the XZ plane so we rotate it.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 const planeMat = new THREE.MeshPhongMaterial({
   map: texture,
   side: THREE.DoubleSide,
@@ -304,7 +304,7 @@ scene.add(mesh);
 <p>Let's add a cube and a sphere so we have 3 things to light including the plane</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const cubeSize = 4;
-  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
   const mesh = new THREE.Mesh(cubeGeo, cubeMat);
   mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
@@ -314,7 +314,7 @@ scene.add(mesh);
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
-  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
   const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
   const mesh = new THREE.Mesh(sphereGeo, sphereMat);
   mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
@@ -591,7 +591,7 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
 <a href="https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial"><code class="notranslate" translate="no">MeshPhysicalMaterial</code></a> so let's change all our materials to <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial"><code class="notranslate" translate="no">MeshStandardMaterial</code></a></p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">  ...
 
-  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+  const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 -  const planeMat = new THREE.MeshPhongMaterial({
 +  const planeMat = new THREE.MeshStandardMaterial({
     map: texture,
@@ -603,7 +603,7 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
 }
 {
   const cubeSize = 4;
-  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
 - const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
 + const cubeMat = new THREE.MeshStandardMaterial({color: '#8AC'});
   const mesh = new THREE.Mesh(cubeGeo, cubeMat);
@@ -614,7 +614,7 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
-  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 -  const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
 + const sphereMat = new THREE.MeshStandardMaterial({color: '#CA8'});
   const mesh = new THREE.Mesh(sphereGeo, sphereMat);
@@ -624,9 +624,9 @@ fluorescent light or maybe a frosted sky light in a ceiling.</p>
 </pre>
 <p>To use the <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> we need to include some extra three.js optional data and we'll
 include the <a href="https://threejs.org/docs/#api/en/helpers/RectAreaLightHelper"><code class="notranslate" translate="no">RectAreaLightHelper</code></a> to help us visualize the light</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-+import {RectAreaLightUniformsLib} from './resources/threejs/r122/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import {RectAreaLightHelper} from './resources/threejs/r122/examples/jsm/helpers/RectAreaLightHelper.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import {RectAreaLightUniformsLib} from './resources/threejs/r125/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from './resources/threejs/r125/examples/jsm/helpers/RectAreaLightHelper.js';
 </pre>
 <p>and we need to call <code class="notranslate" translate="no">RectAreaLightUniformsLib.init</code></p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
@@ -746,7 +746,6 @@ possible to achieve your goals.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

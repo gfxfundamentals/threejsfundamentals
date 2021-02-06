@@ -297,7 +297,7 @@ the end of <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
  a sphere, cube, plane, dog, cat, human, tree, building, etc...
  Three.js provides many kinds of built in
  <a href="threejs-primitives.html">geometry primitives</a>. You can also
- <a href="threejs-custom-geometry.html">create custom geometry</a> as well as
+ <a href="threejs-custom-buffergeometry.html">create custom geometry</a> as well as
  <a href="threejs-load-obj.html">load geometry from files</a>.</p>
 </li>
 <li><p><a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> objects represent
@@ -318,7 +318,7 @@ that looks like this</p>
 
 <p>First let's load three.js</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 &lt;/script&gt;
 </pre>
 <p>It's important you put <code class="notranslate" translate="no">type="module"</code> in the script tag. This enables
@@ -334,7 +334,7 @@ they are dependent on.</p>
 </pre>
 <p>We will ask three.js to draw into that canvas so we need to look it up.</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -574,7 +574,7 @@ or inline via a <code class="notranslate" translate="no">&lt;script type="module
 both
 </p>
 <pre class="prettyprint">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 ...
 
@@ -672,7 +672,6 @@ to support legacy browsers look into a <a href="https://babeljs.io">transpiler</
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

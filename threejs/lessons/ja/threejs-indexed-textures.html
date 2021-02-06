@@ -277,7 +277,7 @@ pickingScene.background = new THREE.Color(0);
 <p>そして、ピッキングシーンに圧縮ステクスチャの地球儀の追加が必要です。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const loader = new THREE.TextureLoader();
-  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const geometry = new THREE.SphereGeometry(1, 64, 32);
 
 +  const indexTexture = loader.load('resources/data/world/country-index-texture.png', render);
 +  indexTexture.minFilter = THREE.NearestFilter;
@@ -531,7 +531,7 @@ void main() {
 <p><a href="threejs-optimize-lots-of-objects-animated.html">前にやった</a>ように検索文字列と置換文字列の配列を作り、<a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a> でシェーダーに適用します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const loader = new THREE.TextureLoader();
-  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const geometry = new THREE.SphereGeometry(1, 64, 32);
 
   const indexTexture = loader.load('resources/data/world/country-index-texture.png', render);
   indexTexture.minFilter = THREE.NearestFilter;
@@ -610,7 +610,7 @@ paletteTexture.needsUpdate = true;
 </pre>
 <p>パレットテクスチャを <code class="notranslate" translate="no">palette</code> 配列の内容で更新したい時は、常に  <code class="notranslate" translate="no">paletteTexture.needsUpdate</code> を <code class="notranslate" translate="no">true</code> にする必要があります。</p>
 <p>これはマテリアルのユニフォームに設定する必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereGeometry(1, 64, 32);
 const material = new THREE.MeshBasicMaterial({map: texture});
 material.onBeforeCompile = function(shader) {
   fragmentShaderReplacements.forEach((rep) =&gt; {
@@ -840,7 +840,6 @@ canvas.addEventListener('touchmove', (event) =&gt; {
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

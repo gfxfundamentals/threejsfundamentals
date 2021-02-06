@@ -260,11 +260,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <p>자 이제 한 번 화면에 띄워보죠!</p>
 <p><a href="threejs-lights.html">조명에 관한 글</a>에서 썼던 예제를 가져와 이 예제를
-반구광(hemisphere light) 예제와 합칩니다. 그러면 장면에는 <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>
-하나, <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> 하나가 있는 셈입니다. 또 GUI 관련 코드와 정육면체,
+반구광(hemisphere light) 예제와 합칩니다. 그러면 장면에는 <a href="https://threejs.org/docs/#api/ko/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>
+하나, <a href="https://threejs.org/docs/#api/ko/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> 하나가 있는 셈입니다. 또 GUI 관련 코드와 정육면체,
 구체 관련 코드도 지웁니다.</p>
 <p>다음으로 먼저 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> 모듈을 스크립트에 로드합니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { OBJLoader } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { OBJLoader } from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
 </pre>
 <p><a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>의 인스턴스를 생성한 뒤 .OBJ 파일의 경로와 콜백 함수를 넘겨
 <code class="notranslate" translate="no">load</code> 메서드를 실행합니다. 그리고 콜백 함수에서 불러온 모델을 장면에
@@ -341,10 +341,10 @@ map_Ns windmill_001_base_SPEC.jpg
 
 <p>이제 .MTL 파일에서 사용할 텍스처를 생성했으니 .MTL 파일을 불러오도록 합시다.</p>
 <p><a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a> 모듈을 불러옵니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader } from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
-+import { MTLLoader } from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import { OrbitControls } from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
+import { OBJLoader } from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
++import { MTLLoader } from './resources/threejs/r125/examples/jsm/loaders/MTLLoader.js';
 </pre>
 <p></p><div class="warning">Sorry, the translation of this area is out of date. <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/kr/threejs-load-obj.md">Please consider helping to fix it</a>.</div><p></p>
 <p>우선 .MTL 파일을 불러와 <code class="notranslate" translate="no">MtlObjBridge</code>로 재질을 만듭니다. 그리고 <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>
@@ -822,7 +822,6 @@ illum 2
 <li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
 <li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
         </ul>
   <li>팁</li>

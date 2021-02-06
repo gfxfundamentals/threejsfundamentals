@@ -460,7 +460,7 @@ the split of our previous <code class="notranslate" translate="no">offscreencanv
 copy all of <code class="notranslate" translate="no">offscreencanvas-cubes.js</code> to <code class="notranslate" translate="no">shared-cube.js</code>. Then
 we rename <code class="notranslate" translate="no">main</code> to <code class="notranslate" translate="no">init</code> since we already have a <code class="notranslate" translate="no">main</code> in our
 HTML file and we need to export <code class="notranslate" translate="no">init</code> and <code class="notranslate" translate="no">state</code></p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/threejs/r122/build/three.module.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 -const state = {
 +export const state = {
@@ -784,7 +784,7 @@ The OrbitControls take an <code class="notranslate" translate="no">HTMLElement</
 of the DOM events they use. Maybe we could pass in our own
 object that has the same API surface as a DOM element. 
 We only need to support the features the OrbitControls need.</p>
-<p>Digging through the <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r122/examples/js/controls/OrbitControls.js">OrbitControls source code</a>
+<p>Digging through the <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r125/examples/js/controls/OrbitControls.js">OrbitControls source code</a>
 it looks like we need to handle the following events.</p>
 <ul>
 <li>contextmenu</li>
@@ -811,7 +811,7 @@ events and pass them on using events that have the same structure
 as the original DOM events so the OrbitControls won't be able to
 tell the difference.</p>
 <p>Here's the code for the worker part.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EventDispatcher} from './resources/threejs/r122/build/three.module.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EventDispatcher} from './resources/threejs/r125/build/three.module.js';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -885,8 +885,8 @@ self.onmessage = function(e) {
 };
 </pre>
 <p>In our shared three.js code we need to import the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> and set them up.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/threejs/r122/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/threejs/r125/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 
 export function init(data) {
 -  const {canvas} = data;
@@ -1308,7 +1308,6 @@ useful examples of working with three.js, OffscreenCanvas and web workers.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

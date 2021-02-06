@@ -357,7 +357,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 </pre>
 <p>次にマウスをクリックするたびに2秒間のランダムな方向に移動するメッシュを作成する簡単な例を作ってみましょう。<a href="threejs-responsive.html">レスポンシブデザイン</a>の記事から例を紹介します。</p>
 <p>マウスをクリックするたびに新しい <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> を追加するコードは以下の通りです。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereBufferGeometry();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereGeometry();
 const material = new THREE.MeshBasicMaterial({color: 'red'});
 
 const things = [];
@@ -620,7 +620,6 @@ IMOを無視するよりも、それらのエラーを見つける方が良い�
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

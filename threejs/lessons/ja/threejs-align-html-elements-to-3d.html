@@ -239,7 +239,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 メリットとデメリットを持つ多くの方法があります。</p>
 <ul>
 <li><p>3Dテキストを使用する</p>
-<p><a href="threejs-primitives.html">プリミティブの記事</a>を見ると <a href="https://threejs.org/docs/#api/en/geometries/TextBufferGeometry"><code class="notranslate" translate="no">TextBufferGeometry</code></a> があり、3Dテキストが作れます。
+<p><a href="threejs-primitives.html">プリミティブの記事</a>を見ると <a href="https://threejs.org/docs/#api/en/geometries/TextGeometry"><code class="notranslate" translate="no">TextGeometry</code></a> があり、3Dテキストが作れます。
 ロゴを飛ばすには便利ですが、統計や情報、ラベル付けなどにはあまり便利でないかもしれません。</p>
 </li>
 <li><p>テキストが描かれたテクスチャを使用する</p>
@@ -260,8 +260,8 @@ HTMLは複数の要素を持てます。
 いくつかのプリミティブで3Dシーンを作り、それぞれのプリミティブにラベルを付けます。
 <a href="threejs-responsive.html">レスポンシブの記事</a>の例を使います。</p>
 <p><a href="threejs-lights.html">ライティングの記事</a>のように <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を追加します。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const controls = new OrbitControls(camera, canvas);
 controls.target.set(0, 0, 0);
@@ -471,7 +471,7 @@ const viewProjection = new THREE.Matrix4();
 // before checking
 camera.updateMatrix();
 camera.updateMatrixWorld();
-camera.matrixWorldInverse.getInverse(camera.matrixWorld);
+camera.matrixWorldInverse.copy(camera.matrixWorld).invert();
 
 ...
 
@@ -576,7 +576,7 @@ Googleマップのような地球儀を描いて、国名のラベルを貼っ�
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const loader = new THREE.TextureLoader();
   const texture = loader.load('resources/data/world/country-outlines-4k.png', render);
-  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const geometry = new THREE.SphereGeometry(1, 64, 32);
   const material = new THREE.MeshBasicMaterial({map: texture});
   scene.add(new THREE.Mesh(geometry, material));
 }
@@ -838,8 +838,8 @@ for (const countryInfo of countryInfos) {
 </pre>
 <p>私にはこの設定のための良い値が何か分からないです。
 値を操作できるようにGUIを追加します。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const settings = {
@@ -925,7 +925,6 @@ Googleマップの開発者は、どのラベルを表示するかを決定し�
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

@@ -314,13 +314,13 @@ all the trees will share</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const trunkRadius = .2;
 const trunkHeight = 1;
 const trunkRadialSegments = 12;
-const trunkGeometry = new THREE.CylinderBufferGeometry(
+const trunkGeometry = new THREE.CylinderGeometry(
     trunkRadius, trunkRadius, trunkHeight, trunkRadialSegments);
 
 const topRadius = trunkRadius * 4;
 const topHeight = trunkHeight * 2;
 const topSegments = 12;
-const topGeometry = new THREE.ConeBufferGeometry(
+const topGeometry = new THREE.ConeGeometry(
     topRadius, topHeight, topSegments);
 
 const trunkMaterial = new THREE.MeshPhongMaterial({color: 'brown'});
@@ -355,7 +355,7 @@ of a tree and parents both to an <a href="https://threejs.org/docs/#api/en/core/
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// add ground
 {
   const size = 400;
-  const geometry = new THREE.PlaneBufferGeometry(size, size);
+  const geometry = new THREE.PlaneGeometry(size, size);
   const material = new THREE.MeshPhongMaterial({color: 'gray'});
   const mesh = new THREE.Mesh(geometry, material);
   mesh.rotation.x = Math.PI * -0.5;
@@ -545,7 +545,6 @@ gave you some ideas and suggested some solutions if you decide to use them.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

@@ -21,8 +21,8 @@
     <canvas id="c"></canvas>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -58,13 +58,13 @@ function main() {
   const trunkRadius = .2;
   const trunkHeight = 1;
   const trunkRadialSegments = 12;
-  const trunkGeometry = new THREE.CylinderBufferGeometry(
+  const trunkGeometry = new THREE.CylinderGeometry(
       trunkRadius, trunkRadius, trunkHeight, trunkRadialSegments);
 
   const topRadius = trunkRadius * 4;
   const topHeight = trunkHeight * 2;
   const topSegments = 12;
-  const topGeometry = new THREE.ConeBufferGeometry(
+  const topGeometry = new THREE.ConeGeometry(
       topRadius, topHeight, topSegments);
 
   const trunkMaterial = new THREE.MeshPhongMaterial({color: 'brown'});
@@ -95,7 +95,7 @@ function main() {
   // add ground
   {
     const size = 400;
-    const geometry = new THREE.PlaneBufferGeometry(size, size);
+    const geometry = new THREE.PlaneGeometry(size, size);
     const material = new THREE.MeshPhongMaterial({color: 'gray'});
     const mesh = new THREE.Mesh(geometry, material);
     mesh.rotation.x = Math.PI * -0.5;

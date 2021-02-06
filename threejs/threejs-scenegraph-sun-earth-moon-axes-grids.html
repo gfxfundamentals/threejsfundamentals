@@ -47,7 +47,7 @@
     <div id="ui"></div>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 import {GUI} from '../3rdparty/dat.gui.module.js';
 
 function main() {
@@ -78,7 +78,7 @@ function main() {
   const radius = 1;
   const widthSegments = 6;
   const heightSegments = 6;
-  const sphereGeometry = new THREE.SphereBufferGeometry(
+  const sphereGeometry = new THREE.SphereGeometry(
       radius, widthSegments, heightSegments);
 
   const solarSystem = new THREE.Object3D();

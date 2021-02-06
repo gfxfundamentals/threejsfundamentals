@@ -308,10 +308,10 @@ mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) =&gt; {
 </pre>
 <p>自動フレーミングのコードは以前のままです。</p>
 <p>また <a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a> を取り除き <a href="https://threejs.org/docs/#examples/loaders/GLTFLoader"><code class="notranslate" translate="no">GLTFLoader</code></a> を含める必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from './resources/threejs/r122/examples/jsm/loaders/LoaderSupport.js';
--import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
--import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
-+import {GLTFLoader} from './resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">-import {LoaderSupport} from './resources/threejs/r125/examples/jsm/loaders/LoaderSupport.js';
+-import {OBJLoader} from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
+-import {MTLLoader} from './resources/threejs/r125/examples/jsm/loaders/MTLLoader.js';
++import {GLTFLoader} from './resources/threejs/r125/examples/jsm/loaders/GLTFLoader.js';
 </pre>
 <p>実行すると以下になりました。</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
@@ -866,7 +866,6 @@ GLTFファイルはただのJSONファイルなので簡単に中身を見れま
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

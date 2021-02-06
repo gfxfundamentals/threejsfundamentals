@@ -406,7 +406,7 @@ position that it will be drawn before the <code class="notranslate" translate="n
 We'll <a href="threejs-textures.html">add a texture</a> to each plane.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeWidth = 1;
 const planeHeight = 1;
-const geometry = new THREE.PlaneBufferGeometry(planeWidth, planeHeight);
+const geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
 
 const loader = new THREE.TextureLoader();
 
@@ -474,7 +474,7 @@ so that there really is no intersection.</p>
 </pre>
 <p>How you accomplish that is up to you. If I was using modeling package like
 <a href="https://blender.org">Blender</a> I'd probably do this manually by adjusting
-texture coordinates. Here though we're using <a href="https://threejs.org/docs/#api/en/geometries/PlaneBufferGeometry"><code class="notranslate" translate="no">PlaneBufferGeometry</code></a> which by
+texture coordinates. Here though we're using <a href="https://threejs.org/docs/#api/en/geometries/PlaneGeometry"><code class="notranslate" translate="no">PlaneGeometry</code></a> which by
 default stretches the texture across the plane. Like we <a href="threejs-textures.html">covered
 before</a> By setting the <a href="https://threejs.org/docs/#api/en/textures/Texture#repeat"><code class="notranslate" translate="no">texture.repeat</code></a>
 and <a href="https://threejs.org/docs/#api/en/textures/Texture#offset"><code class="notranslate" translate="no">texture.offset</code></a> we can scale and move the texture to get
@@ -568,8 +568,8 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 </pre>
 <p>and of course we need to include dat.gui</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <p>and here's the results</p>
@@ -626,7 +626,6 @@ sort the windows and draw them in the correct order.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

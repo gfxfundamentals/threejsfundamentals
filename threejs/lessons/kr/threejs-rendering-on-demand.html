@@ -253,8 +253,8 @@ requestAnimationFrame(render);
 <p><a href="threejs-responsive.html">반응형 디자인에 관한 글</a>에서 썼던 예제를 수정해
 필요에 따른 렌더링을 구현해봅시다.</p>
 <p>먼저 뭔가 변화를 일으킬 수 있는 요소가 필요하니 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>를 추가합니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import { OrbitControls } from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 
 ...
 
@@ -376,8 +376,8 @@ render();
 
 <p></p>
 <p>간단한 dat.GUI를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import { OrbitControls } from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 +import { GUI } from '../3rdparty/dat.gui.module.js';
 </pre>
 <p>먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. <a href="threejs-lights.html">조명에 관한 글</a>에서
@@ -452,7 +452,6 @@ Three.js를 사용할 때는 이렇게 렌더링 루프를 제어할 일이 없�
 <li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
 <li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
         </ul>
   <li>팁</li>

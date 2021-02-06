@@ -529,10 +529,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 но поскольку оригинальный глобус webgl использует
 <a href="https://github.com/tweenjs/tween.js/">библиотеку анимации</a> давайте используем тот же самый здесь.</p>
 <p>Нам нужно включить библиотеку </p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-import {BufferGeometryUtils} from './resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-+import {TWEEN} from './resources/threejs/r122/examples/jsm/libs/tween.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import {BufferGeometryUtils} from './resources/threejs/r125/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from './resources/threejs/r125/examples/jsm/libs/tween.min.js';
 </pre>
 <p>А затем создайте <code class="notranslate" translate="no">Tween</code> чтобы оживить влияние.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
@@ -863,7 +863,6 @@ scene.add(mesh);
 <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
 <li><a href="/threejs/lessons/ru/threejs-fog.html">Туман</a></li>
 <li><a href="/threejs/lessons/ru/threejs-rendertargets.html">Цели рендеринга</a></li>
-<li><a href="/threejs/lessons/ru/threejs-custom-geometry.html">Пользовательская Geometry</a></li>
 <li><a href="/threejs/lessons/ru/threejs-custom-buffergeometry.html">Пользовательская BufferGeometry</a></li>
         </ul>
   <li>Советы</li>

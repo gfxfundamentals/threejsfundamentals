@@ -46,7 +46,7 @@
     </div>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -64,7 +64,7 @@ function main() {
   const boxWidth = 1;
   const boxHeight = 1;
   const boxDepth = 1;
-  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
   const cubes = [];  // just an array we can use to rotate the cubes
   const loadManager = new THREE.LoadingManager();

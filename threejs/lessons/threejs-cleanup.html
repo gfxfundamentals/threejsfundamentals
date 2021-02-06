@@ -254,7 +254,7 @@ responsibility to free resources back to you.</p>
 <a href="threejs-materials.html">materials</a>.</p>
 <p>You could do this manually. At the start you might create
 some of these resources</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const boxGeometry = new THREE.BoxBufferGeometry(...);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const boxGeometry = new THREE.BoxGeometry(...);
 const boxTexture = textureLoader.load(...);
 const boxMaterial = new THREE.MeshPhongMaterial({map: texture});
 </pre>
@@ -668,7 +668,6 @@ required to free resources in three.js</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

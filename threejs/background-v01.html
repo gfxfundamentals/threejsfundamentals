@@ -22,9 +22,9 @@
     <canvas id="c"></canvas>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from './resources/threejs/r122/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from './resources/threejs/r125/examples/jsm/loaders/GLTFLoader.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -135,7 +135,7 @@ function main() {
     uniforms.topColor.value.copy(hemiLight.color);
     scene.fog = new THREE.Fog(scene.background, fogNear, fogFar);
     scene.fog.color.copy(uniforms.bottomColor.value);
-    const skyGeo = new THREE.SphereBufferGeometry(4000, 32, 15);
+    const skyGeo = new THREE.SphereGeometry(4000, 32, 15);
     const skyMat = new THREE.ShaderMaterial( { vertexShader: vertexShader, fragmentShader: fragmentShader, uniforms: uniforms, side: THREE.BackSide } );
     const sky = new THREE.Mesh( skyGeo, skyMat );
     scene.add(sky);

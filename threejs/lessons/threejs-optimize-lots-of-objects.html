@@ -375,7 +375,7 @@ file.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const loader = new THREE.TextureLoader();
   const texture = loader.load('resources/images/world.jpg', render);
-  const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+  const geometry = new THREE.SphereGeometry(1, 64, 32);
   const material = new THREE.MeshBasicMaterial({map: texture});
   scene.add(new THREE.Mesh(geometry, material));
 }
@@ -393,7 +393,7 @@ make a box per data point.</p>
   const boxWidth = 1;
   const boxHeight = 1;
   const boxDepth = 1;
-  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
   // make it so it scales away from the positive Z axis
   geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, 0.5));
 
@@ -525,7 +525,7 @@ geometry we'd remove 18999 operations.</p>
 -  const boxWidth = 1;
 -  const boxHeight = 1;
 -  const boxDepth = 1;
--  const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+-  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 -  // make it so it scales away from the positive Z axis
 -  geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(0, 0, 0.5));
 
@@ -566,7 +566,7 @@ geometry we'd remove 18999 operations.</p>
 +      const boxWidth = 1;
 +      const boxHeight = 1;
 +      const boxDepth = 1;
-+      const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
++      const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
       // adjust the helpers to point to the latitude and longitude
       lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
@@ -606,7 +606,7 @@ geometry we might as well do it once instead of twice.</p>
 <code class="notranslate" translate="no">BufferGeometryUtils.mergeBufferGeometries</code> which will combined all of
 them into a single mesh.</p>
 <p>We also need to include the <code class="notranslate" translate="no">BufferGeometryUtils</code></p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {BufferGeometryUtils} from './resources/threejs/r122/examples/jsm/utils/BufferGeometryUtils.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {BufferGeometryUtils} from './resources/threejs/r125/examples/jsm/utils/BufferGeometryUtils.js';
 </pre>
 <p>And now, at least on my machine, I get 60 frames per second</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
@@ -635,7 +635,7 @@ data.forEach((row, latNdx) =&gt; {
     const boxWidth = 1;
     const boxHeight = 1;
     const boxDepth = 1;
-    const geometry = new THREE.BoxBufferGeometry(boxWidth, boxHeight, boxDepth);
+    const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 
     // adjust the helpers to point to the latitude and longitude
     lonHelper.rotation.y = THREE.MathUtils.degToRad(lonNdx + file.xllcorner) + lonFudge;
@@ -736,7 +736,6 @@ though there are creative solutions. We'll explore one in
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

@@ -34,7 +34,7 @@
     </div>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 class ClearingLogger {
   constructor(elem) {
@@ -64,7 +64,7 @@ function main() {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('cyan');
 
-  const geometry = new THREE.SphereBufferGeometry();
+  const geometry = new THREE.SphereGeometry();
   const material = new THREE.MeshBasicMaterial({color: 'red'});
 
   const things = [];

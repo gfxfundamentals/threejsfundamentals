@@ -503,7 +503,7 @@ row.</p>
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
-  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
   const numSpheres = 20;
   for (let i = 0; i &lt; numSpheres; ++i) {
     const sphereMat = new THREE.MeshPhongMaterial();
@@ -672,7 +672,7 @@ const textures = [
   loader.load('resources/images/flower-6.jpg'),
 ];
 const planeSize = 256;
-const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 const planes = textures.map((texture) =&gt; {
   const planePivot = new THREE.Object3D();
   scene.add(planePivot);
@@ -784,7 +784,6 @@ in other articles. For now let's move on to <a href="threejs-shadows.html">shado
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

@@ -375,7 +375,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 создает сетку, которая движется в произвольном направлении в течение 2 секунд.
 Мы начнем с одного из примеров из статьи о  <a href="threejs-responsive.html">том, как сделать вещи отзывчивыми</a></p>
 <p>Вот код, который добавляет новую сетку каждый раз, когда мы щелкаем мышью</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereBufferGeometry();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereGeometry();
 const material = new THREE.MeshBasicMaterial({color: 'red'});
 
 const things = [];
@@ -670,7 +670,6 @@ requestAnimationFrame(render);
 <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
 <li><a href="/threejs/lessons/ru/threejs-fog.html">Туман</a></li>
 <li><a href="/threejs/lessons/ru/threejs-rendertargets.html">Цели рендеринга</a></li>
-<li><a href="/threejs/lessons/ru/threejs-custom-geometry.html">Пользовательская Geometry</a></li>
 <li><a href="/threejs/lessons/ru/threejs-custom-buffergeometry.html">Пользовательская BufferGeometry</a></li>
         </ul>
   <li>Советы</li>

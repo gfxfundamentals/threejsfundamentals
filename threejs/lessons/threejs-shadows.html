@@ -288,7 +288,7 @@ a <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code c
   const repeats = planeSize / 2;
   texture.repeat.set(repeats, repeats);
 
-  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+  const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
   const planeMat = new THREE.MeshBasicMaterial({
     map: texture,
     side: THREE.DoubleSide,
@@ -313,11 +313,11 @@ light grey checkerboard.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereRadius = 1;
 const sphereWidthDivisions = 32;
 const sphereHeightDivisions = 16;
-const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 </pre>
 <p>And a plane geometry for the fake shadow</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 1;
-const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 </pre>
 <p>Now we'll make a bunch of spheres. For each sphere we'll create a <code class="notranslate" translate="no">base</code>
 <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a> and we'll make both the shadow plane mesh and the sphere mesh
@@ -624,7 +624,7 @@ box so its bottom is slightly below the floor so the floor and the bottom
 of the box don't z-fight.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const cubeSize = 30;
-  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({
     color: '#CCC',
     side: THREE.BackSide,
@@ -692,7 +692,6 @@ self shadow, shadow acne
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

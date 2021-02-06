@@ -296,7 +296,7 @@ Les deux objets <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code cl
 <li><p>Les objets <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> représentent les données associées aux sommets d'une géométrie telle qu'une
 sphère, un cube, un avion, un chien, un chat, un humain, un arbre, un bâtiment, etc...
 Three.js fournit plusieurs types intégrés de <a href="threejs-primitives.html">primitives géométriques</a>.
-Vous pouvez aussi <a href="threejs-custom-geometry.html">créer vos propres géométries</a> ou
+Vous pouvez aussi <a href="threejs-custom-buffergeometry.html">créer vos propres géométries</a> ou
 <a href="threejs-load-obj.html">charger des géométries à partir d'un fichier</a>.</p>
 </li>
 <li><p>Les objets <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> représentent les
@@ -318,7 +318,7 @@ nombre minimum d'élements three.js :</p>
 
 <p>Tout d'abord, chargeons three.js :</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 &lt;/script&gt;
 </pre>
 <p>Il est important d'écrire <code class="notranslate" translate="no">type="module"</code> dans la balise script.
@@ -335,7 +335,7 @@ facilement importer les autres modules dont ils ont besoin. Cela nous
 <p>Nous allons demander à three.js de dessiner dans ce canevas donc nous devons le rechercher
 dans le document html :</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -571,7 +571,7 @@ Ils sont chargés via le mot-clé <code class="notranslate" translate="no">impor
 par le biais d'une balise <code class="notranslate" translate="no">&lt;script type="module"&gt;</code>. Voici un exemple d'utilisation avec les deux :
 </p>
 <pre class="prettyprint">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 ...
 
@@ -675,7 +675,6 @@ pour le support des anciens navigateurs, vous pouvez utiliser un
 <li><a href="/threejs/lessons/fr/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/fr/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/fr/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/fr/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/fr/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Сonseils</li>

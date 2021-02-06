@@ -486,7 +486,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
   const sphereRadius = 3;
   const sphereWidthDivisions = 32;
   const sphereHeightDivisions = 16;
-  const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
   const numSpheres = 20;
   for (let i = 0; i &lt; numSpheres; ++i) {
     const sphereMat = new THREE.MeshPhongMaterial();
@@ -640,7 +640,7 @@ const textures = [
   loader.load('resources/images/flower-6.jpg'),
 ];
 const planeSize = 256;
-const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 const planes = textures.map((texture) =&gt; {
   const planePivot = new THREE.Object3D();
   scene.add(planePivot);
@@ -748,7 +748,6 @@ const planes = textures.map((texture) =&gt; {
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

@@ -287,7 +287,7 @@ float v2 = v1.x + v1.y;  // adds 1.0 + 2.0
      1, // far
   );
   const scene = new THREE.Scene();
-  const plane = new THREE.PlaneBufferGeometry(2, 2);
+  const plane = new THREE.PlaneGeometry(2, 2);
   const material = new THREE.MeshBasicMaterial({
       color: 'red',
   });
@@ -317,7 +317,7 @@ float v2 = v1.x + v1.y;  // adds 1.0 + 2.0
 
 main();
 </pre>
-<p><a href="threejs-backgrounds.html">배경과 하늘상자 추가하기</a>에서도 설명했지만 위와 같이 <a href="https://threejs.org/docs/#api/en/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a>를 설정하면 2칸짜리 평면이 캔버스 전체를 채우게 됩니다. 당장은 평면이 빨간 <a href="https://threejs.org/docs/#api/en/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>을 사용했기에 캔버스 전체가 빨갛게 보입니다.</p>
+<p><a href="threejs-backgrounds.html">배경과 하늘상자 추가하기</a>에서도 설명했지만 위와 같이 <a href="https://threejs.org/docs/#api/ko/cameras/OrthographicCamera"><code class="notranslate" translate="no">OrthographicCamera</code></a>를 설정하면 2칸짜리 평면이 캔버스 전체를 채우게 됩니다. 당장은 평면이 빨간 <a href="https://threejs.org/docs/#api/ko/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>을 사용했기에 캔버스 전체가 빨갛게 보입니다.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadertoy-prep.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-shadertoy-prep.html" target="_blank">새 탭에서 보기</a>
@@ -358,7 +358,7 @@ void main() {
 };
 </pre>
 <p>Three.js의 균등 변수에는 <code class="notranslate" translate="no">value</code> 속성을 넣어야 합니다. 물론 값으로 들어가는 데이터도 균등 변수의 타입과 맞아야 하죠.</p>
-<p>fragment 쉐이더와 균등 변수를 <a href="https://threejs.org/docs/#api/en/materials/ShaderMaterial"><code class="notranslate" translate="no">ShaderMaterial</code></a>에 넘겨줍니다.</p>
+<p>fragment 쉐이더와 균등 변수를 <a href="https://threejs.org/docs/#api/ko/materials/ShaderMaterial"><code class="notranslate" translate="no">ShaderMaterial</code></a>에 넘겨줍니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const material = new THREE.MeshBasicMaterial({
 -    color: 'red',
 -});
@@ -487,7 +487,7 @@ void main() {
   }
 `;
 </pre>
-<p>vertex 쉐이더도 같이 <a href="https://threejs.org/docs/#api/en/materials/ShaderMaterial"><code class="notranslate" translate="no">ShaderMaterial</code></a>에 넘겨줍니다.</p>
+<p>vertex 쉐이더도 같이 <a href="https://threejs.org/docs/#api/ko/materials/ShaderMaterial"><code class="notranslate" translate="no">ShaderMaterial</code></a>에 넘겨줍니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
@@ -547,7 +547,6 @@ uniforms.iTime.value = time;
 <li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
 <li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
         </ul>
   <li>팁</li>

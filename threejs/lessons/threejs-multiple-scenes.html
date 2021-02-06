@@ -326,7 +326,7 @@ To one scene we'll add a cube and to another a diamond.</p>
 
 function setupScene1() {
   const sceneInfo = makeScene(document.querySelector('#box'));
-  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshPhongMaterial({color: 'red'});
   const mesh = new THREE.Mesh(geometry, material);
   sceneInfo.scene.add(mesh);
@@ -339,7 +339,7 @@ function setupScene2() {
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
-  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
     color: 'blue',
     flatShading: true,
@@ -501,7 +501,7 @@ function render(time) {
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const elem = document.querySelector('#box');
   const {scene, camera} = makeScene();
-  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshPhongMaterial({color: 'red'});
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
@@ -519,7 +519,7 @@ function render(time) {
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
-  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
     color: 'blue',
     flatShading: true,
@@ -569,7 +569,7 @@ function render(time) {
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneInitFunctionsByName = {
   'box': () =&gt; {
     const {scene, camera} = makeScene();
-    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
@@ -585,7 +585,7 @@ function render(time) {
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
-    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
       color: 'blue',
       flatShading: true,
@@ -613,7 +613,7 @@ function render(time) {
 <p></p>
 <h2 id="adding-controls-to-each-element">Adding Controls to each element</h2>
 <p>Adding interactively, for example a <code class="notranslate" translate="no">TrackballControls</code> is just as easy. First we add the script for the control.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from './resources/threejs/r122/examples/jsm/controls/TrackballControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {TrackballControls} from './resources/threejs/r125/examples/jsm/controls/TrackballControls.js';
 </pre>
 <p>And then we can add a <code class="notranslate" translate="no">TrackballControls</code> to each scene passing in the element associated with that scene.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {
@@ -653,7 +653,7 @@ function render(time) {
 -    const {scene, camera} = makeScene();
 + 'box': (elem) =&gt; {
 +    const {scene, camera, controls} = makeScene(elem);
-    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
@@ -673,7 +673,7 @@ function render(time) {
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
-    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
       color: 'blue',
       flatShading: true,
@@ -862,7 +862,6 @@ to render from a web worker and still use this technique. Unfortunately as of Ju
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

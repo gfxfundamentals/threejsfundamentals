@@ -243,7 +243,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 にエクスポートしたものをTHREE.jsにインポートすることもできます。
 どのモデリングツールも習得にそれなりの時間がかかります。</p>
 <p>ここまで簡単なカスタムジオメトリであれば大袈裟なモデリングツールを使わずにTHREE.jsのコードで作れます。</p>
-<p>まずは立方体を作ってみましょう。THREE.jsの<a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>や<a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry"><code class="notranslate" translate="no">BoxBufferGeometry</code></a>を使えば一発で
+<p>まずは立方体を作ってみましょう。THREE.jsの<a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>や<a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>を使えば一発で
 立方体を作れますが、簡単な例としてカスタムジオメトリで作ってみましょう。</p>
 <p>THREE.jsにはカスタムジオメトリを作る方法が２つあります。１つ目は<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>クラスで２つ目が<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>です。
 それぞれに利点があります。<a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>は簡単に使えますが遅く、メモリをより消費します。1000個以下の三角形を作る際は
@@ -575,8 +575,8 @@ for (let z = 0; z &lt; cellsDeep; ++z) {
 <ul>
 <li><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>を追加してください。</li>
 </ul>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
 const aspect = 2;  // the canvas default
@@ -646,7 +646,6 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 <li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-geometry.html">カスタムジオメトリ</a></li>
 <li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
         </ul>
   <li>Tips</li>

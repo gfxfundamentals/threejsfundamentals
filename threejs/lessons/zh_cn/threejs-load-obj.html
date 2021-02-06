@@ -251,7 +251,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <p>让我们一起来尝试将它展示出来。</p>
 <p>基于<a href="threejs-lights.html">光线文章</a>中的定向光线（<a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>）示例，结合半球光线（<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。</p>
 <p>第一件要做的事就是将<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>添加到代码中。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {OBJLoader} from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
 </pre>
 <p>然后创建<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
@@ -317,10 +317,10 @@ map_Ns windmill_001_base_SPEC.jpg
 
 <p>现在.MTL文件就能加载到这些纹理。</p>
 <p>首先要引用 <a href="https://threejs.org/docs/#examples/loaders/MTLLoader"><code class="notranslate" translate="no">MTLLoader</code></a>;</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r122/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader} from './resources/threejs/r122/examples/jsm/loaders/OBJLoader.js';
-+import {MTLLoader} from './resources/threejs/r122/examples/jsm/loaders/MTLLoader.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
+import {OBJLoader} from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
++import {MTLLoader} from './resources/threejs/r125/examples/jsm/loaders/MTLLoader.js';
 </pre>
 <p></p><div class="warning">Sorry, the translation of this area is out of date. <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/zh_cn/threejs-load-obj.md">Please consider helping to fix it</a>.</div><p></p>
 <p>然后我们先加载.MTL文件，在它加载完材质后利用<code class="notranslate" translate="no">MtlObjBridge</code>将材质传给<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>，再加载.OBJ文件。</p>
@@ -720,7 +720,6 @@ Three.js一般是以Y为上（up）。有些建模包默认是Z为上，有些�
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>技巧</li>

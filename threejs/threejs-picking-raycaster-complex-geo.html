@@ -21,7 +21,7 @@
     <canvas id="c"></canvas>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -51,7 +51,7 @@ function main() {
     camera.add(light);
   }
 
-  const geometry = new THREE.SphereBufferGeometry(.6, 100, 100);
+  const geometry = new THREE.SphereGeometry(.6, 100, 100);
 
   function rand(min, max) {
     if (max === undefined) {

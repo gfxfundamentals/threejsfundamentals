@@ -259,7 +259,7 @@ sine waves like this</p>
 </pre>
 <p>I then walked through all the cells and if they were not
 0 I created a mesh with a cube.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.BoxGeometry(1, 1, 1);
 const material = new THREE.MeshPhongMaterial({color: 'green'});
 
 for (let y = 0; y &lt; cellSize; ++y) {
@@ -1366,7 +1366,6 @@ to generate some what efficient geometry.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

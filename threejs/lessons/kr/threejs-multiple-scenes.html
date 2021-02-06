@@ -236,7 +236,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <p>사람들이 자주 하는 질문 중 하나는 Three.js로 여러 개의 캔버스(canvas)를 렌더링하려면
 어떻게 해야 하나요?"입니다. 쇼핑몰 사이트나 3D 도표가 여러 개 있는 웹 페이지를
 제작한다고 해봅시다. 얼핏 그리 어려울 건 없어 보입니다. 그냥 도표가 들어갈 곳마다
-각각 캔버스를 만들고, 각 캔버스마다 <a href="https://threejs.org/docs/#api/en/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a>를 생성하면 되지 않을까요?</p>
+각각 캔버스를 만들고, 각 캔버스마다 <a href="https://threejs.org/docs/#api/ko/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a>를 생성하면 되지 않을까요?</p>
 <p>하지만 이 방법을 적용하자마자 문제가 생깁니다.</p>
 <ol>
 <li><p>브라우저의 WebGL 컨텍스트(context)는 제한적이다.</p>
@@ -252,7 +252,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </ol>
 <p>그렇다면 어떻게 해야 할까요?</p>
 <p>방법 중 하나는 캔버스 하나로 화면 전체를 채우고, 각 "가상" 캔버스를 대신할 HTML 요소(element)를
-두는 겁니다. <a href="https://threejs.org/docs/#api/en/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a>는 하나만 만들되 가상 캔버스에 각각 <a href="https://threejs.org/docs/#api/en/scenes/Scene"><code class="notranslate" translate="no">Scene</code></a>을 만드는 거죠. 그리고
+두는 겁니다. <a href="https://threejs.org/docs/#api/ko/constants/Renderer"><code class="notranslate" translate="no">Renderer</code></a>는 하나만 만들되 가상 캔버스에 각각 <a href="https://threejs.org/docs/#api/ko/scenes/Scene"><code class="notranslate" translate="no">Scene</code></a>을 만드는 거죠. 그리고
 가상 HTML 요소의 좌표를 계산해 요소가 화면에 보인다면 Three.js가 해당 장면(scene)을 가상
 요소의 좌표에 맞춰 렌더링하도록 합니다.</p>
 <p>이 방법은 캔버스를 하나만 사용하므로 위 1번과 2번 문제 모두 해결할 수 있습니다. 컨텍스트를
@@ -324,7 +324,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 function setupScene1() {
   const sceneInfo = makeScene(document.querySelector('#box'));
-  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshPhongMaterial({color: 'red'});
   const mesh = new THREE.Mesh(geometry, material);
   sceneInfo.scene.add(mesh);
@@ -337,7 +337,7 @@ function setupScene2() {
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
-  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
     color: 'blue',
     flatShading: true,
@@ -351,9 +351,9 @@ function setupScene2() {
 const sceneInfo1 = setupScene1();
 const sceneInfo2 = setupScene2();
 </pre>
-<p>이제 각 요소가 화면에 보일 때만 장면을 렌더링할 함수를 만듭니다. <a href="https://threejs.org/docs/#api/en/constants/Renderer.setScissorTest"><code class="notranslate" translate="no">Renderer.setScissorTest</code></a>를
+<p>이제 각 요소가 화면에 보일 때만 장면을 렌더링할 함수를 만듭니다. <a href="https://threejs.org/docs/#api/ko/constants/Renderer.setScissorTest"><code class="notranslate" translate="no">Renderer.setScissorTest</code></a>를
 호출해 <em>가위(scissor)</em> 테스트를 활성화하면 Three.js가 캔버스의 특정 부분만 렌더링하도록
-할 수 있습니다. 그리고 <a href="https://threejs.org/docs/#api/en/constants/Renderer.setScissor"><code class="notranslate" translate="no">Renderer.setScissor</code></a>로 가위를 설정한 뒤 <a href="https://threejs.org/docs/#api/en/constants/Renderer.setViewport"><code class="notranslate" translate="no">Renderer.setViewport</code></a>로
+할 수 있습니다. 그리고 <a href="https://threejs.org/docs/#api/ko/constants/Renderer.setScissor"><code class="notranslate" translate="no">Renderer.setScissor</code></a>로 가위를 설정한 뒤 <a href="https://threejs.org/docs/#api/ko/constants/Renderer.setViewport"><code class="notranslate" translate="no">Renderer.setViewport</code></a>로
 장면의 좌표를 설정합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function renderSceneInfo(sceneInfo) {
   const { scene, camera, elem } = sceneInfo;
@@ -506,7 +506,7 @@ function render(time) {
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const elem = document.querySelector('#box');
   const { scene, camera } = makeScene();
-  const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshPhongMaterial({ color: 'red' });
   const mesh = new THREE.Mesh(geometry, material);
   scene.add(mesh);
@@ -524,7 +524,7 @@ function render(time) {
   const radius = .8;
   const widthSegments = 4;
   const heightSegments = 2;
-  const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+  const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
   const material = new THREE.MeshPhongMaterial({
     color: 'blue',
     flatShading: true,
@@ -578,7 +578,7 @@ function render(time) {
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sceneInitFunctionsByName = {
   'box': () =&gt; {
     const { scene, camera } = makeScene();
-    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
@@ -594,7 +594,7 @@ function render(time) {
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
-    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
       color: 'blue',
       flatShading: true,
@@ -624,7 +624,7 @@ function render(time) {
 <h2 id="-">각 요소에 액션 추가하기</h2>
 <p>사용자 액션, 예를 들어 <code class="notranslate" translate="no">TrackballControls</code>를 추가하는 건 아주 간단합니다. 먼저 스크립트를
 불러옵니다.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { TrackballControls } from './resources/threejs/r122/examples/jsm/controls/TrackballControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import { TrackballControls } from './resources/threejs/r125/examples/jsm/controls/TrackballControls.js';
 </pre>
 <p>그리고 각 장면에 대응하는 요소에 <code class="notranslate" translate="no">TrackballControls</code>를 추가합니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function makeScene() {
@@ -666,7 +666,7 @@ function render(time) {
 -    const {scene, camera} = makeScene();
 + 'box': (elem) =&gt; {
 +    const { scene, camera, controls } = makeScene(elem);
-    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
     const material = new THREE.MeshPhongMaterial({color: 'red'});
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
@@ -686,7 +686,7 @@ function render(time) {
     const radius = .8;
     const widthSegments = 4;
     const heightSegments = 2;
-    const geometry = new THREE.SphereBufferGeometry(radius, widthSegments, heightSegments);
+    const geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
     const material = new THREE.MeshPhongMaterial({
       color: 'blue',
       flatShading: true,
@@ -873,7 +873,6 @@ function addScene(elem, fn) {
 <li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
 <li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-geometry.html">사용자 지정 Geometry</a></li>
 <li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
         </ul>
   <li>팁</li>

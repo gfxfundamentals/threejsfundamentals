@@ -22,7 +22,7 @@
   </body>
 <script src="resources/threejs-lessons-helper.js"></script> <!-- you can and should delete this script. it is only used on the site to help with errors -->
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -54,7 +54,7 @@ function main() {
   const carHeight = 1;
   const carLength = 8;
 
-  const bodyGeometry = new THREE.BoxBufferGeometry(carWidth, carHeight, carLength);
+  const bodyGeometry = new THREE.BoxGeometry(carWidth, carHeight, carLength);
   const bodyMaterial = new THREE.MeshPhongMaterial({color: 0x6688AA});
   const bodyMesh = new THREE.Mesh(bodyGeometry, bodyMaterial);
   scene.add(bodyMesh);
@@ -62,7 +62,7 @@ function main() {
   const wheelRadius = 1;
   const wheelThickness = .5;
   const wheelSegments = 6;
-  const wheelGeometry = new THREE.CylinderBufferGeometry(
+  const wheelGeometry = new THREE.CylinderGeometry(
       wheelRadius,     // top radius
       wheelRadius,     // bottom radius
       wheelThickness,  // height of cylinder

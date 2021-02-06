@@ -385,7 +385,7 @@ than making an element per piece of data above.</p>
 that moves in a random direction for 2 seconds. We'll start with one of the
 examples from the article on <a href="threejs-responsive.html">making things responsive</a></p>
 <p>Here's the code that adds a new <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> every time we click the mouse</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereBufferGeometry();
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.SphereGeometry();
 const material = new THREE.MeshBasicMaterial({color: 'red'});
 
 const things = [];
@@ -556,12 +556,7 @@ is a math bug somewhere.</p>
 <h2 id="look-in-the-code-">Look In the Code!</h2>
 <p>THREE.js is Open Source. Don't be afraid to look inside the code!
 You can look inside on <a href="https://github.com/mrdoob/three.js">github</a>.
-You can also look inside by stepping into functions in the debugger.
-When you do that consider using <code class="notranslate" translate="no">three.js</code> instead of the more common
-<code class="notranslate" translate="no">three.min.js</code>. <code class="notranslate" translate="no">three.min.js</code> is the minified, compressed, and therefore
-smaller to download version. <code class="notranslate" translate="no">three.js</code> is the larger but easier to
-debug version. I often switch my code to use <code class="notranslate" translate="no">three.js</code> to step through
-the code and see what is going on.</p>
+You can also look inside by stepping into functions in the debugger.</p>
 <h2 id="put-requestanimationframe-at-bottom-of-your-render-function-">Put <code class="notranslate" translate="no">requestAnimationFrame</code> at bottom of your render function.</h2>
 <p>I see this pattern often</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
@@ -730,7 +725,6 @@ over <a href="threejs-debugging-glsl.html">some tips for debugging GLSL</a>.</p>
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

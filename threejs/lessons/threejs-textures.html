@@ -321,9 +321,9 @@ const material = new THREE.MeshBasicMaterial({
 
 <p></p>
 <p>It should be noted though that not all geometry types supports multiple
-materials. <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/BoxBufferGeometry"><code class="notranslate" translate="no">BoxBufferGeometry</code></a> can use 6 materials one for each face.
-<a href="https://threejs.org/docs/#api/en/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/ConeBufferGeometry"><code class="notranslate" translate="no">ConeBufferGeometry</code></a> can use 2 materials, one for the bottom and one for the cone.
-<a href="https://threejs.org/docs/#api/en/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/CylinderBufferGeometry"><code class="notranslate" translate="no">CylinderBufferGeometry</code></a> can use 3 materials, bottom, top, and side.
+materials. <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> can use 6 materials one for each face.
+<a href="https://threejs.org/docs/#api/en/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> can use 2 materials, one for the bottom and one for the cone.
+<a href="https://threejs.org/docs/#api/en/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> can use 3 materials, bottom, top, and side.
 For other cases you will need to build or load custom geometry and/or modify texture coordinates.</p>
 <p>It's far more common in other 3D engines and far more performant to use a
 <a href="https://en.wikipedia.org/wiki/Texture_atlas">Texture Atlas</a>
@@ -333,7 +333,7 @@ on the vertices of your geometry to select which parts of a texture are used on
 each triangle in your geometry.</p>
 <p>What are texture coordinates? They are data added to each vertex of a piece of geometry
 that specify what part of the texture corresponds to that specific vertex.
-We'll go over them when we start <a href="threejs-custom-geometry.html">building custom geometry</a>.</p>
+We'll go over them when we start <a href="threejs-custom-buffergeometry.html">building custom geometry</a>.</p>
 <h2 id="-a-name-loading-a-loading-textures"><a name="loading"></a> Loading Textures</h2>
 <h3 id="-a-name-easy-a-the-easy-way"><a name="easy"></a> The Easy Way</h3>
 <p>Most of the code on this site uses the easiest method of loading textures.
@@ -789,7 +789,6 @@ roughness
 <li><a href="/threejs/lessons/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/threejs-custom-geometry.html">Custom Geometry</a></li>
 <li><a href="/threejs/lessons/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
   <li>Tips</li>

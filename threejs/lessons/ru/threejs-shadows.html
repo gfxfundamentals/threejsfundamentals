@@ -273,7 +273,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   const repeats = planeSize / 2;
   texture.repeat.set(repeats, repeats);
 
-  const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+  const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
   const planeMat = new THREE.MeshBasicMaterial({
     map: texture,
     side: THREE.DoubleSide,
@@ -297,11 +297,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereRadius = 1;
 const sphereWidthDivisions = 32;
 const sphereHeightDivisions = 16;
-const sphereGeo = new THREE.SphereBufferGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
 </pre>
 <p>И геометрия плоскости для поддельной тени</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 1;
-const shadowGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 </pre>
 <p>Теперь мы сделаем кучу сфер. Для каждой сферы мы создадим <code class="notranslate" translate="no">base</code> <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a> и сделаем сетку теневой плоскости и дочернюю сетку базовой сферы.
 Таким образом, если мы переместим основание, то и сфера, и тень будут двигаться. Нам нужно поместить тень немного выше земли, чтобы предотвратить z-fighting.
@@ -579,7 +579,7 @@ also blur the result
 Также мы установим положение ящика так, чтобы его дно было немного ниже пола, чтобы пол и дно ящика не мешали друг другу.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
   const cubeSize = 30;
-  const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
   const cubeMat = new THREE.MeshPhongMaterial({
     color: '#CCC',
     side: THREE.BackSide,
@@ -644,7 +644,6 @@ self shadow, shadow acne
 <li><a href="/threejs/lessons/ru/threejs-shadows.html">Тени</a></li>
 <li><a href="/threejs/lessons/ru/threejs-fog.html">Туман</a></li>
 <li><a href="/threejs/lessons/ru/threejs-rendertargets.html">Цели рендеринга</a></li>
-<li><a href="/threejs/lessons/ru/threejs-custom-geometry.html">Пользовательская Geometry</a></li>
 <li><a href="/threejs/lessons/ru/threejs-custom-buffergeometry.html">Пользовательская BufferGeometry</a></li>
         </ul>
   <li>Советы</li>

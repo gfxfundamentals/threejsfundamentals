@@ -59,8 +59,8 @@
     </div>
   </body>
 <script type="module">
-import * as THREE from './resources/threejs/r122/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r122/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './resources/threejs/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
 import {GUI} from '../3rdparty/dat.gui.module.js';
 
 function main() {
@@ -87,7 +87,7 @@ function main() {
   {
     const loader = new THREE.TextureLoader();
     const texture = loader.load('resources/data/world/country-outlines-4k.png', render);
-    const geometry = new THREE.SphereBufferGeometry(1, 64, 32);
+    const geometry = new THREE.SphereGeometry(1, 64, 32);
     const material = new THREE.MeshBasicMaterial({map: texture});
     scene.add(new THREE.Mesh(geometry, material));
   }
