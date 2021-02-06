@@ -395,20 +395,7 @@ function unselectAllCountries() {
   });
 }
 
-canvas.addEventListener('mouseup', pickCountry);
-
-let lastTouch;
-canvas.addEventListener('touchstart', (event) =&gt; {
-  // prevent the window from scrolling
-  event.preventDefault();
-  lastTouch = event.touches[0];
-}, {passive: false});
-canvas.addEventListener('touchmove', (event) =&gt; {
-  lastTouch = event.touches[0];
-});
-canvas.addEventListener('touchend', () =&gt; {
-  pickCountry(lastTouch);
-});
+canvas.addEventListener('pointerup', pickCountry);
 </pre>
 <p>上記のコードでは、国の配列に <code class="notranslate" translate="no">selected</code> プロパティを設定/解除しています。
 <code class="notranslate" translate="no">Shift</code> や <code class="notranslate" translate="no">ctrl</code>、<code class="notranslate" translate="no">cmd</code> を押すと複数の国を選択できます。</p>
@@ -783,19 +770,8 @@ function unselectAllCountries() {
   resetPalette();
 }
 
-+canvas.addEventListener('mousedown', recordStartTimeAndPosition);
-canvas.addEventListener('mouseup', pickCountry);
-
-let lastTouch;
-canvas.addEventListener('touchstart', (event) =&gt; {
-  // prevent the window from scrolling
-  event.preventDefault();
-  lastTouch = event.touches[0];
-+  recordStartTimeAndPosition(event.touches[0]);
-}, {passive: false});
-canvas.addEventListener('touchmove', (event) =&gt; {
-  lastTouch = event.touches[0];
-});
++canvas.addEventListener('pointerdown', recordStartTimeAndPosition);
+canvas.addEventListener('pointerup', pickCountry);
 </pre>
 <p>これらの変更を加えると私にはそれが機能しているように<em>見えます</em>。</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">

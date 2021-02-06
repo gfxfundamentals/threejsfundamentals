@@ -1173,29 +1173,19 @@ function placeVoxelIfNoMovement(event) {
   if (mouse.moveX &lt; 5 &amp;&amp; mouse.moveY &lt; 5) {
     placeVoxel(event);
   }
-  window.removeEventListener('mousemove', recordMovement);
-  window.removeEventListener('mouseup', placeVoxelIfNoMovement);
+  window.removeEventListener('pointermove', recordMovement);
+  window.removeEventListener('pointerup', placeVoxelIfNoMovement);
 }
-canvas.addEventListener('mousedown', (event) =&gt; {
+canvas.addEventListener('pointerdown', (event) =&gt; {
   event.preventDefault();
   recordStartPosition(event);
-  window.addEventListener('mousemove', recordMovement);
-  window.addEventListener('mouseup', placeVoxelIfNoMovement);
+  window.addEventListener('pointermove', recordMovement);
+  window.addEventListener('pointerup', placeVoxelIfNoMovement);
 }, {passive: false});
 canvas.addEventListener('touchstart', (event) =&gt; {
+  // stop scrolling
   event.preventDefault();
-  recordStartPosition(event.touches[0]);
 }, {passive: false});
-canvas.addEventListener('touchmove', (event) =&gt; {
-  event.preventDefault();
-  recordMovement(event.touches[0]);
-}, {passive: false});
-canvas.addEventListener('touchend', () =&gt; {
-  placeVoxelIfNoMovement({
-    clientX: mouse.x,
-    clientY: mouse.y,
-  });
-});
 </pre>
 <p>There's a lot going on in the code above. Basically the mouse
 has a dual purpose. One is to move the camera. The other is to

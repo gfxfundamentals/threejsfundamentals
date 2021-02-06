@@ -278,15 +278,15 @@ Three.js는 3차원 세계를 다루므로, 우리는 정육면체(cube)를 3차
 부모 객체에 따라 <a href="https://threejs.org/docs/#api/ko/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a> 또한 움직이겠죠. <a href="threejs-scenegraph.html">씬 그래프에 관한 글</a>
 마지막에 여러개의 <a href="https://threejs.org/docs/#api/ko/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a>를 넣는 예제가 있으니 참고하시기 바랍니다.</p>
 </li>
-<li><p><a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>는 어떤 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>로 하나의 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>를 그리는 객체입니다.
-<a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>, <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>는 재사용이 가능하여 여러개의 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>가 하나의
-<a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a> 또는 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>를 동시에 참조할 수 있습니다. 파란색 정육면체 2개를
+<li><p><a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>는 어떤 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>로 하나의 <code class="notranslate" translate="no">Geometry</code>를 그리는 객체입니다.
+<a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>, <code class="notranslate" translate="no">Geometry</code>는 재사용이 가능하여 여러개의 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>가 하나의
+<a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a> 또는 <code class="notranslate" translate="no">Geometry</code>를 동시에 참조할 수 있습니다. 파란색 정육면체 2개를
 그린다고 해보죠. 일단 두 정육면체의 위치가 달라야 하니, 2개의 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>가
-필요합니다. 그리고 정점(vertext, 꼭지점) 데이터를 가진 한 개의 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>와
+필요합니다. 그리고 정점(vertext, 꼭지점) 데이터를 가진 한 개의 <code class="notranslate" translate="no">Geometry</code>와
 채색을 위한 하나의 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>이 필요하겠죠. 이때 각 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>는 객체를 복사할
-필요 없이, 같은 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 그리고 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>을 참조할 수 있습니다.</p>
+필요 없이, 같은 <code class="notranslate" translate="no">Geometry</code> 그리고 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>을 참조할 수 있습니다.</p>
 </li>
-<li><p><a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>는 기하학 객체의 정점 데이터입니다. 구(sphere), 정육면체(cube),
+<li><p><code class="notranslate" translate="no">Geometry</code>는 기하학 객체의 정점 데이터입니다. 구(sphere), 정육면체(cube),
 면(plane), 개, 고양이, 사람, 나무, 건물 등 아주 다양한 것이 될 수 있죠. Three.js는
 기본적으로 몇 가지의 내장(built-in) <a href="threejs-primitives.html">기하학 객체</a>를 제공합니다.
 물론 <a href="threejs-custom-buffergeometry.html">직접 기하학 객체를 만들</a> 수도 있고,
@@ -394,8 +394,8 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 숫자 형태의 hex 코드를 이용합니다(<code class="notranslate" translate="no">#</code> 대신 <code class="notranslate" translate="no">0x</code>. 역주).</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </pre>
-<p>그리고 앞서 만든 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>(물체의 형태)와 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>(물체의 색, 밝기, 질감 등)을
-이용해 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>를 만듭니다. <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>는 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>, <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a> 외에도 물체의 위치, 방향,
+<p>그리고 앞서 만든 <code class="notranslate" translate="no">Geometry</code>(물체의 형태)와 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>(물체의 색, 밝기, 질감 등)을
+이용해 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>를 만듭니다. <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>는 <code class="notranslate" translate="no">Geometry</code>, <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a> 외에도 물체의 위치, 방향,
 크기 등을 담은 객체입니다.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cube = new THREE.Mesh(geometry, material);
 </pre>
@@ -483,10 +483,10 @@ Three.js에는 다양한 종류의 광원이 있습니다. 다 살펴보기 힘�
 <p></p>
 <p>이제 3D라고 불러도 어색하지 않네요.</p>
 <p>재미를 위해서 한 번 정육면체를 2개만 더 만들어 봅시다.</p>
-<p>미리 만들어 놨던 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>를 사용하고, <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>만 바꿔 다른 색을
+<p>미리 만들어 놨던 <code class="notranslate" translate="no">Geometry</code>를 사용하고, <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>만 바꿔 다른 색을
 가진 큐브 2개를 만들겠습니다.</p>
 <p>먼저 함수를 하나 만들어보겠습니다. 이 함수는 넘겨받은 색상값으로
-새로운 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>을 만들고, 넘겨받은 <a href="https://threejs.org/docs/#api/ko/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>와 조합해 새로운
+새로운 <a href="https://threejs.org/docs/#api/ko/materials/Material"><code class="notranslate" translate="no">Material</code></a>을 만들고, 넘겨받은 <code class="notranslate" translate="no">Geometry</code>와 조합해 새로운
 <a href="https://threejs.org/docs/#api/ko/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>를 만듭니다. 그리고 씬에 추가한 후 넘겨받은 X축 값을 통해 물체를 이동시키죠.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});

@@ -325,7 +325,7 @@ const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
 色は標準のCSSスタイルの6桁の16進数の色値を使用して指定できます。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({color: 0x44aa88});
 </pre>
-<p>次に <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> を作成します。 <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> は <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> (オブジェクトの形状)と <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> （オブジェクトの描画方法、光沢または平坦、適用する色、適用するテクステャなど）を組み合わせます。
+<p>次に <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> を作成します。 <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> は <code class="notranslate" translate="no">Geometry</code> (オブジェクトの形状)と <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> （オブジェクトの描画方法、光沢または平坦、適用する色、適用するテクステャなど）を組み合わせます。
 シーン内のオブジェクトの位置、方向、スケールと同様です。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cube = new THREE.Mesh(geometry, material);
 </pre>

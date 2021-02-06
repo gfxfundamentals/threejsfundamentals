@@ -241,11 +241,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 Какой бы вариант вы ни выбрали, рассчитывайте потратить 2 или 3 недели на изучение соответствующих учебных пособий, поскольку все они имеют полезную кривую обучения. </p>
 <p>Тем не менее, бывают случаи, когда мы можем захотеть сгенерировать нашу собственную трехмерную геометрию в коде вместо использования пакета моделирования. </p>
 <p>Сначала давайте просто сделаем куб. Хотя Three.js уже предоставляет нам <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> и <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>, куб легко понять, поэтому давайте начнем с него. </p>
-<p>Есть два способа сделать пользовательскую геометрию в THREE.js. Один с классом <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>, другой - <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. У каждого есть свои преимущества. <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>, возможно, проще в использовании, но медленнее и использует больше памяти. Для нескольких тысяч треугольников это отличный выбор, но для десятков тысяч треугольников может быть лучше использовать <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
+<p>Есть два способа сделать пользовательскую геометрию в THREE.js. Один с классом <code class="notranslate" translate="no">Geometry</code>, другой - <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. У каждого есть свои преимущества. <code class="notranslate" translate="no">Geometry</code>, возможно, проще в использовании, но медленнее и использует больше памяти. Для нескольких тысяч треугольников это отличный выбор, но для десятков тысяч треугольников может быть лучше использовать <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
 <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>, возможно, сложнее в использовании, но использует меньше памяти и работает быстрее. Если вы хотите сгенерировать более 10000 треугольников, подумайте об использовании <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
-<p>Заметьте, когда я говорю, что <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но отрисовывается она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> против <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
-<p>Сначала давайте сделаем куб с <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. Начнем с примера из <a href="threejs-responsive.html">статьи об отзывчивости</a>. </p>
-<p>Давайте удалим код, который использует <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>, и заменим ее на <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. </p>
+<p>Заметьте, когда я говорю, что <code class="notranslate" translate="no">Geometry</code> медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но отрисовывается она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать <code class="notranslate" translate="no">Geometry</code> против <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. </p>
+<p>Сначала давайте сделаем куб с <code class="notranslate" translate="no">Geometry</code>. Начнем с примера из <a href="threejs-responsive.html">статьи об отзывчивости</a>. </p>
+<p>Давайте удалим код, который использует <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a>, и заменим ее на <code class="notranslate" translate="no">Geometry</code>. </p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const boxWidth = 1;
 -const boxHeight = 1;
 -const boxDepth = 1;
@@ -379,7 +379,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 ]
 </pre>
 <p>но часто гораздо проще просто попросить THREE.js вычислить для нас нормали на основе указанных позиций. </p>
-<p>Для нормалей грани мы бы назвали <a href="https://threejs.org/docs/#api/en/core/Geometry.computeFaceNormals"><code class="notranslate" translate="no">Geometry.computeFaceNormals</code></a> как в</p>
+<p>Для нормалей грани мы бы назвали <code class="notranslate" translate="no">Geometry.computeFaceNormals</code> как в</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.computeFaceNormals();
 </pre>
 <p>Удаление цвета вершин и изменение материала обратно на <a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a></p>
@@ -393,7 +393,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 </div>
 
 <p></p>
-<p>Использование нормалей сторон всегда даст нам граненый взгляд. Мы можем использовать нормали вершин для более гладкого вида, вызывая <a href="https://threejs.org/docs/#api/en/core/Geometry.computeVertexNormals"><code class="notranslate" translate="no">Geometry.computeVertexNormals</code></a> </p>
+<p>Использование нормалей сторон всегда даст нам граненый взгляд. Мы можем использовать нормали вершин для более гладкого вида, вызывая <code class="notranslate" translate="no">Geometry.computeVertexNormals</code> </p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-geometry.computeFaceNormals();
 +geometry.computeVertexNormals();
 </pre>
@@ -404,7 +404,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 </div>
 
 <p></p>
-<p>Добавление текстурных координат, иногда называемых UV, выполняется через массив слоев параллельных массивов в массив <code class="notranslate" translate="no">faces</code> , который устанавливается через <a href="https://threejs.org/docs/#api/en/core/Geometry.faceVertexUvs"><code class="notranslate" translate="no">Geometry.faceVertexUvs</code></a>. Для нашего куба мы могли бы сделать что-то вроде</p>
+<p>Добавление текстурных координат, иногда называемых UV, выполняется через массив слоев параллельных массивов в массив <code class="notranslate" translate="no">faces</code> , который устанавливается через <code class="notranslate" translate="no">Geometry.faceVertexUvs</code>. Для нашего куба мы могли бы сделать что-то вроде</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faceVertexUvs[0].push(
   // front
   [ new THREE.Vector2(0, 0), new THREE.Vector2(1, 1), new THREE.Vector2(0, 1) ],
@@ -594,7 +594,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 </div>
 
 <p></p>
-<p>Я надеюсь, что это была полезная инструкция для создания вашей собственной геометрии с использованием <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. 
+<p>Я надеюсь, что это была полезная инструкция для создания вашей собственной геометрии с использованием <code class="notranslate" translate="no">Geometry</code>. 
 В другой статье мы рассмотрим <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
 <p>В <a href="threejs-custom-buffergeometry.html">другой статье</a> мы рассмотрим <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
 

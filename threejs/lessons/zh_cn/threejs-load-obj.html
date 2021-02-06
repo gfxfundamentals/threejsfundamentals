@@ -322,7 +322,7 @@ import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/Orbi
 import {OBJLoader} from './resources/threejs/r125/examples/jsm/loaders/OBJLoader.js';
 +import {MTLLoader} from './resources/threejs/r125/examples/jsm/loaders/MTLLoader.js';
 </pre>
-<p></p><div class="warning">Sorry, the translation of this area is out of date. <a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/zh_cn/threejs-load-obj.md">Please consider helping to fix it</a>.</div><p></p>
+<p></p><div class="warning">Sorry, the translation of this area is out of date. <a href="https://github.com/gfxfundamentals/threejsfundamentals}/blob/master/{$root.contentFileName}">Please consider helping to fix it</a>.</div><p></p>
 <p>然后我们先加载.MTL文件，在它加载完材质后利用<code class="notranslate" translate="no">MtlObjBridge</code>将材质传给<a href="https://threejs.org/docs/#examples/loaders/OBJLoader"><code class="notranslate" translate="no">OBJLoader</code></a>，再加载.OBJ文件。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
 +  const mtlLoader = new MTLLoader();

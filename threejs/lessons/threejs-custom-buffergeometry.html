@@ -232,37 +232,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <blockquote>
-<p><strong>NOTE:</strong> r125 removed <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> from three.js. 
-Only <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> now exists. Further, all geometry
-with names like <code class="notranslate" translate="no">XXXBufferGeometry</code> has been removed
-and only <code class="notranslate" translate="no">XXXGeometry</code> remains but <code class="notranslate" translate="no">XXXGeometry</code> is
-now an instance of <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. </p>
-<p>In other words before r125 there</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">BoxGeometry -&gt; Geometry
-BoxBufferGeometry -&gt; BufferGeometry
-</pre><p>As of r125 there is now only this</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">BoxGeometry -&gt; BufferGeometry
-</pre><p>This article still works but it references the previous
-article which uses the deprecated <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. It will
-take some work to re-write this so in the meantime
-I added this note</p>
-</blockquote>
-<p>A <a href="threejs-custom-geometry.html">previous article</a> covered
-how to use <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. This article is about <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.
-<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> is <em>generally</em> faster to start and uses
-less memory but can be harder to setup.</p>
-<p>In <a href="threejs-custom-geometry.html">the article on Geometry</a> we went over that to use a <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> you supply an
-array of <a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a> vertices (positions). You then make <a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a> objects specifying
-by index the 3 vertices that make each triangle of the shape you're making. To
-each <a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a> you can specify either a face normal or normals for each individual
-vertex of the face. You can also specify a face color or individual vertex
-colors. Finally you can make a parallel array of arrays of texture coordinates
-(UVs), one array for each face containing an array of UVs, one for each vertex
-of the face.</p>
-<div class="threejs_center"><img src="resources/threejs-geometry.svg" style="width: 700px"></div>
-
-<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> on the other hand uses <em>named</em> <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s.
+      <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> is three.js's way of representing all geometry. It's
+essentially a collection <em>named</em>  <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s.
 Each <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> represents an array of one type of data: positions,
 normals, colors, and uv. Together, the added <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s represent
 <em>parallel arrays</em> of all the data for each vertex.</p>
@@ -276,23 +247,15 @@ to show that the parallel data across all attributes defines one vertex.</p>
 <div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 <p>Thinking about it that single corner needs a different normal for each face of the
-cube. It needs different UVs for each face as well. This points out the biggest difference
-between <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> and <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. Nothing is shared with <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.
+cube. It needs different UVs for each face as well. 
 A single <em>vertex</em> is the combination of all of its parts. If a vertex needs any
 part to be different then it must be a different vertex.</p>
-<p>The truth is when you use <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> three.js transforms it into this format.
-That is where the extra memory and time comes from when using <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. Extra
-memory for all the <a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>s, <a href="https://threejs.org/docs/#api/en/math/Vector2"><code class="notranslate" translate="no">Vector2</code></a>s, <a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>s and array objects and then
-extra time to translate all of that data into parallel arrays in the form of
-<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s like above. Sometimes that makes using <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> easier.
-With <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> it is up to us to supply the data already turned into this format.</p>
 <p>As a simple example let's make a cube using <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. A cube is interesting
 because it appears to share vertices at the corners but really
 does not. For our example we'll list out all the vertices with all their data
 and then convert that data into parallel arrays and finally use those to make
 <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s and add them to a <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.</p>
-<p>Starting with the texture coordinate example from <a href="threejs-custom-geometry.html">the previous article</a> we've deleted all the code related to setting up
-a <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. Then we list all the data needed for the cube. Remember again
+<p>We start with a list of all the data needed for the cube. Remember again
 that if a vertex has any unique parts it has to be a separate vertex. As such
 to make a cube requires 36 vertices. 2 triangles per face, 3 vertices per triangle,
 6 faces = 36 vertices.</p>
@@ -476,7 +439,7 @@ geometry.setAttribute(
 <p></p>
 <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> has a <a href="https://threejs.org/docs/#api/en/core/BufferGeometry#computeVertexNormals"><code class="notranslate" translate="no">computeVertexNormals</code></a> method for computing normals if you
 are not supplying them. Unfortunately, 
-since positions can not be shared if any other part of a vertex is different
+since positions can not be shared if any other part of a vertex is different,
 the results of calling <code class="notranslate" translate="no">computeVertexNormals</code> will generate seams if your
 geometry is supposed to connect to itself like a sphere or a cylinder.</p>
 <div class="spread">
@@ -489,7 +452,7 @@ geometry is supposed to connect to itself like a sphere or a cylinder.</p>
 If you look closely there is a seam on the cylinder. This is because there
 is no way to share the vertices at the start and end of the cylinder since they
 require different UVs so the function to compute them has no idea those are
-the same vertices and to smooth over them. Just a small thing to be aware of.
+the same vertices to smooth over them. Just a small thing to be aware of.
 The solution is to supply your own normals.</p>
 <p>We can also use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a> from the start instead of native JavaScript arrays.
 The disadvantage to TypedArrays is you must specify their size up front. Of
@@ -665,8 +628,10 @@ positionAttribute.needsUpdate = true;
 <p></p>
 <p>I hope these were useful examples of how to use <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> directly to
 make your own geometry and how to dynamically update the contents of a
-<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>. Which you use, <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> or <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>, really
-depends on your needs.</p>
+<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>.</p>
+<!-- needed to prevent warning from outdated translation -->
+<p><a href="resources/threejs-geometry.svg"></a>
+<a href="threejs-custom-geometry.html"></a></p>
 <p><canvas id="c"></canvas></p>
 <script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
 

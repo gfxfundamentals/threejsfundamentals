@@ -232,7 +232,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>A <a href="threejs-primitives.html">previous article</a> gave a tour of
+      <blockquote>
+<p><strong>NOTE!</strong> This article is deprecated. Three.js r125
+removed support for <code class="notranslate" translate="no">Geometry</code>. Please refer to
+the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometry</a>.</p>
+</blockquote>
+<p>A <a href="threejs-primitives.html">previous article</a> gave a tour of
 the various built in primitives included in THREE.js. In this
 article we'll cover making our own geometry.</p>
 <p>Just to be clear, if you are serious about making 3D content,
@@ -252,8 +257,8 @@ to be useful.</p>
 provides us with <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> a
 cube is easy to understand so let's start there.</p>
 <p>There are 2 ways to make custom geometry in THREE.js. One
-is with the <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> class, the other is <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.
-Each has their advantages. <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> is arguably easier to
+is with the <code class="notranslate" translate="no">Geometry</code> class, the other is <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.
+Each has their advantages. <code class="notranslate" translate="no">Geometry</code> is arguably easier to
 use but slower and uses more memory. For few 1000s triangles
 it's a great choice but for 10s of thousands of triangles
 it might be better to use <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.</p>
@@ -261,17 +266,17 @@ it might be better to use <a href="https://threejs.org/docs/#api/en/core/BufferG
 memory and is faster. If quick rule of thumb might be
 if you're going to generate more than 10000 triangles
 consider using <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.</p>
-<p>Note when I say <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> is slower I mean it is slower to
+<p>Note when I say <code class="notranslate" translate="no">Geometry</code> is slower I mean it is slower to
 start and slower to modify but it is not slower to draw so
 if you're not planning on modifying your geometry then
 as long as it's not too large there will only be slightly more
-delay for your program to start using <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> vs using
+delay for your program to start using <code class="notranslate" translate="no">Geometry</code> vs using
 <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. We'll go over both eventually. For now
 though let's use geometry as it's easier to understand IMO.</p>
-<p>First let's make a cube with <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>. We'll start
+<p>First let's make a cube with <code class="notranslate" translate="no">Geometry</code>. We'll start
 with an example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
 <p>Let's remove the part that uses <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> and replace it with
-a <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>.</p>
+a <code class="notranslate" translate="no">Geometry</code>.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const boxWidth = 1;
 -const boxHeight = 1;
 -const boxDepth = 1;
@@ -419,7 +424,7 @@ property with something like</p>
 </pre>
 <p>but often it's much easier to just ask THREE.js to compute normals
 for us based on the positions we specified.</p>
-<p>For face normals we'd call <a href="https://threejs.org/docs/#api/en/core/Geometry.computeFaceNormals"><code class="notranslate" translate="no">Geometry.computeFaceNormals</code></a> as in</p>
+<p>For face normals we'd call <code class="notranslate" translate="no">Geometry.computeFaceNormals</code> as in</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.computeFaceNormals();
 </pre>
 <p>Removing the vertex color stuff and changing the material back to <a href="https://threejs.org/docs/#api/en/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a></p>
@@ -434,7 +439,7 @@ for us based on the positions we specified.</p>
 
 <p></p>
 <p>Using face normals will always give us a faceted look. We can use
-vertex normals for a smoother look by calling <a href="https://threejs.org/docs/#api/en/core/Geometry.computeVertexNormals"><code class="notranslate" translate="no">Geometry.computeVertexNormals</code></a></p>
+vertex normals for a smoother look by calling <code class="notranslate" translate="no">Geometry.computeVertexNormals</code></p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">-geometry.computeFaceNormals();
 +geometry.computeVertexNormals();
 </pre>
@@ -448,7 +453,7 @@ normals of all the faces it shares.</p>
 
 <p></p>
 <p>Adding texture coordinates, sometimes called UVs, is done via an array of
-layers of parallel arrays to the <code class="notranslate" translate="no">faces</code> array which is set via <a href="https://threejs.org/docs/#api/en/core/Geometry.faceVertexUvs"><code class="notranslate" translate="no">Geometry.faceVertexUvs</code></a>.
+layers of parallel arrays to the <code class="notranslate" translate="no">faces</code> array which is set via <code class="notranslate" translate="no">Geometry.faceVertexUvs</code>.
 For our cube we could do something like</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.faceVertexUvs[0].push(
   // front
@@ -650,7 +655,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 <p></p>
 <p>I hope that was a useful instruction to making your own
-geometry using <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a>.</p>
+geometry using <code class="notranslate" translate="no">Geometry</code>.</p>
 <p>In <a href="threejs-custom-buffergeometry.html">another article</a> we'll go over <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>.</p>
 
     </div>

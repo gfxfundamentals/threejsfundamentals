@@ -268,19 +268,19 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <div id="Diagram-EdgesGeometry" data-primitive="EdgesGeometry">一个工具对象，将一个几何体作为输入，生成面夹角大于某个阈值的那条边。例如，你从顶上看一个盒子，你会看到有一条线穿过这个面，因为每个组成这个盒子的三角形都显示出来了。而如果使用 <a href="https://threejs.org/docs/#api/zh/geometries/EdgesGeometry"><code class="notranslate" translate="no">EdgesGeometry</code></a> 中间的线就会被移除。调整下面的 thresholdAngle，你就会看到夹角小于这个值的边消失了。</div>
 <div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">对于给定的几何体，生成每个边包含一个线段（2 个点）的几何体。如果不这样，通常缺边或者多边，因为 WebGL 中每条边通常需要 2 个点。例如，如果你只有一个三角形，就只有 3 个点 。如果你用 <code class="notranslate" translate="no">wireframe: true</code> 的材质来绘制它，你只能得到一条线。将这个三角形几何体传给 <a href="https://threejs.org/docs/#api/zh/geometries/WireframeGeometry"><code class="notranslate" translate="no">WireframeGeometry</code></a> 就能生成一个新的几何体，这个几何体用 6 个点组成 3 条线段。</div>
 
-<p>你可能发现上面的大部分中，<a href="https://threejs.org/docs/#api/zh/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 和 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 是成对出现的。
+<p>你可能发现上面的大部分中，<code class="notranslate" translate="no">Geometry</code> 和 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 是成对出现的。
 这两种类型的区别是高效灵活 vs 性能。</p>
 <p>基于 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 的图元是面向性能的类型。
 几何体的顶点是直接生成为一个高效的类型数组形式，可以被上传到 GPU 进行渲染。
 这意味着它们能更快的启动，占用更少的内存。但如果想修改数据，就需要复杂的编程。</p>
-<p>基于 <a href="https://threejs.org/docs/#api/zh/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 的图元更灵活、更易修改。
+<p>基于 <code class="notranslate" translate="no">Geometry</code> 的图元更灵活、更易修改。
 它们根据 JavaScript 的类而来，像 <a href="https://threejs.org/docs/#api/zh/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a> 是 3D 的点，<a href="https://threejs.org/docs/#api/zh/core/Face3"><code class="notranslate" translate="no">Face3</code></a> 是三角形。
 它们需要更多的内存，在能够被渲染前，Three.js 会将它们转换成相应的 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 表现形式。</p>
 <p>如果你知道你不会操作图元，或者你擅长使用数学来操作它们，那么最好使用基于 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 的图元。
-但如果你想在渲染前修改一些东西，那么 <a href="https://threejs.org/docs/#api/zh/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 的图元会更好操作。</p>
+但如果你想在渲染前修改一些东西，那么 <code class="notranslate" translate="no">Geometry</code> 的图元会更好操作。</p>
 <p>举个简单的例子，<a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 不能轻松的添加新的顶点。
 使用顶点的数量在创建时就定好了，相应的创建存储，填充顶点数据。
-但用 <a href="https://threejs.org/docs/#api/zh/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 你就能随时添加顶点。</p>
+但用 <code class="notranslate" translate="no">Geometry</code> 你就能随时添加顶点。</p>
 <p>我们会在 <a href="threejs-custom-buffergeometry.html">另一篇文章</a> 中来讲创建自定义几何体。
 现在，我们来为创建每一个图元作为例子。
 我们从 <a href="threejs-responsive.html">上一篇文章的例子</a> 开始。</p>
@@ -428,7 +428,7 @@ function addObject(x, y, obj) {
 <p>每个图元都有多个参数可以在创建时传入，最好 <a href="https://threejs.org/docs">看文档</a> 而不是在这里重复它们。
 你也可以点击上面每个形状边上的链接，查看对应的文档。</p>
 <p>有一对类并不和上面的模式匹配。它们是 <a href="https://threejs.org/docs/#api/zh/materials/PointsMaterial"><code class="notranslate" translate="no">PointsMaterial</code></a> 和 <a href="https://threejs.org/docs/#api/zh/objects/Points"><code class="notranslate" translate="no">Points</code></a>。
-<a href="https://threejs.org/docs/#api/zh/objects/Points"><code class="notranslate" translate="no">Points</code></a> 和 <a href="https://threejs.org/docs/#api/zh/objects/LineSegments"><code class="notranslate" translate="no">LineSegments</code></a> 类似，它需要一个 <a href="https://threejs.org/docs/#api/zh/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> 或者 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>，但每个顶点都绘制一次，而不是每条线。
+<a href="https://threejs.org/docs/#api/zh/objects/Points"><code class="notranslate" translate="no">Points</code></a> 和 <a href="https://threejs.org/docs/#api/zh/objects/LineSegments"><code class="notranslate" translate="no">LineSegments</code></a> 类似，它需要一个 <code class="notranslate" translate="no">Geometry</code> 或者 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>，但每个顶点都绘制一次，而不是每条线。
 要使用，你需要传入 <a href="https://threejs.org/docs/#api/zh/materials/PointsMaterial"><code class="notranslate" translate="no">PointsMaterial</code></a>，它需要一个代表点多大的 <a href="https://threejs.org/docs/#api/zh/materials/PointsMaterial#size"><code class="notranslate" translate="no">size</code></a>。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const radius = 7;
 const widthSegments = 12;

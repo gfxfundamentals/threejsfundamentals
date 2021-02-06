@@ -284,16 +284,16 @@ child of some other object, will move and orient relative to its parent object.
 There is an example of putting multiple <a href="https://threejs.org/docs/#api/en/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a> objects in a scenegraph at
 the end of <a href="threejs-scenegraph.html">the article on scenegraphs</a>.</p>
 </li>
-<li><p><a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> objects represent drawing a specific <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> with a specific
- <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a>. Both <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> objects and <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> objects can be used by
+<li><p><a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> objects represent drawing a specific <code class="notranslate" translate="no">Geometry</code> with a specific
+ <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a>. Both <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> objects and <code class="notranslate" translate="no">Geometry</code> objects can be used by
  multiple <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> objects. For example to draw two blue cubes in different
  locations we could need two <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> objects to represent the position and
- orientation of each cube. We would only need one <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> to hold the vertex
+ orientation of each cube. We would only need one <code class="notranslate" translate="no">Geometry</code> to hold the vertex
  data for a cube and we would only need one <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> to specify the color
- blue. Both <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> objects could reference the same <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> object and the
+ blue. Both <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> objects could reference the same <code class="notranslate" translate="no">Geometry</code> object and the
  same <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> object.</p>
 </li>
-<li><p><a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> objects represent the vertex data of some piece of geometry like
+<li><p><code class="notranslate" translate="no">Geometry</code> objects represent the vertex data of some piece of geometry like
  a sphere, cube, plane, dog, cat, human, tree, building, etc...
  Three.js provides many kinds of built in
  <a href="threejs-primitives.html">geometry primitives</a>. You can also
@@ -414,7 +414,7 @@ be specified using standard CSS style 6 digit hex color values.</p>
 <p>We then create a <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a>. A <a href="https://threejs.org/docs/#api/en/objects/Mesh"><code class="notranslate" translate="no">Mesh</code></a> in three represents the combination
 of a three things</p>
 <ol>
-<li>A <a href="https://threejs.org/docs/#api/en/core/Geometry"><code class="notranslate" translate="no">Geometry</code></a> (the shape of the object)</li>
+<li>A <code class="notranslate" translate="no">Geometry</code> (the shape of the object)</li>
 <li>A <a href="https://threejs.org/docs/#api/en/materials/Material"><code class="notranslate" translate="no">Material</code></a> (how to draw the object, shiny or flat, what color, what texture(s) to apply. Etc.)</li>
 <li>The position, orientation, and scale of that object in the scene relative to its parent. In the code below that parent is the scene.</li>
 </ol>
@@ -640,6 +640,10 @@ see what you need to change. It would be too much work to maintain both an es6 m
 version of this site so going forward this site will only show es6 module style. As stated elsewhere,
 to support legacy browsers look into a <a href="https://babeljs.io">transpiler</a>.</p>
 </div>
+
+<!-- needed for out of date translations -->
+<p><a href="threejs-geometry.html"></a>
+<a href="Geometry"></a></p>
 
     </div>
     <div class="lesson-sidebar">

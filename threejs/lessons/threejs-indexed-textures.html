@@ -405,20 +405,7 @@ function unselectAllCountries() {
   });
 }
 
-canvas.addEventListener('mouseup', pickCountry);
-
-let lastTouch;
-canvas.addEventListener('touchstart', (event) =&gt; {
-  // prevent the window from scrolling
-  event.preventDefault();
-  lastTouch = event.touches[0];
-}, {passive: false});
-canvas.addEventListener('touchmove', (event) =&gt; {
-  lastTouch = event.touches[0];
-});
-canvas.addEventListener('touchend', () =&gt; {
-  pickCountry(lastTouch);
-});
+canvas.addEventListener('pointerup', pickCountry);
 </pre>
 <p>The code above sets/unsets the <code class="notranslate" translate="no">selected</code> property on
 the array of countries. If <code class="notranslate" translate="no">shift</code> or <code class="notranslate" translate="no">ctrl</code> or <code class="notranslate" translate="no">cmd</code>
@@ -822,19 +809,8 @@ function unselectAllCountries() {
   resetPalette();
 }
 
-+canvas.addEventListener('mousedown', recordStartTimeAndPosition);
-canvas.addEventListener('mouseup', pickCountry);
-
-let lastTouch;
-canvas.addEventListener('touchstart', (event) =&gt; {
-  // prevent the window from scrolling
-  event.preventDefault();
-  lastTouch = event.touches[0];
-+  recordStartTimeAndPosition(event.touches[0]);
-}, {passive: false});
-canvas.addEventListener('touchmove', (event) =&gt; {
-  lastTouch = event.touches[0];
-});
++canvas.addEventListener('pointerdown', recordStartTimeAndPosition);
+canvas.addEventListener('pointerup', pickCountry);
 </pre>
 <p>and with those changes it <em>seems</em> like it works to me.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
