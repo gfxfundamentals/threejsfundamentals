@@ -662,6 +662,8 @@ camera.zoom = 1;
 <p>Then let's load 6 textures and make 6 planes, one for each texture.
 We'll parent each plane to a <a href="https://threejs.org/docs/#api/en/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a> to make it easy to offset
 the plane so its center appears to be at its top left corner.</p>
+<p>If you're running locally you'll also need to have <a href="threejs-setup.html">setup</a>.
+You might also want to read about <a href="threejs-textures.html">using textures</a>.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const loader = new THREE.TextureLoader();
 const textures = [
   loader.load('resources/images/flower-1.jpg'),

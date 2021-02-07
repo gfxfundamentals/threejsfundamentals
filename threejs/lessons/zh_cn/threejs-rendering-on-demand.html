@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-rendering-on-demand.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Rendering on Demand">
+
+<meta name="description" content="如何节约资源">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 按需渲染">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="How to use less energy.">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_zh_cn.jpg">
+<meta property="og:description" content="如何节约资源">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Rendering on Demand">
+<meta name="twitter:title" content="Three.js 按需渲染">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">
-<meta name="twitter:description" content="How to use less energy.">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="如何节约资源">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-rendering-on-demand.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">
 
 
-<title>Three.js Rendering on Demand</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendering-on-demand_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 按需渲染",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-rendering-on-demand.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 按需渲染</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +229,169 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Rendering on Demand</h1>
+    <h1>Three.js 按需渲染</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-rendering-on-demand.html">英文原文链接</a>.</p>
+      <p>这一章的主题即便已经很明显了, 但... 以防万一, 还是说大多数情况下three.js给出的例子都是连续渲染的. 换言之他们使用了<code class="notranslate" translate="no">requestAnimationFrame</code>循环或者写成<em>rAF loop</em></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
+  ...
+  requestAnimationFrame(render);
+}
+requestAnimationFrame(render);
+</pre>
+<p>有些场景连续渲染是有意义的, 但是有些情况下不需要一直动呢? 这种情况下不断地渲染会浪费电, 对于移动设备来说属实不能接受. </p>
+<p>显而易见的解决方法是一开始的时候渲染一次, 只有当什么东西改变了以后再次渲染. 这种改变包括纹理的变化, 或者再入了模型, 其他源传来了什么数据, 用户调整了设置或者是动了摄像机. </p>
+<p>我们以<a href="threejs-responsive.html">响应式设计</a>这一章为例, 稍作修改以满足按需渲染.</p>
+<p>首先我们添加<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>, 这样当摄像机改变之后场景就可以随之渲染</p>
+<p>First we'll add in the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> so there is something that could change
+that we can render in response to.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>然后</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+const far = 5;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.z = 2;
+
++const controls = new OrbitControls(camera, canvas);
++controls.target.set(0, 0, 0);
++controls.update();
+</pre>
+<p>我们不需要在渲染那三个正方体了所以不再追踪</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const cubes = [
+-  makeInstance(geometry, 0x44aa88,  0),
+-  makeInstance(geometry, 0x8844aa, -2),
+-  makeInstance(geometry, 0xaa8844,  2),
+-];
++makeInstance(geometry, 0x44aa88,  0);
++makeInstance(geometry, 0x8844aa, -2);
++makeInstance(geometry, 0xaa8844,  2);
+</pre>
+<p>把这些代码移除, 然后调用<code class="notranslate" translate="no">requestAnimationFrame</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function render(time) {
+-  time *= 0.001;
++function render() {
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+-  cubes.forEach((cube, ndx) =&gt; {
+-    const speed = 1 + ndx * .1;
+-    const rot = time * speed;
+-    cube.rotation.x = rot;
+-    cube.rotation.y = rot;
+-  });
+
+  renderer.render(scene, camera);
+
+-  requestAnimationFrame(render);
+}
+
+-requestAnimationFrame(render);
+</pre>
+<p>我们这次只需要渲染一次</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">render();
+</pre>
+<p>我们需要在<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>改变摄像机设置的时候渲染场景.
+幸好<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>提供了一个<code class="notranslate" translate="no">change</code>事件来监听变化</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.addEventListener('change', render);
+</pre>
+<p>我们同样需要捕捉到用户改变窗口大小的情况. 在之前连续渲染的时候这种情况是自动处理的, 但是现在是按需渲染, 我们需要在窗口改变的时候显式<code class="notranslate" translate="no">resize</code>窗口大小</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">window.addEventListener('resize', render);
+</pre>
+<p>然后我们就实现了按需渲染的功能</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+
+<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> 有个选项可以增加某种惯性, 让整个画面显得不那么僵硬. 我们启用<code class="notranslate" translate="no">enableDamping</code>来实现它<p></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">controls.enableDamping = true;
+</pre>
+<p>开启<code class="notranslate" translate="no">enableDamping</code>, 我们需要在渲染函数中调用<code class="notranslate" translate="no">controls.update</code>, 让<a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>可以丝滑地让摄像机移动. 但是, 这就意味着我们不能直接地在<code class="notranslate" translate="no">change</code>事件中调用<code class="notranslate" translate="no">render</code>, 如此这般会导致死循环. 控制器响应一个<code class="notranslate" translate="no">change</code>事件然后调用<code class="notranslate" translate="no">render</code>, 然后<code class="notranslate" translate="no">render</code>调用<code class="notranslate" translate="no">controls.update</code>. 这个方法会再发出另一个<code class="notranslate" translate="no">change</code>事件. </p>
+<p>我们可以通过使用<code class="notranslate" translate="no">requestAnimationFrame</code>调用<code class="notranslate" translate="no">render</code>, 但是需要确保仅仅在需要一个新帧的时候才执行. 如果没有请求</p>
+<p>我们可以通过使用<code class="notranslate" translate="no">requestAnimationFrame</code>调用<code class="notranslate" translate="no">render</code>来解决这个问题, 但是我们需要确保我们只在还没有请求一个新帧的情况下请求一个新帧, 我们可以通过一个变量来跟踪我们已经请求的帧</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+let renderRequested = false;
+
+function render() {
++  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
+  renderer.render(scene, camera);
+}
+render();
+
++function requestRenderIfNotRequested() {
++  if (!renderRequested) {
++    renderRequested = true;
++    requestAnimationFrame(render);
++  }
++}
+
+-controls.addEventListener('change', render);
++controls.addEventListener('change', requestRenderIfNotRequested);
+</pre>
+<p>我们应该会在改变窗口大小的时候用到<code class="notranslate" translate="no">requestRenderIfNotRequested</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-window.addEventListener('resize', render);
++window.addEventListener('resize', requestRenderIfNotRequested);
+</pre>
+<p>可能很难看出来有什么不同. 试着点一下下面的例子, 然后用方向键移动, 或者拖拽旋转. 然后在上面的例子中做同样的事, 你应该能感觉出来区别. 上面的像是一帧帧在放幻灯片, 下面则是丝滑柔顺.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-damping.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-damping.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>让我们加一个简单的GUI</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
++import {GUI} from '../3rdparty/dat.gui.module.js';
+</pre>
+<p>这个控制器可以改变每个立方体的颜色和在x方向缩放. 为了设置颜色我们用了<code class="notranslate" translate="no">ColorGUIHelper</code>, 这个在<a href="threejs-lights.html">光线</a>一章提到过</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+</pre>
+<p>对每一个立方体, 我们建一个折叠菜单, 一个是<code class="notranslate" translate="no">material.color</code>, 另一个是<code class="notranslate" translate="no">cube.scale.x</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.x = x;
+
++  const folder = gui.addFolder(`Cube${x}`);
++  folder.addColor(new ColorGUIHelper(material, 'color'), 'value')
++      .name('color')
++      .onChange(requestRenderIfNotRequested);
++  folder.add(cube.scale, 'x', .1, 1.5)
++      .name('scale x')
++      .onChange(requestRenderIfNotRequested);
++  folder.open();
+
+  return cube;
+}
+</pre>
+<p>上面的GUI用了一个<code class="notranslate" translate="no">onChange</code>方法, 在数值改变的时候调用传入一个回调函数. 这个例子中, 我们仅仅需要它调用<code class="notranslate" translate="no">requestRenderIfNotRequested</code>. <code class="notranslate" translate="no">folder.open</code>是使折叠菜单展开的方法</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-on-demand-w-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-on-demand-w-gui.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>我希望这篇文章能在将连续渲染改成按需渲染的时候给你一些启发. 按需渲染不像是连续渲染那么常见, 因为3D游戏或者艺术创作中必须要让场景动出来. 但是有些场合, 例如地图浏览器, 3D编辑器, 3D图产生器等等的, 可能还是按需渲染比较好. </p>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +405,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -208,7 +420,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-materials.html">材质</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-textures.html">纹理</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-lights.html">光照</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">摄像机</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
@@ -216,7 +428,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>技巧</li>
         <ul>
-          <li><a href="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+          <li><a href="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">按需渲染</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">Debugging GLSL</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-tips.html#screenshot">Taking a screenshot</a></li>
@@ -227,8 +439,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>优化</li>
         <ul>
-          <li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+          <li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">大量对象的优化</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">优化对象的同时保持动画效果</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
         </ul>
   <li>解决方案</li>
@@ -266,10 +478,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>有问题？ <a href="http://stackoverflow.com/questions/tagged/three.js">在 Stackoverflow 上提问</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 按需渲染';
+            var disqus_title = 'Three.js 按需渲染';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Optimize Lots of Objects Animated">
+
+<meta name="description" content="使用morphtarget优化">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 优化对象的同时保持动画效果">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Animated merged objects with Morphtargets">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_zh_cn.jpg">
+<meta property="og:description" content="使用morphtarget优化">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Optimize Lots of Objects Animated">
+<meta name="twitter:title" content="Three.js 优化对象的同时保持动画效果">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">
-<meta name="twitter:description" content="Animated merged objects with Morphtargets">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="使用morphtarget优化">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">
 
 
-<title>Three.js Optimize Lots of Objects Animated</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-optimize-lots-of-objects-animated_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 优化对象的同时保持动画效果",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 优化对象的同时保持动画效果</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +229,568 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Optimize Lots of Objects Animated</h1>
+    <h1>Three.js 优化对象的同时保持动画效果</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-optimize-lots-of-objects-animated.html">英文原文链接</a>.</p>
+      <p>本文是关于 three.js 系列文章的一部分. 第一篇文章是 <a href="threejs-optimize-lots-of-objects.html">three.js 基础</a>. 如果你还没看过而且对three.js 还不熟悉，那应该从那里开始.</p>
+<p>在上一章中, 我们合并了19000个对象到一个几何体中. 这带来的好处是优化掉19000次绘制操作但是缺点是没有办法再单独操作某一个了. </p>
+<p>根据我们想达成的目标的不同, 有不同的解决方案可选. 本例中我们绘制大量的数据, 然后还能在这些数据集间设置动画</p>
+<p>第一件事是获取数据集. 理想中我们可能需要预处理这些数据, 但是我们现在只需要载入两个数据集然后产生更多的. </p>
+<p>这是我们之前的载入代码</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc')
+  .then(parseData)
+  .then(addBoxes)
+  .then(render);
+</pre>
+<p>稍微改成这样</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadData(info) {
+  const text = await loadFile(info.url);
+  info.file = parseData(text);
+}
+
+async function loadAll() {
+  const fileInfos = [
+    {name: 'men',   hueRange: [0.7, 0.3], url: 'resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014mt_2010_cntm_1_deg.asc' },
+    {name: 'women', hueRange: [0.9, 1.1], url: 'resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000_014ft_2010_cntm_1_deg.asc' },
+  ];
+
+  await Promise.all(fileInfos.map(loadData));
+
+  ...
+}
+loadAll();
+</pre>
+<p>上面的代码将会加载<code class="notranslate" translate="no">fileInfos</code>中的所有文件, 加载完成后每一个<code class="notranslate" translate="no">fileInfos</code>中的对象都会有一个带着载入文件的<code class="notranslate" translate="no">file</code>属性. 我们稍后使用<code class="notranslate" translate="no">name</code>和<code class="notranslate" translate="no">hueRange</code>. <code class="notranslate" translate="no">name</code>是显示在界面上的字段, <code class="notranslate" translate="no">hueRange</code>是色调. </p>
+<p>上面的两个文件显然是每个地区2010年男人和女人的数量. 注意了, 我不知道这些数据对不对, 但是不影响好吧. 重要的是如何去展示这些不同的数据. </p>
+<p>让我们再产生两组数据. 一组是男人数量比女人多的, 另一组反过来. </p>
+<p>首先，让我们编写一个函数，在给定一个二维数组的情况下，像以前一样映射生成一个新的二维数组</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function mapValues(data, fn) {
+  return data.map((row, rowNdx) =&gt; {
+    return row.map((value, colNdx) =&gt; {
+      return fn(value, rowNdx, colNdx);
+    });
+  });
+}
+</pre>
+<p>就像普通的<code class="notranslate" translate="no">Array.map</code>函数, <code class="notranslate" translate="no">mapValues</code>函数对数组的数组每一个值调用了<code class="notranslate" translate="no">fn</code>. 这将会将每个值和它的索引传进去. </p>
+<p>现在让我们编写一些代码来生成一个新文件，它是两个文件之间的比较</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeDiffFile(baseFile, otherFile, compareFn) {
+  let min;
+  let max;
+  const baseData = baseFile.data;
+  const otherData = otherFile.data;
+  const data = mapValues(baseData, (base, rowNdx, colNdx) =&gt; {
+    const other = otherData[rowNdx][colNdx];
+      if (base === undefined || other === undefined) {
+        return undefined;
+      }
+      const value = compareFn(base, other);
+      min = Math.min(min === undefined ? value : min, value);
+      max = Math.max(max === undefined ? value : max, value);
+      return value;
+  });
+  // 生成baseFile的一个副本, 然后用新文件的min max 和 data替代原来的
+  return {...baseFile, min, max, data};
+}
+</pre>
+<p>上面的代码基于传入的<code class="notranslate" translate="no">compareFn</code>用<code class="notranslate" translate="no">mapValues</code>生成一个新的数据集. 这同样追踪<code class="notranslate" translate="no">min</code>和<code class="notranslate" translate="no">max</code>的比较结果. 最后这将会生成一个新文件, 除了<code class="notranslate" translate="no">min</code>, <code class="notranslate" translate="no">max</code>和<code class="notranslate" translate="no">data</code>所有的属性都和<code class="notranslate" translate="no">baseFile</code>一样. </p>
+<p>然后我们用上面的代码生成两个新数据集</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const menInfo = fileInfos[0];
+  const womenInfo = fileInfos[1];
+  const menFile = menInfo.file;
+  const womenFile = womenInfo.file;
+
+  function amountGreaterThan(a, b) {
+    return Math.max(a - b, 0);
+  }
+  fileInfos.push({
+    name: '&gt;50%men',
+    hueRange: [0.6, 1.1],
+    file: makeDiffFile(menFile, womenFile, (men, women) =&gt; {
+      return amountGreaterThan(men, women);
+    }),
+  });
+  fileInfos.push({
+    name: '&gt;50% women', 
+    hueRange: [0.0, 0.4],
+    file: makeDiffFile(womenFile, menFile, (women, men) =&gt; {
+      return amountGreaterThan(women, men);
+    }),
+  });
+}
+</pre>
+<p>现在我们写一个UI来选择数据集. 首先是html部分</p>
+<pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;body&gt;
+  &lt;canvas id="c"&gt;&lt;/canvas&gt;
++  &lt;div id="ui"&gt;&lt;/div&gt;
+&lt;/body&gt;
+</pre>
+<p>CSS部分, 让其显示在左侧</p>
+<pre class="prettyprint showlinemods notranslate lang-css" translate="no">#ui {
+  position: absolute;
+  left: 1em;
+  top: 1em;
+}
+#ui&gt;div {
+  font-size: 20pt;
+  padding: 1em;
+  display: inline-block;
+}
+#ui&gt;div.selected {
+  color: red;
+}
+</pre>
+<p>我们遍历整个文件, 对于每一个数据集都生成了合并了的box, </p>
+<p>然后我们可以遍历每个文件, 并为每组数据生成合并了的box和一个元素, 当鼠标悬停在上面时, 该元素将显示该集合并隐藏所有其他元素</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// 展示选中的元素, 隐藏其他的
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+    info.root.visible = visible;
+    info.elem.className = visible ? 'selected' : '';
+  });
+  requestRenderIfNotRequested();
+}
+
+const uiElem = document.querySelector('#ui');
+fileInfos.forEach((info) =&gt; {
+  const boxes = addBoxes(info.file, info.hueRange);
+  info.root = boxes;
+  const div = document.createElement('div');
+  info.elem = div;
+  div.textContent = info.name;
+  uiElem.appendChild(div);
+  div.addEventListener('mouseover', () =&gt; {
+    showFileInfo(fileInfos, info);
+  });
+});
+// 起始展示第一组数据
+showFileInfo(fileInfos, fileInfos[0]);
+</pre>
+<p>和之前例子有所不同的是, 我们还需要让<code class="notranslate" translate="no">addBoxes</code>获取<code class="notranslate" translate="no">hueRange</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function addBoxes(file) {
++function addBoxes(file, hueRange) {
+
+  ...
+
+    // compute a color
+-    const hue = THREE.MathUtils.lerp(0.7, 0.3, amount);
++    const hue = THREE.MathUtils.lerp(...hueRange, amount);
+
+  ...
+</pre>
+<p>把鼠标放到标签上可以在四组不同的数据集之间切换. </p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-multiple-data-sets.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-multiple-data-sets.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>咋回事, 怎么还有一些点非常突出??!! 而且切换得很生硬也没有动画啊</p>
+<p>有这么一些想法</p>
+<ul>
+<li><p>通过使用<a href="https://threejs.org/docs/#api/zh/materials/Material.opacity"><code class="notranslate" translate="no">Material.opacity</code></a>做消失过渡</p>
+<p>这个解决方案的问题是立方体完全重叠了, 意思是在Z轴方向冲突. 我们可以通过改变depth函数和使用blending来修复. 我们应该试一试</p>
+</li>
+<li><p>放大我们想看到的集合，缩小其他集合</p>
+<p>因为所有盒子的原点都在地球的中心, 如果我们把它们缩小到1.0以下, 它们就会沉入地球. 这听起来是个好主意, 但问题是所有的较低的盒子几乎会立即消失，直到新的数据集扩展到1.0才被替换. 这使得过渡非常不漂亮. 我们可以用一个神奇的自定义着色器来解决这个问题. </p>
+</li>
+<li><p>使用Morphtargets</p>
+<p>所谓<em>变形目标morphtargets</em>是一种给每个顶点提供多个值, 以及使他们进行变形或者说lerp(线性插值)的方法. morphtargets通常用于3D角色的面部动画, 但这并不是唯一的用途. </p>
+</li>
+</ul>
+<p>我们试试morphtargets</p>
+<p>我们还是给每一个数据集做一个几何体, 但这次我们提取<code class="notranslate" translate="no">position</code>属性, 把他们作为morphtargets.</p>
+<p>首先我们改动一下<code class="notranslate" translate="no">addBoxes</code>来生成并返回一个合并的几何体. </p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-function addBoxes(file, hueRange) {
++function makeBoxes(file, hueRange) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  ...
+
+-  const mergedGeometry = BufferGeometryUtils.mergeBufferGeometries(
+-      geometries, false);
+-  const material = new THREE.MeshBasicMaterial({
+-    vertexColors: true,
+-  });
+-  const mesh = new THREE.Mesh(mergedGeometry, material);
+-  scene.add(mesh);
+-  return mesh;
++  return BufferGeometryUtils.mergeBufferGeometries(
++     geometries, false);
+}
+</pre>
+<p>不过, 我们还有一件事要做. 变形目标的顶点数必须完全相同. 一个目标中的顶点#123需要在所有其他目标中有一个对应的顶点#123. 但是, 由于现在不同的数据集可能有一些没有数据的数据点, 因此不会为该点生成几何体, 这意味着另一个数据集没有相应的顶点. 所以, 我们需要检查所有的数据集，如果任何一个数据集中有数据, 就总是生成一些东西; 或者如果任何一个数据集中缺少数据, 就什么也不生成. 让我们以后者为准. </p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function dataMissingInAnySet(fileInfos, latNdx, lonNdx) {
++  for (const fileInfo of fileInfos) {
++    if (fileInfo.file.data[latNdx][lonNdx] === undefined) {
++      return true;
++    }
++  }
++  return false;
++}
+
+-function makeBoxes(file, hueRange) {
++function makeBoxes(file, hueRange, fileInfos) {
+  const {min, max, data} = file;
+  const range = max - min;
+
+  ...
+
+  const geometries = [];
+  data.forEach((row, latNdx) =&gt; {
+    row.forEach((value, lonNdx) =&gt; {
++      if (dataMissingInAnySet(fileInfos, latNdx, lonNdx)) {
++        return;
++      }
+      const amount = (value - min) / range;
+
+  ...
+</pre>
+<p>现在我们改动一下代码, 把调用<code class="notranslate" translate="no">addBoxes</code>的改成使用<code class="notranslate" translate="no">makeBoxes</code>生成变形目标.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+// 对每一个数据集生成几何体
++const geometries = fileInfos.map((info) =&gt; {
++  return makeBoxes(info.file, info.hueRange, fileInfos);
++});
++
++// 以第一个几何体作为基准, 将其他的作为变形目标
++const baseGeometry = geometries[0];
++baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
++  const attribute = geometry.getAttribute('position');
++  const name = `target${ndx}`;
++  attribute.name = name;
++  return attribute;
++});
++const material = new THREE.MeshBasicMaterial({
++  vertexColors: true,
++  morphTargets: true,
++});
++const mesh = new THREE.Mesh(baseGeometry, material);
++scene.add(mesh);
+
+const uiElem = document.querySelector('#ui');
+fileInfos.forEach((info) =&gt; {
+-  const boxes = addBoxes(info.file, info.hueRange);
+-  info.root = boxes;
+  const div = document.createElement('div');
+  info.elem = div;
+  div.textContent = info.name;
+  uiElem.appendChild(div);
+  function show() {
+    showFileInfo(fileInfos, info);
+  }
+  div.addEventListener('mouseover', show);
+  div.addEventListener('touchstart', show);
+});
+// 展示第一组数据集
+showFileInfo(fileInfos, fileInfos[0]);
+</pre>
+<p>以上我们为每一组数据集创建了几何体, 以第一个作为基准, 获取了<code class="notranslate" translate="no">position</code>属性, 将其他的几何体作为其变形目标</p>
+<p>现在我们需要改变显示和隐藏各种数据集的方式. 我们需要改动变形目标的influence, 而不是简单地显示和隐藏mesh. 对于我们我们想看到的数据集, influence应该是1, 不想看到的是0. 但是我们又不能直接将他们设置成1和0, 这将会显示开与闭的两种情况, 和现在这种没有区别. 我们也可以写一段自定义的动画效果, 听起来不难. 但是我们模仿的WebGL globe用了一个<a href="https://github.com/tweenjs/tween.js/">动画库</a>, 我们也用这一个. </p>
+<p>我们这里首先引入它</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
+import {BufferGeometryUtils} from './resources/threejs/r125/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from './resources/threejs/r125/examples/jsm/libs/tween.min.js';
+</pre>
+<p>然后创建一个<code class="notranslate" translate="no">Tween</code>来使influence变化</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+-    info.root.visible = visible;
+    info.elem.className = visible ? 'selected' : '';
++    const targets = {};
++    fileInfos.forEach((info, i) =&gt; {
++      targets[i] = info === fileInfo ? 1 : 0;
++    });
++    const durationInMs = 1000;
++    new TWEEN.Tween(mesh.morphTargetInfluences)
++      .to(targets, durationInMs)
++      .start();
+  });
+  requestRenderIfNotRequested();
+}
+</pre>
+<p>我们也可以在每一帧的render函数中调用<code class="notranslate" translate="no">TWEEN.update</code>, 但这会带来一个问题. "tween.js"是为了连续渲染而设计的, 但是我们采用的是<a href="threejs-rendering-on-demand.html">按需渲染</a>. 我们可以再切换回连续渲染的方式, 但是为了省电和省资源起见, 还是按需渲染比较好. 所以我们看看是否能让它在按需渲染下工作. </p>
+<p>我们需要<code class="notranslate" translate="no">TweenManaget</code>来完成这件事. 我们将用它来创建<code class="notranslate" translate="no">Tween</code>并追踪他们. 这里会有一个<code class="notranslate" translate="no">update</code>方法, 如果我们二次调用它的时候返回<code class="notranslate" translate="no">true</code>, 如果所有动画结束后则会返回<code class="notranslate" translate="no">false</code>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class TweenManger {
+  constructor() {
+    this.numTweensRunning = 0;
+  }
+  _handleComplete() {
+    --this.numTweensRunning;
+    console.assert(this.numTweensRunning &gt;= 0);
+  }
+  createTween(targetObject) {
+    const self = this;
+    ++this.numTweensRunning;
+    let userCompleteFn = () =&gt; {};
+    // 创建一个新的Tween, 并应用我们自己的回调函数
+    const tween = new TWEEN.Tween(targetObject).onComplete(function(...args) {
+      self._handleComplete();
+      userCompleteFn.call(this, ...args);
+    });
+    // 用我们自己的onComplete代替它的, 
+    // 因此, 如果用户提供回调, 我们可以调用用户的回调
+    tween.onComplete = (fn) =&gt; {
+      userCompleteFn = fn;
+      return tween;
+    };
+    return tween;
+  }
+  update() {
+    TWEEN.update();
+    return this.numTweensRunning &gt; 0;
+  }
+}
+</pre>
+<p>我们需要以下代码来使用</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas});
++  const tweenManager = new TweenManger();
+
+  ...
+</pre>
+<p>这是如何创建Tween</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
+function showFileInfo(fileInfos, fileInfo) {
+  fileInfos.forEach((info) =&gt; {
+    const visible = fileInfo === info;
+    info.elem.className = visible ? 'selected' : '';
+    const targets = {};
+    fileInfos.forEach((info, i) =&gt; {
+      targets[i] = info === fileInfo ? 1 : 0;
+    });
+    const durationInMs = 1000;
+-    new TWEEN.Tween(mesh.morphTargetInfluences)
++    tweenManager.createTween(mesh.morphTargetInfluences)
+      .to(targets, durationInMs)
+      .start();
+  });
+  requestRenderIfNotRequested();
+}
+</pre>
+<p>我们需要改动render函数来更新tween, 让动画还在跑的时候保持渲染</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
+  renderRequested = false;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+
++  if (tweenManager.update()) {
++    requestRenderIfNotRequested();
++  }
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+render();
+</pre>
+<p>这样我们就可以在数据集中以动画的方式过渡了</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>看起来挺好的, 但是失去了色彩.</p>
+<p>Three.js不支持颜色的变形, 但事实上这是<a href="https://github.com/dataarts/webgl-globe">webgl globe</a>下的一个issue. 基本上它只为第一个数据集生成颜色, 任何其他数据集使用相同的颜色. 即使它们有很大的不同. </p>
+<p>让我们看看是否可以做到让颜色也随之变化. 这个操作方法可能鲁棒性不足. 最好的方式是自己写着色器, 但是我觉得在这里还是讲一下如何修改内置的着色器为好</p>
+<p>我们需要做的第一件事是让代码从每个数据集的几何体中提取颜色. </p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const baseGeometry = geometries[0];
+baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
+  const attribute = geometry.getAttribute('position');
+  const name = `target${ndx}`;
+  attribute.name = name;
+  return attribute;
+});
++const colorAttributes = geometries.map((geometry, ndx) =&gt; {
++  const attribute = geometry.getAttribute('color');
++  const name = `morphColor${ndx}`;
++  attribute.name = `color${ndx}`;  // debug需要
++  return {name, attribute};
++});
+const material = new THREE.MeshBasicMaterial({
+  vertexColors: true,
+  morphTargets: true,
+});
+</pre>
+<p>We then need to modify the three.js shader. Three.js materials have an
+<a href="https://threejs.org/docs/#api/zh/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a> property we can assign a function. It gives us a
+chance to modify the material's shader before it is passed to WebGL. In fact the
+shader that is provided is actually a special three.js only syntax of shader
+that lists a bunch of shader <em>chunks</em> that three.js will substitute with the
+actual GLSL code for each chunk. Here is what the unmodified vertex shader code
+looks like as passed to <code class="notranslate" translate="no">onBeforeCompile</code>.</p>
+<p>我们需要改动three.js的着色器. Three.js的材质有一个<a href="https://threejs.org/docs/#api/zh/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a>属性, 我们可以为其赋一个函数. 这给了我们一个在传递给WebGL之前修改材质着色器的机会. 实际上, 提供的着色器就是一个特殊语法的three.js, 然后将会被GLSL替换. 以下是未修改的顶点着色器代码, 看起来将要传给<code class="notranslate" translate="no">onBeforeCompile</code>. (In fact the shader that is provided is actually a special three.js only syntax of shader that lists a bunch of shader <em>chunks</em> that three.js will substitute with the actual GLSL code for each chunk. Here is what the unmodified vertex shader code looks like as passed to <code class="notranslate" translate="no">onBeforeCompile</code>.)</p>
+<pre class="prettyprint showlinemods notranslate lang-glsl" translate="no">#include &lt;common&gt;
+#include &lt;uv_pars_vertex&gt;
+#include &lt;uv2_pars_vertex&gt;
+#include &lt;envmap_pars_vertex&gt;
+#include &lt;color_pars_vertex&gt;
+#include &lt;fog_pars_vertex&gt;
+#include &lt;morphtarget_pars_vertex&gt;
+#include &lt;skinning_pars_vertex&gt;
+#include &lt;logdepthbuf_pars_vertex&gt;
+#include &lt;clipping_planes_pars_vertex&gt;
+void main() {
+    #include &lt;uv_vertex&gt;
+    #include &lt;uv2_vertex&gt;
+    #include &lt;color_vertex&gt;
+    #include &lt;skinbase_vertex&gt;
+    #ifdef USE_ENVMAP
+    #include &lt;beginnormal_vertex&gt;
+    #include &lt;morphnormal_vertex&gt;
+    #include &lt;skinnormal_vertex&gt;
+    #include &lt;defaultnormal_vertex&gt;
+    #endif
+    #include &lt;begin_vertex&gt;
+    #include &lt;morphtarget_vertex&gt;
+    #include &lt;skinning_vertex&gt;
+    #include &lt;project_vertex&gt;
+    #include &lt;logdepthbuf_vertex&gt;
+    #include &lt;worldpos_vertex&gt;
+    #include &lt;clipping_planes_vertex&gt;
+    #include &lt;envmap_vertex&gt;
+    #include &lt;fog_vertex&gt;
+}
+</pre>
+<p>我们需要替换一下的部分 <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_pars_vertex.glsl.js"><code class="notranslate" translate="no">morphtarget_pars_vertex</code> chunk</a>, <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphnormal_vertex.glsl.js"><code class="notranslate" translate="no">morphnormal_vertex</code> chunk</a>, <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/morphtarget_vertex.glsl.js"><code class="notranslate" translate="no">morphtarget_vertex</code> chunk</a>, <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_pars_vertex.glsl.js"><code class="notranslate" translate="no">color_pars_vertex</code> chunk</a>, <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderChunk/color_vertex.glsl.js"><code class="notranslate" translate="no">color_vertex</code> chunk</a></p>
+<p>我们需要把待替换写成一个简单的数组, 在<a href="https://threejs.org/docs/#api/zh/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a>中应用它们.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({
+  vertexColors: true,
+  morphTargets: true,
+});
++const vertexShaderReplacements = [
++  {
++    from: '#include &lt;morphtarget_pars_vertex&gt;',
++    to: `
++      uniform float morphTargetInfluences[8];
++    `,
++  },
++  {
++    from: '#include &lt;morphnormal_vertex&gt;',
++    to: `
++    `,
++  },
++  {
++    from: '#include &lt;morphtarget_vertex&gt;',
++    to: `
++      transformed += (morphTarget0 - position) * morphTargetInfluences[0];
++      transformed += (morphTarget1 - position) * morphTargetInfluences[1];
++      transformed += (morphTarget2 - position) * morphTargetInfluences[2];
++      transformed += (morphTarget3 - position) * morphTargetInfluences[3];
++    `,
++  },
++  {
++    from: '#include &lt;color_pars_vertex&gt;',
++    to: `
++      varying vec3 vColor;
++      attribute vec3 morphColor0;
++      attribute vec3 morphColor1;
++      attribute vec3 morphColor2;
++      attribute vec3 morphColor3;
++    `,
++  },
++  {
++    from: '#include &lt;color_vertex&gt;',
++    to: `
++      vColor.xyz = morphColor0 * morphTargetInfluences[0] +
++                   morphColor1 * morphTargetInfluences[1] +
++                   morphColor2 * morphTargetInfluences[2] +
++                   morphColor3 * morphTargetInfluences[3];
++    `,
++  },
++];
++material.onBeforeCompile = (shader) =&gt; {
++  vertexShaderReplacements.forEach((rep) =&gt; {
++    shader.vertexShader = shader.vertexShader.replace(rep.from, rep.to);
++  });
++};
+</pre>
+<p>Three.js会给这些变形对象排序, 然后之后采用最高的influence. 这使得它可以采用更多的变形目标而只有几个可以被在同一时刻使用.不幸的是three.js不提供任何方法来知道将使用多少变形目标, 也不知道变形目标将分配给哪些属性. 所以, 我们必须研究代码并重现它在这里的作用. 如果three.js修改了它的算法, 接下来的代码也得重构. </p>
+<p>首先我们需要移除所有的颜色属性. 如果我们之前没有赋予这个属性那么移除它就一点事没有. 然后我们将会计算那些目标three.js将会用到, 最终把这些目标赋给three.js可能会用到的属性. </p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mesh = new THREE.Mesh(baseGeometry, material);
+scene.add(mesh);
+
++function updateMorphTargets() {
++  // 移除所有的颜色属性
++  for (const {name} of colorAttributes) {
++    baseGeometry.deleteAttribute(name);
++  }
++
++  // 没有提供可以查询这个的方法, 我们只能寄希望于它不会改变
++  const maxInfluences = 8;
++
++  // three.js没有提供查询哪个morphtarget会被使用的方法
++  // 也没有那个属性说明被使用, 所以只能靠猜
++  // 如果算法改了, 那这些都得重构
++  mesh.morphTargetInfluences
++    .map((influence, i) =&gt; [i, influence])            // 将索引映射到influence
++    .sort((a, b) =&gt; Math.abs(b[1]) - Math.abs(a[1]))  // 降幂排序
++    .slice(0, maxInfluences)                          // 只要最大的influence
++    .sort((a, b) =&gt; a[0] - b[0])                      // 按索引排序
++    .filter(a =&gt; !!a[1])                              // 移除没有influence的
++    .forEach(([ndx], i) =&gt; {                          // 赋予属性
++      const name = `morphColor${i}`;
++      baseGeometry.setAttribute(name, colorAttributes[ndx].attribute);
++    });
++}
+</pre>
+<p>我们将会在<code class="notranslate" translate="no">loadAll</code>函数中返回这个函数. 这将不会让我们泄露任何的变量</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">async function loadAll() {
+  ...
+
++  return updateMorphTargets;
+}
+
++// 使用无操作的update直到所有数据准备完成
++let updateMorphTargets = () =&gt; {};
+-loadAll();
++loadAll().then(fn =&gt; {
++  updateMorphTargets = fn;
++});
+</pre>
+<p>最终我们需要调用<code class="notranslate" translate="no">updateMorphTargets</code>, 直到我们最终让所有的数值都在渲染前被tween manager更新</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render() {
+
+  ...
+
+  if (tweenManager.update()) {
+    requestRenderIfNotRequested();
+  }
+
++  updateMorphTargets();
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+</pre>
+<p>然后我们的颜色就可以像尺寸一样动起来了. </p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lots-of-objects-morphtargets-w-colors.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lots-of-objects-morphtargets-w-colors.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>我希望上面讲的这些能有用. 通过threejs提供的方法或者自己写着色器来使用变形对象是一种常见的移动大量对象的手段. 作为一个例子, 我们可以给每一个立方体一个随机目标, 然后从这个位置变换到另一个位置. 这可能是一种超酷的介绍地球的方法. </p>
+<p>接下来你可能感兴趣的是给地球上的一个位置添加标签, 这将在<a href="threejs-align-html-elements-to-3d.html">3D中排布HTML元素</a>中涉及. </p>
+<p>Note: We could try to just graph percent of men or percent of women or the raw
+difference but based on how we are displaying the info, cubes that grow from the
+surface of the earth, we'd prefer most cubes to be low. If we used one of these
+other comparisons most cubes would be about 1/2 their maximum height which would
+not make a good visualization. Feel free to change the <code class="notranslate" translate="no">amountGreaterThan</code> from
+<a href="https://threejs.org/docs/#api/zh/math/Math.max(a - b, 0)"><code class="notranslate" translate="no">Math.max(a - b, 0)</code></a> to something like <code class="notranslate" translate="no">(a - b)</code> "raw difference" or <code class="notranslate" translate="no">a / (a +
+b)</code> "percent" and you'll see what I mean.</p>
+<p>注: 我们可以试着用图表表示男性的百分比或女性的百分比或原始差异. 但根据我们显示信息的方式, 也就是从地球表面生长出来的立方体的显示方式, 我们希望大多数立方体都是矮的. 如果我们使用其中一个做基准, 大多数立方体的高度大约是它们最大高度的1/2. 效果会很差. 自己动手改一下<code class="notranslate" translate="no">amountGreaterThan</code>中的<a href="https://threejs.org/docs/#api/zh/math/Math.max(a - b, 0)"><code class="notranslate" translate="no">Math.max(a - b, 0)</code></a> 到<code class="notranslate" translate="no">(a - b)</code> "原始差异"或者 <code class="notranslate" translate="no">a / (a + b)</code>"百分比", 你就会明白我什么意思了. </p>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +804,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -208,7 +819,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-materials.html">材质</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-textures.html">纹理</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-lights.html">光照</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">Cameras</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">摄像机</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
@@ -216,7 +827,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>技巧</li>
         <ul>
-          <li><a href="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">Rendering On Demand</a></li>
+          <li><a href="/threejs/lessons/zh_cn/threejs-rendering-on-demand.html">按需渲染</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-debugging-javascript.html">Debugging JavaScript</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-debugging-glsl.html">Debugging GLSL</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-tips.html#screenshot">Taking a screenshot</a></li>
@@ -227,8 +838,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </ul>
   <li>优化</li>
         <ul>
-          <li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">Optimizing Lots of Objects</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">Optimizing Lots of Objects Animated</a></li>
+          <li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects.html">大量对象的优化</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-optimize-lots-of-objects-animated.html">优化对象的同时保持动画效果</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-offscreencanvas.html">Using OffscreenCanvas in a Web Worker</a></li>
         </ul>
   <li>解决方案</li>
@@ -266,10 +877,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        <div>有问题？ <a href="http://stackoverflow.com/questions/tagged/three.js">在 Stackoverflow 上提问</a>.</div>
+        <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 优化对象的同时保持动画效果';
+            var disqus_title = 'Three.js 优化对象的同时保持动画效果';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
