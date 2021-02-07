@@ -8,7 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@gfxfundamentals/lesson-builder": "git+https://github.com/gfxfundamentals/lesson-builder.git#v1.11.0",
+    "@gfxfundamentals/lesson-builder": "git+https://github.com/gfxfundamentals/lesson-builder.git#v1.12.0",
     "@gfxfundamentals/live-editor": "git+https://github.com/gfxfundamentals/live-editor.git#v1.0.17",
     "eslint-plugin-google-camelcase": "0.0.2",
     "eslint-plugin-html": "6.1.1",
