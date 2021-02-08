@@ -232,10 +232,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> is three.js's way of representing all geometry. It's
-essentially a collection <em>named</em>  <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s.
+      <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> is three.js's way of representing all geometry. A <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>
+essentially a collection <em>named</em> of <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s.
 Each <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> represents an array of one type of data: positions,
-normals, colors, and uv. Together, the added <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s represent
+normals, colors, uv, etc... Together, the named <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s represent
 <em>parallel arrays</em> of all the data for each vertex.</p>
 <div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
 
@@ -247,8 +247,16 @@ to show that the parallel data across all attributes defines one vertex.</p>
 <div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 <p>Thinking about it that single corner needs a different normal for each face of the
-cube. It needs different UVs for each face as well. 
-A single <em>vertex</em> is the combination of all of its parts. If a vertex needs any
+cube. A normal is info about which direction something faces. In the diagram
+the normals are presented by the arrows around the corner vertex showing that each
+face that shares that vertex position needs a normal that points in a different direction.</p>
+<p>That corner needs different UVs for each face as well. UVs are texture coordinates
+that specify which part of a texture being drawn on a triangle corresponds to that
+vertex position. You can see the green face needs that vertex to have a UV that corresponds
+to the top right corner of the F texture, the blue face needs a UV that corresponds to the
+top left corner of the F texture, and the red face needs a UV that corresponds to the bottom
+left corner of the F texture.</p>
+<p>A single <em>vertex</em> is the combination of all of its parts. If a vertex needs any
 part to be different then it must be a different vertex.</p>
 <p>As a simple example let's make a cube using <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>. A cube is interesting
 because it appears to share vertices at the corners but really
@@ -629,7 +637,7 @@ positionAttribute.needsUpdate = true;
 <p>I hope these were useful examples of how to use <a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> directly to
 make your own geometry and how to dynamically update the contents of a
 <a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>.</p>
-<!-- needed to prevent warning from outdated translation -->
+<!-- needed to prevent warning from outdated translations -->
 <p><a href="resources/threejs-geometry.svg"></a>
 <a href="threejs-custom-geometry.html"></a></p>
 <p><canvas id="c"></canvas></p>
