@@ -232,21 +232,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p></p><div class="warning">The translation of this article is out of date.  <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/185">Please consider helping to fix it</a>.</div><p></p>
-<p><a href="threejs-custom-geometry.html">前回の記事</a>では<code class="notranslate" translate="no">Geometry</code>を紹介しました。この記事では<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を紹介します。<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>とは<em>一般的に</em>高速で動きメモリ消費も低く抑えられます。が、設定は少し難しいです。</p>
-<p><a href="threejs-custom-geometry.html">ジオメトリの記事</a> のおさらいをしましょう。<code class="notranslate" translate="no">Geometry</code>には<a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>を設定する必要がありました。これは頂点を表す三次元上の点です。次に<a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>を設定することで面を定義しました。これはvertexの配列のインデックス情報を使って３つの点を指定することで面を定義しています。光の反射方向などの設定するためにfaceにはnormal（法線）が必要でした。faceに対して１つのnormalを設定することもできますし、vertexに指定して滑らかな面を擬似的に作ることもできました。colorもnormalと同じようにfaceに指定したりvertexに指定したりできました。記事の最後では配列の配列を使ってテクスチャ座標（UV）を設定しました。配列の中の配列の１つが１つのfaceに対応しておりその配列の１つの要素がvertex１つに対応しています。</p>
-<div class="threejs_center"><img src="../resources/threejs-geometry.svg" style="width: 700px"></div>
-
-<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>は<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を使います。１つの<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>はジオメトリを作るための１種類のデータに対応しています。vertexの位置情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>、color情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>、normal情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>がそれぞれあります。</p>
+      <p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>は全てのジオメトリを表現する方法です。
+BufferGeometryは<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を使います。１つの<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>はジオメトリを作るための１種類のデータに対応しています。vertexの位置情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>、color情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>、normal情報を格納するための<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>がそれぞれあります。</p>
 <div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 <p>上の図では<code class="notranslate" translate="no">position</code>, <code class="notranslate" translate="no">normal</code>, <code class="notranslate" translate="no">color</code>, <code class="notranslate" translate="no">uv</code>それぞれのattribute情報を格納した<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を表しています。これらは<em>並列な配列</em>です。<em>並列な配列</em>というのはN番目にあるデータはN番目のvertexに対応しており、それがattributeの数だけあるという意味です。図ではindex=4のattributeがハイライトされています。</p>
 <div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
-<p>上の図のハイライトされたvertexにはこのvertexに接する全ての面のnormalが指定されています。UVを指定するときもすべてのfaceに対して指定する必要があります。これが<code class="notranslate" translate="no">Geometry</code>と<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>の大きな違いです。<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>では情報が共有されることはありません。単一のvertexはこれらの情報の合成として表現されます。</p>
-<p>実は<code class="notranslate" translate="no">Geometry</code>を使うときはthree.jsが自動的にこのフォーマットに変換しています。<code class="notranslate" translate="no">Geometry</code>が<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>よりメモリを使うのはこの変換のためです。すべての<a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>, <a href="https://threejs.org/docs/#api/en/math/Vector2"><code class="notranslate" translate="no">Vector2</code></a>, <a href="https://threejs.org/docs/#api/en/core/Face3"><code class="notranslate" translate="no">Face3</code></a>を<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>配列に変換する際にメモリを使います。<code class="notranslate" translate="no">Geometry</code>は簡単に書けるため便利ですが<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を使う時にはこれら全ての変換を自分でする必要があります。</p>
+<p>上の図のハイライトされたvertexには、このvertexに接する全ての面に異なるnormalが必要です。normalとはどの方向を向いているかの情報です。
+この図ではnormalは角の頂点の周りの矢印で示されており、その頂点に接する全ての面には異なる方向を指すnormalが必要です。</p>
+<p>同様に面ごとに違うUVも必要です。
+UVはテクスチャのどの部分に頂点位置が対応しているか指定するテクスチャ座標です。
+緑の面はFテクスチャの右上に対応するUV、青い面は左上に対応するUV、赤の面は左下に対応したUVが必要な事が分かります。</p>
+<p>単一のvertexはこれらの情報の合成として表現されます。
+頂点が異なる部分を必要とする場合、それは異なる頂点でなければなりません。</p>
 <p>簡単な例として<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を使って立方体を作ってみましょう。立方体を例にするのはvertexがfaceによって共有されているように見えて実は共有されていないからです。この例ではまずすべてのvertexの情報をリストアップして並列の配列に変換して<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を作り、最後に<a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を作ります。</p>
-<p><a href="threejs-custom-geometry.html">以前の記事</a>のサンプルコードを使います。<code class="notranslate" translate="no">Geometry</code>を作っていた部分は全て消します。次に立方体に必要な情報をすべてリストアップします。<code class="notranslate" translate="no">Geometry</code>では１つのvertexを複数のfaceで共有できましたが今回は共有できないことに注意してください。つまり１つの立方体を作るために３６個のvertexが必要になります。１つの面につき２つの三角形、１つの三角形につき３つのvertex、これが６面あるので３６個のvertexが必要になる計算です。</p>
+<p>立方体に必要な情報をすべてリストアップします。<code class="notranslate" translate="no">Geometry</code>では１つのvertexを複数のfaceで共有できましたが今回は共有できないことに注意してください。つまり１つの立方体を作るために３６個のvertexが必要になります。１つの面につき２つの三角形、１つの三角形につき３つのvertex、これが６面あるので３６個のvertexが必要になる計算です。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const vertices = [
   // front
   { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 0], },
@@ -415,11 +416,6 @@ geometry.setAttribute(
 <div class="spread">
   <div>
     <div data-diagram="bufferGeometryCylinder"></div>
-    <div class="code">BufferGeometry</div>
-  </div>
-  <div>
-    <div data-diagram="geometryCylinder"></div>
-    <div class="code">Geometry</div>
   </div>
 </div>
 
@@ -580,7 +576,10 @@ positionAttribute.needsUpdate = true;
 </div>
 
 <p></p>
-<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を作って<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>をアップデートする方法を紹介しました。<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>を使うか<code class="notranslate" translate="no">Geometry</code>はケースバイケースです。</p>
+<p><a href="https://threejs.org/docs/#api/en/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>を作って<a href="https://threejs.org/docs/#api/en/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>をアップデートする方法を紹介しました。</p>
+<!-- needed to prevent warning from outdated translations -->
+<p><a href="../resources/threejs-geometry.svg"></a>
+<a href="threejs-custom-geometry.html"></a></p>
 <p><canvas id="c"></canvas></p>
 <script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
 
