@@ -129,8 +129,8 @@ This is the template for the main page for each language
 #### `toc.html`
 
 This is template for the table of contents for the language.
-It is included on both the index and on each article. The only
-parts not auto-generated are the links ending links which
+It is included on both the index and at the bottom of each article. The only
+parts not auto-generated are the links at the bottom which
 you can translate if you want to.
 The build system will create a placeholder for every English article for which there is no corresponding article in that language. 
 It will be filled with the `missing` message from above.
@@ -139,7 +139,7 @@ It will be filled with the `missing` message from above.
 
 This is included if and only if it exists. I'd strongly prefer not to have to
 use it. In particular I don't want people to get into arguments about fonts
-but basically it's a way to choose the fonts per language. You should set
+but basically it's a way to choose the fonts per language. You should only set
 the variables that are absolutely needed. Example
 
 ```css
@@ -159,14 +159,14 @@ the variables that are absolutely needed. Example
 Notice 2 settings are not changed. It seems unlikely to me that code would
 need a different font per language.
 
-PS: While we're here, I love code fonts with ligatures but the seem like a bad
+PS: While we're here, I love code fonts with ligatures but they seem like a bad
 idea for a tutorial site because the ligatures hide the actual characters needed
 so please don't ask for or use a ligature code font here.
 
 #### Translation notes
 
-The build process will make a placeholder html file for each article has an english .md file in
-`threejs/lessons` but no corresponding .md file for the language. This is to make it easy to include
+The build process will make a placeholder html file for each article has an English .md file in
+`threejs/lessons` but no corresponding .md file for the non-English language. This is to make it easy to include
 links in one article that links to another article but that other article has not yet been translated.
 This way you don't have to go back and fix already translated articles. Just translate one article
 at a time and leave the links as is. They'll link to placeholders until someone translates the missing
@@ -221,8 +221,7 @@ fails. You can try building without checking for dependencies with
 #### Building just the lessons
 
 The normal build copies all the required static files to the `out` folder
-and the builds the lessons. With virus scanning on this can take 2-4 minutes
-on Windows. If the required files are already in the out folder you can
+and then builds the lessons. If the required files are already in the out folder you can
 skip that step and just build the lessons with `npm run buildlessons`
 
 #### Building just one article
