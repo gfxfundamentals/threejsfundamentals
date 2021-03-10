@@ -233,23 +233,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p></p><div class="warning">The translation of this article is out of date.  <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/187">Please consider helping to fix it</a>.</div><p></p>
-<p><a href="threejs-custom-geometry.html">이전 글</a>에서는 <code class="notranslate" translate="no">Geometry</code>의 사용법에 대해
-알아보았습니다. 예고한 대로 이번에는 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>에 대해 살펴보도록 하죠.
-<a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 비교적 쓰기가 어렵지만 <em>일반적으로</em> 초기화 속도가 빠르고
-메모리 점유율이 낮습니다.</p>
-<p><a href="threejs-custom-geometry.html">이전 내용</a>을 간단하게 환기하겠습니다. <code class="notranslate" translate="no">Geometry</code>를
-만들기 위해 우리는 먼저 꼭지점을 나타내는 <a href="https://threejs.org/docs/#api/ko/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a> 인스턴스(위치값)를 배열로 넘기고,
-이 꼭지점 배열의 인덱스 값을 인자로 넘겨 삼각형, <a href="https://threejs.org/docs/#api/ko/core/Face3"><code class="notranslate" translate="no">Face3</code></a> 인스턴스를 만들었습니다. 또한
-각 <a href="https://threejs.org/docs/#api/ko/core/Face3"><code class="notranslate" translate="no">Face3</code></a> 인스턴스에 삼각형 면 법선이나 꼭지점 법선을 지정할 수 있다는 것, 삼각형 면
-또는 각 꼭지점 별로 색을 지정할 수 있다는 것도 배웠죠. 글의 마지막에서는 텍스처 좌표(UVs)
-배열의 평행 배열로 UV 매핑을 구현하기도 했습니다(각 삼각형 면마다 배열로 된 UV 배열 하나,
-각 꼭지점마다 UV 하나).</p>
-<div class="threejs_center"><img src="../resources/threejs-geometry.svg" style="width: 700px"></div>
-
-<p>반면에 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>라는 것을 사용합니다. 각 <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>는
+      <p><a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 Three.js 내의 모든 <code class="notranslate" translate="no">geometry</code>를 나타냅니다(r125에서부터 <code class="notranslate" translate="no">Geometry</code>가 제거되었습니다). 좀 더 자세히 말하면 특정 <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>라고 부르는 <strong>속성</strong>의 집합이죠.</p>
+<p>각 <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>는
 위치(positions), 법선(normals), 색(colors), uv 데이터의 배열이고, 이들을 모으면 각 꼭지점에
-대한 <em>평행 배열</em> 형식의 데이터가 되죠.</p>
+대한 <em>평행 배열</em> 형식의 데이터가 됩니다.</p>
 <div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 <p>그림을 보면 총 4개의 속성(attribute), <code class="notranslate" translate="no">position</code>, <code class="notranslate" translate="no">normal</code>, <code class="notranslate" translate="no">color</code>, <code class="notranslate" translate="no">uv</code>가 있습니다.
@@ -259,20 +246,14 @@ index = 4 위치의 꼭지점 데이터를 보세요. 이 묶음이 하나의 �
 <div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 <p>이 경우 맞닿은 면의 색이 다르기에, 이 모서리는 각 면에 다른 법선을 제공해야 합니다.
-마찬가지로 UV도 달라야 하죠. 이는 <code class="notranslate" translate="no">Geometry</code>와 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>의 가장 큰 차이점입니다.
-<a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 <code class="notranslate" translate="no">Geometry</code>와 달리 꼭지점은 물론 어떤 요소도 공유할 수 없습니다.
+마찬가지로 UV도 달라야 하죠.
 하나의 <em>꼭지점</em>은 위 4개 속성의 묶음이고, 때문에 속성이 달라진다면 그건 다른 꼭지점이
 되는 것이죠.</p>
-<p>사실 <code class="notranslate" translate="no">Geometry</code>는 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>와 근본적으로 다르지 않습니다. 사용자가 <code class="notranslate" translate="no">Geometry</code>를
-사용하면 Three.js가 알아서 이를 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 형식으로 변환해주는 것이죠. 메모리를 더
-많이 사용하는 것도 <a href="https://threejs.org/docs/#api/ko/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>나, <a href="https://threejs.org/docs/#api/ko/math/Vector2"><code class="notranslate" translate="no">Vector2</code></a>, <a href="https://threejs.org/docs/#api/ko/core/Face3"><code class="notranslate" translate="no">Face3</code></a>, 그리고 기타 데이터를 위와 같은 <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>
-형태로 변환하기 때문입니다. 반면에 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>는 이런 변환 작업을 직접 해줘야 하죠.</p>
 <p>이전과 마찬가지로 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>로 정육면체를 만들어보겠습니다. 굳이 정육면체를 쓰는
 이유는 모서리의 꼭지점을 공유하는 듯해도 사실 그렇지 않기 때문이죠. 필요한 꼭지점을
 전부 생성한 후, 꼭지점 데이터를 평행 배열로 변환해 <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>를 만들고, 이를
 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>에 추가해야 합니다.</p>
-<p>일단 <a href="threejs-custom-geometry.html">이전 글</a>의 텍스처 좌표 설정 예제를 가져옵니다.
-<code class="notranslate" translate="no">Geometry</code>를 만드는 코드를 전부 삭제한 뒤, 정육면체를 만드는 데 필요한 데이터를 정렬합니다.
+<p>먼저 정육면체를 만드는 데 필요한 데이터를 정렬합니다.
 아까 말했듯 꼭지점의 속성 중 하나라도 다르다면 별도의 꼭지점으로 분리해야 합니다. 정육면체의
 경우는 총 꼭지점 36개가 필요하죠. 면 6개, 면 하나당 삼각형 2개, 삼각형 하나 당 꼭지점 3개,
 총 36개입니다.</p>
@@ -450,9 +431,9 @@ geometry.setAttribute(
 </div>
 
 <p></p>
-<p><code class="notranslate" translate="no">Geometry</code>와 마찬가지로 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>에 법선을 지정하지 않았다면 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry#computeVertexNormals"><code class="notranslate" translate="no">computeVertexNormals</code></a>
+<p><a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>에 법선을 지정하지 않았다면 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry#computeVertexNormals"><code class="notranslate" translate="no">computeVertexNormals</code></a>
 메서드를 호출해 자동으로 법선을 지정할 수 있습니다. 다만 데이터가 조금이라도 다르다면
-꼭지점을 공유할 수 없기에 <code class="notranslate" translate="no">Geometry</code>의 경우와는 조금 다른 결과를 보여줄 겁니다.</p>
+꼭지점을 공유할 수 없기에 구체나 원통 같은 물체를 만들려 하는 경우에는 이음새가 보일 수 있어요.</p>
 <div class="spread">
   <div>
     <div data-diagram="bufferGeometryCylinder"></div>
@@ -638,9 +619,8 @@ positionAttribute.needsUpdate = true;
 </div>
 
 <p></p>
-<p><code class="notranslate" translate="no">Geometry</code>와 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 중 어떤 것을 쓸 것인지는 전적으로 여러분의 선택입니다.
-이 글이 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>로 사용자 지정 geometry를 만들고, <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>를 다루는
-데 도움이 되었으면 좋겠네요.</p>
+<p>이 글이 <a href="https://threejs.org/docs/#api/ko/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a>로 사용자 지정 geometry를 만들고, <a href="https://threejs.org/docs/#api/ko/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>를 다루는
+데 도움이 되었으면 좋겠습니다.</p>
 <p><canvas id="c"></canvas></p>
 <script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
 
