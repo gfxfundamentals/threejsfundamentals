@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-shadows.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Shadows">
+
+<meta name="description" content="Three.js 的阴影">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 阴影">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Shadows in Three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_zh_cn.jpg">
+<meta property="og:description" content="Three.js 的阴影">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Shadows">
+<meta name="twitter:title" content="Three.js 阴影">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html">
-<meta name="twitter:description" content="Shadows in Three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="Three.js 的阴影">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-shadows.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-shadows.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-shadows.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-shadows.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-shadows.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html">
 
 
-<title>Three.js Shadows</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-shadows_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 阴影",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-shadows.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 阴影</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -175,12 +229,338 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Shadows</h1>
+    <h1>Three.js 阴影</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-shadows.html">英文原文链接</a>.</p>
+      <p>本文是 three.js 系列文章中的一部分。第一篇文章为 <a href="threejs-fundamentals.html">three.js 基础</a>。如果你是个新手，还没读过，请从那里开始。
+<a href="threejs-cameras.html">前一篇文章关于相机</a>，<a href="threejs-lights.html">再前一遍文章关于灯光</a>，这些文章都很重要。</p>
+<p>电脑中的阴影可以是一个很复杂的话题。有各种各样的解决方案，所有这些都有权衡，包括 three.js 中可用的解决方案。</p>
+<p>Three.js 默认使用<em>shadow maps（阴影贴图）</em>，阴影贴图的工作方式就是具有投射阴影的光能对所有能被投射阴影的物体从光源渲染阴影。<strong>请再读一遍，试着去理解并记住</strong></p>
+<p>换句话说，如果你有 20 个物体对象、5 个灯光，并且所有的物体都能被投射阴影，所有的光都能投射阴影，那么这个场景这个场景将会绘制 6 次。第一个灯光将会为所有的物体投影阴影，绘制场景。然后是第二个灯光绘制场景，然后是第三个灯光，以此类推。最后一次（即第六次）将通过前五个灯光渲染的数据，渲染出最终的实际场景。</p>
+<p>糟糕的是，如果你有一个能投射阴影点光源再这个场景中，那个这个场景将会为这个点光源再绘制 6 次。</p>
+<p>由于这些原因，除了寻找其他根本上的解决方案去解决一堆光源都能投射阴影的性能问题。一般还有常见的解决方案，就是允许多个光源，但只让一个光源能投射阴影。</p>
+<p>另一个解决方案就是使用光照贴图或者环境光贴图，预先计算离线照明的效果。这将导致静态光照，但是至少该方案渲染的非常快。再另一篇文章中将涵盖这两个解决方案。</p>
+<p>其他的解决方案是使用假的阴影。举个例子，做一个飞机模型，将它的平面纹理做灰值处理，将其绘制再模型的下面的地面上。</p>
+<p>这个例子我们将使用假阴影</p>
+<div class="threejs_center"><img src="../../resources/images/roundshadow.png"></div>
+
+<p>我们使用 <a href="threejs-cameras.html">前一篇文章</a>的代码.</p>
+<p>首先让我们将场景的背景颜色设置为白色</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
++scene.background = new THREE.Color("white");
+</pre>
+<p>然后我们将使用相同的棋盘格地面，因为这一次我们使用的是<a href="https://threejs.org/docs/#api/zh/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>，所有我们不需要地面照明</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loader = new THREE.TextureLoader();
+
+{
+  const planeSize = 40;
+
+-  const loader = new THREE.TextureLoader();
+  const texture = loader.load('resources/images/checker.png');
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.magFilter = THREE.NearestFilter;
+  const repeats = planeSize / 2;
+  texture.repeat.set(repeats, repeats);
+
+  const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
+  const planeMat = new THREE.MeshBasicMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+  });
++  planeMat.color.setRGB(1.5, 1.5, 1.5);
+  const mesh = new THREE.Mesh(planeGeo, planeMat);
+  mesh.rotation.x = Math.PI * -.5;
+  scene.add(mesh);
+}
+</pre>
+<p>注意我们将颜色设置为<code class="notranslate" translate="no">1.5, 1.5, 1.5</code>，这将是棋盘纹理的颜色倍增 1.5，1.5，1.5。
+也就是说纹理原本的颜色是 0x808080 和 0xC0C0C0，是灰色和浅灰色，现在灰色和浅灰色乘以 1.5 将得到白色和浅灰色的棋盘。</p>
+<p>现在让我们加载阴影贴图</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const shadowTexture = loader.load("resources/images/roundshadow.png");
+</pre>
+<p>and make an array to remember each sphere and associated objects.
+并且创建一个数组来存放每个球体和它相关的对象</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereShadowBases = [];
+</pre>
+<p>现在我们创建一个球体</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const sphereRadius = 1;
+const sphereWidthDivisions = 32;
+const sphereHeightDivisions = 16;
+const sphereGeo = new THREE.SphereGeometry(
+  sphereRadius,
+  sphereWidthDivisions,
+  sphereHeightDivisions
+);
+</pre>
+<p>然后创建一个假阴影的平面网格</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 1;
+const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
+</pre>
+<p>现在我们将创建一堆球体，对于每个球体都将创建一个<code class="notranslate" translate="no">基础</code>的<a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">THREE.Object3D</code></a>，并且我们将同时创建阴影平面网格和球体网格。这样，如果我们同时移动球体，阴影也一并移动，我们只需要将阴影稍微放置再地面上，防止 Z 轴阴影和地面重叠。
+我们将<code class="notranslate" translate="no">depthWrite</code>属性设置为 false，这样使阴影之间不会彼此混淆。
+我们将在<a href="threejs-transparency.html">另一篇文章</a>中讨论这两个问题。
+因为阴影的材质是<a href="https://threejs.org/docs/#api/zh/materials/MeshBasicMaterial"><code class="notranslate" translate="no">MeshBasicMaterial</code></a>，所以它并不需要照明</p>
+<p>我们将每个球体使用不同的色相，然后保存每个球体的基础、球体网格、阴影网格和初始 y 位置。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const numSpheres = 15;
+for (let i = 0; i &lt; numSpheres; ++i) {
+  // make a base for the shadow and the sphere
+  // so they move together.
+  const base = new THREE.Object3D();
+  scene.add(base);
+
+  // add the shadow to the base
+  // note: we make a new material for each sphere
+  // so we can set that sphere's material transparency
+  // separately.
+  const shadowMat = new THREE.MeshBasicMaterial({
+    map: shadowTexture,
+    transparent: true, // so we can see the ground
+    depthWrite: false, // so we don't have to sort
+  });
+  const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
+  shadowMesh.position.y = 0.001; // so we're above the ground slightly
+  shadowMesh.rotation.x = Math.PI * -0.5;
+  const shadowSize = sphereRadius * 4;
+  shadowMesh.scale.set(shadowSize, shadowSize, shadowSize);
+  base.add(shadowMesh);
+
+  // add the sphere to the base
+  const u = i / numSpheres; // goes from 0 to 1 as we iterate the spheres.
+  const sphereMat = new THREE.MeshPhongMaterial();
+  sphereMat.color.setHSL(u, 1, 0.75);
+  const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+  sphereMesh.position.set(0, sphereRadius + 2, 0);
+  base.add(sphereMesh);
+
+  // remember all 3 plus the y position
+  sphereShadowBases.push({
+    base,
+    sphereMesh,
+    shadowMesh,
+    y: sphereMesh.position.y,
+  });
+}
+</pre>
+<p>我们设置两个光源，一个是<a href="https://threejs.org/docs/#api/zh/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>，将其光照强度设置为 2，让场景比较明亮。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const skyColor = 0xb1e1ff; // light blue
+  const groundColor = 0xb97a20; // brownish orange
+  const intensity = 2;
+  const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+  scene.add(light);
+}
+</pre>
+<p>The other is a <a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> so the spheres get some definition
+另一个是 <a href="https://threejs.org/docs/#api/zh/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> ，这将让球体看起来有些视觉的区别</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const color = 0xffffff;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(0, 10, 5);
+  light.target.position.set(-5, 0, 0);
+  scene.add(light);
+  scene.add(light.target);
+}
+</pre>
+<p>现在我们设置球体动画并将其渲染。
+对于每个球体，阴影以及 base，让它们在 XZ 平面上移动。使用<a href="https://threejs.org/docs/#api/zh/math/Math.abs(Math.sin(time))"><code class="notranslate" translate="no">Math.abs(Math.sin(time))</code></a>将球体上下移动，这样会带来一个类似弹性的动画。并且我们还设置了阴影材质的不透明度，与球体的高度相关。高度越高，阴影越模糊。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
+  time *= 0.001;  // convert to seconds
+
+  ...
+
+  sphereShadowBases.forEach((sphereShadowBase, ndx) =&gt; {
+    const {base, sphereMesh, shadowMesh, y} = sphereShadowBase;
+
+    // u is a value that goes from 0 to 1 as we iterate the spheres
+    const u = ndx / sphereShadowBases.length;
+
+    // compute a position for the base. This will move
+    // both the sphere and its shadow
+    const speed = time * .2;
+    const angle = speed + u * Math.PI * 2 * (ndx % 1 ? 1 : -1);
+    const radius = Math.sin(speed - ndx) * 10;
+    base.position.set(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+
+    // yOff is a value that goes from 0 to 1
+    const yOff = Math.abs(Math.sin(time * 2 + ndx));
+    // move the sphere up and down
+    sphereMesh.position.y = y + THREE.MathUtils.lerp(-2, 2, yOff);
+    // fade the shadow as the sphere goes up
+    shadowMesh.material.opacity = THREE.MathUtils.lerp(1, .25, yOff);
+  });
+
+  ...
+</pre>
+<p>这里有 15 种弹跳球</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-fake.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-fake.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>在某些应用程序中使用圆形或者椭圆的阴影也是很常见的。当然也可以使用不同形状的阴影纹理，也可以将阴影的边缘锐化。使用这种类型的阴影的例子是 <a href="https://www.google.com/search?tbm=isch&amp;q=animal+crossing+pocket+camp+screenshots">Animal Crossing Pocket Camp</a>，在其中你可以看到每个字符都有一个简单的原型阴影。这种方式很有效，也很方便。<a href="https://www.google.com/search?q=monument+valley+screenshots&amp;tbm=isch">Monument Valley 纪念碑谷</a>看起来似乎也使用这种阴影。</p>
+<p>因此，移动阴影贴图，有三种光可以投射阴影，分别为<code class="notranslate" translate="no">DirectionalLight 定向光</code>、 <code class="notranslate" translate="no">PointLight 点光源</code>、<code class="notranslate" translate="no">SpotLight 聚光灯</code>，</p>
+<p>让我们从 <code class="notranslate" translate="no">DirectionalLight 定向光</code> 开始。这里我们使用<a href="threejs-lights.html">关于灯光的文章</a>作为基础</p>
+<p>第一件事是设置渲染器中的阴影属性</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const renderer = new THREE.WebGLRenderer({ canvas });
++renderer.shadowMap.enabled = true;
+</pre>
+<p>我们还需要设置光能投射阴影</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const light = new THREE.DirectionalLight(color, intensity);
++light.castShadow = true;
+</pre>
+<p>在场景中的每个网格，我们都能设置它是否能投射阴影或被投射阴影。
+这里我们只设置地面能被投射阴影，这样我们不需要关心地面投射阴影的问题。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mesh = new THREE.Mesh(planeGeo, planeMat);
+mesh.receiveShadow = true;
+</pre>
+<p>对于球体和立方体，我们需要设置他们都能投射阴影或者被投射阴影</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+mesh.castShadow = true;
+mesh.receiveShadow = true;
+
+...
+
+const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+mesh.castShadow = true;
+mesh.receiveShadow = true;
+</pre>
+<p>然后我们运行它</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>发生了什么？为什么阴影的一部分不见了</p>
+<p>原因是阴影是通过光线的角度渲染场景之后生成的。在这种情况下，现在只有一个<code class="notranslate" translate="no">DirectionalLight 定向光</code>在照射这个球体，就像我们之前的文章<a href="threejs-cameras.html">关于相机</a>，光源的阴影相机决定了阴影投射的区域。在上面的例子中，该区域太小了。</p>
+<p>为了可视化该区域，我们可以通过<code class="notranslate" translate="no">CameraHelper 相机帮助类</code> 来获取光源的阴影相机。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
+scene.add(cameraHelper);
+</pre>
+<p>你现在可以看到光源的阴影相机可以投射的区域。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-helper.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-helper.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>我们来回调整相机的 x 坐标值。这样我们可以很清楚的看到：光源的阴影相机所包围的 box 才是能投射阴影的区域。</p>
+<p>我们可以通过调整光源的阴影相机来调整该盒子的大小。</p>
+<p>现在我们添加一些可以调整光源相关属性的 GUI 设置。
+由于<code class="notranslate" translate="no">DirectionalLight 定向光</code>表现形式是光照一直都是平行方向移动的，所以我们在<code class="notranslate" translate="no">DirectionalLight 定向光</code>中使用<code class="notranslate" translate="no">OrthographicCamera 正交相机</code>为了观察阴影相机。
+我们在 <a href="threejs-cameras.html">关于相机的文章</a>介绍了<code class="notranslate" translate="no">OrthographicCamera 正交相机</code>是如何工作的。</p>
+<p>回忆<code class="notranslate" translate="no">OrthographicCamera 正交相机</code>的定义和其视图的用法，以及其属性：<code class="notranslate" translate="no">left</code>, <code class="notranslate" translate="no">right</code>, <code class="notranslate" translate="no">top</code>, <code class="notranslate" translate="no">bottom</code>, <code class="notranslate" translate="no">near</code>, <code class="notranslate" translate="no">far</code>,<code class="notranslate" translate="no">zoom</code></p>
+<p>我们再次为 dat.GUI 创建一个<code class="notranslate" translate="no">DimensionGUIHelper</code>类。这个类的作用是响应式的通过一个属性来设置两个相关的属性。然后将其加入到 dat.GUI 选项中。
+我们根据<code class="notranslate" translate="no">width</code>的值设置 <code class="notranslate" translate="no">left</code>和<code class="notranslate" translate="no">right</code>，根据<code class="notranslate" translate="no">height</code>的值设置<code class="notranslate" translate="no">up</code> 和 <code class="notranslate" translate="no">down</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class DimensionGUIHelper {
+  constructor(obj, minProp, maxProp) {
+    this.obj = obj;
+    this.minProp = minProp;
+    this.maxProp = maxProp;
+  }
+  get value() {
+    return this.obj[this.maxProp] * 2;
+  }
+  set value(v) {
+    this.obj[this.maxProp] = v / 2;
+    this.obj[this.minProp] = v / -2;
+  }
+}
+</pre>
+<p>我们也会使用在<a href="threejs-cameras.html">关于相机的文中</a>中创建的<code class="notranslate" translate="no">MinMaxGUIHelper</code>，他将负责<code class="notranslate" translate="no">near</code> and <code class="notranslate" translate="no">far</code>的变化</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
++{
++  const folder = gui.addFolder('Shadow Camera');
++  folder.open();
++  folder.add(new DimensionGUIHelper(light.shadow.camera, 'left', 'right'), 'value', 1, 100)
++    .name('width')
++    .onChange(updateCamera);
++  folder.add(new DimensionGUIHelper(light.shadow.camera, 'bottom', 'top'), 'value', 1, 100)
++    .name('height')
++    .onChange(updateCamera);
++  const minMaxGUIHelper = new MinMaxGUIHelper(light.shadow.camera, 'near', 'far', 0.1);
++  folder.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
++  folder.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
++  folder.add(light.shadow.camera, 'zoom', 0.01, 1.5, 0.01).onChange(updateCamera);
++}
+</pre>
+<p>我们需要让 GUI 在我们改变数据的时候调用<code class="notranslate" translate="no">updateCamera</code>方法
+这个方法将更新光源，光源的帮助类以及光源的阴影相机和像是光的阴影相机的帮助类。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function updateCamera() {
+  // update the light target's matrixWorld because it's needed by the helper
+  light.target.updateMatrixWorld();
+  helper.update();
+  // update the light's shadow camera's projection matrix
+  light.shadow.camera.updateProjectionMatrix();
+  // and now update the camera helper we're using to show the light's shadow camera
+  cameraHelper.update();
+}
+updateCamera();
+</pre>
+<p>现在我们给了光的阴影相机一个 GUI，我们可以尝试随意更改其中的值。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-directional-light-with-camera-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-directional-light-with-camera-gui.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>将<code class="notranslate" translate="no">width</code> 和 <code class="notranslate" translate="no">height</code>的值设置在 30 附近，我们将看到阴影是正常渲染的，因为这个区域都在阴影相机的投影范围内。</p>
+<p>这也带来一个疑问。为什么我们不将<code class="notranslate" translate="no">width</code> 和 <code class="notranslate" translate="no">height</code>设置成一个非常大的值，这样不就可以投影一切了？我们将它设置成 100 来看看会发生什么。</p>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+
+<p>我们将看到一些块状的阴影！</p>
+<p>这个问题是另一个需要注意的阴影相关设置。被投射产生的阴影也是有纹理的，这些阴影的纹理也是有单位大小的。如果阴影相机的属性设置的越大，就意味着它能投射的区域也变得很大，就意味着投射的阴影会越来越块状。</p>
+<p>你可以设置<code class="notranslate" translate="no">light.shadow.mapSize.width</code>和 <code class="notranslate" translate="no">light.shadow.mapSize.height</code>来设置阴影的纹理分辨率。他们默认为 512X512。如果设置的很大，他们在计算时将占用更多的内存，并且变得很慢。为了获得更真实的阴影，应该尽量将值设置的最小。请注意在渲染器中该属性<a href="https://threejs.org/docs/#api/zh/renderers/WebGLRenderer#capabilities"><code class="notranslate" translate="no">renderer.capabilities.maxTextureSize</code></a>对于每个用户都有最大纹理的上限值。</p>
+<p>当我们切换到 <code class="notranslate" translate="no">SpotLight 聚光灯</code>时，光源的阴影相机就变成了<code class="notranslate" translate="no">PerspectiveCamera透视相机</code> ，与<code class="notranslate" translate="no">DirectionalLight 定向光</code>的阴影相机不同，<code class="notranslate" translate="no">SpotLight 聚光灯</code>的阴影相机有其本身所控制，我们也可以手动设置大部分设置。<code class="notranslate" translate="no">SpotLight聚光灯</code>阴影相机的的<code class="notranslate" translate="no">fov</code>跟<code class="notranslate" translate="no">SpotLight聚光灯</code>的<code class="notranslate" translate="no">angle</code> 关联。<code class="notranslate" translate="no">aspect</code>属性是根据阴影映射自动设置大小的。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const light = new THREE.DirectionalLight(color, intensity);
++const light = new THREE.SpotLight(color, intensity);
+</pre>
+<p>我们在<a href="threejs-lights.html">关于灯光的文章</a>中添加了<code class="notranslate" translate="no">penumbra</code> 和 <code class="notranslate" translate="no">angle</code>的相关介绍</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-spot-light-with-camera-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-spot-light-with-camera-gui.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>最后，我们介绍 <code class="notranslate" translate="no">PointLight 聚光灯</code>的阴影投射。
+<code class="notranslate" translate="no">PointLight 聚光灯</code>是向四面八方发散的，所以唯一的设置只有<code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code>。实际上<code class="notranslate" translate="no">PointLight 聚光灯</code> 相当于 6 个面的<code class="notranslate" translate="no">SpotLight 点光源</code>组合而成。这意味着它的渲染速度要慢得多，相当于整个场景的阴影和渲染 6 次，每个方向(面)都需要渲染一次。</p>
+<p>我们将在场景中放置一个盒子，这样我们可以看到墙壁和天花板的阴影效果。我们设置材质的属性，只让它在盒子的内部渲染，就像地板一样。我们还设置它可以被投射阴影，并且将它的高度设置的比地板稍微低一点，防止 Z 轴渲染重合。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const cubeSize = 30;
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeMat = new THREE.MeshPhongMaterial({
+    color: "#CCC",
+    side: THREE.BackSide,
+  });
+  const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  mesh.receiveShadow = true;
+  mesh.position.set(0, cubeSize / 2 - 0.1, 0);
+  scene.add(mesh);
+}
+</pre>
+<p>当然我们也需要把光源切换成<code class="notranslate" translate="no">PointLight 聚光灯</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const light = new THREE.SpotLight(color, intensity);
++const light = new THREE.PointLight(color, intensity);
+
+....
+
+// so we can easily see where the point light is
++const helper = new THREE.PointLightHelper(light);
++scene.add(helper);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-shadows-point-light.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-shadows-point-light.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>使用 GUI 的<code class="notranslate" translate="no">position</code>来移动光源的位置，你就可以看到墙上阴影强度的改变。你还可以调整其他的设置，比如<code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code> ，<code class="notranslate" translate="no">near</code>代表最小的渲染阴影的距离，这只会渲染物体的距离大于其值的物体的阴影。 <code class="notranslate" translate="no">far</code> 这代表渲染比其值距离小的物体的阴影。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -194,7 +574,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -209,7 +590,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-textures.html">纹理</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-lights.html">光照</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">摄像机</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">Shadows</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">阴影</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
@@ -266,10 +647,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 阴影';
+            var disqus_title = 'Three.js 阴影';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
