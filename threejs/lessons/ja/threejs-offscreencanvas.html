@@ -755,16 +755,16 @@ OrbitControlsが必要とする機能をサポートする必要があります�
 <p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r125/examples/js/controls/OrbitControls.js">OrbitControlsのソースコード</a>を掘り下げてみると、次のイベントを処理する必要があるように見えます。</p>
 <ul>
 <li>contextmenu</li>
-<li>mousedown</li>
-<li>mousemove</li>
-<li>mouseup</li>
+<li>pointerdown</li>
+<li>pointermove</li>
+<li>pointerup</li>
 <li>touchstart</li>
 <li>touchmove</li>
 <li>touchend</li>
 <li>wheel</li>
 <li>keydown</li>
 </ul>
-<p>マウスイベントには <code class="notranslate" translate="no">ctrlKey</code>、 <code class="notranslate" translate="no">metaKey</code>、 <code class="notranslate" translate="no">shiftKey</code>、 <code class="notranslate" translate="no">button</code>、 <code class="notranslate" translate="no">clientX</code>、 <code class="notranslate" translate="no">clientY</code>、 <code class="notranslate" translate="no">pageX</code>、 <code class="notranslate" translate="no">pageY</code> プロパティが必要です。</p>
+<p>マウスイベントには <code class="notranslate" translate="no">ctrlKey</code>、 <code class="notranslate" translate="no">metaKey</code>、 <code class="notranslate" translate="no">shiftKey</code>、 <code class="notranslate" translate="no">button</code>、 <code class="notranslate" translate="no">pointerType</code>、 <code class="notranslate" translate="no">clientX</code>、 <code class="notranslate" translate="no">clientY</code>、 <code class="notranslate" translate="no">pageX</code>、 <code class="notranslate" translate="no">pageY</code> プロパティが必要です。</p>
 <p>キーダウンイベントには <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, <code class="notranslate" translate="no">keyCode</code> プロパティが必要です。</p>
 <p>ホイールイベントに必要なのは <code class="notranslate" translate="no">deltaY</code> プロパティだけです。</p>
 <p>また、タッチイベントに必要なのは <code class="notranslate" translate="no">touches</code> プロパティの <code class="notranslate" translate="no">pageX</code> と <code class="notranslate" translate="no">pageY</code> だけです。</p>
@@ -943,6 +943,9 @@ Workerは <code class="notranslate" translate="no">ElementProxyReceiver</code> �
 +    mousedown: mouseEventHandler,
 +    mousemove: mouseEventHandler,
 +    mouseup: mouseEventHandler,
++    pointerdown: mouseEventHandler,
++    pointermove: mouseEventHandler,
++    pointerup: mouseEventHandler,
 +    touchstart: touchEventHandler,
 +    touchmove: touchEventHandler,
 +    touchend: touchEventHandler,
@@ -967,6 +970,7 @@ Workerは <code class="notranslate" translate="no">ElementProxyReceiver</code> �
   'metaKey',
   'shiftKey',
   'button',
+  'pointerType',
   'clientX',
   'clientY',
   'pageX',
@@ -1182,7 +1186,7 @@ function render(time) {
   ...
 </pre>
 <p>他にもいくつかのハックがあります。
-OrbitControlsは <code class="notranslate" translate="no">mousemove</code> と <code class="notranslate" translate="no">mouseup</code> イベントをマウスキャプチャ（マウスがウィンドウの外に出た時）を処理するための要素の <code class="notranslate" translate="no">ownerDocument</code> です。</p>
+OrbitControlsは <code class="notranslate" translate="no">pointermove</code> と <code class="notranslate" translate="no">pointerup</code> イベントをマウスキャプチャ（マウスがウィンドウの外に出た時）を処理するための要素の <code class="notranslate" translate="no">ownerDocument</code> です。</p>
 <p>さらにコードはグローバルな <code class="notranslate" translate="no">document</code> を参照していますが、Workerにはグローバルなdocumentはありません。</p>
 <p>これは2つの簡単なハックで全て解決できます。
 Workerコードでは両方の問題に対してProxyを再利用します。</p>

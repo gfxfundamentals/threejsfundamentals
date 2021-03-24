@@ -788,20 +788,20 @@ We only need to support the features the OrbitControls need.</p>
 it looks like we need to handle the following events.</p>
 <ul>
 <li>contextmenu</li>
-<li>mousedown</li>
-<li>mousemove</li>
-<li>mouseup</li>
+<li>pointerdown</li>
+<li>pointermove</li>
+<li>pointerup</li>
 <li>touchstart</li>
 <li>touchmove</li>
 <li>touchend</li>
 <li>wheel</li>
 <li>keydown</li>
 </ul>
-<p>For the mouse events we need the <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, 
-<code class="notranslate" translate="no">button</code>, <code class="notranslate" translate="no">clientX</code>, <code class="notranslate" translate="no">clientY</code>, <code class="notranslate" translate="no">pageX</code>, and <code class="notranslate" translate="no">pageY</code>, properties</p>
+<p>For the pointer events we need the <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, 
+<code class="notranslate" translate="no">button</code>, <code class="notranslate" translate="no">pointerType</code>, <code class="notranslate" translate="no">clientX</code>, <code class="notranslate" translate="no">clientY</code>, <code class="notranslate" translate="no">pageX</code>, and <code class="notranslate" translate="no">pageY</code>, properties.</p>
 <p>For the keydown events we need the <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, 
 and <code class="notranslate" translate="no">keyCode</code> properties.</p>
-<p>For the wheel event we only need the <code class="notranslate" translate="no">deltaY</code> property</p>
+<p>For the wheel event we only need the <code class="notranslate" translate="no">deltaY</code> property.</p>
 <p>And for the touch events we only need <code class="notranslate" translate="no">pageX</code> and <code class="notranslate" translate="no">pageY</code> from
 the <code class="notranslate" translate="no">touches</code> property.</p>
 <p>So, let's make a proxy object pair. One part will run in the main page,
@@ -992,6 +992,9 @@ the worker.</p>
 +    mousedown: mouseEventHandler,
 +    mousemove: mouseEventHandler,
 +    mouseup: mouseEventHandler,
++    pointerdown: mouseEventHandler,
++    pointermove: mouseEventHandler,
++    pointerup: mouseEventHandler,
 +    touchstart: touchEventHandler,
 +    touchmove: touchEventHandler,
 +    touchend: touchEventHandler,
@@ -1015,6 +1018,7 @@ they make. That function will add the correct id and send it to the worker.</p>
   'metaKey',
   'shiftKey',
   'button',
+  'pointerType',
   'clientX',
   'clientY',
   'pageX',
@@ -1232,7 +1236,7 @@ function render(time) {
 
   ...
 </pre>
-<p>A few more hacks. The OrbitControls add <code class="notranslate" translate="no">mousemove</code> and <code class="notranslate" translate="no">mouseup</code> events to the
+<p>A few more hacks. The OrbitControls add <code class="notranslate" translate="no">pointermove</code> and <code class="notranslate" translate="no">pointerup</code> events to the
 <code class="notranslate" translate="no">ownerDocument</code> of the element to handle mouse capture (when the mouse goes
 outside the window).</p>
 <p>Further the code references the global <code class="notranslate" translate="no">document</code> but there is no global document

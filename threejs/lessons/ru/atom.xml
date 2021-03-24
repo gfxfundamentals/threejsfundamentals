@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Основы three.js</title>
-    <updated>2021-03-21T13:02:44.000Z</updated>
+    <updated>2021-03-24T06:00:25.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,287 +16,287 @@
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-cameras.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Пользовательская BufferGeometry]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Пользовательская Geometry]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-geometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-custom-geometry.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Отладка Three.js - GLSL]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-glsl.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Отладка JavaScript]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-javascript.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-debugging-javascript.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Туман]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-fog.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-fog.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Основы Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-fundamentals.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Освещение]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-lights.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-lights.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Таблица характеристик материалов]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-material-table.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-material-table.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Материалы Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-materials.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js - Несколько холстов и Несколько сцен]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-multiple-scenes.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js OffscreenCanvas]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-offscreencanvas.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-offscreencanvas.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Оптимизация большого количества анимированных объектов]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects-animated.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Оптимизация большого количества объектов]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-optimize-lots-of-objects.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Необходимые условия]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-prerequisites.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Примитивы Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-primitives.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Рендеринг по требованию]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-rendering-on-demand.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-rendering-on-demand.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Цели рендеринга]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-rendertargets.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-rendertargets.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Oтзывчивый Дизайн]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-responsive.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Граф сцены Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-scenegraph.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Настройка окружения Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-setup.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Тени]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-shadows.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-shadows.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Текстуры]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-textures.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Советы]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/ru/threejs-tips.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/ru/threejs-tips.html">
         </link>
-        <updated>2021-03-21T13:02:44.000Z</updated>
+        <updated>2021-03-24T06:00:25.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-03-21T13:02:44.000Z</published>
+        <published>2021-03-24T06:00:25.000Z</published>
     </entry>
 </feed>

@@ -716,16 +716,16 @@ window.addEventListener('touchend', clearPickPosition);
 <p><a href="https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r125/examples/js/controls/OrbitControls.js"><code class="notranslate" translate="no">OrbitControls</code>의 소스 코드</a>를 분석해보니 아래의 이벤트만 지원하면 될 듯합니다.</p>
 <ul>
 <li>contextmenu</li>
-<li>mousedown</li>
-<li>mousemove</li>
-<li>mouseup</li>
+<li>pointerdown</li>
+<li>pointermove</li>
+<li>pointerup</li>
 <li>touchstart</li>
 <li>touchmove</li>
 <li>touchend</li>
 <li>wheel</li>
 <li>keydown</li>
 </ul>
-<p>마우스 이벤트 중 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>가 사용하는 속성은 <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, <code class="notranslate" translate="no">button</code>, <code class="notranslate" translate="no">clientX</code>, <code class="notranslate" translate="no">clientY</code>, <code class="notranslate" translate="no">pageX</code>, <code class="notranslate" translate="no">pageY</code>이고,</p>
+<p>마우스 이벤트 중 <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>가 사용하는 속성은 <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, <code class="notranslate" translate="no">button</code>, <code class="notranslate" translate="no">pointerType</code>, <code class="notranslate" translate="no">clientX</code>, <code class="notranslate" translate="no">clientY</code>, <code class="notranslate" translate="no">pageX</code>, <code class="notranslate" translate="no">pageY</code>이고,</p>
 <p>keydown 이벤트의 경우는 <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, <code class="notranslate" translate="no">keyCode</code> 속성,</p>
 <p>wheel 이벤트는 <code class="notranslate" translate="no">deltaY</code> 속성만,</p>
 <p>터치 이벤트의 경우는 <code class="notranslate" translate="no">touches</code> 속성의 <code class="notranslate" translate="no">pageX</code>, <code class="notranslate" translate="no">pageY</code> 속성이 필요하네요.</p>
@@ -896,6 +896,9 @@ class ElementProxy {
 +    mousedown: mouseEventHandler,
 +    mousemove: mouseEventHandler,
 +    mouseup: mouseEventHandler,
++    pointerdown: mouseEventHandler,
++    pointermove: mouseEventHandler,
++    pointerup: mouseEventHandler,
 +    touchstart: touchEventHandler,
 +    touchmove: touchEventHandler,
 +    touchend: touchEventHandler,
@@ -917,6 +920,7 @@ class ElementProxy {
   'metaKey',
   'shiftKey',
   'button',
+  'pointerType',
   'clientX',
   'clientY',
   'pageX',
@@ -1127,7 +1131,7 @@ function render(time) {
 
   ...
 </pre>
-<p><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>는 마우스 이벤트를 감지하기 위해 해당 요소의 <code class="notranslate" translate="no">ownerDocument</code>에 <code class="notranslate" translate="no">mousemove</code>와 <code class="notranslate" translate="no">mouseup</code> 리스너를 추가합니다(마우스가 창 밖으로 나갔을 경우를 위해).</p>
+<p><a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>는 마우스 이벤트를 감지하기 위해 해당 요소의 <code class="notranslate" translate="no">ownerDocument</code>에 <code class="notranslate" translate="no">pointermove</code>와 <code class="notranslate" translate="no">pointerup</code> 리스너를 추가합니다(마우스가 창 밖으로 나갔을 경우를 위해).</p>
 <p>또한 코드는 전역 <code class="notranslate" translate="no">document</code> 객체를 참조하지만 워커에는 전역 <code class="notranslate" translate="no">document</code> 객체가 없습니다.</p>
 <p>이 문제는 간단한 편법(hack)을 써 해결할 수 있습니다. 다시 한 번 워커의 경유 객체를 이용하도록 하죠.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function start(data) {

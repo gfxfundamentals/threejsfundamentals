@@ -746,9 +746,9 @@ window.addEventListener('touchend', clearPickPosition);
 похоже, что нам нужно обработать следующие события.</p>
 <ul>
 <li>contextmenu</li>
-<li>mousedown</li>
-<li>mousemove</li>
-<li>mouseup</li>
+<li>pointerdown</li>
+<li>pointermove</li>
+<li>pointerup</li>
 <li>touchstart</li>
 <li>touchmove</li>
 <li>touchend</li>
@@ -756,7 +756,7 @@ window.addEventListener('touchend', clearPickPosition);
 <li>keydown</li>
 </ul>
 <p>Для событий мыши нам нужны свойства  <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, 
-<code class="notranslate" translate="no">button</code>, <code class="notranslate" translate="no">clientX</code>, <code class="notranslate" translate="no">clientY</code>, <code class="notranslate" translate="no">pageX</code>, и <code class="notranslate" translate="no">pageY</code>.</p>
+<code class="notranslate" translate="no">button</code>, <code class="notranslate" translate="no">pointerType</code>, <code class="notranslate" translate="no">clientX</code>, <code class="notranslate" translate="no">clientY</code>, <code class="notranslate" translate="no">pageX</code>, и <code class="notranslate" translate="no">pageY</code>.</p>
 <p>Для событий нажатия клавиатуры нам нужны свойства  <code class="notranslate" translate="no">ctrlKey</code>, <code class="notranslate" translate="no">metaKey</code>, <code class="notranslate" translate="no">shiftKey</code>, 
 и <code class="notranslate" translate="no">keyCode</code>.</p>
 <p>Для события wheel нам нужно только свойство <code class="notranslate" translate="no">deltaY</code></p>
@@ -927,6 +927,9 @@ class ElementProxy {
 +    mousedown: mouseEventHandler,
 +    mousemove: mouseEventHandler,
 +    mouseup: mouseEventHandler,
++    pointerdown: mouseEventHandler,
++    pointermove: mouseEventHandler,
++    pointerup: mouseEventHandler,
 +    touchstart: touchEventHandler,
 +    touchmove: touchEventHandler,
 +    touchend: touchEventHandler,
@@ -948,6 +951,7 @@ class ElementProxy {
   'metaKey',
   'shiftKey',
   'button',
+  'pointerType',
   'clientX',
   'clientY',
   'pageX',
@@ -1158,7 +1162,7 @@ function render(time) {
 
   ...
 </pre>
-<p>Еще несколько приемов. <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> добавляют события <code class="notranslate" translate="no">mousemove</code> и <code class="notranslate" translate="no">mouseup</code> в <code class="notranslate" translate="no">ownerDocument</code> элемента для обработки захвата мыши (когда мышь выходит за пределы окна).</p>
+<p>Еще несколько приемов. <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> добавляют события <code class="notranslate" translate="no">pointermove</code> и <code class="notranslate" translate="no">pointerup</code> в <code class="notranslate" translate="no">ownerDocument</code> элемента для обработки захвата мыши (когда мышь выходит за пределы окна).</p>
 <p>Далее код ссылается на глобальный <code class="notranslate" translate="no">document</code>, но в воркере нет глобального документа.</p>
 <p>Мы можем решить все это с помощью 2 быстрых приемов. В нашем рабочем коде мы повторно используем прокси для обеих задач</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function start(data) {
