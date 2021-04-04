@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id></id>
+    <title>three.js temelleri</title>
+    <updated>2021-04-04T16:40:30.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>ThreeJSFundamentals Contributors</name>
+        <uri>https://threejsfundamentals.org/contributors.html</uri>
+    </author>
+    <link rel="alternate" href="http://threejsfundamentals.org/"/>
+    <subtitle>Three.js Öğren</subtitle>
+    <logo>https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg</logo>
+    <entry>
+        <title type="html"><![CDATA[Three.js Temelleri]]></title>
+        <id>https://threejsfundamentals.org/threejs/lessons/tr/threejs-fundamentals.html</id>
+        <link href="https://threejsfundamentals.org/threejs/lessons/tr/threejs-fundamentals.html">
+        </link>
+        <updated>2021-04-04T16:40:30.000Z</updated>
+        <author>
+            <name>ThreeJSFundamentals Contributors</name>
+            <uri>https://threejsfundamentals.org/contributors.html</uri>
+        </author>
+        <published>2021-04-04T16:40:30.000Z</published>
+    </entry>
+</feed>
