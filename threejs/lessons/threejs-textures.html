@@ -323,9 +323,9 @@ const material = new THREE.MeshBasicMaterial({
 
 <p></p>
 <p>It should be noted though that not all geometry types supports multiple
-materials. <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> can use 6 materials one for each face.
-<a href="https://threejs.org/docs/#api/en/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> can use 2 materials, one for the bottom and one for the cone.
-<a href="https://threejs.org/docs/#api/en/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> and <a href="https://threejs.org/docs/#api/en/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> can use 3 materials, bottom, top, and side.
+materials. <a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry"><code class="notranslate" translate="no">BoxGeometry</code></a> can use 6 materials one for each face.
+<a href="https://threejs.org/docs/#api/en/geometries/ConeGeometry"><code class="notranslate" translate="no">ConeGeometry</code></a> can use 2 materials, one for the bottom and one for the cone.
+<a href="https://threejs.org/docs/#api/en/geometries/CylinderGeometry"><code class="notranslate" translate="no">CylinderGeometry</code></a> can use 3 materials, bottom, top, and side.
 For other cases you will need to build or load custom geometry and/or modify texture coordinates.</p>
 <p>It's far more common in other 3D engines and far more performant to use a
 <a href="https://en.wikipedia.org/wiki/Texture_atlas">Texture Atlas</a>
@@ -520,7 +520,7 @@ end up being something like this</p>
 <p>Now, when the cube is drawn so small that it's only 1 or 2 pixels large the GPU can choose
 to use just the smallest or next to smallest mip level to decide what color to make the
 tiny cube.</p>
-<p>In three you can choose what happens both when the texture is drawn
+<p>In three.js you can choose what happens both when the texture is drawn
 larger than its original size and what happens when it's drawn smaller than its
 original size.</p>
 <p>For setting the filter when the texture is drawn larger than its original size
