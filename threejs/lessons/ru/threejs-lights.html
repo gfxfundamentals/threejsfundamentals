@@ -675,7 +675,7 @@ makeXYZGUI(gui, light.position, 'position');
 а лампочка мощностью 60 Вт будет иметь около 800 люмен. 
 Там также есть распад <a href="https://threejs.org/docs/#api/en/lights/PointLight#decay"><code class="notranslate" translate="no">decay</code></a>, он должен быть установлен в <code class="notranslate" translate="no">2</code> для реализма.</p>
 <p>Давайте проверим это.</p>
-<p>Сначала мы включим физически правильное осещение</p>
+<p>Сначала мы включим физически правильное освещение</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const renderer = new THREE.WebGLRenderer({canvas});
 +renderer.physicallyCorrectLights = true;
 </pre>
