@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-fog.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,79 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Fog">
+
+<meta name="description" content="Three.js中的雾">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 雾">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Fog in Three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_zh_cn.jpg">
+<meta property="og:description" content="Three.js中的雾">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Fog">
+<meta name="twitter:title" content="Three.js 雾">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html">
-<meta name="twitter:description" content="Fog in Three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="Three.js中的雾">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-fog.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-fog.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-fog.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-fog.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-fog.html">
+  <link rel="alternate" hreflang="tr" href="https://webglfundamentals.org/threejs/lessons/tr/threejs-fog.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html">
 
 
-<title>Three.js Fog</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-fog_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 雾",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-fog.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 雾</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -176,12 +231,190 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Fog</h1>
+    <h1>Three.js 雾</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-fog.html">英文原文链接</a>.</p>
+      <p>本文是three.js系列文章的一部分。第一篇文章是<a href="threejs-fundamentals.html">three.js 基础</a>。如果你是个新手，还没读过，请从那里开始。如果你还没读过有关摄像机的章节，请从<a href="threejs-cameras.html">这篇文章</a>开始。</p>
+<p>在3D引擎里，雾通常是基于离摄像机的距离褪色至某种特定颜色的方式。在three.js中添加雾是通过创建 <a href="https://threejs.org/docs/#api/zh/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> 或者 <a href="https://threejs.org/docs/#api/zh/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> 实例并设定scene的<a href="https://threejs.org/docs/#api/zh/scenes/Scene#fog"><code class="notranslate" translate="no">fog</code></a> 属性。</p>
+<p><a href="https://threejs.org/docs/#api/zh/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> 让你设定 <code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code> 属性，代表距离摄像机的距离。任何物体比 <code class="notranslate" translate="no">near</code> 近不会受到影响，任何物体比 <code class="notranslate" translate="no">far</code> 远则完全是雾的颜色。在 <code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code> 中间的物体，会从它们自身材料的颜色褪色到雾的颜色。</p>
+<p><a href="https://threejs.org/docs/#api/zh/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> 会根据离摄像机的距离呈指数增长。</p>
+<p>选择其中一个类型，创建雾并设定到场景中如下：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;  // white
+  const near = 10;
+  const far = 100;
+  scene.fog = new THREE.Fog(color, near, far);
+}
+</pre>
+<p>或者对于 <a href="https://threejs.org/docs/#api/zh/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> 会是：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+{
+  const color = 0xFFFFFF;
+  const density = 0.1;
+  scene.fog = new THREE.FogExp2(color, density);
+}
+</pre>
+<p><a href="https://threejs.org/docs/#api/zh/scenes/FogExp2"><code class="notranslate" translate="no">FogExp2</code></a> 比较接近现实效果，但是 <a href="https://threejs.org/docs/#api/zh/scenes/Fog"><code class="notranslate" translate="no">Fog</code></a> 使用的更加普遍，因为它支持设定影响区域，所以你可以设定一定距离内显示清晰的场景，过了这段距离再褪色到某种颜色。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fog" style="height: 300px;"></div>
+    <div class="code">THREE.Fog</div>
+  </div>
+  <div>
+    <div data-diagram="fogExp2" style="height: 300px;"></div>
+    <div class="code">THREE.FogExp2</div>
+  </div>
+</div>
+
+<p>需要注意的是雾是作用在 <em>渲染的物体</em> 上的，是物体颜色中每个像素计算的一部分。这意味着如果你想让你的场景褪色到某种颜色，你需要设定雾 <strong>和</strong> 场景的背景颜色为同一种颜色。背景颜色通过<a href="https://threejs.org/docs/#api/zh/scenes/Scene#background"><code class="notranslate" translate="no">scene.background</code></a>属性设置。你可以通过 <a href="https://threejs.org/docs/#api/zh/math/Color"><code class="notranslate" translate="no">THREE.Color</code></a> 选择背景颜色设置。例如：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">scene.background = new THREE.Color('#F00');  // red
+</pre>
+<div class="spread">
+  <div>
+    <div data-diagram="fogBlueBackgroundRed" style="height: 300px;" class="border"></div>
+    <div class="code">fog blue, background red</div>
+  </div>
+  <div>
+    <div data-diagram="fogBlueBackgroundBlue" style="height: 300px;" class="border"></div>
+    <div class="code">fog blue, background blue</div>
+  </div>
+</div>
+
+<p>这是我们之前添加雾的例子。唯一的改动是在添加雾之后，我们设置了场景的背景颜色。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+
++{
++  const near = 1;
++  const far = 2;
++  const color = 'lightblue';
++  scene.fog = new THREE.Fog(color, near, far);
++  scene.background = new THREE.Color(color);
++}
+</pre>
+<p>在下面的例子，摄像机的 <code class="notranslate" translate="no">near</code> 是0.1， <code class="notranslate" translate="no">far</code> 是5，位于 <code class="notranslate" translate="no">z = 2</code>的位置。方块为单位大小，位于Z=0的位置。这意味着将雾设置为 <code class="notranslate" translate="no">near = 1</code> 和 <code class="notranslate" translate="no">far = 2</code> ，方块会在它的中间位置淡出。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>让我们添加界面来调整雾。我们将再次使用<a href="https://github.com/dataarts/dat.gui">dat.GUI</a>。dat.GUI接收对象和属性参数，并自动为其创建界面。我们能够简单地操纵雾的 <code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code> 属性，但是 <code class="notranslate" translate="no">near</code> 数值大于 <code class="notranslate" translate="no">far</code> 是无效的，所以我们创建助手（helper）来确保 <code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code> 属性，让 <code class="notranslate" translate="no">near</code> 小于或等于  <code class="notranslate" translate="no">far</code> ， <code class="notranslate" translate="no">far</code> 大于或等于 <code class="notranslate" translate="no">near</code>。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// We use this class to pass to dat.gui
+// so when it manipulates near or far
+// near is never &gt; far and far is never &lt; near
+class FogGUIHelper {
+  constructor(fog) {
+    this.fog = fog;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
+}
+</pre>
+<p>之后我们可以像这样添加</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const near = 1;
+  const far = 2;
+  const color = 'lightblue';
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
++
++  const fogGUIHelper = new FogGUIHelper(scene.fog);
++  gui.add(fogGUIHelper, 'near', near, far).listen();
++  gui.add(fogGUIHelper, 'far', near, far).listen();
+}
+</pre>
+<p>当我们设置摄像机的时候，设置（助手的 <code class="notranslate" translate="no">near</code> 和 <code class="notranslate" translate="no">far</code> 以调节雾的最小值和最大值。</p>
+<p>最后两行调用 <code class="notranslate" translate="no">.listen()</code> 告诉dat.GUI <em>监听</em> 变化。当我们编辑 <code class="notranslate" translate="no">far</code> 改变了 <code class="notranslate" translate="no">near</code> 或者编辑 <code class="notranslate" translate="no">near</code> 改变了 <code class="notranslate" translate="no">far</code> ，dat.GUI将会为我们更新其他属性的UI。</p>
+<p>或许能够改变雾的颜色是个不错的主意，但是如上面提到的，我们需要保持雾的颜色和背景颜色一致。所以，让我们在助手上添加另一个 <em>虚拟</em> 属性，当dat.GUI改变它时会设置这两个颜色。</p>
+<p>dat.GUI能够通过4种方式设置颜色。分别是6位hex字符串 (如: <code class="notranslate" translate="no">#112233</code>)，色相、饱和度、明度的对象 (如: <code class="notranslate" translate="no">{h: 60, s: 1, v: }</code>)，RGB数组 (如: <code class="notranslate" translate="no">[255, 128, 64]</code>)，或者RGBA数组 (如: <code class="notranslate" translate="no">[127, 200, 75, 0.3]</code>)。</p>
+<p>对于我们的目的而言，最简单的是用hex字符串的方式，因为dat.GUI只修改单个数值。幸运的是通过 <a href="https://threejs.org/docs/#api/zh/math/Color"><code class="notranslate" translate="no">THREE.Color</code></a> 的 <a href="https://threejs.org/docs/#api/zh/math/Color#getHexString"><code class="notranslate" translate="no">getHexString</code></a> 方法我们能轻松地获得这个字符串，只需要在其前面添加 '#' 。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">// We use this class to pass to dat.gui
+// so when it manipulates near or far
+// near is never &gt; far and far is never &lt; near
++// Also when dat.gui manipulates color we'll
++// update both the fog and background colors.
+class FogGUIHelper {
+*  constructor(fog, backgroundColor) {
+    this.fog = fog;
++    this.backgroundColor = backgroundColor;
+  }
+  get near() {
+    return this.fog.near;
+  }
+  set near(v) {
+    this.fog.near = v;
+    this.fog.far = Math.max(this.fog.far, v);
+  }
+  get far() {
+    return this.fog.far;
+  }
+  set far(v) {
+    this.fog.far = v;
+    this.fog.near = Math.min(this.fog.near, v);
+  }
++  get color() {
++    return `#${this.fog.color.getHexString()}`;
++  }
++  set color(hexString) {
++    this.fog.color.set(hexString);
++    this.backgroundColor.set(hexString);
++  }
+}
+</pre>
+<p>然后我们调用 <code class="notranslate" translate="no">gui.addColor</code> 来为我们的助手虚拟属性添加颜色界面。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const near = 1;
+  const far = 2;
+  const color = 'lightblue';
+  scene.fog = new THREE.Fog(color, near, far);
+  scene.background = new THREE.Color(color);
+
+*  const fogGUIHelper = new FogGUIHelper(scene.fog, scene.background);
+  gui.add(fogGUIHelper, 'near', near, far).listen();
+  gui.add(fogGUIHelper, 'far', near, far).listen();
++  gui.addColor(fogGUIHelper, 'color');
+}
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-fog-gui.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-fog-gui.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>你可以观察到，设置 <code class="notranslate" translate="no">near</code> 如1.9， <code class="notranslate" translate="no">far</code> 为2.0能在未雾化和完全雾化之间获得锐利的变化效果，而设置 <code class="notranslate" translate="no">near</code> = 1.1， <code class="notranslate" translate="no">far</code> = 2.9 会让我们旋转的方块在距离摄像机2个单位距离的位置获得最平滑的变化效果。</p>
+<p>最后， <a href="https://threejs.org/docs/#api/zh/materials/Material#fog"><code class="notranslate" translate="no">fog</code></a> 在材料上有个布尔属性，用来设置渲染物体的材料是否会受到雾的影响。对于大多数材料而言默认设置为 <code class="notranslate" translate="no">true</code> ，作为你可能想关掉雾生效的例子，设想下你正在制作一个3D车辆模拟器并处于驾驶员座位或座舱的视角，你很可能为了看清车内的物体将它们的是否受雾影响属性关闭。</p>
+<p>一个更好的例子会是一个外面弥漫浓雾的房子。让我们假设将雾设置在2米外 (near = 2) 并且在4米的地方完全进入雾中 (far = 4)。房间大于2米并且很可能大于4米，那么你需要将房子内的材质设置为不受雾的影响，否则当站在房子内尽头往墙壁外看会觉得房子是在雾里。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseAll" style="height: 300px;" class="border"></div>
+    <div class="code">fog: true, all</div>
+  </div>
+</div>
+
+<p>注意房间尽头的墙壁和天花板正受到雾的影响，当我们把房子材料上的是否受雾影响属性关闭可以解决这个问题。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="fogHouseInsideNoFog" style="height: 300px;" class="border"></div>
+    <div class="code">fog: true, only outside materials</div>
+  </div>
+</div>
+
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-fog.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -196,7 +429,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -212,7 +446,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-lights.html">光照</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">摄像机</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">阴影</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-fog.html">雾</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
@@ -268,10 +502,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 雾';
+            var disqus_title = 'Three.js 雾';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
