@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-custom-buffergeometry.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,79 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Custom BufferGeometry">
+
+<meta name="description" content="如何创建你自己的缓冲几何体">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 自定义缓冲几何体">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="How to make your own BufferGeometry.">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_zh_cn.jpg">
+<meta property="og:description" content="如何创建你自己的缓冲几何体">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Custom BufferGeometry">
+<meta name="twitter:title" content="Three.js 自定义缓冲几何体">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">
-<meta name="twitter:description" content="How to make your own BufferGeometry.">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="如何创建你自己的缓冲几何体">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="tr" href="https://webglfundamentals.org/threejs/lessons/tr/threejs-custom-buffergeometry.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">
 
 
-<title>Three.js Custom BufferGeometry</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-custom-buffergeometry_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 自定义缓冲几何体",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 自定义缓冲几何体</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -176,12 +231,361 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Custom BufferGeometry</h1>
+    <h1>Three.js 自定义缓冲几何体</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-custom-buffergeometry.html">英文原文链接</a>.</p>
+      <p>在three.js中， <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 是用来代表所有几何体的一种方式。 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 本质上是一系列 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s 的 <em>名称</em> 。每一个 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> 代表一种类型数据的数组：位置，法线，颜色，uv，等等…… 这些合起来， <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s 代表每个顶点所有数据的 <em>并行数组</em> 。</p>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
+
+<p>上面提到，我们有四个属性：<code class="notranslate" translate="no">position</code>, <code class="notranslate" translate="no">normal</code>, <code class="notranslate" translate="no">color</code>, <code class="notranslate" translate="no">uv</code> 。
+它们指的是 <em>并行数组</em> ，代表每个属性的第N个数据集属于同一个顶点。index=4的顶点被高亮表示贯穿所有属性的平行数据定义一个顶点。</p>
+<p>这就告诉我们，这是一个方块的数据图，高亮的地方代表一个角。</p>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
+
+<p>考虑下方块的单个角，不同的面都需要一个不同的法线。法线是面朝向的信息。在图中，在方块的角周围用箭头表示的法线，代表共用顶点位置的面需要指向不同方向的法线。</p>
+<p>同理，一个角在不同的面需要不同的UVs。UVs是用来指定纹理区域中，画在相应顶点位置三角形的纹理坐标。你可以看到，绿色的面需要顶点的UV对应于F纹理的右上角，蓝色的面需要的UV对应于F纹理的左上角，红色的面需要的UV对应于F纹理的左下角。</p>
+<p>一个简单的 <em>顶点</em> 是所有组成部分的集合。如果顶点需要其中任一部分变得不同，那么它必须是一个不同的顶点。</p>
+<p>举一个简单的例子，让我们创建一个使用 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 的方块。方块很有趣，因为它看起来在角的地方共用顶点但实际上不是。在我们的例子中，我们将列出所有顶点数据，然后转化成并行数组，最后用它们创建 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a>s 并添加到 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 。</p>
+<p>我们从方块所需的所有数据开始。再次记住如果顶点有任何独一无二的部分，它必须是不同的顶点。像这里创建一个方块需要36个顶点，每个面2个三角形，每个三角形3个顶点，6个面=36个顶点。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const vertices = [
+  // front
+  { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 0], },
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  0,  1], uv: [1, 1], },
+  // right
+  { pos: [ 1, -1,  1], norm: [ 1,  0,  0], uv: [0, 0], },
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  { pos: [ 1,  1, -1], norm: [ 1,  0,  0], uv: [1, 1], },
+  // back
+  { pos: [ 1, -1, -1], norm: [ 0,  0, -1], uv: [0, 0], },
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  { pos: [-1,  1, -1], norm: [ 0,  0, -1], uv: [1, 1], },
+  // left
+  { pos: [-1, -1, -1], norm: [-1,  0,  0], uv: [0, 0], },
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  { pos: [-1,  1,  1], norm: [-1,  0,  0], uv: [1, 1], },
+  // top
+  { pos: [ 1,  1, -1], norm: [ 0,  1,  0], uv: [0, 0], },
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], },
+
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], },
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], },
+  { pos: [-1,  1,  1], norm: [ 0,  1,  0], uv: [1, 1], },
+  // bottom
+  { pos: [ 1, -1,  1], norm: [ 0, -1,  0], uv: [0, 0], },
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], },
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], },
+
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], },
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], },
+  { pos: [-1, -1, -1], norm: [ 0, -1,  0], uv: [1, 1], },
+];
+</pre>
+<p>然后我们能将它们全部转换成3个并行数组</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const positions = [];
+const normals = [];
+const uvs = [];
+for (const vertex of vertices) {
+  positions.push(...vertex.pos);
+  normals.push(...vertex.norm);
+  uvs.push(...vertex.uv);
+}
+</pre>
+<p>最终我们能创建一个 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> ，然后为每个数组创建一个 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> 并添加到 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  const geometry = new THREE.BufferGeometry();
+  const positionNumComponents = 3;
+  const normalNumComponents = 3;
+  const uvNumComponents = 2;
+  geometry.setAttribute(
+      'position',
+      new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
+  geometry.setAttribute(
+      'normal',
+      new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
+  geometry.setAttribute(
+      'uv',
+      new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
+</pre>
+<p>注意名字很重要。你必须将属性的名字命名成three.js所期望的(除非你正在创建自定义着色器)，在这里是 <code class="notranslate" translate="no">position</code>、 <code class="notranslate" translate="no">normal</code> 和 <code class="notranslate" translate="no">uv</code> 。如果你想要设置顶点颜色则命名属性为 <code class="notranslate" translate="no">color</code> 。</p>
+<p>在上面我们创建了3个JavaScript原生数组， <code class="notranslate" translate="no">positions</code>, <code class="notranslate" translate="no">normals</code> 和 <code class="notranslate" translate="no">uvs</code> 。
+然后我们将他们转换为 <code class="notranslate" translate="no">Float32Array</code> 的类型数组<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>。 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> 是类型数组而不是原生数组。同时 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> 需要你设定每个顶点有多少组成成分。对于位置和法线，每个顶点我们需要3个组成成分，x、y和z。对于UVs我们需要2个，u和v。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>那会是大量的数据。我们可以做点改善，可以用索引来代表顶点。看回我们的方块数据，每个面由2个三角形组成，每个三角形3个顶点，总共6个，但是其中2个是完全一样的；同样的位置，同样的法线，和同样的uv。因此，我们可以移除匹配的顶点，然后用索引代表他们。首先我们移除匹配的顶点。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const vertices = [
+  // front
+  { pos: [-1, -1,  1], norm: [ 0,  0,  1], uv: [0, 0], }, // 0
+  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], }, // 1
+  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], }, // 2
+-
+-  { pos: [-1,  1,  1], norm: [ 0,  0,  1], uv: [0, 1], },
+-  { pos: [ 1, -1,  1], norm: [ 0,  0,  1], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  0,  1], uv: [1, 1], }, // 3
+  // right
+  { pos: [ 1, -1,  1], norm: [ 1,  0,  0], uv: [0, 0], }, // 4
+  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], }, // 5
+-
+-  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], },
+-  { pos: [ 1, -1, -1], norm: [ 1,  0,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 1,  0,  0], uv: [0, 1], }, // 6
+  { pos: [ 1,  1, -1], norm: [ 1,  0,  0], uv: [1, 1], }, // 7
+  // back
+  { pos: [ 1, -1, -1], norm: [ 0,  0, -1], uv: [0, 0], }, // 8
+  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], }, // 9
+-
+-  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], },
+-  { pos: [-1, -1, -1], norm: [ 0,  0, -1], uv: [1, 0], },
+  { pos: [ 1,  1, -1], norm: [ 0,  0, -1], uv: [0, 1], }, // 10
+  { pos: [-1,  1, -1], norm: [ 0,  0, -1], uv: [1, 1], }, // 11
+  // left
+  { pos: [-1, -1, -1], norm: [-1,  0,  0], uv: [0, 0], }, // 12
+  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], }, // 13
+-
+-  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], },
+-  { pos: [-1, -1,  1], norm: [-1,  0,  0], uv: [1, 0], },
+  { pos: [-1,  1, -1], norm: [-1,  0,  0], uv: [0, 1], }, // 14
+  { pos: [-1,  1,  1], norm: [-1,  0,  0], uv: [1, 1], }, // 15
+  // top
+  { pos: [ 1,  1, -1], norm: [ 0,  1,  0], uv: [0, 0], }, // 16
+  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], }, // 17
+-
+-  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], },
+-  { pos: [-1,  1, -1], norm: [ 0,  1,  0], uv: [1, 0], },
+  { pos: [ 1,  1,  1], norm: [ 0,  1,  0], uv: [0, 1], }, // 18
+  { pos: [-1,  1,  1], norm: [ 0,  1,  0], uv: [1, 1], }, // 19
+  // bottom
+  { pos: [ 1, -1,  1], norm: [ 0, -1,  0], uv: [0, 0], }, // 20
+  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], }, // 21
+-
+-  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], },
+-  { pos: [-1, -1,  1], norm: [ 0, -1,  0], uv: [1, 0], },
+  { pos: [ 1, -1, -1], norm: [ 0, -1,  0], uv: [0, 1], }, // 22
+  { pos: [-1, -1, -1], norm: [ 0, -1,  0], uv: [1, 1], }, // 23
+];
+</pre>
+<p>现在我们有24个唯一的顶点。然后我们为36个要画的顶点设定36个索引，通过调用 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry.setIndex"><code class="notranslate" translate="no">BufferGeometry.setIndex</code></a> 并传入索引数组来创建12个三角形。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">geometry.setAttribute(
+    'position',
+    new THREE.BufferAttribute(positions, positionNumComponents));
+geometry.setAttribute(
+    'normal',
+    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setAttribute(
+    'uv',
+    new THREE.BufferAttribute(uvs, uvNumComponents));
+
++geometry.setIndex([
++   0,  1,  2,   2,  1,  3,  // front
++   4,  5,  6,   6,  5,  7,  // right
++   8,  9, 10,  10,  9, 11,  // back
++  12, 13, 14,  14, 13, 15,  // left
++  16, 17, 18,  18, 17, 19,  // top
++  20, 21, 22,  22, 21, 23,  // bottom
++]);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube-indexed.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube-indexed.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>如果你没有提供法线数据的话， <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 有个方法<a href="https://threejs.org/docs/#api/zh/core/BufferGeometry#computeVertexNormals"><code class="notranslate" translate="no">computeVertexNormals</code></a>可以用来计算法线。不幸的是，因为如果顶点的其他数据不同的话，位置数据不能被共享，调用  <code class="notranslate" translate="no">computeVertexNormals</code> 会让你的几何体像球面或者圆筒一样连接自身。</p>
+<div class="spread">
+  <div>
+    <div data-diagram="bufferGeometryCylinder"></div>
+  </div>
+</div>
+
+<p>对于上面的圆筒，法线是通过 <code class="notranslate" translate="no">computeVertexNormals</code> 方法创建的。
+如果你仔细观察会发现在圆筒上有条缝。这是因为在圆筒的开始和结束的地方没有办法共享顶点数据，需要不同的UVs，所以该方法不知道它们是同样的顶点以平滑过度。只要知道一点，解决方法是应用自己的法线数据。</p>
+<p>我们同样可以在一开始使用类型数组<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray">TypedArrays</a>取代JavaScript的原生数组。
+缺点是你必须在一开始定义数组的大小。当然那不是很难，但是使用原生数组我们只需要用 <code class="notranslate" translate="no">push</code> 将数据加入数组并最后通过 <code class="notranslate" translate="no">length</code> 查看数组大小。使用类型数组我们没有这样的方法，所以需要记录添加的数据。</p>
+<p>在这个例子，提前计算数组长度很简单，因为我们一开始使用一大块静态数据。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const positions = [];
+-const normals = [];
+-const uvs = [];
++const numVertices = vertices.length;
++const positionNumComponents = 3;
++const normalNumComponents = 3;
++const uvNumComponents = 2;
++const positions = new Float32Array(numVertices * positionNumComponents);
++const normals = new Float32Array(numVertices * normalNumComponents);
++const uvs = new Float32Array(numVertices * uvNumComponents);
++let posNdx = 0;
++let nrmNdx = 0;
++let uvNdx = 0;
+for (const vertex of vertices) {
+-  positions.push(...vertex.pos);
+-  normals.push(...vertex.norm);
+-  uvs.push(...vertex.uv);
++  positions.set(vertex.pos, posNdx);
++  normals.set(vertex.norm, nrmNdx);
++  uvs.set(vertex.uv, uvNdx);
++  posNdx += positionNumComponents;
++  nrmNdx += normalNumComponents;
++  uvNdx += uvNumComponents;
+}
+
+geometry.setAttribute(
+    'position',
+-    new THREE.BufferAttribute(new Float32Array(positions), positionNumComponents));
++    new THREE.BufferAttribute(positions, positionNumComponents));
+geometry.setAttribute(
+    'normal',
+-    new THREE.BufferAttribute(new Float32Array(normals), normalNumComponents));
++    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setAttribute(
+    'uv',
+-    new THREE.BufferAttribute(new Float32Array(uvs), uvNumComponents));
++    new THREE.BufferAttribute(uvs, uvNumComponents));
+
+geometry.setIndex([
+   0,  1,  2,   2,  1,  3,  // front
+   4,  5,  6,   6,  5,  7,  // right
+   8,  9, 10,  10,  9, 11,  // back
+  12, 13, 14,  14, 13, 15,  // left
+  16, 17, 18,  18, 17, 19,  // top
+  20, 21, 22,  22, 21, 23,  // bottom
+]);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-cube-typedarrays.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-cube-typedarrays.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>一个使用类型数组的好理由，是如果你想动态更新顶点数据的任何一部分。</p>
+<p>因为想不起动态更新顶点数据的好例子，所以我决定创建一个球面并从中央开始进进出出地移动每个四边形。但愿它是个有用的例子。</p>
+<p>这里是用来产生球面的位置和索引数据的代码。代码共享了四边形内的顶点数据，但是四边形之间的没有共享，因为我们需要分别地移动每个四边形。</p>
+<p>因为我懒，所以我通过3个 <a href="https://threejs.org/docs/#api/zh/core/Object3D"><code class="notranslate" translate="no">Object3D</code></a> 对象的层级关系，计算球面的点。关于如何计算在这篇文章有解释<a href="threejs-optimize-lots-of-objects.html">the article on optimizing lots of objects</a>。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeSpherePositions(segmentsAround, segmentsDown) {
+  const numVertices = segmentsAround * segmentsDown * 6;
+  const numComponents = 3;
+  const positions = new Float32Array(numVertices * numComponents);
+  const indices = [];
+
+  const longHelper = new THREE.Object3D();
+  const latHelper = new THREE.Object3D();
+  const pointHelper = new THREE.Object3D();
+  longHelper.add(latHelper);
+  latHelper.add(pointHelper);
+  pointHelper.position.z = 1;
+  const temp = new THREE.Vector3();
+
+  function getPoint(lat, long) {
+    latHelper.rotation.x = lat;
+    longHelper.rotation.y = long;
+    longHelper.updateMatrixWorld(true);
+    return pointHelper.getWorldPosition(temp).toArray();
+  }
+
+  let posNdx = 0;
+  let ndx = 0;
+  for (let down = 0; down &lt; segmentsDown; ++down) {
+    const v0 = down / segmentsDown;
+    const v1 = (down + 1) / segmentsDown;
+    const lat0 = (v0 - 0.5) * Math.PI;
+    const lat1 = (v1 - 0.5) * Math.PI;
+
+    for (let across = 0; across &lt; segmentsAround; ++across) {
+      const u0 = across / segmentsAround;
+      const u1 = (across + 1) / segmentsAround;
+      const long0 = u0 * Math.PI * 2;
+      const long1 = u1 * Math.PI * 2;
+
+      positions.set(getPoint(lat0, long0), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat1, long0), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat0, long1), posNdx);  posNdx += numComponents;
+      positions.set(getPoint(lat1, long1), posNdx);  posNdx += numComponents;
+
+      indices.push(
+        ndx, ndx + 1, ndx + 2,
+        ndx + 2, ndx + 1, ndx + 3,
+      );
+      ndx += 4;
+    }
+  }
+  return {positions, indices};
+}
+</pre>
+<p>然后我们像这样调用。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const segmentsAround = 24;
+const segmentsDown = 16;
+const {positions, indices} = makeSpherePositions(segmentsAround, segmentsDown);
+</pre>
+<p>因为返回的位置数据是单位球面位置，所以它们跟我们需要的法线数据完全一样，我们只需要复制它们。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const normals = positions.slice();
+</pre>
+<p>然后我们像之前一样设置属性</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const geometry = new THREE.BufferGeometry();
+const positionNumComponents = 3;
+const normalNumComponents = 3;
+
++const positionAttribute = new THREE.BufferAttribute(positions, positionNumComponents);
++positionAttribute.setUsage(THREE.DynamicDrawUsage);
+geometry.setAttribute(
+    'position',
++    positionAttribute);
+geometry.setAttribute(
+    'normal',
+    new THREE.BufferAttribute(normals, normalNumComponents));
+geometry.setIndex(indices);
+</pre>
+<p>我已经高亮一些区别。我们保存了位置属性的引用。
+同时我们标记它为动态。这是提示THREE.js我们将会经常改变属性的内容。</p>
+<p>在我们的渲染循环中，每一帧我们基于它们的法线更新位置</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const temp = new THREE.Vector3();
+
+...
+
+for (let i = 0; i &lt; positions.length; i += 3) {
+  const quad = (i / 12 | 0);
+  const ringId = quad / segmentsAround | 0;
+  const ringQuadId = quad % segmentsAround;
+  const ringU = ringQuadId / segmentsAround;
+  const angle = ringU * Math.PI * 2;
+  temp.fromArray(normals, i);
+  temp.multiplyScalar(THREE.MathUtils.lerp(1, 1.4, Math.sin(time + ringId + angle) * .5 + .5));
+  temp.toArray(positions, i);
+}
+positionAttribute.needsUpdate = true;
+</pre>
+<p>我们设置 <code class="notranslate" translate="no">positionAttribute.needsUpdate</code> 告诉THREE.js更新我们的改变。</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-custom-buffergeometry-dynamic.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-custom-buffergeometry-dynamic.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>我希望这些例子能对如何使用 <a href="https://threejs.org/docs/#api/zh/core/BufferGeometry"><code class="notranslate" translate="no">BufferGeometry</code></a> 直接创建你自己的几何体和如何动态更新 <a href="https://threejs.org/docs/#api/zh/core/BufferAttribute"><code class="notranslate" translate="no">BufferAttribute</code></a> 的内容发挥作用。</p>
+<!-- needed in English only to prevent warning from outdated translations -->
+<p><a href="../resources/threejs-geometry.svg"></a>
+<a href="threejs-custom-geometry.html"></a></p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
+
 
     </div>
     <div class="lesson-sidebar">
@@ -196,7 +600,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -213,8 +618,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-cameras.html">摄像机</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadows.html">阴影</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-fog.html">雾</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">Render Targets</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-rendertargets.html">渲染目标</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-custom-buffergeometry.html">自定义缓冲几何体</a></li>
         </ul>
   <li>技巧</li>
         <ul>
@@ -268,10 +673,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 自定义缓冲几何体';
+            var disqus_title = 'Three.js 自定义缓冲几何体';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
