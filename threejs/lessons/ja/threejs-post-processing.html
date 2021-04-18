@@ -299,10 +299,10 @@ composer.addPass(filmPass);
 <p><code class="notranslate" translate="no">filmPass</code> は最後のPassなので、<code class="notranslate" translate="no">renderToScreen</code> プロパティをtrueに設定し、キャンバスにレンダリングするようにします。
 この設定がないと次のレンダーターゲットにレンダリングされます。</p>
 <p>これらのクラスを使用するには、以下をインポートする必要があります。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from './resources/threejs/r125/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from './resources/threejs/r125/examples/jsm/postprocessing/RenderPass.js';
-import {BloomPass} from './resources/threejs/r125/examples/jsm/postprocessing/BloomPass.js';
-import {FilmPass} from './resources/threejs/r125/examples/jsm/postprocessing/FilmPass.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import {EffectComposer} from './resources/threejs/r127/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from './resources/threejs/r127/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from './resources/threejs/r127/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from './resources/threejs/r127/examples/jsm/postprocessing/FilmPass.js';
 </pre>
 <p>ほとんどのポストプロセスには <code class="notranslate" translate="no">EffectComposer.js</code> と <code class="notranslate" translate="no">RenderPass.js</code> が必須です。</p>
 <p>最後に <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer.render"><code class="notranslate" translate="no">WebGLRenderer.render</code></a> の代わりに <code class="notranslate" translate="no">EffectComposer.render</code> を使用し、<code class="notranslate" translate="no">EffectComposer</code> にキャンバスのサイズを合わせます。</p>

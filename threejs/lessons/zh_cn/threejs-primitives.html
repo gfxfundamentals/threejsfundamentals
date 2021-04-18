@@ -340,7 +340,7 @@ function addObject(x, y, obj) {
 <p>需要注意的是，如果 <strong>不</strong> 设置 <code class="notranslate" translate="no">side: THREE.DoubleSide</code> 绘制会更快，所以最好只在需要的时候设置它。
 但现在我们不会绘制很多图形，所以没有必要太担心。</p>
 <p>接着，创建一个函数，<code class="notranslate" translate="no">addSolidGeometry</code>，我们传入一个几何体，
-它通过 <code class="notranslate" translate="no">createMaerial</code> 创建一个随机颜色的材质，通过 <code class="notranslate" translate="no">addObject</code> 添加到场景中。</p>
+它通过 <code class="notranslate" translate="no">createMaterial</code> 创建一个随机颜色的材质，通过 <code class="notranslate" translate="no">addObject</code> 添加到场景中。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function addSolidGeometry(x, y, geometry) {
   const mesh = new THREE.Mesh(geometry, createMaterial());
   addObject(x, y, mesh);

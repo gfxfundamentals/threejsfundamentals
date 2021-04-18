@@ -474,7 +474,7 @@ drawColorCubeImage(ctx, 8);
 <p>We then go it into an image editor, in my case Photoshop, load up the sample image, and paste the 3DLUT in the top left corner</p>
 <blockquote>
 <p>note: I first tried dragging and dropping the lut file on top of the image
-in Photoshop but that didn't work. Photoshop made the image twice a large.
+in Photoshop but that didn't work. Photoshop made the image twice as large.
 I'm guessing it was trying to match DPI or something. Loading the lut file
 separately and then copying and pasting it into the screen capture worked.</p>
 </blockquote>
@@ -591,7 +591,7 @@ separately and then copying and pasting it into the screen capture worked.</p>
 <p></p>
 <p>One last thing, just for fun, it turns out there's a standard LUT format defined by Adobe. If you <a href="https://www.google.com/search?q=lut+files">search on the net you can find lots of these LUT files</a>.</p>
 <p>I wrote a quick loader. Unfortunately there's 4 variations of the format but I could only find examples of 1 variation so I couldn't easily test that all variations work.</p>
-<p>I also write a quick drag and drop library. Let's use both to make it so you can drag and drop an Adobe LUT file to see it take affect.</p>
+<p>I also wrote a quick drag and drop library. Let's use both to make it so you can drag and drop an Adobe LUT file to see it take affect.</p>
 <p>First we need the 2 libraries</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as lutParser from './resources/lut-reader.js';
 import * as dragAndDrop from './resources/drag-and-drop.js';
@@ -656,7 +656,7 @@ updateGUI();
 
 <p></p>
 <p>Note that Adobe LUTs are not designed for online usage. They are large files. You can convert them to smaller files and save as our PNG format by dragging and dropping on the sample below, choosing a size and clicking "Save...".</p>
-<p>The sample below is just a modification of the code above. We only draw the background picture, no glTF file. That picture is the an identity lut image created from the script above. We then use the effect to apply whatever LUT file is loaded so the result is the image we'd need to reproduce the LUT file as a PNG.</p>
+<p>The sample below is just a modification of the code above. We only draw the background picture, no glTF file. That picture is an identity lut image created from the script above. We then use the effect to apply whatever LUT file is loaded so the result is the image we'd need to reproduce the LUT file as a PNG.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-postprocessing-adobe-lut-to-png-converter.html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-postprocessing-adobe-lut-to-png-converter.html" target="_blank">click here to open in a separate window</a>

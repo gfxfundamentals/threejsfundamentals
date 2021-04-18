@@ -278,7 +278,7 @@ ES6的语法。<a href="threejs-prerequisites.html">点击这里查看你需要�
 
 <p>首先是加载three.js</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r125/build/three.module.js';
+import * as THREE from './resources/threejs/r127/build/three.module.js';
 &lt;/script&gt;
 </pre>
 <p>把<code class="notranslate" translate="no">type="module"</code>放到script标签中很重要。这可以让我们使用<code class="notranslate" translate="no">import</code>关键字加载three.js。还有其他的方法可以加载three.js，但是自r106开始，使用模块是最推荐的方式。模块的优点是可以很方便地导入需要的其他模块。这样我们就不用再手动引入它们所依赖的其他文件了。</p>
@@ -289,7 +289,7 @@ import * as THREE from './resources/threejs/r125/build/three.module.js';
 </pre>
 <p>Three.js需要使用这个canvas标签来绘制，所以我们要先获取它然后传给three.js。</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r125/build/three.module.js';
+import * as THREE from './resources/threejs/r127/build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -462,7 +462,7 @@ requestAnimationFrame(render);
 在一个脚本中，es6模块可以通过<code class="notranslate" translate="no">import</code>关键字加载或者通过<code class="notranslate" translate="no">&lt;script type="module"&gt;</code>行内标签。这有一个两种方法都用的例子。
 </p>
 <pre class="prettyprint">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r125/build/three.module.js';
+import * as THREE from './resources/threejs/r127/build/three.module.js';
 
 ...
 

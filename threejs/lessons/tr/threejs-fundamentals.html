@@ -310,7 +310,7 @@ that looks like this</p>
 
 <p>First let's load three.js</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r125/build/three.module.js';
+import * as THREE from './resources/threejs/r127/build/three.module.js';
 &lt;/script&gt;
 </pre>
 <p>It's important you put <code class="notranslate" translate="no">type="module"</code> in the script tag. This enables
@@ -326,7 +326,7 @@ they are dependent on.</p>
 </pre>
 <p>We will ask three.js to draw into that canvas so we need to look it up.</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r125/build/three.module.js';
+import * as THREE from './resources/threejs/r127/build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -566,7 +566,7 @@ or inline via a <code class="notranslate" translate="no">&lt;script type="module
 both
 </p>
 <pre class="prettyprint">&lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r125/build/three.module.js';
+import * as THREE from './resources/threejs/r127/build/three.module.js';
 
 ...
 
@@ -633,9 +633,6 @@ version of this site so going forward this site will only show es6 module style.
 to support legacy browsers look into a <a href="https://babeljs.io">transpiler</a>.</p>
 </div>
 
-<!-- needed in English only to prevent warning from outdated translations -->
-<p><a href="threejs-geometry.html"></a>
-<a href="Geometry"></a></p>
 
     </div>
     <div class="lesson-sidebar">

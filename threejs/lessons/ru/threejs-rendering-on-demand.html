@@ -250,8 +250,8 @@ requestAnimationFrame(render);
 <p>Давайте возьмем пример из <a href="threejs-responsive.html">статьи об отзывчивости</a>
 и изменим его для отображения по требованию. </p>
 <p>Сначала мы добавим в OrbitControls, чтобы можно было что-то изменить, что мы можем сделать в ответ. </p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
 </pre>
 <p>и настроить их</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
@@ -369,8 +369,8 @@ render();
 
 <p></p>
 <p>Давайте также добавим простой графический интерфейс dat.GUI и внесем его изменения по запросу. </p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r125/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r125/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <p>Давайте позволим установить цвет и шкалу х каждого куба. Чтобы установить цвет, мы будем использовать <code class="notranslate" translate="no">ColorGUIHelper</code>, который мы создали в <a href="threejs-lights.html">статье о светах</a>.</p>
