@@ -297,7 +297,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     firstScript.parentNode.insertBefore(script, firstScript);
   }
 
-  addScript('//gpustats.org/stats.js', 'module');
+  // can't do this because it would eat contexts
+  //addScript('//gpustats.org/stats.js', 'module');
   addScript('https://www.googletagmanager.com/gtag/js?id=UA-120733518-1', 'javascript', () => {
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
