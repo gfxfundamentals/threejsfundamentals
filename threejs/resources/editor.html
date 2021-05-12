@@ -125,6 +125,7 @@ iframe {
   color: white;
   padding: 1em;
   outline: none;
+  max-width: 90%;
 }
 .dialog p {
   margin-left: 0.25em;
@@ -138,6 +139,11 @@ iframe {
 /* ---- */
 .export .export-buttons {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.export .export-buttons button {
+  width: 8em;
 }
 /* ---- */
 .copy-dialog .copy-area {
@@ -259,6 +265,7 @@ button:focus {
       <button class="button-jsgist">jsGist</button>
       <button class="button-codepen">Codepen</button>
       <button class="button-jsfiddle">JSFiddle</button>
+      <button class="button-codesandbox">CodeSandbox</button>
       <button class="button-stackoverflow">Stack Overflow</button>
     </div>
   </div>

@@ -456,14 +456,14 @@ function resize() {
   });
 }
 
-function makeScriptsForWorkers(scriptInfo) {
+function getScripts(scriptInfo) {
   ++blobGeneration;
 
-  function makeScriptsForWorkersImpl(scriptInfo) {
+  function getScriptsImpl(scriptInfo) {
     const scripts = [];
     if (scriptInfo.blobGenerationId !== blobGeneration) {
       scriptInfo.blobGenerationId = blobGeneration;
-      scripts.push(...scriptInfo.deps.map(makeScriptsForWorkersImpl).flat());
+      scripts.push(...scriptInfo.deps.map(getScriptsImpl).flat());
       let text = scriptInfo.source;
       scriptInfo.deps.forEach((depScriptInfo) => {
         text = text.split(depScriptInfo.fqURL).join(`worker-${basename(depScriptInfo.fqURL)}`);
@@ -476,8 +476,11 @@ function makeScriptsForWorkers(scriptInfo) {
     }
     return scripts;
   }
+  return getScriptsImpl(scriptInfo);
+}
 
-  const scripts = makeScriptsForWorkersImpl(scriptInfo);
+function makeScriptsForWorkers(scriptInfo) {
+  const scripts = getScripts(scriptInfo);
   if (scripts.length === 1) {
     return {
       js: scripts[0].text,
@@ -701,6 +704,418 @@ ${indent4(mainHTML)}
   linkElem.href = `https://stackoverflow.com/questions/ask?&tags=javascript ${tags}`;
 }
 
+function htmlTemplate(s) {
+  return `<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>${s.title}</title>
+    <style>
+${s.css}
+    </style>
+  </head>
+  <body>
+${s.body}
+  </body>
+${s.script.startsWith('<')
+    ? s.script
+    : `
+  <script type="module">
+${s.script}
+  </script>
+`}
+</html>`;
+}
+
+// ---vvv---
+
+// Copyright (c) 2013 Pieroxy <pieroxy@pieroxy.net>
+// This work is free. You can redistribute it and/or modify it
+// under the terms of the WTFPL, Version 2
+// For more information see LICENSE.txt or http://www.wtfpl.net/
+//
+// For more information, the home page:
+// http://pieroxy.net/blog/pages/lz-string/testing.html
+//
+// LZ-based compression algorithm, version 1.4.4
+//
+// Modified: 
+
+// private property
+const f = String.fromCharCode;
+const keyStrBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+function compressToBase64(input) {
+  if (input == null) return "";
+  var res = _compress(input, 6, function(a){return keyStrBase64.charAt(a);});
+  switch (res.length % 4) { // To produce valid Base64
+  default: // When could this happen ?
+  case 0 : return res;
+  case 1 : return res+"===";
+  case 2 : return res+"==";
+  case 3 : return res+"=";
+  }
+};
+
+function _compress(uncompressed, bitsPerChar, getCharFromInt) {
+  if (uncompressed == null) return "";
+  var i, value,
+      context_dictionary= {},
+      context_dictionaryToCreate= {},
+      context_c="",
+      context_wc="",
+      context_w="",
+      context_enlargeIn= 2, // Compensate for the first entry which should not count
+      context_dictSize= 3,
+      context_numBits= 2,
+      context_data=[],
+      context_data_val=0,
+      context_data_position=0,
+      ii;
+
+  for (ii = 0; ii < uncompressed.length; ii += 1) {
+    context_c = uncompressed.charAt(ii);
+    if (!Object.prototype.hasOwnProperty.call(context_dictionary,context_c)) {
+      context_dictionary[context_c] = context_dictSize++;
+      context_dictionaryToCreate[context_c] = true;
+    }
+
+    context_wc = context_w + context_c;
+    if (Object.prototype.hasOwnProperty.call(context_dictionary,context_wc)) {
+      context_w = context_wc;
+    } else {
+      if (Object.prototype.hasOwnProperty.call(context_dictionaryToCreate,context_w)) {
+        if (context_w.charCodeAt(0)<256) {
+          for (i=0 ; i<context_numBits ; i++) {
+            context_data_val = (context_data_val << 1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+          }
+          value = context_w.charCodeAt(0);
+          for (i=0 ; i<8 ; i++) {
+            context_data_val = (context_data_val << 1) | (value&1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = value >> 1;
+          }
+        } else {
+          value = 1;
+          for (i=0 ; i<context_numBits ; i++) {
+            context_data_val = (context_data_val << 1) | value;
+            if (context_data_position ==bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = 0;
+          }
+          value = context_w.charCodeAt(0);
+          for (i=0 ; i<16 ; i++) {
+            context_data_val = (context_data_val << 1) | (value&1);
+            if (context_data_position == bitsPerChar-1) {
+              context_data_position = 0;
+              context_data.push(getCharFromInt(context_data_val));
+              context_data_val = 0;
+            } else {
+              context_data_position++;
+            }
+            value = value >> 1;
+          }
+        }
+        context_enlargeIn--;
+        if (context_enlargeIn == 0) {
+          context_enlargeIn = Math.pow(2, context_numBits);
+          context_numBits++;
+        }
+        delete context_dictionaryToCreate[context_w];
+      } else {
+        value = context_dictionary[context_w];
+        for (i=0 ; i<context_numBits ; i++) {
+          context_data_val = (context_data_val << 1) | (value&1);
+          if (context_data_position == bitsPerChar-1) {
+            context_data_position = 0;
+            context_data.push(getCharFromInt(context_data_val));
+            context_data_val = 0;
+          } else {
+            context_data_position++;
+          }
+          value = value >> 1;
+        }
+
+
+      }
+      context_enlargeIn--;
+      if (context_enlargeIn == 0) {
+        context_enlargeIn = Math.pow(2, context_numBits);
+        context_numBits++;
+      }
+      // Add wc to the dictionary.
+      context_dictionary[context_wc] = context_dictSize++;
+      context_w = String(context_c);
+    }
+  }
+
+  // Output the code for w.
+  if (context_w !== "") {
+    if (Object.prototype.hasOwnProperty.call(context_dictionaryToCreate,context_w)) {
+      if (context_w.charCodeAt(0)<256) {
+        for (i=0 ; i<context_numBits ; i++) {
+          context_data_val = (context_data_val << 1);
+          if (context_data_position == bitsPerChar-1) {
+            context_data_position = 0;
+            context_data.push(getCharFromInt(context_data_val));
+            context_data_val = 0;
+          } else {
+            context_data_position++;
+          }
+        }
+        value = context_w.charCodeAt(0);
+        for (i=0 ; i<8 ; i++) {
+          context_data_val = (context_data_val << 1) | (value&1);
+          if (context_data_position == bitsPerChar-1) {
+            context_data_position = 0;
+            context_data.push(getCharFromInt(context_data_val));
+            context_data_val = 0;
+          } else {
+            context_data_position++;
+          }
+          value = value >> 1;
+        }
+      } else {
+        value = 1;
+        for (i=0 ; i<context_numBits ; i++) {
+          context_data_val = (context_data_val << 1) | value;
+          if (context_data_position == bitsPerChar-1) {
+            context_data_position = 0;
+            context_data.push(getCharFromInt(context_data_val));
+            context_data_val = 0;
+          } else {
+            context_data_position++;
+          }
+          value = 0;
+        }
+        value = context_w.charCodeAt(0);
+        for (i=0 ; i<16 ; i++) {
+          context_data_val = (context_data_val << 1) | (value&1);
+          if (context_data_position == bitsPerChar-1) {
+            context_data_position = 0;
+            context_data.push(getCharFromInt(context_data_val));
+            context_data_val = 0;
+          } else {
+            context_data_position++;
+          }
+          value = value >> 1;
+        }
+      }
+      context_enlargeIn--;
+      if (context_enlargeIn == 0) {
+        context_enlargeIn = Math.pow(2, context_numBits);
+        context_numBits++;
+      }
+      delete context_dictionaryToCreate[context_w];
+    } else {
+      value = context_dictionary[context_w];
+      for (i=0 ; i<context_numBits ; i++) {
+        context_data_val = (context_data_val << 1) | (value&1);
+        if (context_data_position == bitsPerChar-1) {
+          context_data_position = 0;
+          context_data.push(getCharFromInt(context_data_val));
+          context_data_val = 0;
+        } else {
+          context_data_position++;
+        }
+        value = value >> 1;
+      }
+
+
+    }
+    context_enlargeIn--;
+    if (context_enlargeIn == 0) {
+      context_enlargeIn = Math.pow(2, context_numBits);
+      context_numBits++;
+    }
+  }
+
+  // Mark the end of the stream
+  value = 2;
+  for (i=0 ; i<context_numBits ; i++) {
+    context_data_val = (context_data_val << 1) | (value&1);
+    if (context_data_position == bitsPerChar-1) {
+      context_data_position = 0;
+      context_data.push(getCharFromInt(context_data_val));
+      context_data_val = 0;
+    } else {
+      context_data_position++;
+    }
+    value = value >> 1;
+  }
+
+  // Flush the last char
+  while (true) {
+    context_data_val = (context_data_val << 1);
+    if (context_data_position == bitsPerChar-1) {
+      context_data.push(getCharFromInt(context_data_val));
+      break;
+    }
+    else context_data_position++;
+  }
+  return context_data.join('');
+};
+
+function compress(input) {
+    return compressToBase64(input)
+        .replace(/\+/g, "-") // Convert '+' to '-'
+        .replace(/\//g, "_") // Convert '/' to '_'
+        .replace(/=+$/, ""); // Remove ending '='
+}
+
+function getParameters(parameters) {
+    return compress(JSON.stringify(parameters));
+}
+
+// -- ^^^ ---
+
+async function openInCodeSandbox() {
+  const comment = `// ${g.title}
+// from ${g.url}
+
+`;
+  getSourcesFromEditor();
+  const scripts = getScripts(g.rootScriptInfo);
+  const mainScript = scripts.pop();
+  const names = scripts.map(s => s.name);
+  const files = scripts.reduce((files, {name, text: content}) => {
+    files[name] = {content};
+    return files;
+  }, {
+    "index.html": {
+      content: htmlTemplate({
+        body: fixHTMLForCodeSite(htmlParts.html.sources[0].source),
+        css: htmlParts.css.sources[0].source,
+        title: g.title,
+        script: comment + fixJSForCodeSite(mainScript.text),
+      }),
+    },
+    "sandbox.config.json": {
+      content: '{\n  "template": "static"\n}\n',
+    },
+    "package.json": {
+      content: JSON.stringify({
+        "name": "static",
+        "version": "1.0.0",
+        "description": "This is a static template with no bundling",
+        "main": "index.html",
+        "scripts": {
+          "start": "serve",
+          "build": "echo This is a static template, there is no bundler or bundling involved!"
+        },
+        "license": "MIT",
+        "devDependencies": {
+          "serve": "^11.2.0"
+        }
+      }, null, 2),
+    }
+  });
+  for (const file of Object.values(files)) {
+    for (const name of names) {
+      file.content = file.content.split(name).join(`./${name}`);
+    }
+  }
+
+  const parameters = getParameters({files});
+  const elem = document.createElement('div');
+  elem.innerHTML = `
+    <form action="https://codesandbox.io/api/v1/sandboxes/define" method="POST" target="_blank" class="hidden">
+      <input type="hidden" name="parameters" />
+      <input type="submit" />
+    </form>
+  `;
+  elem.querySelector('input[name=parameters]').value = parameters;
+  window.frameElement.ownerDocument.body.appendChild(elem);
+  elem.querySelector('form').submit();
+  window.frameElement.ownerDocument.body.removeChild(elem);
+}
+
+function openInStackBlitz() {
+  const comment = `// ${g.title}
+// from ${g.url}
+
+`;
+  getSourcesFromEditor();
+  const scripts = getScripts(g.rootScriptInfo);
+  const mainScript = scripts.pop();
+  const names = scripts.map(s => s.name);
+  const files = scripts.reduce((files, {name, text: content}) => {
+    files[name] = {content};
+    return files;
+  }, {
+    "index.html": {
+      content: htmlTemplate({
+        body: fixHTMLForCodeSite(htmlParts.html.sources[0].source),
+        css: htmlParts.css.sources[0].source,
+        title: g.title,
+        script: `<script src="index.js" type="module"></script>`,
+      }),
+    },
+    "index.js": {
+      content: comment + fixJSForCodeSite(mainScript.text),
+    },
+    // "tsconfig.json": {
+    //   content: JSON.stringify({
+    //     "compilerOptions": {
+    //       "target": "esnext"
+    //     }
+    //   }, null, 2),
+    // },
+    "package.json": {
+      content: JSON.stringify({
+        "name": "js",
+        "version": "0.0.0",
+        "private": true,
+        "dependencies": {}
+      }, null, 2),
+    }
+  });
+
+  const elem = document.createElement('div');
+  elem.innerHTML = `
+    <form action="https://stackblitz.com/run" method="POST" target="_blank" class="hidden">
+      <input type="hidden" name="project[description]" value="${g.title}">
+      <input type="hidden" name="project[dependencies]" value="{}">
+      <input type="hidden" name="project[template]" value="javascript">
+      <input type="hidden" name="project[settings]" value="{}">
+      <input type="submit" />
+    </form>
+  `;
+  const form = elem.querySelector('form');
+  for (const [name, file] of Object.entries(files)) {
+    for (const name of names) {
+      file.content = file.content.split(name).join(`./${name}`);
+    }
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = `project[files][${name}]`;
+    input.value = file.content;
+    form.appendChild(input);
+  }
+  window.frameElement.ownerDocument.body.appendChild(elem);
+  form.submit();
+  window.frameElement.ownerDocument.body.removeChild(elem);
+}
+
 document.querySelectorAll('.dialog').forEach(dialogElem => {
   dialogElem.addEventListener('click', function(e) {
     if (e.target === this) {
@@ -790,6 +1205,8 @@ function setupEditor() {
   document.querySelector('.button-jsfiddle').addEventListener('click', closeExport(openInJSFiddle));
   document.querySelector('.button-jsgist').addEventListener('click', closeExport(openInJSGist));
   document.querySelector('.button-stackoverflow').addEventListener('click', closeExport(openInStackOverflow));
+  document.querySelector('.button-codesandbox').addEventListener('click', closeExport(openInCodeSandbox));
+  //document.querySelector('.button-stackblitz').addEventListener('click', openInStackBlitz);
 
   g.result = document.querySelector('.panes .result');
   g.resultButton = document.querySelector('.button-result');
