@@ -157,8 +157,11 @@ function main() {
 
   function resizeRendererToDisplaySize(renderer) {
     const canvas = renderer.domElement;
-    const width = canvas.clientWidth;
-    const height = canvas.clientHeight;
+
+    // Retrieve the device pixel ratio and apply to the renderer size
+    const pixelRatio = window.devicePixelRatio;
+    const width = canvas.clientWidth * pixelRatio;
+    const height = canvas.clientHeight * pixelRatio;
     const needResize = canvas.width !== width || canvas.height !== height;
     if (needResize) {
       renderer.setSize(width, height, false);
@@ -181,8 +184,11 @@ function main() {
 
     // setup the scissor to only render to that part of the canvas
     const positiveYUpBottom = canvasRect.height - bottom;
-    renderer.setScissor(left, positiveYUpBottom, width, height);
-    renderer.setViewport(left, positiveYUpBottom, width, height);
+
+    // Retrieve the device pixel ratio and apply to the scissor and view port
+    const pixelRatio = window.devicePixelRatio;
+    renderer.setScissor(left * pixelRatio, positiveYUpBottom * pixelRatio, width * pixelRatio, height * pixelRatio);
+    renderer.setViewport(left * pixelRatio, positiveYUpBottom * pixelRatio, width * pixelRatio, height * pixelRatio);
 
     // return the aspect
     return width / height;
