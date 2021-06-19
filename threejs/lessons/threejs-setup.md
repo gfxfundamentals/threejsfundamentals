@@ -1,18 +1,17 @@
-Title: Three.js Setup
-Description: How to setup your development environment for three.js
-TOC: Setup
+Title: Three.js Kurulum
+Description: Geliştirici ortamında three.js nasıl kurulur?
+TOC: Kurulum
 
-This article is one in a series of articles about three.js.
-The first article was [about three.js fundamentals](threejs-fundamentals.html).
-If you haven't read that yet you might want to start there.
+Bu makale, three.js hakkında bir dizi makaleden biridir.
+İlk makale şuydu: [Three.js Temelleri Hakkında](threejs-fundamentals.html).
+Henüz göz atmadıysanız, oradan başlamak isteyebilirsiniz.
 
-Before we go any further we need to talk about setting up your
-computer to do development. In particular, for security reasons,
-WebGL cannot use images from your hard drive directly. That means
-in order to do development you need to use a web server. Fortunately
+Çok fazla ilerlemeden önce, bilgisayarında bir kaç ayarlama yapman gerekiyor.
+Özellikle, güvenlik sebebiyle WebGL cannot use images from your hard drive directly.
+That means in order to do development you need to use a web server. Fortunately
 development web servers are super easy to setup and use.
 
-First off if you'd like you can download this entire site from [this link](https://github.com/gfxfundamentals/threejsfundamentals/archive/gh-pages.zip).
+Öncelikle, First off if you'd like you can download this entire site from [this link](https://github.com/gfxfundamentals/threejsfundamentals/archive/gh-pages.zip).
 Once downloaded double click the zip file to unpack the files.
 
 Next download one of these simple web servers.
