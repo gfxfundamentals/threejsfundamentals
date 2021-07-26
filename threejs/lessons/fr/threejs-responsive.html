@@ -236,13 +236,13 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <div class="lesson-main">
       <p>Ceci est le second article dans une série traitant de three.js.
 Le premier traitait <a href="threejs-fundamentals.html">des principes de base</a>.
-Si vous ne l'avez pas encore lu, vous deviriez peut-être commencer par le lire.</p>
-<p>Ce présent article explique comment rendre votre application three.js adaptable
+Si vous ne l'avez pas encore lu, vous deviriez peut-être commencer par là.</p>
+<p>Cet article explique comment rendre votre application Three.js adaptable
 à n'importe quelle situation. Rendre une page web adaptable (<em>responsive</em>)
 se réfère généralement à faire en sorte que la page s'affiche de manière
-appropriée sur des affichages de taille différente, des ordinateurs de bureau
+appropriée sur des écrans de taille différente, des ordinateurs de bureau
 aux <em>smart-phones</em>, en passant par les tablettes.</p>
-<p>Concernant three.js, il y a d'ailleurs davantage de situations à traiter.
+<p>Concernant Three.js, il y a d'ailleurs davantage de situations à traiter.
 Par exemple, un éditeur 3D avec des contrôles à gauche, droite, en haut ou
 en bas est quelque chose que nous voudrions gérer. Un schéma interactif
 au milieu d'un document en est un autre exemple.</p>
@@ -250,7 +250,7 @@ au milieu d'un document en est un autre exemple.</p>
 sans taille :</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;canvas id="c"&gt;&lt;/canvas&gt;
 </pre>
-<p>Ce canevas a par défaut une taille de 300x150 pixels CSS.
+<p>Ce canevas a, par défaut, une taille de 300x150 pixels.
 Dans le navigateur, la manière recommandée de fixer la taille
 de quelque chose est d'utiliser CSS.</p>
 <p>Paramétrons le canevas pour occuper complètement la page en ajoutant
@@ -272,10 +272,10 @@ la changer à 0 la retire. Modifier la hauteur de <em>html</em> et <em>body</em>
 leur fait occuper toute la fenêtre. Sinon, ils ne sont seulement aussi large
 que leur contenu.</p>
 <p>Ensuite, nous faisons en sorte que l'élément <code class="notranslate" translate="no">id=c</code> fasse
-100% de la taille de son conteneur qui, dans ce cas, est le corps du document.</p>
-<p>Finalement, nous le passons du mode <code class="notranslate" translate="no">display</code> à celui de <code class="notranslate" translate="no">block</code>.
-Le mode par défaut d'affichage d'un canevas est <code class="notranslate" translate="no">inline</code>, ce qui implique
-que des espaces peuvent y être ajoutés à l'affichage.
+100% de la taille de son conteneur qui est, dans ce cas, la balise body.</p>
+<p>Finalement, nous passons le mode <code class="notranslate" translate="no">display</code> à <code class="notranslate" translate="no">block</code>.
+Le mode d'affichage par défaut d'un canevas est <code class="notranslate" translate="no">inline</code>, ce qui implique
+que des espaces peuvent être ajoutés à l'affichage.
 En passant le canevas à <code class="notranslate" translate="no">block</code>, ce problème est supprimé.</p>
 <p>Voici le résultat :</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
@@ -315,7 +315,7 @@ en utilisant les propriétés <code class="notranslate" translate="no">clientWid
 </div>
 
 <p></p>
-<p>Ouvrez l'exemple dans une fenêtre séparée et redimensionnez là.
+<p>Ouvrez l'exemple dans une fenêtre séparée et redimensionnez la.
 Vous devriez voir que les cubes ne sont plus étirés, que ce soit
 en hauteur ou en largeur.
 Ils restent corrects quelque soit l'aspect de la taille de la fenêtre.</p>
@@ -330,13 +330,12 @@ nous pouvons l'afficher avec une taille de 400x200.</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;img src="some128x64image.jpg" style="width:400px; height:200px"&gt;
 </pre>
 <p>La taille interne d'un canevas, sa résolution, est souvent appelée sa taille de tampon
-de dessin (<em>drawingbuffer</em>). Dans three.js, nous pouvons ajuster cette taille
-de canevas en appelant <code class="notranslate" translate="no">renderer.setSize</code>.
+de dessin (<em>drawingbuffer</em>). Dans Three.js, nous pouvons ajuster la taille
+du canevas en appelant <code class="notranslate" translate="no">renderer.setSize</code>.
 Quelle taille devons nous choisir ? La réponse la plus évidente est "la même taille que
-celle d'affichage du canevas". A nouveau, pour le faire, nous pouvons avoir recours
-au propriétés <code class="notranslate" translate="no">clientWidth</code> et <code class="notranslate" translate="no">clientHeight</code>.</p>
-<p>Ecrivons une fonction qui vérifie si le canevas du <em>renderer</em> est ou non à la taille
-qui est affichée et l'ajuste en conséquence.</p>
+celle du canevas". A nouveau, pour le faire, nous pouvons recourir
+aux propriétés <code class="notranslate" translate="no">clientWidth</code> et <code class="notranslate" translate="no">clientHeight</code>.</p>
+<p>Ecrivons une fonction qui vérifie si le rendu du canevas a la bonne taille et l'ajuste en conséquence.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
@@ -348,18 +347,18 @@ qui est affichée et l'ajuste en conséquence.</p>
   return needResize;
 }
 </pre>
-<p>Remarquez que nous vérifions sur le canevas a réellement besoin d'être redimensionné.
+<p>Remarquez que nous vérifions si le canevas a réellement besoin d'être redimensionné.
 Le redimensionnement est une partie intéressante de la spécification du canevas
 et il est mieux de ne pas lui donner à nouveau la même taille s'il est déjà
 à la dimension que nous voulons.</p>
 <p>Une fois que nous savons si le redimensionnement est nécessaire ou non, nous
 appelons <code class="notranslate" translate="no">renderer.setSize</code> et lui passons les nouvelles largeur et hauteur.
 Il est important de passer <code class="notranslate" translate="no">false</code> en troisième.
-<code class="notranslate" translate="no">render.setSize</code> modifie par défaut la taille du canevas CSS, mais ce n'est
+<code class="notranslate" translate="no">render.setSize</code> modifie par défaut la taille du canevas dans le CSS, mais ce n'est
 pas ce que nous voulons. Nous souhaitons que le navigateur continue à fonctionner
-comme pour les autres éléments, qui est d'utiliser CSS pour déterminer la
+comme pour les autres éléments, en utilisant le CSS pour déterminer la
 taille d'affichage d'un élément. Nous ne voulons pas que les canevas utilisés
-par three aient un comportement différent des autres éléments.</p>
+par Three aient un comportement différent des autres éléments.</p>
 <p>Remarquez que notre fonction renvoie <em>true</em> si le canevas a été redimensionné.
 Nous pouvons l'utiliser pour vérifier si d'autre choses doivent être mises à jour.
 Modifions à présent notre boucle de rendu pour utiliser la nouvelle fonction :</p>
@@ -383,11 +382,10 @@ retourne <code class="notranslate" translate="no">true</code>.</p>
 </div>
 
 <p></p>
-<p>Le rendu devrait à présent être avec une résolution qui correspond à
+<p>Le rendu devrait à présent avoir une résolution correspondant à
 la taille d'affichage du canevas.</p>
-<p>Afin de comprendre pourquoi il faut laisser CSS gérer le redimensionnement,
-prenons notre code et mettons le dans un <a href="../../threejs-responsive.js">fichier <code class="notranslate" translate="no">.js</code> séparé</a>.</p>
-<p>Voici donc quelques autres exemples où nous avons laissé CSS choisir la taille et remarquez que nous n'avons
+<p>Afin de comprendre pourquoi il faut laisser le CSS gérer le redimensionnement,
+prenons notre code et mettons le dans un <a href="../../threejs-responsive.js">fichier <code class="notranslate" translate="no">.js</code> séparé</a>. Voici donc quelques autres exemples où nous avons laissé le CSS choisir la taille et remarquez que nous n'avons
 eu aucun code à modifier pour qu'ils fonctionnent.</p>
 <p>Mettons nos cubes au milieu d'un paragraphe de texte.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
@@ -396,8 +394,7 @@ eu aucun code à modifier pour qu'ils fonctionnent.</p>
 </div>
 
 <p></p>
-<p>et voici notre même code utilisé dans un éditeur
-où la zone de contrôle à droite peut être redimensionnée.</p>
+<p>et voici notre même code utilisé dans un éditeur où la zone de contrôle à droite peut être redimensionnée.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-editor.html&amp;startPane=html"></iframe></div>
   <a class="threejs_center" href="/threejs/lessons/../threejs-responsive-editor.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
@@ -416,30 +413,30 @@ qu'il utilise les pixels CSS pour mettre à jour la taille
 qui est supposée être la même quelque soit la résolution de
 l'affichage. Le navigateur effectue le rendu du texte avec davantage
 de détails mais la même taille physique.</p>
-<p>Il y a plusieurs façons de gérer les HD-DPI avec three.js.</p>
+<p>Il y a plusieurs façons de gérer les HD-DPI avec Three.js.</p>
 <p>La première façon est de ne rien faire de spécial. Cela
 est, de manière discutable, le plus commun. Effectuer le
-rendu de graphismes 3D prend beaucoup de puissance de calcul GPU
+rendu de graphismes 3D réclame beaucoup de puissance de calcul au GPU
 (<em>Graphics Processing Units</em>, les processeurs dédiés de carte graphique).
-Les GPUs mobiles ont moins de puissance que les ordinateurs de bureau,
+Les GPUs des smartphones ont moins de puissance que ceux des ordinateurs de bureau,
 du moins en 2018, et pourtant les téléphones mobiles ont des affichages
 haute résolution. Le haut de gamme actuel pour les smartphones a un ratio
 HD-DPI de 3x, ce qui signifie que pour chaque pixel d'un affichage non HD-DPI,
 ces téléphones ont 9 pixels. Il y a donc 9 fois plus de travail
 pour le rendu.</p>
-<p>Calculer pour 9 pixels nécessite des ressources donc, si
+<p>Calculer pour 9 pixels nécessite des ressources. Donc, si
 nous laissons le code comme cela, nous calculerons pour 1 pixel
 et le navigateur le dessinera avec 3 fois sa taille (3 x 3 = 9 pixels).</p>
-<p>Pour toute application three.js lourde, c'est probablement ce que vous
+<p>Pour toute application Three.js lourde, c'est probablement ce que vous
 voulez sinon vous risquez d'avoir un taux de rafraîchissement faible (<em>framerate</em>).</p>
 <p>Ceci étant dit, si vous préférez effectuer le rendu à la résolution de l'appareil,
-voici quelques façons de le faire en three.js.</p>
-<p>La première est d'indiquer à three.js le facteur de multiplication de la résolution
+voici quelques façons de le faire en Three.js.</p>
+<p>La première est d'indiquer à Three.js le facteur de multiplication de la résolution
 en utilisant <code class="notranslate" translate="no">renderer.setPixelRatio</code>. Nous pouvons demander au navigateur ce
-facteur entre les pixels CSS et les pixels du périphérique et les passer à three.js</p>
+facteur entre les pixels CSS et les pixels du périphérique et les passer à Three.js</p>
 <pre class="prettyprint showlinemods notranslate notranslate" translate="no"> renderer.setPixelRatio(window.devicePixelRatio);
 </pre><p>Après cela, tout appel à <code class="notranslate" translate="no">renderer.setSize</code> va automatiquement
-utiliser la taille que vous avez demandée, multipliée par le
+utiliser la taille que vous avez demandé, multiplié par le
 ratio que vous avez demandé.
 <strong>Ceci est fortement DÉCONSEILLÉ</strong>. Voir ci-dessous.</p>
 <p>L'autre façon est de le faire par soi-même quand on redimensionne le canevas.</p>
@@ -457,7 +454,7 @@ ratio que vous avez demandé.
 </pre>
 <p>Cette seconde façon est objectivement meilleure. Pourquoi ? Parce que cela signifie
 que nous avons ce que nous avons demandé. Il y a plusieurs cas où,
-quand on utilise three.js, nous avons besoin de savoir la taille effective
+quand on utilise Three.js, nous avons besoin de connaître la taille effective
 du tampon d'affichage du canevas. Par exemple, quand on réalise un filtre de
 post-processing, ou si nous faisons un <em>shader</em> qui accède à <code class="notranslate" translate="no">gl_FragCoord</code>,
 si nous sommes en train de faire une capture d'écran, ou en train de lire les pixels
@@ -465,7 +462,7 @@ pour une sélection par GPU, pour dessiner dans un canevas 2D, etc...
 Il y a plusieurs cas où, si nous utilisons <code class="notranslate" translate="no">setPixelRatio</code> alors notre
 taille effective est différente de la taille que nous avons demandé et nous
 aurons alors à deviner quand utiliser la taille demandée ou la taille utilisée
-par three.js.
+par Three.js.
 En le faisant par soi-même, nous savons toujours que la taille utilisée
 est celle que nous avons demandé. Il n'y a aucun cas où cela se fait tout
 seul autrement.</p>
@@ -476,12 +473,12 @@ seul autrement.</p>
 </div>
 
 <p></p>
-<p>Cela devrait être difficile de voir la différence, mais si vous avez
+<p>Il vous est peut-être difficile de voir la différence, mais si vous avez
 un affichage HD-DPI et que vous comparez cet exemple aux autres plus
 haut, vous devriez remarquer que les arêtes sont plus vives.</p>
 <p>Cet article a couvert un sujet très basique mais fondamental.
-Ensuite, nous allons rapidement
-<a href="threejs-primitives.html">passer en revue les primitives de base proposées par three.js</a>.</p>
+Dans l'article suivant, nous allons rapidement
+<a href="threejs-primitives.html">passer en revue les primitives de base proposées par Three.js</a>.</p>
 
     </div>
     <div class="lesson-sidebar">

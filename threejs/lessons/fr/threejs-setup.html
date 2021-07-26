@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/fr/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/fr/threejs-setup.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="fr"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Setup">
+
+<meta name="description" content="Comment configurer votre environnement de développement pour Three.js">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_fr.jpg">
+
+<meta property="og:title" content="Installation de Three.js">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="How to setup your development environment for three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_fr.jpg">
+<meta property="og:description" content="Comment configurer votre environnement de développement pour Three.js">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Setup">
+<meta name="twitter:title" content="Installation de Three.js">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html">
-<meta name="twitter:description" content="How to setup your development environment for three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="Comment configurer votre environnement de développement pour Three.js">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_fr.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-setup.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-setup.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-setup.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-setup.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-setup.html">
+  <link rel="alternate" hreflang="tr" href="https://webglfundamentals.org/threejs/lessons/tr/threejs-setup.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-setup.html">
 
 
-<title>Three.js Setup</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_fr.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html",
+      "inLanguage":"fr",
+      "name":"Installation de Three.js",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Installation de Three.js</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -176,12 +230,48 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Setup</h1>
+    <h1>Installation de Three.js</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>Désolé, cet article n'a pas encore été traduit. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Les traductions sont le bienvenue</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-setup.html">Voici l'article anglais originel pour le moment</a>.</p>
+      <p>Cette article fait parti d'une série consacrée à Three.js. Le premier article traité des <a href="threejs-fundamentals.html">fondements de Three.js</a>.
+Si vous ne l'avez pas encore lu, vous devriez peut-être commencer par là.</p>
+<p>Avant d'aller plus loin, parlons du paramètrage de votre environnement de travail. Pour des raisons de sécurité
+WebGL ne peut pas utiliser des images provenant de votre disque dur. Cela signifie qu'il faille utiliser
+un serveur web. Heureusement, ils sont très facile à utiliser.</p>
+<p>Tout d'abord, si vous le souhaitez, vous pouvez télécharger l'intégralité de ce site depuis <a href="https://github.com/gfxfundamentals/threejsfundamentals/archive/gh-pages.zip">ce lien</a>.
+Une fois téléchargé, dézippez le dossier. </p>
+<p>Ensuite, téléchargez l'un des web serveurs suivants.</p>
+<p>Si vous en préférez un avec une interface graphique, voici <a href="https://greggman.github.io/servez">Servez</a></p>
+<p></p><div class="threejs_image border">
+  <img class="" src="/threejs/lessons/resources/servez.gif">
+</div>
+
+<p></p>
+<p>Pointez-le simplement sur le dossier où vous avez décompressé les fichiers, cliquez sur "Démarrer", puis accédez-y dans votre navigateur à l'adresse suivante <a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a> ou si vous voulez souhaitez parcourir les exemples, accédez à <a href="http://localhost:8080/threejs"><code class="notranslate" translate="no">http://localhost:8080/threejs</code></a>.</p>
+<p>Pour arrêter le serveur, cliquez sur stop ou quittez Servez.</p>
+<p>Si vous préférez la ligne de commande, une autre façon consiste à utiliser <a href="https://nodejs.org">node.js</a>.
+Téléchargez-le, installez-le, puis ouvrez une fenêtre d'invite de commande / console / terminal. Si vous êtes sous Windows, le programme d'installation ajoutera une "Invite de commande de nœud" spéciale, alors utilisez-la.</p>
+<p>Ensuite installez <a href="https://github.com/greggman/servez-cli"><code class="notranslate" translate="no">servez</code></a> avec ces commandes</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">npm -g install servez
+</pre><p>Ou si vous êtes sous OSX</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">sudo npm -g install servez
+</pre><p>Une fois que c'est fait, tapez cette commande</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">servez path/to/folder/where/you/unzipped/files
+</pre><p>Ou si vous êtes comme moi</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">cd path/to/folder/where/you/unzipped/files
+servez
+</pre><p>Il devrait imprimer quelque chose ça</p>
+<p></p><div class="threejs_image ">
+  <img class="" src="/threejs/lessons/resources/servez-response.png">
+</div>
+
+<p></p>
+<p>Ensuite, ouvrez <a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a> dans votre navigateur.</p>
+<p>Si vous ne spécifiez pas de chemin, Servez choisira le dossier courant.</p>
+<p>Si ces options ne vous conviennent pas, vous pouvez choisir 
+<a href="https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver">d'autres alternatives</a>.</p>
+<p>Maintenant que vous avez un serveur configuré, nous pouvons passer aux <a href="threejs-textures.html">textures</a>.</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -196,7 +286,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>Bases</li>
+        <div id="toc">
+          <ul>  <li>Bases</li>
         <ul>
           <li><a href="/threejs/lessons/fr/threejs-fundamentals.html">Principes de base</a></li>
 <li><a href="/threejs/lessons/fr/threejs-responsive.html">Design réactif</a></li>
@@ -268,10 +359,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">documentation three.js</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>Problèmes / bug ? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Les reporter sur github</a>.</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Installation de Three.js';
+            var disqus_title = 'Installation de Three.js';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
