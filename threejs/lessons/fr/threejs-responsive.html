@@ -33,14 +33,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Comment rendre three.js adaptable à des affichages de taille différente.">
+<meta name="description" content="Comment rendre Three.js adaptable à des affichages de taille différente.">
 <meta name="keywords" content="webgl graphics three.js">
 <meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg">
 
 <meta property="og:title" content="Design réactif et Three.js">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg">
-<meta property="og:description" content="Comment rendre three.js adaptable à des affichages de taille différente.">
+<meta property="og:description" content="Comment rendre Three.js adaptable à des affichages de taille différente.">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -49,7 +49,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:domain" content="threejsfundamentals.org">
 <meta name="twitter:title" content="Design réactif et Three.js">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html">
-<meta name="twitter:description" content="Comment rendre three.js adaptable à des affichages de taille différente.">
+<meta name="twitter:description" content="Comment rendre Three.js adaptable à des affichages de taille différente.">
 <meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-responsive_fr.jpg">
 
   <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-responsive.html">
@@ -234,7 +234,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>Ceci est le second article dans une série traitant de three.js.
+      <p>Ceci est le second article dans une série traitant de Three.js.
 Le premier traitait <a href="threejs-fundamentals.html">des principes de base</a>.
 Si vous ne l'avez pas encore lu, vous deviriez peut-être commencer par là.</p>
 <p>Cet article explique comment rendre votre application Three.js adaptable
@@ -246,14 +246,14 @@ aux <em>smart-phones</em>, en passant par les tablettes.</p>
 Par exemple, un éditeur 3D avec des contrôles à gauche, droite, en haut ou
 en bas est quelque chose que nous voudrions gérer. Un schéma interactif
 au milieu d'un document en est un autre exemple.</p>
-<p>Le dernier exemple que nous avions utilisé est un canevas sans CSS et
+<p>Le dernier exemple que nous avions utilisé est un canvas sans CSS et
 sans taille :</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;canvas id="c"&gt;&lt;/canvas&gt;
 </pre>
-<p>Ce canevas a, par défaut, une taille de 300x150 pixels.
+<p>Ce canvas a, par défaut, une taille de 300x150 pixels.
 Dans le navigateur, la manière recommandée de fixer la taille
 de quelque chose est d'utiliser CSS.</p>
-<p>Paramétrons le canevas pour occuper complètement la page en ajoutant
+<p>Paramétrons le canvas pour occuper complètement la page en ajoutant
 du CSS :</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;style&gt;
 html, body {
@@ -274,9 +274,9 @@ que leur contenu.</p>
 <p>Ensuite, nous faisons en sorte que l'élément <code class="notranslate" translate="no">id=c</code> fasse
 100% de la taille de son conteneur qui est, dans ce cas, la balise body.</p>
 <p>Finalement, nous passons le mode <code class="notranslate" translate="no">display</code> à <code class="notranslate" translate="no">block</code>.
-Le mode d'affichage par défaut d'un canevas est <code class="notranslate" translate="no">inline</code>, ce qui implique
+Le mode d'affichage par défaut d'un canvas est <code class="notranslate" translate="no">inline</code>, ce qui implique
 que des espaces peuvent être ajoutés à l'affichage.
-En passant le canevas à <code class="notranslate" translate="no">block</code>, ce problème est supprimé.</p>
+En passant le canvas à <code class="notranslate" translate="no">block</code>, ce problème est supprimé.</p>
 <p>Voici le résultat :</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
   <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-responsive-no-resize.html"></iframe></div>
@@ -284,7 +284,7 @@ En passant le canevas à <code class="notranslate" translate="no">block</code>, 
 </div>
 
 <p></p>
-<p>Le canevas, comme nous le voyons, remplit maintenant la page mais il y a deux
+<p>Le canvas, comme nous le voyons, remplit maintenant la page mais il y a deux
 problèmes. Tout d'abord, nos cubes sont étirés et ressemblent à des boîtes trop
 hautes et trop larges. Ouvrez l'exemple dans sa propre fenêtre et
 redimensionnez la, vous verrez comment les cubes s'en trouvent déformés
@@ -296,8 +296,8 @@ pleinement le problème.</p>
 <p><img src="../resources/images/resize-low-res.png" class="threejs_center nobg"></p>
 <p>Tout d'abord, nous allons résoudre le problème d'étirement.
 Pour cela, nous devons calquer l'aspect de la caméra sur celui
-de la taille d'affichage du canevas. Nous pouvons le faire
-en utilisant les propriétés <code class="notranslate" translate="no">clientWidth</code> et <code class="notranslate" translate="no">clientHeight</code> du canevas.</p>
+de la taille d'affichage du canvas. Nous pouvons le faire
+en utilisant les propriétés <code class="notranslate" translate="no">clientWidth</code> et <code class="notranslate" translate="no">clientHeight</code> du canvas.</p>
 <p>Nous mettons alors notre boucle de rendu comme cela :</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
   time *= 0.001;
@@ -322,20 +322,20 @@ Ils restent corrects quelque soit l'aspect de la taille de la fenêtre.</p>
 <p><img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg"></p>
 <p>Maintenant résolvons le problème de la pixellisation.</p>
 <p>Les éléments de type <em>canvas</em> ont deux tailles. La première
-est celle du canevas affiché dans la page. C'est ce que nous paramétrons avec le CSS.
-L'autre taille est le nombre de pixels dont est constitué le canevas lui-même.
+est celle du canvas affiché dans la page. C'est ce que nous paramétrons avec le CSS.
+L'autre taille est le nombre de pixels dont est constitué le canvas lui-même.
 Ceci n'est pas différent d'une image.
 Par exemple, nous pouvons avoir une image de taille 128x64 et, en utilisant le CSS,
 nous pouvons l'afficher avec une taille de 400x200.</p>
 <pre class="prettyprint showlinemods notranslate lang-html" translate="no">&lt;img src="some128x64image.jpg" style="width:400px; height:200px"&gt;
 </pre>
-<p>La taille interne d'un canevas, sa résolution, est souvent appelée sa taille de tampon
+<p>La taille interne d'un canvas, sa résolution, est souvent appelée sa taille de tampon
 de dessin (<em>drawingbuffer</em>). Dans Three.js, nous pouvons ajuster la taille
-du canevas en appelant <code class="notranslate" translate="no">renderer.setSize</code>.
+du canvas en appelant <code class="notranslate" translate="no">renderer.setSize</code>.
 Quelle taille devons nous choisir ? La réponse la plus évidente est "la même taille que
-celle du canevas". A nouveau, pour le faire, nous pouvons recourir
+celle du canvas". A nouveau, pour le faire, nous pouvons recourir
 aux propriétés <code class="notranslate" translate="no">clientWidth</code> et <code class="notranslate" translate="no">clientHeight</code>.</p>
-<p>Ecrivons une fonction qui vérifie si le rendu du canevas a la bonne taille et l'ajuste en conséquence.</p>
+<p>Ecrivons une fonction qui vérifie si le rendu du canvas a la bonne taille et l'ajuste en conséquence.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
@@ -347,19 +347,19 @@ aux propriétés <code class="notranslate" translate="no">clientWidth</code> et 
   return needResize;
 }
 </pre>
-<p>Remarquez que nous vérifions si le canevas a réellement besoin d'être redimensionné.
-Le redimensionnement est une partie intéressante de la spécification du canevas
+<p>Remarquez que nous vérifions si le canvas a réellement besoin d'être redimensionné.
+Le redimensionnement est une partie intéressante de la spécification du canvas
 et il est mieux de ne pas lui donner à nouveau la même taille s'il est déjà
 à la dimension que nous voulons.</p>
 <p>Une fois que nous savons si le redimensionnement est nécessaire ou non, nous
 appelons <code class="notranslate" translate="no">renderer.setSize</code> et lui passons les nouvelles largeur et hauteur.
 Il est important de passer <code class="notranslate" translate="no">false</code> en troisième.
-<code class="notranslate" translate="no">render.setSize</code> modifie par défaut la taille du canevas dans le CSS, mais ce n'est
+<code class="notranslate" translate="no">render.setSize</code> modifie par défaut la taille du canvas dans le CSS, mais ce n'est
 pas ce que nous voulons. Nous souhaitons que le navigateur continue à fonctionner
 comme pour les autres éléments, en utilisant le CSS pour déterminer la
-taille d'affichage d'un élément. Nous ne voulons pas que les canevas utilisés
-par Three aient un comportement différent des autres éléments.</p>
-<p>Remarquez que notre fonction renvoie <em>true</em> si le canevas a été redimensionné.
+taille d'affichage d'un élément. Nous ne voulons pas que les canvas utilisés
+par Three.js aient un comportement différent des autres éléments.</p>
+<p>Remarquez que notre fonction renvoie <em>true</em> si le canvas a été redimensionné.
 Nous pouvons l'utiliser pour vérifier si d'autre choses doivent être mises à jour.
 Modifions à présent notre boucle de rendu pour utiliser la nouvelle fonction :</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
@@ -373,7 +373,7 @@ Modifions à présent notre boucle de rendu pour utiliser la nouvelle fonction :
 
   ...
 </pre>
-<p>Puisque l'aspect ne change que si la taille d'affichage du canevas change,
+<p>Puisque l'aspect ne change que si la taille d'affichage du canvas change,
 nous ne modifions l'aspect de la caméra que si <code class="notranslate" translate="no">resizeRendererToDisplaySize</code>
 retourne <code class="notranslate" translate="no">true</code>.</p>
 <p></p><div translate="no" class="threejs_example_container notranslate">
@@ -383,7 +383,7 @@ retourne <code class="notranslate" translate="no">true</code>.</p>
 
 <p></p>
 <p>Le rendu devrait à présent avoir une résolution correspondant à
-la taille d'affichage du canevas.</p>
+la taille d'affichage du canvas.</p>
 <p>Afin de comprendre pourquoi il faut laisser le CSS gérer le redimensionnement,
 prenons notre code et mettons le dans un <a href="../../threejs-responsive.js">fichier <code class="notranslate" translate="no">.js</code> séparé</a>. Voici donc quelques autres exemples où nous avons laissé le CSS choisir la taille et remarquez que nous n'avons
 eu aucun code à modifier pour qu'ils fonctionnent.</p>
@@ -439,7 +439,7 @@ facteur entre les pixels CSS et les pixels du périphérique et les passer à Th
 utiliser la taille que vous avez demandé, multiplié par le
 ratio que vous avez demandé.
 <strong>Ceci est fortement DÉCONSEILLÉ</strong>. Voir ci-dessous.</p>
-<p>L'autre façon est de le faire par soi-même quand on redimensionne le canevas.</p>
+<p>L'autre façon est de le faire par soi-même quand on redimensionne le canvas.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">    function resizeRendererToDisplaySize(renderer) {
       const canvas = renderer.domElement;
       const pixelRatio = window.devicePixelRatio;
@@ -455,10 +455,10 @@ ratio que vous avez demandé.
 <p>Cette seconde façon est objectivement meilleure. Pourquoi ? Parce que cela signifie
 que nous avons ce que nous avons demandé. Il y a plusieurs cas où,
 quand on utilise Three.js, nous avons besoin de connaître la taille effective
-du tampon d'affichage du canevas. Par exemple, quand on réalise un filtre de
+du tampon d'affichage du canvas. Par exemple, quand on réalise un filtre de
 post-processing, ou si nous faisons un <em>shader</em> qui accède à <code class="notranslate" translate="no">gl_FragCoord</code>,
 si nous sommes en train de faire une capture d'écran, ou en train de lire les pixels
-pour une sélection par GPU, pour dessiner dans un canevas 2D, etc...
+pour une sélection par GPU, pour dessiner dans un canvas 2D, etc...
 Il y a plusieurs cas où, si nous utilisons <code class="notranslate" translate="no">setPixelRatio</code> alors notre
 taille effective est différente de la taille que nous avons demandé et nous
 aurons alors à deviner quand utiliser la taille demandée ou la taille utilisée
@@ -499,18 +499,18 @@ Dans l'article suivant, nous allons rapidement
           <li><a href="/threejs/lessons/fr/threejs-fundamentals.html">Principes de base</a></li>
 <li><a href="/threejs/lessons/fr/threejs-responsive.html">Design réactif</a></li>
 <li><a href="/threejs/lessons/fr/threejs-prerequisites.html">Pré-requis</a></li>
-<li><a href="/threejs/lessons/fr/threejs-setup.html">Setup</a></li>
+<li><a href="/threejs/lessons/fr/threejs-setup.html">Configuration</a></li>
         </ul>
   <li>Principes de base</li>
         <ul>
           <li><a href="/threejs/lessons/fr/threejs-primitives.html">Primitives</a></li>
-<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Scenegraph</a></li>
-<li><a href="/threejs/lessons/fr/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Graphique de scène</a></li>
+<li><a href="/threejs/lessons/fr/threejs-materials.html">Matériaux</a></li>
 <li><a href="/threejs/lessons/fr/threejs-textures.html">Textures</a></li>
-<li><a href="/threejs/lessons/fr/threejs-lights.html">Lights</a></li>
-<li><a href="/threejs/lessons/fr/threejs-cameras.html">Cameras</a></li>
-<li><a href="/threejs/lessons/fr/threejs-shadows.html">Shadows</a></li>
-<li><a href="/threejs/lessons/fr/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/fr/threejs-lights.html">Lumières</a></li>
+<li><a href="/threejs/lessons/fr/threejs-cameras.html">Caméras</a></li>
+<li><a href="/threejs/lessons/fr/threejs-shadows.html">Ombres</a></li>
+<li><a href="/threejs/lessons/fr/threejs-fog.html">Brouillard</a></li>
 <li><a href="/threejs/lessons/fr/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/fr/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>

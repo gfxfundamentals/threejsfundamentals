@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/fr/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/fr/threejs-rendertargets.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,9 +32,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="fr"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="How to render to a texture.">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendertargets_fr.jpg">
+
 <meta property="og:title" content="Three.js Render Targets">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendertargets_fr.jpg">
 <meta property="og:description" content="How to render to a texture.">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html">
 
@@ -45,11 +50,60 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:title" content="Three.js Render Targets">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html">
 <meta name="twitter:description" content="How to render to a texture.">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendertargets_fr.jpg">
 
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-rendertargets.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-rendertargets.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-rendertargets.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-rendertargets.html">
+  <link rel="alternate" hreflang="tr" href="https://webglfundamentals.org/threejs/lessons/tr/threejs-rendertargets.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-rendertargets.html">
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-rendertargets_fr.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html",
+      "inLanguage":"fr",
+      "name":"Three.js Render Targets",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
 
 <title>Three.js Render Targets</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -180,8 +234,135 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>Désolé, cet article n'a pas encore été traduit. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Les traductions sont le bienvenue</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-rendertargets.html">Voici l'article anglais originel pour le moment</a>.</p>
+      <p>A render target in three.js is basically a texture you can render to.
+After you render to it you can use that texture like any other texture.</p>
+<p>Let's make a simple example. We'll start with an example from <a href="threejs-responsive.html">the article on responsiveness</a>.</p>
+<p>Rendering to a render target is almost exactly the same as normal rendering. First we create a <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderTarget"><code class="notranslate" translate="no">WebGLRenderTarget</code></a>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const rtWidth = 512;
+const rtHeight = 512;
+const renderTarget = new THREE.WebGLRenderTarget(rtWidth, rtHeight);
+</pre>
+<p>Then we need a <a href="https://threejs.org/docs/#api/en/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a> and a <a href="https://threejs.org/docs/#api/en/scenes/Scene"><code class="notranslate" translate="no">Scene</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const rtFov = 75;
+const rtAspect = rtWidth / rtHeight;
+const rtNear = 0.1;
+const rtFar = 5;
+const rtCamera = new THREE.PerspectiveCamera(rtFov, rtAspect, rtNear, rtFar);
+rtCamera.position.z = 2;
+
+const rtScene = new THREE.Scene();
+rtScene.background = new THREE.Color('red');
+</pre>
+<p>Notice we set the aspect to the aspect for the render target, not the canvas.
+The correct aspect to use depends on what we are rendering for. In this case
+we'll use the render target's texture on the side of a cube. Since faces of
+the cube are square we want an aspect of 1.0.</p>
+<p>We fill the scene with stuff. In this case we're using the light and the 3 cubes <a href="threejs-responsive.html">from the previous article</a>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const color = 0xFFFFFF;
+  const intensity = 1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(-1, 2, 4);
+*  rtScene.add(light);
+}
+
+const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+
+function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+*  rtScene.add(cube);
+
+  cube.position.x = x;
+
+  return cube;
+}
+
+*const rtCubes = [
+  makeInstance(geometry, 0x44aa88,  0),
+  makeInstance(geometry, 0x8844aa, -2),
+  makeInstance(geometry, 0xaa8844,  2),
+];
+</pre>
+<p>The <a href="https://threejs.org/docs/#api/en/scenes/Scene"><code class="notranslate" translate="no">Scene</code></a> and <a href="https://threejs.org/docs/#api/en/cameras/Camera"><code class="notranslate" translate="no">Camera</code></a> from the previous article are still there. We'll use them to render to the canvas.
+We just need to add stuff to render.</p>
+<p>Let's add a cube that uses the render target's texture.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshPhongMaterial({
+  map: renderTarget.texture,
+});
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+</pre>
+<p>Now at render time first we render the render target scene to the render target.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function render(time) {
+  time *= 0.001;
+
+  ...
+
+  // rotate all the cubes in the render target scene
+  rtCubes.forEach((cube, ndx) =&gt; {
+    const speed = 1 + ndx * .1;
+    const rot = time * speed;
+    cube.rotation.x = rot;
+    cube.rotation.y = rot;
+  });
+
+  // draw render target scene to render target
+  renderer.setRenderTarget(renderTarget);
+  renderer.render(rtScene, rtCamera);
+  renderer.setRenderTarget(null);
+</pre>
+<p>Then we render the scene with the single cube that is using the render target's texture to the canvas.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  // rotate the cube in the scene
+  cube.rotation.x = time;
+  cube.rotation.y = time * 1.1;
+
+  // render the scene to the canvas
+  renderer.render(scene, camera);
+</pre>
+<p>And voilà</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-render-target.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-render-target.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>The cube is red because we set the <code class="notranslate" translate="no">background</code> of the <code class="notranslate" translate="no">rtScene</code> to red so the
+render target's texture is being cleared to red.</p>
+<p>Render targets are used for all kinds of things. <a href="threejs-shadows.html">Shadows</a> use render targets.
+<a href="threejs-picking.html">Picking can use a render target</a>. Various kinds of
+<a href="threejs-post-processing.html">post processing effects</a> require render targets.
+Rendering a rear view mirror in a car or a live view on a monitor inside a 3D
+scene might use a render target.</p>
+<p>A few notes about using <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderTarget"><code class="notranslate" translate="no">WebGLRenderTarget</code></a>.</p>
+<ul>
+<li><p>By default <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderTarget"><code class="notranslate" translate="no">WebGLRenderTarget</code></a> creates 2 textures. A color texture and a depth/stencil texture. If you don't need the depth or stencil textures you can request to not create them by passing in options. Example:</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  const rt = new THREE.WebGLRenderTarget(width, height, {
+    depthBuffer: false,
+    stencilBuffer: false,
+  });
+</pre>
+</li>
+<li><p>You might need to change the size of a render target</p>
+<p>In the example above we make a render target of a fixed size, 512x512. For things like post processing you generally need to make a render target the same size as your canvas. In our code that would mean when we change the canvas size we would also update both the render target size and the camera we're using when rendering to the render target. Example:</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">function render(time) {
+  time *= 0.001;
+
+  if (resizeRendererToDisplaySize(renderer)) {
+    const canvas = renderer.domElement;
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+
++    renderTarget.setSize(canvas.width, canvas.height);
++    rtCamera.aspect = camera.aspect;
++    rtCamera.updateProjectionMatrix();
+}
+</pre></li>
+</ul>
 
     </div>
     <div class="lesson-sidebar">
@@ -196,23 +377,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>Bases</li>
+        <div id="toc">
+          <ul>  <li>Bases</li>
         <ul>
           <li><a href="/threejs/lessons/fr/threejs-fundamentals.html">Principes de base</a></li>
 <li><a href="/threejs/lessons/fr/threejs-responsive.html">Design réactif</a></li>
 <li><a href="/threejs/lessons/fr/threejs-prerequisites.html">Pré-requis</a></li>
-<li><a href="/threejs/lessons/fr/threejs-setup.html">Setup</a></li>
+<li><a href="/threejs/lessons/fr/threejs-setup.html">Configuration</a></li>
         </ul>
   <li>Principes de base</li>
         <ul>
           <li><a href="/threejs/lessons/fr/threejs-primitives.html">Primitives</a></li>
-<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Scenegraph</a></li>
-<li><a href="/threejs/lessons/fr/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Graphique de scène</a></li>
+<li><a href="/threejs/lessons/fr/threejs-materials.html">Matériaux</a></li>
 <li><a href="/threejs/lessons/fr/threejs-textures.html">Textures</a></li>
-<li><a href="/threejs/lessons/fr/threejs-lights.html">Lights</a></li>
-<li><a href="/threejs/lessons/fr/threejs-cameras.html">Cameras</a></li>
-<li><a href="/threejs/lessons/fr/threejs-shadows.html">Shadows</a></li>
-<li><a href="/threejs/lessons/fr/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/fr/threejs-lights.html">Lumières</a></li>
+<li><a href="/threejs/lessons/fr/threejs-cameras.html">Caméras</a></li>
+<li><a href="/threejs/lessons/fr/threejs-shadows.html">Ombres</a></li>
+<li><a href="/threejs/lessons/fr/threejs-fog.html">Brouillard</a></li>
 <li><a href="/threejs/lessons/fr/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/fr/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
@@ -268,10 +450,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">documentation three.js</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>Problèmes / bug ? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Les reporter sur github</a>.</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js Render Targets';
+            var disqus_title = 'Three.js Render Targets';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>

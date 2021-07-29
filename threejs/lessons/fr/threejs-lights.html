@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/fr/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/fr/threejs-lights.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,78 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="fr"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Lights">
+
+<meta name="description" content="Configuration des lumières">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_fr.jpg">
+
+<meta property="og:title" content="Lumières en Three.js">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Setting up Lights">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_fr.jpg">
+<meta property="og:description" content="Configuration des lumières">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Lights">
+<meta name="twitter:title" content="Lumières en Three.js">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html">
-<meta name="twitter:description" content="Setting up Lights">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="Configuration des lumières">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_fr.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-lights.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-lights.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-lights.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-lights.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-lights.html">
+  <link rel="alternate" hreflang="tr" href="https://webglfundamentals.org/threejs/lessons/tr/threejs-lights.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-lights.html">
 
 
-<title>Three.js Lights</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-lights_fr.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html",
+      "inLanguage":"fr",
+      "name":"Lumières en Three.js",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Lumières en Three.js</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -176,12 +230,401 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Lights</h1>
+    <h1>Lumières en Three.js</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>Désolé, cet article n'a pas encore été traduit. <a href="https://github.com/gfxfundamentals/threejsfundamentals">Les traductions sont le bienvenue</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-lights.html">Voici l'article anglais originel pour le moment</a>.</p>
+      <p>Cet article fait partie d'une série consacrée à Three.js.
+Le premier article s'intitule <a href="threejs-fundamentals.html">Principes de base</a>. Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là ou aussi voir l'article sur <a href="threejs-setup.html">la configuartion de votre environnement</a>. L'
+<a href="threejs-textures.html">article précédent</a> parlait des textures.</p>
+<p>Voyons comment utiliser les différents types de lumières.</p>
+<p>En commençant par l'un de nos exemples précédents, mettons à jour la caméra. Nous allons régler le champ de vision à 45 degrés, le plan éloigné à 100 unités, et nous déplacerons la caméra de 10 unités vers le haut et 20 unités en arrière de l'origine.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">*const fov = 45;
+const aspect = 2;  // the canvas default
+const near = 0.1;
+*const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
++camera.position.set(0, 10, 20);
+</pre>
+<p>Ajoutons ensuite <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a>. <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> permet à l'utilisateur de tourner ou de mettre la caméra en <em>orbite</em> autour d'un certain point. Il s'agit d'une fonctionnalité facultative de Three.js, nous devons donc d'abord l'importer</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+</pre>
+<p>Ensuite, nous pouvons l'utiliser. Nous passons à <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> une caméra à contrôler et l'élément DOM à utiliser.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const controls = new OrbitControls(camera, canvas);
+controls.target.set(0, 5, 0);
+controls.update();
+</pre>
+<p>Nous plaçons également la cible en orbite, 5 unités au-dessus de l'origine
+et appelons <code class="notranslate" translate="no">controls.update</code> afin que les contrôles utilisent la nouvelle cible.</p>
+<p>Ensuite, créons des choses à éclairer. Nous allons d'abord faire un plan au sol. Nous allons appliquer une petite texture en damier de 2x2 pixels qui ressemble à ceci</p>
+<div class="threejs_center">
+  <img src="../../resources/images/checker.png" class="border" style="
+    image-rendering: pixelated;
+    width: 128px;
+  ">
+</div>
+
+<p>Tout d'abord, chargeons la texture, définissons-la sur répétition, définissons le filtrage au plus proche et définissons le nombre de fois que nous voulons qu'elle se répète. Étant donné que la texture est un damier de 2x2 pixels, en répétant et en définissant la répétition à la moitié de la taille du plan, chaque case sur le damier aura exactement 1 unité de large ;</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeSize = 40;
+
+const loader = new THREE.TextureLoader();
+const texture = loader.load('resources/images/checker.png');
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.magFilter = THREE.NearestFilter;
+const repeats = planeSize / 2;
+texture.repeat.set(repeats, repeats);
+</pre>
+<p>Nous fabriquons ensuite une géométrie 'plane', un matériau et une 'mesh' pour l'insérer dans la scène. Les plans sont par défaut dans le plan XY, mais le sol est dans le plan XZ, nous le faisons donc pivoter.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
+const planeMat = new THREE.MeshPhongMaterial({
+  map: texture,
+  side: THREE.DoubleSide,
+});
+const mesh = new THREE.Mesh(planeGeo, planeMat);
+mesh.rotation.x = Math.PI * -.5;
+scene.add(mesh);
+</pre>
+<p>Ajoutons un cube et une sphère, ainsi nous aurons 3 choses à éclairer dont le plan</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">{
+  const cubeSize = 4;
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+  const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
+  const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
+  scene.add(mesh);
+}
+{
+  const sphereRadius = 3;
+  const sphereWidthDivisions = 32;
+  const sphereHeightDivisions = 16;
+  const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+  const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
+  const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+  mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
+  scene.add(mesh);
+}
+</pre>
+<p>Maintenant que nous avons une scène à éclairer, ajoutons des lumières !</p>
+<h2 id="-ambientlight-"><a href="https://threejs.org/docs/#api/en/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a></h2>
+<p>D'abord mettons en place une <a href="https://threejs.org/docs/#api/en/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+const light = new THREE.AmbientLight(color, intensity);
+scene.add(light);
+</pre>
+<p>Faisons aussi en sorte que nous puissions ajuster les paramètres de la lumière.
+Utilisons à nouveau <a href="https://github.com/dataarts/dat.gui">dat.GUI</a>.
+Pour pouvoir ajuster la couleur via dat.GUI, nous avons besoin d'un petit 'helper' qui fournit à dat.GUI une couleur en hexadécimale (eg: <code class="notranslate" translate="no">#FF8844</code>). Notre 'helper' obtiendra la couleur d'une propriété nommée, la convertira en une chaîne hexadécimale à offrir à dat.GUI. Lorsque dat.GUI essaie de définir la propriété de l'assistant, nous attribuons le résultat à la couleur de la lumière.</p>
+<p>Voici notre 'helper':</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class ColorGUIHelper {
+  constructor(object, prop) {
+    this.object = object;
+    this.prop = prop;
+  }
+  get value() {
+    return `#${this.object[this.prop].getHexString()}`;
+  }
+  set value(hexString) {
+    this.object[this.prop].set(hexString);
+  }
+}
+</pre>
+<p>Et voici le code de configuartion de dat.GUI</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+</pre>
+<p>Le résultat :</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-ambient.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-ambient.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Cliquez/glissez pour mettre la caméra en <em>orbite</em>.</p>
+<p>Remarquez qu'il n'y a pas de définition. Les formes sont plates. L'<a href="https://threejs.org/docs/#api/en/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a> multiplie simplement la couleur du matériau par la couleur de la lumière multipliée par l'intensité.</p>
+<pre class="prettyprint showlinemods notranslate notranslate" translate="no">color = materialColor * light.color * light.intensity;
+</pre><p>C'est ça. Il n'a pas de direction. Ce style d'éclairage ambiant n'est en fait pas très utile en tant qu'éclairage, à part changer la couleur de toute la scène, ce n'est pas vraiment un éclairage, ça rend juste les ténèbres moins sombres.</p>
+<p>XXXXXXXXXXXXXXXXXXXXXXX</p>
+<h2 id="-hemispherelight-"><a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a></h2>
+<p>Passons à une <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a>. Une <a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> prend une couleur de ciel et une couleur de sol et multiplie simplement la couleur du matériau entre ces 2 couleurs : la couleur du ciel si la surface de l'objet pointe vers le haut et la couleur du sol si la surface de l'objet pointe vers le bas.</p>
+<p>Voici le nouveau code</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const color = 0xFFFFFF;
++const skyColor = 0xB1E1FF;  // light blue
++const groundColor = 0xB97A20;  // brownish orange
+const intensity = 1;
+-const light = new THREE.AmbientLight(color, intensity);
++const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+scene.add(light);
+</pre>
+<p>Mettons aussi à jour le dat.GUI avec ces 2 couleurs</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+-gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
++gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('skyColor');
++gui.addColor(new ColorGUIHelper(light, 'groundColor'), 'value').name('groundColor');
+gui.add(light, 'intensity', 0, 2, 0.01);
+</pre>
+<p>Le resultat :</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-hemisphere.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-hemisphere.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Remarquez encore une fois qu'il n'y a presque pas de définition, tout a l'air plutôt plat. L'<a href="https://threejs.org/docs/#api/en/lights/HemisphereLight"><code class="notranslate" translate="no">HemisphereLight</code></a> utilisée en combinaison avec une autre lumière peut aider à donner une belle sorte d'influence de la couleur du ciel et du sol. Retenez qu'il est préférable de l'utiliser en combinaison avec une autre lumière ou à la place d'une <a href="https://threejs.org/docs/#api/en/lights/AmbientLight"><code class="notranslate" translate="no">AmbientLight</code></a>.</p>
+<h2 id="-directionallight-"><a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a></h2>
+<p>Remplaçons le code par une <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a>.
+Une <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> est souvent utiliser pour représenter la lumière du soleil.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+const light = new THREE.DirectionalLight(color, intensity);
+light.position.set(0, 10, 0);
+light.target.position.set(-5, 0, 0);
+scene.add(light);
+scene.add(light.target);
+</pre>
+<p>Notez que nous avons dû ajouter une <code class="notranslate" translate="no">light</code> et une <code class="notranslate" translate="no">light.target</code>
+à la scéne. Une <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> doit illuminer une cible.</p>
+<p>Faisons en sorte que nous puissions déplacer la cible en l'ajoutant à dat.GUI.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+gui.add(light.target.position, 'x', -10, 10);
+gui.add(light.target.position, 'z', -10, 10);
+gui.add(light.target.position, 'y', 0, 10);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-directional.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-directional.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>C'est un peu difficile de voir ce qui se passe. Three.js a un tas de 'helper' que nous pouvons ajouter à la scène pour voir les objets invibles. Utilisons, dans ce cas, 
+<a href="https://threejs.org/docs/#api/en/helpers/DirectionalLightHelper"><code class="notranslate" translate="no">DirectionalLightHelper</code></a> qui a représente la source de lumière en direction de sa cible. Il suffit de lui ajouter une lumière et de l'ajouter à la scène.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const helper = new THREE.DirectionalLightHelper(light);
+scene.add(helper);
+</pre>
+<p>Pendant que nous y sommes, faisons en sorte que nous puissions définir à la fois la position de la lumière et la cible. Pour ce faire, nous allons créer une fonction qui, étant donné un <a href="https://threejs.org/docs/#api/en/math/Vector3"><code class="notranslate" translate="no">Vector3</code></a>, ajustera ses propriétés <code class="notranslate" translate="no">x</code>, <code class="notranslate" translate="no">y</code> et <code class="notranslate" translate="no">z</code> à l'aide de <code class="notranslate" translate="no">dat.GUI</code>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function makeXYZGUI(gui, vector3, name, onChangeFn) {
+  const folder = gui.addFolder(name);
+  folder.add(vector3, 'x', -10, 10).onChange(onChangeFn);
+  folder.add(vector3, 'y', 0, 10).onChange(onChangeFn);
+  folder.add(vector3, 'z', -10, 10).onChange(onChangeFn);
+  folder.open();
+}
+</pre>
+<p>Notez que nous devons appeler la fonction <code class="notranslate" translate="no">update</code> du 'helper' à chaque fois que nous modifions quelque chose afin que l'assistant sache se mettre à jour. En tant que tel, nous passons une fonction <code class="notranslate" translate="no">onChangeFn</code> pour être appelée à chaque fois que dat.GUI met à jour une valeur.</p>
+<p>Ensuite, nous pouvons l'utiliser à la fois pour la position de la lumière et la position de la cible comme ceci</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+function updateLight() {
++  light.target.updateMatrixWorld();
++  helper.update();
++}
++updateLight();
+
+const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
+
++makeXYZGUI(gui, light.position, 'position', updateLight);
++makeXYZGUI(gui, light.target.position, 'target', updateLight);
+</pre>
+<p>Maintenant, nous pouvons bouger la lumière, et sa cible.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-directional-w-helper.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-directional-w-helper.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Mettez la caméra en orbite et il devient plus facile de voir. Le plan représente une lumière directionnelle car une lumière directionnelle calcule la lumière venant dans une direction. Il n'y a aucun point d'où vient la lumière, c'est un plan de lumière infini qui projette des rayons de lumière parallèles.</p>
+<h2 id="-pointlight-"><a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a></h2>
+<p>Un <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> est une lumière qui se trouve en un point et projette de la lumière dans toutes les directions à partir de ce point. Changeons le code.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+-const light = new THREE.DirectionalLight(color, intensity);
++const light = new THREE.PointLight(color, intensity);
+light.position.set(0, 10, 0);
+-light.target.position.set(-5, 0, 0);
+scene.add(light);
+-scene.add(light.target);
+</pre>
+<p>Passons également à un <a href="https://threejs.org/docs/#api/en/helpers/PointLightHelper"><code class="notranslate" translate="no">PointLightHelper</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const helper = new THREE.DirectionalLightHelper(light);
++const helper = new THREE.PointLightHelper(light);
+scene.add(helper);
+</pre>
+<p>et comme il n'y a pas de cible la fonction <code class="notranslate" translate="no">onChange</code> peut être simplifiée.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function updateLight() {
+-  light.target.updateMatrixWorld();
+  helper.update();
+}
+-updateLight();
+</pre>
+<p>Notez qu'à un certain niveau, un <a href="https://threejs.org/docs/#api/en/helpers/PointLightHelper"><code class="notranslate" translate="no">PointLightHelper</code></a> n'a pas de point. Il dessine juste un petit diamant filaire. Ou n'importe quelle autre forme que vous voulez, ajoutez simplement un maillage à la lumière elle-même.</p>
+<p>Une <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> a une propriété supplémentaire, <a href="https://threejs.org/docs/#api/en/lights/PointLight#distance"><code class="notranslate" translate="no">distance</code></a>.
+Si la <code class="notranslate" translate="no">distance</code> est de 0, le <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> brille à l'infini. Si la <code class="notranslate" translate="no">distance</code> est supérieure à 0, la lumière brille de toute son intensité vers la lumière et s'estompe jusqu'à n'avoir aucune influence à des unités de <code class="notranslate" translate="no">distance</code> de la lumière.</p>
+<p>Mettons à jour dat.GUI pour pouvoir modifier la distance.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 2, 0.01);
++gui.add(light, 'distance', 0, 40).onChange(updateLight);
+
+makeXYZGUI(gui, light.position, 'position', updateLight);
+-makeXYZGUI(gui, light.target.position, 'target', updateLight);
+</pre>
+<p>Et maintennat, testons.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-point.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-point.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Remarquez comment la lumière s'éteint lorsque la <code class="notranslate" translate="no">distance</code> est &gt; 0.</p>
+<h2 id="-spotlight-"><a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a></h2>
+<p>La <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a> (projecteur), c'est une lumière ponctuelle avec un cône attaché où la lumière ne brille qu'à l'intérieur du cône. Il y a en fait 2 cônes. Un cône extérieur et un cône intérieur. Entre le cône intérieur et le cône extérieur, la lumière passe de la pleine intensité à zéro.</p>
+<p>Pour utiliser une <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>, nous avons besoin d'une cible tout comme la lumière directionnelle. Le cône de lumière s'ouvrira vers la cible.</p>
+<p>Modifions notre <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> avec le 'helper' vu plus haut</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+-const light = new THREE.DirectionalLight(color, intensity);
++const light = new THREE.SpotLight(color, intensity);
+scene.add(light);
+scene.add(light.target);
+
+-const helper = new THREE.DirectionalLightHelper(light);
++const helper = new THREE.SpotLightHelper(light);
+scene.add(helper);
+</pre>
+<p>L'angle du cône de la <code class="notranslate" translate="no">Spotlight</code> est défini avec la propriété <a href="https://threejs.org/docs/#api/en/lights/SpotLight#angle"><code class="notranslate" translate="no">angle</code></a>
+en radians. Utilisons notre <code class="notranslate" translate="no">DegRadHelper</code> vu dans
+<a href="threejs-textures.html">l'article sur les textures</a> pour modifier l'angle avec dat.GUI.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
+</pre>
+<p>Le cône intérieur est défini en paramétrant la propriété <a href="https://threejs.org/docs/#api/en/lights/SpotLight#penumbra"><code class="notranslate" translate="no">penumbra</code></a> en pourcentage du cône extérieur. En d'autres termes, lorsque la pénombre est de 0, le cône intérieur a la même taille (0 = aucune différence) que le cône extérieur. Lorsque la pénombre est de 1, la lumière s'estompe en partant du centre du cône jusqu'au cône extérieur. Lorsque la pénombre est de 0,5, la lumière s'estompe à partir de 50 % entre le centre du cône extérieur.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">gui.add(light, 'penumbra', 0, 1, 0.01);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-spot-w-helper.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-spot-w-helper.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Remarquez qu'avec la <code class="notranslate" translate="no">penumbra</code> par défaut à 0, le projecteur a un bord très net alors que lorsque vous l'ajustez à 1, le bord devient flou.</p>
+<p>Il peut être difficile de voir le <em>cône</em> des spotlight. C'est parce qu'il se trouve sous le sol. Raccourcissez la distance à environ 5 et vous verrez l'extrémité ouverte du cône.</p>
+<h2 id="-rectarealight-"><a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a></h2>
+<p>Il existe un autre type de lumière, la <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a>, qui ressemble à une zone de lumière rectangulaire comme une longue lampe fluorescente ou peut-être une lucarne dépolie dans un plafond.</p>
+<p>Le <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> ne fonctionne qu'avec les <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial"><code class="notranslate" translate="no">MeshStandardMaterial</code></a> et <a href="https://threejs.org/docs/#api/en/materials/MeshPhysicalMaterial"><code class="notranslate" translate="no">MeshPhysicalMaterial</code></a> donc changeons tous nos matériaux en <a href="https://threejs.org/docs/#api/en/materials/MeshStandardMaterial"><code class="notranslate" translate="no">MeshStandardMaterial</code></a></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">  ...
+
+  const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
+-  const planeMat = new THREE.MeshPhongMaterial({
++  const planeMat = new THREE.MeshStandardMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+  });
+  const mesh = new THREE.Mesh(planeGeo, planeMat);
+  mesh.rotation.x = Math.PI * -.5;
+  scene.add(mesh);
+}
+{
+  const cubeSize = 4;
+  const cubeGeo = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+- const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
++ const cubeMat = new THREE.MeshStandardMaterial({color: '#8AC'});
+  const mesh = new THREE.Mesh(cubeGeo, cubeMat);
+  mesh.position.set(cubeSize + 1, cubeSize / 2, 0);
+  scene.add(mesh);
+}
+{
+  const sphereRadius = 3;
+  const sphereWidthDivisions = 32;
+  const sphereHeightDivisions = 16;
+  const sphereGeo = new THREE.SphereGeometry(sphereRadius, sphereWidthDivisions, sphereHeightDivisions);
+-  const sphereMat = new THREE.MeshPhongMaterial({color: '#CA8'});
++ const sphereMat = new THREE.MeshStandardMaterial({color: '#CA8'});
+  const mesh = new THREE.Mesh(sphereGeo, sphereMat);
+  mesh.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
+  scene.add(mesh);
+}
+</pre>
+<p>Pour utiliser <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> nous devons importer <a href="https://threejs.org/docs/#api/en/helpers/RectAreaLightHelper"><code class="notranslate" translate="no">RectAreaLightHelper</code></a> pour nous aider à voir la lumière.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
++import {RectAreaLightUniformsLib} from './resources/threejs/r127/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from './resources/threejs/r127/examples/jsm/helpers/RectAreaLightHelper.js';
+</pre>
+<p>et nous devons appeler <code class="notranslate" translate="no">RectAreaLightUniformsLib.init</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas});
++  RectAreaLightUniformsLib.init();
+</pre>
+<p>Si vous oubliez les données, la lumière fonctionnera toujours, mais ça pourrait paraître bizarre, alors n'oubliez pas d'inclure les données supplémentaires.</p>
+<p>Maintenant, nous pouvons créer la lumière</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+*const intensity = 5;
++const width = 12;
++const height = 4;
+*const light = new THREE.RectAreaLight(color, intensity, width, height);
+light.position.set(0, 10, 0);
++light.rotation.x = THREE.MathUtils.degToRad(-90);
+scene.add(light);
+
+*const helper = new RectAreaLightHelper(light);
+*light.add(helper);
+</pre>
+<p>Une chose à noter est que contrairement au <a href="https://threejs.org/docs/#api/en/lights/DirectionalLight"><code class="notranslate" translate="no">DirectionalLight</code></a> et à la <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>, la <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> n'utilise pas de cible. Elle utilise juste sa rotation. Une autre chose à noter est que le 'helper' doit être un enfant de la lumière. Ce n'est pas un enfant de la scène comme les autres 'helpers'.</p>
+<p>Ajustons-la également à dat.GUI. Nous allons le faire pour que nous puissions faire pivoter la lumière et ajuster sa <code class="notranslate" translate="no">width</code> et sa <code class="notranslate" translate="no">height</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'intensity', 0, 10, 0.01);
+gui.add(light, 'width', 0, 20);
+gui.add(light, 'height', 0, 20);
+gui.add(new DegRadHelper(light.rotation, 'x'), 'value', -180, 180).name('x rotation');
+gui.add(new DegRadHelper(light.rotation, 'y'), 'value', -180, 180).name('y rotation');
+gui.add(new DegRadHelper(light.rotation, 'z'), 'value', -180, 180).name('z rotation');
+
+makeXYZGUI(gui, light.position, 'position');
+</pre>
+<p>Et voici ce que ça donne.</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-rectarea.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-rectarea.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Une chose que nous n'avons pas vu, c'est qu'il existe un paramètre sur le <a href="https://threejs.org/docs/#api/en/renderers/WebGLRenderer"><code class="notranslate" translate="no">WebGLRenderer</code></a> appelé <code class="notranslate" translate="no">physicalCorrectLights</code>. Il affecte la façon dont la lumière tombe en tant que distance de la lumière. Cela n'affecte que <a href="https://threejs.org/docs/#api/en/lights/PointLight"><code class="notranslate" translate="no">PointLight</code></a> et <a href="https://threejs.org/docs/#api/en/lights/SpotLight"><code class="notranslate" translate="no">SpotLight</code></a>. <a href="https://threejs.org/docs/#api/en/lights/RectAreaLight"><code class="notranslate" translate="no">RectAreaLight</code></a> le fait automatiquement.</p>
+<p>Pour les lumières, l'idée de base est de ne pas définir de distance pour qu'elles s'éteignent, et vous ne définissez pas <code class="notranslate" translate="no">intensity</code>. Au lieu de cela, vous définissez la <a href="https://threejs.org/docs/#api/en/lights/PointLight#power"><code class="notranslate" translate="no">power</code></a> de la lumière en lumens, puis three.js utilisera des calculs physiques comme de vraies lumières. Les unités de three.js dans ce cas sont des mètres et une ampoule de 60w aurait environ 800 lumens. Il y a aussi une propriété <a href="https://threejs.org/docs/#api/en/lights/PointLight#decay"><code class="notranslate" translate="no">decay</code></a>. Elle doit être réglé sur 2 pour une apparence réaliste.</p>
+<p>Testons ça.</p>
+<p>D'abord, définissons <code class="notranslate" translate="no">physicallyCorrectLights</code> sur true</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const renderer = new THREE.WebGLRenderer({canvas});
++renderer.physicallyCorrectLights = true;
+</pre>
+<p>Ensuite, réglons la <code class="notranslate" translate="no">power</code> à 800 lumens, la <code class="notranslate" translate="no">decay</code> à 2, et
+la <code class="notranslate" translate="no">distance</code> sur <code class="notranslate" translate="no">Infinity</code>.</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const color = 0xFFFFFF;
+const intensity = 1;
+const light = new THREE.PointLight(color, intensity);
+light.power = 800;
+light.decay = 2;
+light.distance = Infinity;
+</pre>
+<p>et mettons à jour dat.GUI pour pouvoir changer <code class="notranslate" translate="no">power</code> et <code class="notranslate" translate="no">decay</code></p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const gui = new GUI();
+gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+gui.add(light, 'decay', 0, 4, 0.01);
+gui.add(light, 'power', 0, 2000);
+</pre>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-lights-point-physically-correct.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-lights-point-physically-correct.html" target="_blank">Cliquer ici pour ouvrir dans une fenêtre séparée</a>
+</div>
+
+<p></p>
+<p>Il est important de noter que chaque lumière que vous ajoutez à la scène ralentit la vitesse à laquelle Three.js rend la scène, vous devez donc toujours essayer d'en utiliser le moins possible pour atteindre vos objectifs.</p>
+<p>Passons maintenant à <a href="threejs-cameras.html">la gestion des caméras</a>.</p>
+<p><canvas id="c"></canvas></p>
+<script type="module" src="../resources/threejs-lights.js"></script>
 
     </div>
     <div class="lesson-sidebar">
@@ -196,23 +639,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>Bases</li>
+        <div id="toc">
+          <ul>  <li>Bases</li>
         <ul>
           <li><a href="/threejs/lessons/fr/threejs-fundamentals.html">Principes de base</a></li>
 <li><a href="/threejs/lessons/fr/threejs-responsive.html">Design réactif</a></li>
 <li><a href="/threejs/lessons/fr/threejs-prerequisites.html">Pré-requis</a></li>
-<li><a href="/threejs/lessons/fr/threejs-setup.html">Setup</a></li>
+<li><a href="/threejs/lessons/fr/threejs-setup.html">Configuration</a></li>
         </ul>
   <li>Principes de base</li>
         <ul>
           <li><a href="/threejs/lessons/fr/threejs-primitives.html">Primitives</a></li>
-<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Scenegraph</a></li>
-<li><a href="/threejs/lessons/fr/threejs-materials.html">Materials</a></li>
+<li><a href="/threejs/lessons/fr/threejs-scenegraph.html">Graphique de scène</a></li>
+<li><a href="/threejs/lessons/fr/threejs-materials.html">Matériaux</a></li>
 <li><a href="/threejs/lessons/fr/threejs-textures.html">Textures</a></li>
-<li><a href="/threejs/lessons/fr/threejs-lights.html">Lights</a></li>
-<li><a href="/threejs/lessons/fr/threejs-cameras.html">Cameras</a></li>
-<li><a href="/threejs/lessons/fr/threejs-shadows.html">Shadows</a></li>
-<li><a href="/threejs/lessons/fr/threejs-fog.html">Fog</a></li>
+<li><a href="/threejs/lessons/fr/threejs-lights.html">Lumières</a></li>
+<li><a href="/threejs/lessons/fr/threejs-cameras.html">Caméras</a></li>
+<li><a href="/threejs/lessons/fr/threejs-shadows.html">Ombres</a></li>
+<li><a href="/threejs/lessons/fr/threejs-fog.html">Brouillard</a></li>
 <li><a href="/threejs/lessons/fr/threejs-rendertargets.html">Render Targets</a></li>
 <li><a href="/threejs/lessons/fr/threejs-custom-buffergeometry.html">Custom BufferGeometry</a></li>
         </ul>
@@ -268,10 +712,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">documentation three.js</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div>Problèmes / bug ? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Les reporter sur github</a>.</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Lumières en Three.js';
+            var disqus_title = 'Lumières en Three.js';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
