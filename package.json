@@ -28,7 +28,7 @@
     "minami": "1.2.3",
     "semver": "7.3.4",
     "servez": "1.11.0",
-    "three": "0.127.0"
+    "three": "0.131.3"
   },
   "scripts": {
     "build": "ld-check-dependencies && grunt",
