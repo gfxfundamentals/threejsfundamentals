@@ -254,8 +254,8 @@ or the camera or giving other relevant input.</p>
 and modify it to render on demand.</p>
 <p>First we'll add in the <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> so there is something that could change
 that we can render in response to.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 </pre>
 <p>and set them up</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
@@ -378,8 +378,8 @@ below slides.</p>
 
 <p></p>
 <p>Let's also add a simple dat.GUI GUI and make its changes render on demand.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <p>Let's allow setting the color and x scale of each cube. To be able to set the

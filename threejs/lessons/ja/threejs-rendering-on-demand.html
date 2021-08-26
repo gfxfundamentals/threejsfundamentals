@@ -248,8 +248,8 @@ requestAnimationFrame(render);
 変更にはテクスチャやモデルの読込完了、外部ソースからのデータ受取、ユーザーによる設定やカメラ調整などその他の関連する入力などが含まれます。</p>
 <p><a href="threejs-responsive.html">レスポンシブデザインの記事</a>を例に要求に応じてレンダリングするように修正してみましょう。</p>
 <p>最初に <a href="https://threejs.org/docs/#examples/controls/OrbitControls"><code class="notranslate" translate="no">OrbitControls</code></a> を追加します。これで何かの変更を反映してレンダリングする事ができます。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
++import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 </pre>
 <p>次に以下のように設定します。</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const fov = 75;
@@ -366,8 +366,8 @@ render();
 
 <p></p>
 <p>シンプルなdat.GUIを追加し、GUIで値の変更時にレンダリングを要求してみましょう。</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <p>各キューブの色と×スケールを設定できるようにしましょう。

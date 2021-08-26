@@ -518,7 +518,6 @@ and setup morphtargets</p>
 +});
 +const material = new THREE.MeshBasicMaterial({
 +  vertexColors: true,
-+  morphTargets: true,
 +});
 +const mesh = new THREE.Mesh(baseGeometry, material);
 +scene.add(mesh);
@@ -553,10 +552,10 @@ have. We could also write some custom animation code which would be easy but
 because the original webgl globe uses 
 <a href="https://github.com/tweenjs/tween.js/">an animation library</a> let's use the same one here.</p>
 <p>We need to include the library</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-import {BufferGeometryUtils} from './resources/threejs/r127/examples/jsm/utils/BufferGeometryUtils.js';
-import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
-+import {TWEEN} from './resources/threejs/r127/examples/jsm/libs/tween.min.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
+import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from './resources/threejs/r132/examples/jsm/libs/tween.min.js';
 </pre>
 <p>And then create a <code class="notranslate" translate="no">Tween</code> to animate the influences.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">// show the selected data, hide the rest
@@ -696,7 +695,6 @@ baseGeometry.morphAttributes.position = geometries.map((geometry, ndx) =&gt; {
 +});
 const material = new THREE.MeshBasicMaterial({
   vertexColors: true,
-  morphTargets: true,
 });
 </pre>
 <p>We then need to modify the three.js shader. Three.js materials have an
@@ -747,7 +745,6 @@ and the <a href="https://github.com/mrdoob/three.js/blob/dev/src/renderers/shade
 <p>To do that we'll make a simple array of replacements and apply them in <a href="https://threejs.org/docs/#api/en/materials/Material.onBeforeCompile"><code class="notranslate" translate="no">Material.onBeforeCompile</code></a></p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">const material = new THREE.MeshBasicMaterial({
   vertexColors: true,
-  morphTargets: true,
 });
 +const vertexShaderReplacements = [
 +  {

@@ -438,10 +438,10 @@ we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there's a utility function,
 <code class="notranslate" translate="no">SkeletonUtils.clone</code> we can use to do this. So, first we need to include
 the utils.</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from './resources/threejs/r127/examples/jsm/loaders/GLTFLoader.js';
-+import {SkeletonUtils} from './resources/threejs/r127/examples/jsm/utils/SkeletonUtils.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
++import {SkeletonUtils} from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
 </pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function init() {
@@ -1717,10 +1717,10 @@ class StateDisplayHelper extends Component {
 </pre>
 <p>While we're at it lets make it so we can turn them on/off using dat.GUI like
 we've used else where</p>
-<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r127/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from './resources/threejs/r127/examples/jsm/loaders/GLTFLoader.js';
-import {SkeletonUtils} from './resources/threejs/r127/examples/jsm/utils/SkeletonUtils.js';
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
+import {SkeletonUtils} from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const gui = new GUI();

@@ -1,9 +1,9 @@
-import * as THREE from '../../resources/threejs/r127/build/three.module.js';
-import {OrbitControls} from '../../resources/threejs/r127/examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../resources/threejs/r132/build/three.module.js';
+import {OrbitControls} from '../../resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 
 export const threejsLessonUtils = {
   _afterPrettifyFuncs: [],
-  init() {
+  init(options = {threejsOptions:{}}) {
     if (this.renderer) {
       return;
     }
@@ -15,6 +15,7 @@ export const threejsLessonUtils = {
       canvas,
       alpha: true,
       powerPreference: 'low-power',
+      ...options.threejsOptions,
     });
     this.pixelRatio = Math.max(2, window.devicePixelRatio);
 

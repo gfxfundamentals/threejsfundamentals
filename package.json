@@ -4,7 +4,7 @@
   "description": "Some Three.js Tutorials",
   "main": "index.js",
   "threejsfundamentals": {
-    "threeVersion": 127
+    "threeVersion": 132
   },
   "dependencies": {},
   "devDependencies": {
@@ -27,8 +27,7 @@
     "load-grunt-tasks": "5.1.0",
     "minami": "1.2.3",
     "semver": "7.3.4",
-    "servez": "1.11.0",
-    "three": "0.127.0"
+    "servez": "1.11.0"
   },
   "scripts": {
     "build": "ld-check-dependencies && grunt",
