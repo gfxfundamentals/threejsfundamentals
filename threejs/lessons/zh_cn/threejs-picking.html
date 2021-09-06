@@ -1,4 +1,4 @@
-<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/langinfo.hanson. Do not edited directly --><!--
+<!DOCTYPE html><!-- this file is auto-generated from threejs/lessons/zh_cn/threejs-picking.md. Do not edited directly --><!--
 Copyright 2018, Google Inc.
 All rights reserved.
 
@@ -6,17 +6,17 @@ Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
 met:
 
-    * Redistributions of source code must retain the above copyright
-      notice, this list of conditions and the following disclaimer.
+*   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
 
-    * Redistributions in binary form must reproduce the above
-      copyright notice, this list of conditions and the following disclaimer
-      in the documentation and/or other materials provided with the
-      distribution.
+*   Redistributions in binary form must reproduce the above
+    copyright notice, this list of conditions and the following disclaimer
+    in the documentation and/or other materials provided with the
+    distribution.
 
-    * Neither the name of Google Inc. nor the names of their
-      contributors may be used to endorse or promote products derived from
-      this software without specific prior written permission.
+*   Neither the name of Google Inc. nor the names of their
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -32,24 +32,79 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --><html lang="zh_cn"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta property="og:title" content="Three.js Picking">
+
+<meta name="description" content="在Three.js中，鼠标选取对象">
+<meta name="keywords" content="webgl graphics three.js">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_zh_cn.jpg">
+
+<meta property="og:title" content="Three.js 拾取">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
-<meta property="og:description" content="Selecting Objects with the Mouse in Three.js">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_zh_cn.jpg">
+<meta property="og:description" content="在Three.js中，鼠标选取对象">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@greggman">
 <meta name="twitter:creator" content="@greggman">
 <meta name="twitter:domain" content="threejsfundamentals.org">
-<meta name="twitter:title" content="Three.js Picking">
+<meta name="twitter:title" content="Three.js 拾取">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html">
-<meta name="twitter:description" content="Selecting Objects with the Mouse in Three.js">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
+<meta name="twitter:description" content="在Three.js中，鼠标选取对象">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_zh_cn.jpg">
+
+  <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-picking.html">
+  <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-picking.html">
+  <link rel="alternate" hreflang="ja" href="https://webglfundamentals.org/threejs/lessons/ja/threejs-picking.html">
+  <link rel="alternate" hreflang="kr" href="https://webglfundamentals.org/threejs/lessons/kr/threejs-picking.html">
+  <link rel="alternate" hreflang="ru" href="https://webglfundamentals.org/threejs/lessons/ru/threejs-picking.html">
+  <link rel="alternate" hreflang="tr" href="https://webglfundamentals.org/threejs/lessons/tr/threejs-picking.html">
+  <link rel="alternate" hreflang="zh_cn" href="https://webglfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html">
 
 
-<title>Three.js Picking</title>
+
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://threejsfundamentals.org/#website",
+      "url":"https://threejsfundamentals.org/",
+      "name":"ThreejsFundamentals"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html#primaryimage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-picking_zh_cn.jpg",
+      "width":1200,
+      "height":630
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html#webpage",
+      "url":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html",
+      "inLanguage":"zh_cn",
+      "name":"Three.js 拾取",
+      "keywords":"webgl graphics three.js programming",
+      "isPartOf":{
+        "@id":"https://threejsfundamentals.org/#website"
+      },
+      "primaryImageOfPage":{
+        "@id":"https://threejsfundamentals.org/threejs/lessons/zh_cn/threejs-picking.html#primaryimage"
+      }
+    }
+  ]
+}
+</script>
+
+<title>Three.js 拾取</title>
 <link href="/threejs/lessons/resources/threejsfundamentals-icon.png" rel="shortcut icon" type="image/png">
+<link rel="apple-touch-icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+<link rel="icon" href="/threejs/lessons/resources/threejsfundamentals-icon.png">
+
+<link rel="stylesheet" href="/threejs/lessons/lang.css">
+<link rel="stylesheet" href="/threejs/lessons/zh_cn/lang.css">
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
@@ -176,12 +231,359 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <div class="container">
   <div class="lesson-title">
-    <h1>Three.js Picking</h1>
+    <h1>Three.js 拾取</h1>
   </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>抱歉，还没有中文翻译哦。 <a href="https://github.com/gfxfundamentals/threejsfundamentals">欢迎加入翻译</a>! 😄</p>
-<p><a href="/threejs/lessons/threejs-picking.html">英文原文链接</a>.</p>
+      <p><em>拾取</em> 指代推断用户点击或触碰了哪个对象的过程。有很多方式实现拾取，但是，每一种都有相应的成本，使用时需有所取舍。下面是最常用的两种方式：</p>
+<p><strong>射线追踪法</strong>（raycasting）很可能是最常用的方法，其基本原理是：从鼠标处发射一条射线，穿透场景的视椎体，通过计算，找出视锥体中哪些对象与射线相交。</p>
+<p>首先，获取鼠标的屏幕坐标.其次，对其应用摄像机的投影和方向的矩阵变换，得到其在世界空间的坐标。然后，计算出一条射线，从视锥体的近端平面射向远端平面。再然后，对于场景中每一个对象的每一个三角，检查其是否与射线相交。假设你的场景中有1000个对象，每个对象有1000个三角，那么就需要检查一百万个三角。</p>
+<p>对此，可以做一些优化，先检查对象的包围球或包围盒是否与射线相交，包围球或包围盒是指包含整个对象的球体或者立方体，如果射线未相交，就不需要检查组成该对象的三角们了。</p>
+<p>THREE.js 提供了 <code class="notranslate" translate="no">RayCaster</code> 类来做这些事情。</p>
+<p>接下来，让我们先创建一个包含100个对象的场景，然后试着去拾取这些对象。可以从样例<a href="threejs-responsive.html">threejs-响应式</a>开始。</p>
+<p>改动一些代码
+使摄像机成为一个对象的子元素，旋转这个对象时，摄像机会像绑定在自拍杆上一样，在场景中游弋。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">*const fov = 60;
+const aspect = 2;  // 画布默认纵横比为2
+const near = 0.1;
+*const far = 200;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+*camera.position.z = 30;
+
+const scene = new THREE.Scene();
++scene.background = new THREE.Color('white');
+
++// 把摄像机放到自拍杆上 (把它添加为一个对象的子元素)
++// 如此，我们就能通过旋转自拍杆，来移动摄像机
++const cameraPole = new THREE.Object3D();
++scene.add(cameraPole);
++cameraPole.add(camera);
+</pre>
+<p>在 <code class="notranslate" translate="no">render</code> 函数中旋转摄像机端点。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">cameraPole.rotation.y = time * .1;
+</pre>
+<p>把光源也绑定到摄像机上，这样光源就会随着摄像机移动。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-scene.add(light);
++camera.add(light);
+</pre>
+<p>生成100个立方体，每个立方体的颜色，位置，朝向，缩放都随机。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const boxWidth = 1;
+const boxHeight = 1;
+const boxDepth = 1;
+const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+
+function rand(min, max) {
+  if (max === undefined) {
+    max = min;
+    min = 0;
+  }
+  return min + (max - min) * Math.random();
+}
+
+function randomColor() {
+  return `hsl(${rand(360) | 0}, ${rand(50, 100) | 0}%, 50%)`;
+}
+
+const numObjects = 100;
+for (let i = 0; i &lt; numObjects; ++i) {
+  const material = new THREE.MeshPhongMaterial({
+    color: randomColor(),
+  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  cube.position.set(rand(-20, 20), rand(-20, 20), rand(-20, 20));
+  cube.rotation.set(rand(Math.PI), rand(Math.PI), 0);
+  cube.scale.set(rand(3, 6), rand(3, 6), rand(3, 6));
+}
+</pre>
+<p>最后，让我们来完成拾取功能。
+写一个简单的类来管理拾取操作</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">class PickHelper {
+  constructor() {
+    this.raycaster = new THREE.Raycaster();
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(normalizedPosition, scene, camera, time) {
+    // 恢复上一个被拾取对象的颜色
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
+    // 发出射线
+    this.raycaster.setFromCamera(normalizedPosition, camera);
+    // 获取与射线相交的对象
+    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+    if (intersectedObjects.length) {
+      // 找到第一个对象，它是离鼠标最近的对象
+      this.pickedObject = intersectedObjects[0].object;
+      // 保存它的颜色
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // 设置它的发光为 黄色/红色闪烁
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+</pre>
+<p>可以看到，我们创建了一个 <code class="notranslate" translate="no">RayCaster</code> 实例，调用该实例的 <code class="notranslate" translate="no">pick</code> 方法可以在场景中发出一条射线。如果，射线有撞击到场景中的物体，修改撞击到的第一个物体的颜色。</p>
+<p>当然，也可以在用户点击鼠标时，调用这个方法，这恐怕是最常见的应用场景。但是，在本范例中，不管在鼠标下方是什么，在每一帧中都会进行拾取操作,为此，需要跟踪鼠标的位置。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const pickPosition = {x: 0, y: 0};
+clearPickPosition();
+
+...
+
+function getCanvasRelativePosition(event) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (event.clientX - rect.left) * canvas.width  / rect.width,
+    y: (event.clientY - rect.top ) * canvas.height / rect.height,
+  };
+}
+
+function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+  pickPosition.x = (pos.x / canvas.width ) *  2 - 1;
+  pickPosition.y = (pos.y / canvas.height) * -2 + 1;  // note we flip Y
+}
+
+function clearPickPosition() { 
+  // 对于触屏，不像鼠标总是能有一个位置坐标，
+  // 如果用户不在触摸屏幕，我们希望停止拾取操作。
+  // 因此，我们选取一个特别的值，表明什么都没选中
+  pickPosition.x = -100000;
+  pickPosition.y = -100000;
+}
+
+window.addEventListener('mousemove', setPickPosition);
+window.addEventListener('mouseout', clearPickPosition);
+window.addEventListener('mouseleave', clearPickPosition);
+</pre>
+<p>需要注意的是，我们记录了归一化的鼠标位置。无论画布的尺寸，我们需要一个从左到右，落入区间（-1，1）的值，类似的，也需要一个从下到上，落入区间（-1，1）的值。</p>
+<p>完成以后，我们再添加对移动端的支持：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">window.addEventListener('touchstart', (event) =&gt; {
+  // 阻止窗口滚动行为
+  event.preventDefault();
+  setPickPosition(event.touches[0]);
+}, {passive: false});
+
+window.addEventListener('touchmove', (event) =&gt; {
+  setPickPosition(event.touches[0]);
+});
+
+window.addEventListener('touchend', clearPickPosition);
+</pre>
+<p>最终，在 <code class="notranslate" translate="no">render</code> 方法中，我们调用了 <code class="notranslate" translate="no">PickHelper</code> 的 <code class="notranslate" translate="no">pick</code> 方法</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const pickHelper = new PickHelper();
+
+function render(time) {
+  time *= 0.001;  //将毫秒单位转换为秒单位;
+
+  ...
+
++  pickHelper.pick(pickPosition, scene, camera, time);
+
+  renderer.render(scene, camera);
+
+  ...
+</pre>
+<p>这是最终结果
+</p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-raycaster.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-picking-raycaster.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>这种方式看起来效果不错，而且能处理很多用户场景，但是也存在几个问题：</p>
+<ol>
+<li>这是基于CPU运算的
+Javascript遍历每一个对象，检查其包围盒或包围球是否与射线相交，如果相交，它必须遍历组成该对象的每一个三角，检查它们是否与射线相交。<br>好处是，JavaScript能够很容易计算出射线在哪里与三角相交，并为我们提供相关数据。举个例子，如果你想要在相交的位置放置一个标记。<br>缺点是，CPU要做大量的工作,当你的对象由大量的三角组成时，这个过程会有些慢。</li>
+<li>它无法处理一些奇怪的着色器或者位移
+如果，你有一个变形或者拟态几何形状的着色器，Javascript无法理解这个变形，它会给出错误的答案。举例：据我所知，你不能对有皮肤的对象使用这种方式。</li>
+<li>无法处理透明的孔洞
+举个例子，为立方体应用这个纹理<div class="threejs_center"><img class="checkerboard" src="../../resources/images/frame.png"></div>
+
+</li>
+</ol>
+<p>改动代码如下：</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const loader = new THREE.TextureLoader();
++const texture = loader.load('resources/images/frame.png');
+
+const numObjects = 100;
+for (let i = 0; i &lt; numObjects; ++i) {
+  const material = new THREE.MeshPhongMaterial({
+    color: randomColor(),
+    +map: texture,
+    +transparent: true,
+    +side: THREE.DoubleSide,
+    +alphaTest: 0.1,
+  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  ...
+</pre>
+<p>运行后，你就能看到问题所在。
+</p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-raycaster-transparency.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-picking-raycaster-transparency.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>试着透过盒子拾取一些物体，但是你无法做到</p>
+<div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
+
+<p>这是因为 JavaScript 无法通过简单的查看纹理和材质，就推测出你的对象是否存在一部分是透明的或者不透明。</p>
+<p>对于这些问题的解决方案，就是使用基于GPU的拾取方法。可惜，该方法概念上简单，但是相比于射线追踪法，用起来就复杂了。</p>
+<p>为了完成GPU拾取，对每一个对象使用唯一的颜色进行离屏渲染。然后，检查鼠标位置关联的像素的颜色。这个颜色就能告诉我们哪个对象被选中。</p>
+<p>这能解决上面的问题2，3。至于问题1的速度问题，这取决于业务场景。每个对象会被绘制两次，一次用于观看，一次用于拾取。也许存在开脑洞的解决方案，可以只绘制一次就完成查看和拾取，此处我们不会尝试。</p>
+<p>但是有一件事值得去做，因为拾取时我们只需读取1px，所以我们可以设置摄像机，只绘制1px，通过 <a href="https://threejs.org/docs/#api/zh/cameras/PerspectiveCamera.setViewOffset"><code class="notranslate" translate="no">PerspectiveCamera.setViewOffset</code></a> 方法，可以告诉THREE.js 计算出一个摄像机 只呈现一个大矩形的一个很小的部分。这应该能节省一些运行时间。</p>
+<p>此时，要在THREE.js中实现这种拾取方式，需要创建两个场景。一个使用正常的网格对象填充。另外一个使用“拾取材质”的网格对象填充。</p>
+<p>因此，首先创建第二个场景，并将其清理为黑色背景。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const scene = new THREE.Scene();
+scene.background = new THREE.Color('white');
+const pickingScene = new THREE.Scene();
+pickingScene.background = new THREE.Color(0);
+</pre>
+<p>然后，对于在主场景中的每一个立方体，在 <code class="notranslate" translate="no">pickingScene</code> 中，在同样的位置，创建一个与原立方体相似的，相关联的“可拾取立方体”，用对象的id生成颜色值，去设置对象的材质。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">const idToObject = {};
++const numObjects = 100;
+for (let i = 0; i &lt; numObjects; ++i) {
++  const id = i + 1;
+  const material = new THREE.MeshPhongMaterial({
+    color: randomColor(),
+    map: texture,
+    transparent: true,
+    side: THREE.DoubleSide,
+    alphaTest: 0.1,
+  });
+
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
++  idToObject[id] = cube;
+
+  cube.position.set(rand(-20, 20), rand(-20, 20), rand(-20, 20));
+  cube.rotation.set(rand(Math.PI), rand(Math.PI), 0);
+  cube.scale.set(rand(3, 6), rand(3, 6), rand(3, 6));
+
++  const pickingMaterial = new THREE.MeshPhongMaterial({
++    emissive: new THREE.Color(id),
++    color: new THREE.Color(0, 0, 0),
++    specular: new THREE.Color(0, 0, 0),
++    map: texture,
++    transparent: true,
++    side: THREE.DoubleSide,
++    alphaTest: 0.5,
++    blending: THREE.NoBlending,
++  });
++  const pickingCube = new THREE.Mesh(geometry, pickingMaterial);
++  pickingScene.add(pickingCube);
++  pickingCube.position.copy(cube.position);
++  pickingCube.rotation.copy(cube.rotation);
++  pickingCube.scale.copy(cube.scale);
+}
+</pre>
+<p>注意到，此时，我们利用 <a href="https://threejs.org/docs/#api/zh/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a> 创建材质，使用id生成颜色，设置到它的<code class="notranslate" translate="no">emissive</code>属性，<code class="notranslate" translate="no">color</code> 和 <code class="notranslate" translate="no">specular</code>属性设置为0，设置 <code class="notranslate" translate="no">alphaTest</code> 属性，只渲染纹理的alpha值大于该属性值的部分，还需要将<code class="notranslate" translate="no">blending</code> 设置为 <code class="notranslate" translate="no">NoBlending</code>，这样alpha通道不会作用到id生成色</p>
+<p>注意到，利用 <a href="https://threejs.org/docs/#api/zh/materials/MeshPhongMaterial"><code class="notranslate" translate="no">MeshPhongMaterial</code></a> 可能并不是最优的解决方案，因为，在绘制拾取场景时，仍然需要计算所有的光线，尽管我们不需要这些计算。一个更优的方案是使用自定义的着色器，只为纹理alpha值大于 <code class="notranslate" translate="no">alphaTest</code> 属性值的部分，输出id生成色</p>
+<p>由于我们是从像素点拾取，而不是射线追踪，只需将代码修改为使用像素拾取方式，获取拾取位置。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">function setPickPosition(event) {
+  const pos = getCanvasRelativePosition(event);
+-  pickPosition.x = (pos.x / canvas.clientWidth ) *  2 - 1;
+-  pickPosition.y = (pos.y / canvas.clientHeight) * -2 + 1;  // 注意，翻转了y轴
++  pickPosition.x = pos.x;
++  pickPosition.y = pos.y;
+}
+</pre>
+<p>首先，我们将 <code class="notranslate" translate="no">PickHelper</code> 修改为 <code class="notranslate" translate="no">GPUPickHelper</code>。这里使用了 <a href="https://threejs.org/docs/#api/zh/renderers/WebGLRenderTarget"><code class="notranslate" translate="no">WebGLRenderTarget</code></a>，如同我们在 <a href="threejs-rendertargets.html">多个渲染目标</a>中介绍的一样，此处，我们的渲染目标只有1像素的尺寸，1×1。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-class PickHelper {
++class GPUPickHelper {
+  constructor() {
+-    this.raycaster = new THREE.Raycaster();
++    // 创建一个1px的渲染目标
++    this.pickingTexture = new THREE.WebGLRenderTarget(1, 1);
++    this.pixelBuffer = new Uint8Array(4);
+    this.pickedObject = null;
+    this.pickedObjectSavedColor = 0;
+  }
+  pick(cssPosition, scene, camera, time) {
++    const {pickingTexture, pixelBuffer} = this;
+
+    // 如果已经存在拾取的对象，将其颜色恢复
+    if (this.pickedObject) {
+      this.pickedObject.material.emissive.setHex(this.pickedObjectSavedColor);
+      this.pickedObject = undefined;
+    }
+
++    // 设置视野偏移来表现鼠标下的1px
++    const pixelRatio = renderer.getPixelRatio();
++    camera.setViewOffset(
++        renderer.getContext().drawingBufferWidth,   // 全宽
++        renderer.getContext().drawingBufferHeight,  // 全高
++        cssPosition.x * pixelRatio | 0,             // rect x
++        cssPosition.y * pixelRatio | 0,             // rect y
++        1,                                          // rect width
++        1,                                          // rect height
++    );
++    // 渲染场景
++    renderer.setRenderTarget(pickingTexture)
++    renderer.render(scene, camera);
++    renderer.setRenderTarget(null);
++
++    // 清理视野偏移，回归正常
++    camera.clearViewOffset();
++    // 读取像素
++    renderer.readRenderTargetPixels(
++        pickingTexture,
++        0,   // x
++        0,   // y
++        1,   // width
++        1,   // height
++        pixelBuffer);
++
++    const id =
++        (pixelBuffer[0] &lt;&lt; 16) |
++        (pixelBuffer[1] &lt;&lt;  8) |
++        (pixelBuffer[2]      );
+
+-    // 射线穿越视锥体
+-    this.raycaster.setFromCamera(normalizedPosition, camera);
+-    // 获取与射线相交的对象
+-    const intersectedObjects = this.raycaster.intersectObjects(scene.children);
+-    if (intersectedObjects.length) {
+-      // 获取第一个对象，他是离鼠标最近的一个
+-      this.pickedObject = intersectedObjects[0].object;
+
++    const intersectedObject = idToObject[id];
++    if (intersectedObject) {
++      //获取第一个对象，他是离鼠标最近的一个
++      this.pickedObject = intersectedObject;
+      // 保存颜色
+      this.pickedObjectSavedColor = this.pickedObject.material.emissive.getHex();
+      // 设置对象在黄/红两色间闪烁
+      this.pickedObject.material.emissive.setHex((time * 8) % 2 &gt; 1 ? 0xFFFF00 : 0xFF0000);
+    }
+  }
+}
+</pre>
+<p>接下来，我们就可以使用它了</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-const pickHelper = new PickHelper();
++const pickHelper = new GPUPickHelper();
+</pre>
+<p>这里是将 <code class="notranslate" translate="no">pickScene</code> 传给helper,而不是<code class="notranslate" translate="no">scene</code>。</p>
+<pre class="prettyprint showlinemods notranslate lang-js" translate="no">-  pickHelper.pick(pickPosition, scene, camera, time);
++  pickHelper.pick(pickPosition, pickScene, camera, time);
+</pre>
+<p>现在，你应该可以透过透明的部分进行拾取操作了</p>
+<p></p><div translate="no" class="threejs_example_container notranslate">
+  <div><iframe class="threejs_example notranslate" translate="no" style=" " src="/threejs/resources/editor.html?url=/threejs/lessons/..%2Fthreejs-picking-gpu.html"></iframe></div>
+  <a class="threejs_center" href="/threejs/lessons/../threejs-picking-gpu.html" target="_blank">点击此处在新标签页中打开</a>
+</div>
+
+<p></p>
+<p>至此，对于如何实现拾取，希望此文能给你一些灵感。在后续的文章中，也许，我们可以看看如何使用鼠标操作对象。</p>
 
     </div>
     <div class="lesson-sidebar">
@@ -196,7 +598,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </option></select>
 
 
-        <ul>  <li>基础</li>
+        <div id="toc">
+          <ul>  <li>基础</li>
         <ul>
           <li><a href="/threejs/lessons/zh_cn/threejs-fundamentals.html">基础</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-responsive.html">响应式设计</a></li>
@@ -240,7 +643,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <li><a href="/threejs/lessons/zh_cn/threejs-backgrounds.html">Add a Background or Skybox</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-transparency.html">How to Draw Transparent Objects</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-multiple-scenes.html">Multiple Canvases, Multiple Scenes</a></li>
-<li><a href="/threejs/lessons/zh_cn/threejs-picking.html">Picking Objects with the mouse</a></li>
+<li><a href="/threejs/lessons/zh_cn/threejs-picking.html">鼠标选取对象</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-post-processing.html">后期处理</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-post-processing-3dlut.html">Applying a LUT File for effects</a></li>
 <li><a href="/threejs/lessons/zh_cn/threejs-shadertoy.html">Using Shadertoy shaders</a></li>
@@ -268,10 +671,44 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <li><a href="https://threejs.org/docs/">three.js docs</a></li>
 </ul>
 
+        </div>
+    </div>
+    <div class="lesson-comments">
+        
+    <div><a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=suggested+topic&amp;template=suggest-topic.md&amp;title=%5BSUGGESTION%5D">Suggestion</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=&amp;template=request.md&amp;title=">Request</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Issue</a>? <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&amp;labels=bug+%2F+issue&amp;template=bug-issue-report.md&amp;title=">Bug</a>?</div>
+  
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'threejsfundamentals'; // required: replace example with your forum shortname
+            var disqus_identifier = 'Three.js 拾取';
+            var disqus_title = 'Three.js 拾取';
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                if (window.location.hostname.indexOf("threejsfundamentals.org") < 0) {
+                    return;
+                }
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
 </div>
 
+<script>
+const settings = {
+  contribTemplate: "Thank you <a href=\"${html_url}\"><img src=\"${avatar_url}\"> ${login}</a><br>for <a href=\"https://github.com/${owner}/${repo}/commits?author=${login}\">${contributions} contributions</a>",
+  owner: "gfxfundamentals",
+  repo: "threejsfundamentals",
+};
+</script>
+<script src="/contributors.js"></script>
 <script src="/3rdparty/jquery-3.3.1.slim.min.js"></script>
 <script src="/threejs/lessons/resources/prettify.js"></script>
 <script src="/threejs/lessons/resources/lesson.js"></script>
