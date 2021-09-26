@@ -441,7 +441,7 @@ the utils.</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-+import {SkeletonUtils} from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
++import * as SkeletonUtils from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
 </pre>
 <p>Then we can clone the models we just loaded</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">function init() {
@@ -1720,7 +1720,7 @@ we've used else where</p>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">import * as THREE from './resources/three/r132/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-import {SkeletonUtils} from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
+import * as SkeletonUtils from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 </pre>
 <pre class="prettyprint showlinemods notranslate lang-js" translate="no">+const gui = new GUI();
