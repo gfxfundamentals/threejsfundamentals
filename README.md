@@ -241,25 +241,6 @@ set ARTICLE_FILTER=scenegraph
 npm run buildlessons
 ```
 
-### Upgrading three.js
+## Maintenance
 
-Clone `three.js` using git in a folder above wherever you checked out threejsfundamentals.
-Then checkout the latest release. Next, run `npm run bumpthree`.
-
-```bash
-# assuming you are in the threejsfundamentals folder
-cd ..
-git clone https://github.com/mrdoob/three.js.git
-cd three.js
-git checkout r132   # the release you want
-cd ../threejsfundamentals
-npm run bumpthree
-```
-
-This will copy the relevant files from three.js to
-`threejs/resources/threejs/<release>` and attempt to update
-all references in the articles and examples to point to the
-new release.
-
-After that, check the [migration guide](https://github.com/mrdoob/three.js/wiki/Migration-Guide)
-for the things that need to be changed.
+See [Maintenance](MAINTENANCE.md)
