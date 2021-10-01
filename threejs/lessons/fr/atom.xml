@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>Three.js, notions de base</title>
-    <updated>2021-10-01T18:20:00.000Z</updated>
+    <updated>2021-10-01T18:21:27.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,167 +16,167 @@
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-cameras.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-cameras.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Custom BufferGeometry]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-custom-buffergeometry.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-custom-buffergeometry.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Brouillard dans Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-fog.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-fog.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"/>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-fundamentals.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Lumières en Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-lights.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Les Matériaux dans Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-materials.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-materials.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Pré-requis pour Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-prerequisites.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Primitives de Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-primitives.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-primitives.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Three.js Render Targets]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-rendertargets.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Design réactif et Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-responsive.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Graphique de scène de Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-scenegraph.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-scenegraph.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Configuration de Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-setup.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Les ombres dans Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-shadows.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-shadows.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
     <entry>
         <title type="html"><![CDATA[Les textures dans Three.js]]></title>
         <id>https://threejsfundamentals.org/threejs/lessons/fr/threejs-textures.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/fr/threejs-textures.html">
         </link>
-        <updated>2021-10-01T18:20:00.000Z</updated>
+        <updated>2021-10-01T18:21:27.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-01T18:20:00.000Z</published>
+        <published>2021-10-01T18:21:27.000Z</published>
     </entry>
 </feed>
