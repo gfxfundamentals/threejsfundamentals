@@ -111,9 +111,9 @@ window.lessonEditorSettings = {
   lessonSettings: {
     glDebug: false,
   },
-  tags: ['three.js', 'threejsfundamentals.org'],
-  name: 'threejsfundamentals',
-  icon: '/threejs/lessons/resources/threejsfundamentals-icon-256.png',
+  tags: ['three.js'],
+  name: 'three.js',
+  icon: '/files/icon.svg',
 };
 
 }());

@@ -1,9 +1,17 @@
+:root {
+	--panel-width: 300px;
+	--page-padding: 24px;
+}
 
 body {
   margin: 0;
   font-family: var(--article-font-family);
   font-size: 19px;
   line-height: 150%;
+  padding-top: var(--page-padding);
+  padding-bottom: var(--page-padding);
+  padding-right: var(--page-padding);
+  padding-left: calc(var(--page-padding) + var(--panel-width));
 }
 
 p + p {
@@ -538,6 +546,21 @@ pre.prettyprint.lighttheme .fun { color: #900; }  /* function name */
     }
 }
 
+@media all and ( min-width: 1700px ) {
+  :root {
+    --panel-width: 360px;
+    --page-padding: 28px;
+  }
+}
+
+@media all and ( max-width: 640px ) {
+  :root {
+    --page-padding: 16px;
+  }
+  body {
+    padding: var(--page-padding);
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   html {
