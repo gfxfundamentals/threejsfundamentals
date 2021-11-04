@@ -3,7 +3,7 @@ Description: 如何为你的three.js设置开发环境
 TOC: 设置
 
 这是three.js系列文章的其中之一。
-第一篇是[关于three.js基础](threejs-fundamentals.html)。
+第一篇是[关于three.js基础](fundamentals.html)。
 如果你还没有阅读那你应该从那开始。
 
 在我们深入之前我们需要讨论一下设置你的电脑来开发。
@@ -21,7 +21,7 @@ web服务很容易设置和使用。
 如果你更喜欢有用户界面的web服务，这有一个
 [Servez](https://greggman.github.io/servez)
 
-{{{image url="resources/servez.gif" className="border" }}}
+{{{image url="../resources/servez.gif" className="border" }}}
 
 只要将他指向你解压的文件夹，点击"Start"，然后
 打开你的浏览器的[`http://localhost:8080/`](http://localhost:8080/)或者
@@ -45,7 +45,7 @@ web服务很容易设置和使用。
 
 它会打印像这样的东西
 
-{{{image url="resources/servez-response.png" }}}
+{{{image url="../resources/servez-response.png" }}}
 
 然后在你的浏览器中打开[`http://localhost:8080/`](http://localhost:8080/)。
 
@@ -54,4 +54,4 @@ web服务很容易设置和使用。
 如果这些都不是你的选择
 [这里有很多其他的服务可供选择](https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver)。
 
-现在你有了服务我们可以移步到[纹理](threejs-textures.html).
+现在你有了服务我们可以移步到[纹理](textures.html).

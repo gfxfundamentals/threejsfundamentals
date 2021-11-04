@@ -5,7 +5,7 @@ TOC: Render Targets
 A render target in three.js is basically a texture you can render to.
 After you render to it you can use that texture like any other texture.
 
-Let's make a simple example. We'll start with an example from [the article on responsiveness](threejs-responsive.html).
+Let's make a simple example. We'll start with an example from [the article on responsiveness](responsive.html).
 
 Rendering to a render target is almost exactly the same as normal rendering. First we create a `WebGLRenderTarget`.
 
@@ -34,7 +34,7 @@ The correct aspect to use depends on what we are rendering for. In this case
 we'll use the render target's texture on the side of a cube. Since faces of
 the cube are square we want an aspect of 1.0.
 
-We fill the scene with stuff. In this case we're using the light and the 3 cubes [from the previous article](threejs-responsive.html).
+We fill the scene with stuff. In this case we're using the light and the 3 cubes [from the previous article](responsive.html).
 
 ```js
 {
@@ -116,14 +116,14 @@ Then we render the scene with the single cube that is using the render target's 
 
 And voilà
 
-{{{example url="../threejs-render-target.html" }}}
+{{{example url="render-target.html" }}}
 
 The cube is red because we set the `background` of the `rtScene` to red so the
 render target's texture is being cleared to red.
 
-Render targets are used for all kinds of things. [Shadows](threejs-shadows.html) use render targets.
-[Picking can use a render target](threejs-picking.html). Various kinds of
-[post processing effects](threejs-post-processing.html) require render targets.
+Render targets are used for all kinds of things. [Shadows](shadows.html) use render targets.
+[Picking can use a render target](picking.html). Various kinds of
+[post processing effects](post-processing.html) require render targets.
 Rendering a rear view mirror in a car or a live view on a monitor inside a 3D
 scene might use a render target.
 

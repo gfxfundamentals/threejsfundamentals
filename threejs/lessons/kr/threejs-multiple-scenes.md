@@ -193,7 +193,7 @@ function render(time) {
 
 결과를 확인해볼까요?
 
-{{{example url="../threejs-multiple-scenes-v1.html" }}}
+{{{example url="multiple-scenes-v1.html" }}}
 
 첫 번째 `<span>` 요소가 있는 곳에는 빨간 정육면체가, 두 번째 `<span>` 요소가 있는 곳에는
 파란 다이아몬드가 보일 겁니다.
@@ -221,10 +221,10 @@ const scene = new THREE.Scene();
 +scene.background = new THREE.Color('red');
 ```
 
-그런 다음 <a href="../threejs-multiple-scenes-v2.html" target="_blank">빠르게 스크롤을 위아래로 반복해보면</a>
+그런 다음 <a href="../examples/multiple-scenes-v2.html" target="_blank">빠르게 스크롤을 위아래로 반복해보면</a>
 문제가 보일겁니다. 아래는 스크롤 애니메이션 캡쳐본의 속도를 10배 낮춘 예시입니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
 
 추가로 처리해줘야 할 것이 있긴 하지만, 캔버스의 CSS를 `position: fixed`에서 `position: absolute`로
 바꿔 문제를 해결할 수 있습니다.
@@ -254,7 +254,7 @@ function render(time) {
 버벅이지 않고 제자리에 있을 겁니다. 아래는 해당 코드를 적용한 화면의 캡쳐본을 아까와 마찬가지로
 10배 느리게 만든 것입니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-fixed.gif"></div>
 
 ## 확장하기 쉽게 만들기
 
@@ -358,7 +358,7 @@ function render(time) {
 `sceneInfo1`, `sceneInfo2`는 더 이상 필요 없으니 제거합니다. 대신 각 mesh의 회전은 해당
 장면에서 처리해야 합니다.
 
-{{{example url="../threejs-multiple-scenes-generic.html" }}}
+{{{example url="multiple-scenes-generic.html" }}}
 
 ## HTML Dataset 사용하기
 
@@ -447,7 +447,7 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 
 이제 코드를 확장하기가 한결 편해졌습니다.
 
-{{{examples url="../threejs-multiple-scenes-selector.html" }}}
+{{{examples url="multiple-scenes-selector.html" }}}
 
 ## 각 요소에 액션 추가하기
 
@@ -455,7 +455,7 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 불러옵니다.
 
 ```js
-import { TrackballControls } from './resources/threejs/r132/examples/jsm/controls/TrackballControls.js';
+import { TrackballControls } from '/examples/jsm/controls/TrackballControls.js';
 ```
 
 그리고 각 장면에 대응하는 요소에 `TrackballControls`를 추가합니다.
@@ -545,10 +545,10 @@ const sceneInitFunctionsByName = {
 
 이제 각 물체를 자유롭게 회전시킬 수 있습니다.
 
-{{{example url="../threejs-multiple-scenes-controls.html" }}}
+{{{example url="multiple-scenes-controls.html" }}}
 
-이 기법은 이 사이트 전체에 사용한 기법입니다. [원시 모델에 관한 글](threejs-primitives.html)과
-[재질에 관한 글](threejs-materials.html)에서 다양한 예시를 보여주기 위해 사용했죠.
+이 기법은 이 사이트 전체에 사용한 기법입니다. [원시 모델에 관한 글](primitives.html)과
+[재질에 관한 글](materials.html)에서 다양한 예시를 보여주기 위해 사용했죠.
 
 다른 방법으로는 화면 밖의 캔버스에서 장면을 렌더링해 각 요소에 2D 캔버스 형태로 넘겨주는
 방법이 있습니다. 이 방법의 장점은 각 영역을 어떻게 분리할지 고민하지 않아도 된다는 것이죠.
@@ -689,7 +689,7 @@ function render(time) {
 
 결과물은 위와 다르지 않습니다.
 
-{{{example url="../threejs-multiple-scenes-copy-canvas.html" }}}
+{{{example url="multiple-scenes-copy-canvas.html" }}}
 
 이 기법의 다른 장점은 [`OffscreenCanvas`](https://developer.mozilla.org/ko/docs/Web/API/OffscreenCanvas)
 웹 워커를 이용해 이 기능을 별도 스레드에서 구현할 수 있다는 겁니다. 하지만 아쉽게도

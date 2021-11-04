@@ -3,8 +3,8 @@ Description: Brouillard dans Three.js
 TOC: Brouillard
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
-Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là. Si vous n'avez pas lu l'artcile concernant [les caméras](threejs-cameras.html) lisez-le avant celui-ci.
+Le premier article s'intitule [Principes de base](fundamentals.html).
+Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là. Si vous n'avez pas lu l'artcile concernant [les caméras](cameras.html) lisez-le avant celui-ci.
 
 Le brouillard dans un moteur 3D est généralement un moyen de passer à une couleur spécifique en fonction de la distance par rapport à la caméra. Dans Three.js, vous ajoutez du brouillard en créant un objet [`Fog`](https://threejs.org/docs/#api/en/scenes/Fog) ou [`FogExp2`](https://threejs.org/docs/#api/en/scenes/FogExp2) et en le définissant sur la propriété `fog de la scène.
 
@@ -82,7 +82,7 @@ const scene = new THREE.Scene();
 
 Dans l'exemple ci-dessous, le 'near' de la caméra est à 0,1 et le `far` à 5. La position z de la caméra est à 2. Les cubes mesurent 1 unité de large et à Z = 0. Les réglages du brouillard, `near` = 1 et `far` = 2. Ainsi, les cubes s'estompent juste autour de leur centre.
 
-{{{example url="../threejs-fog.html" }}}
+{{{example url="fog.html" }}}
 
 Mettons à jour notre dat.GUI pour jouer avec le brouillard.
 [dat.GUI](https://github.com/dataarts/dat.gui) prend un objet et une propriété et crée automatiquement une interface de contrôle pour cette propriété. Nous pourrions simplement le laisser manipuler les propriétés `near` et `far` du brouillard, mais il est impossible que `near` soit supérieur à `far`. Assurons-nous de cela.
@@ -194,7 +194,7 @@ Ensuite, nous appelons `gui.addColor` pour ajouter une couleur à notre proprié
 }
 ```
 
-{{{example url="../threejs-fog-gui.html" }}}
+{{{example url="fog-gui.html" }}}
 
 Vous pouvez voir qu'un réglage `near` à 1.9 et `far` à 2,0 donne une transition très nette entre non embué et complètement dans le brouillard. `near` = 1,1 et `far` = 2,9 devrait être la meilleure configuration étant donné que nos cubes tournent à 2 unités de la caméra.
 
@@ -219,4 +219,4 @@ Remarquez que les murs et le plafond au fond de la pièce sont dans le brouillar
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-fog.js"></script>
+<script type="module" src="../resources/threejs-fog.js"></script>

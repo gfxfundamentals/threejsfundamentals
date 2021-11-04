@@ -3,8 +3,8 @@ Description: Using textures in three.js
 TOC: Textures
 
 This article is one in a series of articles about three.js.
-The first article was [about three.js fundamentals](threejs-fundamentals.html).
-The [previous article](threejs-setup.html) was about setting up for this article.
+The first article was [about three.js fundamentals](fundamentals.html).
+The [previous article](setup.html) was about setting up for this article.
 If you haven't read that yet you might want to start there.
 
 Textures are a kind of large topic in Three.js and
@@ -35,7 +35,7 @@ in some 3rd party program like Photoshop or GIMP. For example let's
 put this image on cube.
 
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
+  <img src="../examples/resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 We'll modify one of our first samples. All we need to do is create a `TextureLoader`. Call its
@@ -53,7 +53,7 @@ const material = new THREE.MeshBasicMaterial({
 
 Note that we're using `MeshBasicMaterial` so no need for any lights.
 
-{{{example url="../threejs-textured-cube.html" }}}
+{{{example url="textured-cube.html" }}}
 
 ## <a name="six"></a> 6 Textures, a different one on each face of a cube
 
@@ -61,14 +61,14 @@ How about 6 textures, one on each face of a cube?
 
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -94,7 +94,7 @@ const loader = new THREE.TextureLoader();
 
 It works!
 
-{{{example url="../threejs-textured-cube-6-textures.html" }}}
+{{{example url="textured-cube-6-textures.html" }}}
 
 It should be noted though that not all geometry types supports multiple
 materials. `BoxGeometry` can use 6 materials one for each face.
@@ -111,7 +111,7 @@ each triangle in your geometry.
 
 What are texture coordinates? They are data added to each vertex of a piece of geometry
 that specify what part of the texture corresponds to that specific vertex.
-We'll go over them when we start [building custom geometry](threejs-custom-buffergeometry.html).
+We'll go over them when we start [building custom geometry](custom-buffergeometry.html).
 
 ## <a name="loading"></a> Loading Textures
 
@@ -155,7 +155,7 @@ loader.load('resources/images/wall.jpg', (texture) => {
 Unless you clear your browser's cache and have a slow connection you're unlikely
 to see the any difference but rest assured it is waiting for the texture to load.
 
-{{{example url="../threejs-textured-cube-wait-for-texture.html" }}}
+{{{example url="textured-cube-wait-for-texture.html" }}}
 
 ### <a name="waitmany"></a> Waiting for multiple textures to load
 
@@ -248,7 +248,7 @@ loadManager.onLoad = () => {
 Unless you clear your cache and have a slow connection you might not see
 the loading bar.
 
-{{{example url="../threejs-textured-cube-wait-for-all-textures.html" }}}
+{{{example url="textured-cube-wait-for-all-textures.html" }}}
 
 ## <a name="cors"></a> Loading textures from other origins
 
@@ -272,7 +272,7 @@ Notice that says nothing about compression. I can make a .jpg image and set its 
 high. For example let's say I was making a scene of a house. Inside the house there is a table
 and I decide to put this wood texture on the top surface of the table
 
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 That image is only 157k so it will download relatively quickly but [it is actually
 3024 x 3761 pixels in size](resources/images/compressed-but-large-wood-texture.jpg).
@@ -306,7 +306,7 @@ less memory than a PNG in WebGL. See above.
 
 Let's apply this 16x16 texture
 
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
 
 To a cube
 
@@ -334,7 +334,7 @@ mip where the pixels have been blended to make the next smaller mip. Mips are cr
 until we get all the way to a 1x1 pixel mip. For the image above all of the mips would
 end up being something like this
 
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 Now, when the cube is drawn so small that it's only 1 or 2 pixels large the GPU can choose
 to use just the smallest or next to smallest mip level to decide what color to make the
@@ -604,13 +604,13 @@ The last thing to note about the example is that if you change `wrapS` or
 `wrapT` on the texture you must also set [`texture.needsUpdate`](Texture.needsUpdate)
 so three.js knows to apply those settings. The other settings are automatically applied.
 
-{{{example url="../threejs-textured-cube-adjust.html" }}}
+{{{example url="textured-cube-adjust.html" }}}
 
 This is only one step into the topic of textures. At some point we'll go over
 texture coordinates as well as 9 other types of textures that can be applied
 to materials.
 
-For now let's move on to [lights](threejs-lights.html).
+For now let's move on to [lights](lights.html).
 
 <!--
 alpha
@@ -624,5 +624,5 @@ metalness
 roughness
 -->
 
-<link rel="stylesheet" href="resources/threejs-textures.css">
-<script type="module" src="resources/threejs-textures.js"></script>
+<link rel="stylesheet" href="../resources/threejs-textures.css">
+<script type="module" src="../resources/threejs-textures.js"></script>

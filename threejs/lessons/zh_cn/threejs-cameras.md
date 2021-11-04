@@ -2,9 +2,9 @@ Title: Three.js 摄像机
 Description: 设置摄像机
 TOC: 摄像机
 
-本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](threejs-fundamentals.html)。如果你还没看过而且对three.js 还不熟悉，那应该从那里开始，并且了解如何[设置开发环境](threejs-setup.html)。上一篇文章介绍了 three.js 中的 [纹理](threejs-textures.html)。
+本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](fundamentals.html)。如果你还没看过而且对three.js 还不熟悉，那应该从那里开始，并且了解如何[设置开发环境](setup.html)。上一篇文章介绍了 three.js 中的 [纹理](textures.html)。
 
-我们开始谈谈three.js中的摄像机. 我们已经在[第一篇文章](threejs-fundamentals.html) 中涉及到了摄像机的一些知识, 这里我们要更深入一些. 
+我们开始谈谈three.js中的摄像机. 我们已经在[第一篇文章](fundamentals.html) 中涉及到了摄像机的一些知识, 这里我们要更深入一些. 
 
 在three.js中最常用的摄像机并且之前我们一直用的摄像机是`透视摄像机 PerspectiveCamera`, 它可以提供一个近大远小的3D视觉效果. 
 
@@ -23,9 +23,9 @@ TOC: 摄像机
 
 `PerspectiveCamera`通过四个属性来定义一个视锥. `near`定义了视锥的前端, `far`定义了后端, `fov`是视野, 通过计算正确的高度来从摄像机的位置获得指定的以`near`为单位的视野, 定义的是视锥的前端和后端的高度. `aspect`间接地定义了视锥前端和后端的宽度, 实际上视锥的宽度是通过高度乘以aspect来得到的. 
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
-我们借用[上一篇文章](threejs-lights.html)的场景. 其中包含一个地平面, 一个球和一个立方体, 我们可以在其中调整摄像机的设置. 
+我们借用[上一篇文章](lights.html)的场景. 其中包含一个地平面, 一个球和一个立方体, 我们可以在其中调整摄像机的设置. 
 ·
 我们通过`MinMaxGUIHelper`来调整`near`, `far`的设置. 显然`near`应该总是比`far`要小. dat.GUI有`min`和`max`两个属性可调, 然后这两个属性将决定摄像机的设置. 
 
@@ -71,7 +71,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 
 任何时候摄像机的设置变动, 我们需要调用摄像机的[`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix)来更新设置. 我们写一个函数`updataCamera`, 当dat.GUI改变了属性的时候会调用它来更新参数. 
 
-{{{example url="../threejs-cameras-perspective.html" }}}
+{{{example url="cameras-perspective.html" }}}
 
 现在可以调整这些数值来观察这些参数是如何影响摄像机的. 注意我们并没有改变`aspect`, 因为这个参数来自于窗口的大小. 如果想调整`aspect`, 只需要开个新窗口然后调整窗口大小就可以了. 
 
@@ -261,7 +261,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
 
 现在我们就可以在辅摄像机中观察到主摄像机的视锥轮廓了. 
 
-{{{example url="../threejs-cameras-perspective-2-scenes.html" }}}
+{{{example url="cameras-perspective-2-scenes.html" }}}
 
 左侧可以看到主摄像机的视角, 右侧则是辅摄像机观察主摄像机和主摄像机的视锥轮廓. 可以调整`near`, `far`, `fov`和用鼠标移动摄像机来观察视锥轮廓和场景之间的关系. 
 
@@ -308,13 +308,13 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 你觉得会发生什么?
 
-{{{example url="../threejs-cameras-z-fighting.html" }}}
+{{{example url="cameras-z-fighting.html" }}}
 
 这就是一个典型的*z冲突*的例子. GPU没有足够的精度来决定哪个像素在前哪个在后. 
 
 以防你的机器太好出现不了我说的情况, 我把我看到的截图放在这
 
-<div class="threejs_center"><img src="resources/images/z-fighting.png" style="width: 570px;"></div>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
 
 解决的方法之一是告诉three.js使用不同的方法计算像素的前后关系. 我们可以在创建`WebGLRenderer`时开启`logarithmicDepthBuffer`
 
@@ -328,7 +328,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 这看起来就行了
 
-{{{example url="../threejs-cameras-logarithmic-depth-buffer.html" }}}
+{{{example url="cameras-logarithmic-depth-buffer.html" }}}
 
 如果这不行的话, 那你就遇到了*为什么不能无脑使用这种解决方案*的情况了. 到2018年9月, 绝大多数台式机可以但是几乎没有移动设备支持这个功能. 
 
@@ -390,7 +390,7 @@ const gui = new GUI();
 
 现在就可以看到`OrthographicCamera`工作了. 
 
-{{{example url="../threejs-cameras-orthographic-2-scenes.html" }}}
+{{{example url="cameras-orthographic-2-scenes.html" }}}
 
 大多数情况下, 绘制2D图像的时候会用到`OrthographicCamera`. 你可以自己决定摄像机的视野大小. 比如说你想让canvas的一个像素匹配摄像机的一个单位, 你可以这么做
 
@@ -516,16 +516,16 @@ function render(time) {
 
 你可以看到图片在其中弹跳, 和边际完美契合, 就是2D canvas的效果一样
 
-{{{example url="../threejs-cameras-orthographic-canvas-top-left-origin.html" }}}
+{{{example url="cameras-orthographic-canvas-top-left-origin.html" }}}
 
 另一个常见的用途是用`OrthographicCamera`来展示模型的三视图.
 
-<div class="threejs_center"><img src="resources/images/quad-viewport.png" style="width: 574px;"></div>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 
 上面的截图展示了一个透视图和三个正交视角.
 
-这就是摄像机的基础. 我们在其他的文章中会介绍另外的一些摄像机用法. 现在, 我们移步到[阴影](threejs-shadows.html).
+这就是摄像机的基础. 我们在其他的文章中会介绍另外的一些摄像机用法. 现在, 我们移步到[阴影](shadows.html).
 
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-cameras.js"></script>
+<script type="module" src="../resources/threejs-cameras.js"></script>

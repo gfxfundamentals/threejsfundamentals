@@ -3,10 +3,10 @@ Description: How to use Cameras in Three.js
 TOC: Cameras
 
 This article is one in a series of articles about three.js.
-The first article was [about fundamentals](threejs-fundamentals.html).
+The first article was [about fundamentals](fundamentals.html).
 If you haven't read that yet you might want to start there.
 
-Let's talk about cameras in three.js. We covered some of this in the [first article](threejs-fundamentals.html) but we'll cover it in more detail here.
+Let's talk about cameras in three.js. We covered some of this in the [first article](fundamentals.html) but we'll cover it in more detail here.
 
 The most common camera in three.js and the one we've been using up to this point is
 the `PerspectiveCamera`. It gives a 3d view where things in the distance appear
@@ -36,9 +36,9 @@ the specified field of view at `near` units from the camera. The `aspect` define
 wide the front and back of the frustum are. The width of the frustum is just the height
 multiplied by the aspect.
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
-Let's use the scene from [the previous article](threejs-lights.html) that has a ground
+Let's use the scene from [the previous article](lights.html) that has a ground
 plane, a sphere, and a cube and make it so we can adjust the camera's settings.
 
 To do that we'll make a `MinMaxGUIHelper` for the `near` and `far` settings so `far`
@@ -88,7 +88,7 @@ Anytime the camera's settings change we need to call the camera's
 [`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix) function
 so we made a function called `updateCamera` add passed it to dat.GUI to call it when things change.
 
-{{{example url="../threejs-cameras-perspective.html" }}}
+{{{example url="cameras-perspective.html" }}}
 
 You can adjust the values and see how they work. Note we didn't make `aspect` settable since
 it's taken from the size of the window so if you want to adjust the aspect open the example
@@ -289,7 +289,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
 
 And now you can use one view to see the frustum of the other.
 
-{{{example url="../threejs-cameras-perspective-2-scenes.html" }}}
+{{{example url="cameras-perspective-2-scenes.html" }}}
 
 On the left you can see the original view and on the right you can
 see a view showing the frustum of the camera on the left. As you adjust
@@ -350,14 +350,14 @@ We also need to tweak the GUI code a little to allow 0.00001 if the value is edi
 
 What do you think will happen?
 
-{{{example url="../threejs-cameras-z-fighting.html" }}}
+{{{example url="cameras-z-fighting.html" }}}
 
 This is an example of *z fighting* where the GPU on your computer does not have
 enough precision to decide which pixels are in front and which pixels are behind.
 
 Just in case the issue doesn't show on your machine here's what I see on mine
 
-<div class="threejs_center"><img src="resources/images/z-fighting.png" style="width: 570px;"></div>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
 
 One solution is to tell three.js use to a different method to compute which
 pixels are in front and which are behind. We can do that by enabling
@@ -373,7 +373,7 @@ pixels are in front and which are behind. We can do that by enabling
 
 and with that it might work
 
-{{{example url="../threejs-cameras-logarithmic-depth-buffer.html" }}}
+{{{example url="cameras-logarithmic-depth-buffer.html" }}}
 
 If this didn't fix the issue for you then you've run into one reason why
 you can't always use this solution. That reason is because only certain GPUs
@@ -457,7 +457,7 @@ side to update the `OrthographicCamera`.
 
 and now you can see an `OrthographicCamera` at work.
 
-{{{example url="../threejs-cameras-orthographic-2-scenes.html" }}}
+{{{example url="cameras-orthographic-2-scenes.html" }}}
 
 An `OrthographicCamera` is most often used if using three.js
 to draw 2D things. You'd decide how many units you want the camera
@@ -509,8 +509,8 @@ Then let's load 6 textures and make 6 planes, one for each texture.
 We'll parent each plane to a `THREE.Object3D` to make it easy to offset
 the plane so its center appears to be at its top left corner.
 
-If you're running locally you'll also need to have [setup](threejs-setup.html).
-You might also want to read about [using textures](threejs-textures.html).
+If you're running locally you'll also need to have [setup](setup.html).
+You might also want to read about [using textures](textures.html).
 
 ```js
 const loader = new THREE.TextureLoader();
@@ -594,19 +594,19 @@ function render(time) {
 And you can see the images bounce pixel perfect off the edges of the
 canvas using pixel math just like a 2D canvas
 
-{{{example url="../threejs-cameras-orthographic-canvas-top-left-origin.html" }}}
+{{{example url="cameras-orthographic-canvas-top-left-origin.html" }}}
 
 Another common use for an `OrthographicCamera` is to draw the
 up, down, left, right, front, back views of a 3D modeling
 program or a game engine's editor.
 
-<div class="threejs_center"><img src="resources/images/quad-viewport.png" style="width: 574px;"></div>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 
 In the screenshot above you can see 1 view is a perspective view and 3 views are
 orthographic views.
 
 That's the fundamentals of cameras. We'll cover a few common ways to move cameras
-in other articles. For now let's move on to [shadows](threejs-shadows.html).
+in other articles. For now let's move on to [shadows](shadows.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-cameras.js"></script>
+<script type="module" src="../resources/threejs-cameras.js"></script>

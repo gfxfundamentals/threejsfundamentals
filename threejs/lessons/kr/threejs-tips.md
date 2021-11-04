@@ -40,13 +40,13 @@ const saveBlob = (function() {
 }());
 ```
 
-아래는 [반응형 디자인](threejs-responsive.html)의 예제에 버튼과 버튼을 꾸밀 CSS를 추가한 예제입니다.
+아래는 [반응형 디자인](responsive.html)의 예제에 버튼과 버튼을 꾸밀 CSS를 추가한 예제입니다.
 
-{{{example url="../threejs-tips-screenshot-bad.html"}}}
+{{{example url="tips-screenshot-bad.html"}}}
 
 하지만 막상 스크린샷을 찍어보니 아래와 같은 결과가 나옵니다.
 
-<div class="threejs_center"><img src="resources/images/screencapture-413x313.png"></div>
+<div class="threejs_center"><img src="../resources/images/screencapture-413x313.png"></div>
 
 그냥 텅 빈 이미지네요.
 
@@ -109,7 +109,7 @@ elem.addEventListener('click', () => {
 
 이제 문제 없이 잘 작동할 겁니다.
 
-{{{example url="../threejs-tips-screenshot-good.html" }}}
+{{{example url="tips-screenshot-good.html" }}}
 
 다른 방법에 대해서는 다음 글을 보기 바랍니다.
 
@@ -132,11 +132,11 @@ const canvas = document.querySelector('#c');
 +renderer.autoClearColor = false;
 ```
 
-{{{example url="../threejs-tips-preservedrawingbuffer.html" }}}
+{{{example url="tips-preservedrawingbuffer.html" }}}
 
 만약 진짜 드로잉 프로그램을 만들 계획이라면 이 방법은 쓰지 않는 게 좋습니다. 해상도가 변경될 때마다 브라우저가 캔버스를 초기화할 테니까요. 현재 예제에서는 해상도를 캔버스 크기에 맞춰 변경합니다. 그리고 캔버스 크기는 화면 크기에 맞춰 조정되죠. 파일을 다운받거나, 탭을 바꾸거나, 상태표시줄이 추가되는 등 화면 크기가 바뀌는 경우는 다양합니다. 모바일 환경이라면 화면을 회전시키는 경우도 포함되겠죠.
 
-드로잉 프로그램을 만들려면 [렌더 타겟을 이용해 텍스처로 화면을 렌더링](threejs-rendertargets.html)하는 게 좋을 겁니다.
+드로잉 프로그램을 만들려면 [렌더 타겟을 이용해 텍스처로 화면을 렌더링](rendertargets.html)하는 게 좋을 겁니다.
 
 ---
 
@@ -206,7 +206,7 @@ document.querySelectorAll('canvas').forEach((canvas) => {
 
 첫 번째 캔버스에는 아무리 해도 키보드 이벤트가 발생하지 않을 겁니다. 두 번째 캔버스는 키보드 이벤트를 받긴 하지만 강조 표시가 생기죠. 대신 세 번째 캔버스에서는 두 문제가 발생하지 않습니다.
 
-{{{example url="../threejs-tips-tabindex.html"}}}
+{{{example url="tips-tabindex.html"}}}
 
 ---
 
@@ -245,7 +245,7 @@ premultiplied alpha를 어떻게 사용해야 하는지 알고 싶다면 [여기
 
 어쨌든 이제 한 번 투명 캔버스 예제를 만들어보죠.
 
-[반응형 디자인](threejs-responsive.html)에서 가져온 예제에 저 설정을 적용했습니다. 추가로 재질도 똑같이 투명하게 만들어보죠.
+[반응형 디자인](responsive.html)에서 가져온 예제에 저 설정을 적용했습니다. 추가로 재질도 똑같이 투명하게 만들어보죠.
 
 ```js
 function makeInstance(geometry, color, x) {
@@ -303,7 +303,7 @@ body {
 
 `pointer-events: none`은 캔버스가 마우스나 터치 이벤트의 영향을 받지 않도록 해줍니다. 아래에 있는 텍스트를 바로 선택할 수 있도록 설정한 것이죠.
 
-{{{example url="../threejs-tips-transparent-canvas.html" }}}
+{{{example url="tips-transparent-canvas.html" }}}
 
 ---
 
@@ -358,4 +358,4 @@ body {
 }
 ```
 
-{{{example url="../threejs-tips-html-background.html"}}}
+{{{example url="tips-html-background.html"}}}

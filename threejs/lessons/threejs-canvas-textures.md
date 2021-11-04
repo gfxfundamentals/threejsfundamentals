@@ -2,10 +2,10 @@ Title: Three.js Canvas Textures
 Description: How to use a canvas as a texture in Three.js
 TOC: Using A Canvas for Dynamic Textures
 
-This article continues from [the article on textures](threejs-textures.html).
+This article continues from [the article on textures](textures.html).
 If you haven't read that yet you should probably start there.
 
-In [the previous article on textures](threejs-textures.html) we mostly used
+In [the previous article on textures](textures.html) we mostly used
 image files for textures. Sometimes though we want to generate a texture
 at runtime. One way to do this is to use a `CanvasTexture`.
 
@@ -53,7 +53,7 @@ it's pretty straight forward.
 {{{example url="../canvas-random-dots.html" }}}
 
 Now let's use it to texture something. We'll start with the example of texturing
-a cube from [the previous article](threejs-textures.html).
+a cube from [the previous article](textures.html).
 We'll remove the code that loads an image and instead use
 our canvas by creating a `CanvasTexture` and passing it the canvas we created.
 
@@ -111,10 +111,10 @@ the latest contents of the canvas.
 
 And with that we have a canvas textured cube
 
-{{{example url="../threejs-canvas-textured-cube.html" }}}
+{{{example url="canvas-textured-cube.html" }}}
 
 Note that if you want to use three.js to draw into the canvas you're
-better off using a `RenderTarget` which is covered in [this article](threejs-rendertargets.html).
+better off using a `RenderTarget` which is covered in [this article](rendertargets.html).
 
 A common use case for canvas textures is to provide text in a scene.
 For example if you wanted to put a person's name on their character's
@@ -124,7 +124,7 @@ Let's make a scene with 3 people and give each person a badge
 or label.
 
 Let's take the example above and remove all the cube related
-stuff. Then let's set the background to white and add two [lights](threejs-lights.html).
+stuff. Then let's set the background to white and add two [lights](lights.html).
 
 ```js
 const scene = new THREE.Scene();
@@ -261,8 +261,8 @@ What's left is to add some `OrbitControls` so we can move
 the camera.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -282,7 +282,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 and we get simple labels.
 
-{{{example url="../threejs-canvas-textured-labels.html" }}}
+{{{example url="canvas-textured-labels.html" }}}
 
 Some things to notice.
 
@@ -364,7 +364,7 @@ Then we can pass in a width for the labels
 
 and we get labels where the text is centered and scaled to fit
 
-{{{example url="../threejs-canvas-textured-labels-scale-to-fit.html" }}}
+{{{example url="canvas-textured-labels-scale-to-fit.html" }}}
 
 Above we used a new canvas for each texture. Whether or not to use a 
 canvas per texture is up to you. If you need to update them often then 
@@ -411,13 +411,13 @@ function makePerson(x, labelWidth, size, name, color) {
   ...
 ```
 
-{{{example url="../threejs-canvas-textured-labels-one-canvas.html" }}}
+{{{example url="canvas-textured-labels-one-canvas.html" }}}
 
 Another issue is that the labels don't always face the camera. If you're using 
 labels as badges that's probably a good thing. If you're using labels to put
 names over players in a 3D game maybe you want the labels to always face the camera.
-We'll cover how to do that in [an article on billboards](threejs-billboards.html).
+We'll cover how to do that in [an article on billboards](billboards.html).
 
-For labels in particular, [another solution is to use HTML](threejs-align-html-elements-to-3d.html).
+For labels in particular, [another solution is to use HTML](align-html-elements-to-3d.html).
 The labels in this article are *inside the 3D world* which is good if you want them
-to be hidden by other objects where as [HTML labels](threejs-align-html-elements-to-3d.html) are always on top.
+to be hidden by other objects where as [HTML labels](align-html-elements-to-3d.html) are always on top.

@@ -4,21 +4,21 @@ TOC: Пользовательская BufferGeometry
 
 {{{warning msgId="updateNeeded" link="https://github.com/gfxfundamentals/threejsfundamentals/issues/186"}}}
 
-В [предыдущей статье](threejs-custom-geometry.html) рассказывалось, как использовать `Geometry`. Эта статья о `BufferGeometry`. `BufferGeometry` обычно быстрее запускается и использует меньше памяти, но может быть сложнее в настройке. 
+В [предыдущей статье](custom-geometry.html) рассказывалось, как использовать `Geometry`. Эта статья о `BufferGeometry`. `BufferGeometry` обычно быстрее запускается и использует меньше памяти, но может быть сложнее в настройке. 
 
-В [статье о Geometry](threejs-custom-geometry.html) мы рассказали, что для использования `Geometry` вы предоставляете массив вершин `Vector3` (позиций). 
+В [статье о Geometry](custom-geometry.html) мы рассказали, что для использования `Geometry` вы предоставляете массив вершин `Vector3` (позиций). 
 Затем вы создаете объекты `Face3`, определяя по индексу 3 вершины, которые составляют каждый треугольник фигуры, которую вы делаете.
 Для каждого `Face3` вы можете указать либо нормаль грани, либо нормали для каждой отдельной вершины грани. 
 Вы также можете указать цвет грани или отдельные цвета вершин. Наконец, вы можете создать параллельный массив массивов текстурных координат (UV), 
 один массив для каждой грани, содержащий массив UV, один для каждой вершины грани. 
 
-<div class="threejs_center"><img src="resources/threejs-geometry.svg" style="width: 700px"></div>
+<div class="threejs_center"><img src="../resources/threejs-geometry.svg" style="width: 700px"></div>
 
 `BufferGeometry` с другой стороны использует названный `BufferAttributes`. 
 Каждый атрибут `BufferAttribute` представляет собой массив данных одного типа: позиции, нормали, цвета и ультрафиолетовые лучи. 
 Вместе добавленные атрибуты `BufferAttributes` представляют параллельные массивы всех данных для каждой вершины. 
 
-<div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 Вы можете видеть, что у нас есть 4 атрибута: `position`, `normal`, `color`, `uv`. 
 Они представляют параллельные массивы, что означает, что N-й набор данных в каждом атрибуте принадлежит одной и той же вершине. 
@@ -26,7 +26,7 @@ TOC: Пользовательская BufferGeometry
 
 Это поднимает точку, вот схема куба с одним выделенным углом. 
 
-<div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 Думая об этом, один угол нуждается в разной нормали для каждой грани куба. 
 Для каждой стороны тоже нужны разные ультрафиолеты. Это указывает на самую большую разницу между `Geometry` и `BufferGeometry`. Ничего общего с `BufferGeometry`.
@@ -137,7 +137,7 @@ for (const vertex of vertices) {
 типа Float32Array. Атрибут `BufferAttribute` требует TypedArray, а не собственного массива. Атрибут `BufferAttribute` также требует, чтобы вы указали,
 сколько компонентов в каждой вершине. Для позиций и нормалей у нас есть 3 компонента на вершину, x, y и z. Для UV у нас есть 2, u и v. 
 
-{{{example url="../threejs-custom-buffergeometry-cube.html"}}}
+{{{example url="custom-buffergeometry-cube.html"}}}
 
 Это много данных. Небольшая вещь, которую мы можем сделать, это использовать индексы для ссылки на вершины. 
 Оглядываясь назад на данные нашего куба, каждая грань состоит из 2 треугольников с 3 вершинами в каждом, всего 6 вершин, но 2 из этих вершин абсолютно одинаковы; 
@@ -221,7 +221,7 @@ geometry.setAttribute(
 +]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-indexed.html"}}}
+{{{example url="custom-buffergeometry-cube-indexed.html"}}}
 
 Как и в `Geometry`, в `BufferGeometry` есть метод [`computeVertexNormals`](BufferGeometry.computeVertexNormals) для вычисления нормалей,
 если вы их не предоставляете. В отличие от версии `Geometry` той же функции, 
@@ -301,7 +301,7 @@ geometry.setIndex([
 ]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-typedarrays.html"}}}
+{{{example url="custom-buffergeometry-cube-typedarrays.html"}}}
 
 Хорошая причина использовать typedarrays - если вы хотите динамически обновлять любую часть вершин. 
 
@@ -312,7 +312,7 @@ geometry.setIndex([
 но не разделяет вершины между четырьмя, потому что мы хотим иметь возможность перемещать каждый четырёхугольник по отдельности. 
 
 Поскольку я ленивый, я использовал небольшую иерархию из 3 объектов Object3D для вычисления точек сферы. Как это работает, объясняется в
-[статье об оптимизации множества объектов. ](threejs-optimize-lots-of-objects.html).
+[статье об оптимизации множества объектов. ](optimize-lots-of-objects.html).
 
 ```js
 function makeSpherePositions(segmentsAround, segmentsDown) {
@@ -424,7 +424,7 @@ positionAttribute.needsUpdate = true;
 
 И мы устанавливаем `positionAttribute.needsUpdate`, чтобы THREE.js указывал использовать наши изменения.
 
-{{{example url="../threejs-custom-buffergeometry-dynamic.html"}}}
+{{{example url="custom-buffergeometry-dynamic.html"}}}
 
 Я надеюсь, что это были полезные примеры того, как использовать
 `BufferGeometry` напрямую для создания собственной геометрии и как динамически 
@@ -432,5 +432,5 @@ positionAttribute.needsUpdate = true;
 действительно зависит от ваших потребностей. 
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
 

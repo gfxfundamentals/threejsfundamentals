@@ -21,7 +21,7 @@ TOC: Необходимые условия
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 
@@ -31,7 +31,7 @@ import * as THREE from './resources/threejs/r132/build/three.module.js';
 Пути должны быть абсолютными или относительными. 
 Относительные пути всегда начинаются с `./` или `../`, что отличается от других тегов, таких как `<img>` и `<a>` и ссылок css. 
 
-Более подробная информация упоминается в нижней части [этой статьи](threejs-fundamentals.html).
+Более подробная информация упоминается в нижней части [этой статьи](fundamentals.html).
 
 ## `document.querySelector` и `document.querySelectorAll`
 
@@ -305,14 +305,14 @@ const v = Vector();     // clearly an error if all functions start with a lowerc
 
 Если вы включите [правило no-undef](https://eslint.org/docs/rules/no-undef) то VSCode через ESLint предупредит вас о многих неопределенных переменных. 
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
 
 Вы можете видеть, что я неправильно написал `doTheThing` как `doThing`.
 Под `doThing` есть красная "закорючка", и подсказка над ним говорит мне, что оно не определено. Одной ошибки удалось избежать. 
 
 Вы получите предупреждения, используя THREE, поэтому добавьте `/* global THREE */` вверху ваших файлов JavaScript, чтобы сообщить eslint, что THREE существует. 
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 Вы можете видеть, что eslint знает правило, что `UpperCaseNames` являются конструкторами, и поэтому вы должны использовать `new`. 
 Еще одну ошибку поймали и избежали. Это [правило
@@ -322,11 +322,11 @@ const v = Vector();     // clearly an error if all functions start with a lowerc
 Например, выше я упомянул, что вы должны использовать `const` и пропустить `var`.
 
 Здесь я использовал `var`, и он предупредил меня, что я должен использовать `let` или `const`
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
 
 Здесь я использовал `let`, но он увидел, что я никогда не меняю значение, поэтому предложил использовать `const`. 
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
 
 Конечно, если вы предпочитаете продолжать использовать `var`, вы можете просто отключить это правило. 
 Как я уже говорил выше, я предпочитаю использовать `const` и `let` вместо `var`, так как они работают лучше и предотвращают ошибки. 

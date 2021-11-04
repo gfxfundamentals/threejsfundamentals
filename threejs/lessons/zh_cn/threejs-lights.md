@@ -2,7 +2,7 @@ Title: Three.js 光照
 Description: 设置光照
 TOC: 光照
 
-本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](threejs-fundamentals.html)。如果你还没看过而且对three.js 还不熟悉，那应该从那里开始，并且了解如何[设置开发环境](threejs-setup.html)。上一篇文章介绍了 three.js 中的 [纹理](threejs-textures.html)。
+本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](fundamentals.html)。如果你还没看过而且对three.js 还不熟悉，那应该从那里开始，并且了解如何[设置开发环境](setup.html)。上一篇文章介绍了 three.js 中的 [纹理](textures.html)。
 
 接下来我们学习如何在 three.js 中使用各种不同类型的光照。
 
@@ -20,8 +20,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 然后我们添加一个 `OrbitControls`。`OrbitControls` 让我们可以围绕某一个点旋转控制相机。`OrbitControls` 是 three.js 的可选模块，所以我们首先需要引入这个模块。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 然后我们就可以使用了。创建 `OrbitControls` 时传入两个参数，一个是要控制的相机对象，第二个是检测事件的 DOM 元素。
@@ -37,7 +37,7 @@ controls.update();
 下面我们创建一些东西来打光。首先，创建一个地平面，并用下方展示的 2x2 像素的黑白格图片来作为纹理。
 
 <div class="threejs_center">
-  <img src="../resources/images/checker.png" class="border" style="
+  <img src="../examples/resources/images/checker.png" class="border" style="
     image-rendering: pixelated;
     width: 128px;
   ">
@@ -135,7 +135,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 结果如下所示：
 
-{{{example url="../threejs-lights-ambient.html" }}}
+{{{example url="lights-ambient.html" }}}
 
 可以在场景内点击和拖拽鼠标来改变相机的位置，观察场景。
 
@@ -175,7 +175,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 结果如下：
 
-{{{example url="../threejs-lights-hemisphere.html" }}}
+{{{example url="lights-hemisphere.html" }}}
 
 场景基本上也没有太大的立体感。半球光 （`HemisphereLight`） 与其他类型光照结合使用，可以很好地表现天空和地面颜色照射到物体上时的效果。所以最好的使用场景就是与其他光照结合使用，或者作为环境光（`AmbientLight`）的一种替代方案。
 
@@ -207,7 +207,7 @@ gui.add(light.target.position, 'z', -10, 10);
 gui.add(light.target.position, 'y', 0, 10);
 ```
 
-{{{example url="../threejs-lights-directional.html" }}}
+{{{example url="lights-directional.html" }}}
 
 目前有点难以观察。Three.js 提供了一些辅助对象，添加到场景中之后就可以显示出场景中的不可见对象（例如光照、相机等）。在这里我们使用 `DirectionalLightHelper`，它会绘制一个方形的小平面代表方向光的位置，一条连接光源与目标点的直线，代表了光的方向。创建对象时，传入光源对象作为参数，然后添加到场景中，就可以呈现。
 
@@ -249,7 +249,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 现在我们可以控制光源以及目标点位置了。
 
-{{{example url="../threejs-lights-directional-w-helper.html" }}}
+{{{example url="lights-directional-w-helper.html" }}}
 
 旋转相机可以看得更清楚。方形的小平面代表了一个方向光（`DirectionalLight`），方向光表示的是来自一个方向上的光，并不是从某个点发射出来的，而是从一个无限大的平面内，发射出全部相互平行的光线。
 
@@ -305,7 +305,7 @@ makeXYZGUI(gui, light.position, 'position', updateLight);
 
 效果如下：
 
-{{{example url="../threejs-lights-point.html" }}}
+{{{example url="lights-point.html" }}}
 
 注意 `distance` > 0 时光照强度的衰减现象。
 
@@ -330,7 +330,7 @@ scene.add(light.target);
 scene.add(helper);
 ```
 
-聚光灯的圆锥顶部角度大小通过 [`angle`](SpotLight.angle) 属性设置，以弧度作单位。所以我们用介绍 [纹理](threejs-textures.html) 时用到的 `DegRadHelper` 来控制。
+聚光灯的圆锥顶部角度大小通过 [`angle`](SpotLight.angle) 属性设置，以弧度作单位。所以我们用介绍 [纹理](textures.html) 时用到的 `DegRadHelper` 来控制。
 
 ```js
 gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
@@ -342,7 +342,7 @@ gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange
 gui.add(light, 'penumbra', 0, 1, 0.01);
 ```
 
-{{{example url="../threejs-lights-spot-w-helper.html" }}}
+{{{example url="lights-spot-w-helper.html" }}}
 
 注意观察，当 `penumbra` 为默认值 0 的时候，聚光灯会有非常清晰的边缘，而当把 `penumbra` 向 1 调节的时候，边缘会开始模糊。
 
@@ -392,9 +392,9 @@ Three.js 中还有一种类型的光照，矩形区域光（`RectAreaLight`）, 
 为了使用 `RectAreaLight`，我们需要引入 three.js 的`RectAreaLightUniformsLib` 模块，同时使用 `RectAreaLightHelper` 来辅助查看灯光对象。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {RectAreaLightUniformsLib} from './resources/threejs/r132/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import {RectAreaLightHelper} from './resources/threejs/r132/examples/jsm/helpers/RectAreaLightHelper.js';
+import * as THREE from './build/three.module.js';
++import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```
 
 我们需要先调用 `RectAreaLightUniformsLib.init`
@@ -443,7 +443,7 @@ makeXYZGUI(gui, light.position, 'position');
 
 场景如下所示：
 
-{{{example url="../threejs-lights-rectarea.html" }}}
+{{{example url="lights-rectarea.html" }}}
 
 关于光照，我们尚未提及的是 `WebGLRenderer` 中有一个设置项 `physicallyCorrectLights`。这个设置会影响（随着离光源的距离增加）光照如何减弱。这个设置会影响点光源（`PointLight`）和聚光灯（`SpotLight`），矩形区域光（`RectAreaLight`）会自动应用这个特性。
 
@@ -478,11 +478,11 @@ gui.add(light, 'decay', 0, 4, 0.01);
 gui.add(light, 'power', 0, 2000);
 ```
 
-{{{example url="../threejs-lights-point-physically-correct.html" }}}
+{{{example url="lights-point-physically-correct.html" }}}
 
 需要注意，每添加一个光源到场景中，都会降低 three.js 渲染场景的速度，所以应该尽量使用最少的资源来实现想要的效果。
 
-接下来我们学习 three.js 中的 [相机](threejs-cameras.html)。
+接下来我们学习 three.js 中的 [相机](cameras.html)。
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>

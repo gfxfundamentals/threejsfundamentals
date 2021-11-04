@@ -2,7 +2,7 @@ Title: 3DLUT로 후처리하기
 Description: Three.js에서 3DLUT로 후처리하는 법을 알아봅니다
 TOC: LUT 파일로 후처리 효과 적용하기
 
-이전 글에서는 [후처리(Post processing)](threejs-post-processing.html)에 관해 알아보았습니다. 보통 후처리는 LUT 또는 3DLUT라고 부르기도 합니다. LUT는 룩업 테이블(Look-Up Table, 순람표)의 줄임말이고, 3DLUT는 3차원 룩업 테이블의 줄임말입니다.
+이전 글에서는 [후처리(Post processing)](post-processing.html)에 관해 알아보았습니다. 보통 후처리는 LUT 또는 3DLUT라고 부르기도 합니다. LUT는 룩업 테이블(Look-Up Table, 순람표)의 줄임말이고, 3DLUT는 3차원 룩업 테이블의 줄임말입니다.
 
 3DLUT는 2D 이미지를 특정한 색상 정육면체를 매핑한다고 생각하면 쉽습니다. 먼저 원본 이미지의 색상을 정육면체의 인덱스 값과 매칭시킵니다. 원본 이미지의 픽셀 하나당 해당 픽셀 색상의 빨강(red), 초록(green), 파랑(blue) 값을 이용해 정육면체의 특정 지점을 가리키는(look-up) 3D 벡터 인덱스를 만드는 것이죠. 이 인덱스를 통해 3DLUT에서 뽑아낸 값을 새로운 색으로 사용하는 겁니다.
 
@@ -12,23 +12,23 @@ TOC: LUT 파일로 후처리 효과 적용하기
 const newColor = lut[origColor.red][origColor.green][origColor.blue]
 ```
 
-물론 256x256x256 배열은 큰 배열입니다. [텍스처에 관한 글](threejs-textures.html)에서 배웠듯 텍스처는 크기에 상관 없이 0.0에서 1.0로 값을 지정합니다.
+물론 256x256x256 배열은 큰 배열입니다. [텍스처에 관한 글](textures.html)에서 배웠듯 텍스처는 크기에 상관 없이 0.0에서 1.0로 값을 지정합니다.
 
 8x8x8 정육면체를 예로 들어보죠.
 
-<div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
 
 먼저 0,0,0 부분을 검정색으로 채웁니다. 맞은편의 1,1,1 부분은 하얀색, 1,0,0 부분은 <span style="color:red;">빨강</span>, 0,1,0은 <span style="color:green;">초록</span>, 0,0,1은 <span style="color:blue;">파랑</span>으로 채웁니다.
 
-<div class="threejs_center"><img src="resources/images/3dlut-axis.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-axis.svg" class="noinvertdark" style="width: 500px"></div>
 
 그리고 각 축을 따라 색을 채워넣습니다.
 
-<div class="threejs_center"><img src="resources/images/3dlut-edges.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-edges.svg" class="noinvertdark" style="width: 500px"></div>
 
 빈 모서리를 2개 이상의 색상 채널을 사용하는 색으로 채웁니다(초록 + 빨강, 파랑 + 빨강 등).
 
-<div class="threejs_center"><img src="resources/images/3dlut-standard.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-standard.svg" class="noinvertdark" style="width: 500px"></div>
 
 마지막으로 빈 공간을 채웁니다. 이 형태가 3DLUT 기본 구조입니다. 지금은 효과를 주기 전과 후의 차이가 없습니다. 색상값을 인덱스로 사용해 새로운 색상값을 선택하면, 정확히 같은 색상값이 나오기 때문이죠.
 
@@ -40,15 +40,15 @@ const newColor = lut[origColor.red][origColor.green][origColor.blue]
 
 이 기법을 사용하면 룩업 테이블을 교체하는 것으로 많은 효과를 구현할 수 있습니다. 색상 계산 기반의 효과는 대부분 하나의 색상값만을 사용합니다. 색상, 대비, 채도, 컬러 캐스트(color cast), 틴트(tint), 밝기, 노출도, 레벨, 커브, 포스터화, 그림자, 강조, 등 거의 모든 효과를 색상값 계산을 기반으로 구현하죠. 또 이 모든 효과를 하나의 룩업 테이블로 합칠 수도 있습니다.
 
-룩업 테이블을 사용하려면 먼저 적용할 장면이 필요하니 간단한 장면을 하나 만들어보겠습니다. [glTF 불러오기](threejs-load-gltf.html)에서 배웠듯 glTF 파일을 불러와 사용하겠습니다. 예제에 사용할 모델은 [The Ice Wolves](https://sketchfab.com/sarath.irn.kat005)의 [작품](https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee)입니다.
+룩업 테이블을 사용하려면 먼저 적용할 장면이 필요하니 간단한 장면을 하나 만들어보겠습니다. [glTF 불러오기](load-gltf.html)에서 배웠듯 glTF 파일을 불러와 사용하겠습니다. 예제에 사용할 모델은 [The Ice Wolves](https://sketchfab.com/sarath.irn.kat005)의 [작품](https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee)입니다.
 
-[배경과 하늘 상자](threejs-backgrounds.html)에서 배웠던 대로 배경도 추가하겠습니다.
+[배경과 하늘 상자](backgrounds.html)에서 배웠던 대로 배경도 추가하겠습니다.
 
-{{{example url="../threejs-postprocessing-3dlut-prep.html" }}}
+{{{example url="postprocessing-3dlut-prep.html" }}}
 
 이제 장면을 구현했으니 3DLUT를 만들어야 합니다. 가장 간단한 3DLUT는 2x2x2 identity LUT로, 여기서 *identity(동일한)*은 아무런 변화도 없음을 의미합니다. 1을 곱하거나 아무것도 안 하는 경우와 같죠. LUT 안의 색상값을 사용한다고 해도 입력된 값과 정확히 같은 값을 반환할 테니까요.
 
-<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
 
 WebGL1은 3D 텍스쳐를 지원하지 않습니다. 따라서 3D 텍스처를 썰어 펼쳐 놓은 형태의 4x2짜리 2D 텍스처를 대신 사용하겠습니다.
 
@@ -87,7 +87,7 @@ const lutTextures = [
 ];
 ```
 
-[후처리에 관한 글](threejs-post-processing.html)에서 작성했던 코드를 가져와 이 쉐이더들을 대신 쓰도록 합니다.
+[후처리에 관한 글](post-processing.html)에서 작성했던 코드를 가져와 이 쉐이더들을 대신 쓰도록 합니다.
 
 ```js
 const lutShader = {
@@ -230,11 +230,11 @@ composer.render(delta);
 
 identity 3DLUT를 선택했을 때는 아무런 변화가 없습니다.
 
-{{{example url="../threejs-postprocessing-3dlut-identity.html" }}}
+{{{example url="postprocessing-3dlut-identity.html" }}}
 
 하지만 필터가 identity not filtered LUT를 선택하면 재미있는 결과가 나옵니다.
 
-<div class="threejs_center"><img src="resources/images/unfiltered-3dlut.jpg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/unfiltered-3dlut.jpg" style="width: 500px"></div>
 
 왜 이런 결과가 나온 걸까요? 필터링을 사용할 경우(linear), GPU는 선형적으로 색상값을 채워넣습니다. 필터링을 사용하지 않을 경우(nearest), 알아서 색상값을 채워넣지 않기에 3DLUT에서(근처의) 색상값이 있는 곳을 찾아 사용하는 것이죠.
 
@@ -282,23 +282,23 @@ drawColorCubeImage(ctx, 8);
 
 사이즈를 16으로 설정하고 `Save...` 버튼을 클릭하면 아래와 같은 파일이 나옵니다.
 
-<div class="threejs_center"><img src="resources/images/identity-lut-s16.png"></div>
+<div class="threejs_center"><img src="../resources/images/identity-lut-s16.png"></div>
 
 그리고 LUT를 적용할 화면을 캡쳐해야 합니다. 이 경우에는 이전에 만든 장면에 아무런 효과를 주지 않은 화면이겠죠. 대게 위 예제를 오른쪽 클릭해 "다른 이름으로 저장..."을 클릭하면 되지만, OS에 따라 마우스 우클릭이 동작하지 않을 수 있습니다. 제 경우 OS에 내장된 스크린샷 기능을 이용해 화면을 캡쳐했습니다*.
 
 ※ Windows 10 RS5(레드스톤 5) 이상이라면 `Windows + Shift + S`를 눌러 화면을 캡쳐할 수 있습니다. 역주.
 
-<div class="threejs_center"><img src="resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
 
 캡쳐본을 이미지 에디터에서 불러옵니다. 저는 포토샵을 사용해 샘플 이미지를 불러오고, 한쪽 귀퉁이에 3DLUT를 붙여 넣었습니다.
 
 > 참고: 제 경우 포토샵에서 캡쳐본 위에 lut 파일을 불러오려고 했을 때 이미지가 두 배 더 커졌습니다. 아마 DPI를 맞추거나 하는 이유 때문에 그런 거겠죠. lut 파일을 별도 탭에 불러와 캡쳐본 위에 복사 붙여 넣기 하니 정상적으로 불러와지더군요.
 
-<div class="threejs_center"><img src="resources/images/3dlut-photoshop-before.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-photoshop-before.jpg" style="width: 600px"></div>
 
 그리고 이미지에 부여하고 싶은 색상 효과를 부여합니다. 포토샵의 경우 대부분의 효과는 이미지(Image)->조정(Adjustments) 메뉴에 있습니다.
 
-<div class="threejs_center"><img src="resources/images/3dlut-photoshop-after.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-photoshop-after.jpg" style="width: 600px"></div>
 
 색상을 조정하면 3DLUT 이미지에도 같은 효과가 적용될 겁니다.
 
@@ -420,7 +420,7 @@ const lutTextures = [
 
 아래 예제에서 여러 lut를 시험해볼 수 있습니다.
 
-{{{example url="../threejs-postprocessing-3dlut.html" }}}
+{{{example url="postprocessing-3dlut.html" }}}
 
 추가로 한 가지 덧붙이겠습니다. 인터넷을 뒤져보니 Adobe에서 만든 표준 LUT 형식이 있더군요. [인터넷에서 검색](https://www.google.com/search?q=lut+files)해보면 이런 LUT 형식의 파일을 쉽게 찾을 수 있을 겁니다.
 
@@ -495,14 +495,14 @@ updateGUI();
 
 이제 [Adobe LUT 파일](https://www.google.com/search?q=lut+files)을 다운해 아래 예제에 드래그-앤-드롭으로 불러올 수 있을 겁니다.
 
-{{{example url="../threejs-postprocessing-3dlut-w-loader.html" }}}
+{{{example url="postprocessing-3dlut-w-loader.html" }}}
 
 다만 Adobe LUT는 온라인 환경에 최적화되지 않았습니다. 파일 용량이 꽤 큰 편이죠. 아래 예제를 사용하면 용량을 좀 더 줄일 수 있습니다. 드래그-앤-드롭으로 파일을 불러오고 크기를 선택한 뒤 "Save..." 버튼을 클릭하면 되죠.
 
 아래 예제는 단순히 위에서 썼던 예제를 조금 수정한 것입니다. glFT 파일 없이 배경만 렌더링한 것이죠. 배경 이미지는 아까 본 스크립트로 만든 identity lut 이미지입니다. 여기에 LUT 파일을 불러와 해당 LUT 파일을 PNG로 만드는 데 사용하는 것이죠.
 
-{{{example url="../threejs-postprocessing-adobe-lut-to-png-converter.html" }}}
+{{{example url="postprocessing-adobe-lut-to-png-converter.html" }}}
 
-이 글에서는 쉐이더가 어떻게 작동하는지에 대해서는 아예 설명하지 않았습니다. 나중에 GLSL에 대해 더 다룰 기회가 있었으면 좋겠네요. 쉐이더의 작동 방식을 알고 싶다면 [후처리에 관한 글](threejs-post-processing.html)에 있는 링크 또는 [이 유튜브 영상](https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s)을 참고하기 바랍니다.
+이 글에서는 쉐이더가 어떻게 작동하는지에 대해서는 아예 설명하지 않았습니다. 나중에 GLSL에 대해 더 다룰 기회가 있었으면 좋겠네요. 쉐이더의 작동 방식을 알고 싶다면 [후처리에 관한 글](post-processing.html)에 있는 링크 또는 [이 유튜브 영상](https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s)을 참고하기 바랍니다.
 
-<script type="module" src="resources/threejs-post-processing-3dlut.js"></script>
+<script type="module" src="../resources/threejs-post-processing-3dlut.js"></script>

@@ -3,9 +3,9 @@ Description: Les ombres dans Three.js
 TOC: Ombres
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
+Le premier article s'intitule [Principes de base](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là.
-L'[article précédent qui s'intéressait caméras](threejs-cameras.html) est à lire ainsi que [celui à propos des lumières](threejs-lights.html) avant d'entamer cet article-ci.
+L'[article précédent qui s'intéressait caméras](cameras.html) est à lire ainsi que [celui à propos des lumières](lights.html) avant d'entamer cet article-ci.
 
 Les ombres peuvent être un sujet compliqué. Il existe différentes solutions et toutes ont des compromis, y compris les solutions disponibles dans Three.js.
 
@@ -23,9 +23,9 @@ Une autre solution consiste à utiliser de fausses ombres. Créez un plan, place
 
 Par exemple, utilisons cette texture comme une fausse ombre.
 
-<div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
+<div class="threejs_center"><img src="../examples/resources/images/roundshadow.png"></div>
 
-Utilisons une partie du code de [l'article précédent](threejs-cameras.html).
+Utilisons une partie du code de [l'article précédent](cameras.html).
 
 Réglons la couleur de fond sur blanc.
 
@@ -92,7 +92,7 @@ const planeSize = 1;
 const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 ```
 
-Maintenant, nous allons faire un tas de sphères. Pour chaque sphère, nous allons créer une `base` `THREE.Object3D` et nous allons créer à la fois le maillage du plan d'ombre et le maillage de la sphère enfants de la base. De cette façon, si nous déplaçons la base, la sphère et l'ombre bougeront. Nous devons placer l'ombre légèrement au-dessus du sol pour éviter les combats en Z. Nous définissons également `depthWrite` sur false pour que les ombres ne se gâchent pas. Nous reviendrons sur ces deux problèmes dans un [autre article](threejs-transparency.html). L'ombre est un `MeshBasicMaterial` car elle n'a pas besoin d'éclairage.
+Maintenant, nous allons faire un tas de sphères. Pour chaque sphère, nous allons créer une `base` `THREE.Object3D` et nous allons créer à la fois le maillage du plan d'ombre et le maillage de la sphère enfants de la base. De cette façon, si nous déplaçons la base, la sphère et l'ombre bougeront. Nous devons placer l'ombre légèrement au-dessus du sol pour éviter les combats en Z. Nous définissons également `depthWrite` sur false pour que les ombres ne se gâchent pas. Nous reviendrons sur ces deux problèmes dans un [autre article](transparency.html). L'ombre est un `MeshBasicMaterial` car elle n'a pas besoin d'éclairage.
 
 Nous donnons à chaque sphère une teinte différente, puis nous enregistrons la base, le maillage de la sphère, le maillage de l'ombre et la position y initiale de chaque sphère.
 
@@ -193,13 +193,13 @@ function render(time) {
 
 Et voici 15 balles rebondissantes.
 
-{{{example url="../threejs-shadows-fake.html" }}}
+{{{example url="shadows-fake.html" }}}
 
 Dans certaines applications, il est courant d'utiliser une ombre ronde ou ovale pour tout, mais bien sûr, vous pouvez également utiliser différentes textures d'ombre de forme. Vous pouvez également donner à l'ombre un bord plus dur. Un bon exemple d'utilisation de ce type d'ombre est [Animal Crossing Pocket Camp](https://www.google.com/search?tbm=isch&q=animal+crossing+pocket+camp+screenshots) où vous pouvez voir que chaque personnage a une simple ombre ronde. C'est efficace et pas cher. [Monument Valley](https://www.google.com/search?q=monument+valley+screenshots&tbm=isch) semble également utiliser ce type d'ombre pour le personnage principal.
 
 Donc, en passant aux cartes d'ombre, il y a 3 lumières qui peuvent projeter des ombres. Le `DirectionalLight`, le `PointLight` et le `SpotLight`.
 
-Commençons avec la `DirectionalLight` avec l'aide de [l'article sur les lumières](threejs-lights.html).
+Commençons avec la `DirectionalLight` avec l'aide de [l'article sur les lumières](lights.html).
 
 La première chose à faire est d'activer les ombres dans le renderer (moteur de rendu).
 
@@ -240,11 +240,11 @@ mesh.receiveShadow = true;
 
 Et puis nous l'exécutons.
 
-{{{example url="../threejs-shadows-directional-light.html" }}}
+{{{example url="shadows-directional-light.html" }}}
 
 Que s'est-il passé? Pourquoi des parties des ombres manquent-elles ?
 
-C'est parce que les shadow maps sont créées en rendant la scène du point de vue de la lumière. C'est comme si il y avait une caméra dans la [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) qui regardait sa cible. Tout comme [la caméra de l'article précédent](threejs-cameras.html), la 'caméra de la lumière' définit une zone à l'intérieur de laquelle les ombres sont projetées. Dans l'exemple ci-dessus, cette zone est trop petite.
+C'est parce que les shadow maps sont créées en rendant la scène du point de vue de la lumière. C'est comme si il y avait une caméra dans la [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) qui regardait sa cible. Tout comme [la caméra de l'article précédent](cameras.html), la 'caméra de la lumière' définit une zone à l'intérieur de laquelle les ombres sont projetées. Dans l'exemple ci-dessus, cette zone est trop petite.
 
 Afin de bien visualiser cette zone, ajoutons un `CameraHelper` à la scène.
 
@@ -255,13 +255,13 @@ scene.add(cameraHelper);
 
 Maintenant, on peut voir cette zone où les ombres sont projetés.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
+{{{example url="shadows-directional-light-with-camera-helper.html" }}}
 
 Ajustez la valeur x cible dans les deux sens et il devrait être assez clair que seul ce qui se trouve à l'intérieur de la boîte de la caméra d'ombre de la lumière est l'endroit où les ombres sont dessinées.
 
 Nous pouvons ajuster la taille de cette boîte en ajustant la caméra d'ombre de la lumière.
 
-Ajoutons quelques paramètres à dat.GUI pour ajuster les ombres. Étant donné qu'une [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) représente la lumière allant dans une direction parallèle, la [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) utilise une [`OrthographicCamera`](https://threejs.org/docs/#api/en/cameras/OrthographicCamera) pour sa caméra d'ombre. Nous avons expliqué le fonctionnement d'une caméra orthographique dans [l'article précédent sur les caméras](threejs-cameras.html).
+Ajoutons quelques paramètres à dat.GUI pour ajuster les ombres. Étant donné qu'une [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) représente la lumière allant dans une direction parallèle, la [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) utilise une [`OrthographicCamera`](https://threejs.org/docs/#api/en/cameras/OrthographicCamera) pour sa caméra d'ombre. Nous avons expliqué le fonctionnement d'une caméra orthographique dans [l'article précédent sur les caméras](cameras.html).
 
 Pour rappel, une `OrthographicCamera` définit son *frustum* par ses propriètès `left`, `right`, `top`, `bottom`, `near`, `far` et `zoom`.
 
@@ -286,7 +286,7 @@ class DimensionGUIHelper {
 }
 ```
 
-Utilisons aussi le `MinMaxGUIHelper` que nous avons créé dans [l'article sur les caméra](threejs-cameras.html) pour paramètrer `near` et `far`.
+Utilisons aussi le `MinMaxGUIHelper` que nous avons créé dans [l'article sur les caméra](cameras.html) pour paramètrer `near` et `far`.
 
 ```js
 const gui = new GUI();
@@ -326,13 +326,13 @@ updateCamera();
 
 Et maintenant que nous avons accès aux propriètès de la caméra d'ombre, jouons avec.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
+{{{example url="shadows-directional-light-with-camera-gui.html" }}}
 
 Réglez `width` et `height` sur 30 et vous verrez que les ombres sont correctement projetées.
 
 Mais cela soulève la question, pourquoi ne pas simplement définir `width` et `height` avec des chiffres plus grands ? Réglez la largeur et la hauteur sur 100 et vous pourriez voir quelque chose comme ceci.
 
-<div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
 Que se passe-t-il avec ces ombres basse résolution ?!
 
@@ -352,21 +352,21 @@ L'`aspect` est directement définit en fonction de la taille de la zone d'ombre.
 +const light = new THREE.SpotLight(color, intensity);
 ```
 
-Rajoutons les paramètres `penumbra` et `angle` vu dans [l'article sur les lumières](threejs-lights.html).
+Rajoutons les paramètres `penumbra` et `angle` vu dans [l'article sur les lumières](lights.html).
 
-{{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
+{{{example url="shadows-spot-light-with-camera-gui.html" }}}
 
 <!--
 You can notice, just like the last example if we set the angle high
 then the shadow map, the texture is spread over a very large area and
 the resolution of our shadows gets really low.
 
-div class="threejs_center"><img src="resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
+div class="threejs_center"><img src="../resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
 
 You can increase the size of the shadow map as mentioned above. You can
 also blur the result
 
-{{{example url="../threejs-shadows-spot-light-with-shadow-radius" }}}
+{{{example url="shadows-spot-light-with-shadow-radius" }}}
 -->
 
 
@@ -402,7 +402,7 @@ Et bien sûr, il faut passer la lumière en `PointLight`.
 +scene.add(helper);
 ```
 
-{{{example url="../threejs-shadows-point-light.html" }}}
+{{{example url="shadows-point-light.html" }}}
 
 Utilisez les paramètres position de dat.GUI pour déplacer la lumière et vous verrez les ombres se projeter sur tous les murs. Vous pouvez également ajuster les paramètres near et far et voir comment les autres ombres se comportent.
 

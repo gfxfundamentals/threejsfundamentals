@@ -52,13 +52,13 @@ for (let y = 0; y < cellSize; ++y) {
 }
 ```
 
-나머지 코드는 [불필요한 렌더링 제거하기](threejs-rendering-on-demand.html)에서 가져왔습니다.
+나머지 코드는 [불필요한 렌더링 제거하기](rendering-on-demand.html)에서 가져왔습니다.
 
-{{{example url="../threejs-voxel-geometry-separate-cubes.html" }}}
+{{{example url="voxel-geometry-separate-cubes.html" }}}
 
-처음 초기화하는 데도 시간이 오래 걸리고 카메라를 움직이면 굉장히 버벅일 겁니다. [다중 요소 최적화하기](threejs-optimize-lots-of-objects.html)의 경우와 마찬가지로 너무 많은 물체가 있는 탓이죠. 256x256, 육면체가 총 65,536개나 있으니 그럴 만합니다.
+처음 초기화하는 데도 시간이 오래 걸리고 카메라를 움직이면 굉장히 버벅일 겁니다. [다중 요소 최적화하기](optimize-lots-of-objects.html)의 경우와 마찬가지로 너무 많은 물체가 있는 탓이죠. 256x256, 육면체가 총 65,536개나 있으니 그럴 만합니다.
 
-[geometry를 합치면](threejs-rendering-on-demand.html) 이 문제를 해결할 수 있습니다. 내친김에 언덕 한 겹이 아니라 땅까지 복셀을 채워보도록 하죠. 반복문을 다음처럼 수정해 빈 공간을 전부 채우도록 합니다.
+[geometry를 합치면](rendering-on-demand.html) 이 문제를 해결할 수 있습니다. 내친김에 언덕 한 겹이 아니라 땅까지 복셀을 채워보도록 하죠. 반복문을 다음처럼 수정해 빈 공간을 전부 채우도록 합니다.
 
 ```js
 for (let y = 0; y < cellSize; ++y) {
@@ -460,7 +460,7 @@ for (let y = 0; y < cellSize; ++y) {
 }
 ```
 
-[BufferGeometry에 관한 글](threejs-custom-buffergeometry.html)에서 다뤘던 대로 실제 geometry를 생성하는 코드도 작성합니다.
+[BufferGeometry에 관한 글](custom-buffergeometry.html)에서 다뤘던 대로 실제 geometry를 생성하는 코드도 작성합니다.
 
 ```js
 const { positions, normals, indices } = world.generateGeometryDataForCell(0, 0, 0);
@@ -482,13 +482,13 @@ scene.add(mesh);
 
 한 번 테스트해보죠.
 
-{{{example url="../threejs-voxel-geometry-culled-faces.html" }}}
+{{{example url="voxel-geometry-culled-faces.html" }}}
 
 잘 완성한 것 같네요! 여기에 실제 마인크래프트처럼 텍스처를 넣어봅시다.
 
 인터넷을 뒤져 이 [텍스처들](https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/1245961-16x-1-7-4-wip-flourish)을 찾았습니다(라이선스: [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/), 작가: [Joshtimus](https://www.minecraftforum.net/members/Joshtimus)). 그리고 여기서 몇 가지를 임의로 골라 [텍스처 아틀라스(texture atlas)](https://www.google.com/search?q=texture+atlas)를 만들었습니다.
 
-<div class="threejs_center"><img class="checkerboard" src="../resources/images/minecraft/flourish-cc-by-nc-sa.png" style="width: 512px; image-rendering: pixelated;"></div>
+<div class="threejs_center"><img class="checkerboard" src="../examples/resources/images/minecraft/flourish-cc-by-nc-sa.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 작업을 간단히 하기 위해 텍스처를 열별로 정렬했습니다. 첫 번째 줄은 복셀의 옆면, 두 번째 줄은 복셀의 윗면, 세 번째 줄은 복셀의 아랫면이죠.
 
@@ -738,7 +738,7 @@ for (let y = 0; y < cellSize; ++y) {
 
 한 번 실행해보죠!
 
-{{{example url="../threejs-voxel-geometry-culled-faces-with-textures.html"}}}
+{{{example url="voxel-geometry-culled-faces-with-textures.html"}}}
 
 코드를 좀 더 발전시켜 하나 이상의 cell을 추가할 수 있도록 해봅시다.
 
@@ -901,7 +901,7 @@ function allowUncheck() {
 }
 ```
 
-아래 코드는 사용자가 클릭한 지점에 복셀을 추가하는 역할입니다. [피킹에 관한 글](threejs-picking.html)에서 썼던 것과 비슷한 방법을 사용하는데, Three.js의 내장 `RayCaster`가 아닌 교차하는 지점의 좌표와 교차한 점의 법선(normal)을 반환하는 `VoxelWorld.intersectRay`를 사용합니다.
+아래 코드는 사용자가 클릭한 지점에 복셀을 추가하는 역할입니다. [피킹에 관한 글](picking.html)에서 썼던 것과 비슷한 방법을 사용하는데, Three.js의 내장 `RayCaster`가 아닌 교차하는 지점의 좌표와 교차한 점의 법선(normal)을 반환하는 `VoxelWorld.intersectRay`를 사용합니다.
 
 ```js
 function getCanvasRelativePosition(event) {
@@ -1052,7 +1052,7 @@ function updateCellGeometry(x, y, z) {
 
 위 함수는 인덱스 맵과 cell의 id로 미리 만든 mesh가 있는지 확인합니다. 만약 해당 id(좌표)에 해당하는 cell이 없다면 새로운 cell mesh를 만들어 장면에 추가한 뒤 mesh의 속성과 인덱스 맵을 업데이트합니다.
 
-{{{example url="../threejs-voxel-geometry-culled-faces-ui.html"}}}
+{{{example url="voxel-geometry-culled-faces-ui.html"}}}
 
 참고:
 
@@ -1075,4 +1075,4 @@ function updateCellGeometry(x, y, z) {
 이 글이 Three.js로 마인크래프트 같은 그래픽을 구현할 때 좋은 시작점을 마련하고, geometry를 최적화하는 데 도움이 되었으면 합니다.
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-voxel-geometry.js"></script>
+<script type="module" src="../resources/threejs-voxel-geometry.js"></script>

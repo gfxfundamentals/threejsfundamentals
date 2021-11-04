@@ -3,7 +3,7 @@ Description: HTML要素を3D空間の点に合わせて並べる方法
 TOC: HTML要素を3Dに揃える
 
 この記事はThree.jsの連載記事の1つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでいない場合、そこから始めると良いかもしれません。
 
 3Dシーンにテキスト表示させたい場合があると思います。
@@ -11,13 +11,13 @@ TOC: HTML要素を3Dに揃える
 
 * 3Dテキストを使用する
 
-  [プリミティブの記事](threejs-primitives.html)を見ると `TextGeometry` があり、3Dテキストが作れます。
+  [プリミティブの記事](primitives.html)を見ると `TextGeometry` があり、3Dテキストが作れます。
   ロゴを飛ばすには便利ですが、統計や情報、ラベル付けなどにはあまり便利でないかもしれません。
 
 * テキストが描かれたテクスチャを使用する
 
-  [この記事](threejs-canvas-textures.html)ではキャンバスをテクスチャとして使いました。
-  キャンバスにテキストを描画して[ビルボードとして表示できます](threejs-billboards.html)。
+  [この記事](canvas-textures.html)ではキャンバスをテクスチャとして使いました。
+  キャンバスにテキストを描画して[ビルボードとして表示できます](billboards.html)。
   この方法のメリットは、3Dシーンにテキストが組み込まれている事かもしれません。
   3Dシーンの中でPC端末のようなものを描画するには最適かもしれません。
 
@@ -32,13 +32,13 @@ TOC: HTML要素を3Dに揃える
 
 まずは簡単に始めてみましょう。
 いくつかのプリミティブで3Dシーンを作り、それぞれのプリミティブにラベルを付けます。
-[レスポンシブの記事](threejs-responsive.html)の例を使います。
+[レスポンシブの記事](responsive.html)の例を使います。
 
-[ライティングの記事](threejs-lights.html)のように `OrbitControls` を追加します。
+[ライティングの記事](lights.html)のように `OrbitControls` を追加します。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -184,17 +184,17 @@ const tempV = new THREE.Vector3();
 
 そして、ラベルを対応するオブジェクトに合わせて位置を指定します。
 
-{{{example url="../threejs-align-html-to-3d.html" }}}
+{{{example url="align-html-to-3d.html" }}}
 
 動かしてみると対処したい問題がいくつか出ると思います。
 
 1つの問題は、オブジェクトを回転させると全てのラベルが重なってしまいます。
 
-<div class="threejs_center"><img src="resources/images/overlapping-labels.png" style="width: 307px;"></div>
+<div class="threejs_center"><img src="../resources/images/overlapping-labels.png" style="width: 307px;"></div>
 
 もう1つの問題は、オブジェクトが錐台の外に出るようにズームアウトしても、ラベルが消えずに表示されたままです。
 
-オブジェクトが重なる問題の解決策は[ピッキング記事のピッキングコード](threejs-picking.html)を使います。
+オブジェクトが重なる問題の解決策は[ピッキング記事のピッキングコード](picking.html)を使います。
 画面上のオブジェクトの位置を入力し、`RayCaster` にどのオブジェクトが交差していたか教えてもらいます。
 オブジェクトが最初のものでなければ前面に表示されません。
 
@@ -257,7 +257,7 @@ cubes.forEach((cubeInfo, ndx) => {
 
 正規化された座標には計算した `z` の値が含まれており、カメラの錐台の `near` は-1、`far` は+1の値になります。
 
-{{{example url="../threejs-align-html-to-3d-w-hiding.html" }}}
+{{{example url="align-html-to-3d-w-hiding.html" }}}
 
 錐台のチェックではオブジェクトの原点をチェックしているだけなので、上記の解決策では失敗します。特に大きなオブジェクトの場合などです。
 オブジェクトの原点は錐台の外にあるかもしれませんが、オブジェクトの半分は錐台の中にあるかもしれません。
@@ -294,7 +294,7 @@ const inFrustum = frustum.contains(someMesh));
 
 現在の重なりの解決策にも同様の問題があります。
 ピッキングが遅いです。
-[ピッキングの記事](threejs-picking.html)で取り上げたように、GPUベースのピッキングを使う事もできますがコストがかからない訳ではありません。
+[ピッキングの記事](picking.html)で取り上げたように、GPUベースのピッキングを使う事もできますがコストがかからない訳ではありません。
 どの解決策を選択するかはニーズによります。
 
 もう1つの問題はラベルの表示順序です。
@@ -320,7 +320,7 @@ const cubes = [
 
 そうすると次のような問題が発生します。
 
-<div class="threejs_center"><img src="resources/images/label-sorting-issue.png" style="width: 401px;"></div>
+<div class="threejs_center"><img src="../resources/images/label-sorting-issue.png" style="width: 401px;"></div>
 
 上記では紫のボックスは奥にありますが、紫のボックスのラベルはアクアのボックスの前にあります。
 
@@ -359,7 +359,7 @@ zIndexを正しく動作させるには、値を分散させるために大き�
 
 これでラベルは常に正しい順序で表示されます。
 
-{{{example url="../threejs-align-html-to-3d-w-sorting.html" }}}
+{{{example url="align-html-to-3d-w-sorting.html" }}}
 
 もう1つの問題を確認ために、もう1つの例をやってみましょう。
 Googleマップのような地球儀を描いて、国名のラベルを貼ってみましょう。
@@ -369,7 +369,7 @@ Googleマップのような地球儀を描いて、国名のラベルを貼っ�
 
 データを読み込んで、国の概要と国名、その位置を含むJSONデータを生成するための[コード](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)を書いてみました。
 
-<div class="threejs_center"><img src="../resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
+<div class="threejs_center"><img src="../examples/resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
 
 JSONデータは以下のような配列です。
 
@@ -398,7 +398,7 @@ JSONデータは以下のような配列です。
 min、max、lat、lon、これは全て緯度と経度です。
 
 ロードしてみましょう。
-このコードは[多くのオブジェクトを最適化](threejs-optimize-lots-of-objects.html)のコードの流用ですが、オブジェクトをたくさん描画しているわけではないので[要求されたレンダリング](threejs-rendering-on-demand.html)と同じ解決策を使います。
+このコードは[多くのオブジェクトを最適化](optimize-lots-of-objects.html)のコードの流用ですが、オブジェクトをたくさん描画しているわけではないので[要求されたレンダリング](rendering-on-demand.html)と同じ解決策を使います。
 
 まずは球体を作り、アウトラインテクスチャを使います。
 
@@ -436,7 +436,7 @@ loadCountryData();
 
 では、そのデータを使ってラベルを生成して配置してみましょう。
 
-[多くのオブジェクトを最適化](threejs-optimize-lots-of-objects.html)の記事ではヘルパーオブジェクトの小さなシーングラフを設定し、地球儀上の緯度と経度の位置を簡単に計算できるようにしました。
+[多くのオブジェクトを最適化](optimize-lots-of-objects.html)の記事ではヘルパーオブジェクトの小さなシーングラフを設定し、地球儀上の緯度と経度の位置を簡単に計算できるようにしました。
 仕組みの説明はその記事を参照して下さい。
 
 ```js
@@ -541,7 +541,7 @@ function render() {
 
 そして、これが結果です。
 
-{{{example url="../threejs-align-html-elements-to-3d-globe-too-many-labels.html" }}}
+{{{example url="align-html-elements-to-3d-globe-too-many-labels.html" }}}
 
 ラベルが多すぎる！
 
@@ -701,8 +701,8 @@ for (const countryInfo of countryInfos) {
 値を操作できるようにGUIを追加します。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
@@ -741,7 +741,7 @@ function updateLabels() {
 
 その結果が以下です。
 
-{{{example url="../threejs-align-html-elements-to-3d-globe.html" }}}
+{{{example url="align-html-elements-to-3d-globe.html" }}}
 
 回転させて地球儀の背面にいったラベルが消えるようになりました。
 `minVisibleDot` を調整してカットオフの変化を見る事ができます。
@@ -756,7 +756,7 @@ Googleマップの開発者は、どのラベルを表示するかを決定し�
 これらの例がHTML要素を3Dに配置する方法について、あなたにいくつかのアイデアを与えられたと思います。
 変更したい事がいくつかあります。
 
-次は[国を選んでハイライトする](threejs-indexed-textures.html)ようにしてみましょう。
+次は[国を選んでハイライトする](indexed-textures.html)ようにしてみましょう。
 
-<link rel="stylesheet" href="resources/threejs-align-html-elements-to-3d.css">
-<script type="module" src="resources/threejs-align-html-elements-to-3d.js"></script>
+<link rel="stylesheet" href="../resources/threejs-align-html-elements-to-3d.css">
+<script type="module" src="../resources/threejs-align-html-elements-to-3d.js"></script>

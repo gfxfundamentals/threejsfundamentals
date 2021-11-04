@@ -9,7 +9,7 @@ Three.js her zaman olmasa da öncesine göre daha sıklıkla WebGl ile karışt�
 WebGL ile herhangi yararlı bir şey yapmak birazcık kod gerektirir ve three.js burada devreye girer.
 Sahneler, ışıklar, gölgeler, malzemeler, dokular, 3d matematik gibi şeyleri halleder, eğer direkt olarak WebGL kullansaydınız bunların hepsini kendiniz yazmak zorunda kalırdınız.
 
-Bu dersler halihazırda Javascript bildiğinizi varsayar ve çoğu bölümünde ES6 stilini kullanacaklar. [Halihazırda bilmenizin beklendiği şeylerin kısa listesine buradan bakabilirsiniz](threejs-prerequisites.html).
+Bu dersler halihazırda Javascript bildiğinizi varsayar ve çoğu bölümünde ES6 stilini kullanacaklar. [Halihazırda bilmenizin beklendiği şeylerin kısa listesine buradan bakabilirsiniz](prerequisites.html).
 Three.js'i destekleyen çoğu tarayıcı otomatik olarak desteklendiğinden çoğu kullanıcı bu kodu çalıştırabilir. Eğer bu kodu gerçekten eski tarayıcılarda çalıştırmak istiyorsanız [Babel](https://babeljs.io) gibi bir aktarıcıya bakın.
 Elbette gerçekten eski tarayıcılarda çalışan kullanıcıların makineleri muhtemelen three.js'i çalıştırmayacaktır.
 
@@ -23,7 +23,7 @@ of a three.js app. A three.js app requires you to create a bunch of
 objects and connect them together. Here's a diagram that represents
 a small three.js app
 
-<div class="threejs_center"><img src="resources/images/threejs-structure.svg" style="width: 768px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-structure.svg" style="width: 768px;"></div>
 
 Things to notice about the diagram above.
 
@@ -32,7 +32,7 @@ Things to notice about the diagram above.
   the 3D scene that is inside the *frustum* of the camera as a 2D image to a
   canvas.
 
-* There is a [scenegraph](threejs-scenegraph.html) which is a tree like
+* There is a [scenegraph](scenegraph.html) which is a tree like
   structure, consisting of various objects like a `Scene` object, multiple
   `Mesh` objects, `Light` objects, `Group`, `Object3D`, and `Camera` objects. A
   `Scene` object defines the root of the scenegraph and contains properties like
@@ -41,14 +41,14 @@ Things to notice about the diagram above.
   oriented. Children are positioned and oriented relative to their parent. For
   example the wheels on a car might be children of the car so that moving and
   orienting the car's object automatically moves the wheels. You can read more
-  about this in [the article on scenegraphs](threejs-scenegraph.html).
+  about this in [the article on scenegraphs](scenegraph.html).
 
   Note in the diagram `Camera` is half in half out of the scenegraph. This is to
   represent that in three.js, unlike the other objects, a `Camera` does not have
   to be in the scenegraph to function. Just like other objects, a `Camera`, as a
   child of some other object, will move and orient relative to its parent object.
   There is an example of putting multiple `Camera` objects in a scenegraph at
-  the end of [the article on scenegraphs](threejs-scenegraph.html).
+  the end of [the article on scenegraphs](scenegraph.html).
 
 * `Mesh` objects represent drawing a specific `Geometry` with a specific
    `Material`. Both `Material` objects and `Geometry` objects can be used by
@@ -62,31 +62,31 @@ Things to notice about the diagram above.
 * `Geometry` objects represent the vertex data of some piece of geometry like
    a sphere, cube, plane, dog, cat, human, tree, building, etc...
    Three.js provides many kinds of built in
-   [geometry primitives](threejs-primitives.html). You can also
-   [create custom geometry](threejs-custom-buffergeometry.html) as well as
-   [load geometry from files](threejs-load-obj.html).
+   [geometry primitives](primitives.html). You can also
+   [create custom geometry](custom-buffergeometry.html) as well as
+   [load geometry from files](load-obj.html).
 
 * `Material` objects represent
-  [the surface properties used to draw geometry](threejs-materials.html)
+  [the surface properties used to draw geometry](materials.html)
   including things like the color to use and how shiny it is. A `Material` can also
   reference one or more `Texture` objects which can be used, for example,
   to wrap an image onto the surface of a geometry.
 
-* `Texture` objects generally represent images either [loaded from image files](threejs-textures.html),
-  [generated from a canvas](threejs-canvas-textures.html) or [rendered from another scene](threejs-rendertargets.html).
+* `Texture` objects generally represent images either [loaded from image files](textures.html),
+  [generated from a canvas](canvas-textures.html) or [rendered from another scene](rendertargets.html).
 
-* `Light` objects represent [different kinds of lights](threejs-lights.html).
+* `Light` objects represent [different kinds of lights](lights.html).
 
 Given all of that we're going to make the smallest *"Hello Cube"* setup
 that looks like this
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
 
 First let's load three.js
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 </script>
 ```
 
@@ -109,7 +109,7 @@ We will ask three.js to draw into that canvas so we need to look it up.
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -149,7 +149,7 @@ dimension. Note that most angles in three.js are in radians but for some
 reason the perspective camera takes degrees.
 
 `aspect` is the display aspect of the canvas. We'll go over the details
-[in another article](threejs-responsive.html) but by default a canvas is
+[in another article](responsive.html) but by default a canvas is
  300x150 pixels which makes the aspect 300/150 or 2.
 
 `near` and `far` represent the space in front of the camera
@@ -161,7 +161,7 @@ a 3d shape that is like a pyramid with the tip sliced off. In other
 words think of the word "frustum" as another 3D shape like sphere,
 cube, prism, frustum.
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
 The height of the near and far planes are determined by the field of view.
 The width of both planes is determined by the field of view and the aspect.
@@ -179,7 +179,7 @@ camera.position.z = 2;
 
 Here's what we're aiming for.
 
-<img src="resources/scene-down.svg" width="500" class="threejs_center"/>
+<img src="../resources/scene-down.svg" width="500" class="threejs_center"/>
 
 In the diagram above we can see our camera is at `z = 2`. It's looking
 down the -Z axis. Our frustum starts 0.1 units from the front of the camera
@@ -190,7 +190,7 @@ our specified 75 degrees which is the vertical field of view.
 
 Next we make a `Scene`. A `Scene` in three.js is the root of a form of scene graph.
 Anything you want three.js to draw needs to be added to the scene. We'll
-cover more details of [how scenes work in a future article](threejs-scenegraph.html).
+cover more details of [how scenes work in a future article](scenegraph.html).
 
 ```js
 const scene = new THREE.Scene();
@@ -240,7 +240,7 @@ renderer.render(scene, camera);
 
 Here's a working example
 
-{{{example url="../threejs-fundamentals.html" }}}
+{{{example url="fundamentals.html" }}}
 
 It's kind of hard to tell that is a 3D cube since we're viewing
 it directly down the -Z axis and the cube itself is axis aligned
@@ -286,11 +286,11 @@ our loop.
 
 Outside the loop we call `requestAnimationFrame` one time to start the loop.
 
-{{{example url="../threejs-fundamentals-with-animation.html" }}}
+{{{example url="fundamentals-with-animation.html" }}}
 
 It's a little better but it's still hard to see the 3d. What would help is to
 add some lighting so let's add a light. There are many kinds of lights in
-three.js which we'll go over in [a future article](threejs-lights.html). For now let's create a directional light.
+three.js which we'll go over in [a future article](lights.html). For now let's create a directional light.
 
 ```js
 {
@@ -317,11 +317,11 @@ lights. Let's change it to a `MeshPhongMaterial` which is affected by lights.
 
 Here is our new program structure
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
 
 And here it is working.
 
-{{{example url="../threejs-fundamentals-with-light.html" }}}
+{{{example url="fundamentals-with-light.html" }}}
 
 It should now be pretty clearly 3D.
 
@@ -378,7 +378,7 @@ function render(time) {
 
 and here's that.
 
-{{{example url="../threejs-fundamentals-3-cubes.html" }}}
+{{{example url="fundamentals-3-cubes.html" }}}
 
 If you compare it to the top down diagram above you can see
 it matches our expectations. With cubes at X = -2 and X = +2
@@ -388,14 +388,14 @@ across the canvas is so extreme.
 
 Our program now has this structure
 
-<div class="threejs_center"><img src="resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
 
 As you can see we have 3 `Mesh` objects each referencing the same `BoxGeometry`.
 Each `Mesh` references a unique `MeshPhongMaterial` so that each cube can have
 a different color.
 
 I hope this short intro helps to get things started. [Next up we'll cover
-making our code responsive so it is adaptable to multiple situations](threejs-responsive.html).
+making our code responsive so it is adaptable to multiple situations](responsive.html).
 
 <div id="es6" class="threejs_bottombar">
 <h3>es6 modules, three.js, and folder structure</h3>
@@ -407,7 +407,7 @@ both
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 

@@ -2,8 +2,8 @@ Title: Three.js 阴影
 Description: Three.js 的阴影
 TOC: 阴影
 
-本文是 three.js 系列文章中的一部分。第一篇文章为 [three.js 基础](threejs-fundamentals.html)。如果你是个新手，还没读过，请从那里开始。
-[前一篇文章关于相机](threejs-cameras.html)，[再前一遍文章关于灯光](threejs-lights.html)，这些文章都很重要。
+本文是 three.js 系列文章中的一部分。第一篇文章为 [three.js 基础](fundamentals.html)。如果你是个新手，还没读过，请从那里开始。
+[前一篇文章关于相机](cameras.html)，[再前一遍文章关于灯光](lights.html)，这些文章都很重要。
 
 电脑中的阴影可以是一个很复杂的话题。有各种各样的解决方案，所有这些都有权衡，包括 three.js 中可用的解决方案。
 
@@ -21,9 +21,9 @@ Three.js 默认使用*shadow maps（阴影贴图）*，阴影贴图的工作方�
 
 这个例子我们将使用假阴影
 
-<div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
+<div class="threejs_center"><img src="../examples/resources/images/roundshadow.png"></div>
 
-我们使用 [前一篇文章](threejs-cameras.html)的代码.
+我们使用 [前一篇文章](cameras.html)的代码.
 
 首先让我们将场景的背景颜色设置为白色
 
@@ -98,7 +98,7 @@ const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 
 现在我们将创建一堆球体，对于每个球体都将创建一个`基础`的`THREE.Object3D`，并且我们将同时创建阴影平面网格和球体网格。这样，如果我们同时移动球体，阴影也一并移动，我们只需要将阴影稍微放置再地面上，防止 Z 轴阴影和地面重叠。
 我们将`depthWrite`属性设置为 false，这样使阴影之间不会彼此混淆。
-我们将在[另一篇文章](threejs-transparency.html)中讨论这两个问题。
+我们将在[另一篇文章](transparency.html)中讨论这两个问题。
 因为阴影的材质是`MeshBasicMaterial`，所以它并不需要照明
 
 我们将每个球体使用不同的色相，然后保存每个球体的基础、球体网格、阴影网格和初始 y 位置。
@@ -207,13 +207,13 @@ function render(time) {
 
 这里有 15 种弹跳球
 
-{{{example url="../threejs-shadows-fake.html" }}}
+{{{example url="shadows-fake.html" }}}
 
 在某些应用程序中使用圆形或者椭圆的阴影也是很常见的。当然也可以使用不同形状的阴影纹理，也可以将阴影的边缘锐化。使用这种类型的阴影的例子是 [Animal Crossing Pocket Camp](https://www.google.com/search?tbm=isch&q=animal+crossing+pocket+camp+screenshots)，在其中你可以看到每个字符都有一个简单的原型阴影。这种方式很有效，也很方便。[Monument Valley 纪念碑谷](https://www.google.com/search?q=monument+valley+screenshots&tbm=isch)看起来似乎也使用这种阴影。
 
 因此，移动阴影贴图，有三种光可以投射阴影，分别为`DirectionalLight 定向光`、 `PointLight 点光源`、`SpotLight 聚光灯`，
 
-让我们从 `DirectionalLight 定向光` 开始。这里我们使用[关于灯光的文章](threejs-lights.html)作为基础
+让我们从 `DirectionalLight 定向光` 开始。这里我们使用[关于灯光的文章](lights.html)作为基础
 
 第一件事是设置渲染器中的阴影属性
 
@@ -253,11 +253,11 @@ mesh.receiveShadow = true;
 
 然后我们运行它
 
-{{{example url="../threejs-shadows-directional-light.html" }}}
+{{{example url="shadows-directional-light.html" }}}
 
 发生了什么？为什么阴影的一部分不见了
 
-原因是阴影是通过光线的角度渲染场景之后生成的。在这种情况下，现在只有一个`DirectionalLight 定向光`在照射这个球体，就像我们之前的文章[关于相机](threejs-cameras.html)，光源的阴影相机决定了阴影投射的区域。在上面的例子中，该区域太小了。
+原因是阴影是通过光线的角度渲染场景之后生成的。在这种情况下，现在只有一个`DirectionalLight 定向光`在照射这个球体，就像我们之前的文章[关于相机](cameras.html)，光源的阴影相机决定了阴影投射的区域。在上面的例子中，该区域太小了。
 
 为了可视化该区域，我们可以通过`CameraHelper 相机帮助类` 来获取光源的阴影相机。
 
@@ -268,7 +268,7 @@ scene.add(cameraHelper);
 
 你现在可以看到光源的阴影相机可以投射的区域。
 
-{{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
+{{{example url="shadows-directional-light-with-camera-helper.html" }}}
 
 我们来回调整相机的 x 坐标值。这样我们可以很清楚的看到：光源的阴影相机所包围的 box 才是能投射阴影的区域。
 
@@ -276,7 +276,7 @@ scene.add(cameraHelper);
 
 现在我们添加一些可以调整光源相关属性的 GUI 设置。
 由于`DirectionalLight 定向光`表现形式是光照一直都是平行方向移动的，所以我们在`DirectionalLight 定向光`中使用`OrthographicCamera 正交相机`为了观察阴影相机。
-我们在 [关于相机的文章](threejs-cameras.html)介绍了`OrthographicCamera 正交相机`是如何工作的。
+我们在 [关于相机的文章](cameras.html)介绍了`OrthographicCamera 正交相机`是如何工作的。
 
 回忆`OrthographicCamera 正交相机`的定义和其视图的用法，以及其属性：`left`, `right`, `top`, `bottom`, `near`, `far`,`zoom`
 
@@ -300,7 +300,7 @@ class DimensionGUIHelper {
 }
 ```
 
-我们也会使用在[关于相机的文中](threejs-cameras.html)中创建的`MinMaxGUIHelper`，他将负责`near` and `far`的变化
+我们也会使用在[关于相机的文中](cameras.html)中创建的`MinMaxGUIHelper`，他将负责`near` and `far`的变化
 
 ```js
 const gui = new GUI();
@@ -340,13 +340,13 @@ updateCamera();
 
 现在我们给了光的阴影相机一个 GUI，我们可以尝试随意更改其中的值。
 
-{{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
+{{{example url="shadows-directional-light-with-camera-gui.html" }}}
 
 将`width` 和 `height`的值设置在 30 附近，我们将看到阴影是正常渲染的，因为这个区域都在阴影相机的投影范围内。
 
 这也带来一个疑问。为什么我们不将`width` 和 `height`设置成一个非常大的值，这样不就可以投影一切了？我们将它设置成 100 来看看会发生什么。
 
-<div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
 我们将看到一些块状的阴影！
 
@@ -361,9 +361,9 @@ updateCamera();
 +const light = new THREE.SpotLight(color, intensity);
 ```
 
-我们在[关于灯光的文章](threejs-lights.html)中添加了`penumbra` 和 `angle`的相关介绍
+我们在[关于灯光的文章](lights.html)中添加了`penumbra` 和 `angle`的相关介绍
 
-{{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
+{{{example url="shadows-spot-light-with-camera-gui.html" }}}
 
 最后，我们介绍 `PointLight 聚光灯`的阴影投射。
 `PointLight 聚光灯`是向四面八方发散的，所以唯一的设置只有`near` 和 `far`。实际上`PointLight 聚光灯` 相当于 6 个面的`SpotLight 点光源`组合而成。这意味着它的渲染速度要慢得多，相当于整个场景的阴影和渲染 6 次，每个方向(面)都需要渲染一次。
@@ -398,6 +398,6 @@ updateCamera();
 +scene.add(helper);
 ```
 
-{{{example url="../threejs-shadows-point-light.html" }}}
+{{{example url="shadows-point-light.html" }}}
 
 使用 GUI 的`position`来移动光源的位置，你就可以看到墙上阴影强度的改变。你还可以调整其他的设置，比如`near` 和 `far` ，`near`代表最小的渲染阴影的距离，这只会渲染物体的距离大于其值的物体的阴影。 `far` 这代表渲染比其值距离小的物体的阴影。

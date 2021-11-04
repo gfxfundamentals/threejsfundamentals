@@ -113,7 +113,7 @@ Current fields are
       categoryMapping: {
         'basics': 'Basics',
         'solutions:' 'Solutions',
-        'webvr': 'WebVR',
+        'WebXR': 'WebXR',
         'optimization': 'Optimization',
         'tips': 'Tips',
         'fundamentals': 'Fundamentals',

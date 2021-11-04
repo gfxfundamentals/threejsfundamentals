@@ -33,7 +33,7 @@ gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
 通常に見えない箇所があれば、どこを見て直せば良いかのヒントがあります。
 フラグメントシェーダーで法線を操作している場合、その操作の結果を描画するために同じテクニックが使えます。
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
 テクスチャを使用している場合も同様に、テクスチャ座標で以下のように描画できます。
 
@@ -44,7 +44,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 `fract` は0から1の範囲外のテクスチャ座標を使用している場合に使用します。
 これは `texture.repeat` が1よりも大きい値に設定されている場合によく見られます。
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 フラグメントシェーダーの全ての値に対して同様の事ができます。
 その範囲を把握し、0.0から1.0にスケーリングし `gl_FragColor` に設定するコードを追加します。
@@ -59,7 +59,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 シーンを展開し `children` を見てみるとワールド座標が妥当に見えるか（ `NaN` がない）、各行列の最後の4つの値がシーンにとって妥当に見えるかを確認します。
 シーンが50 x 50 x 50 x 50の単位であるはずが、いくつかの行列が552352623.123の場合は明らかに何かが間違っている事がわかります。
 
-<div class="threejs_center"><img src="resources/images/inspect-matrices.gif"></div>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
 
 フラグメントシェーダーの時と同様に、頂点シェーダーの値をフラグメントシェーダーに渡すと頂点シェーダーから値を描画する事もできます。
 両方のシェーダーでvaryingを宣言し、正しい値なのかわからない値を渡します。

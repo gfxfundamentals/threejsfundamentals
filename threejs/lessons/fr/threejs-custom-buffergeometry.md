@@ -8,7 +8,7 @@ Each `BufferAttribute` represents an array of one type of data: positions,
 normals, colors, uv, etc... Together, the named `BufferAttribute`s represent
 *parallel arrays* of all the data for each vertex.
 
-<div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 Above you can see we have 4 attributes: `position`, `normal`, `color`, `uv`.
 They represent *parallel arrays* which means that the Nth set of data in each
@@ -17,7 +17,7 @@ to show that the parallel data across all attributes defines one vertex.
 
 This brings up a point, here's a diagram of a cube with one corner highlighted.
 
-<div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 Thinking about it that single corner needs a different normal for each face of the
 cube. A normal is info about which direction something faces. In the diagram
@@ -143,7 +143,7 @@ array. A `BufferAttribute` also requires you to tell it how many components ther
 are per vertex. For the positions and normals we have 3 components per vertex,
 x, y, and z. For the UVs we have 2, u and v.
 
-{{{example url="../threejs-custom-buffergeometry-cube.html"}}}
+{{{example url="custom-buffergeometry-cube.html"}}}
 
 That's a lot of data. A small thing we can do is use indices to reference
 the vertices. Looking back at our cube data, each face is made from 2 triangles
@@ -229,7 +229,7 @@ geometry.setAttribute(
 +]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-indexed.html"}}}
+{{{example url="custom-buffergeometry-cube-indexed.html"}}}
 
 `BufferGeometry` has a [`computeVertexNormals`](BufferGeometry.computeVertexNormals) method for computing normals if you
 are not supplying them. Unfortunately, 
@@ -309,7 +309,7 @@ geometry.setIndex([
 ]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-typedarrays.html"}}}
+{{{example url="custom-buffergeometry-cube-typedarrays.html"}}}
 
 A good reason to use typedarrays is if you want to dynamically update any
 part of the vertices.
@@ -323,7 +323,7 @@ is sharing vertices within a quad but it's not sharing vertices between
 quads because we want to be able to move each quad separately.
 
 Because I'm lazy I used a small hierarchy of 3 `Object3D` objects to compute
-sphere points. How this works is explained in [the article on optimizing lots of objects](threejs-optimize-lots-of-objects.html).
+sphere points. How this works is explained in [the article on optimizing lots of objects](optimize-lots-of-objects.html).
 
 ```js
 function makeSpherePositions(segmentsAround, segmentsDown) {
@@ -436,7 +436,7 @@ positionAttribute.needsUpdate = true;
 
 And we set `positionAttribute.needsUpdate` to tell THREE.js to use our changes.
 
-{{{example url="../threejs-custom-buffergeometry-dynamic.html"}}}
+{{{example url="custom-buffergeometry-dynamic.html"}}}
 
 I hope these were useful examples of how to use `BufferGeometry` directly to
 make your own geometry and how to dynamically update the contents of a
@@ -444,8 +444,8 @@ make your own geometry and how to dynamically update the contents of a
 
 <!-- needed in English only to prevent warning from outdated translations -->
 <a href="resources/threejs-geometry.svg"></a>
-<a href="threejs-custom-geometry.html"></a>
+<a href="custom-geometry.html"></a>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
 

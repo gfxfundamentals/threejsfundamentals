@@ -25,21 +25,21 @@ All browsers have developer tools.
 In Chrome you can click the the `⋮` icon, pick More Tools->Developer Tools
 to get to the developer tools. A keyboard shortcut is also shown there.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
 
 In Firefox you click the `☰` icon, pick "Web Developer", then pick
 "Toggle Tools"
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
 
 In Safari you first have to enable the Develop menu from the 
 Advanced Safari Preferences.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
 
 Then in the Develop menu you can pick "Show/Connect Web Inspector".
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-safari.jpg" style="width: 777px;"></div>
 
 With Chrome you can also [use Chrome on your computer to debug webpages running on Chrome on your Android phone or tablet](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/).
 Similarly with Safari you can 
@@ -64,11 +64,11 @@ way the browser will always get the newest versions of your files.
 
 First pick settings from the corner menu
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
 
 Then pick "Disable Cache (while DevTools is open)".
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
 
 ## Use the JavaScript console
 
@@ -78,11 +78,11 @@ Inside all devtools is a *console*. It shows warnings and error messages.
 
 Typically there should be only 1 or 2 messages.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
 
 If you see any others **READ THEM**. For example:
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-errors.jpg" style="width: 779px"></div>
 
 I mis-spelled "three" as "threee"
 
@@ -93,7 +93,7 @@ console.log(someObject.position.x, someObject.position.y, someObject.position.z)
 ```
 
 Even cooler, if you log an object you can inspect it. For example if we log
-the root scene object from [the gLTF article](threejs-load-gltf.html)
+the root scene object from [the gLTF article](load-gltf.html)
 
 ```js
   {
@@ -106,7 +106,7 @@ the root scene object from [the gLTF article](threejs-load-gltf.html)
 
 Then we can expand that object in the JavaScript console
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-console-object.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-console-object.gif"></div>
 
 You can also use `console.error` which reports the message in red
 in includes a stack trace.
@@ -160,7 +160,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 
 This is more useful for real time values
 
-{{{example url="../threejs-debug-js-html-elements.html" }}}
+{{{example url="debug-js-html-elements.html" }}}
 
 Another way to put data on the screen is to make a clearing logger.
 I just made that term up but lots of games I've worked on have used this solution. The idea
@@ -198,7 +198,7 @@ class ClearingLogger {
 
 Then let's make a simple example that every time we click the mouse makes a mesh
 that moves in a random direction for 2 seconds. We'll start with one of the
-examples from the article on [making things responsive](threejs-responsive.html)
+examples from the article on [making things responsive](responsive.html)
 
 Here's the code that adds a new `Mesh` every time we click the mouse
 
@@ -272,7 +272,7 @@ function render(now) {
 
 Now click the mouse a bunch in the example below
 
-{{{example url="../threejs-debug-js-clearing-logger.html" }}}
+{{{example url="debug-js-clearing-logger.html" }}}
 
 ## Query Parameters
 
@@ -343,11 +343,11 @@ class DummyLogger {
 
 You can see if we use this url:
 
-<a target="_blank" href="../threejs-debug-js-params.html">threejs-debug-js-params.html</a>
+<a target="_blank" href="../examples/debug-js-params.html">debug-js-params.html</a>
 
 there is no debug info but if we use this url:
 
-<a target="_blank" href="../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a>
+<a target="_blank" href="../examples/debug-js-params.html?debug=true">debug-js-params.html?debug=true</a>
 
 there is debug info.
 
@@ -374,14 +374,14 @@ as a value when you do something that doesn't make sense mathwise.
 
 As a simple example
 
-<div class="threejs_center"><img class="border" src="resources/images/nan-banana.png" style="width: 180px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/nan-banana.png" style="width: 180px;"></div>
 
 Often when I'm making something and nothing appears on the screen
 I'll check some values and if I see `NaN` I will instantly have a 
 place to start looking.
 
 As an example when I first started making the path for the
-[article about loading gLTF files](threejs-load-gltf.html) I made
+[article about loading gLTF files](load-gltf.html) I made
 a curve using the `SplineCurve` class which makes a 2D curve.
 
 I then used that curve to move the cars like this
@@ -401,7 +401,7 @@ The result is that `car.position.set` sets x to x, y to y, and z to `undefined`.
 A quick glance in the debugger looking at the car's `matrixWorld`
 showed a bunch of `NaN` values.
 
-<div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
 Seeing the matrix had `NaN`s in it suggested something like `position`,
 `rotation`, `scale` or some other function that affects that matrix had bad
@@ -478,7 +478,7 @@ Verifiable, Example.
 
 The **Minimal** part is important. Let's say you where having an issue with the
 path movement in the last example of the [loading a gLTF
-article](threejs-load-gltf.html). That example has many parts. Listing them out
+article](load-gltf.html). That example has many parts. Listing them out
 it has
 
 1. A bunch of HTML
@@ -504,7 +504,7 @@ shrunk from 271 lines to 135. We might consider shrinking it even
 more by simplifying our path. Maybe a path with 3 or 4 points would
 work just as well as our path with 21 points.
 
-{{{example url="../threejs-debugging-mcve.html" }}}
+{{{example url="debugging-mcve.html" }}}
 
 I kept the `OrbitController` just because it's useful for others
 to move the camera and figure out what's going on but depending
@@ -547,7 +547,7 @@ or the lights and not some other part of the code.
 ## Check your `near` and `far` settings for your camera
 
 A `PerspectiveCamera` has `near` and `far` settings which are covered in the
-[article on cameras](threejs-cameras.html). Make sure they are set to fit the
+[article on cameras](cameras.html). Make sure they are set to fit the
 space that contains your objects. Maybe even just **temporarily** set them to
 something large like `near` = 0.001 and `far` = 1000000. You will likely run
 into depth resolution issues but you'll at least be able to see your objects
@@ -558,7 +558,7 @@ provided they are in front of the camera.
 Sometimes things don't appear because they are not in front of the camera. If
 your camera is not controllable try adding camera control like the
 `OrbitController` so you can look around and find your scene. Or, try framing
-the scene using code which is covered in [this article](threejs-load-obj.html).
+the scene using code which is covered in [this article](load-obj.html).
 That code finds the size of part of the scene and then moves the camera and
 adjusts the `near` and `far` settings to make it visible. You can then look in
 the debugger or add some `console.log` messages to print the size and center of
@@ -577,4 +577,4 @@ you'll either reproduce your bug or you'll find it on the way.
 ---
 
 These were a few tips for debugging JavaScript. Let's also go
-over [some tips for debugging GLSL](threejs-debugging-glsl.html).
+over [some tips for debugging GLSL](debugging-glsl.html).

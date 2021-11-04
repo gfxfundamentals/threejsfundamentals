@@ -16,7 +16,7 @@ Three.js는 이런 3D 요소들의 처리를 도와 직관적인 코드를 짤 �
 
 본 튜토리얼은 ES2015 문법을 적극적으로 사용할 것이므로,
 여러분이 이미 최신 자바스크립트에 능숙하다는 가정 아래에 진행합니다.
-자세한 내용에 대해서는 [먼저 알아야 할 것](threejs-prerequisites.html)을 참고하세요.
+자세한 내용에 대해서는 [먼저 알아야 할 것](prerequisites.html)을 참고하세요.
 대부분의 모던 브라우저가 자동 업데이트 기능을 사용하므로,
 특이한 환경이 아니라면 예시에 나온 코드를 실행하는 데 문제가 없을 것입니다.
 만약 구형 브라우저에서도 코드가 실행되길 원한다면, [바벨(Babel)](https://babeljs.io)
@@ -30,7 +30,7 @@ Three.js는 3차원 세계를 다루므로, 우리는 정육면체(cube)를 3차
 하지만 먼저 Three.js 앱의 구조부터 간략히 살펴보죠. Three.js 앱을 만들려면
 다양한 객체를 생성해 연결해야 합니다. 아래는 Three.js 앱의 구조를 도식화한 것입니다.
 
-<div class="threejs_center"><img src="resources/images/threejs-structure.svg" style="width: 768px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-structure.svg" style="width: 768px;"></div>
 
 위 도표에서 중요한 것들을 추려보죠.
 
@@ -38,19 +38,19 @@ Three.js는 3차원 세계를 다루므로, 우리는 정육면체(cube)를 3차
   `Scene`과 `Camera` 객체를 넘겨 받아 카메라의 [*절두체(frustum)*](https://ko.wikipedia.org/wiki/%EC%A0%88%EB%91%90%EC%B2%B4)
   안 3D 씬의 일부를 평면(2차원) 이미지로 렌더링합니다.
 
-* [씬 그래프(Scene graph)](threejs-scenegraph.html)는 `Scene` 또는
+* [씬 그래프(Scene graph)](scenegraph.html)는 `Scene` 또는
   다수의 `Mesh`, `Light`, `Group`, `Object3D`, `Camera`로 이루어진
   트리 구조와 유사합니다. `Scene`은 씬 그래프의 최상위 노드로서 배경색(background color),
   안개(fog) 등의 요소를 포함합니다. `Scene`에 포함된 객체들 또한 부모/자식의
   트리 구조로 이루어지며, 이는 각 객체의 유래와 방향성을 나타냅니다. 쉽게 말해 자식 객체의
   위치(position)와 방향(orientation)이 부모 기준이라는 거죠. 예를 들어 자동차의 바퀴가
   자동차 객체의 자식 객체라면, 자동차 객체의 방향을 움직일 때, 바퀴 객체의 방향 또한 같이
-  움직입니다(더 자세한 내용은 [씬 그래프에 관한 글](threejs-scenegraph.html)에서 확인할 수 있습니다)
+  움직입니다(더 자세한 내용은 [씬 그래프에 관한 글](scenegraph.html)에서 확인할 수 있습니다)
 
   `Camera`가 도표에서 반쯤 나간 것이 보이나요? 이는 의도된 것으로, 다른 객체와 달리
   `Camera`는 굳이 씬 그래프에 포함될 필요가 없음을 보여주기 위함입니다. 물론 다른
   객체와 마찬가지로 `Camera` 또한 다른 객체의 자식 객체가 될 수 있습니다. 이러면
-  부모 객체에 따라 `Camera` 또한 움직이겠죠. [씬 그래프에 관한 글](threejs-scenegraph.html)
+  부모 객체에 따라 `Camera` 또한 움직이겠죠. [씬 그래프에 관한 글](scenegraph.html)
   마지막에 여러개의 `Camera`를 넣는 예제가 있으니 참고하시기 바랍니다.
 
 * `Mesh`는 어떤 `Material`로 하나의 `Geometry`를 그리는 객체입니다.
@@ -63,29 +63,29 @@ Three.js는 3차원 세계를 다루므로, 우리는 정육면체(cube)를 3차
 
 * `Geometry`는 기하학 객체의 정점 데이터입니다. 구(sphere), 정육면체(cube),
   면(plane), 개, 고양이, 사람, 나무, 건물 등 아주 다양한 것이 될 수 있죠. Three.js는
-  기본적으로 몇 가지의 내장(built-in) [기하학 객체](threejs-primitives.html)를 제공합니다.
-  물론 [직접 기하학 객체를 만들](threejs-custom-buffergeometry.html) 수도 있고,
-  [파일에서 기하학 객체를 불러올](threejs-load-obj.html) 수도 있죠.
+  기본적으로 몇 가지의 내장(built-in) [기하학 객체](primitives.html)를 제공합니다.
+  물론 [직접 기하학 객체를 만들](custom-buffergeometry.html) 수도 있고,
+  [파일에서 기하학 객체를 불러올](load-obj.html) 수도 있죠.
 
-* `Material`은 기하학 객체를 그리는 데 사용하는 [표면 속성](threejs-materials.html)입니다.
+* `Material`은 기하학 객체를 그리는 데 사용하는 [표면 속성](materials.html)입니다.
   색이나 밝기 등을 지정할 수 있죠. 하나의 `Material`는 여러개의 `Texture`를 사용할 수
   있습니다. 기하학 객체의 표면을 이미지로 덮어씌울 때 주로 사용하죠.
 
-* `Texture`는 이미지나 [파일에서 로드한 이미지](threejs-textures.html),
-  [canvas로 생성한 이미지](threejs-canvas-textures.html)
-  또는 [다른 `Scene` 객체에서 렌더링한 결과물](threejs-rendertargets.html)에 해당합니다.
+* `Texture`는 이미지나 [파일에서 로드한 이미지](textures.html),
+  [canvas로 생성한 이미지](canvas-textures.html)
+  또는 [다른 `Scene` 객체에서 렌더링한 결과물](rendertargets.html)에 해당합니다.
 
-* `Light`는 [여러 종류의 광원에 해당](threejs-lights.html)합니다.
+* `Light`는 [여러 종류의 광원에 해당](lights.html)합니다.
 
 이제 기본적인 구조에 대해 배웠으니 아래와 같은 구조의 *"Hello Cube"*를 만들어 봅시다.
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
 
 먼저, Three.js를 로드합니다.
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 </script>
 ```
 
@@ -107,7 +107,7 @@ import * as THREE from './resources/threejs/r132/build/three.module.js';
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -144,7 +144,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 설정했습니다. 알아둬야 할 건 Three.js의 대부분이 각도 단위로 호도(radians)를
 사용하는데, 원근 카메라만 특이하게 도(degrees)를 인자로 받는다는 점입니다.
 
-`aspect`는 canvas의 가로 세로 비율입니다. 이는 [다른 글](threejs-responsive.html)
+`aspect`는 canvas의 가로 세로 비율입니다. 이는 [다른 글](responsive.html)
 에서 자세히 다루겠지만, 기본 설정으로 canvas의 크기는 300x150이니 비율도
 300/150, 2로 설정했습니다.
 
@@ -155,7 +155,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 끝부분이 잘려나간 피라미드처럼 생긴 3차원 모양인데, 구, 정육면체,
 각기둥(prism)처럼 3차원 모양의 하나로 생각하면 됩니다.
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
 `near`와 `far` 평면의 높이는 시야각(fov), 너비는 시야각과 `aspect`에 의해
 결정됩니다.
@@ -172,7 +172,7 @@ camera.position.z = 2;
 
 우리가 원하는 결과물을 다음처럼 그려볼 수 있습니다.
 
-<img src="resources/scene-down.svg" width="500" class="threejs_center"/>
+<img src="../resources/scene-down.svg" width="500" class="threejs_center"/>
 
 카메라는 `z = 2` 위치에서 -Z 방향을 바라봅니다. 절두체는 카메라 앞 0.1 칸에서
 5칸까지를 차지하죠. 또한 아래를 바라보는 형태이기 때문에, 시야각은 canvas
@@ -181,7 +181,7 @@ camera.position.z = 2;
 
 이제 `Scene`을 만듭니다. Three.js에서 `Scene`이란 씬 그래프에서 가장 상단에
 위치한 요소입니다. 뭔가를 화면에 렌더링하고 싶다면 먼저 `Scene`에 추가해야 하죠.
-여기서는 간단하게 다룰 것이므로 자세한 내용은 [이 글](threejs-scenegraph.html)을
+여기서는 간단하게 다룰 것이므로 자세한 내용은 [이 글](scenegraph.html)을
 참고하세요.
 
 ```js
@@ -229,7 +229,7 @@ renderer.render(scene, camera);
 
 아래는 전체 코드입니다.
 
-{{{example url="../threejs-fundamentals.html" }}}
+{{{example url="fundamentals.html" }}}
 
 물론 위 예제는 3D 정육면체라고 하긴 어렵습니다. 코드 상으로 Three.js는
 분명 3D 정육면체를 그렸지만, 카메라가 -Z 방향을 바라보고, 정육면체도
@@ -271,10 +271,10 @@ Three.js의 `renderer.render` 메서드를 호출해 씬을 렌더링하도록 �
 마지막으로 루프 바깥에서 `requestAnimationFrame`을 한 번 호출해 루프를
 시작합니다.
 
-{{{example url="../threejs-fundamentals-with-animation.html" }}}
+{{{example url="fundamentals-with-animation.html" }}}
 
 아까보단 낫지만 아직 3D 물체라고 부르기엔 뭔가 부족합니다. 광원을 추가해 그림자가
-지도록 하면 어떨까요? 나중에 [이 글](threejs-lights.html)에서 자세히 다루겠지만,
+지도록 하면 어떨까요? 나중에 [이 글](lights.html)에서 자세히 다루겠지만,
 Three.js에는 다양한 종류의 광원이 있습니다. 다 살펴보기 힘드니 지금은 예시로
 `DirectionalLight`를 사용해보도록 하죠.
 
@@ -303,11 +303,11 @@ Three.js에는 다양한 종류의 광원이 있습니다. 다 살펴보기 힘�
 
 다음은 현재까지의 프로그램 구조를 도식화 한 것이고,
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
 
 아래는 결과물입니다.
 
-{{{example url="../threejs-fundamentals-with-light.html" }}}
+{{{example url="fundamentals-with-light.html" }}}
 
 이제 3D라고 불러도 어색하지 않네요.
 
@@ -363,7 +363,7 @@ function render(time) {
 
 결과물은 다음과 같습니다.
 
-{{{example url="../threejs-fundamentals-3-cubes.html" }}}
+{{{example url="fundamentals-3-cubes.html" }}}
 
 아까 위에서 좌표로 도식한 그림과 위 결과물을 비교해보면, 예상대로
 X축으로 -2, +2만큼 이동한 정육면체들의 일부가 절두체에서 약간 벗어났습니다.
@@ -372,13 +372,13 @@ X축으로 -2, +2만큼 이동한 정육면체들의 일부가 절두체에서 �
 
 위 프로그램은 구조는 다음과 같습니다.
 
-<div class="threejs_center"><img src="resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
 
 그림을 보면 각 `Mesh` 객체는 같은 `BoxGeometry`를 참조합니다. 그러나
 각 `Mesh`는 다른 `MeshPhongMaterial`을 참조하므로 다른 색을 띄죠.
 
 이 인트로가 Three.js를 시작하는 데 도움이 되었으면 합니다.
-[다음 장에서는 코드를 반응형으로 만들어 다양한 상황에 적용할 수 있도록 해 볼 것입니다](threejs-responsive.html).
+[다음 장에서는 코드를 반응형으로 만들어 다양한 상황에 적용할 수 있도록 해 볼 것입니다](responsive.html).
 
 <div id="es6" class="threejs_bottombar">
 <h3>es6 모듈, Three.js, 프로젝트 구조</h3>
@@ -389,7 +389,7 @@ es6 모듈은 js 파일이나 인라인 <code>&lt;script type="module"&gt;</code
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 

@@ -8,7 +8,7 @@ TOC: 사용자 지정 BufferGeometry
 위치(positions), 법선(normals), 색(colors), uv 데이터의 배열이고, 이들을 모으면 각 꼭지점에
 대한 *평행 배열* 형식의 데이터가 됩니다.
 
-<div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 그림을 보면 총 4개의 속성(attribute), `position`, `normal`, `color`, `uv`가 있습니다.
 이들은 평행 배열로 각 속성의 N 번째 데이터 묶음이 한 꼭지점의 데이터를 나타냅니다. 표시한
@@ -16,7 +16,7 @@ index = 4 위치의 꼭지점 데이터를 보세요. 이 묶음이 하나의 �
 
 이해를 돕기 위해 정육면체의 한 모서리를 강조해보겠습니다.
 
-<div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 이 경우 맞닿은 면의 색이 다르기에, 이 모서리는 각 면에 다른 법선을 제공해야 합니다.
 마찬가지로 UV도 달라야 하죠.
@@ -128,7 +128,7 @@ for (const vertex of vertices) {
 인자로 받습니다. 또한 하나의 꼭지점에 몇 개의 요소를 사용할 지 지정해줘야 하죠.
 위치(position)과 법선(normal)의 경우 x, y, z 총 3개이고, UV는 u, v 총 2개입니다.
 
-{{{example url="../threejs-custom-buffergeometry-cube.html"}}}
+{{{example url="custom-buffergeometry-cube.html"}}}
 
 데이터가 너무 많네요. 크게 구조를 바꾸긴 어렵지만, 꼭지점을 인덱스로 참조하게끔 바꾸면
 조금 나을 듯합니다. 정육면체 데이터를 다시 봅시다. 각 면은 2개의 삼각형, 삼각형 하나에는
@@ -213,7 +213,7 @@ geometry.setAttribute(
 +]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-indexed.html"}}}
+{{{example url="custom-buffergeometry-cube-indexed.html"}}}
 
 `BufferGeometry`에 법선을 지정하지 않았다면 [`computeVertexNormals`](BufferGeometry.computeVertexNormals)
 메서드를 호출해 자동으로 법선을 지정할 수 있습니다. 다만 데이터가 조금이라도 다르다면
@@ -293,7 +293,7 @@ geometry.setIndex([
 ]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-typedarrays.html"}}}
+{{{example url="custom-buffergeometry-cube-typedarrays.html"}}}
 
 꼭지점의 일부를 수정하고 싶다면 형식화 배열을 사용하는 게 좋습니다.
 
@@ -306,7 +306,7 @@ geometry.setIndex([
 
 구체의 정점을 구하기 위해 좀 더 복잡한 방법을 쓸 수도 있지만, 귀찮으니 그냥
 `Object3D` 3개를 계층 구조로 배열해 쓰겠습니다. 이 방식에 대해서는 [많은 물체를
-최적화하는 방법](threejs-optimize-lots-of-objects.html)에서 더 자세히 다루겠습니다.
+최적화하는 방법](optimize-lots-of-objects.html)에서 더 자세히 다루겠습니다.
 
 ```js
 function makeSpherePositions(segmentsAround, segmentsDown) {
@@ -419,10 +419,10 @@ positionAttribute.needsUpdate = true;
 
 마지막으로 `positionAttribute.needsUpdate` 속성을 활성화해 변화를 감지하도록 합니다.
 
-{{{example url="../threejs-custom-buffergeometry-dynamic.html"}}}
+{{{example url="custom-buffergeometry-dynamic.html"}}}
 
 이 글이 `BufferGeometry`로 사용자 지정 geometry를 만들고, `BufferAttribute`를 다루는
 데 도움이 되었으면 좋겠습니다.
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>

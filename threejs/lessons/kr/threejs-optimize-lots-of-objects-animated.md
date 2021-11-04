@@ -2,7 +2,7 @@ Title: 다중 애니메이션 요소 최적화하기
 Description: Morphtargets으로 합쳐진 요소에 애니메이션을 넣는 법을 알아봅니다
 TOC: 애니메이션 요소가 많을 때 최적화하는 방법
 
-※ 이 글은 [다중 요소 최적화하기](threejs-optimize-lots-of-objects.html)에서 이어지는 글입니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.
+※ 이 글은 [다중 요소 최적화하기](optimize-lots-of-objects.html)에서 이어지는 글입니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.
 
 
 이전 글에서는 약 19000 육면체를 하나의 geometry로 만들었습니다. 이 방법을 적용해 렌더링 속도는 눈에 띄게 빨라졌지만, 각 육면체를 움직이기 어렵다는 게 단점이었죠.
@@ -188,7 +188,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 
 이제 4가지 데이터를 볼 수 있을 겁니다. 각 이름에 마우스를 올리거나 터치하면 해당 데이터로 바뀝니다.
 
-{{{example url="../threejs-lots-of-objects-multiple-data-sets.html" }}}
+{{{example url="lots-of-objects-multiple-data-sets.html" }}}
 
 뭔가 앞뒤가 맞지 않는 데이터가 몇 개 보입니다. 대체 무슨 영문인지 모르겠네요. 어쨌든 일단은 이 4가지 데이터가 자연스럽게 바뀌도록 애니메이션을 넣는 데 집중합시다.
 
@@ -312,10 +312,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 먼저 라이브러리를 불러옵니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { BufferGeometryUtils } from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-+import { TWEEN } from './resources/threejs/r132/examples/jsm/libs/tween.min.js';
+import * as THREE from './build/three.module.js';
+import { BufferGeometryUtils } from '/examples/jsm/utils/BufferGeometryUtils.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
++import { TWEEN } from '/examples/jsm/libs/tween.min.js';
 ```
 
 그리고 `Tween`으로 influence 속성에 애니메이션을 줍니다.
@@ -340,7 +340,7 @@ function showFileInfo(fileInfos, fileInfo) {
 }
 ```
 
-또 매 렌더링 프레임에서 `TWEEN.update`를 호출해야 하지만 좀 문제가 있습니다. "tween.js"는 연속 렌더링을 사용하도록 디자인되었습니다. 하지만 예제에서는 [불필요한 렌더링 제거 기법](threejs-rendering-on-demand.html)을 사용했죠. 연속 렌더링을 사용하도록 코드를 바꿀 수도 있지만, 아무런 변화가 없을 때 렌더링을 하지 않음으로써 불필요한 자원 낭비를 줄인다는 장점을 버리고 싶진 않습니다. 여기에 불필요한 렌더링 제거 기법을 적용할 수 있을지 살펴보죠.
+또 매 렌더링 프레임에서 `TWEEN.update`를 호출해야 하지만 좀 문제가 있습니다. "tween.js"는 연속 렌더링을 사용하도록 디자인되었습니다. 하지만 예제에서는 [불필요한 렌더링 제거 기법](rendering-on-demand.html)을 사용했죠. 연속 렌더링을 사용하도록 코드를 바꿀 수도 있지만, 아무런 변화가 없을 때 렌더링을 하지 않음으로써 불필요한 자원 낭비를 줄인다는 장점을 버리고 싶진 않습니다. 여기에 불필요한 렌더링 제거 기법을 적용할 수 있을지 살펴보죠.
 
 간단히 `TweenManager`라는 헬퍼 클래스를 만들겠습니다. 이 클래스를 통해 `Tween`을 만들고 애니메이션을 추적할 겁니다. 이 클래스의 `update` 메서드는 애니메이션이 진행 중이며 다음 프레임을 요청해야 할 때는 `true`, 애니메이션이 끝났다면 `false`를 반환할 겁니다.
 
@@ -434,7 +434,7 @@ render();
 
 이제 각 데이터 그룹을 전환할 때 애니메이션이 보일 겁니다.
 
-{{{example url="../threejs-lots-of-objects-morphtargets.html" }}}
+{{{example url="lots-of-objects-morphtargets.html" }}}
 
 애니메이션은 잘 작동하지만 색이 바뀌지 않습니다.
 
@@ -631,11 +631,11 @@ function render() {
 
 색과 육면체 그래프에 애니메이션을 모두 적용했습니다.
 
-{{{example url="../threejs-lots-of-objects-morphtargets-w-colors.html" }}}
+{{{example url="lots-of-objects-morphtargets-w-colors.html" }}}
 
 여기서 살펴본 내용이 유익했다면 좋겠습니다. Three.js가 제공하는 모듈을 만드는 것과, 직접 쉐이더를 만드는 것 둘 다 morphtargets를 이용해 애니메이션을 구현할 때 자주 사용하는 방법입니다. 예를 들어 각 육면체 그래프를 임의의 요소에 두고 해당 위치에서 지구본 위로 이동하는 애니메이션을 줄 수도 있죠. 그것도 그래프를 표현하는 멋진 방법 중 하나일 겁니다.
 
-혹시 위 지구본에 각 나라의 이름을 띄워보고 싶진 않나요? 그렇다면 [HTML 요소를 3D로 정렬하기](threejs-align-html-elements-to-3d.html)를 참고해보세요.
+혹시 위 지구본에 각 나라의 이름을 띄워보고 싶진 않나요? 그렇다면 [HTML 요소를 3D로 정렬하기](align-html-elements-to-3d.html)를 참고해보세요.
 
 > 참고: 예제에서 남성 인구 비율이나 여성 인구 비율 또는 두 데이터의 차이를 견본 데이터로 사용할 수도 있었지만, 에제에 적용한 애니메이션은 땅에서 그래프가 올라오는 형식입니다. 비율로 처리한다면 대게의 값이 비슷비슷할 테고, 그래프의 높이도 2/1 정도는 더 낮아 시각적 효과가 그다지 크지 않았겠죠. `amountGreaterThan`을 `Math.max(a - b, 0)`에서 `(a - b)` 등으로 바꿔 두 데이터의 차이를 보거나, `a / (a + b)`로 바꿔 성비를 볼 수 있습니다.
 

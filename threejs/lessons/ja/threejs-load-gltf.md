@@ -2,7 +2,7 @@ Title: Three.jsでGLFTファイルを読み込む
 Description: GLTFファイルの読み込み
 TOC: GLTFファイルの読み込み
 
-前回のレッスンは[OBJファイルの読み込み](threejs-load-obj.html)でした。
+前回のレッスンは[OBJファイルの読み込み](load-obj.html)でした。
 まだ読んでいない方は、まずそちらをチェックしてみて下さい。
 
 前回の記事で指摘したように、OBJファイルフォーマットは非常に古くかなり単純です。
@@ -59,9 +59,9 @@ OBJとは異なり、gLTFではマテリアルはフォーマットの直接的�
 ネットで検索したら[antonmoek](https://sketchfab.com/antonmoek)さんの[低ポリゴンのシティモデル](https://sketchfab.com/models/edd1c604e1e045a0a2a552ddd9a293e6)を見つけました。
 運が良ければ良い例になるように思えました。
 
-<div class="threejs_center"><img src="resources/images/cartoon_lowpoly_small_city_free_pack.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/cartoon_lowpoly_small_city_free_pack.jpg"></div>
 
-[OBJファイルの読み込みのコード例](threejs-load-obj.html)から始めて、OBJを読み込むコードを削除し、GLTFを読み込むコードに置き換えました。
+[OBJファイルの読み込みのコード例](load-obj.html)から始めて、OBJを読み込むコードを削除し、GLTFを読み込むコードに置き換えました。
 
 以前のOBJコードは
 
@@ -97,21 +97,21 @@ mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) => {
 また `OBJLoader` を取り除き `GLTFLoader` を含める必要があります。
 
 ```html
--import {LoaderSupport} from './resources/threejs/r132/examples/jsm/loaders/LoaderSupport.js';
--import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
--import {MTLLoader} from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
-+import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
+-import {LoaderSupport} from '/examples/jsm/loaders/LoaderSupport.js';
+-import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
+-import {MTLLoader} from '/examples/jsm/loaders/MTLLoader.js';
++import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
 ```
 
 実行すると以下になりました。
 
-{{{example url="../threejs-load-gltf.html" }}}
+{{{example url="load-gltf.html" }}}
 
 魔法だ！テクスチャーも含めて上手くいっています。
 
 次に走り回る車をアニメーションしたかったので、シーンに車が別のエンティティとして設定されているか、それが使用できるように設定されているか確認する必要があります。
 
-[JavaScriptコンソール](threejs-debugging-javascript.html)にシーングラフをダンプするコードを書いてみました。
+[JavaScriptコンソール](debugging-javascript.html)にシーングラフをダンプするコードを書いてみました。
 
 シーングラフを表示するコードです。
 
@@ -139,7 +139,7 @@ gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.glt
   console.log(dumpObject(root).join('\n'));
 ```
 
-[実行すると](../threejs-load-gltf-dump-scenegraph.html) このようなリストが得られました。
+[実行すると](../examples/load-gltf-dump-scenegraph.html) このようなリストが得られました。
 
 ```text
 OSG_Scene [Scene]
@@ -234,7 +234,7 @@ OSG_Scene [Scene]
 
 これが結果です。
 
-{{{example url="../threejs-load-gltf-rotate-cars.html" }}}
+{{{example url="load-gltf-rotate-cars.html" }}}
 
 うーん、残念ながら子のオリジンが回転目的のために設定されておらず、アニメーション用に設計されてないようです。トラックの回転方向が間違っています。
 
@@ -284,7 +284,7 @@ OSG_Scene [Scene]
 
 これで車の向きを修正しました。
 
-{{{example url="../threejs-load-gltf-rotate-cars-fixed.html" }}}
+{{{example url="load-gltf-rotate-cars-fixed.html" }}}
 
 さあ、追い回してみましょう。
 
@@ -292,12 +292,12 @@ OSG_Scene [Scene]
 その代わりに入り組んだパスを1本にし、そのパスに車を乗せる事ができそうです。
 以下の画像はBlenderでパスを作っている途中です。
 
-<div class="threejs_center"><img src="resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
+<div class="threejs_center"><img src="../resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
 
 Blenderからパスのデータを取り出す方法が必要でした。
 幸運な事にパスだけを選択し、"write nurbs"をチェックしてobjをエクスポートできました。
 
-<div class="threejs_center"><img src="resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
+<div class="threejs_center"><img src="../resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
 
 OBJファイルを開くと頂点のリストを得る事ができました。
 
@@ -333,7 +333,7 @@ THREE.jsにはいくつかの曲線クラスがあります。
 
 実際にはこれらの頂点を直接入力すると次のような曲線が生成されます。
 
-<div class="threejs_center"><img src="resources/images/car-curves-before.png" style="width: 400px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-before.png" style="width: 400px"></div>
 
 しかし、もっと角をシャープにして欲しいです。
 いくつかの頂点を追加し計算すれば、望んだ角度が得られる気がします。
@@ -341,7 +341,7 @@ THREE.jsにはいくつかの曲線クラスがあります。
 
 このような曲線が得られます。
 
-<div class="threejs_center"><img src="resources/images/car-curves-after.png" style="width: 400px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-after.png" style="width: 400px"></div>
 
 曲線を作成するコードは以下の通りです。
 
@@ -399,7 +399,7 @@ let curveObject;
 このコードの最初の部分は曲線を作ります。
 コードの2番目の部分は曲線から250頂点を生成し、その250頂点を結んで作られた線を表示するオブジェクトを作成します。
 
-[このサンプル](../threejs-load-gltf-car-path.html)を実行してもカーブが見えませんでした。
+[このサンプル](../examples/load-gltf-car-path.html)を実行してもカーブが見えませんでした。
 見えるようにするために、深度テストを無視して最後にレンダリングするようにしました。
 
 ```js
@@ -410,11 +410,11 @@ let curveObject;
 
 そして、カーブがあまりにも小さすぎる事に気がつきました。
 
-<div class="threejs_center"><img src="resources/images/car-curves-too-small.png" style="width: 498px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-too-small.png" style="width: 498px"></div>
 
 Blenderで階層を確認してみると、3DCGアーティストが全ての親となるノードをスケーリングしていました。
 
-<div class="threejs_center"><img src="resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
+<div class="threejs_center"><img src="../resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
 
 リアルタイムの3Dアプリではスケーリングが悪です。
 リアルタイム3Dを行う際には、様々な問題が発生し不満が尽きません。
@@ -453,7 +453,7 @@ function dumpObject(obj, lines, isLast = true, prefix = '') {
 }
 ```
 
-[それを実行](../threejs-load-gltf-dump-scenegraph-extra.html)した結果です。
+[それを実行](../examples/load-gltf-dump-scenegraph-extra.html)した結果です。
 
 ```text
 OSG_Scene [Scene]
@@ -616,13 +616,13 @@ for (const car of loadedCars.children.slice()) {
 
 その結果です。
 
-{{{example url="../threejs-load-gltf-animated-cars.html" }}}
+{{{example url="load-gltf-animated-cars.html" }}}
 
 数分間の作業にしては悪くない結果です。
 
 最後にやりたいのはシャドウをつける事です。
 
-これを行うために[シャドウの記事](threejs-shadows.html)にある `DirectionalLight` の例から全てのGUIコードを取得し、最新のコードに貼り付けました。
+これを行うために[シャドウの記事](shadows.html)にある `DirectionalLight` の例から全てのGUIコードを取得し、最新のコードに貼り付けました。
 
 読み込み後に全てのオブジェクトにシャドウをオンにする必要があります。
 
@@ -688,7 +688,7 @@ const scene = new THREE.Scene();
 
 そして、シャドウをつけた結果です。
 
-{{{example url="../threejs-load-gltf-shadows.html" }}}
+{{{example url="load-gltf-shadows.html" }}}
 
 このプロジェクトを説明する事で、シーングラフを使ってファイルを読込する際の問題点・解決事例をいくつか示せたと思います。
 

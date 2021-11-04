@@ -3,7 +3,7 @@ Description: Three.js의 재질(Materials)에 대해 알아봅니다
 TOC: 재질(Materials)
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
 
@@ -282,7 +282,7 @@ const m5 = new THREE.MeshBasicMaterial({color: 'hsl(0,100%,50%)'); // 빨강
 위해서는 알아야 할 것들이 훨씬 더 많죠. 예를 들어 나중에 살펴볼
 텍스처(textures, 질감)만 추가해도 경우의 수가 엄청나게 늘어납니다.
 말 나온 김에 바로 텍스처를 살펴보는 것도 좋지만, 다음 장에서는 잠시
-쉬어가는 의미로 [Three.js 개발 환경 구성하기](threejs-setup.html)에
+쉬어가는 의미로 [Three.js 개발 환경 구성하기](setup.html)에
 대해 알아보겠습니다.
 
 <div class="threejs_bottombar">
@@ -319,4 +319,4 @@ Three.js는 기본적으로 처음 한 번만 재질의 설정을 적용합니�
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-materials.js"></script>
+<script type="module" src="../resources/threejs-materials.js"></script>

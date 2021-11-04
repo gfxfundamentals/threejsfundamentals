@@ -2,10 +2,10 @@ Title: Three.jsのキャンバステクスチャ
 Description: Three.jsでキャンバスをテクスチャとして使う方法
 TOC: 動的なテクスチャのキャンバスを使用する
 
-この記事は[Three.jsのテクスチャ](threejs-textures.html)からの続きです。
+この記事は[Three.jsのテクスチャ](textures.html)からの続きです。
 まだ読んでない人はそちらから先に読んでみるといいかもしれません。
 
-[前回のテクスチャの記事](threejs-textures.html)ではテクスチャは画像ファイルを使っていました。
+[前回のテクスチャの記事](textures.html)ではテクスチャは画像ファイルを使っていました。
 実行時にテクスチャを生成したい場合もあります。
 これを行う方法の1つは `CanvasTexture` を使用する事です。
 
@@ -54,7 +54,7 @@ requestAnimationFrame(render);
 {{{example url="../canvas-random-dots.html" }}}
 
 これをテクスチャとして使ってみましょう。
-まずは[前回の記事](threejs-textures.html)の立方体のテクスチャにしてみます。
+まずは[前回の記事](textures.html)の立方体のテクスチャにしてみます。
 画像を読込するコードを削除します。
 代わりにキャンバスを作成し `CanvasTexture` を作成してキャンバスに渡します。
 
@@ -110,10 +110,10 @@ function render(time) {
 
 これでキャンバスのテクスチャキューブができました。
 
-{{{example url="../threejs-canvas-textured-cube.html" }}}
+{{{example url="canvas-textured-cube.html" }}}
 
 注意点としてThree.jsを使ってキャンバスに描画する場合、
-[この記事](threejs-rendertargets.html) で説明している `RenderTarget` を使った方が良いでしょう。
+[この記事](rendertargets.html) で説明している `RenderTarget` を使った方が良いでしょう。
 
 キャンバステクスチャの一般的な使用例は、シーンにテキストを提供する事です。
 例えばキャラクターのバッジに名前を入れたい場合、キャンバステクスチャを使いバッジのテクスチャを作成します。
@@ -121,7 +121,7 @@ function render(time) {
 3人のキャラクターがいるシーンを作り、それぞれにバッジやラベルを付けてみましょう。
 
 上記の例から立方体に関連する全てのコードを削除してみましょう。
-背景を白にして、[ライト](threejs-lights.html)を2つ追加してみましょう。
+背景を白にして、[ライト](lights.html)を2つ追加してみましょう。
 
 ```js
 const scene = new THREE.Scene();
@@ -254,8 +254,8 @@ const scene = new THREE.Scene();
 残作業はカメラを動かせるように `OrbitControls` を追加します。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -275,7 +275,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 そして、簡単なラベルを取得します。
 
-{{{example url="../threejs-canvas-textured-labels.html" }}}
+{{{example url="canvas-textured-labels.html" }}}
 
 気になる点がいくつかあります。
 
@@ -353,7 +353,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 テキストが中央揃えのラベルを取得し、それに合わせて拡大縮小されています。
 
-{{{example url="../threejs-canvas-textured-labels-scale-to-fit.html" }}}
+{{{example url="canvas-textured-labels-scale-to-fit.html" }}}
 
 上記ではそれぞれのテクスチャに新しいキャンバスを使用しました。
 テクスチャごとにキャンバスを使うかはあなた次第です。
@@ -399,12 +399,12 @@ function makePerson(x, labelWidth, size, name, color) {
   ...
 ```
 
-{{{example url="../threejs-canvas-textured-labels-one-canvas.html" }}}
+{{{example url="canvas-textured-labels-one-canvas.html" }}}
 
 もう1つの問題はラベルが常にカメラに向いているとは限らない事です。
 ラベルをバッジにしているなら、それは良い事なのかもしれません。
 3Dゲームでプレイヤーの上に名前を置くためにラベルを使用している場合は、ラベルが常にカメラの方を向くようにしたいかもしれません。
-その方法は[ビルボードの記事](threejs-billboards.html)で取り上げます。
+その方法は[ビルボードの記事](billboards.html)で取り上げます。
 
-特にラベルの場合は[もう1つの解決策はHTMLを使う事です](threejs-align-html-elements-to-3d.html)。
-この記事のラベルは他のオブジェクトで隠したい場合には良いですが、[HTMLラベル](threejs-align-html-elements-to-3d.html)は常に上にあります。
+特にラベルの場合は[もう1つの解決策はHTMLを使う事です](align-html-elements-to-3d.html)。
+この記事のラベルは他のオブジェクトで隠したい場合には良いですが、[HTMLラベル](align-html-elements-to-3d.html)は常に上にあります。

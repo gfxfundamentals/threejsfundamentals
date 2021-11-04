@@ -2,18 +2,18 @@ Title: HTML 요소를 3D로 정렬하기
 Description: HTML 요소를 3차원 요소에 맞춰 정렬합니다
 TOC: HTML 요소를 3D로 정렬하기
 
-※ 이 글은 Three.js의 튜토리얼 시리즈로서, 먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을 읽고 오길 권장합니다.
+※ 이 글은 Three.js의 튜토리얼 시리즈로서, 먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을 읽고 오길 권장합니다.
 
 
 때로 3D 장면에 텍스트를 넣어야 하는 경우가 있을 겁니다. 방법이야 다양하지만 각기 장단점이 있죠.
 
 * 3D 텍스트를 쓴다.
 
-    [원시 모델에 관한 글](threejs-primitives.html)을 보면 `TextGeometry`로 3D 텍스트를 만든 예제를 찾을 수 있을 겁니다. 로고에 애니메이션을 준다던가 하는 경우에는 유용하지만 상태, 정보, 이름 등을 붙이는 경우라면 오히려 불편하겠죠.
+    [원시 모델에 관한 글](primitives.html)을 보면 `TextGeometry`로 3D 텍스트를 만든 예제를 찾을 수 있을 겁니다. 로고에 애니메이션을 준다던가 하는 경우에는 유용하지만 상태, 정보, 이름 등을 붙이는 경우라면 오히려 불편하겠죠.
 
 * 2D 텍스트로 텍스처를 만들어 렌더링한다.
 
-    [캔버스를 텍스처로 활용하기](threejs-canvas-textures.html)를 보면 캔버스를 텍스처로 활용하는 방법이 나옵니다. 캔버스에 텍스처를 렌더링하고 이 [캔버스를 광고판처럼 렌더링](threejs-billboards.html)하는 거죠. 이 방법의 장점은 텍스트가 3D 장면 안에 포함된다는 겁니다. 컴퓨터 화면에 나타난 텍스트 등을 렌더링하려면 이 방법이 가장 적당하겠죠.
+    [캔버스를 텍스처로 활용하기](canvas-textures.html)를 보면 캔버스를 텍스처로 활용하는 방법이 나옵니다. 캔버스에 텍스처를 렌더링하고 이 [캔버스를 광고판처럼 렌더링](billboards.html)하는 거죠. 이 방법의 장점은 텍스트가 3D 장면 안에 포함된다는 겁니다. 컴퓨터 화면에 나타난 텍스트 등을 렌더링하려면 이 방법이 가장 적당하겠죠.
 
 * HTML 요소의 위치를 3D에 맞춘다.
 
@@ -21,13 +21,13 @@ TOC: HTML 요소를 3D로 정렬하기
 
 이 글에서는 맨 마지막 방법에 대해 다룰 겁니다.
 
-간단한 것부터 시작해보죠. 원시 모델 위에 이름표를 붙인 3D 장면을 구현할 겁니다. 예제는 [반응형 디자인에 관한 글](threejs-responsive.html)의 예제를 수정해 쓰도록 하죠.
+간단한 것부터 시작해보죠. 원시 모델 위에 이름표를 붙인 3D 장면을 구현할 겁니다. 예제는 [반응형 디자인에 관한 글](responsive.html)의 예제를 수정해 쓰도록 하죠.
 
-여기에 `OrbitControls`를 넣습니다. [조명에 관한 글](threejs-lights.html)에서 다뤘었죠.
+여기에 `OrbitControls`를 넣습니다. [조명에 관한 글](lights.html)에서 다뤘었죠.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -170,17 +170,17 @@ const tempV = new THREE.Vector3();
 });
 ```
 
-{{{example url="../threejs-align-html-to-3d.html" }}}
+{{{example url="align-html-to-3d.html" }}}
 
 하지만 좀 어색합니다. 몇 가지 개선해야 할 점들이 보이네요.
 
 먼저 정육면체들을 돌려 정육면체가 겹치도록 하니 이름표도 겹쳐 보입니다.
 
-<div class="threejs_center"><img src="resources/images/overlapping-labels.png" style="width: 307px;"></div>
+<div class="threejs_center"><img src="../resources/images/overlapping-labels.png" style="width: 307px;"></div>
 
 또 화면을 축소해 정육면체가 절두체(frustum) 밖으로 벗어나게 해도 이름표가 여전히 보입니다.
 
-이름표가 겹쳐 보이는 건 [피킹에 관한 글](threejs-picking.html)에서 썼던 기법을 이용해 해결할 수 있습니다. 이름표 위치에서 `RayCaster`로 광선을 쏴 처음으로 걸리는 물체가 이름표와 짝이 아니라면 이름표를 보이지 않게 하는 것이죠.
+이름표가 겹쳐 보이는 건 [피킹에 관한 글](picking.html)에서 썼던 기법을 이용해 해결할 수 있습니다. 이름표 위치에서 `RayCaster`로 광선을 쏴 처음으로 걸리는 물체가 이름표와 짝이 아니라면 이름표를 보이지 않게 하는 것이죠.
 
 ```js
 const tempV = new THREE.Vector3();
@@ -241,7 +241,7 @@ cubes.forEach((cubeInfo, ndx) => {
 
 잘 적용된 것 같지만 뭔가 *2% 부족*합니다. 이전에 계산했던 정규화된 좌표에는 `z`값이 있고, 이 값의 -1은 카메라의 `near`, +1은 `far`을 의미하거든요.
 
-{{{example url="../threejs-align-html-to-3d-w-hiding.html" }}}
+{{{example url="align-html-to-3d-w-hiding.html" }}}
 
 위 방법은 물체의 중점을 기준으로 이름표의 노출 여부를 계산하기에 실제로 사용하기 어렵습니다. 큰 물체의 경우 중점이 절두체의 바깥에 있더라도 나머지 반쪽은 절두체 안에 있을 수 있으니까요.
 
@@ -273,7 +273,7 @@ frustum.setFromProjectionMatrix(viewProjection);
 const inFrustum = frustum.contains(someMesh));
 ```
 
-지금의 예제는 피킹을 사용하기에 성능이 다소 느립니다. [피킹에 관한 글](threejs-picking.html)에서 다뤘듯 GPU 기반 피킹을 쓸 수도 있지만 구현하기가 복잡하죠. 어떤 방법을 적용할지는 상황을 보고 판단해야 합니다.
+지금의 예제는 피킹을 사용하기에 성능이 다소 느립니다. [피킹에 관한 글](picking.html)에서 다뤘듯 GPU 기반 피킹을 쓸 수도 있지만 구현하기가 복잡하죠. 어떤 방법을 적용할지는 상황을 보고 판단해야 합니다.
 
 또 이름표가 나타나는 순서에도 문제가 있습니다. 현재 예제의 이름표를 더 길게 바꿔보죠.
 
@@ -297,7 +297,7 @@ CSS도 바꿔 줄바꿈이 일어나지 않도록 합니다.
 
 이러면 아래와 같은 문제가 나타납니다.
 
-<div class="threejs_center"><img src="resources/images/label-sorting-issue.png" style="width: 401px;"></div>
+<div class="threejs_center"><img src="../resources/images/label-sorting-issue.png" style="width: 401px;"></div>
 
 위 그림에서 보라색 정육면체는 청록색 정육면체의 뒤에 있지만, 보라색 정육면체의 이름표는 청록색 정육면체의 앞에 있습니다.
 
@@ -330,7 +330,7 @@ z값은 소수점 단위의 값이기에 충분히 큰 숫자를 지정하지 �
 
 이제 이름표가 제대로 정렬되어 보일 겁니다.
 
-{{{example url="../threejs-align-html-to-3d-w-sorting.html" }}}
+{{{example url="align-html-to-3d-w-sorting.html" }}}
 
 여기서 끝낼 수도 있으나 예제를 하나 더 만들어 복잡한 상황에서 발생할 수 있는 문제를 알아보겠습니다. 구글 맵같은 지구본을 만들어 각 나라의 이름을 표시해보도록 하죠.
 
@@ -338,7 +338,7 @@ z값은 소수점 단위의 값이기에 충분히 큰 숫자를 지정하지 �
 
 개인적으로 [코드를 작성](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)해 각 나라의 윤곽선을 만들고 나라의 이름과 위치를 JSON 데이터로 만들었습니다. 
 
-<div class="threejs_center"><img src="../resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
+<div class="threejs_center"><img src="../examples/resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
 
 JSON 데이터는 아래와 같은 형태의 배열입니다.
 
@@ -366,7 +366,7 @@ JSON 데이터는 아래와 같은 형태의 배열입니다.
 
 min, max, lat, lon은 나라의 위도(latitude)와 경도(longitude)를 나타냅니다.
 
-데이터를 실제로 사용해봅시다. [다중 요소 렌더링 최적화하기](threejs-optimize-lots-of-objects.html)에서 썼던 예제를 기반으로 사용하겠습니다. 물론 많은 요소를 렌더링하는 건 아니지만, 기존 코드에 포함되어 있는 [불필요한 렌더링 제거 기법](threejs-rendering-on-demand.html)도 그대로 사용할 겁니다.
+데이터를 실제로 사용해봅시다. [다중 요소 렌더링 최적화하기](optimize-lots-of-objects.html)에서 썼던 예제를 기반으로 사용하겠습니다. 물론 많은 요소를 렌더링하는 건 아니지만, 기존 코드에 포함되어 있는 [불필요한 렌더링 제거 기법](rendering-on-demand.html)도 그대로 사용할 겁니다.
 
 먼저 구체를 만들고 각 나라의 육곽선 텍스처를 입힙니다.
 
@@ -402,7 +402,7 @@ loadCountryData();
 
 불러온 데이터로 각 나라와 이름표를 생성합니다.
 
-[다중 요소 렌더링 최적화하기](threejs-optimize-lots-of-objects.html)에서 씬 그래프를 활용해 지구본의 위도와 경도를 계산했었죠. 이번에도 계산을 단순화하기 위해 이 방법을 그대로 사용합니다. 아래 코드가 어떻게 작동하는가에 대해서는 원본 글을 참고하기 바랍니다.
+[다중 요소 렌더링 최적화하기](optimize-lots-of-objects.html)에서 씬 그래프를 활용해 지구본의 위도와 경도를 계산했었죠. 이번에도 계산을 단순화하기 위해 이 방법을 그대로 사용합니다. 아래 코드가 어떻게 작동하는가에 대해서는 원본 글을 참고하기 바랍니다.
 
 ```js
 const lonFudge = Math.PI * 1.5;
@@ -503,7 +503,7 @@ function render() {
 
 결과를 보죠.
 
-{{{example url="../threejs-align-html-elements-to-3d-globe-too-many-labels.html" }}}
+{{{example url="align-html-elements-to-3d-globe-too-many-labels.html" }}}
 
 이름표가 넘쳐 나네요!
 
@@ -652,8 +652,8 @@ for (const countryInfo of countryInfos) {
 마지막으로 어떤 값이 적당한지 알기 어려우니 이 값을 조정할 수 있도록 GUI를 추가합니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 +import { GUI } from '../3rdparty/dat.gui.module.js';
 ```
 
@@ -692,7 +692,7 @@ function updateLabels() {
 
 이제 결과를 보죠.
 
-{{{example url="../threejs-align-html-elements-to-3d-globe.html" }}}
+{{{example url="align-html-elements-to-3d-globe.html" }}}
 
 지구본을 돌려보면 뒤로 간 이름표가 사라지는 걸 확인할 수 있습니다. `minVisibleDot` 값을 조정하면 사라지는 지점이 변하고, `minArea` 값을 조정하면 영역이 더 작은/큰 나라를 볼 수 있죠.
 
@@ -700,7 +700,7 @@ function updateLabels() {
 
 모든 상황을 다 가정할 수는 없지만, 이 글이 HTML 요소를 3D 요소에 맞춰 정렬하는 데 도움이 되었으면 합니다. 아마 몇 가지 내용은 나중에 바뀔 수도 있으니 참고해주세요.
 
-다음 글에서는 더 나아가 [지구본 위의 나라를 선택하고 강조](threejs-indexed-textures.html)해보겠습니다.
+다음 글에서는 더 나아가 [지구본 위의 나라를 선택하고 강조](indexed-textures.html)해보겠습니다.
 
-<link rel="stylesheet" href="resources/threejs-align-html-elements-to-3d.css">
-<script type="module" src="resources/threejs-align-html-elements-to-3d.js"></script>
+<link rel="stylesheet" href="../resources/threejs-align-html-elements-to-3d.css">
+<script type="module" src="../resources/threejs-align-html-elements-to-3d.js"></script>

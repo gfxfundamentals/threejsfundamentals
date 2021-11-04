@@ -2,7 +2,7 @@ Title: Three.js 优化对象的同时保持动画效果
 Description: 使用morphtarget优化
 TOC: 优化对象的同时保持动画效果
 
-本文是关于 three.js 系列文章的一部分. 第一篇文章是 [three.js 基础](threejs-optimize-lots-of-objects.html). 如果你还没看过而且对three.js 还不熟悉，那应该从那里开始.
+本文是关于 three.js 系列文章的一部分. 第一篇文章是 [three.js 基础](optimize-lots-of-objects.html). 如果你还没看过而且对three.js 还不熟悉，那应该从那里开始.
 
 在上一章中, 我们合并了19000个对象到一个几何体中. 这带来的好处是优化掉19000次绘制操作但是缺点是没有办法再单独操作某一个了. 
 
@@ -190,7 +190,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 把鼠标放到标签上可以在四组不同的数据集之间切换. 
 
 
-{{{example url="../threejs-lots-of-objects-multiple-data-sets.html" }}}
+{{{example url="lots-of-objects-multiple-data-sets.html" }}}
 
 咋回事, 怎么还有一些点非常突出??!! 而且切换得很生硬也没有动画啊
 
@@ -313,10 +313,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 我们这里首先引入它
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {BufferGeometryUtils} from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-+import {TWEEN} from './resources/threejs/r132/examples/jsm/libs/tween.min.js';
+import * as THREE from './build/three.module.js';
+import {BufferGeometryUtils} from '/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from '/examples/jsm/libs/tween.min.js';
 ```
 
 然后创建一个`Tween`来使influence变化
@@ -341,7 +341,7 @@ function showFileInfo(fileInfos, fileInfo) {
 }
 ```
 
-我们也可以在每一帧的render函数中调用`TWEEN.update`, 但这会带来一个问题. "tween.js"是为了连续渲染而设计的, 但是我们采用的是[按需渲染](threejs-rendering-on-demand.html). 我们可以再切换回连续渲染的方式, 但是为了省电和省资源起见, 还是按需渲染比较好. 所以我们看看是否能让它在按需渲染下工作. 
+我们也可以在每一帧的render函数中调用`TWEEN.update`, 但这会带来一个问题. "tween.js"是为了连续渲染而设计的, 但是我们采用的是[按需渲染](rendering-on-demand.html). 我们可以再切换回连续渲染的方式, 但是为了省电和省资源起见, 还是按需渲染比较好. 所以我们看看是否能让它在按需渲染下工作. 
 
 我们需要`TweenManaget`来完成这件事. 我们将用它来创建`Tween`并追踪他们. 这里会有一个`update`方法, 如果我们二次调用它的时候返回`true`, 如果所有动画结束后则会返回`false`.
 
@@ -435,7 +435,7 @@ render();
 
 这样我们就可以在数据集中以动画的方式过渡了
 
-{{{example url="../threejs-lots-of-objects-morphtargets.html" }}}
+{{{example url="lots-of-objects-morphtargets.html" }}}
 
 看起来挺好的, 但是失去了色彩.
 
@@ -638,11 +638,11 @@ function render() {
 
 然后我们的颜色就可以像尺寸一样动起来了. 
 
-{{{example url="../threejs-lots-of-objects-morphtargets-w-colors.html" }}}
+{{{example url="lots-of-objects-morphtargets-w-colors.html" }}}
 
 我希望上面讲的这些能有用. 通过threejs提供的方法或者自己写着色器来使用变形对象是一种常见的移动大量对象的手段. 作为一个例子, 我们可以给每一个立方体一个随机目标, 然后从这个位置变换到另一个位置. 这可能是一种超酷的介绍地球的方法. 
 
-接下来你可能感兴趣的是给地球上的一个位置添加标签, 这将在[3D中排布HTML元素](threejs-align-html-elements-to-3d.html)中涉及. 
+接下来你可能感兴趣的是给地球上的一个位置添加标签, 这将在[3D中排布HTML元素](align-html-elements-to-3d.html)中涉及. 
 
 Note: We could try to just graph percent of men or percent of women or the raw
 difference but based on how we are displaying the info, cubes that grow from the

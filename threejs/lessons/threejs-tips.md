@@ -45,14 +45,14 @@ const saveBlob = (function() {
 }());
 ```
 
-Here's the example from [the article on responsiveness](threejs-responsive.html)
+Here's the example from [the article on responsiveness](responsive.html)
 with the code above added and some CSS to place the button
 
-{{{example url="../threejs-tips-screenshot-bad.html"}}}
+{{{example url="tips-screenshot-bad.html"}}}
 
 When I tried it I got this screenshot
 
-<div class="threejs_center"><img src="resources/images/screencapture-413x313.png"></div>
+<div class="threejs_center"><img src="../resources/images/screencapture-413x313.png"></div>
 
 Yes, it's just a black image.
 
@@ -119,7 +119,7 @@ elem.addEventListener('click', () => {
 
 And now it should work.
 
-{{{example url="../threejs-tips-screenshot-good.html" }}}
+{{{example url="tips-screenshot-good.html" }}}
 
 For a different solution see the next item.
 
@@ -146,7 +146,7 @@ const canvas = document.querySelector('#c');
 +renderer.autoClearColor = false;
 ```
 
-{{{example url="../threejs-tips-preservedrawingbuffer.html" }}}
+{{{example url="tips-preservedrawingbuffer.html" }}}
 
 Note that if you were serious about making a drawing program this would not be a
 solution as the browser will still clear the canvas anytime we change its
@@ -156,7 +156,7 @@ a file, even in another tab, and the browser adds a status bar. It also includes
 the user turns their phone and the browser switches from portrait to landscape.
 
 If you really wanted to make a drawing program you'd
-[render to a texture using a render target](threejs-rendertargets.html).
+[render to a texture using a render target](rendertargets.html).
 
 ---
 
@@ -233,7 +233,7 @@ Notice you can't get the first canvas to accept keyboard input.
 The second canvas you can but it gets highlighted. The 3rd
 canvas has both solutions applied.
 
-{{{example url="../threejs-tips-tabindex.html"}}}
+{{{example url="tips-tabindex.html"}}}
 
 ---
 
@@ -274,7 +274,7 @@ here's [a good article on it](https://developer.nvidia.com/content/alpha-blendin
 
 In any case let's setup a simple example with a transparent canvas.
 
-We applied the settings above to the example from [the article on responsiveness](threejs-responsive.html).
+We applied the settings above to the example from [the article on responsiveness](responsive.html).
 Let's also make the materials more transparent.
 
 ```js
@@ -334,7 +334,7 @@ body {
 note that `pointer-events: none` makes the canvas invisible to the mouse
 and touch events so you can select the text beneath.
 
-{{{example url="../threejs-tips-transparent-canvas.html" }}}
+{{{example url="tips-transparent-canvas.html" }}}
 
 ---
 
@@ -396,4 +396,4 @@ a border by default.
 }
 ```
 
-{{{example url="../threejs-tips-html-background.html"}}}
+{{{example url="tips-html-background.html"}}}

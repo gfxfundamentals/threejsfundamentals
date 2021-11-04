@@ -3,20 +3,20 @@ Description: Что такое граф сцены?
 TOC: Граф сцены
 
 Эта статья является частью серии статей о three.js. 
-Первая статья - [основы Three.js](threejs-fundamentals.html).
+Первая статья - [основы Three.js](fundamentals.html).
 Если вы её еще не читали, советую вам сделать это.
 
 Ядром Three.js, возможно, является граф сцены. Граф сцены в трехмерном 
 движке - это иерархия узлов в графе, где каждый узел представляет 
 локальное пространство.
 
-<img src="resources/images/scenegraph-generic.svg" align="center">
+<img src="../resources/images/scenegraph-generic.svg" align="center">
 
 Это своего рода абстракция, поэтому давайте попробуем привести несколько примеров.
 
 Одним из примеров может быть солнечная система, солнце, земля, луна.
 
-<img src="resources/images/scenegraph-solarsystem.svg" align="center">
+<img src="../resources/images/scenegraph-solarsystem.svg" align="center">
 
 Земля вращается вокруг Солнца. Луна вращается вокруг Земли. Луна движется по 
 кругу вокруг Земли. С точки зрения Луны она вращается в «локальном пространстве» 
@@ -24,7 +24,7 @@ TOC: Граф сцены
 собой какой-то сумасшедший спирографический изгиб, ему просто нужно заниматься 
 вращением вокруг локального пространства Земли.
 
-{{{diagram url="resources/moon-orbit.html" }}}
+{{{diagram url="../resources/moon-orbit.html" }}}
 
 Чтобы думать об этом иначе, вы, живущие на Земле, не должны думать о вращении 
 Земли вокруг своей оси или о вращении вокруг Солнца. Вы просто идете или едете, 
@@ -111,7 +111,7 @@ objects.forEach((obj) => {
 
 Так как мы добавили `sunMesh` в массив `objects` он будет вращаться.
 
-{{{example url="../threejs-scenegraph-sun.html" }}}
+{{{example url="scenegraph-sun.html" }}}
 
 Теперь давайте добавим землю.
 
@@ -130,7 +130,7 @@ objects.push(earthMesh);
 `earthMesh`. Мы размещаем эти 10 единиц слева от солнца и добавляем их в сцену. 
 Поскольку мы добавили его в наш массив `objects`, он тоже будет вращаться.
 
-{{{example url="../threejs-scenegraph-sun-earth.html" }}}
+{{{example url="scenegraph-sun-earth.html" }}}
 
 Вы можете видеть, что Солнце и Земля вращаются, но Земля не вращается вокруг Солнца. 
 Давайте сделаем землю дитя солнца
@@ -142,7 +142,7 @@ objects.push(earthMesh);
 
 а также...
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit.html" }}}
+{{{example url="scenegraph-sun-earth-orbit.html" }}}
 
 Что случилось? Почему Земля такого же размера, как Солнце, и почему она так далеко? 
 На самом деле мне пришлось передвинуть камеру с 50 единиц сверху до 150 единиц 
@@ -156,7 +156,7 @@ objects.push(earthMesh);
 
 Наш граф сцены в настоящее время выглядит следующим образом
 
-<img src="resources/images/scenegraph-sun-earth.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth.svg" align="center">
 
 Чтобы это исправить, давайте добавим пустой узел графа сцены. 
 Мы будем связывать солнце и землю с этим узлом.
@@ -187,13 +187,13 @@ objects.push(earthMesh);
 
 Наш новый граф сцены выглядит следующим образом
 
-<img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center">
 
 И `sunMesh` и `earthMesh` дети `solarSystem`. Все 3 вращаются, и теперь, 
 поскольку они не являются потомками `earthMesh`, `sunMesh` больше не 
 масштабируются в 5 раз.
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit-fixed.html" }}}
+{{{example url="scenegraph-sun-earth-orbit-fixed.html" }}}
 
 Намного лучше. Земля меньше Солнца, и она вращается вокруг Солнца и вращается сама.
 
@@ -225,11 +225,11 @@ objects.push(earthMesh);
 Снова мы добавили еще один невидимый узел графа сцены `Object3D` под названием `earthOrbit`
 и добавили `earthMesh` и `moonMesh` к нему. Новый граф сцены выглядит следующим образом.
 
-<img src="resources/images/scenegraph-sun-earth-moon.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center">
 
 и вот что
 
-{{{example url="../threejs-scenegraph-sun-earth-moon.html" }}}
+{{{example url="scenegraph-sun-earth-moon.html" }}}
 
 Вы можете видеть, что луна следует шаблону спирографа, показанному в верхней части этой 
 статьи, но нам не пришлось вычислять ее вручную. Мы просто настраиваем наш 
@@ -260,7 +260,7 @@ objects.forEach((node) => {
 Мы также устанавливаем их `renderOrder` в 1 (по умолчанию 0), чтобы они 
 рисовались после всех сфер. В противном случае сфера может накрыть их и закрыть их.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes.html" }}}
 
 Мы можем видеть оси
 <span style="color:red">x (красная)</span> и
@@ -353,7 +353,7 @@ class AxisGridHelper {
 равным 2, а для `GridHelper` равным 1 так, что оси втянуться после появления сетки. 
 В противном случае сетка может перезаписать оси.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes-grids.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes-grids.html" }}}
 
 Включите `solarSystem` и вы увидите, что Земля находится точно в 10 единицах от центра, 
 как мы установили выше. Вы можете увидеть , как земля находится в 
@@ -363,7 +363,7 @@ class AxisGridHelper {
 Еще несколько примеров графов сцены. Автомобиль в простом игровом мире 
 может иметь такой граф сцены
 
-<img src="resources/images/scenegraph-car.svg" align="center">
+<img src="../resources/images/scenegraph-car.svg" align="center">
 
 Если вы двигаете кузов автомобиля, все колеса будут двигаться вместе с ним. 
 Если вы хотите, чтобы кузов отскакивал отдельно от колес, вы можете привязать 
@@ -371,7 +371,7 @@ class AxisGridHelper {
 
 Другой пример - человек в игровом мире.
 
-<img src="resources/images/scenegraph-human.svg" align="center">
+<img src="../resources/images/scenegraph-human.svg" align="center">
 
 Вы можете видеть, что график сцены становится довольно сложным для человека. 
 На самом деле этот граф сцены упрощен. Например, вы можете расширить его, 
@@ -387,4 +387,4 @@ class AxisGridHelper {
 колеса автомобиля относительно его тела, было бы очень сложно, но с 
 помощью графа сцены это становится намного проще.
 
-[Далее мы пройдемся по материалам](threejs-materials.html).
+[Далее мы пройдемся по материалам](materials.html).

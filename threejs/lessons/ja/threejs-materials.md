@@ -3,7 +3,7 @@ Description: Three.jsのマテリアル
 TOC: マテリアル
 
 この記事はthree.jsについてのシリーズ記事の一つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでない人は、そちらから先に読んでみるといいかもしれません。
 
 Three.jsはいくつかの種類のマテリアルを提供しています。
@@ -268,7 +268,7 @@ threeで描写されるほとんどの3Dオブジェクトは、たぶん不透�
 
 マテリアルについては、本当にたくさん考えることがあり、実際にはもっとたくさんの説明したいパラメータがあります。
 特に、私たちは多くのオプションの話につながる、テクスチャをほとんど無視していました。
-テクスチャを説明する前に、休憩を取って、[開発環境のセットアップ](threejs-setup.html)を説明する必要があります。
+テクスチャを説明する前に、休憩を取って、[開発環境のセットアップ](setup.html)を説明する必要があります。
 
 
 <div class="threejs_bottombar">
@@ -303,5 +303,5 @@ Three.jsはマテリアルが"使われた"ときに設定を適用します。
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-materials.js"></script>
+<script type="module" src="../resources/threejs-materials.js"></script>
 

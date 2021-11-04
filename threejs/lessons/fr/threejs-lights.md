@@ -3,8 +3,8 @@ Description: Configuration des lumières
 TOC: Lumières
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html). Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là ou aussi voir l'article sur [la configuartion de votre environnement](threejs-setup.html). L'
-[article précédent](threejs-textures.html) parlait des textures.
+Le premier article s'intitule [Principes de base](fundamentals.html). Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là ou aussi voir l'article sur [la configuartion de votre environnement](setup.html). L'
+[article précédent](textures.html) parlait des textures.
 
 Voyons comment utiliser les différents types de lumières.
 
@@ -22,8 +22,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 Ajoutons ensuite `OrbitControls`. `OrbitControls` permet à l'utilisateur de tourner ou de mettre la caméra en *orbite* autour d'un certain point. Il s'agit d'une fonctionnalité facultative de Three.js, nous devons donc d'abord l'importer
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 Ensuite, nous pouvons l'utiliser. Nous passons à `OrbitControls` une caméra à contrôler et l'élément DOM à utiliser.
@@ -40,7 +40,7 @@ et appelons `controls.update` afin que les contrôles utilisent la nouvelle cibl
 Ensuite, créons des choses à éclairer. Nous allons d'abord faire un plan au sol. Nous allons appliquer une petite texture en damier de 2x2 pixels qui ressemble à ceci
 
 <div class="threejs_center">
-  <img src="../resources/images/checker.png" class="border" style="
+  <img src="../examples/resources/images/checker.png" class="border" style="
     image-rendering: pixelated;
     width: 128px;
   ">
@@ -140,7 +140,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 Le résultat :
 
-{{{example url="../threejs-lights-ambient.html" }}}
+{{{example url="lights-ambient.html" }}}
 
 Cliquez/glissez pour mettre la caméra en *orbite*.
 
@@ -181,7 +181,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 Le resultat :
 
-{{{example url="../threejs-lights-hemisphere.html" }}}
+{{{example url="lights-hemisphere.html" }}}
 
 Remarquez encore une fois qu'il n'y a presque pas de définition, tout a l'air plutôt plat. L'`HemisphereLight` utilisée en combinaison avec une autre lumière peut aider à donner une belle sorte d'influence de la couleur du ciel et du sol. Retenez qu'il est préférable de l'utiliser en combinaison avec une autre lumière ou à la place d'une `AmbientLight`.
 
@@ -214,7 +214,7 @@ gui.add(light.target.position, 'z', -10, 10);
 gui.add(light.target.position, 'y', 0, 10);
 ```
 
-{{{example url="../threejs-lights-directional.html" }}}
+{{{example url="lights-directional.html" }}}
 
 C'est un peu difficile de voir ce qui se passe. Three.js a un tas de 'helper' que nous pouvons ajouter à la scène pour voir les objets invibles. Utilisons, dans ce cas, 
 `DirectionalLightHelper` qui a représente la source de lumière en direction de sa cible. Il suffit de lui ajouter une lumière et de l'ajouter à la scène.
@@ -257,7 +257,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 Maintenant, nous pouvons bouger la lumière, et sa cible.
 
-{{{example url="../threejs-lights-directional-w-helper.html" }}}
+{{{example url="lights-directional-w-helper.html" }}}
 
 Mettez la caméra en orbite et il devient plus facile de voir. Le plan représente une lumière directionnelle car une lumière directionnelle calcule la lumière venant dans une direction. Il n'y a aucun point d'où vient la lumière, c'est un plan de lumière infini qui projette des rayons de lumière parallèles.
 
@@ -313,7 +313,7 @@ makeXYZGUI(gui, light.position, 'position', updateLight);
 
 Et maintennat, testons.
 
-{{{example url="../threejs-lights-point.html" }}}
+{{{example url="lights-point.html" }}}
 
 Remarquez comment la lumière s'éteint lorsque la `distance` est > 0.
 
@@ -340,7 +340,7 @@ scene.add(helper);
 
 L'angle du cône de la `Spotlight` est défini avec la propriété [`angle`](SpotLight.angle)
 en radians. Utilisons notre `DegRadHelper` vu dans
-[l'article sur les textures](threejs-textures.html) pour modifier l'angle avec dat.GUI.
+[l'article sur les textures](textures.html) pour modifier l'angle avec dat.GUI.
 
 ```js
 gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
@@ -352,7 +352,7 @@ Le cône intérieur est défini en paramétrant la propriété [`penumbra`](Spot
 gui.add(light, 'penumbra', 0, 1, 0.01);
 ```
 
-{{{example url="../threejs-lights-spot-w-helper.html" }}}
+{{{example url="lights-spot-w-helper.html" }}}
 
 Remarquez qu'avec la `penumbra` par défaut à 0, le projecteur a un bord très net alors que lorsque vous l'ajustez à 1, le bord devient flou.
 
@@ -402,9 +402,9 @@ Le [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight) ne f
 Pour utiliser [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight) nous devons importer [`RectAreaLightHelper`](https://threejs.org/docs/#api/en/helpers/RectAreaLightHelper) pour nous aider à voir la lumière.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {RectAreaLightUniformsLib} from './resources/threejs/r132/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import {RectAreaLightHelper} from './resources/threejs/r132/examples/jsm/helpers/RectAreaLightHelper.js';
+import * as THREE from './build/three.module.js';
++import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```
 
 et nous devons appeler `RectAreaLightUniformsLib.init`
@@ -453,7 +453,7 @@ makeXYZGUI(gui, light.position, 'position');
 
 Et voici ce que ça donne.
 
-{{{example url="../threejs-lights-rectarea.html" }}}
+{{{example url="lights-rectarea.html" }}}
 
 Une chose que nous n'avons pas vu, c'est qu'il existe un paramètre sur le [`WebGLRenderer`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer) appelé `physicalCorrectLights`. Il affecte la façon dont la lumière tombe en tant que distance de la lumière. Cela n'affecte que [`PointLight`](https://threejs.org/docs/#api/en/lights/PointLight) et [`SpotLight`](https://threejs.org/docs/#api/en/lights/SpotLight). [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight) le fait automatiquement.
 
@@ -489,11 +489,11 @@ gui.add(light, 'decay', 0, 4, 0.01);
 gui.add(light, 'power', 0, 2000);
 ```
 
-{{{example url="../threejs-lights-point-physically-correct.html" }}}
+{{{example url="lights-point-physically-correct.html" }}}
 
 Il est important de noter que chaque lumière que vous ajoutez à la scène ralentit la vitesse à laquelle Three.js rend la scène, vous devez donc toujours essayer d'en utiliser le moins possible pour atteindre vos objectifs.
 
-Passons maintenant à [la gestion des caméras](threejs-cameras.html).
+Passons maintenant à [la gestion des caméras](cameras.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>

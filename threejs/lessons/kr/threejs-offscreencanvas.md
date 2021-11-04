@@ -4,11 +4,11 @@ TOC: 웹 워커에서 OffscreenCanvas 사용하기
 
 [`OffscreenCanvas`](https://developer.mozilla.org/ko/docs/Web/API/OffscreenCanvas)는 비교적 최근 도입된 브라우저 API로 아직 크로미움 기반 브라우저에서만 사용가능하지만, 갈수록 대부분의 브라우저에서 이 API를 사용할 수 있을 겁니다. `OffscreenCanvas`를 이용하면 [웹 워커(Web Worker)](https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API)에서 캔버스를 렌더링해 복잡한 3D 장면 등의 무거운 작업을 별도 프로세스에서 처리할 수 있습니다. 이러면 무거운 작업을 처리할 때 브라우저가 덜 버벅이도록 할 수 있죠. 또한 데이터도 워커에서 불러와 처리하므로 페이지 초기 로드 시 버벅임을 훨씬 줄일 수 있습니다.
 
-사용법은 꽤나 직관적입니다. 먼저 [반응형 디자인에 관한 글](threejs-responsive.html)에서 썼던 예제를 가져오도록 하죠.
+사용법은 꽤나 직관적입니다. 먼저 [반응형 디자인에 관한 글](responsive.html)에서 썼던 예제를 가져오도록 하죠.
 
 이 사이트 대부분의 예제는 스크립트를 해당 HTML 파일에 인라인으로 작성했습니다. 반면에 워커는 일반적으로 별도의 스크립트 파일로 분리해 작성합니다.
 
-이 글에서는 `offscreencanvas-cubes.js`라는 별도 파일을 만들어 [반응형 디자인에서 가져온 예제](threejs-responsive.html)의 자바스크립트 코드를 전부 복사해 넣을 겁니다. 그런 다음 바꿔야할 부분을 바꿔보도록 하죠.
+이 글에서는 `offscreencanvas-cubes.js`라는 별도 파일을 만들어 [반응형 디자인에서 가져온 예제](responsive.html)의 자바스크립트 코드를 전부 복사해 넣을 겁니다. 그런 다음 바꿔야할 부분을 바꿔보도록 하죠.
 
 하지만 여전히 HTML 파일에 약간의 자바스크립트 코드가 필요합니다. 캔버스 요소를 참조하고 `canvas.transferControlToOffscreen` 메서드를 호출해 캔버스의 제어권을 `offscreen`에 넘겨줍니다.
 
@@ -54,7 +54,7 @@ self.onmessage = function(e) {
 
 `type` 값을 통해 호출할 함수를 찾고, 함수가 있다면 메인 스크립트에서 넘어온 `data`를 인자로 넘겨 호출하도록 했습니다.
 
-이제 [반응형 디자인에 관한 글](threejs-responsive.html)에서 가져온 예제의 `main` 함수를 수정해야 합니다.
+이제 [반응형 디자인에 관한 글](responsive.html)에서 가져온 예제의 `main` 함수를 수정해야 합니다.
 
 DOM에서 캔버스에 접근하는 대신 이벤트의 `data` 속성에서 캔버스 요소를 받도록 합니다.
 
@@ -203,7 +203,7 @@ function main() {
 
 브라우저가 `OffscreenCanvas`를 지원한다면 문제 없이 작동할 겁니다.
 
-{{{example url="../threejs-offscreencanvas.html" }}}
+{{{example url="offscreencanvas.html" }}}
 
 하지만 현재 모든 브라우저가 `OffscreenCanvas`를 지원하는 것은 아닙니다. `OffscreenCanvas`를 지원할 경우에만 워커를 사용하도록 하고, 그렇지 않을 경우에는 기존처럼 메인 스크립트에서 렌더링을 처리하도록 하겠습니다.
 
@@ -226,7 +226,7 @@ function main() {
 `shared-cubes.js`와 `offscreencanvas-worker-cubes.js`는 단순히 이전 `offscreencanvas-cubes.js` 파일을 쪼갠 것입니다. 먼저 `offscreencanvas-cube.js`를 `shared-cube.js`로 옮긴 뒤, 메인 HTML 파일에 이미 `main` 함수가 있어 `main` 함수의 이름만 `init`으로 바꿔야 하죠. 여기에 추가로 `init`과 `state` 함수를 export 시켜줘야 합니다.
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
  
 -const state = {
 +export const state = {
@@ -387,9 +387,9 @@ function startMainPage(canvas) {
 
 이제 `OffscreenCanvas를` 지원하는 경우에만 `OffscreenCanvas`를 사용하고, 지원하지 않는 경우에는 메인 스레드에서 직접 렌더링합니다.
 
-{{{example url="../threejs-offscreencanvas-w-fallback.html" }}}
+{{{example url="offscreencanvas-w-fallback.html" }}}
 
-어떤가요? 생각했던 것보다 쉽지 않나요? 여기에 피킹(picking)을 추가해봅시다. [피킹에 관한 글](threejs-picking.html)의 `RayCaster` 예제에서 코드 일부를 가져오도록 하겠습니다.
+어떤가요? 생각했던 것보다 쉽지 않나요? 여기에 피킹(picking)을 추가해봅시다. [피킹에 관한 글](picking.html)의 `RayCaster` 예제에서 코드 일부를 가져오도록 하겠습니다.
 
 먼저 `shared-cube.js`의 코드를 `shared-picking.js`로 복사한 뒤, 피킹 예제에서 `PickHelper`를 가져옵니다.
 
@@ -566,13 +566,13 @@ window.addEventListener('touchend', clearPickPosition);
 
 이제 `OffscreenCanvas`에서도 피킹이 정상적으로 작동할 겁니다.
 
-{{{example url="../threejs-offscreencanvas-w-picking.html" }}}
+{{{example url="offscreencanvas-w-picking.html" }}}
 
 좀 더 욕심을 내 `OrbitControls`까지 추가해봅시다. `OrbitControls`는 DOM에 꽤 다양하게 접근하기에 처리해줘야 할 것이 좀 많습니다. 제대로 작동하려면 마우스 이벤트, 터치 이벤트, 키보드 이벤트를 모두 처리해줘야 하죠.
 
 여태까지는 전역 `state` 객체를 사용했지만, `OrbitControls`의 경우는 객체 속성이 너무 많아 그걸 전부 다 하드 코딩하는 건 너무 번거롭습니다. `OrbitControls`는 필요한 DOM 이벤트의 대부분을 인자로 받는 `HTMLElement`에 바인딩합니다. 이를 이용해 DOM 요소와 같은 구조의 객체를 넘겨준다면 어떨까요? `OrbitControls`에 필요한 기능만 살려서 말이죠.
 
-[`OrbitControls`의 소스 코드](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r132/examples/js/controls/OrbitControls.js)를 분석해보니 아래의 이벤트만 지원하면 될 듯합니다.
+[`OrbitControls`의 소스 코드](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)를 분석해보니 아래의 이벤트만 지원하면 될 듯합니다.
 
 * contextmenu
 * pointerdown
@@ -597,7 +597,7 @@ wheel 이벤트는 `deltaY` 속성만,
 아래는 워커 안의 코드입니다.
 
 ```js
-import { EventDispatcher } from './resources/threejs/r132/build/three.module.js';
+import { EventDispatcher } from '../../build/three.module.js';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -675,8 +675,8 @@ self.onmessage = function(e) {
 Three.js의 공통 코드에 `OrbitControls` 모듈도 불러와 설정해야 합니다.
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../build/three.module.js';
++import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 
 export function init(data) {
 -  const { canvas } = data;
@@ -1075,7 +1075,7 @@ function startMainPage(canvas) {
 
 이제 `OffscreenCanvas`에서도 `OrbitControls`가 잘 작동합니다.
 
-{{{example url="../threejs-offscreencanvas-w-orbitcontrols.html" }}}
+{{{example url="offscreencanvas-w-orbitcontrols.html" }}}
 
 아마 이 예제가 이 시리즈를 통틀어 가장 복잡한 예제일 겁니다. 각 예제마다 HTML 파일, 워커 파일, 공통 Three.js 코드 파일, 이렇게 파일 3개가 서로 연동되니 그럴만 하죠.
 

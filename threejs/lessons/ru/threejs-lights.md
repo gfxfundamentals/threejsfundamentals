@@ -3,9 +3,9 @@ Description: Настройка освещения
 TOC: Освещение
 
 Эта статья является частью серии статей о three.js. 
-Первая была [об основах](threejs-fundamentals.html).
+Первая была [об основах](fundamentals.html).
 Если вы её еще не читали, советую вам сделать это.
-[Предыдущая статья была о текстурах](threejs-textures.html).
+[Предыдущая статья была о текстурах](textures.html).
 
 Давайте рассмотрим, как использовать различные виды освещения в three.js.
 
@@ -29,8 +29,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 включить их в нашу страницу.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 Теперь мы можем использовать их. Мы передаем в `OrbitControls` камеру для 
@@ -50,7 +50,7 @@ controls.update();
 шахматной доски размером 2x2, которая выглядит следующим образом
 
 <div class="threejs_center">
-  <img src="../resources/images/checker.png" class="border" style="
+  <img src="../examples/resources/images/checker.png" class="border" style="
     image-rendering: pixelated;
     width: 128px;
   ">
@@ -164,7 +164,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 И вот результат
 
-{{{example url="../threejs-lights-ambient.html" }}}
+{{{example url="lights-ambient.html" }}}
 
 Нажмите и перетащите сценy, чтобы вращать камеру.
 
@@ -210,7 +210,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 Результат:
 
-{{{example url="../threejs-lights-hemisphere.html" }}}
+{{{example url="lights-hemisphere.html" }}}
 
 Еще раз обратите внимание, что объема почти нет, все выглядит плоско. 
 `HemisphereLight` используется в сочетании с другим светом и может 
@@ -248,7 +248,7 @@ gui.add(light.target.position, 'z', -10, 10);
 gui.add(light.target.position, 'y', 0, 10);
 ```
 
-{{{example url="../threejs-lights-directional.html" }}}
+{{{example url="lights-directional.html" }}}
 
 Трудно понять, что происходит. Three.js имеет несколько вспомогательных 
 объектов, которые мы можем добавить к нашей сцене, чтобы помочь 
@@ -302,7 +302,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 Теперь мы можем переместить свет и его цель
 
-{{{example url="../threejs-lights-directional-w-helper.html" }}}
+{{{example url="lights-directional-w-helper.html" }}}
 
 Вращайтесь по орбите камеры, и это станет легче видеть. Плоскость представляет собой 
 `DirectionalLight` потому что *направленный свет* вычисляет свет 
@@ -366,7 +366,7 @@ makeXYZGUI(gui, light.position, 'position', updateLight);
 
 А теперь попробуйте.
 
-{{{example url="../threejs-lights-point.html" }}}
+{{{example url="lights-point.html" }}}
 
 Обратите внимание, когда `distance` > 0, как свет гаснет.
 
@@ -397,7 +397,7 @@ scene.add(helper);
 
 Угол конуса прожектора задается с помощью свойства [`angle`](SpotLight.angle) 
 в радианах. Мы будем использовать наш `DegRadHelper` из 
-[статьи про текстуры](threejs-textures.html) для представления пользовательского интерфейса в градусах..
+[статьи про текстуры](textures.html) для представления пользовательского интерфейса в градусах..
 
 ```js
 gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
@@ -413,7 +413,7 @@ gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange
 gui.add(light, 'penumbra', 0, 1, 0.01);
 ```
 
-{{{example url="../threejs-lights-spot-w-helper.html" }}}
+{{{example url="lights-spot-w-helper.html" }}}
 
 Обратите внимание, что при значении по умолчанию `penumbra` = 0 и прожектор 
 имеет очень резкий край. По мере того, как вы наращиваете `penumbra` к 1 
@@ -469,9 +469,9 @@ gui.add(light, 'penumbra', 0, 1, 0.01);
 Для использования `RectAreaLight` нам нужно включить некоторые дополнительные возможности three.js
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {RectAreaLightUniformsLib} from './resources/threejs/r132/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import {RectAreaLightHelper} from './resources/threejs/r132/examples/jsm/helpers/RectAreaLightHelper.js';
+import * as THREE from './build/three.module.js';
++import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```
 
 ```js
@@ -521,7 +521,7 @@ makeXYZGUI(gui, light.position, 'position');
 
 И вот что.
 
-{{{example url="../threejs-lights-rectarea.html" }}}
+{{{example url="lights-rectarea.html" }}}
 
 Одна вещь, которую мы не охватили, это то, что есть настройка для `WebGLRenderer`
 вызываемого в `physicallyCorrectLights`. Это влияет на то, как свет падает в зависимости 
@@ -564,13 +564,13 @@ gui.add(light, 'decay', 0, 4, 0.01);
 gui.add(light, 'power', 0, 2000);
 ```
 
-{{{example url="../threejs-lights-point-physically-correct.html" }}}
+{{{example url="lights-point-physically-correct.html" }}}
 
 Важно отметить, что каждый источник света, который вы добавляете в сцену, 
 замедляет скорость рендеринга сцены в three.js, поэтому вы всегда должны 
 стараться использовать как можно меньше для достижения своих целей.
 
-Далее давайте перейдем к  [работе с камерами](threejs-cameras.html).
+Далее давайте перейдем к  [работе с камерами](cameras.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>

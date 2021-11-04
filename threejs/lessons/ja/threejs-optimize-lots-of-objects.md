@@ -2,7 +2,7 @@ Title: Three.jsで多くのオブジェクトを最適化
 Description: オブジェクトをマージして最適化
 TOC: 多くのオブジェクトを最適化
 
-この記事はthree.jsの連載記事の1つです。最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。まだ読んでいない場合はそこから始めて下さい。
+この記事はthree.jsの連載記事の1つです。最初の記事は[Three.jsの基礎知識](fundamentals.html)です。まだ読んでいない場合はそこから始めて下さい。
 
 three.jsには最適化する方法は多々あります。1つの方法は*ジオメトリのマージ*と呼ばれています。メッシュを作成すると描画リクエストを1つ以上行った事を表します。
 2つのメッシュを描画すると結果が同じでも1つのメッシュを描画するよりもオーバーヘッドが大きく、最適化する1つの方法がメッシュのマージです。
@@ -143,11 +143,11 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 どうやら上手くいったようです。
 
 これを3Dでやってみましょう。
-[要求されたレンダリング](threejs-rendering-on-demand.html)のコードから始めてファイル内のデータごとに1つのボックスを作ります。
+[要求されたレンダリング](rendering-on-demand.html)のコードから始めてファイル内のデータごとに1つのボックスを作ります。
 
 まずは世界地図テクスチャで簡単な球体を作ってみましょう。テクスチャはこんな感じです。
 
-<div class="threejs_center"><img src="../resources/images/world.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/world.jpg" style="width: 600px"></div>
 
 テクスチャをセットするコードです。
 
@@ -162,7 +162,7 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 ```
 
 テクスチャ読込後に `render` を呼び出している部分に注目して下さい。
-renderが必要なのは連続的なレンダリングでなく、[要求されたレンダリング](threejs-rendering-on-demand.html)なのでテクスチャ読込後に一度レンダリングする必要があるからです。
+renderが必要なのは連続的なレンダリングでなく、[要求されたレンダリング](rendering-on-demand.html)なのでテクスチャ読込後に一度レンダリングする必要があるからです。
 
 次に上記のデータポイントごとにドット描画するコードをデータポイントごとにボックスを作成するコードに変更する必要があります。
 
@@ -237,7 +237,7 @@ function addBoxes(file) {
   </div>
 </div>
 
-[シーングラフ](threejs-scenegraph.html)で説明したように、多くの `THREE.Object3D` オブジェクトでボックスを親にして解決できますが、シーングラフにノードを追加すればするほど遅くなってしまいます。
+[シーングラフ](scenegraph.html)で説明したように、多くの `THREE.Object3D` オブジェクトでボックスを親にして解決できますが、シーングラフにノードを追加すればするほど遅くなってしまいます。
 
 また `lonHelper`、`latHelper`、`positionHelper`という小さなノード階層を設定します。
 これらのオブジェクトを使用し、ボックスを配置する球体の周りの位置を計算します。
@@ -276,19 +276,19 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 +  .then(render);
 ```
 
-データ読込と解析が終わったら、少なくとも一度は[要求されたレンダリング](threejs-rendering-on-demand.html)をする必要があります。
+データ読込と解析が終わったら、少なくとも一度は[要求されたレンダリング](rendering-on-demand.html)をする必要があります。
 
-{{{example url="../threejs-lots-of-objects-slow.html" }}}
+{{{example url="lots-of-objects-slow.html" }}}
 
 上記のサンプルをドラッグして回転させようとすると遅い事に気づくでしょう。
 
-[devtoolsを開いて](threejs-debugging-javascript.html)FPS meterをオンにする事でFPSを確認できます。
+[devtoolsを開いて](debugging-javascript.html)FPS meterをオンにする事でFPSを確認できます。
 
-<div class="threejs_center"><img src="resources/images/bring-up-fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
 
 私のマシンでは20fps以下のFPSが表示されています。
 
-<div class="threejs_center"><img src="resources/images/fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/fps-meter.gif"></div>
 
 FPSの遅延はあまり好ましくなく、多くの人々がさらにFPSが遅くなるマシンを持っているのではないでしょうか。最適化を検討した方がいいですね。
 
@@ -387,12 +387,12 @@ function addBoxes(file) {
 また `BufferGeometryUtils` も含める必要があります。
 
 ```js
-import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
+import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
 ```
 
 少なくとも私のマシンでは毎秒60フレームになりました。
 
-{{{example url="../threejs-lots-of-objects-merged.html" }}}
+{{{example url="lots-of-objects-merged.html" }}}
 
 これで上手くいったのですが、以前はそれぞれのボックスに異なる色がありましたが、1つのメッシュなので1つのマテリアルとなり1つの色だけになります。
 これは頂点カラーを使い修正できます。
@@ -472,7 +472,7 @@ scene.add(mesh);
 
 これで色を取り戻す事ができました。
 
-{{{example url="../threejs-lots-of-objects-merged-vertexcolors.html" }}}
+{{{example url="lots-of-objects-merged-vertexcolors.html" }}}
 
 ジオメトリのマージは一般的な最適化手法です。
 例えば100本の木を1つのジオメトリに統合したり、個々の岩の山を1つの岩のジオメトリに統合したり、個々の杭から1つの柵メッシュに統合したりする事ができます。
@@ -480,7 +480,7 @@ scene.add(mesh);
 
 全てを1つのメッシュにする問題点としては、以前は分離されていた部分を移動する事が容易ではなくなった事です。
 ユースケースに応じて創造的なソリューションがあります。
-1つは[別の記事](threejs-optimize-lots-of-objects-animated.html)で紹介します。
+1つは[別の記事](optimize-lots-of-objects-animated.html)で紹介します。
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lots-of-objects.js"></script>
+<script type="module" src="../resources/threejs-lots-of-objects.js"></script>

@@ -3,10 +3,10 @@ Description: 조명에 대해 알아봅니다
 TOC: 조명(Lights)
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)과
-[개발 환경 설정하는 법](threejs-setup.html)을 읽고 오길 권장합니다.
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)과
+[개발 환경 설정하는 법](setup.html)을 읽고 오길 권장합니다.
 
-이전 글은 [텍스처에 관한 글](threejs-textures.html)이었죠. 이번에는
+이전 글은 [텍스처에 관한 글](textures.html)이었죠. 이번에는
 Three.js의 다양한 조명을 어떻게 쓰는지 알아보겠습니다.
 
 먼저 이전 예제에서 카메라를 수정하겠습니다. 시야각(fov, field of view)은
@@ -26,8 +26,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 별도 모듈이므로, 먼저 페이지에 로드해야 합니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 이제 `OrbitControls`에 카메라와, DOM 이벤트를 감지할 수 있도록
@@ -46,7 +46,7 @@ controls.update();
 평면을 만들고, 평면에 2x2 픽셀의 체크판 텍스처를 씌우겠습니다.
 
 <div class="threejs_center">
-  <img src="../resources/images/checker.png" class="border" style="
+  <img src="../examples/resources/images/checker.png" class="border" style="
     image-rendering: pixelated;
     width: 128px;
   ">
@@ -150,7 +150,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 결과물은 다음과 같죠.
 
-{{{example url="../threejs-lights-ambient.html" }}}
+{{{example url="lights-ambient.html" }}}
 
 카메라를 *공전시키기(orbit)* 위해 화면을 드래그해보세요.
 
@@ -190,7 +190,7 @@ const gui = new GUI();
 gui.add(light, 'intensity', 0, 2, 0.01);
 ```
 
-{{{example url="../threejs-lights-hemisphere.html" }}}
+{{{example url="lights-hemisphere.html" }}}
 
 이 또한 그다지 입체적이지 않습니다. 아까보다는 낮지만 전체적으로 2D처럼
 보이네요. `HemisphereLight`는 주로 풍경을 표현하거나 할 때 다른 조명과
@@ -227,7 +227,7 @@ gui.add(light.target.position, 'z', -10, 10);
 gui.add(light.target.position, 'y', 0, 10);
 ```
 
-{{{example url="../threejs-lights-directional.html" }}}
+{{{example url="lights-directional.html" }}}
 
 조명의 위치가 보이지 않으니 정확한 동작을 확인하기가 좀 어렵네요.
 다행히 Three.js에는 눈에 보이지 않는 요소의 시각화를 도와주는
@@ -279,7 +279,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 이제 조명, 목표의 위치를 각각 조정할 수 있습니다.
 
-{{{example url="../threejs-lights-directional-w-helper.html" }}}
+{{{example url="lights-directional-w-helper.html" }}}
 
 카메라를 돌려보면 아까보다 훨씬 동작이 명확하게 보일 겁니다.
 평면은 `DirectionalLight`를 나타내는데, 이는 직사광이 어느
@@ -343,7 +343,7 @@ makeXYZGUI(gui, light.position, 'position', updateLight);
 
 이제 한 번 테스트해보죠.
 
-{{{example url="../threejs-lights-point.html" }}}
+{{{example url="lights-point.html" }}}
 
 `distance`가 0보다 클 때 조명의 밝기를 잘 관찰해보세요.
 
@@ -374,7 +374,7 @@ scene.add(helper);
 ```
 
 원뿔의 내각은 [`angle`](SpotLight.angle)에 호도(radians)값을 지정해
-설정합니다. [텍스처 예제](threejs-textures.html)에서 사용했던 `DegRadHelper`
+설정합니다. [텍스처 예제](textures.html)에서 사용했던 `DegRadHelper`
 객체를 사용해 UI에는 도(degrees)로 표시하도록 하겠습니다.
 
 ```js
@@ -391,7 +391,7 @@ gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange
 gui.add(light, 'penumbra', 0, 1, 0.01);
 ```
 
-{{{example url="../threejs-lights-spot-w-helper.html" }}}
+{{{example url="lights-spot-w-helper.html" }}}
 
 `penumbra` 속성이 0일 때는 빛의 경계가 굉장히 분명한 것이 보일 겁니다.
 `penumbra` 속성을 1에 가깝게 조정하면 경계가 점점 흐릿해지죠.
@@ -447,9 +447,9 @@ gui.add(light, 'penumbra', 0, 1, 0.01);
 `RectAreaLightHelper`도 같이 불러와 조명을 시각화하겠습니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import { RectAreaLightUniformsLib } from './resources/threejs/r132/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import { RectAreaLightHelper } from './resources/threejs/r132/examples/jsm/helpers/RectAreaLightHelper.js';
+import * as THREE from './build/three.module.js';
++import { RectAreaLightUniformsLib } from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import { RectAreaLightHelper } from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```
 
 모듈을 불러온 후 `RectAreaLightUniformsLib.init` 메서드를 호출합니다.
@@ -499,7 +499,7 @@ gui.add(new DegRadHelper(light.rotation, 'z'), 'value', -180, 180).name('z rotat
 makeXYZGUI(gui, light.position, 'position');
 ```
 
-{{{example url="../threejs-lights-rectarea.html" }}}
+{{{example url="lights-rectarea.html" }}}
 
 하나 설명하지 않은 것이 있습니다. 위 예제에는 `WebGLRenderer`의 `physicallyCorrectLights(물리 기반 조명)`
 설정이 있습니다. 이는 거리에 따라 빛이 어떻게 떨어질지 결정하는 속성으로,
@@ -544,12 +544,12 @@ gui.add(light, 'decay', 0, 4, 0.01);
 gui.add(light, 'power', 0, 2000);
 ```
 
-{{{example url="../threejs-lights-point-physically-correct.html" }}}
+{{{example url="lights-point-physically-correct.html" }}}
 
 조명은 `renderer`가 장면을 렌더링하는 속도에 영향을 미칩니다. 그러니
 가능한 적은 조명을 쓰는 게 좋죠.
 
-다음 장에서는 [카메라 조작법](threejs-cameras.html)에 대해 알아보겠습니다.
+다음 장에서는 [카메라 조작법](cameras.html)에 대해 알아보겠습니다.
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>

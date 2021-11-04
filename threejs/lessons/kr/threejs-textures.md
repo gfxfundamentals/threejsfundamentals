@@ -3,8 +3,8 @@ Description: Three.js에서 텍스처(Textures)를 사용하는 법을 알아봅
 TOC: 텍스처(Textures)
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)과
-[개발 환경 설정하는 법](threejs-setup.html)을 읽고 오길 권장합니다.
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)과
+[개발 환경 설정하는 법](setup.html)을 읽고 오길 권장합니다.
 
 ※ 텍스처, Texture는 "질감"으로 번역할 수 있으나, 그대로 표기하는 쪽이
 직관적이라 판단하여 **텍스처**로 번역하였습니다.
@@ -37,7 +37,7 @@ Three.js에서 텍스처를 이야기하기란 쉽지 않습니다. 텍스처는
 예를 들어 아래 이미지를 정육면체에 씌워보죠.
 
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
+  <img src="../examples/resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 예제는 처음 만들었던 것을 사용하겠습니다. 추가로 `TextureLoader`를 새로 생성한
@@ -56,7 +56,7 @@ const material = new THREE.MeshBasicMaterial({
 
 ※ `MeshBasicMaterial`을 사용했으므로 광원을 사용할 필요가 없습니다.
 
-{{{example url="../threejs-textured-cube.html" }}}
+{{{example url="textured-cube.html" }}}
 
 ## <a name="six"></a> 육면체 각 면에 다른 텍스처 지정하기
 
@@ -64,14 +64,14 @@ const material = new THREE.MeshBasicMaterial({
 
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -97,7 +97,7 @@ const loader = new THREE.TextureLoader();
 
 껌이네요.
 
-{{{example url="../threejs-textured-cube-6-textures.html" }}}
+{{{example url="textured-cube-6-textures.html" }}}
 
 주의해야할 점은 모든 `geometry`가 재질을 배열로 받진 않는다는 점입니다.
 `BoxGeometry`나 `BoxGeometry`는 최대 6개, `ConeGeometry`와
@@ -112,7 +112,7 @@ const loader = new THREE.TextureLoader();
 
 그렇다면 텍스처의 좌표란 무엇일까요? 이는 `geometry`의 각 정점에 추가되는 데이터로, 특정
 정점에 텍스처의 어느 부분을 써야하는지를 나타냅니다. 자세한 사용법은 나중에
-[사용자 지정 geometry 만들기](threejs-custom-buffergeometry.html)에서 살펴보겠습니다.
+[사용자 지정 geometry 만들기](custom-buffergeometry.html)에서 살펴보겠습니다.
 
 ## <a name="loading"></a> 텍스처 불러오기
 
@@ -154,7 +154,7 @@ loader.load('resources/images/wall.jpg', (texture) => {
 브라우저의 캐시를 비우거나 인터넷 연결 속도가 느리지 않는 한 차이를 느끼기
 어렵긴 하지만, 텍스처를 불러온 뒤 화면을 렌더링합니다.
 
-{{{example url="../threejs-textured-cube-wait-for-texture.html" }}}
+{{{example url="textured-cube-wait-for-texture.html" }}}
 
 ### <a name="waitmany"></a> 다수의 텍스처를 불러온 후 처리하기
 
@@ -248,7 +248,7 @@ loadManager.onLoad = () => {
 캐시를 비우거나 인터넷 속도가 느리지 않다면 프로그래스 바가 보이지 않을
 수도 있습니다.
 
-{{{example url="../threejs-textured-cube-wait-for-all-textures.html" }}}
+{{{example url="textured-cube-wait-for-all-textures.html" }}}
 
 ## <a name="cors"></a> 다른 도메인(origin)에서 텍스처 불러오기
 
@@ -270,7 +270,7 @@ loadManager.onLoad = () => {
 만든다고 해보죠. 집 안에는 탁자가 있고, 탁자의 윗면에 나무 텍스처를 씌우려고
 합니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 이 이미지는 매우 고 배율로 압축되어 157kb 밖에 되지 않습니다. 상대적으로
 다운 속도는 빠를 것이나, 이 [이미지의 실제 크기는 3024 x 3761 픽셀입니다](resources/images/compressed-but-large-wood-texture.jpg).
@@ -304,7 +304,7 @@ PNG 형식보다 메모리 점유율이 낮진 않습니다.
 
 이 16x16 텍스처를
 
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
 
 아래의 정육면체에 적용해보죠.
 
@@ -331,7 +331,7 @@ GPU는 작은 정육면체를 표현할 때 어떻게 각 픽셀의 색상을 �
 밉은 1x1 픽셀 밉을 생성할 때까지 계속 생성되죠. 위 이미지의 경우 밉은 다음처럼
 생성될 겁니다.
 
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 이제 1, 2 픽셀 정도로 작은 정육면체를 렌더링할 때 GPU는 가장 작거나, 두 번째로
 작은 밉을 선택해 텍스처를 적용하기만 하면 되죠.
@@ -593,13 +593,13 @@ gui.add(new DegRadHelper(texture, 'rotation'), 'value', -360, 360)
 텍스처의 `wrapS`나 `wrapT` 속성을 변경할 경우 [`texture.needsUpdate`](Texture.needsUpdate)를
 `true`로 설정해줘야 합니다. 나머지 설정만 변경한다면 굳이 이 값을 설정할 필요는 없죠.
 
-{{{example url="../threejs-textured-cube-adjust.html" }}}
+{{{example url="textured-cube-adjust.html" }}}
 
 뭔가 많은 것을 배운 것 같지만, 이는 맛보기에 불과합니다. 글을 진행하다보면
 텍스처의 정렬과 재질에 적용할 수 있는 다른 9가지의 텍스처에 대해 다룰 기회가
 있을 거예요.
 
-일단 다음 장에서는 [조명(lights)](threejs-lights.html)에 대해 알아보기로 하죠.
+일단 다음 장에서는 [조명(lights)](lights.html)에 대해 알아보기로 하죠.
 
 <!--
 alpha
@@ -613,5 +613,5 @@ metalness
 roughness
 -->
 
-<link rel="stylesheet" href="resources/threejs-textures.css">
-<script type="module" src="resources/threejs-textures.js"></script>
+<link rel="stylesheet" href="../resources/threejs-textures.css">
+<script type="module" src="../resources/threejs-textures.js"></script>

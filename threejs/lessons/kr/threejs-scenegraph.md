@@ -3,7 +3,7 @@ Description: 씬 그래프와 그 사용법
 TOC: 씬 그래프
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
 
@@ -11,13 +11,13 @@ Three.js에서 가장 중요한 것은 무엇보다 씬 그래프(scene graph)�
 3D 엔진에서 씬 그래프란 요소(node)의 계층 구조를 그림으로 나타낸 것으로,
 여기서 각 요소는 각각의 "지역 공간(local space)"을 가리킵니다.
 
-<img src="resources/images/scenegraph-generic.svg" align="center">
+<img src="../resources/images/scenegraph-generic.svg" align="center">
 
 예시가 다소 추상적이니 좀 더 이해하기 쉬운 걸 예로 들어보겠습니다.
 
 태양계, 그 중에서도 태양, 지구, 달이 적당하겠네요.
 
-<img src="resources/images/scenegraph-solarsystem.svg" align="center">
+<img src="../resources/images/scenegraph-solarsystem.svg" align="center">
 
 지구는 태양을 중심으로 공전합니다. 달은 지구를 중심으로 공전하죠.
 달의 공전 궤도는 원과 유사합니다. 달의 관점에서 달은 지구의 "지역
@@ -25,7 +25,7 @@ Three.js에서 가장 중요한 것은 무엇보다 씬 그래프(scene graph)�
 스피로그래프(spirograph, 용수철 모양의 그래프)를 그리며 돌지만,
 달은 그저 지구의 "지역 공간"을 도는 것에만 집중할 뿐입니다.
 
-{{{diagram url="resources/moon-orbit.html" }}}
+{{{diagram url="../resources/moon-orbit.html" }}}
 
 좀 더 가까운 예를 들어보죠. 우리는 지구에서 살지만 지구의 자전이나
 자전축, 태양을 공전하는 일은 크게 신경쓰지 않습니다. 이건 지구의
@@ -110,7 +110,7 @@ objects.forEach((obj) => {
 `sunMesh`를 `objects` 배열 안에 넣어놨으므로 태양 모델이 회전하는 것을
 확인할 수 있습니다.
 
-{{{example url="../threejs-scenegraph-sun.html" }}}
+{{{example url="scenegraph-sun.html" }}}
 
 다음으로 지구를 추가하겠습니다.
 
@@ -130,7 +130,7 @@ objects.push(earthMesh);
 씬에 추가했습니다. 마지막으로 `objects` 배열에 추가했으므로, 지구도
 태양과 마찬가지로 자전하게 됩니다.
 
-{{{example url="../threejs-scenegraph-sun-earth.html" }}}
+{{{example url="scenegraph-sun-earth.html" }}}
 
 하지만 지구가 태양의 주위를 돌진 않습니다. 지구를 바로 씬에 추가하는
 대신, 태양의 자식으로 추가하면...
@@ -142,7 +142,7 @@ objects.push(earthMesh);
 
 ...
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit.html" }}}
+{{{example url="scenegraph-sun-earth-orbit.html" }}}
 
 뭔가 이상합니다. 왜 지구의 크기와 태양의 크기가 같고 또 왜 저렇게
 멀리 떨어졌을까요? 기존 카메라로는 지구가 보이지 않아 카메라의 위치도
@@ -156,7 +156,7 @@ objects.push(earthMesh);
 
 현재 예제의 씬 그래프는 다음과 같습니다.
 
-<img src="resources/images/scenegraph-sun-earth.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth.svg" align="center">
 
 이를 해결하기 위해 빈 씬 그래프 요소를 하나 추가합니다. 그리고 태양과
 지구 둘 다 이 요소의 자식으로 추가할 겁니다.
@@ -187,13 +187,13 @@ objects.push(earthMesh);
 
 이제 씬 그래프는 다음과 같습니다.
 
-<img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center">
 
 `sunMesh`와 `earthMesh`는 `solarSystem`의 자식입니다. 이 3 객체는 각각
 회전하죠. 이제 `earthMesh`는 `sunMesh`의 자식이 아니므로 5배 커지지도
 않았습니다.
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit-fixed.html" }}}
+{{{example url="scenegraph-sun-earth-orbit-fixed.html" }}}
 
 훨씬 낫네요. 지구는 태양보다 작고 태양을 공전하는 동시에 자전까지 합니다.
 
@@ -225,11 +225,11 @@ objects.push(earthMesh);
 이전처럼 `Object3D`를 이용해 `eathOrbit` "지역 공간"을 만들고 거기에
 `earthMesh`와 `moonMesh`를 추가했습니다. 씬 그래프는 다음과 같죠.
 
-<img src="resources/images/scenegraph-sun-earth-moon.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center">
 
 그리고 결과물입니다.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon.html" }}}
+{{{example url="scenegraph-sun-earth-moon.html" }}}
 
 처음에 봤던 예제처럼 달이 스피로그래프를 그리며 돌지만, 복잡한 수학적
 연산이 하나도 들어가지 않았습니다. 우리가 한 건 씬 그래프에게 그 연산을
@@ -261,7 +261,7 @@ objects.forEach((node) => {
 `renderOrder`를 1로 설정(기본값은 0)해 구체를 전부 렌더링한 후 축을 렌더링하도록
 합니다. 그렇지 않으면 축을 그린 후 구체가 그려져 보이지 않을 수도 있으니까요.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes.html" }}}
 
 <span style="color:red">x축(빨강)</span> 그리고
 <span style="color:blue">z축(파랑)</span> 축이 보이나요? 카메라가 바로 위에서
@@ -350,7 +350,7 @@ class AxisGridHelper {
 2로 설정하고 `GridHelper`를 2로 설정해 축을 격자 다음에
 렌더링하도록 합니다.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes-grids.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes-grids.html" }}}
 
 `solarSystem`을 체크하면 위에서 설정했듯 지구가 정확히 중앙으로부터
 10칸 떨어진 것을 확인할 수 있습니다. 지구가 `solarSystem` "지역 공간"
@@ -360,7 +360,7 @@ class AxisGridHelper {
 
 씬 그래프의 다른 예시로 자동차를 들 수 있습니다.
 
-<img src="resources/images/scenegraph-car.svg" align="center">
+<img src="../resources/images/scenegraph-car.svg" align="center">
 
 차체(Car body)를 움직이면 바퀴(wheel)도 같이 움직입니다. 차체가
 바퀴와는 별도로 튀게 하려면(서스펜션. 역주) 차체와 바퀴를 하나의
@@ -368,7 +368,7 @@ class AxisGridHelper {
 
 다른 예로 게임 속 인간형 캐릭터를 한 번 봅시다.
 
-<img src="resources/images/scenegraph-human.svg" align="center">
+<img src="../resources/images/scenegraph-human.svg" align="center">
 
 인간형 캐릭터의 씬 그래프는 꽤 복잡하네요. 위 씬 그래프는 상당히 축소된
 버젼인데도 말이죠. 좀 더 세세하게 만든다면 손가락 하나하나(최소한 28마디)와
@@ -382,7 +382,7 @@ class AxisGridHelper {
 `Object3D`는 청색, 광원은 갈색, 카메라는 보라색으로 칠했습니다. 하나의
 카메라는 씬 그래프에 포함하지 않았습니다.
 
-<div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 모든 요소를 어떻게 설정했는지 코드를 하나씩 살펴보죠.
 
@@ -486,7 +486,7 @@ const camera = cameras[time * .25 % cameras.length | 0];
 infoElem.textContent = camera.desc;
 ```
 
-{{{example url="../threejs-scenegraph-tank.html"}}}
+{{{example url="scenegraph-tank.html"}}}
 
 자, 이번 장은 여기까지입니다. 이 글이 씬 그래프가 어떻게 작동하는지,
 어떻게 사용해야할지 감을 잡는 데 도움이 되었으면 좋겠네요. `Object3D`
@@ -496,4 +496,4 @@ infoElem.textContent = camera.desc;
 계산하거나 자동차 바퀴의 위치를 계산하는 건 굉장히 복잡할 겁니다. 씬
 그래프를 적절히 활용하면 이런 복잡한 동작을 더 쉽게 구현할 수 있죠.
 
-[다음 장에서는 `재질(material)`에 대해 알아보겠습니다](threejs-materials.html).
+[다음 장에서는 `재질(material)`에 대해 알아보겠습니다](materials.html).

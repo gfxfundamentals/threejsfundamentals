@@ -2,7 +2,7 @@ Title: Configuration de Three.js
 Description: Comment configurer votre environnement de développement pour Three.js
 TOC: Configuration
 
-Cette article fait parti d'une série consacrée à Three.js. Le premier article traité des [fondements de Three.js](threejs-fundamentals.html).
+Cette article fait parti d'une série consacrée à Three.js. Le premier article traité des [fondements de Three.js](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous devriez peut-être commencer par là.
 
 Avant d'aller plus loin, parlons du paramètrage de votre environnement de travail. Pour des raisons de sécurité
@@ -16,7 +16,7 @@ Ensuite, téléchargez l'un des web serveurs suivants.
 
 Si vous en préférez un avec une interface graphique, voici [Servez](https://greggman.github.io/servez)
 
-{{{image url="resources/servez.gif" className="border" }}}
+{{{image url="../resources/servez.gif" className="border" }}}
 
 Pointez-le simplement sur le dossier où vous avez décompressé les fichiers, cliquez sur "Démarrer", puis accédez-y dans votre navigateur à l'adresse suivante [`http://localhost:8080/`](http://localhost:8080/) ou si vous voulez souhaitez parcourir les exemples, accédez à [`http://localhost:8080/threejs`](http://localhost:8080/threejs).
 
@@ -44,7 +44,7 @@ Ou si vous êtes comme moi
 
 Il devrait imprimer quelque chose ça
 
-{{{image url="resources/servez-response.png" }}}
+{{{image url="../resources/servez-response.png" }}}
 
 Ensuite, ouvrez [`http://localhost:8080/`](http://localhost:8080/) dans votre navigateur.
 
@@ -53,4 +53,4 @@ Si vous ne spécifiez pas de chemin, Servez choisira le dossier courant.
 Si ces options ne vous conviennent pas, vous pouvez choisir 
 [d'autres alternatives](https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver).
 
-Maintenant que vous avez un serveur configuré, nous pouvons passer aux [textures](threejs-textures.html).
+Maintenant que vous avez un serveur configuré, nous pouvons passer aux [textures](textures.html).

@@ -2,7 +2,7 @@ Title: Three.js 大量对象的优化
 Description: 通过合并进行优化
 TOC: 大量对象的优化
 
-本文是关于 three.js 系列文章的一部分. 第一篇文章是 [three.js 基础](threejs-fundamentals.html). 如果你还没看过而且对three.js 还不熟悉，那应该从那里开始.
+本文是关于 three.js 系列文章的一部分. 第一篇文章是 [three.js 基础](fundamentals.html). 如果你还没看过而且对three.js 还不熟悉，那应该从那里开始.
 
 three.js的优化有很多种方式. 常见的一种叫做*合并几何体*. 每一个你创建的`Mesh`代表一个(或多个)请求系统渲染的命令. 即便是画出来的结果一样, 画两个几何体总是比画一个要费时费力. 所以最好的方式就是将这些mesh合并起来. 
 
@@ -140,11 +140,11 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 
 嗯... 看起来没什么问题
 
-试试3D效果. 从[按需渲染](threejs-rendering-on-demand.html)出发, 我们让每一个数据都画成一个box
+试试3D效果. 从[按需渲染](rendering-on-demand.html)出发, 我们让每一个数据都画成一个box
 
 首先先画一个地球, 这是sphere表面的贴图
 
-<div class="threejs_center"><img src="../resources/images/world.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/world.jpg" style="width: 600px"></div>
 
 用这些代码生成地球
 
@@ -157,7 +157,7 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
   scene.add(new THREE.Mesh(geometry, material));
 }
 ```
-看过来, 当材质加载完成后才调用`render`方法. 我们这么做是因为使用了[按需渲染](threejs-rendering-on-demand.html)中的方法, 而不是连续渲染. 这样我们仅仅需要在材质加载后渲染一遍就好. 
+看过来, 当材质加载完成后才调用`render`方法. 我们这么做是因为使用了[按需渲染](rendering-on-demand.html)中的方法, 而不是连续渲染. 这样我们仅仅需要在材质加载后渲染一遍就好. 
 
 然后我们需要对代码做一些改动, 每个数据都画一个点, 而不是每个
 
@@ -233,7 +233,7 @@ function addBoxes(file) {
   </div>
 </div>
 
-当然, 我们可以像[场景图](threejs-scenegraph.html)一章中讲得, 通过添加到一个父对象来解决上面的问题. 但是要考虑到我们体系几何体非常得多, 所以会大大拖累运行的速度. 
+当然, 我们可以像[场景图](scenegraph.html)一章中讲得, 通过添加到一个父对象来解决上面的问题. 但是要考虑到我们体系几何体非常得多, 所以会大大拖累运行的速度. 
 
 上面的位置辅助器`positionHelper`是由`lonHelper`, `latHelper`逐级组合而来. 这个小东西可以帮助我们计算球面上的经纬度来放置几何体. 
 
@@ -266,17 +266,17 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 
 当数据载入和解析完成, 我们再进行渲染
 
-{{{example url="../threejs-lots-of-objects-slow.html" }}}
+{{{example url="lots-of-objects-slow.html" }}}
 
 拖拽一下这个球你就会发现很卡
 
-我们在[开启调试工具](threejs-debugging-javascript.html)中提到过怎么打开帧率监视器
+我们在[开启调试工具](debugging-javascript.html)中提到过怎么打开帧率监视器
 
-<div class="threejs_center"><img src="resources/images/bring-up-fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
 
 在我机器上大概是20帧每秒
 
-<div class="threejs_center"><img src="resources/images/fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/fps-meter.gif"></div>
 
 这不太行, 我寻思很多人机器上会更慢. 我们得想办法优化它一下子.
 
@@ -369,12 +369,12 @@ function addBoxes(file) {
 别忘了引入`BufferGeometryUtils`
 
 ```js
-import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
+import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
 ```
 
 现在, 至少在我的机器上, 可以跑到60帧每秒了
 
-{{{example url="../threejs-lots-of-objects-merged.html" }}}
+{{{example url="lots-of-objects-merged.html" }}}
 
 虽然可以了, 但是我们这是一整个mesh, 所以我们只能应用一个材质, 意味着我们只能有一种颜色的盒子. 我们之前可是能有不同颜色的盒子. 我们可以通过使用顶点着色法来解决. 
 
@@ -450,12 +450,12 @@ scene.add(mesh);
 
 我们的彩色世界回来啦!
 
-{{{example url="../threejs-lots-of-objects-merged-vertexcolors.html" }}}
+{{{example url="lots-of-objects-merged-vertexcolors.html" }}}
 
 合并几何体是一个常见的优化手段. 比如, 可以将一百多棵树合并成一个几何体, 一堆石头合并成一块石头, 零零碎碎的栅栏合并成一个栅栏的mesh. 另一个例子是Minecraft并不是一个一个方块去绘制, 而是创建一组合并了的方块, 当然之前选择性地移除那些看不见的. 
 
 这么做带来的问题是, 合并起来简单, 分离难. 接下来我们再引入一种优化方案
-[优化大量动画对象](threejs-optimize-lots-of-objects-animated.html).
+[优化大量动画对象](optimize-lots-of-objects-animated.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lots-of-objects.js"></script>
+<script type="module" src="../resources/threejs-lots-of-objects.js"></script>

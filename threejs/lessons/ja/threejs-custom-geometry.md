@@ -5,11 +5,11 @@ TOC: カスタムジオメトリ
 <div class="warning">
 <strong>NOTE!</strong> This article is deprecated. Three.js r125
 removed support for <code>Geometry</code>. Please refer to
-the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometry</a>.
+the article on <a href="custom-buffergeometry.html">custom BufferGeometry</a>.
 </div>
 
 
-前回の[記事](threejs-primitives.html)ではTHREE.jsにある基本ジオメトリであるプリミティブジオメトリを紹介しました。この記事ではカスタムジオメトリを紹介します。
+前回の[記事](primitives.html)ではTHREE.jsにある基本ジオメトリであるプリミティブジオメトリを紹介しました。この記事ではカスタムジオメトリを紹介します。
 
 まず最初に断っておきますが、本格的な３Dコンテンツを作りたい場合は
 ３Dモデリングツールを使うべきです。３Dモデリングツールには
@@ -18,7 +18,7 @@ the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometr
 [3D Studio Max](https://www.autodesk.com/products/3ds-max/overview),
 [Cinema4D](https://www.maxon.net/en-us/)などがあります。
 
-これらのモデリングツールでモデルを作ってから[gLTF](threejs-load-gltf.html)や[.obj](threejs-load-obj.html) 
+これらのモデリングツールでモデルを作ってから[gLTF](load-gltf.html)や[.obj](load-obj.html) 
 にエクスポートしたものをTHREE.jsにインポートすることもできます。
 どのモデリングツールも習得にそれなりの時間がかかります。
 
@@ -37,7 +37,7 @@ THREE.jsにはカスタムジオメトリを作る方法が２つあります。
 場合に遅いと言う意味で、もし編集が必要なくそれほど大きくなければこの両者はあまり変わりません。
 この記事では両方紹介します。最初は簡単な`Geometry`を紹介します。
 
-まずは`Geometry`で立方体を作ってみましょう。[レスポンシブの記事](threejs-responsive.html)の例を使います。
+まずは`Geometry`で立方体を作ってみましょう。[レスポンシブの記事](responsive.html)の例を使います。
 
 `BoxGeometry`を使っている部分を消して`Geometry`で置き換えてみます。
 
@@ -51,7 +51,7 @@ THREE.jsにはカスタムジオメトリを作る方法が２つあります。
 
 まずは８つの角を追加してみます。
 
-<div class="threejs_center"><img src="resources/cube-vertex-positions.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-positions.svg" style="width: 500px"></div>
 
 中心の周囲にこのようにvertexを追加します。（訳註：vertexとはジオメトリを構成する頂点です。３つの頂点を結ぶことでface＝面ができます）。
 
@@ -72,14 +72,14 @@ const geometry = new THREE.Geometry();
 vertexを結んで三角形を作ります。１面につき２つの三角形を使います。
 （訳註：立方体は６つの正方形で構成されます。１つの正方形は２つの三角形で構成されます。）
 
-<div class="threejs_center"><img src="resources/cube-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
 vertexを結んで三角形を作るには`Face3`を使います。`Face3`の３は３つのvertexでfaceを作ると言う意味です。
 
 vertexを指定する順序は重要です。faceには表面と裏面があります。立方体を構成するfaceの
 面が外に向くためには反時計回りの順序でvertexを指定します。
 
-<div class="threejs_center"><img src="resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
 同じように１２個の三角形を作って立方体を作ります。
 
@@ -149,7 +149,7 @@ function makeInstance(geometry, color, x) {
 
 これで自分で作った立方体ができました。
 
-{{{example url="../threejs-custom-geometry-cube.html" }}}
+{{{example url="custom-geometry-cube.html" }}}
 
 それぞれのfaceに対して`color`を設定することで色を変えられます。
 
@@ -169,7 +169,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 +const material = new THREE.MeshBasicMaterial({vertexColors: true});
 ```
 
-{{{example url="../threejs-custom-geometry-cube-face-colors.html" }}}
+{{{example url="custom-geometry-cube-face-colors.html" }}}
 
 `vertexcolors`を設定すればvertexそれぞれに色を設定できます。
 ３つのvertexに対して３つの色を設定してみます。
@@ -184,7 +184,7 @@ geometry.faces.forEach((face, ndx) => {
 });
 ```
 
-{{{example url="../threejs-custom-geometry-cube-vertex-colors.html" }}}
+{{{example url="custom-geometry-cube-vertex-colors.html" }}}
 
 ライトを適用する時はnormalが必要です。normalはfaceの向きを示すベクトルです。
 色を設定したのと同じようにそれぞれのfaceにのnormalを設定します。
@@ -219,7 +219,7 @@ vertex colorを消してマテリアルを`MeshPhongMaterial`に戻します。
 
 ライトが適用できました。
 
-{{{example url="../threejs-custom-geometry-cube-face-normals.html" }}}
+{{{example url="custom-geometry-cube-face-normals.html" }}}
 
 vertex normalsを使うことで滑らかな表面を表現できます。
 `Geometry.computeVertexNormals`を設定してください。
@@ -232,7 +232,7 @@ vertex normalsを使うことで滑らかな表面を表現できます。
 ここまで説明しておいてなんですが立方体はvertex normalの例としてはあまり適切ではありません。
 なぜなら１つのvertex normalがそのvertexが接する全ての面に依存しているからです。
 
-{{{example url="../threejs-custom-geometry-cube-vertex-normals.html" }}}
+{{{example url="custom-geometry-cube-vertex-normals.html" }}}
 
 テクスチャの座標（UVと呼ばれる）を設定するには`faces`に対応した配列を用意します。
 `Geometry.faceVertexUvs`で設定します。
@@ -263,7 +263,7 @@ geometry.faceVertexUvs[0].push(
 
 `faceVertexUvs`は配列の配列によってUV座標がレイヤー状に格納されています。それぞれの配列にはUV座標が入っています。デフォルトではレイヤー数は１です。もう１つレイヤーを追加してみます。
 
-マテリアルに[テクスチャを追加](threejs-textures.html) してください。
+マテリアルに[テクスチャを追加](textures.html) してください。
 
 ```js
 -geometry.computeVertexNormals();
@@ -282,13 +282,13 @@ function makeInstance(geometry, color, x) {
   ...
 ```
 
-{{{example url="../threejs-custom-geometry-cube-texcoords.html" }}}
+{{{example url="custom-geometry-cube-texcoords.html" }}}
 
 OKです。単純なハイトマップをterrain meshから作りましょう。
 
 terrain meshからつくるハイトマップとは詰まるところ二次元配列です。配列の数値は高さの表現に使います。二次元配列を取得するには画像編集ソフトで適当な画像を作ってしまうのが楽です。96x96の画像を作ってみました。
 
-<div class="threejs_center"><img src="../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+<div class="threejs_center"><img src="../examples/resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 このPNG画像をロードして二次元配列にしてハイトマップとして使います。
 画像をロードするには`ImageLoader`を使います。
@@ -312,7 +312,7 @@ function createHeightmap(image) {
 
 画像から二次元配列を取り出しました。次に粗い正方形で区切られたグリッドを作ります。このグリッドはそれぞれのピクセルの中心点を四隅とした正方形で構成されています。
 
-<div class="threejs_center"><img src="resources/heightmap-points.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-points.svg" style="width: 500px"></div>
 
 それぞれの正方形に対して５つのvertexを作ります。４つは正方形の四隅のピクセル値で、のこり１つはその四隅の平均です。
 
@@ -357,7 +357,7 @@ for (let z = 0; z < cellsDeep; ++z) {
 
 この５つのvertexを元に４つの三角形を作ります。
 
-<div class="threejs_center"><img src="resources/heightmap-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-triangles.svg" style="width: 500px"></div>
 
 ```js
     // create 4 triangles
@@ -407,8 +407,8 @@ for (let z = 0; z < cellsDeep; ++z) {
 * `OrbitControls`を追加してください。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -445,8 +445,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 立方体を回転を止めました。
 
-{{{example url="../threejs-custom-geometry-heightmap.html" }}}
+{{{example url="custom-geometry-heightmap.html" }}}
 
 `Geometry`の使用方法をおわかりいただけたでしょうか？
 
-[この記事](threejs-custom-buffergeometry.html)では`BufferGeometry`について説明します。
+[この記事](custom-buffergeometry.html)では`BufferGeometry`について説明します。

@@ -3,10 +3,10 @@ Description: Fog in Three.js
 TOC: Fog
 
 This article is part of a series of articles about three.js. The
-first article is [three.js fundamentals](threejs-fundamentals.html). If
+first article is [three.js fundamentals](fundamentals.html). If
 you haven't read that yet and you're new to three.js you might want to
 consider starting there. If you haven't read about cameras you might
-want to start with [this article](threejs-cameras.html).
+want to start with [this article](cameras.html).
 
 Fog in a 3D engine is generally a way of fading to a specific color
 based on the distance from the camera. In three.js you add fog by
@@ -104,7 +104,7 @@ The camera is at `z = 2`. The cubes are 1 unit large and at Z = 0.
 This means with a fog setting of `near = 1` and `far = 2` the cubes
 will fade out right around their center.
 
-{{{example url="../threejs-fog.html" }}}
+{{{example url="fog.html" }}}
 
 Let's add an interface so we can adjust the fog. Again we'll use
 [dat.GUI](https://github.com/dataarts/dat.gui). dat.GUI takes
@@ -229,7 +229,7 @@ We then call `gui.addColor` to add a color UI for our helper's virtual property.
 }
 ```
 
-{{{example url="../threejs-fog-gui.html" }}}
+{{{example url="fog-gui.html" }}}
 
 You can see setting `near` to like 1.9 and `far` to 2.0 gives
 a very sharp transition between un-fogged and completely fogged.
@@ -272,4 +272,4 @@ By turning fog off on the materials for the house we can fix that issue.
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-fog.js"></script>
+<script type="module" src="../resources/threejs-fog.js"></script>

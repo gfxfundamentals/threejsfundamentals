@@ -12,7 +12,7 @@ three.jsを使わない場合、WebGLで何か便利な事を行うには通常�
 もしWebGLを直接書く場合、シーンやライト、シャドウやマテリアル、テクスチャや3D数学をあなた自身で制御する必要があります。
 
 これらのチュートリアルはJavaScriptを知っている事を前提としており、ほとんどの部分でES6スタイルを使用します。
-[あなたがすでに知っている事が期待される簡潔なリストはこちらをご覧下さい](threejs-prerequisites.html)。
+[あなたがすでに知っている事が期待される簡潔なリストはこちらをご覧下さい](prerequisites.html)。
 three.jsがサポートするほとんどのブラウザは自動更新されるため、ほとんどのユーザーはこのコードを実行できます。
 古いブラウザーで実行したい場合は、[Babel](https://babel.io) のようなトランスパイラーを調べて下さい。
 もちろん、本当に古いブラウザを実行しているユーザーはthree.jsを実行できないマシンを持っている可能性があります。
@@ -33,7 +33,7 @@ Three.jsはcanvasに描画するため、canvasをthree.jsに渡す必要があ�
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 function main() {
   const canvas = document.querySelector('#c');
@@ -83,7 +83,7 @@ three.jsのほとんどの角度はラジアン単位ですが、いくつかの
 *錐台* は、先端が切り取られたピラミッドのような3D形状の名前です。
 つまり、"錐台" という言葉は、球、立方体、角柱、錐台のような別の3D形状と考えて下さい。
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
 近距離および遠距離の平面の高さは、視野によって決まります。
 両方の平面の幅は、視野とアスペクトによって決まります。
@@ -99,7 +99,7 @@ camera.position.z = 2;
 
 以下が私たちが目指しているものです。
 
-<img src="resources/scene-down.svg" width="500" class="threejs_center"/>
+<img src="../resources/scene-down.svg" width="500" class="threejs_center"/>
 
 上の図では、カメラが `z = 2` にある事がわかります。
 -Z軸を見下ろしています。
@@ -110,7 +110,7 @@ canvasは高さの2倍の幅であるため、ビュー全体で視野は垂直�
 次は `Scene` を作成します。
 three.jsの `Scene` は、シーングラフのフォームのルートです。
 three.jsで描画するものはすべてシーンに追加する必要があります。
-[Sceneの仕組みの詳細](threejs-scenegraph.html)は、今後の記事で説明します。
+[Sceneの仕組みの詳細](scenegraph.html)は、今後の記事で説明します。
 
 ```js
 const scene = new THREE.Scene();
@@ -154,7 +154,7 @@ renderer.render(scene, camera);
 
 これが実際の例です。
 
-{{{example url="../threejs-fundamentals.html" }}}
+{{{example url="fundamentals.html" }}}
 
 私たちの視点からは、これを3Dキューブと言うのは少し難しいです。Z軸がマイナス値で奥にあり、1つの面しか見ていません。
 
@@ -190,10 +190,10 @@ requestAnimationFrame(render);
 シーンをレンダリングし、別のアニメーションフレームをループし続けます。
 ループの外側で `requestAnimationFrame` を1回呼び出してループを開始します。
 
-{{{example url="../threejs-fundamentals-with-animation.html" }}}
+{{{example url="fundamentals-with-animation.html" }}}
 
 少し良くなりましたが、まだ3Dには見えません。3Dに見えるようにいくつか光源を追加します。つまり、ライトを追加しましょう。
-three.jsには [今後の記事](threejs-lights.html) で紹介する多くの種類のライトがあります。
+three.jsには [今後の記事](lights.html) で紹介する多くの種類のライトがあります。
 とりあえずディレクショナルライトを作成しましょう。
 
 ```js
@@ -219,7 +219,7 @@ three.jsには [今後の記事](threejs-lights.html) で紹介する多くの�
 
 そして、ここで動作しています。
 
-{{{example url="../threejs-fundamentals-with-light.html" }}}
+{{{example url="fundamentals-with-light.html" }}}
 
 これでかなり3Dに見えるようになりました。
 
@@ -272,14 +272,14 @@ function render(time) {
 
 それがここにあります。
 
-{{{example url="../threejs-fundamentals-3-cubes.html" }}}
+{{{example url="fundamentals-3-cubes.html" }}}
 
 上記のトップダウン図と比較すると、期待通りである事がわかります。
 X = -2 および X = +2の場合、キューブは部分的に錐台の外側にあります。
 錐台の外側は何だか誇張して歪んでおり、キャンバスの向こう側はとても極端です。
 
 この短いイントロが学習を始めるのに役立つ事を願っています。
-[次は複数の状況に適応できるようにレスポンシブサイトでのコードもカバーします](threejs-responsive.html)。
+[次は複数の状況に適応できるようにレスポンシブサイトでのコードもカバーします](responsive.html)。
 
 <div class="threejs_bottombar">
 <h3>es6モジュール、three.js、およびフォルダー構造</h3>
@@ -292,7 +292,7 @@ es6モジュールはスクリプトのロードに <code>import</code> を使�
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 

@@ -46,10 +46,10 @@
     'threejs-voxel-geometry.md',
     'threejs-game.md',
   ],
-  'webvr': [
-    'threejs-webvr.md',
-    'threejs-webvr-look-to-select.md',
-    'threejs-webvr-point-to-select.md',
+  'webxr': [
+    'threejs-webxr.md',
+    'threejs-webxr-look-to-select.md',
+    'threejs-webxr-point-to-select.md',
   ],
   'reference': [
     'threejs-material-table.md',

@@ -12,19 +12,19 @@ TOC: 자바스크립트 디버깅
 
 크롬에서는 `⋮` 아이콘을 클릭해 "도구 더보기 -> 개발자 도구"를 선택하면 개발자 도구를 열 수 있습니다. 기본 단축키도 거기에 같이 표시되죠.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
 
 파이어폭스에서는 `☰` 아이콘을 클린한 뒤 "웹 개발자 -> 도구 표시/숨기기"를 선택하면 됩니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
 
 사파리는 먼저 고급 설정에서 개발자 메뉴를 활성화해야 합니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
 
 그리고 개발자 메뉴에서 "Show/Connect Web Inspector"를 선택하면 되죠.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-safari.jpg" style="width: 777px;"></div>
 
 크롬의 경우는 [PC 버젼 크롬을 이용해 안드로이드 기기의 크롬을 디버깅](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/)할 수 있습니다. 사파리에서도 [macOS 컴퓨터에서 아이폰이나 아이패드의 사파리를 디버깅](https://www.google.com/search?q=safari+remote+debugging+ios)할 수 있죠.
 
@@ -40,11 +40,11 @@ TOC: 자바스크립트 디버깅
 
 먼저 개발자 도구의 메뉴에서 설정을 선택한 뒤
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
 
 "Disable Cache (while DevTools is open)"을 선택합니다(개발자 도구가 열렸을 때 캐시 비활성화).
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
 
 ## 자바스크립트 콘솔
 
@@ -52,11 +52,11 @@ TOC: 자바스크립트 디버깅
 
 Three.js를 사용하는 경우 1개 내지 2개의 메시지가 보이는 게 정상입니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
 
 다른 메시지가 보인다면 이를 확인해봐야 합니다. 예를 들어 아래와 같은 경우
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-errors.jpg" style="width: 779px"></div>
 
 오타가 났습니다. "three"를 "threee"로 잘못 썼죠.
 
@@ -66,7 +66,7 @@ Three.js를 사용하는 경우 1개 내지 2개의 메시지가 보이는 게 �
 console.log(someObject.position.x, someObject.position.y, someObject.position.z);
 ```
 
-살펴보고 싶은 객체를 출력할 수도 있습니다. 예를 들어 [glTF 불러오기](threejs-load-gltf.html)의 예제에서 root 장면(scene) 요소를 출력해보죠.
+살펴보고 싶은 객체를 출력할 수도 있습니다. 예를 들어 [glTF 불러오기](load-gltf.html)의 예제에서 root 장면(scene) 요소를 출력해보죠.
 
 ```js
   {
@@ -79,7 +79,7 @@ console.log(someObject.position.x, someObject.position.y, someObject.position.z)
 
 이제 자바스크립트 콘솔에서 해당 객체를 펼쳐 볼 수 있습니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-console-object.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-console-object.gif"></div>
 
 이외에도 `console.error`를 이용해 빨간 에러 메시지, `console.warn`을 이용해 노란 경고 메시지 등을 띄울 수 있습니다.
 
@@ -130,7 +130,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 
 런타임에 값을 체크할 때 유용합니다.
 
-{{{example url="../threejs-debug-js-html-elements.html" }}}
+{{{example url="debug-js-html-elements.html" }}}
 
 일회용 로그 버퍼(one-time log buffer)\*를 만드는 것도 한 방법입니다. 일회용 로그 버퍼라는 이름은 제가 대충 지은 것이지만, 많은 게임들이 이 방법을 사용합니다. 일회용이라는 말처럼 이 방법은 지정한 메시지를 한 프레임 동안만 보여줍니다. 데이터를 출력할 부분에서 직접 매 프레임마다 메시지를 버퍼에 추가해야 하죠. 메시지마다 HTML 요소를 따로 만들었던 위 방법에 비하면 훨씬 경제적입니다.
 
@@ -163,7 +163,7 @@ class ClearingLogger {
 }
 ```
 
-간단한 예제를 하나 만들어봅시다. 화면을 클릭했을 때 포인터 위치에 mesh를 만들고 2초 동안 무작위 방향으로 움직인 후 사라지도록 하겠습니다. 먼저 [반응형 디자인](threejs-responsive.html)에서 썼던 예제를 가져옵니다.
+간단한 예제를 하나 만들어봅시다. 화면을 클릭했을 때 포인터 위치에 mesh를 만들고 2초 동안 무작위 방향으로 움직인 후 사라지도록 하겠습니다. 먼저 [반응형 디자인](responsive.html)에서 썼던 예제를 가져옵니다.
 
 아래는 화면을 클릭할 때마다 `Mesh`를 추가하는 코드입니다.
 
@@ -236,7 +236,7 @@ function render(now) {
 
 예제를 빠르게 클릭하면 많은 데이터가 한 번에 나타날 겁니다.
 
-{{{example url="../threejs-debug-js-clearing-logger.html" }}}
+{{{example url="debug-js-clearing-logger.html" }}}
 
 ## 쿼리 파라미터(Query Parameters)
 
@@ -303,11 +303,11 @@ class DummyLogger {
 
 아래와 같은 url로 접근하면 아무것도 보이지 않습니다.
 
-<a target="_blank" href="../threejs-debug-js-params.html">threejs-debug-js-params.html</a>
+<a target="_blank" href="../examples/debug-js-params.html">debug-js-params.html</a>
 
 대신 아래 url을 쓰면
 
-<a target="_blank" href="../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a>
+<a target="_blank" href="../examples/debug-js-params.html?debug=true">debug-js-params.html?debug=true</a>
 
 디버깅 요소가 제대로 보입니다.
 
@@ -329,11 +329,11 @@ class DummyLogger {
 
 아래는 간단한 예입니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/nan-banana.png" style="width: 180px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/nan-banana.png" style="width: 180px;"></div>
 
 저도 무언가를 만들다 화면에 아무것도 보이는 게 없으면 `NaN`이 있는지 확인합니다. 만약 `NaN`이 있다면 해당 부분부터 다시 살펴 보기 시작하죠.
 
-[glTF 파일 불러오기](threejs-load-gltf.html)에서 처음 패스를 그렸을 때 `SplineCurve` 클래스로 2D 곡선을 만들었던 것, 기억하나요?
+[glTF 파일 불러오기](load-gltf.html)에서 처음 패스를 그렸을 때 `SplineCurve` 클래스로 2D 곡선을 만들었던 것, 기억하나요?
 
 처음에 이 곡선을 이용해 자동차를 움직였었죠.
 
@@ -347,7 +347,7 @@ curve.getPointAt(zeroToOnePointOnCurve, car.position);
 
 디버거에서 자동차의 `matrixWorld`를 살펴 보니 `NaN`으로 지정된 값이 많이 보입니다.
 
-<div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
 행렬 좌표(matrix)에 `NaN`이 있다는 것은 `position`, `rotation`, `scale` 등의 속성이나 행렬 좌표에 영향을 미치는 함수에 잘못된 데이터가 지정되었다는 것을 의미합니다. 여기서부터 추적해 올라가면 어디가 문제인지 쉽게 찾을 수 있겠죠.
 
@@ -397,7 +397,7 @@ requestAnimationFrame(render);
 
 Three.js에 관해 질문할 때는 MCVE에 맞춰 최소한으로(Minimal), 완성된(Complete), 테스트할 수 있는(Verifiable) 예제(Example)를 포함해야 합니다.
 
-**최소한으로** 만드는 게 가장 중요합니다. 예를 들어 여러분이 [glTF 파일 불러오기](threejs-load-gltf.html)에서 경로를 자동차를 따라가게 하는 데 어려움을 겪는다고 해보죠. 이 예제에는 아주 많은 요소가 있습니다. 대충 목록을 만들어보죠.
+**최소한으로** 만드는 게 가장 중요합니다. 예를 들어 여러분이 [glTF 파일 불러오기](load-gltf.html)에서 경로를 자동차를 따라가게 하는 데 어려움을 겪는다고 해보죠. 이 예제에는 아주 많은 요소가 있습니다. 대충 목록을 만들어보죠.
 
 1. HTML 한 묶음
 2. CSS 약간
@@ -412,7 +412,7 @@ Three.js에 관해 질문할 때는 MCVE에 맞춰 최소한으로(Minimal), 완
 
 아래는 위 요소를 모두 고려한 예제입니다. 원래 271줄이었던 코드를 135줄로 줄였죠. 21개 점으로 이루어진 복잡한 경로 대신 3개 혹은 4개의 점만 사용하는 간단한 경로를 사용해 코드를 더 줄일 수도 있을 겁니다.
 
-{{{example url="../threejs-debugging-mcve.html" }}}
+{{{example url="debugging-mcve.html" }}}
 
 `OrbitController`를 그대로 둔 건 카메라를 움직이는 등 단순히 다른 사람의 편의를 위해서지만, 경우에 따라서는 저것도 제거할 수 있을 겁니다.
 
@@ -432,11 +432,11 @@ MCVE의 장점은 이렇게 예제를 만들다 문제가 해결되기도 한다
 
 ## 카메라의 `near`와 `far` 설정을 확인하라
 
-[카메라에 관한 글](threejs-cameras.html)에서 다뤘듯, `PerspectiveCamera`에는 `near`와 `far` 설정이 있습니다. 다른 것보다 먼저 장면 요소를 전부 담을 수 있도록 이 값들을 설정하세요. **임시로라도** `near`를 0.001, `far`를 1000000 등 임의의 큰 값으로 설정한다면 깊이에 따른 해상도 문제가 나타날 겁니다. 오직 카메라에 가까운 물체만 제대로 보이겠죠.
+[카메라에 관한 글](cameras.html)에서 다뤘듯, `PerspectiveCamera`에는 `near`와 `far` 설정이 있습니다. 다른 것보다 먼저 장면 요소를 전부 담을 수 있도록 이 값들을 설정하세요. **임시로라도** `near`를 0.001, `far`를 1000000 등 임의의 큰 값으로 설정한다면 깊이에 따른 해상도 문제가 나타날 겁니다. 오직 카메라에 가까운 물체만 제대로 보이겠죠.
 
 ## 장면이 카메라 앞에 있는지 확인하라
 
-장면이 화면에 나타나지 않는 경우, 장면이 카메라 앞에 없는 게 원인일 때도 있습니다. 만약 카메라를 조작할 수 없다면 `OrbitController` 같은 액션을 추가해 카메라를 돌려 보기 바랍니다. 또는 제가 [이 글](threejs-load-obj.html)에서 다뤘던 것처럼 카메라가 장면 전체를 담도록 해보세요. 제가 저 글에서 쓴 코드는 장면의 요소를 찾아 해당 요소를 전부 담도록 카메라의 위치와 `near`, `far` 값을 조정합니다. 저 코드에서 디버거를 사용하거나, `console.log`를 추가해 요소의 크기나 장면의 중점을 출력해 볼 수도 있죠.
+장면이 화면에 나타나지 않는 경우, 장면이 카메라 앞에 없는 게 원인일 때도 있습니다. 만약 카메라를 조작할 수 없다면 `OrbitController` 같은 액션을 추가해 카메라를 돌려 보기 바랍니다. 또는 제가 [이 글](load-obj.html)에서 다뤘던 것처럼 카메라가 장면 전체를 담도록 해보세요. 제가 저 글에서 쓴 코드는 장면의 요소를 찾아 해당 요소를 전부 담도록 카메라의 위치와 `near`, `far` 값을 조정합니다. 저 코드에서 디버거를 사용하거나, `console.log`를 추가해 요소의 크기나 장면의 중점을 출력해 볼 수도 있죠.
 
 ## 뭐든 카메라 앞에 배치해봐라
 
@@ -444,4 +444,4 @@ MCVE의 장점은 이렇게 예제를 만들다 문제가 해결되기도 한다
 
 ---
 
-여기까지 자바스크립트를 디버깅하는 몇 가지 팁을 살펴봤습니다. 다음 글에서는 [GLSL을 디버깅하는 몇 가지 팁](threejs-debugging-glsl.html)에 대해 알아보겠습니다.
+여기까지 자바스크립트를 디버깅하는 몇 가지 팁을 살펴봤습니다. 다음 글에서는 [GLSL을 디버깅하는 몇 가지 팁](debugging-glsl.html)에 대해 알아보겠습니다.

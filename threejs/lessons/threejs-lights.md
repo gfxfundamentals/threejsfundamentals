@@ -3,10 +3,10 @@ Description: Setting up Lights
 TOC: Lights
 
 This article is part of a series of articles about three.js. The
-first article is [three.js fundamentals](threejs-fundamentals.html). If
+first article is [three.js fundamentals](fundamentals.html). If
 you haven't read that yet and you're new to three.js you might want to
-consider starting there and also the article on [setting up your environment](threejs-setup.html). The
-[previous article was about textures](threejs-textures.html).
+consider starting there and also the article on [setting up your environment](setup.html). The
+[previous article was about textures](textures.html).
 
 Let's go over how to use the various kinds of lights in three.
 
@@ -29,8 +29,8 @@ an optional feature of three.js so first we need to include them
 in our page
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 Then we can use them. We pass the `OrbitControls` a camera to
@@ -51,7 +51,7 @@ plane. We'll apply a tiny 2x2 pixel checkerboard texture that looks
 like this
 
 <div class="threejs_center">
-  <img src="../resources/images/checker.png" class="border" style="
+  <img src="../examples/resources/images/checker.png" class="border" style="
     image-rendering: pixelated;
     width: 128px;
   ">
@@ -162,7 +162,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 And here's the result
 
-{{{example url="../threejs-lights-ambient.html" }}}
+{{{example url="lights-ambient.html" }}}
 
 Click and drag in the scene to *orbit* the camera.
 
@@ -210,7 +210,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 The result:
 
-{{{example url="../threejs-lights-hemisphere.html" }}}
+{{{example url="lights-hemisphere.html" }}}
 
 Notice again there is almost no definition, everything looks kind
 of flat. The `HemisphereLight` used in combination with another light
@@ -249,7 +249,7 @@ gui.add(light.target.position, 'z', -10, 10);
 gui.add(light.target.position, 'y', 0, 10);
 ```
 
-{{{example url="../threejs-lights-directional.html" }}}
+{{{example url="lights-directional.html" }}}
 
 It's kind of hard to see what's going on. Three.js has a bunch
 of helper objects we can add to our scene to help visualize
@@ -303,7 +303,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 Now we can move the light, and its target
 
-{{{example url="../threejs-lights-directional-w-helper.html" }}}
+{{{example url="lights-directional-w-helper.html" }}}
 
 Orbit the camera and it gets easier to see. The plane
 represents a `DirectionalLight` because a directional
@@ -369,7 +369,7 @@ makeXYZGUI(gui, light.position, 'position', updateLight);
 
 And now try it out.
 
-{{{example url="../threejs-lights-point.html" }}}
+{{{example url="lights-point.html" }}}
 
 Notice when `distance` is > 0 how the light fades out.
 
@@ -402,7 +402,7 @@ scene.add(helper);
 
 The spotlight's cone's angle is set with the [`angle`](SpotLight.angle)
 property in radians. We'll use our `DegRadHelper` from the
-[texture article](threejs-textures.html) to present a UI in
+[texture article](textures.html) to present a UI in
 degrees.
 
 ```js
@@ -420,7 +420,7 @@ the center of the outer cone.
 gui.add(light, 'penumbra', 0, 1, 0.01);
 ```
 
-{{{example url="../threejs-lights-spot-w-helper.html" }}}
+{{{example url="lights-spot-w-helper.html" }}}
 
 Notice with the default `penumbra` of 0 the spotlight has a very sharp edge
 whereas as you adjust the `penumbra` toward 1 the edge blurs.
@@ -477,9 +477,9 @@ To use the `RectAreaLight` we need to include some extra three.js optional data 
 include the `RectAreaLightHelper` to help us visualize the light
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {RectAreaLightUniformsLib} from './resources/threejs/r132/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import {RectAreaLightHelper} from './resources/threejs/r132/examples/jsm/helpers/RectAreaLightHelper.js';
+import * as THREE from './build/three.module.js';
++import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```
 
 and we need to call `RectAreaLightUniformsLib.init`
@@ -533,7 +533,7 @@ makeXYZGUI(gui, light.position, 'position');
 
 And here is that.
 
-{{{example url="../threejs-lights-rectarea.html" }}}
+{{{example url="lights-rectarea.html" }}}
 
 One thing we didn't cover is that there is a setting on the `WebGLRenderer`
 called `physicallyCorrectLights`. It effects how light falls off as distance from light.
@@ -576,13 +576,13 @@ gui.add(light, 'decay', 0, 4, 0.01);
 gui.add(light, 'power', 0, 2000);
 ```
 
-{{{example url="../threejs-lights-point-physically-correct.html" }}}
+{{{example url="lights-point-physically-correct.html" }}}
 
 It's important to note each light you add to the scene slows down how fast
 three.js renders the scene so you should always try to use as few as
 possible to achieve your goals.
 
-Next up let's go over [dealing with cameras](threejs-cameras.html).
+Next up let's go over [dealing with cameras](cameras.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>

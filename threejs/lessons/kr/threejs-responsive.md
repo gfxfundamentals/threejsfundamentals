@@ -3,7 +3,7 @@ Description: Three.js 프로젝트를 반응형으로 만들기
 TOC: 반응형 디자인
 
 Three.js 두 번째 튜토리얼에 오신 것을 환영합니다!
-첫 번째 튜토리얼은 [Three.js의 기초](threejs-fundamentals.html)에 관한 내용이었죠.
+첫 번째 튜토리얼은 [Three.js의 기초](fundamentals.html)에 관한 내용이었죠.
 아직 이전 장을 보지 않았다면 (예제가 이어지므로. 역주) 이전 글을 먼저 읽어보기 바랍니다.
 
 이 장에서는 Three.js 앱을 어떤 환경에서든 구동할 수 있도록
@@ -53,19 +53,19 @@ canvas 요소의 기본 `display` 속성은 `inline`입니다. `inline` 속성�
 
 아래는 이전 장에서 만든 예제에 방금 작성한 CSS 스타일을 덧붙인 것입니다.
 
-{{{example url="../threejs-responsive-no-resize.html" }}}
+{{{example url="responsive-no-resize.html" }}}
 
 canvas가 창 전체를 채우긴 했지만 문제가 좀 있네요. 정육면체가 창 크기에
 따라 늘어나 정육면체라기보다 너무 길거나 넓은 육면체처럼 보입니다. 예제를
 새 창에서 열어 창 크기를 조절해보세요. 정육면체가 어떻게 변하는지 확인할
 수 있을 겁니다.
 
-<img src="resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
 
 또 다른 문제는 저화질, 그러니까 깨지고 흐릿하게 보인다는 점입니다.
 창을 아주 크게 조절하면 문제를 바로 알 수 있을 거에요.
 
-<img src="resources/images/resize-low-res.png" class="threejs_center nobg">
+<img src="../resources/images/resize-low-res.png" class="threejs_center nobg">
 
 창 크기에 따라 늘어나는 문제부터 해결해봅시다. 먼저 카메라의 aspect(비율)
 속성을 canvas의 화면 크기에 맞춰야 합니다. 이는 canvas의 `clientWidth`와
@@ -86,12 +86,12 @@ function render(time) {
 
 이제 정육면체는 더이상 늘어나거나 찌그러들지 않을 겁니다.
 
-{{{example url="../threejs-responsive-update-camera.html" }}}
+{{{example url="responsive-update-camera.html" }}}
 
 예제를 새 창에서 열어 창 크기를 조절해보면, 정육면체의 비율이
 창 크기와 상관없이 그대로 유지되는 것을 확인할 수 있을 겁니다.
 
-<img src="resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
 
 이제 계단현상을 없애 봅시다.
 
@@ -161,23 +161,23 @@ canvas의 비율이 변하려면 canvas의 사이즈가 변해야 하므로,
 `resizeRendererToDisplaySize` 함수가 `true`를 반환했을 때만
 카메라의 비율을 변경합니다.
 
-{{{example url="../threejs-responsive.html" }}}
+{{{example url="responsive.html" }}}
 
 이제 디스플레이 크기에 맞는 해상도로 렌더링될 겁니다.
 
 CSS가 디스플레이 크기를 제어하도록 해야 한다는 주장을 보충해보겠습니다.
-일단 이 코드를 [별도의 js 파일](../threejs-responsive.js)로 저장해주세요.
+일단 이 코드를 [별도의 js 파일](../examples/threejs-responsive.js)로 저장해주세요.
 아래의 예시들은 CSS가 디스플레이 크기를 제어하도록 한 예시입니다.
 잘 살펴보면 추가로 다른 코드를 써야할 필요가 없다는 걸 알 수 있죠.
 
 먼저 canvas를 텍스트 사이에 끼워 넣어보죠.
 
-{{{example url="../threejs-responsive-paragraph.html" startPane="html" }}}
+{{{example url="responsive-paragraph.html" startPane="html" }}}
 
 다음은 우측 컨트롤 패널 크기를 조정할 수 있는 에디터 형태의
 레이아웃에서 활용한 예시입니다.
 
-{{{example url="../threejs-responsive-editor.html" startPane="html" }}}
+{{{example url="responsive-editor.html" startPane="html" }}}
 
 HTML, CSS만 바뀌고 자바스크립트 코드는 한 줄도 바뀌지 않았습니다.
 
@@ -254,11 +254,11 @@ canvas에 뭔가를 그린다던가 하는 경우가 있죠. 실제 크기 대�
 
 아래는 맨 마지막 방법을 적용한 예시입니다.
 
-{{{example url="../threejs-responsive-hd-dpi.html" }}}
+{{{example url="responsive-hd-dpi.html" }}}
 
 결과물로는 차이를 구별하기 어렵지만, HD-DPI 기기에서 예시를 비교해
 보면 이전 예시의 모서리가 좀 더 깨진 것이 보일 겁니다.
 
 이 장에서는 아주 기초적인 예시만을 다루었습니다. 다음 장에서는
-[Three.js의 원시 모델](threejs-primitives.html)에 대해서 빠르게
+[Three.js의 원시 모델](primitives.html)에 대해서 빠르게
 훑어보겠습니다.

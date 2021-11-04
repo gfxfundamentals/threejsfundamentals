@@ -7,11 +7,11 @@ TOC: Использование OffscreenCanvas в воркере
  рендеринг на холст. Это способ переложить тяжелую работу, такую ​​как рендеринг сложной 3D-сцены, на веб-воркера, чтобы не замедлить скорость отклика браузера.
  Это также означает, что данные загружаются и анализируются в воркере, поэтому возможно меньше мусора во время загрузки страницы.
 
-Начать использовать его довольно просто. Давайте разберём пример 3 вращающихся кубов из  [статьи об отзывчивости](threejs-responsive.html).
+Начать использовать его довольно просто. Давайте разберём пример 3 вращающихся кубов из  [статьи об отзывчивости](responsive.html).
 
 Обычно у воркера есть свой код, разделенный в другой файл сценария. Для большинства примеров на этом сайте скрипты встроены в HTML-файл страницы, на которой они находятся.
 
-В нашем случае мы создадим файл с именем `offscreencanvas-cubes.js` и скопируем в него весь JavaScript из [адаптивного примера](threejs-responsive.html). Затем мы внесем изменения, необходимые для его работы в воркере.
+В нашем случае мы создадим файл с именем `offscreencanvas-cubes.js` и скопируем в него весь JavaScript из [адаптивного примера](responsive.html). Затем мы внесем изменения, необходимые для его работы в воркере.
 
 
 Нам все еще нужен JavaScript в нашем HTML-файле. Первое, что нам нужно сделать там, это найти холст,
@@ -74,7 +74,7 @@ self.onmessage = function(e) {
 Вы можете видеть выше, что мы просто ищем обработчик в зависимости от `type`, передаем ему `data`, которые были отправлены с главной страницы.
 
 Итак, теперь нам просто нужно начать изменять основной файл, который мы вставили в `offscreencanvas-cubes.js` 
- [из адаптивной статьи](threejs-responsive.html).
+ [из адаптивной статьи](responsive.html).
 
 Затем вместо того, чтобы искать холст в DOM, мы получим его из данных события.
 
@@ -230,7 +230,7 @@ function main() {
 
 и при этом, если ваш браузер поддерживает `OffscreenCanvas`, этот пример должен работать
 
-{{{example url="../threejs-offscreencanvas.html" }}}
+{{{example url="offscreencanvas.html" }}}
 
 Так что это здорово, но поскольку не каждый браузер поддерживает `OffscreenCanvas` на данный момент,
 давайте изменим код для работы с `OffscreenCanvas`, а если нет, то вернемся к использованию холста на главной странице, как обычно.
@@ -261,7 +261,7 @@ function main() {
 предыдущего файла `offscreencanvas-cubes.js`. Сначала мы копируем весь файл `offscreencanvas-cubes.js` в `shared-cube.js`. Затем мы переименовываем `main` в `init`, так как у нас уже есть `main` в нашем HTML-файле, и нам нужно экспортировать `init` и состояние
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 -const state = {
 +export const state = {
@@ -426,10 +426,10 @@ function startMainPage(canvas) {
 и с этим наш пример будет запускаться либо в `OffscreenCanvas`, либо в качестве альтернативы запуску на главной странице.
 
 
-{{{example url="../threejs-offscreencanvas-w-fallback.html" }}}
+{{{example url="offscreencanvas-w-fallback.html" }}}
 
 Так что это было относительно легко. Попробуем поковырять.
-Мы возьмем код из примера RayCaster из  и  [статьи о выборе](threejs-picking.html)
+Мы возьмем код из примера RayCaster из  и  [статьи о выборе](picking.html)
 заставим его работать за экраном.
 
 Давайте скопируем `shared-cube.js` в `shared-picking.js` и добавим части выбора. Копируем в `PickHelper`
@@ -609,7 +609,7 @@ window.addEventListener('touchend', clearPickPosition);
 
 и с этим выбором следует работать с `OffscreenCanvas`.
 
-{{{example url="../threejs-offscreencanvas-w-picking.html" }}}
+{{{example url="offscreencanvas-w-picking.html" }}}
 
 Сделаем еще один шаг и добавим `OrbitControls`. Это будет немного больше.
 `OrbitControls` довольно широко используют DOM для проверки мыши, событий касания и клавиатуры.
@@ -617,7 +617,7 @@ window.addEventListener('touchend', clearPickPosition);
 
 В отличие от нашего кода, мы не можем использовать объект глобального `state`, не переписав весь код `OrbitControls` для работы с ним. `OrbitControls` принимают элемент, к которому они присоединяют большинство используемых ими событий DOM. Возможно, мы могли бы передать наш собственный объект, имеющий ту же поверхность API, что и элемент DOM. Нам нужно только поддерживать функции, которые необходимы `OrbitControls`.
 
-Копаясь в  [исходном коде OrbitControls](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r132/examples/js/controls/OrbitControls.js)
+Копаясь в  [исходном коде OrbitControls](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)
 похоже, что нам нужно обработать следующие события.
 
 
@@ -647,7 +647,7 @@ window.addEventListener('touchend', clearPickPosition);
 Вот код рабочей части.
 
 ```js
-import {EventDispatcher} from './resources/threejs/r132/build/three.module.js';
+import {EventDispatcher} from '../../build/three.module.js';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -726,8 +726,8 @@ self.onmessage = function(e) {
 Нам также нужно добавить `OrbitControls` в начало скрипта.
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 
 export function init(data) {
 -  const {canvas} = data;
@@ -1134,7 +1134,7 @@ function startMainPage(canvas) {
 
 и теперь у нас должен быть OrbitControls, работающий с OffscreenCanvas
 
-{{{example url="../threejs-offscreencanvas-w-orbitcontrols.html" }}}
+{{{example url="offscreencanvas-w-orbitcontrols.html" }}}
 
 Это, наверное, самый сложный пример на этом сайте. 
 Это немного сложно понять, потому что для каждого образца задействовано 3 файла. HTML-файл, рабочий файл, общий код three.js.

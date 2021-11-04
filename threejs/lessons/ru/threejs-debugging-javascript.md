@@ -22,21 +22,21 @@ THREE.js, а скорее об отладке JavaScript в целом.
 В Chrome вы можете кликнуть значок `⋮` , выбрать More Tools->Developer Tools
 чтобы перейти к инструментам разработчика. Сочетание клавиш также показано там. 
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
 
 В Firefox вы кликаете значок `☰` , выбираете "Web Developer", затем выбираете
 "Toggle Tools"
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
 
 В Safari сначала необходимо включить меню «Разработка» в разделе 
 «Дополнительные настройки Safari».
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
 
 Затем в меню «Разработка» вы можете выбрать «Показать / подключить веб-инспектора». 
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-safari.jpg" style="width: 777px;"></div>
 
 С Chrome вы также можете 
 [использовать Chrome на своем компьютере для отладки веб-страниц, работающих на Chrome, на вашем телефоне или планшете Android](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/).
@@ -58,11 +58,11 @@ THREE.js, а скорее об отладке JavaScript в целом.
 
 Сначала выберите настройки из углового меню 
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
 
 Затем выберите "Отключить кэш (пока открыт DevTools)".
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
 
 ## Используйте консоль JavaScript
 
@@ -72,11 +72,11 @@ THREE.js, а скорее об отладке JavaScript в целом.
 
 Обычно должно быть только 1 или 2 сообщения. 
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
 
 Если вы видите какие-либо другие **ПРОЧИТАЙТЕ ИХ**. Например:
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-errors.jpg" style="width: 779px"></div>
 
 Я неправильно написал «three» как «threee» 
 
@@ -86,7 +86,7 @@ THREE.js, а скорее об отладке JavaScript в целом.
 console.log(someObject.position.x, someObject.position.y, someObject.position.z);
 ```
 
-Даже круче, если вы регистрируете объект, вы можете инспектировать его. Например, если мы регистрируем объект корневой сцены из [статьи gLTF](threejs-load-gltf.html)
+Даже круче, если вы регистрируете объект, вы можете инспектировать его. Например, если мы регистрируем объект корневой сцены из [статьи gLTF](load-gltf.html)
 
 ```js
   {
@@ -99,7 +99,7 @@ console.log(someObject.position.x, someObject.position.y, someObject.position.z)
 
 Затем мы можем развернуть этот объект в консоли JavaScript 
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-console-object.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-console-object.gif"></div>
 
 Вы также можете использовать `console.error`, который сообщает, что сообщение красным цветом включает в себя трассировку стека.
 
@@ -150,7 +150,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 
 Это более полезно для значений в реальном времени
 
-{{{example url="../threejs-debug-js-html-elements.html" }}}
+{{{example url="debug-js-html-elements.html" }}}
 
 Еще один способ вывести данные на экран - это очистить регистратор.
 Я только что придумал этот термин, но многие игры, над которыми я работал,
@@ -188,7 +188,7 @@ class ClearingLogger {
 
 Тогда давайте сделаем простой пример, который каждый раз, когда мы щелкаем мышью, 
 создает сетку, которая движется в произвольном направлении в течение 2 секунд.
-Мы начнем с одного из примеров из статьи о  [том, как сделать вещи отзывчивыми](threejs-responsive.html)
+Мы начнем с одного из примеров из статьи о  [том, как сделать вещи отзывчивыми](responsive.html)
 
 Вот код, который добавляет новую сетку каждый раз, когда мы щелкаем мышью
 
@@ -261,7 +261,7 @@ function render(now) {
 
 Теперь кликните мышкой в примере ниже. 
 
-{{{example url="../threejs-debug-js-clearing-logger.html" }}}
+{{{example url="debug-js-clearing-logger.html" }}}
 
 ## Параметры запроса
 
@@ -328,11 +328,11 @@ class DummyLogger {
 
 Вы можете увидеть, если мы используем этот URL:
 
-<a target="_blank" href="../threejs-debug-js-params.html">threejs-debug-js-params.html</a>
+<a target="_blank" href="../examples/debug-js-params.html">debug-js-params.html</a>
 
 отладочной информации нет, но если мы используем этот URL:
 
-<a target="_blank" href="../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a>
+<a target="_blank" href="../examples/debug-js-params.html?debug=true">debug-js-params.html?debug=true</a>
 
 есть отладочная информация..
 
@@ -358,14 +358,14 @@ class DummyLogger {
 
 В качестве простого примера
 
-<div class="threejs_center"><img class="border" src="resources/images/nan-banana.png" style="width: 180px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/nan-banana.png" style="width: 180px;"></div>
 
 
 Часто, когда я что-то делаю и на экране ничего не появляется,
 я проверяю некоторые значения, и если я вижу `NaN`, имеет место быть, чтобы начать поиск. 
 
 В качестве примера, когда я впервые начал создавать путь для
-[статьи о загрузке файлов gLTF](threejs-load-gltf.html) я сделал кривую, используя класс `SplineCurve`, который создает 2D-кривую. 
+[статьи о загрузке файлов gLTF](load-gltf.html) я сделал кривую, используя класс `SplineCurve`, который создает 2D-кривую. 
 
 Затем я использовал эту кривую, чтобы двигать автомобили
 
@@ -382,7 +382,7 @@ curve.getPointAt(zeroToOnePointOnCurve, car.position);
 Беглый взгляд в отладчике `matrixWorld` автомобиля
 показал множество значений `NaN`. 
 
-<div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
 Видя, что в матрице присутствуют `NaN` можно предположить что-то вроде `position`,
 `rotation`, `scale` или какой-либо другой функции, которая влияет на то, что в матрице содержались неверные данные.
@@ -449,7 +449,7 @@ requestAnimationFrame(render);
 Если вы решите задать вопрос о THREE.js,
 вам почти всегда необходимо предоставить MCVE, что означает «Минимальный, Полный, Проверяемый, Пример». 
 
-**Минимальная** часть важна. Допустим, у вас возникла проблема с перемещением пути в последнем примере [загрузки статьи gLTF](threejs-load-gltf.html). 
+**Минимальная** часть важна. Допустим, у вас возникла проблема с перемещением пути в последнем примере [загрузки статьи gLTF](load-gltf.html). 
 Этот пример имеет много частей. Включите их в список 
 
 1. A bunch of HTML
@@ -472,7 +472,7 @@ requestAnimationFrame(render);
 Вот более минимальный пример, учитывающий все вышеперечисленное. Он сократился с 271 строки до 135. 
 Мы могли бы подумать об уменьшении его еще больше, упрощая наш путь. Возможно, путь с 3 или 4 точками будет работать так же хорошо, как и наш путь с 21 точкой. 
 
-{{{example url="../threejs-debugging-mcve.html" }}}
+{{{example url="debugging-mcve.html" }}}
 
 Я сохранил `OrbitController` только потому, что полезно перемещать камеру и выяснять, что происходит, но в зависимости от вашей проблемы вы также можете удалить это.
 
@@ -501,14 +501,14 @@ requestAnimationFrame(render);
 ## Проверьте `near` и `far` настройки вашей камеры
 
 `PerspectiveCamera` имеет ближние и дальние настройки, которые описаны в 
-[статье о камерах](threejs-cameras.html). Убедитесь, что они установлены в соответствии с пространством, в котором находятся ваши объекты.
+[статье о камерах](cameras.html). Убедитесь, что они установлены в соответствии с пространством, в котором находятся ваши объекты.
 Возможно, даже просто *временно* установите для них что-то большое, например, `near` = 0,001 и `far` = 1000000.
 Скорее всего, у вас возникнут проблемы с разрешением по глубине, но вы по крайней мере сможете увидеть ваши объекты, если они находятся перед камерой. 
 
 ## Проверьте вашу сцену перед камерой 
 
 Иногда вещи не появляются, потому что они не перед камерой.Если ваша камера не управляема попробуйте добавить управление камерой,
-как `OrbitControlle`r так что вы можете посмотреть вокруг и найти вашу сцену.  Или, попробовать кадрирование сцены, используя код, который транслируется в [этой статье](threejs-load-obj.html).
+как `OrbitControlle`r так что вы можете посмотреть вокруг и найти вашу сцену.  Или, попробовать кадрирование сцены, используя код, который транслируется в [этой статье](load-obj.html).
 Этот код находит размер части сцены, а затем перемещает камеру и регулирует `near` и `far` настройки, чтобы сделать его видимым. Затем можно заглянуть в
 отладчик или добавить некоторые в `console.log` сообщения для печати размера и центра сцены.
 
@@ -522,4 +522,4 @@ requestAnimationFrame(render);
 
 ---
 
-Это были несколько советов для отладки JavaScript. Давайте перейдём к [некоторым советам для отладки на GLSL](threejs-debugging-glsl.html).
+Это были несколько советов для отладки JavaScript. Давайте перейдём к [некоторым советам для отладки на GLSL](debugging-glsl.html).

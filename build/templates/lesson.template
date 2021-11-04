@@ -2,11 +2,11 @@
 <html lang="{{langInfo.langCode}}">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="/docs/fundamentals/threejs/lessons/lang.css">
+    <link rel="stylesheet" href="/manual/resources/lang.css">
     {{#ifexists filename="/threejs/lessons/{{langCode}}/lang.css" langCode=langInfo.baseDirname}}
-    <link rel="stylesheet" href="/docs/fundamentals/threejs/lessons/{{langInfo.baseDirname}}/lang.css">
+    <link rel="stylesheet" href="/manual/{{langInfo.langCode}}/lang.css">
     {{/ifexists}}
-    <link rel="stylesheet" href="/docs/fundamentals/threejs/lessons/resources/lesson.css">
+    <link rel="stylesheet" href="/manual/resources/lesson.css">
   </head>
   <body>
     <div class="container">
@@ -20,9 +20,8 @@
       </div>
     </div>
   </body>
-  <script src="/docs/fundamentals/3rdparty/jquery-3.3.1.slim.min.js"></script>  
-  <script src="/docs/fundamentals/threejs/lessons/resources/prettify.js"></script>
-  <script src="/docs/fundamentals/threejs/lessons/resources/lesson.js"></script>
+  <script src="/manual/resources/prettify.js"></script>
+  <script src="/manual/resources/lesson.js"></script>
 </html>
 
 

@@ -3,7 +3,7 @@ Description: A tour of three.js primitives.
 TOC: Primitives
 
 This article is one in a series of articles about three.js.
-The first article was [about fundamentals](threejs-fundamentals.html).
+The first article was [about fundamentals](fundamentals.html).
 If you haven't read that yet you might want to start there.
 
 Three.js has a large number of primitives. Primitives
@@ -49,9 +49,9 @@ for <code>TextGeometry</code>.</div>
 <div id="Diagram-EdgesGeometry" data-primitive="EdgesGeometry">A helper object that takes another geometry as input and generates edges only if the angle between faces is greater than some threshold. For example if you look at the box at the top it shows a line going through each face showing every triangle that makes the box. Using an <code>EdgesGeometry</code> instead the middle lines are removed. Adjust the thresholdAngle below and you'll see the edges below that threshold disappear.</div>
 <div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">Generates geometry that contains one line segment (2 points) per edge in the given geometry. Without this you'd often be missing edges or get extra edges since WebGL generally requires 2 points per line segment. For example if all you had was a single triangle there would only be 3 points. If you tried to draw it using a material with <code>wireframe: true</code> you would only get a single line. Passing that triangle geometry to a <code>WireframeGeometry</code> will generate a new geometry that has 3 lines segments using 6 points..</div>
 
-We'll go over creating custom geometry in [another article](threejs-custom-buffergeometry.html). For now
+We'll go over creating custom geometry in [another article](custom-buffergeometry.html). For now
 let's make an example creating each type of primitive. We'll start
-with the [examples from the previous article](threejs-responsive.html).
+with the [examples from the previous article](responsive.html).
 
 Near the top let's set a background color
 
@@ -167,7 +167,7 @@ If you look in the code below you'll see a similar section for each type of geom
 
 Here's the result:
 
-{{{example url="../threejs-primitives.html" }}}
+{{{example url="primitives.html" }}}
 
 There are a couple of notable exceptions to the pattern above.
 The biggest is probably the `TextGeometry`. It needs to load
@@ -182,7 +182,7 @@ And finally create the geometry and call `addObject` to add it the scene.
 
 ```js
 {
-  const loader = new THREE.FontLoader();
+  const loader = new FontLoader();
   // promisify font loading
   function loadFont(url) {
     return new Promise((resolve, reject) => {
@@ -191,8 +191,8 @@ And finally create the geometry and call `addObject` to add it the scene.
   }
 
   async function doit() {
-    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejsfundamentals: url */
-    const geometry = new THREE.TextGeometry('three.js', {
+    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejs.org: url */
+    const geometry = new TextGeometry('three.js', {
       font: font,
       size: 3.0,
       height: .2,
@@ -230,7 +230,7 @@ examples it would set the position again which is
 no good. So, in this case we create an `Object3D` which
 is the standard node for the three.js scene graph. `Mesh`
 is inherited from `Object3D` as well. We'll cover [how the scene graph
-works in another article](threejs-scenegraph.html).
+works in another article](scenegraph.html).
 For now it's enough to know that
 like DOM nodes, children are drawn relative to their parent.
 By making an `Object3D` and making our mesh a child of that
@@ -239,7 +239,7 @@ keep the center offset we set earlier.
 
 If we didn't do this the text would spin off center.
 
-{{{example url="../threejs-primitives-text.html" }}}
+{{{example url="primitives-text.html" }}}
 
 Notice the one on the left is not spinning around its center
 whereas the one on the right is.
@@ -360,13 +360,13 @@ memory they'll take. You'll have to decide for yourself what the correct
 tradeoff is for your particular situation.
 
 If none of the shapes above fit your use case you can load
-geometry for example from a [.obj file](threejs-load-obj.html)
-or a [.gltf file](threejs-load-gltf.html). 
-You can also create your own [custom BufferGeometry](threejs-custom-buffergeometry.html).
+geometry for example from a [.obj file](load-obj.html)
+or a [.gltf file](load-gltf.html). 
+You can also create your own [custom BufferGeometry](custom-buffergeometry.html).
 
 Next up let's go over [how three's scene graph works and how
-to use it](threejs-scenegraph.html).
+to use it](scenegraph.html).
 
-<link rel="stylesheet" href="resources/threejs-primitives.css">
-<script type="module" src="resources/threejs-primitives.js"></script>
+<link rel="stylesheet" href="../resources/threejs-primitives.css">
+<script type="module" src="../resources/threejs-primitives.js"></script>
 

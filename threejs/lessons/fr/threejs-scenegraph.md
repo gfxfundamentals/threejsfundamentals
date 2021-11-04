@@ -3,22 +3,22 @@ Description: Qu'est-ce qu'un graphique de scène ?
 TOC: Graphique de scène
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
+Le premier article s'intitule [Principes de base](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là.
 
 Le coeurs de Three.js est sans aucun doute son graphique de scène. Un graphique de scène est une représentation arborescente des objets que l’on souhaite afficher, où chaque nœud représente un espace local.
 
-<img src="resources/images/scenegraph-generic.svg" align="center">
+<img src="../resources/images/scenegraph-generic.svg" align="center">
 
 C'est un peu abstrait, alors essayons de donner quelques exemples.
 
 On pourrait prendre comme exemple le système solaire, le soleil, la terre, la lune.
 
-<img src="resources/images/scenegraph-solarsystem.svg" align="center">
+<img src="../resources/images/scenegraph-solarsystem.svg" align="center">
 
 La Terre tourne autour du Soleil. La Lune tourne autour de la Terre. La Lune se déplace en cercle autour de la Terre. Du point de vue de la Lune, elle tourne dans "l'espace local" de la Terre. Même si son mouvement par rapport au Soleil est une courbe folle comme un spirographe du point de vue de la Lune, il n'a qu'à se préoccuper de tourner autour de l'espace local de la Terre.
 
-{{{diagram url="resources/moon-orbit.html" }}}
+{{{diagram url="../resources/moon-orbit.html" }}}
 
 Pour le voir autrement, vous qui vivez sur Terre n'avez pas à penser à la rotation de la Terre sur son axe ni à sa rotation autour du Soleil. Vous marchez ou conduisez ou nagez ou courez comme si la Terre ne bougeait pas ou ne tournait pas du tout. Vous marchez, conduisez, nagez, courez et vivez dans "l'espace local" de la Terre même si par rapport au soleil, vous tournez autour de la terre à environ 1 600 km/h et autour du soleil à environ 107000km/h. Votre position dans le système solaire est similaire à celle de la lune au-dessus, mais vous n'avez pas à vous en préoccuper. Vous vous souciez simplement de votre position par rapport à la terre dans son "espace local".
 
@@ -78,7 +78,7 @@ objects.forEach((obj) => {
 
 Ajouter la `sunMesh` au tableau `objects`, la fait pivoter.
 
-{{{example url="../threejs-scenegraph-sun.html" }}}
+{{{example url="scenegraph-sun.html" }}}
 
 Ajoutons maintenant la terre.
 
@@ -95,7 +95,7 @@ Nous fabriquons un matériau bleu mais nous lui donnons une petite quantité de 
 Nous utilisons la même `sphereGeometry` avec notre nouveau `EarthMaterial` bleu pour faire une `earthMesh`. 
 Nous positionnons ces 10 unités à gauche du soleil et l'ajoutons à la scène. L'ajouter à notre tableau `objects`, la met en mouvement également.
 
-{{{example url="../threejs-scenegraph-sun-earth.html" }}}
+{{{example url="scenegraph-sun-earth.html" }}}
 
 Vous pouvez voir que le soleil et la terre tournent mais que la terre ne tourne pas autour du soleil. Faisons de la terre un enfant du soleil
 
@@ -106,7 +106,7 @@ Vous pouvez voir que le soleil et la terre tournent mais que la terre ne tourne 
 
 et...
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit.html" }}}
+{{{example url="scenegraph-sun-earth-orbit.html" }}}
 
 Que s'est-il passé? Pourquoi la terre a-t-elle la même taille que le soleil et pourquoi est-elle si loin ? En fait, j'ai dû déplacer la caméra de 50 à 150 unités au-dessus pour voir la terre.
 
@@ -116,7 +116,7 @@ Tout ce qui est mis dans cet espace sera multiplié par 5. Cela signifie que la 
 
  Notre scène ressemble maintenant à celà
 
-<img src="resources/images/scenegraph-sun-earth.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth.svg" align="center">
 
 Pour résoudre ce problème, ajoutons un nœud vide. Nous lions le soleil et la terre à ce nœud.
 
@@ -143,11 +143,11 @@ Ici, nous avons fait un `Object3D`. Comme une `Mesh`, c'est aussi un nœud, mais
 
 Notre nouvelle scène ressemble à ceci :
 
-<img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center">
 
 La  `sunMesh` et la `earthMesh` sont tous les deux des enfants de `solarSystem`. Les trois sont en train de tournés, et comme `earthMesh` n'est pas un enfant de `sunMesh`, elle n'est plus mise à l'échelle.
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit-fixed.html" }}}
+{{{example url="scenegraph-sun-earth-orbit-fixed.html" }}}
 
 Encore mieux. La Terre est plus petite que le Soleil, elle tourne autour de lui et sur elle-même.
 
@@ -181,11 +181,11 @@ Ajoutons à nouveau d'autres noeuds à notre scène. D'abord, un `Object3D` appe
 ensuite ajoutons-lui un `earthMesh` et un `moonOrbit`. Finalement, ajoutons un `moonMesh`
 au `moonOrbit`. Notre scène devrait ressembler à ceci :
 
-<img src="resources/images/scenegraph-sun-earth-moon.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center">
 
 et à ça :
 
-{{{example url="../threejs-scenegraph-sun-earth-moon.html" }}}
+{{{example url="scenegraph-sun-earth-moon.html" }}}
 
 Vous pouvez voir que la lune suit le modèle de spirographe indiqué en haut de cet article, mais nous n'avons pas eu à le calculer manuellement. Nous venons de configurer notre graphe de scène pour le faire pour nous.
 
@@ -210,7 +210,7 @@ objects.forEach((node) => {
 Dans notre cas, nous voulons que les axes apparaissent même s'ils sont à l'intérieur des sphères.
 Pour cela, nous définissons le `depthTest` de material à false, pour ne pas vérifier s'ils dessinent derrière quelque chose. Nous définissons également leur `renderOrder` sur 1 (la valeur par défaut est 0) afin qu'ils soient dessinés après toutes les sphères. Sinon, une sphère pourrait les recouvrir et les recouvrir.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes.html" }}}
 
 Vous pouvez voir les axes
 <span style="color:red">x (rouge)</span> et
@@ -280,19 +280,19 @@ class AxisGridHelper {
 
 Une chose à noter est que nous définissons le `renderOrder` de l'`AxesHelper` sur 2 et pour le `GridHelper` sur 1 afin que les axes soient dessinés après la grille. Sinon, la grille pourrait écraser les axes.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes-grids.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes-grids.html" }}}
 
 Cliquez sur `solarSystem` et vous verrez que la terre est exactement à 10 unités du centre, comme nous l'avons défini ci-dessus. Vous pouvez voir que la terre est dans l'espace local du `solarSystem`. De même, si vous cliquez sur `earthOrbit`, vous verrez que la lune est exactement à 2 unités du centre de *l'espace local* de `earthOrbit`.
 
 Un autre exemple de scène. Une automobile dans un jeu simple pourrait avoir un graphique de scène comme celui-ci
 
-<img src="resources/images/scenegraph-car.svg" align="center">
+<img src="../resources/images/scenegraph-car.svg" align="center">
 
 Si vous déplacez la carrosserie de la voiture, toutes les roues bougeront avec elle. Si vous vouliez que le corps rebondisse séparément des roues, vous pouvez lier le corps et les roues à un nœud "cadre" qui représente le cadre de la voiture.
 
 Un autre exemple avec un humain dans un jeu vidéo.
 
-<img src="resources/images/scenegraph-human.svg" align="center">
+<img src="../resources/images/scenegraph-human.svg" align="center">
 
 Vous pouvez voir que le graphique de la scène devient assez complexe pour un humain. En fait, le graphe ci-dessus est simplifié. Par exemple, vous pouvez l'étendre pour couvrir chaque doigt (au moins 28 autres nœuds) et chaque orteil (encore 28 nœuds) plus ceux pour le visage et la mâchoire, les yeux et peut-être plus.
 
@@ -304,7 +304,7 @@ moves around and the tank will target the sphere.
 
 Voici le graphique de la scène. Les maillages sont colorés en vert, les `Object3D` en bleu, les lumières en or et les caméras en violet. Une caméra n'a pas été ajoutée au graphique de la scène.
 
-<div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 Regardez dans le code pour voir la configuration de tous ces nœuds.
 
@@ -392,7 +392,7 @@ const camera = cameras[time * .25 % cameras.length | 0];
 infoElem.textContent = camera.desc;
 ```
 
-{{{example url="../threejs-scenegraph-tank.html"}}}
+{{{example url="scenegraph-tank.html"}}}
 
 J'espère que cela donne une idée du fonctionnement des graphiques de scène et de la façon dont vous pouvez les utiliser.
 Faire des nœuds « Object3D » et leur attacher des choses est une étape importante pour utiliser
@@ -401,4 +401,4 @@ pour faire bouger quelque chose et faire pivoter comme vous le souhaitez. Par ex
 calculer le mouvement de la lune, savoir où placer les roues de la voiture par rapport à son
 corps serait très compliqué, mais en utilisant un graphique de scène, cela devient beaucoup plus facile.
 
-[Passons maintenant en revue les materials](threejs-materials.html).
+[Passons maintenant en revue les materials](materials.html).

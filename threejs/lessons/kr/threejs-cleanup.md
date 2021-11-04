@@ -8,7 +8,7 @@ Three.js 앱은 생각보다 많은 메모리를 사용합니다. 3D 모델의 �
 
 Three.js는 자바스크립트와 달리 할당한 메모리를 알아서 비우지 못합니다. 페이지를 전환하는 경우야 브라우저가 알아서 해당 자원을 메모리에서 지우겠지만, 그 밖의 경우 메모리 해제는 전적으로 개발자에게 달렸습니다.
 
-Three.js에서는 [textures](threejs-textures.html), [geometries](threejs-primitives.html), [materials](threejs-materials.html)의 `dispose` 메서드를 호출해 메모리를 해제할 수 있습니다.
+Three.js에서는 [textures](textures.html), [geometries](primitives.html), [materials](materials.html)의 `dispose` 메서드를 호출해 메모리를 해제할 수 있습니다.
 
 가장 간단한 방법은 일일이 호출하는 겁니다. 초기화 시에 아래와 같이 지원을 메모리에 할당하고
 
@@ -53,7 +53,7 @@ class ResourceTracker {
 }
 ```
 
-[텍스처에 관한 글](threejs-textures.html)의 첫 번째 예제에 이 클래스를 써 봅시다. 먼저 클래스의 인스턴스를 만듭니다.
+[텍스처에 관한 글](textures.html)의 첫 번째 예제에 이 클래스를 써 봅시다. 먼저 클래스의 인스턴스를 만듭니다.
 
 ```js
 const resTracker = new ResourceTracker();
@@ -202,7 +202,7 @@ process();
 
 아래 예제는 정육면체, 텍스처, 재질을 렌더링한 뒤 2초 후에 해당 자원을 버리고, 다시 1초 후에 생성하기를 반복합니다.
 
-{{{example url="../threejs-cleanup-simple.html" }}}
+{{{example url="cleanup-simple.html" }}}
 
 딱히 오류는 없네요.
 
@@ -343,7 +343,7 @@ class ResourceTracker {
 }
 ```
 
-수정한 클래스를 [glTF 파일 불러오기](threejs-load-gltf.html)에서 썼던 예제에 적용해 무료 glTF 파일을 불러와보도록 합시다.
+수정한 클래스를 [glTF 파일 불러오기](load-gltf.html)에서 썼던 예제에 적용해 무료 glTF 파일을 불러와보도록 합시다.
 
 ```js
 const gltfLoader = new GLTFLoader();
@@ -395,7 +395,7 @@ async function loadFiles() {
 loadFiles();
 ```
 
-{{{example url="../threejs-cleanup-loaded-files.html"}}}
+{{{example url="cleanup-loaded-files.html"}}}
 
 코드에 대해 몇 가지 설명하고 끝내겠습니다.
 

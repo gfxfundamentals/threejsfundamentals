@@ -5,10 +5,10 @@ TOC: Custom Geometry
 <div class="warning">
 <strong>NOTE!</strong> This article is deprecated. Three.js r125
 removed support for <code>Geometry</code>. Please refer to
-the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometry</a>.
+the article on <a href="custom-buffergeometry.html">custom BufferGeometry</a>.
 </div>
 
-A [previous article](threejs-primitives.html) gave a tour of
+A [previous article](primitives.html) gave a tour of
 the various built in primitives included in THREE.js. In this
 article we'll cover making our own geometry.
 
@@ -18,8 +18,8 @@ the most common way is to use a 3D modeling package like
 [Maya](https://www.autodesk.com/products/maya/overview),
 [3D Studio Max](https://www.autodesk.com/products/3ds-max/overview),
 [Cinema4D](https://www.maxon.net/en-us/), etc...
-You'd build a model and then export to [gLTF](threejs-load-gltf.html)
-or [.obj](threejs-load-obj.html) and load them up.
+You'd build a model and then export to [gLTF](load-gltf.html)
+or [.obj](load-obj.html) and load them up.
 Whichever one you choose, expect to spend 2 or 3 weeks going through
 their respective tutorials as all of them have a learning curve
 to be useful.
@@ -52,7 +52,7 @@ delay for your program to start using `Geometry` vs using
 though let's use geometry as it's easier to understand IMO.
 
 First let's make a cube with `Geometry`. We'll start
-with an example from [the article on responsiveness](threejs-responsive.html).
+with an example from [the article on responsiveness](responsive.html).
 
 Let's remove the part that uses `BoxGeometry` and replace it with
 a `Geometry`.
@@ -67,7 +67,7 @@ a `Geometry`.
 
 Now let's add the 8 corners of a cube. Here are the 8 corners.
 
-<div class="threejs_center"><img src="resources/cube-vertex-positions.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-positions.svg" style="width: 500px"></div>
 
 Centered around the origin we can add the vertex positions like this
 
@@ -87,7 +87,7 @@ const geometry = new THREE.Geometry();
 
 We then need to make triangles, 2 for each face of the cube
 
-<div class="threejs_center"><img src="resources/cube-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
 We do that by creating `Face3` objects and specifying the indices
 of the 3 vertices that make up that face.
@@ -96,7 +96,7 @@ The order we specify the vertices is important. To be pointing toward the
 outside of the cube they must be specified in a counter clockwise direction
 when that triangle is facing the camera.
 
-<div class="threejs_center"><img src="resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
 Following that pattern we can specify the 12 triangles that make
 the cube like this
@@ -171,7 +171,7 @@ function makeInstance(geometry, color, x) {
 
 and we get cubes we made ourselves.
 
-{{{example url="../threejs-custom-geometry-cube.html" }}}
+{{{example url="custom-geometry-cube.html" }}}
 
 We can specify a color per face by setting the `color` property of
 each face.
@@ -192,7 +192,7 @@ note we need to tell the material we want to use vertex colors
 +const material = new THREE.MeshBasicMaterial({vertexColors: true});
 ```
 
-{{{example url="../threejs-custom-geometry-cube-face-colors.html" }}}
+{{{example url="custom-geometry-cube-face-colors.html" }}}
 
 We can instead set the color of each individual vertex by setting the `vertexColors`
 property of a `Face` to an array of the 3 colors for the 3 vertices.
@@ -207,7 +207,7 @@ geometry.faces.forEach((face, ndx) => {
 });
 ```
 
-{{{example url="../threejs-custom-geometry-cube-vertex-colors.html" }}}
+{{{example url="custom-geometry-cube-vertex-colors.html" }}}
 
 To use lighting we need normals. Normals are vectors that specify direction.
 Just like the colors we can specify a normal for the face by setting the `normal`
@@ -246,7 +246,7 @@ Removing the vertex color stuff and changing the material back to `MeshPhongMate
 
 and now our cubes can be lit.
 
-{{{example url="../threejs-custom-geometry-cube-face-normals.html" }}}
+{{{example url="custom-geometry-cube-face-normals.html" }}}
 
 Using face normals will always give us a faceted look. We can use
 vertex normals for a smoother look by calling `Geometry.computeVertexNormals`
@@ -260,7 +260,7 @@ Unfortunately a cube is not a good candidate for vertex normals since it
 means each vertex gets its normal from the
 normals of all the faces it shares.
 
-{{{example url="../threejs-custom-geometry-cube-vertex-normals.html" }}}
+{{{example url="custom-geometry-cube-vertex-normals.html" }}}
 
 Adding texture coordinates, sometimes called UVs, is done via an array of
 layers of parallel arrays to the `faces` array which is set via `Geometry.faceVertexUvs`.
@@ -293,7 +293,7 @@ It's important to notice `faceVertexUvs` is an array of layers. Each layer
 is another set of UV coordinates. By default there is one layer of UV coordinates,
 layer 0, so we just add our UVs to that layer.
 
-Let's [add a texture](threejs-textures.html) to our material and switch back to compute face normals
+Let's [add a texture](textures.html) to our material and switch back to compute face normals
 
 ```js
 -geometry.computeVertexNormals();
@@ -312,7 +312,7 @@ function makeInstance(geometry, color, x) {
   ...
 ```
 
-{{{example url="../threejs-custom-geometry-cube-texcoords.html" }}}
+{{{example url="custom-geometry-cube-texcoords.html" }}}
 
 Putting that all together, let's make a simple heightmap based
 terrain mesh.
@@ -322,7 +322,7 @@ that you apply them to a grid. An easy way to get a 2D array of heights
 is to draw them in an image editing program. Here's an image I drew.
 It's 96x64 pixels
 
-<div class="threejs_center"><img src="../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+<div class="threejs_center"><img src="../examples/resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 We'll load that and then generate a heightmap mesh from it.
 We can use the `ImageLoader` to load the image.
@@ -348,7 +348,7 @@ We extracted the data from the image, now we'll make a grid of cells.
 The cells are the squares formed by the center points of each pixel
 from the image
 
-<div class="threejs_center"><img src="resources/heightmap-points.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-points.svg" style="width: 500px"></div>
 
 For each cell we'll generate 5 vertices. One for each corner of the cell
 and one at the center point of the cell with the average height of the 4
@@ -395,7 +395,7 @@ for (let z = 0; z < cellsDeep; ++z) {
 
 We'll then make 4 triangles from those 5 vertices
 
-<div class="threejs_center"><img src="resources/heightmap-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-triangles.svg" style="width: 500px"></div>
 
 ```js
     // create 4 triangles
@@ -446,8 +446,8 @@ A few minor changes to make it easier to view.
 * include the `OrbitControls`
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -484,9 +484,9 @@ add 2 lights
 
 and we deleted the code related to spinning the cubes.
 
-{{{example url="../threejs-custom-geometry-heightmap.html" }}}
+{{{example url="custom-geometry-heightmap.html" }}}
 
 I hope that was a useful instruction to making your own
 geometry using `Geometry`.
 
-In [another article](threejs-custom-buffergeometry.html) we'll go over `BufferGeometry`.
+In [another article](custom-buffergeometry.html) we'll go over `BufferGeometry`.

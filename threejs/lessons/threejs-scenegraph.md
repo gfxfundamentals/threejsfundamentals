@@ -3,20 +3,20 @@ Description: What's a scene graph?
 TOC: Scenegraph
 
 This article is part of a series of articles about three.js. The
-first article is [three.js fundamentals](threejs-fundamentals.html). If
+first article is [three.js fundamentals](fundamentals.html). If
 you haven't read that yet you might want to consider starting there.
 
 Three.js's core is arguably its scene graph. A scene graph in a 3D
 engine is a hierarchy of nodes in a graph where each node represents
 a local space.
 
-<img src="resources/images/scenegraph-generic.svg" align="center">
+<img src="../resources/images/scenegraph-generic.svg" align="center">
 
 That's kind of abstract so let's try to give some examples.
 
 One example might be solar system, sun, earth, moon.
 
-<img src="resources/images/scenegraph-solarsystem.svg" align="center">
+<img src="../resources/images/scenegraph-solarsystem.svg" align="center">
 
 The Earth orbits the Sun. The Moon orbits the Earth. The Moon
 moves in a circle around the Earth. From the Moon's point of
@@ -25,7 +25,7 @@ its motion relative to the Sun is some crazy spirograph like
 curve from the Moon's point of view it just has to concern itself with rotating
 around the Earth's local space.
 
-{{{diagram url="resources/moon-orbit.html" }}}
+{{{diagram url="../resources/moon-orbit.html" }}}
 
 To think of it another way, you living on the Earth do not have to think
 about the Earth's rotation on its axis nor its rotation around the
@@ -112,7 +112,7 @@ objects.forEach((obj) => {
 
 Since we added the `sunMesh` to the `objects` array it will rotate.
 
-{{{example url="../threejs-scenegraph-sun.html" }}}
+{{{example url="scenegraph-sun.html" }}}
 
 Now let's add in the earth.
 
@@ -132,7 +132,7 @@ an `earthMesh`. We position that 10 units to the left of the sun
 and add it to the scene.  Since we added it to our `objects` array it will
 rotate too.
 
-{{{example url="../threejs-scenegraph-sun-earth.html" }}}
+{{{example url="scenegraph-sun-earth.html" }}}
 
 You can see both the sun and the earth are rotating but the earth is not
 going around the sun. Let's make the earth a child of the sun
@@ -144,7 +144,7 @@ going around the sun. Let's make the earth a child of the sun
 
 and...
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit.html" }}}
+{{{example url="scenegraph-sun-earth-orbit.html" }}}
 
 What happened? Why is the earth the same size as the sun and why is it so far away?
 I actually had to move the camera from 50 units above to 150 units above to see the earth.
@@ -158,7 +158,7 @@ its scale set to 5x with `sunMesh.scale.set(5, 5, 5)`. That means the
 
  Our scene graph currently looks like this
 
-<img src="resources/images/scenegraph-sun-earth.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth.svg" align="center">
 
 To fix it let's add an empty scene graph node. We'll parent both the sun and the earth
 to that node.
@@ -188,13 +188,13 @@ but unlike a `Mesh` it has no material or geometry. It just represents a local s
 
 Our new scene graph looks like this
 
-<img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center">
 
 Both the `sunMesh` and the `earthMesh` are children of the `solarSystem`. All 3
 are being rotated and now because the `earthMesh` is not a child of the `sunMesh`
 it is no longer scaled by 5x.
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit-fixed.html" }}}
+{{{example url="scenegraph-sun-earth-orbit-fixed.html" }}}
 
 Much better. The earth is smaller than the sun and it's rotating around the sun
 and rotating itself.
@@ -229,11 +229,11 @@ Again we added more invisible scene graph nodes. The first, an `Object3D` called
 and added both the `earthMesh` and the `moonOrbit` to it, also new. We then added the `moonMesh`
 to the `moonOrbit`. The new scene graph looks like this.
 
-<img src="resources/images/scenegraph-sun-earth-moon.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center">
 
 and here's that
 
-{{{example url="../threejs-scenegraph-sun-earth-moon.html" }}}
+{{{example url="scenegraph-sun-earth-moon.html" }}}
 
 You can see the moon follows the spirograph pattern shown at the top
 of this article but we didn't have to manually compute it. We just
@@ -264,7 +264,7 @@ not check to see if they are drawing behind something else. We also
 set their `renderOrder` to 1 (the default is 0) so that they get drawn after
 all the spheres. Otherwise a sphere might draw over them and cover them up.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes.html" }}}
 
 We can see the
 <span style="color:red">x (red)</span> and
@@ -358,7 +358,7 @@ One thing to notice is we set the `renderOrder` of the `AxesHelper`
 to 2 and for the `GridHelper` to 1 so that the axes get drawn after the grid.
 Otherwise the grid might overwrite the axes.
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes-grids.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes-grids.html" }}}
 
 Turn on the `solarSystem` and you'll see how the earth is exactly 10
 units out from the center just like we set above. You can see how the
@@ -368,7 +368,7 @@ from the center of the *local space* of the `earthOrbit`.
 
 A few more examples of scene graphs. An automobile in a simple game world might have a scene graph like this
 
-<img src="resources/images/scenegraph-car.svg" align="center">
+<img src="../resources/images/scenegraph-car.svg" align="center">
 
 If you move the car's body all the wheels will move with it. If you wanted the body
 to bounce separate from the wheels you might parent the body and the wheels to a "frame" node
@@ -376,7 +376,7 @@ that represents the car's frame.
 
 Another example is a human in a game world.
 
-<img src="resources/images/scenegraph-human.svg" align="center">
+<img src="../resources/images/scenegraph-human.svg" align="center">
 
 You can see the scene graph gets pretty complex for a human. In fact
 that scene graph above is simplified. For example you might extend it
@@ -391,7 +391,7 @@ Here's the scene graph. The meshes are colored in green, the `Object3D`s in blue
 the lights in gold, and the cameras in purple. One camera has not been added
 to the scene graph.
 
-<div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 Look in the code to see the setup of all of these nodes.
 
@@ -497,7 +497,7 @@ const camera = cameras[time * .25 % cameras.length | 0];
 infoElem.textContent = camera.desc;
 ```
 
-{{{example url="../threejs-scenegraph-tank.html"}}}
+{{{example url="scenegraph-tank.html"}}}
 
 I hope this gives some idea of how scene graphs work and how you might use them.
 Making `Object3D` nodes and parenting things to them is an important step to using
@@ -506,4 +506,4 @@ to make something move and rotate the way you want. For example without a scene 
 computing the motion of the moon or where to put the wheels of the car relative to its
 body would be very complicated but using a scene graph it becomes much easier.
 
-[Next up we'll go over materials](threejs-materials.html).
+[Next up we'll go over materials](materials.html).

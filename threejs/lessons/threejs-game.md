@@ -23,7 +23,7 @@ solutions.
 
 The majority of the code here will not really be three.js and
 that's important to note, **three.js is not a game engine**.
-Three.js is a 3D library. It provides a [scene graph](threejs-scenegraph.html)
+Three.js is a 3D library. It provides a [scene graph](scenegraph.html)
 and features for displaying 3D objects added to that scene graph
 but it does not provide all the other things needed to make a game.
 No collisions, no physics, no input systems, no path finding, etc, etc...
@@ -44,16 +44,16 @@ Let's start with the three.js parts. We need to load models for our game.
 At [opengameart.org](https://opengameart.org) I found this [animated knight
 model](https://opengameart.org/content/lowpoly-animated-knight) by [quaternius](https://opengameart.org/users/quaternius)
 
-<div class="threejs_center"><img src="resources/images/knight.jpg" style="width: 375px;"></div>
+<div class="threejs_center"><img src="../resources/images/knight.jpg" style="width: 375px;"></div>
 
 [quaternius](https://opengameart.org/users/quaternius) also made [these animated animals](https://opengameart.org/content/lowpoly-animated-farm-animal-pack).
 
-<div class="threejs_center"><img src="resources/images/animals.jpg" style="width: 606px;"></div>
+<div class="threejs_center"><img src="../resources/images/animals.jpg" style="width: 606px;"></div>
 
 These seem like good models to start with so the first thing we need to
 do is load them.
 
-We covered [loading glTF files before](threejs-load-gltf.html). 
+We covered [loading glTF files before](load-gltf.html). 
 The difference this time is we need to load multiple models and
 we can't start the game until all the models are loaded.
 
@@ -66,7 +66,7 @@ all files have been loaded. The [`onProgress`](LoadingManager.onProgress) callba
 as called after each individual file arrives to give as a chance to show
 loading progress.
 
-Starting with the code from [loading a glTF file](threejs-load-gltf.html) I removed all
+Starting with the code from [loading a glTF file](load-gltf.html) I removed all
 the code related to framing the scene and added this code to load all models.
 
 ```js
@@ -233,20 +233,20 @@ function init() {
 
 Let's display the animated models.
 
-Unlike the [previous example of loading a glTF file](threejs-load-gltf.html)
+Unlike the [previous example of loading a glTF file](load-gltf.html)
 This time we probably want to be able to display more than one instance
 of each model. To do this, instead of adding
-the loaded gltf scene directly like we did in [the article on loading a glTF](threejs-load-gltf.html),
+the loaded gltf scene directly like we did in [the article on loading a glTF](load-gltf.html),
 we instead want to clone the scene and in particular we want to clone
 it for skinned animated characters. Fortunately there's a utility function,
 `SkeletonUtils.clone` we can use to do this. So, first we need to include
 the utils.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-+import * as SkeletonUtils from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
++import * as SkeletonUtils from '/examples/jsm/utils/SkeletonUtils.js';
 ```
 
 Then we can clone the models we just loaded
@@ -338,7 +338,7 @@ function render(now) {
 
 And with that we should get each model loaded and playing its first animation.
 
-{{{example url="../threejs-game-load-models.html"}}}
+{{{example url="game-load-models.html"}}}
 
 Let's make it so we can check all of the animations.
 We'll add all of the clips as actions and then enable just one at 
@@ -425,7 +425,7 @@ window.addEventListener('keydown', (e) => {
 Now you should be able to click on the example and then press keys 1 through 8
 to cycle each of the models through their available animations.
 
-{{{example url="../threejs-game-check-animations.html"}}}
+{{{example url="game-check-animations.html"}}}
 
 So that is arguably the sum-total of the three.js portion of this
 article. We covered loading multiple files, cloning skinned models,
@@ -844,7 +844,7 @@ function render(now) {
 
 and if we run that we get a single player.
 
-{{{example url="../threejs-game-just-player.html"}}}
+{{{example url="game-just-player.html"}}}
 
 That was a lot of code just for an entity component system but
 it's infrastructure that most games need.
@@ -1084,9 +1084,9 @@ for mobile. First let's add some HTML to touch
 <body>
   <canvas id="c"></canvas>
 +  <div id="ui">
-+    <div id="left"><img src="resources/images/left.svg"></div>
++    <div id="left"><img src="../resources/images/left.svg"></div>
 +    <div style="flex: 0 0 40px;"></div>
-+    <div id="right"><img src="resources/images/right.svg"></div>
++    <div id="right"><img src="../resources/images/right.svg"></div>
 +  </div>
   <div id="loading">
     <div>
@@ -1240,7 +1240,7 @@ class InputManager {
 And now we should be able to control the character with the left and right
 cursor keys or with our fingers on a touchscreen
 
-{{{example url="../threejs-game-player-input.html"}}}
+{{{example url="game-player-input.html"}}}
 
 Ideally we'd do something else if the player went off the screen like move
 the camera or maybe offscreen = death but this article is already going to be
@@ -1558,7 +1558,7 @@ things. To do that I made a `StatusDisplayHelper` component.
 
 I uses a `PolarGridHelper` to draw a circle around each character
 and it uses html elements to let each character show some status using
-the techniques covered in [the article on aligning html elements to 3D](threejs-align-html-elements-to-3d.html).
+the techniques covered in [the article on aligning html elements to 3D](align-html-elements-to-3d.html).
 
 First we need to add some HTML to host these elements
 
@@ -1566,9 +1566,9 @@ First we need to add some HTML to host these elements
 <body>
   <canvas id="c"></canvas>
   <div id="ui">
-    <div id="left"><img src="resources/images/left.svg"></div>
+    <div id="left"><img src="../resources/images/left.svg"></div>
     <div style="flex: 0 0 40px;"></div>
-    <div id="right"><img src="resources/images/right.svg"></div>
+    <div id="right"><img src="../resources/images/right.svg"></div>
   </div>
   <div id="loading">
     <div>
@@ -1678,10 +1678,10 @@ While we're at it lets make it so we can turn them on/off using dat.GUI like
 we've used else where
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-import * as SkeletonUtils from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
+import * as SkeletonUtils from '/examples/jsm/utils/SkeletonUtils.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
@@ -1713,7 +1713,7 @@ class StateDisplayHelper extends Component {
 
 And with that we get the kind of start of a game
 
-{{{example url="../threejs-game-conga-line.html"}}}
+{{{example url="game-conga-line.html"}}}
 
 Originally I set out to make a [snake game](https://www.google.com/search?q=snake+game)
 where as you add animals to your line it gets harder because you need to avoid
@@ -1722,12 +1722,12 @@ barrier around the perimeter.
 
 Unfortunately the animals are long and thin. From above here's the zebra.
 
-<div class="threejs_center"><img src="resources/images/zebra.png" style="width: 113px;"></div>
+<div class="threejs_center"><img src="../resources/images/zebra.png" style="width: 113px;"></div>
 
 The code so far is using circle collisions which means if we had obstacles like a fence
 then this would be considered a collision
 
-<div class="threejs_center"><img src="resources/images/zebra-collisions.svg" style="width: 400px;"></div>
+<div class="threejs_center"><img src="../resources/images/zebra-collisions.svg" style="width: 400px;"></div>
 
 That's no good. Even animal to animal we'd have the same issue
 
@@ -1938,7 +1938,7 @@ That function will run forever, waiting 0.5 to 1 seconds and then creating a gam
 with a `Note` component.
 
 For the `Note` component first lets make a texture with a note on it and 
-instead of loading a note image let's make one using a canvas like we covered in [the article on canvas textures](threejs-canvas-textures.html).
+instead of loading a note image let's make one using a canvas like we covered in [the article on canvas textures](canvas-textures.html).
 
 ```js
 function makeTextTexture(str) {
@@ -1960,7 +1960,7 @@ we can set the material's color and get a note of any color.
 
 Now that we have a noteTexture here's the `Note` component.
 It uses `SpriteMaterial` and a `Sprite` like we covered in
-[the article on billboards](threejs-billboards.html) 
+[the article on billboards](billboards.html) 
 
 ```js
 class Note extends Component {
@@ -2042,7 +2042,7 @@ function init() {
   }
 ```
 
-{{{example url="../threejs-game-conga-line-w-notes.html"}}}
+{{{example url="game-conga-line-w-notes.html"}}}
 
 You might be asking, why not use `setTimeout`? The problem with `setTimeout`
 is it's not related to the game clock. For example above we made the maximum

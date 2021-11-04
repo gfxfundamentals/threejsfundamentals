@@ -23,15 +23,15 @@ render only when something changes. Changes include textures or models finally
 loading, data arriving from some external source, the user adjusting a setting
 or the camera or giving other relevant input.
 
-Let's take an example from [the article on responsiveness](threejs-responsive.html)
+Let's take an example from [the article on responsiveness](responsive.html)
 and modify it to render on demand.
 
 First we'll add in the `OrbitControls` so there is something that could change
 that we can render in response to.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 and set them up
@@ -114,7 +114,7 @@ window.addEventListener('resize', render);
 
 And with that we get something that renders on demand.
 
-{{{example url="../threejs-render-on-demand.html" }}}
+{{{example url="render-on-demand.html" }}}
 
 The `OrbitControls` have options to add a kind of inertia to make them feel less
 stiff. We can enable this by setting the `enableDamping` property to true.
@@ -174,19 +174,19 @@ example above and do the same thing and you should be able to tell the
 difference. The one above snaps when you press an arrow key or drag, the one
 below slides.
 
-{{{example url="../threejs-render-on-demand-w-damping.html" }}}
+{{{example url="render-on-demand-w-damping.html" }}}
 
 Let's also add a simple dat.GUI GUI and make its changes render on demand.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
 Let's allow setting the color and x scale of each cube. To be able to set the
 color we'll use the `ColorGUIHelper` we created in the [article on
-lights](threejs-lights.html).
+lights](lights.html).
 
 First we need to create a GUI
 
@@ -224,7 +224,7 @@ callback to be called when the GUI changes a value. In our case we just need it
 to call `requestRenderIfNotRequested`. The call to `folder.open` makes the
 folder start expanded.
 
-{{{example url="../threejs-render-on-demand-w-gui.html" }}}
+{{{example url="render-on-demand-w-gui.html" }}}
 
 I hope this gives some idea of how to make three.js render on demand instead of
 continuously. Apps/pages that render three.js on demand are not as common as

@@ -29,7 +29,7 @@ gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
 
 실행이 잘 된 예제에 이 쉐이더를 적용해보면 법선이 *보통(normally)* 어떻게 생겼는지 알 수 있습니다. 만약 법선이 정상적으로 보이지 않는다면 그게 다음 문제를 찾을 단서가 되겠죠. fragment 쉐이더에서 법선의 값을 변경하는 경우 같은 방법을 이용해 결과값을 렌더링할 수 있습니다.
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
 마찬가지로 텍스처를 사용하는 경우에는 텍스처 좌표가 있으니 그걸로 다음과 같이 활용할 수 있습니다.
 
@@ -39,7 +39,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 
 텍스처 좌표를 사용하는 경우, `fract`를 실행한 값은 0부터 1 사이의 값이 아닐 수 있습니다. 대상 물체가 텍스처보다 크고 `texture.repeat`을 사용한 경우 1보다 큰 숫자가 나올 수 있겠죠.
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 fragment 쉐이더의 다른 값으로도 비슷한 방법을 사용할 수 있습니다. 해당 값의 범위를 알아낸 뒤 해당 값을 0.0부터 1.0 사이의 값으로 변환해 `gl_FragColor`에 지정하는 거죠.
 
@@ -49,7 +49,7 @@ fragment 쉐이더의 다른 값으로도 비슷한 방법을 사용할 수 있�
 
 그럼 먼저 행렬 좌표를 살펴봐야 합니다. `renderer.render(scene, camera)`를 한 번만 호출한 뒤 콘솔에서 객체를 펼쳐 보는 것이죠. 카메라의 전역 행렬 좌표나 투사 행렬 좌표에 `NaN`이 있는 걸까요? 장면 객체를 펼쳐 `children` 속성을 확인하니 전역 행렬 좌표는 멀쩡해 보입니다(`NaN`이 없음). 또한 다른 행렬 좌표의 4가지 값들도 모두 멀쩡해 보입니다. 만약 장면의 크기가 50x50x50인데 어떤 좌표값이 552352623.123이라면 확실히 뭔가 잘못된 겁니다.
 
-<div class="threejs_center"><img src="resources/images/inspect-matrices.gif"></div>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
 
 fragment 쉐이더와 마찬가지로 vertex 쉐이더에서도 값을 fragment 쉐이더에 넘겨주는 방식으로 값을 시각화할 수 있습니다. 양 쉐이더에 동일하게 변수를 생성한 뒤, 의심되는 값을 넘겨주는 거죠. 저라면 fragment 쉐이더가 그 값을 표시하도록 의심되는 값을 `vNormal`에 0.0에서 1.0 사이의 값으로 바꿔 지정할 겁니다. 그런 다음 결과를 보고 예상과 일치하는지 확인하는 것이죠.
 

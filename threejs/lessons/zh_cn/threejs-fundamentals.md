@@ -13,7 +13,7 @@ Three.js经常会和WebGL混淆，
 这就是Three.js的用武之地。它封装了诸如场景、灯光、阴影、材质、贴图、空间运算等一系列功能，让你不必要再从底层WebGL开始写起。
 
 这套教程假设你已经了解了JavaScript，且大部分内容会使用
-ES6的语法。[点击这里查看你需要提前掌握的东西](threejs-prerequisites.html)。 
+ES6的语法。[点击这里查看你需要提前掌握的东西](prerequisites.html)。 
 大部分支持Three.js的浏览器都会自动更新，所以绝大多数用户应该都能运行本套教程的代码。
 如果你想在非常老的浏览器上运行此代码，
 你需要一个像[Babel](http://babeljs.io)一样的语法编译器 。
@@ -25,35 +25,35 @@ ES6的语法。[点击这里查看你需要提前掌握的东西](threejs-prereq
 
 在我们开始前，让我们试着让你了解一下一个three.js应用的整体结构。一个three.js应用需要创建很多对象，并且将他们关联在一起。下图是一个基础的three.js应用结构。
 
-<div class="threejs_center"><img src="resources/images/threejs-structure.svg" style="width: 768px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-structure.svg" style="width: 768px;"></div>
 
 上图需要注意的事项：
 
 * 首先有一个[渲染器(`Renderer`)](Renderer)。这可以说是three.js的主要对象。你传入一个[场景(`Scene`)](Scene)和一个[摄像机(`Camera`)](Camera)到[渲染器(`Renderer`)](Renderer)中，然后它会将摄像机视椎体中的三维场景渲染成一个二维图片显示在画布上。
 
-* 其次有一个[场景图](threejs-scenegraph.html) 它是一个树状结构，由很多对象组成，比如图中包含了一个[场景(`Scene`)](Scene)对象 ，多个[网格(`Mesh`)](Mesh)对象，[光源(`Light`)](Light)对象，[群组(`Group`)](Group)，[三维物体(`Object3D`)](Object3D)，和[摄像机(`Camera`)](Camera)对象。一个[场景(`Scene`)](Scene)对象定义了场景图最基本的要素，并包了含背景色和雾等属性。这些对象通过一个层级关系明确的树状结构来展示出各自的位置和方向。子对象的位置和方向总是相对于父对象而言的。比如说汽车的轮子是汽车的子对象，这样移动和定位汽车时就会自动移动轮子。你可以在[场景图](threejs-scenegraph.html)的这篇文章中了解更多内容。
+* 其次有一个[场景图](scenegraph.html) 它是一个树状结构，由很多对象组成，比如图中包含了一个[场景(`Scene`)](Scene)对象 ，多个[网格(`Mesh`)](Mesh)对象，[光源(`Light`)](Light)对象，[群组(`Group`)](Group)，[三维物体(`Object3D`)](Object3D)，和[摄像机(`Camera`)](Camera)对象。一个[场景(`Scene`)](Scene)对象定义了场景图最基本的要素，并包了含背景色和雾等属性。这些对象通过一个层级关系明确的树状结构来展示出各自的位置和方向。子对象的位置和方向总是相对于父对象而言的。比如说汽车的轮子是汽车的子对象，这样移动和定位汽车时就会自动移动轮子。你可以在[场景图](scenegraph.html)的这篇文章中了解更多内容。
 
-  注意图中[摄像机(`Camera`)](Camera)是一半在场景图中，一半在场景图外的。这表示在three.js中，[摄像机(`Camera`)](Camera)和其他对象不同的是，它不一定要在场景图中才能起作用。相同的是，[摄像机(`Camera`)](Camera)作为其他对象的子对象，同样会继承它父对象的位置和朝向。在[场景图](threejs-scenegraph.html)这篇文章的结尾部分有放置多个[摄像机(`Camera`)](Camera)在一个场景中的例子。
+  注意图中[摄像机(`Camera`)](Camera)是一半在场景图中，一半在场景图外的。这表示在three.js中，[摄像机(`Camera`)](Camera)和其他对象不同的是，它不一定要在场景图中才能起作用。相同的是，[摄像机(`Camera`)](Camera)作为其他对象的子对象，同样会继承它父对象的位置和朝向。在[场景图](scenegraph.html)这篇文章的结尾部分有放置多个[摄像机(`Camera`)](Camera)在一个场景中的例子。
 
 * [网格(`Mesh`)](Mesh)对象可以理解为用一种特定的[材质(`Material`)](Material)来绘制的一个特定的[几何体(`Geometry`)](Geometry)。[材质(`Material`)](Material)和[几何体(`Geometry`)](Geometry)可以被多个[网格(`Mesh`)](Mesh)对象使用。比如在不同的位置画两个蓝色立方体，我们会需要两个[网格(`Mesh`)](Mesh)对象来代表每一个立方体的位置和方向。但只需一个[几何体(`Geometry`)](Geometry)来存放立方体的顶点数据，和一种[材质(`Material`)](Material)来定义立方体的颜色为蓝色就可以了。两个[网格(`Mesh`)](Mesh)对象都引用了相同的[几何体(`Geometry`)](Geometry)和[材质(`Material`)](Material)。
 
-* [几何体(`Geometry`)](Geometry)对象顾名思义代表一些几何体，如球体、立方体、平面、狗、猫、人、树、建筑等物体的顶点信息。Three.js内置了许多[基本几何体](threejs-primitives.html) 。你也可以[创建自定义几何体](threejs-custom-buffergeometry.html)或[从文件中加载几何体](threejs-load-obj.html)。
+* [几何体(`Geometry`)](Geometry)对象顾名思义代表一些几何体，如球体、立方体、平面、狗、猫、人、树、建筑等物体的顶点信息。Three.js内置了许多[基本几何体](primitives.html) 。你也可以[创建自定义几何体](custom-buffergeometry.html)或[从文件中加载几何体](load-obj.html)。
 
-* [材质(`Material`)](Material)对象代表[绘制几何体的表面属性](threejs-materials.html)，包括使用的颜色，和光亮程度。一个[材质(`Material`)](Material)可以引用一个或多个[纹理(`Texture`)](Texture)，这些纹理可以用来，打个比方，将图像包裹到几何体的表面。
+* [材质(`Material`)](Material)对象代表[绘制几何体的表面属性](materials.html)，包括使用的颜色，和光亮程度。一个[材质(`Material`)](Material)可以引用一个或多个[纹理(`Texture`)](Texture)，这些纹理可以用来，打个比方，将图像包裹到几何体的表面。
 
-* [纹理(`Texture`)](Texture)对象通常表示一幅要么[从文件中加载](threejs-textures.html)，要么[在画布上生成](threejs-canvas-textures.html)，要么[由另一个场景渲染出](threejs-rendertargets.html)的图像。
+* [纹理(`Texture`)](Texture)对象通常表示一幅要么[从文件中加载](textures.html)，要么[在画布上生成](canvas-textures.html)，要么[由另一个场景渲染出](rendertargets.html)的图像。
 
-* [光源(`Light`)](Light)对象代表[不同种类的光](threejs-lights.html)。
+* [光源(`Light`)](Light)对象代表[不同种类的光](lights.html)。
 
 有了以上基本概念，我们接下来就来画个下图所示的*"Hello Cube"*吧。
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
 
 首先是加载three.js
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 </script>
 ```
 
@@ -71,7 +71,7 @@ Three.js需要使用这个canvas标签来绘制，所以我们要先获取它然
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -105,7 +105,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 这四个参数定义了一个 *"视椎(frustum)"*。 *视椎(frustum)*是指一个像被削去顶部的金字塔形状。换句话说，可以把"视椎(frustum)"想象成其他三维形状如球体、立方体、棱柱体、截椎体。 
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
 近平面和远平面的高度由视野范围决定，宽度由视野范围和宽高比决定。
 
@@ -119,11 +119,11 @@ camera.position.z = 2;
 
 下图是我们想要达到的效果。
 
-<img src="resources/scene-down.svg" width="500" class="threejs_center"/>
+<img src="../resources/scene-down.svg" width="500" class="threejs_center"/>
 
 我们能看到摄像机的位置在`z = 2`。它朝向Z轴负方向。我们的视椎体范围从摄像机前方0.1到5。因为这张图是俯视图，视野范围会受到宽高比的影响。画布的宽度是高度的两倍，所以水平视角会比我们设置的垂直视角75度要大。
 
-然后我们创建一个[场景(`Scene`)](Scene)。[场景(`Scene`)](Scene)是three.js的基本的组成部分。需要three.js绘制的东西都需要加入到scene中。 我们将会在[场景是如何工作的](threejs-scenegraph.html)一文中详细讨论。
+然后我们创建一个[场景(`Scene`)](Scene)。[场景(`Scene`)](Scene)是three.js的基本的组成部分。需要three.js绘制的东西都需要加入到scene中。 我们将会在[场景是如何工作的](scenegraph.html)一文中详细讨论。
 
 ```js
 const scene = new THREE.Scene();
@@ -168,7 +168,7 @@ renderer.render(scene, camera);
 
 这里有一个实例。
 
-{{{example url="../threejs-fundamentals.html" }}}
+{{{example url="fundamentals.html" }}}
 
 很难看出来这是一个三维的立方体，因为我们直视Z轴的负方向并且立方体和坐标轴是对齐的，所以我们只能看到一个面。
 
@@ -201,9 +201,9 @@ requestAnimationFrame(render);
 
 回调函数之外在主进程中我们调用一次`requestAnimationFrame`来开始整个渲染循环。
 
-{{{example url="../threejs-fundamentals-with-animation.html" }}}
+{{{example url="fundamentals-with-animation.html" }}}
 
-效果好了一些但还是很难看出是三维的。我们来添加些光照效果，应该会有点帮助。three.js中有很多种类型的灯光，我们将在[后期文章](threejs-lights.html)中详细讨论。现在我们先创建一盏平行光。
+效果好了一些但还是很难看出是三维的。我们来添加些光照效果，应该会有点帮助。three.js中有很多种类型的灯光，我们将在[后期文章](lights.html)中详细讨论。现在我们先创建一盏平行光。
 
 ```js
 {
@@ -227,11 +227,11 @@ requestAnimationFrame(render);
 
 这是我们新的项目结构
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
 
 下面开始生效了。
 
-{{{example url="../threejs-fundamentals-with-light.html" }}}
+{{{example url="fundamentals-with-light.html" }}}
 
 现在应该可以很清楚的看出是三维立方体了。
 
@@ -282,17 +282,17 @@ function render(time) {
 
 这里是结果。
 
-{{{example url="../threejs-fundamentals-3-cubes.html" }}}
+{{{example url="fundamentals-3-cubes.html" }}}
 
 如果你对比上面的示意图可以看到此效果符合我们的预想。位置为X = -2 和 X = +2的立方体有一部分在我们的视椎体外面。他们大部分是被包裹的，因为水平方向的视角非常大。
 
 我们的项目现在有了这样的结构
 
-<div class="threejs_center"><img src="resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
 
 正如你看见的那样，我们有三个[网格(`Mesh`)](Mesh)引用了相同的[立方几何体(`BoxGeometry`)](BoxGeometry)。每个[网格(`Mesh`)](Mesh)引用了一个单独的`MeshPhongMaterial`材质来显示不同的颜色。
 
-希望这个简短的介绍能帮助你起步。[接下来我们将介绍如何使我们的代码具有响应性，从而使其能够适应多种情况](threejs-responsive.html).
+希望这个简短的介绍能帮助你起步。[接下来我们将介绍如何使我们的代码具有响应性，从而使其能够适应多种情况](responsive.html).
 
 <div id="es6" class="threejs_bottombar">
 <h3>es6模块，three.js，和文件夹结构</h3>
@@ -302,7 +302,7 @@ function render(time) {
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 

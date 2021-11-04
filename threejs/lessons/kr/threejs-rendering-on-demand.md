@@ -24,14 +24,14 @@ requestAnimationFrame(render);
 데이터를 받았을 때, 사용자가 카메라를 조정하거나, 설정을 바꾸거나, 인풋 값이
 변경된 경우 등 다양하겠죠.
 
-[반응형 디자인에 관한 글](threejs-responsive.html)에서 썼던 예제를 수정해
+[반응형 디자인에 관한 글](responsive.html)에서 썼던 예제를 수정해
 필요에 따른 렌더링을 구현해봅시다.
 
 먼저 뭔가 변화를 일으킬 수 있는 요소가 필요하니 `OrbitControls`를 추가합니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 
 ...
 
@@ -111,7 +111,7 @@ window.addEventListener('resize', render);
 
 이제 불필요한 렌더링을 반복하지 않습니다.
 
-{{{example url="../threejs-render-on-demand.html" }}}
+{{{example url="render-on-demand.html" }}}
 
 `OrbitControls`에는 관성(inertia) 옵션이 있습니다. `enableDamping` 속성을 ture로
 설정하면 동작이 좀 더 부드러워지죠.
@@ -171,17 +171,17 @@ render();
 다시 위 예제를 이리저리 돌려보세요. 차이점이 느껴질 거예요. 위 예제는 화살표 키를
 눌렀을 때 일정 거리만큼 순간이동하지만 아래의 예제는 약간 미끄러집니다.
 
-{{{example url="../threejs-render-on-demand-w-damping.html" }}}
+{{{example url="render-on-demand-w-damping.html" }}}
 
 간단한 dat.GUI를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 +import { GUI } from '../3rdparty/dat.gui.module.js';
 ```
 
-먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. [조명에 관한 글](threejs-lights.html)에서
+먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. [조명에 관한 글](lights.html)에서
 썼던 `ColorGUIHelper`를 가져와 쓰도록 하죠.
 
 먼저 GUI를 생성합니다.
@@ -219,7 +219,7 @@ dat.GUI 컨트롤(control)의 `onChange` 메서드에 콜백 함수를 넘겨주
 때마다 콜백 함수를 호출합니다. 예제의 경우에는 단순히 `requestRenderIfNotRequested`
 함수를 넘겨주면 되죠. 그리고 `folder.open` 메서드를 호출해 폴더를 열어 둡니다.
 
-{{{example url="../threejs-render-on-demand-w-gui.html" }}}
+{{{example url="render-on-demand-w-gui.html" }}}
 
 이 글이 불필요한 렌더링 제거에 대한 개념을 조금이라도 잡아주었길 바랍니다. 보통
 Three.js를 사용할 때는 이렇게 렌더링 루프를 제어할 일이 없습니다. 대게 게임 또는

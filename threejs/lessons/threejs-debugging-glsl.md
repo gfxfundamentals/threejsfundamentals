@@ -43,7 +43,7 @@ then you have some clue where to look. If you're manipulating normals
 in the fragments shader you can use the same technique to draw the
 result of that manipulation.
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
 Similarly if we're using textures there will be texture coordinates and we
 can draw them with something like
@@ -56,7 +56,7 @@ The `fract` is there in case we're using texture coordinates that go outside
 the 0 to 1 range. This is common if `texture.repeat` is set to something greater
 than 1.
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 You can do similar things for all values in your fragment shader. Figure out
 what their range is likely to be, add some code to set `gl_FragColor` with
@@ -79,7 +79,7 @@ and last 4 values of each matrix look reasonable for my scene. If I
 expect my scene to be 50x50x50 units and some matrix shows 552352623.123 
 clearly something is wrong there.
 
-<div class="threejs_center"><img src="resources/images/inspect-matrices.gif"></div>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
 
 Just like we did for the fragment shader we can also draw values from the
 vertex shader by passing them to the fragment shader. Declare a varying

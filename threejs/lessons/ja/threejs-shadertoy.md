@@ -14,12 +14,12 @@ Shadertoyの場合のパズルは、*ピクセルに何か面白いものを描�
 
 [街全体を描く凄いshadertoyシェーダー](https://www.shadertoy.com/view/XtsSWs)で比較してみましょう。
 
-<div class="threejs_center"><img src="resources/images/shadertoy-skyline.png"></div>
+<div class="threejs_center"><img src="../resources/images/shadertoy-skyline.png"></div>
 
 上記のシェーダーは私のPCではフルスクリーンだと1秒間に約5フレームで動作します。
 [Citiesのようなゲーム: スカイライン](https://store.steampowered.com/app/255710/Cities_Skylines/)とは対照的です。
 
-<div class="threejs_center"><img src="resources/images/cities-skylines.jpg" style="width: 600px;"></div>
+<div class="threejs_center"><img src="../resources/images/cities-skylines.jpg" style="width: 600px;"></div>
 
 このゲームはテクスチャと三角形の建物を描画する伝統的な技術を使用しており、同じマシンで1秒間に30～60フレーム動作します。
 
@@ -93,7 +93,7 @@ outは関数が値を提供する事を意味するパラメーターです。
 とりあえず、上記のシェーダーで使われている2つを処理するコードを書いてみましょう。
 
 まずはキャンバスを塗りつぶす1枚の平面を作ってみましょう。
-まだ読んでいない方は[背景とスカイボックスの記事](threejs-backgrounds.html)でこのようにしましたので、その例を参考に立方体を削除してみましょう。
+まだ読んでいない方は[背景とスカイボックスの記事](backgrounds.html)でこのようにしましたので、その例を参考に立方体を削除してみましょう。
 かなり短いコードなので全体を紹介します。
 
 ```js
@@ -142,10 +142,10 @@ function main() {
 main();
 ```
 
-[背景とスカイボックスの記事で説明したように](threejs-backgrounds.html)、これらのパラメーターを持つ `OrthographicCamera` と2の長さの平面がキャンバスを塗り潰します。
+[背景とスカイボックスの記事で説明したように](backgrounds.html)、これらのパラメーターを持つ `OrthographicCamera` と2の長さの平面がキャンバスを塗り潰します。
 平面は赤の `MeshBasicMaterial` を使用しているため、赤いキャンバスが表示されます。
 
-{{{example url="../threejs-shadertoy-prep.html" }}}
+{{{example url="shadertoy-prep.html" }}}
 
 これで動作するようになったので、shadertoyシェーダーを追加してみましょう。
 
@@ -229,7 +229,7 @@ Three.jsの各ユニフォームには `value` パラメータがあります。
 > [shadertoy.comには文書化されてない](https://www.shadertoy.com/howto) のでさっぱりわかりません。
 > 上記では使わないのでとりあえず1にしておきます。 ¯\\\_(ツ)\_/¯
 
-{{{example url="../threejs-shadertoy-basic.html" }}}
+{{{example url="shadertoy-basic.html" }}}
 
 これは[新しいシェーダーでShadertoyで見たものと一致します](https://www.shadertoy.com/new)。
 少なくとも2019年1月の時点では😉。上記のシェーダーは何をしているのでしょうか？
@@ -255,7 +255,7 @@ Three.jsの各ユニフォームには `value` パラメータがあります。
 `+vec3(0,2,4)` で4だけオフセットされているので赤の間に青が見えます。
 それがないと青と赤が完全に重なり、紫になってしまいます。
 
-{{{example url="../threejs-shadertoy-basic-x40.html" }}}
+{{{example url="shadertoy-basic-x40.html" }}}
 
 シンプルな入力でshadertoyにある
 [a city canal](https://www.shadertoy.com/view/MdXGW2)や
@@ -292,7 +292,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 }
 ```
 
-シェーダーにテクスチャを渡すのは[通常のマテリアルにテクスチャを渡す](threejs-textures.html)のと似ていますが、ユニフォームにテクスチャを設定する必要があります。
+シェーダーにテクスチャを渡すのは[通常のマテリアルにテクスチャを渡す](textures.html)のと似ていますが、ユニフォームにテクスチャを設定する必要があります。
 
 まず、シェーダーにテクスチャのユニフォームを追加します。
 GLSLでは `sampler2D` と呼ばれています。
@@ -308,7 +308,7 @@ uniform float iTime;
 ...
 ```
 
-ここで取り上げた[これ](threejs-textures.html)のようなテクスチャをロードし、ユニフォームの値を設定します。
+ここで取り上げた[これ](textures.html)のようなテクスチャをロードし、ユニフォームの値を設定します。
 
 ```js
 +const loader = new THREE.TextureLoader();
@@ -324,7 +324,7 @@ const uniforms = {
 };
 ```
 
-{{{example url="../threejs-shadertoy-bleepy-blocks.html" }}}
+{{{example url="shadertoy-bleepy-blocks.html" }}}
 
 これまでは[Shadertoy.com](https://shadertoy.com)で使われているShadertoyシェーダーをそのまま使っていましたが、キャンバスを塗りつぶすように描画しています。
 しかし、そのユースケースだけに限定する必要はありません。
@@ -394,10 +394,10 @@ const uniforms = {
 uniforms.iTime.value = time;
 ```
 
-元のカメラと[レスポンシブデザインの記事](threejs-responsive.html)から3つの回転する立方体を設定するコードでコピーバックしました。
+元のカメラと[レスポンシブデザインの記事](responsive.html)から3つの回転する立方体を設定するコードでコピーバックしました。
 その結果です。
 
-{{{example url="../threejs-shadertoy-as-texture.html" }}}
+{{{example url="shadertoy-as-texture.html" }}}
 
 これで少しでもthree.jsを使ったshadertoyシェーダーの使い方を知ってもらえればと思います。
 繰り返しになりますが、ほとんどのshadertoyシェーダーは実際にパフォーマンスの高い方法で描画する推奨された方法ではなく、

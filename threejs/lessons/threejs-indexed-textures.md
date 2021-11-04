@@ -2,25 +2,25 @@ Title: Three.js Indexed Textures for Picking and Color
 Description: Using Indexed Textures for Picking and Color
 TOC: Using Indexed Textures for Picking and Color
 
-This article is a continuation of [an article about aligning html elements to 3d](threejs-align-html-elements-to-3d.html).
+This article is a continuation of [an article about aligning html elements to 3d](align-html-elements-to-3d.html).
 If you haven't read that yet you should start there before continuing here.
 
 Sometimes using three.js requires coming up with creative solutions.
 I'm not sure this is a great solution but I thought I'd share it and
 you can see if it suggests any solutions for your needs.
 
-In the [previous article](threejs-align-html-elements-to-3d.html) we
+In the [previous article](align-html-elements-to-3d.html) we
 displayed country names around a 3d globe. How would we go about letting
 the user select a country and show their selection?
 
 The first idea that comes to mind is to generate geometry for each country.
-We could [use a picking solution](threejs-picking.html) like we covered before.
+We could [use a picking solution](picking.html) like we covered before.
 We'd build 3D geometry for each country. If the user clicks on the mesh for 
 that country we'd know what country was clicked.
 
 So, just to check that solution I tried generating 3D meshes of all the countries
 using the same data I used to generate the outlines 
-[in the previous article](threejs-align-html-elements-to-3d.html).
+[in the previous article](align-html-elements-to-3d.html).
 The result was a 15.5meg binary GLTF (.glb) file. Making the user download 15.5meg
 sounds like too much to me.
 
@@ -37,8 +37,8 @@ Or we could use something like [draco compression](https://google.github.io/drac
 and maybe that would be enough. I didn't check and I would encourage you to check 
 yourself and tell me how it goes as I'd love to know. 😅
 
-In my case I thought about [the GPU picking solution](threejs-picking.html) 
-we covered at the end of [the article on picking](threejs-picking.html). In
+In my case I thought about [the GPU picking solution](picking.html) 
+we covered at the end of [the article on picking](picking.html). In
 that solution we drew every mesh with a unique color that represented that
 mesh's id. We then drew all the meshes and looked at the color that was clicked
 on.
@@ -52,7 +52,7 @@ tell us the country id.
 So, I [wrote some code](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/) 
 to generate such a texture. Here it is. 
 
-<div class="threejs_center"><img src="../resources/data/world/country-index-texture.png" style="width: 700px;"></div>
+<div class="threejs_center"><img src="../examples/resources/data/world/country-index-texture.png" style="width: 700px;"></div>
 
 Note: The data used to generate this texture comes from [this website](http://thematicmapping.org/downloads/world_borders.php) 
 and is therefore licensed as [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/).
@@ -62,7 +62,7 @@ even lower the resolution but 217k seems good enough for now.
 
 So let's try using it for picking countries.
 
-Grabbing code from the [gpu picking example](threejs-picking.html) we need
+Grabbing code from the [gpu picking example](picking.html) we need
 a scene for picking.
 
 ```js
@@ -239,7 +239,7 @@ function updateLabels() {
 
 and with that we should be able to pick countries
 
-{{{example url="../threejs-indexed-textures-picking.html" }}}
+{{{example url="indexed-textures-picking.html" }}}
 
 The code stills shows countries based on their area but if you
 click one just that one will have a label.
@@ -283,7 +283,7 @@ const palette = [
 Where each pixel in the image data is an index into palette. If you interpreted
 the image data through the palette above you'd get this image
 
-<div class="threejs_center"><img src="resources/images/7x7-indexed-face.png"></div>
+<div class="threejs_center"><img src="../resources/images/7x7-indexed-face.png"></div>
 
 In our case we already have a texture above that has a different id
 per country. So, we could use that same texture through a palette
@@ -296,7 +296,7 @@ To do paletted index graphics requires some custom shader code.
 Let's modify the default shaders in three.js. 
 That way we can use lighting and other features if we want.
 
-Like we covered in [the article on animating lots of objects](threejs-optimize-lots-of-objects-animated.html)
+Like we covered in [the article on animating lots of objects](optimize-lots-of-objects-animated.html)
 we can modify the default shaders by adding a function to a material's
 `onBeforeCompile` property.
 
@@ -352,7 +352,7 @@ so we should be able to modify it after that point.
 our outline texture so we can look up the color from a palette texture 
 and mix them for the final result.
 
-Like we [did before](threejs-optimize-lots-of-objects-animated.html) we'll make an array
+Like we [did before](optimize-lots-of-objects-animated.html) we'll make an array
 of search and replacement strings and apply them to the shader in 
 `Material.onBeforeCompile`.
 
@@ -474,7 +474,7 @@ scene.add(new THREE.Mesh(geometry, material));
 
 and with that we get randomly colored countries.
 
-{{{example url="../threejs-indexed-textures-random-colors.html" }}}
+{{{example url="indexed-textures-random-colors.html" }}}
 
 Now that we can see the index and palette textures are working
 let's manipulate the palette for highlighting.
@@ -565,7 +565,7 @@ function unselectAllCountries() {
 
 and we that we should be able to highlight 1 or more countries.
 
-{{{example url="../threejs-indexed-textures-picking-and-highlighting.html" }}}
+{{{example url="indexed-textures-picking-and-highlighting.html" }}}
 
 That seems to work!
 
@@ -654,7 +654,7 @@ canvas.addEventListener('pointerup', pickCountry);
 
 and with those changes it *seems* like it works to me.
 
-{{{example url="../threejs-indexed-textures-picking-debounced.html" }}}
+{{{example url="indexed-textures-picking-debounced.html" }}}
 
 I'm not a UX expert so I'd love to hear if there is a better
 solution.
@@ -663,4 +663,4 @@ I hope that gave you some idea of how indexed graphics can be useful
 and how you can modify the shaders three.js makes to add simple features.
 How to use GLSL, the language the shaders are written in, is too much for
 this article. There are a few links to some info in
-[the article on post processing](threejs-post-processing.html).
+[the article on post processing](post-processing.html).

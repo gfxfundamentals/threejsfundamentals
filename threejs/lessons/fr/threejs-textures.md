@@ -3,8 +3,8 @@ Description: Comment utiliser les textures dans Three.js
 TOC: Textures
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
-L'[article précédent](threejs-setup.html) concerné la configuration nécessaire pour cet article.
+Le premier article s'intitule [Principes de base](fundamentals.html).
+L'[article précédent](setup.html) concerné la configuration nécessaire pour cet article.
 Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là.
 
 Les textures sont un gros sujet dans Three.js et je ne suis pas sûr de pouvoir les expliquer à 100% mais je vais essayer. Il y a de nombreuses choses à voir et beaucoup d'entre elles sont interdépendantes, il est donc difficile de les expliquer tous en même temps. Voici une table des matières rapide pour cet article.
@@ -30,7 +30,7 @@ Les textures sont un gros sujet dans Three.js et je ne suis pas sûr de pouvoir 
 Les textures sont *generallement* des images qui sont le plus souvent créées dans un programme tiers comme Photoshop ou GIMP. Par exemple, mettons cette image sur un cube.
 
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
+  <img src="../examples/resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 Modifions l'un de nos premiers échantillons. Tout ce que nous avons à faire, c'est de créer un `TextureLoader`. Appelons-le avec sa méthode
@@ -47,7 +47,7 @@ const material = new THREE.MeshBasicMaterial({
 
 Notez que nous utilisons un `MeshBasicMaterial`, donc pas besoin de lumières.
 
-{{{example url="../threejs-textured-cube.html" }}}
+{{{example url="textured-cube.html" }}}
 
 ## <a name="six"></a> 6 textures, une pour chaque face d'un cube
 
@@ -55,14 +55,14 @@ Que diriez-vous de 6 textures, une sur chaque face d'un cube ?
 
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -88,7 +88,7 @@ const loader = new THREE.TextureLoader();
 
 Ça marche !
 
-{{{example url="../threejs-textured-cube-6-textures.html" }}}
+{{{example url="textured-cube-6-textures.html" }}}
 
 Il convient de noter, cependant, que tous les types de géométries ne peuvent supporter la prise en charge de plusieurs matériaux. `BoxGeometry` ne peut utiliser que 6 materiaux,  un pour chaque face.
 `ConeGeometry`, seulement 2, un pour la base et un pour le cône.
@@ -99,7 +99,7 @@ Il est bien plus performant d'utiliser, comme dans bien d'autres moteurs 3D, un
 [atlas de texture](https://fr.wikipedia.org/wiki/Atlas_de_texture)
 si vous voulez utiliser plusieurs images sur une même géométrie. Un atlas de texture est l'endroit où vous placez plusieurs images dans une seule texture, puis utilisez les coordonnées de texture sur les sommets de votre géométrie pour sélectionner les parties d'une texture à utiliser sur chaque triangle de votre géométrie.
 
-Que sont les coordonnées de texture ? Ce sont des données ajoutées à chaque sommet d'un morceau de géométrie qui spécifient quelle partie de la texture correspond à ce sommet spécifique. Nous les examinerons lorsque nous commencerons à [créer une géométrie personnalisée](threejs-custom-buffergeometry.html).
+Que sont les coordonnées de texture ? Ce sont des données ajoutées à chaque sommet d'un morceau de géométrie qui spécifient quelle partie de la texture correspond à ce sommet spécifique. Nous les examinerons lorsque nous commencerons à [créer une géométrie personnalisée](custom-buffergeometry.html).
 
 ## <a name="loading"></a> Téléchargement de textures
 
@@ -134,7 +134,7 @@ loader.load('resources/images/wall.jpg', (texture) => {
 
 À moins de vider le cache de votre navigateur et d'avoir une connexion lente, il est peu probable que vous voyiez la différence, mais soyez assuré qu'il attend le chargement de la texture.
 
-{{{example url="../threejs-textured-cube-wait-for-texture.html" }}}
+{{{example url="textured-cube-wait-for-texture.html" }}}
 
 ### <a name="waitmany"></a> En attente du chargement de plusieurs textures
 
@@ -221,7 +221,7 @@ loadManager.onLoad = () => {
 
 À moins que vous ne vidiez votre cache et que votre connexion soit lente, vous ne verrez peut-être pas la barre de chargement.
 
-{{{example url="../threejs-textured-cube-wait-for-all-textures.html" }}}
+{{{example url="textured-cube-wait-for-all-textures.html" }}}
 
 ## <a name="cors"></a> Chargement de textures d'autres origines
 
@@ -236,7 +236,7 @@ Les textures sont souvent la partie d'une application Three.js qui utilise le pl
 
 Remarquez que cela ne dit rien sur la compression. Je peux créer une image .jpg et régler sa compression à un niveau très élevé. Par exemple, disons que je souhaite créé une maison. A l'intérieur de la maison il y a une table et je décide de mettre cette texture de bois sur la surface supérieure de la table
 
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 Cette image ne pèse que 157ko, elle sera donc téléchargée relativement vite mais [sa taill est en réalité de 3024 x 3761 pixels](resources/images/compressed-but-large-wood-texture.jpg).
 En suivant l'équation ci-dessous
@@ -260,7 +260,7 @@ Il est important de se rappeler qu'un JPG n'utilise pas moins de mémoire qu'un 
 
 Appliquons cette texture 16x16
 
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
 
 sur un cube
 
@@ -282,7 +282,7 @@ S'il s'agissait de Photoshop, il ferait la moyenne de presque tous les pixels en
 
 Le MIP mapping consiste à envoyer au processeur graphique (GPU) des échantillons de texture de résolutions décroissantes qui seront utilisés à la place de la texture originale, en fonction de la distance du point de vue à l'objet texturé et du niveau de détails nécessaire. Pour l'image précédente seront produites les mêmes images avec des résolutions inférieure jusqu'à obtenir 1 x 1 pixel.
 
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 Désormais, lorsque le cube est dessiné si petit qu'il ne fait que 1 ou 2 pixels de large, le GPU peut choisir d'utiliser uniquement le plus petit ou le plus petit niveau de mip pour décider de la couleur du petit cube.
 
@@ -511,11 +511,11 @@ gui.add(new DegRadHelper(texture, 'rotation'), 'value', -360, 360)
 La dernière chose à noter à propos de l'exemple est que si vous modifiez `wrapS` ou `wrapT` sur la texture, vous devez également définir [`texture.needsUpdate`](Texture.needsUpdate)
 afin que three.js sache appliquer ces paramètres. Les autres paramètres sont automatiquement appliqués.
 
-{{{example url="../threejs-textured-cube-adjust.html" }}}
+{{{example url="textured-cube-adjust.html" }}}
 
 Ce n'est qu'une étape dans le sujet des textures. À un moment donné, nous passerons en revue les coordonnées de texture ainsi que 9 autres types de textures pouvant être appliquées aux matériaux. 
 
-Pour le moment, passons aux [lumières](threejs-lights.html).
+Pour le moment, passons aux [lumières](lights.html).
 
 <!--
 alpha
@@ -529,5 +529,5 @@ metalness
 roughness
 -->
 
-<link rel="stylesheet" href="resources/threejs-textures.css">
-<script type="module" src="resources/threejs-textures.js"></script>
+<link rel="stylesheet" href="../resources/threejs-textures.css">
+<script type="module" src="../resources/threejs-textures.js"></script>

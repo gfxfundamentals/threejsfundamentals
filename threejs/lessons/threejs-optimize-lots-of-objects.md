@@ -3,7 +3,7 @@ Description: Optimize by merging Objects
 TOC: Optimizing Lots of Objects
 
 This article is part of a series of articles about three.js. The first article
-is [three.js fundamentals](threejs-fundamentals.html). If you haven't read that
+is [three.js fundamentals](fundamentals.html). If you haven't read that
 yet and you're new to three.js you might want to consider starting there. 
 
 There are many ways to optimize things for three.js. One way is often referred
@@ -157,12 +157,12 @@ Gives us this result
 So that seems to work. 
 
 Let's try it in 3D. Starting with the code from [rendering on
-demand](threejs-rendering-on-demand.html) We'll make one box per data in the
+demand](rendering-on-demand.html) We'll make one box per data in the
 file.
 
 First let's make a simple sphere with a texture of the world. Here's the texture
 
-<div class="threejs_center"><img src="../resources/images/world.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/world.jpg" style="width: 600px"></div>
 
 And the code to set it up.
 
@@ -177,7 +177,7 @@ And the code to set it up.
 ```
 
 Notice the call to `render` when the texture has finished loading. We need this
-because we're [rendering on demand](threejs-rendering-on-demand.html) instead of
+because we're [rendering on demand](rendering-on-demand.html) instead of
 continuously so we need to render once when the texture is loaded.
 
 Then we need to change the code that drew a dot per data point above to instead
@@ -256,7 +256,7 @@ didn't do this it would scale from the center but we want them to grow away from
 </div>
 
 Of course we could also solve that by parenting the box to more `THREE.Object3D`
-objects like we covered in [scene graphs](threejs-scenegraph.html) but the more
+objects like we covered in [scene graphs](scenegraph.html) but the more
 nodes we add to a scene graph the slower it gets.
 
 We also setup this small hierarchy of nodes of `lonHelper`, `latHelper`, and
@@ -308,22 +308,22 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 ```
 
 Once the data has finished loading and parsing then we need to render at least
-once since we're [rendering on demand](threejs-rendering-on-demand.html).
+once since we're [rendering on demand](rendering-on-demand.html).
 
-{{{example url="../threejs-lots-of-objects-slow.html" }}}
+{{{example url="lots-of-objects-slow.html" }}}
 
 If you try to rotate the example above by dragging on the sample you'll likely
 notice it's slow.
 
 We can check the framerate by [opening the
-devtools](threejs-debugging-javascript.html) and turning on the browser's frame
+devtools](debugging-javascript.html) and turning on the browser's frame
 rate meter.
 
-<div class="threejs_center"><img src="resources/images/bring-up-fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
 
 On my machine I see a framerate under 20fps.
 
-<div class="threejs_center"><img src="resources/images/fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/fps-meter.gif"></div>
 
 That doesn't feel very good to me and I suspect many people have slower machines
 which would make it even worse. We'd better look into optimizing.
@@ -429,12 +429,12 @@ them into a single mesh.
 We also need to include the `BufferGeometryUtils`
 
 ```js
-import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
+import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
 ```
 
 And now, at least on my machine, I get 60 frames per second
 
-{{{example url="../threejs-lots-of-objects-merged.html" }}}
+{{{example url="lots-of-objects-merged.html" }}}
 
 So that worked but because it's one mesh we only get one material which means we
 only get one color where as before we had a different color on each box. We can
@@ -517,7 +517,7 @@ scene.add(mesh);
 
 And with that we get our colors back
 
-{{{example url="../threejs-lots-of-objects-merged-vertexcolors.html" }}}
+{{{example url="lots-of-objects-merged-vertexcolors.html" }}}
 
 Merging geometry is a common optimization technique. For example rather than
 100 trees you might merge the trees into 1 geometry, a pile of individual rocks
@@ -529,7 +529,7 @@ faces that are never visible.
 The problem with making everything one mesh though is it's no longer easy
 to move any part that was previously separate. Depending on our use case
 though there are creative solutions. We'll explore one in
-[another article](threejs-optimize-lots-of-objects-animated.html).
+[another article](optimize-lots-of-objects-animated.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lots-of-objects.js"></script>
+<script type="module" src="../resources/threejs-lots-of-objects.js"></script>

@@ -16,19 +16,19 @@ TOC: JavaScriptのデバッグ
 
 Chromeでは `⋮` アイコンをクリックし、その他のツール -> デベロッパーツールを選択すると開発者ツールが表示されます。そこにはキーボードのショートカットも表示されています。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome.jpg" style="width: 789px;"></div>
 
 Firefoxでは `☰` アイコンをクリックし、"ウェブ開発"から"開発者ツール"を選択します。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-firefox.jpg" style="width: 786px;"></div>
 
 Safariでは詳細設定メニューから開発メニューを有効にする必要があります。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-enable-safari.jpg" style="width: 775px;"></div>
 
 次に開発メニューで"Webインスペクタの表示/接続"を選択します。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-safari.jpg" style="width: 777px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-safari.jpg" style="width: 777px;"></div>
 
 [Chromeを使ってAndroidやタブレットでChrome上で実行されているウェブページをデバッグする事もできます](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/)。
 同様にSafariでは[iPhoneやiPadでSafari上で実行されているウェブページをPCでデバッグする事ができます](https://www.google.com/search?q=safari+remote+debugging+ios)。
@@ -45,11 +45,11 @@ Safariでは詳細設定メニューから開発メニューを有効にする�
 
 最初にデベロッパーツールのSettingsメニューを選択します。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-settings.jpg" style="width: 778px"></div>
 
 次に "Disable Cache (while DevTools is open)" を選択します。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-chrome-disable-cache.jpg" style="width: 779px"></div>
 
 ## JavaScriptコンソールを使用する
 
@@ -59,11 +59,11 @@ Safariでは詳細設定メニューから開発メニューを有効にする�
 
 一般的にはメッセージは1つか2つしかありません。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-no-errors.jpg" style="width: 779px"></div>
 
 もし他のメッセージがあれば**メッセージを読みましょう**。例えば
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-errors.jpg" style="width: 779px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-errors.jpg" style="width: 779px"></div>
 
 "three"を"threee"とスペルミスしました。
 
@@ -73,7 +73,7 @@ Safariでは詳細設定メニューから開発メニューを有効にする�
 console.log(someObject.position.x, someObject.position.y, someObject.position.z);
 ```
 
-さらにクールな事にオブジェクトのログを記録したり検査する事ができます。例えば[gLTFの記事](threejs-load-gltf.html)からルートシーンのオブジェクトをログに表示できます。
+さらにクールな事にオブジェクトのログを記録したり検査する事ができます。例えば[gLTFの記事](load-gltf.html)からルートシーンのオブジェクトをログに表示できます。
 
 ```js
   {
@@ -86,7 +86,7 @@ console.log(someObject.position.x, someObject.position.y, someObject.position.z)
 
 そしてそのオブジェクトをJavaScriptコンソールで展開できます。
 
-<div class="threejs_center"><img class="border" src="resources/images/devtools-console-object.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/devtools-console-object.gif"></div>
 
 スタックトレースを含む赤色メッセージを表示する場合は `console.error` を使う事ができます。
 
@@ -137,7 +137,7 @@ zElem.textContent = someObject.position.z.toFixed(3);
 
 これはリアルタイムな値を見る時はとても便利です。
 
-{{{example url="../threejs-debug-js-html-elements.html" }}}
+{{{example url="debug-js-html-elements.html" }}}
 
 または画面にデータを貼り付けるのにクリアロガーを作成する方法もあります。私はその言葉を作っただけですが、私が手がけたゲームの多くはこの解決法を使っています。
 このアイデアは1フレーム分だけメッセージを表示するバッファを持つ事です。
@@ -170,7 +170,7 @@ class ClearingLogger {
 }
 ```
 
-次にマウスをクリックするたびに2秒間のランダムな方向に移動するメッシュを作成する簡単な例を作ってみましょう。[レスポンシブデザイン](threejs-responsive.html)の記事から例を紹介します。
+次にマウスをクリックするたびに2秒間のランダムな方向に移動するメッシュを作成する簡単な例を作ってみましょう。[レスポンシブデザイン](responsive.html)の記事から例を紹介します。
 
 マウスをクリックするたびに新しい `Mesh` を追加するコードは以下の通りです。
 
@@ -243,7 +243,7 @@ function render(now) {
 
 以下のサンプルでマウスをクリックして下さい。
 
-{{{example url="../threejs-debug-js-clearing-logger.html" }}}
+{{{example url="debug-js-clearing-logger.html" }}}
 
 ## クエリパラメーター
 
@@ -310,11 +310,11 @@ class DummyLogger {
 
 以下のURLを使用して確認する事ができます。
 
-<a target="_blank" href="../threejs-debug-js-params.html">threejs-debug-js-params.html</a>
+<a target="_blank" href="../examples/debug-js-params.html">debug-js-params.html</a>
 
 上記にはデバッグ情報はありません。
 
-<a target="_blank" href="../threejs-debug-js-params.html?debug=true">threejs-debug-js-params.html?debug=true</a>
+<a target="_blank" href="../examples/debug-js-params.html?debug=true">debug-js-params.html?debug=true</a>
 
 こちらにはデバッグ情報があります。
 
@@ -338,11 +338,11 @@ class DummyLogger {
 
 簡単な例としては
 
-<div class="threejs_center"><img class="border" src="resources/images/nan-banana.png" style="width: 180px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/nan-banana.png" style="width: 180px;"></div>
 
 何か開発中に画面に何も表示されない事がよくあるので、私は `NaN` が表示されたらその場所からすぐにいくつかの値を確認します。
 
-例として最初に[gLTFファイルの読込](threejs-load-gltf.html)の記事でパスを作り始めた時に2次元曲線を作るSplineCurveクラスを使って曲線を作ってみました。
+例として最初に[gLTFファイルの読込](load-gltf.html)の記事でパスを作り始めた時に2次元曲線を作るSplineCurveクラスを使って曲線を作ってみました。
 
 そのカーブを利用してこのように車を動かしました。
 
@@ -356,7 +356,7 @@ curve.getPointAt(zeroToOnePointOnCurve, car.position);
 
 デバッガで `matrixWorld` を見てみると `NaN` 値が表示されています。
 
-<div class="threejs_center"><img class="border" src="resources/images/debugging-nan.gif" style="width: 476px;"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/debugging-nan.gif" style="width: 476px;"></div>
 
 行列を見ると `NaN` が含まれており、`position`、 `rotation`、 `scale` または他の関数に悪い影響を与えるデータがあるのが見えます。これらの悪いデータから逆算すると問題を追跡するのは簡単です。
 
@@ -414,7 +414,7 @@ IMOを無視するよりも、それらのエラーを見つける方が良い�
 
 THREE.jsの質問をする場合、MCVE（Minimal<最小>、Complete<完全>、Verifiable<検証可能>、Example<サンプル>の略）のコードを提供する事が求められます。
 
-**最小**の部分が重要です。[gLTF読込の記事](threejs-load-gltf.html)の最後のサンプルコードでパスの動きに問題があったとしましょう。そのサンプルには多くのパーツがあり、リストアップすると
+**最小**の部分が重要です。[gLTF読込の記事](load-gltf.html)の最後のサンプルコードでパスの動きに問題があったとしましょう。そのサンプルには多くのパーツがあり、リストアップすると
 
 1. HTMLの集まり
 2. いくつかのCSS
@@ -431,7 +431,7 @@ THREE.jsの質問をする場合、MCVE（Minimal<最小>、Complete<完全>、V
 
 以上の事を考慮したミニマムなサンプルコードを紹介します。271行から135行に縮小しました。パスを単純化する事でさらに縮小する事も考られます。3,4点のパスは、21点のパスと同じように動作するかもしれません。
 
-{{{example url="../threejs-debugging-mcve.html" }}}
+{{{example url="debugging-mcve.html" }}}
 
 `OrbitController` を残してるのはカメラを動かして何が起こっているのかを把握するのに便利だからですが、問題によってはこれも削除できるかもしれません。
 
@@ -453,7 +453,7 @@ Stack Overflowに質問を投稿する際、**コードを[スニペット](http
 
 ## カメラの `near` と `far` の設定を確認する
 
-`PerspectiveCamera` には `near` と `far` の設定があり、それは[カメラの記事](threejs-cameras.html) で説明しています。
+`PerspectiveCamera` には `near` と `far` の設定があり、それは[カメラの記事](cameras.html) で説明しています。
 オブジェクトを含む空間に合わせて設定されている事を確認して下さい。
 例えば `near` = 0.001、`far` = 1000000のような大きな値に**一時的に**設定する事もできます。
 奥行き解像度の問題が発生する可能性がありますが、少なくともカメラの前にあるオブジェクトを見る事ができるようになります。
@@ -461,7 +461,7 @@ Stack Overflowに質問を投稿する際、**コードを[スニペット](http
 ## カメラの前にシーンがある事を確認する
 
 時にはカメラの前になく何も出てこない事もあります。カメラを制御できない場合は `OrbitController` のようなカメラコントロールを追加してみて下さい。
-あるいは[この記事](threejs-load-obj.html)で紹介されているコードを使ってシーンをフレーミングしてみて下さい。
+あるいは[この記事](load-obj.html)で紹介されているコードを使ってシーンをフレーミングしてみて下さい。
 このコードはシーンの一部のサイズを見つけ、カメラを移動して `near` と `far` の設定を調整し、それが見えるようにします。
 
 ## カメラの前に何かを置く
@@ -472,4 +472,4 @@ Stack Overflowに質問を投稿する際、**コードを[スニペット](http
 
 ---
 
-以上、JavaScriptのデバッグのヒントでした。[GLSLをデバッグするためのいくつかのヒント](threejs-debugging-glsl.html)も見てみましょう。
+以上、JavaScriptのデバッグのヒントでした。[GLSLをデバッグするためのいくつかのヒント](debugging-glsl.html)も見てみましょう。

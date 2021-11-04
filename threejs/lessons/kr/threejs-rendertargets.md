@@ -5,7 +5,7 @@ TOC: 렌더 타겟(Render Targets)
 Three.js의 렌더 타겟이란, 직접 렌더링할 수 있는 텍스처(texture)를 말합니다.
 한 번 텍스처로 렌더링한 뒤에는 다른 텍스처처럼 사용할 수 있죠.
 
-간단한 예제를 만들어보겠습니다. [반응형 디자인에 관한 글](threejs-responsive.html)에서
+간단한 예제를 만들어보겠습니다. [반응형 디자인에 관한 글](responsive.html)에서
 썼던 예제를 가져오도록 하죠.
 
 렌더 타겟을 만드는 방법은 기존 렌더링 방법과 유사합니다. 먼저 `WebGLRenderTarget` 인스턴스를
@@ -36,7 +36,7 @@ rtScene.background = new THREE.Color('red');
 정해야 하기 때문이죠. 예제의 경우 렌더 타겟을 정육면체의 텍스처로 사용할 것이고,
 정육면체의 모든 면은 정사각형이므로 가로세로비는 1.0입니다.
 
-그리고 [이전 글](threejs-responsive.html)에서 썼던 조명과 정육면체 3개를 추가하겠습니다.
+그리고 [이전 글](responsive.html)에서 썼던 조명과 정육면체 3개를 추가하겠습니다.
 
 ```js
 {
@@ -118,14 +118,14 @@ canvas에 렌더 타겟의 텍스처를 사용하는 정육면체를 렌더링�
 
 붐!
 
-{{{example url="../threejs-render-target.html" }}}
+{{{example url="render-target.html" }}}
 
 정육면체가 빨간 건 정육면체를 잘 보이도록 하기 위해 `rtScene`의 `background`
 속성을 빨강으로 설정했기 때문입니다.
 
-렌더 타겟의 용도는 무궁무진합니다. [그림자](threejs-shadows.html)가 렌더 타겟을
-사용하고, [피킹(picking)도 렌더 타겟을 사용할 수 있죠](threejs-picking.html).
-많은 [후처리 효과](threejs-post-processing.html)를 사용할 때 렌더 타겟이 필수
+렌더 타겟의 용도는 무궁무진합니다. [그림자](shadows.html)가 렌더 타겟을
+사용하고, [피킹(picking)도 렌더 타겟을 사용할 수 있죠](picking.html).
+많은 [후처리 효과](post-processing.html)를 사용할 때 렌더 타겟이 필수
 요소인 경우도 있고, 차의 후사경(rear view mirror, 백미러)이나 모니터 화면 등에도
 렌더 타겟을 활용할 수 있습니다.
 

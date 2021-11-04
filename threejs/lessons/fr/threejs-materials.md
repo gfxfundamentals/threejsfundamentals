@@ -3,7 +3,7 @@ Description: Les Matériaux dans Three.js
 TOC: Matériaux
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
+Le premier article s'intitule [Principes de base](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là.
 
 Three.js fournit plusieurs types de matériaux.
@@ -234,7 +234,7 @@ Voici 6 plans dessinés avec `THREE.FrontSide` et `THREE.DoubleSide`.
   </div>
 </div>
 
-Il y a vraiment beaucoup de choses à considérer avec les matériaux et il nous en reste encore beaucoup à faire. En particulier, nous avons principalement ignoré les textures qui ouvrent toute une série d'options. Avant de couvrir les textures, nous devons faire une pause et couvrir [la configuration de votre environnement de développement](threejs-setup.html)
+Il y a vraiment beaucoup de choses à considérer avec les matériaux et il nous en reste encore beaucoup à faire. En particulier, nous avons principalement ignoré les textures qui ouvrent toute une série d'options. Avant de couvrir les textures, nous devons faire une pause et couvrir [la configuration de votre environnement de développement](setup.html)
 
 <div class="threejs_bottombar">
 <h3>material.needsUpdate</h3>
@@ -258,5 +258,5 @@ Dans ces cas, vous devez définir <code>material.needsUpdate = true</code> pour 
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-materials.js"></script>
+<script type="module" src="../resources/threejs-materials.js"></script>
 

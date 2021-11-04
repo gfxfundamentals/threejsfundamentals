@@ -2,7 +2,7 @@ Title: Three.js 材质
 Description: Three.js中的材质
 TOC: 材质
 
-本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](threejs-fundamentals.html)。 如果你还没有读过它，建议先从那里开始。
+本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](fundamentals.html)。 如果你还没有读过它，建议先从那里开始。
 
 Three.js提供了多种类型的材质（material）。它们定义了对象在场景中的外型。你使用哪种材质取决于你想达到的目的。
 
@@ -205,7 +205,7 @@ const m5 = new THREE.MeshBasicMaterial({color: 'hsl(0,100%,50%)'); // 红色
   </div>
 </div>
 
-关于材质，真的有很多需要考虑的地方，其实我们还有一堆东西要去做。特别是我们几乎忽略了纹理，它为我们提供了大量的选择。在我们介绍纹理之前，我们需要休息一下，介绍一下[如何设置你的开发环境](threejs-setup.html)。
+关于材质，真的有很多需要考虑的地方，其实我们还有一堆东西要去做。特别是我们几乎忽略了纹理，它为我们提供了大量的选择。在我们介绍纹理之前，我们需要休息一下，介绍一下[如何设置你的开发环境](setup.html)。
 
 <div class="threejs_bottombar">
 <h3>material.needsUpdate</h3>
@@ -226,5 +226,5 @@ const m5 = new THREE.MeshBasicMaterial({color: 'hsl(0,100%,50%)'); // 红色
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-materials.js"></script>
+<script type="module" src="../resources/threejs-materials.js"></script>
 

@@ -3,7 +3,7 @@ Description: Comment rendre Three.js adaptable à des affichages de taille diff�
 TOC: Design réactif
 
 Ceci est le second article dans une série traitant de Three.js.
-Le premier traitait [des principes de base](threejs-fundamentals.html).
+Le premier traitait [des principes de base](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous deviriez peut-être commencer par là.
 
 Cet article explique comment rendre votre application Three.js adaptable
@@ -60,7 +60,7 @@ En passant le canvas à `block`, ce problème est supprimé.
 
 Voici le résultat :
 
-{{{example url="../threejs-responsive-no-resize.html" }}}
+{{{example url="responsive-no-resize.html" }}}
 
 Le canvas, comme nous le voyons, remplit maintenant la page mais il y a deux
 problèmes. Tout d'abord, nos cubes sont étirés et ressemblent à des boîtes trop
@@ -68,13 +68,13 @@ hautes et trop larges. Ouvrez l'exemple dans sa propre fenêtre et
 redimensionnez la, vous verrez comment les cubes s'en trouvent déformés
 en hauteur et en largeur.
 
-<img src="resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
 
 Le second problème est qu'ils semblent affichés en basse résolution ou
 à la fois flous et pixellisés. Si vous étirez beaucoup la fenêtre, vous verrez
 pleinement le problème.
 
-<img src="resources/images/resize-low-res.png" class="threejs_center nobg">
+<img src="../resources/images/resize-low-res.png" class="threejs_center nobg">
 
 Tout d'abord, nous allons résoudre le problème d'étirement.
 Pour cela, nous devons calquer l'aspect de la caméra sur celui
@@ -96,14 +96,14 @@ function render(time) {
 
 A présent les cubes ne devraient plus être déformés.
 
-{{{example url="../threejs-responsive-update-camera.html" }}}
+{{{example url="responsive-update-camera.html" }}}
 
 Ouvrez l'exemple dans une fenêtre séparée et redimensionnez la.
 Vous devriez voir que les cubes ne sont plus étirés, que ce soit
 en hauteur ou en largeur.
 Ils restent corrects quelque soit l'aspect de la taille de la fenêtre.
 
-<img src="resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
 
 Maintenant résolvons le problème de la pixellisation.
 
@@ -175,22 +175,22 @@ Puisque l'aspect ne change que si la taille d'affichage du canvas change,
 nous ne modifions l'aspect de la caméra que si `resizeRendererToDisplaySize`
 retourne `true`.
 
-{{{example url="../threejs-responsive.html" }}}
+{{{example url="responsive.html" }}}
 
 Le rendu devrait à présent avoir une résolution correspondant à
 la taille d'affichage du canvas.
 
 Afin de comprendre pourquoi il faut laisser le CSS gérer le redimensionnement,
-prenons notre code et mettons le dans un [fichier `.js` séparé](../threejs-responsive.js). Voici donc quelques autres exemples où nous avons laissé le CSS choisir la taille et remarquez que nous n'avons
+prenons notre code et mettons le dans un [fichier `.js` séparé](../examples/threejs-responsive.js). Voici donc quelques autres exemples où nous avons laissé le CSS choisir la taille et remarquez que nous n'avons
 eu aucun code à modifier pour qu'ils fonctionnent.
 
 Mettons nos cubes au milieu d'un paragraphe de texte.
 
-{{{example url="../threejs-responsive-paragraph.html" startPane="html" }}}
+{{{example url="responsive-paragraph.html" startPane="html" }}}
 
 et voici notre même code utilisé dans un éditeur où la zone de contrôle à droite peut être redimensionnée.
 
-{{{example url="../threejs-responsive-editor.html" startPane="html" }}}
+{{{example url="responsive-editor.html" startPane="html" }}}
 
 Le point important à remarquer est que le code n'est pas modifié, seulement
 le HTML et le CSS.
@@ -275,7 +275,7 @@ seul autrement.
 
 Voici un exemple utilisant le code vu plus haut.
 
-{{{example url="../threejs-responsive-hd-dpi.html" }}}
+{{{example url="responsive-hd-dpi.html" }}}
 
 Il vous est peut-être difficile de voir la différence, mais si vous avez
 un affichage HD-DPI et que vous comparez cet exemple aux autres plus
@@ -283,4 +283,4 @@ haut, vous devriez remarquer que les arêtes sont plus vives.
 
 Cet article a couvert un sujet très basique mais fondamental.
 Dans l'article suivant, nous allons rapidement
-[passer en revue les primitives de base proposées par Three.js](threejs-primitives.html).
+[passer en revue les primitives de base proposées par Three.js](primitives.html).

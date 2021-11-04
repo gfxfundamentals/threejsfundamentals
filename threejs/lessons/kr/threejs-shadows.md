@@ -3,11 +3,11 @@ Description: Three.js의 그림자에 대해 알아봅니다
 TOC: 그림자(Shadows)
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
-※ 이전 글인 [카메라에 관한 글](threejs-cameras.html)과
-[조명에 관한 글](threejs-lights.html)에서 이 장을 읽는 꼭 필요한 내용을
+※ 이전 글인 [카메라에 관한 글](cameras.html)과
+[조명에 관한 글](lights.html)에서 이 장을 읽는 꼭 필요한 내용을
 다루었으니 꼭 먼저 읽고 오시기 바랍니다.
 
 
@@ -42,9 +42,9 @@ Three.js는 기본적으로 *그림자 맵(shadow maps)*을 사용합니다. 그
 
 예를 들어 아래 텍스처를 사용해 가짜 그림자를 만들어보겠습니다.
 
-<div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
+<div class="threejs_center"><img src="../examples/resources/images/roundshadow.png"></div>
 
-[이전 글](threejs-cameras.html)에서 작성했던 코드를 일부 활용하겠습니다.
+[이전 글](cameras.html)에서 작성했던 코드를 일부 활용하겠습니다.
 
 먼저 배경을 흰색으로 칠합니다.
 
@@ -119,7 +119,7 @@ const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 컨테이너의 자식으로 만듭니다. 이러면 구체와 그림자를 동시에 움직일 수
 있죠. z-파이팅 현상을 막기 위해 그림자는 땅보다 약간 위에 둡니다.
 또 `depthWrite` 속성을 false로 설정해 그림자끼리 충돌하는 현상을
-막습니다. 이 충돌 현상은 [다른 글](threejs-transparency.html)에서
+막습니다. 이 충돌 현상은 [다른 글](transparency.html)에서
 더 자세히 이야기할 거예요. 그림자는 빛을 반사하지 않으니 `MeshBasicMaterial`을
 사용합니다.
 
@@ -230,7 +230,7 @@ function render(time) {
 
 15가지 색상의 탱탱볼을 완성했습니다.
 
-{{{example url="../threejs-shadows-fake.html" }}}
+{{{example url="shadows-fake.html" }}}
 
 물론 다른 모양의 그림자를 사용해야 하는 경우도 있습니다. 그림자의 경계를 분명하게
 하고 싶을 수도 있죠. 하지만 모든 물체의 그림자를 둥글게 표현하는 것이 좋은 경우도
@@ -241,7 +241,7 @@ function render(time) {
 이제 그림자 맵을 살펴보겠습니다. 그림자를 드리울 수 있는 조명은 3가지, `DirectionalLight`,
 `PointLight`, `SpotLight`입니다.
 
-[조명에 관한 글](threejs-lights.html)에서 썼던 예제로 먼저 `DirectionalLight`부터
+[조명에 관한 글](lights.html)에서 썼던 예제로 먼저 `DirectionalLight`부터
 살펴보죠.
 
 먼저 renderer의 그림자 맵 옵션을 켜야 합니다.
@@ -283,13 +283,13 @@ mesh.receiveShadow = true;
 
 이제 실행해보죠.
 
-{{{example url="../threejs-shadows-directional-light.html" }}}
+{{{example url="shadows-directional-light.html" }}}
 
 이런, 그림자 일부가 잘려나간 것이 보이나요?
 
 이는 빛의 시점에서 장면을 렌더링해 그림자 맵을 만들기 때문입니다. 위 예제를 예로 들면
 `DirectionalLight`의 위치에 카메라가 있고, 해당 조명의 목표를 바라보는 것이죠. 조명의
-그림자에는 별도의 카메라가 있고, 이전에 [카메라에 관한 글](threejs-cameras.html)에서
+그림자에는 별도의 카메라가 있고, 이전에 [카메라에 관한 글](cameras.html)에서
 설명한 것처럼 일정 공간 안의 그림자만 렌더링합니다. 위 예제에서는 그 공간이 너무 좁은
 것이죠.
 
@@ -303,7 +303,7 @@ scene.add(cameraHelper);
 
 이제 그림자가 렌더링되는 공간을 확인할 수 있을 겁니다.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
+{{{example url="shadows-directional-light-with-camera-helper.html" }}}
 
 target의 x 값을 조정해보면 그림자용 카메라 범위 안에 있는 곳에만 그림자가 보이는
 것을 확인할 수 있을 겁니다.
@@ -312,7 +312,7 @@ target의 x 값을 조정해보면 그림자용 카메라 범위 안에 있는 �
 
 그림자용 카메라의 속성을 수정하는 GUI를 추가해보죠. `DirectionalLight`는 빛이 평행으로
 나아가므로, `DirectionalLight`는  그림자용 카메라로 `OrthographicCamera`(정사영 카메라)를
-사용합니다. `OrthographicCamera`가 뭔지 잘 기억나지 않는다면, [카메라에 관한 이전 글](threejs-cameras.html)을
+사용합니다. `OrthographicCamera`가 뭔지 잘 기억나지 않는다면, [카메라에 관한 이전 글](cameras.html)을
 참고하세요.
 
 `OrthographicCamera`의 시야는 육면체나 *절두체(frustum)*로 정의한다고 했었죠. `left`,
@@ -340,7 +340,7 @@ class DimensionGUIHelper {
 }
 ```
 
-또한 [이전 글](threejs-cameras.html)에서 썼던 `MinMaxGUIHelper`를 가져와 `near`와
+또한 [이전 글](cameras.html)에서 썼던 `MinMaxGUIHelper`를 가져와 `near`와
 `far` 속성을 조작하는 데 사용하겠습니다.
 
 ```js
@@ -381,7 +381,7 @@ updateCamera();
 
 이제 그림자용 카메라에 GUI가 생겼으니, 값들을 조정하며 놀아봅시다.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
+{{{example url="shadows-directional-light-with-camera-gui.html" }}}
 
 `width`와 `height` 속성을 30 정도로 조정하면 그림자가 있어야 할만한 공간은
 대부분 그림자용 카메라 안에 속할 겁니다.
@@ -390,7 +390,7 @@ updateCamera();
 설정해 모든 요소를 다 포함하도록 하지 않는 걸까요? `width`와 `height`를 100 정도로
 설정해보세요. 아래와 같은 현상이 나타날 겁니다.
 
-<div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
 왜 그림자의 해상도가 낮아졌을까요?
 
@@ -416,9 +416,9 @@ updateCamera();
 +const light = new THREE.SpotLight(color, intensity);
 ```
 
-추가로 [이전 글](threejs-lights.html)에서 썼던 `penumbra(반음영)`, `angle` 설정을 가져오겠습니다.
+추가로 [이전 글](lights.html)에서 썼던 `penumbra(반음영)`, `angle` 설정을 가져오겠습니다.
 
-{{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
+{{{example url="shadows-spot-light-with-camera-gui.html" }}}
 
 마지막으로 `PointLight`를 살펴보죠. `PointLight`는 모든 방향으로 빛을 발산하기에
 관련 설정은 `near`와 `far` 정도입니다. 그리고 사실 `PointLight`의 그림자는 정육면체의
@@ -458,7 +458,7 @@ updateCamera();
 +scene.add(helper);
 ```
 
-{{{example url="../threejs-shadows-point-light.html" }}}
+{{{example url="shadows-point-light.html" }}}
 
 GUI의 `position` 속성을 조정해 조명을 움직이면 벽에 그림자가 지는 걸
 확인할 수 있을 겁니다. 다른 그림자와 마찬가지로 `near` 값보다 가까운

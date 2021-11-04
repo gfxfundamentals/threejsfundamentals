@@ -2,7 +2,7 @@ Title: Three.js 雾
 Description: Three.js中的雾
 TOC: 雾
 
-本文是three.js系列文章的一部分。第一篇文章是[three.js 基础](threejs-fundamentals.html)。如果你是个新手，还没读过，请从那里开始。如果你还没读过有关摄像机的章节，请从[这篇文章](threejs-cameras.html)开始。
+本文是three.js系列文章的一部分。第一篇文章是[three.js 基础](fundamentals.html)。如果你是个新手，还没读过，请从那里开始。如果你还没读过有关摄像机的章节，请从[这篇文章](cameras.html)开始。
 
 在3D引擎里，雾通常是基于离摄像机的距离褪色至某种特定颜色的方式。在three.js中添加雾是通过创建 `Fog` 或者 `FogExp2` 实例并设定scene的[`fog`](Scene.fog) 属性。
 
@@ -79,7 +79,7 @@ const scene = new THREE.Scene();
 
 在下面的例子，摄像机的 `near` 是0.1， `far` 是5，位于 `z = 2`的位置。方块为单位大小，位于Z=0的位置。这意味着将雾设置为 `near = 1` 和 `far = 2` ，方块会在它的中间位置淡出。
 
-{{{example url="../threejs-fog.html" }}}
+{{{example url="fog.html" }}}
 
 让我们添加界面来调整雾。我们将再次使用[dat.GUI](https://github.com/dataarts/dat.gui)。dat.GUI接收对象和属性参数，并自动为其创建界面。我们能够简单地操纵雾的 `near` 和 `far` 属性，但是 `near` 数值大于 `far` 是无效的，所以我们创建助手（helper）来确保 `near` 和 `far` 属性，让 `near` 小于或等于  `far` ， `far` 大于或等于 `near`。
 
@@ -186,7 +186,7 @@ class FogGUIHelper {
 }
 ```
 
-{{{example url="../threejs-fog-gui.html" }}}
+{{{example url="fog-gui.html" }}}
 
 你可以观察到，设置 `near` 如1.9， `far` 为2.0能在未雾化和完全雾化之间获得锐利的变化效果，而设置 `near` = 1.1， `far` = 2.9 会让我们旋转的方块在距离摄像机2个单位距离的位置获得最平滑的变化效果。
 
@@ -211,4 +211,4 @@ class FogGUIHelper {
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-fog.js"></script>
+<script type="module" src="../resources/threejs-fog.js"></script>

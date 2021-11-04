@@ -22,9 +22,9 @@ and so three.js has no recourse but to pass on the
 responsibility to free resources back to you.
 
 You free three.js resource this by calling the `dispose` function on
-[textures](threejs-textures.html), 
-[geometries](threejs-primitives.html), and
-[materials](threejs-materials.html).
+[textures](textures.html), 
+[geometries](primitives.html), and
+[materials](materials.html).
 
 You could do this manually. At the start you might create
 some of these resources
@@ -75,7 +75,7 @@ class ResourceTracker {
 }
 ```
 
-Let's use this class with the first example from [the article on textures](threejs-textures.html).
+Let's use this class with the first example from [the article on textures](textures.html).
 We can create an instance of this class
 
 ```js
@@ -230,7 +230,7 @@ process();
 This code will create the cube, texture and material, wait for 2 seconds, then dispose of them and wait for 1 second
 and repeat.
 
-{{{example url="../threejs-cleanup-simple.html" }}}
+{{{example url="cleanup-simple.html" }}}
 
 So that seems to work.
 
@@ -376,7 +376,7 @@ class ResourceTracker {
 }
 ```
 
-And with that let's take an example from [the article on loading gltf files](threejs-load-gltf.html)
+And with that let's take an example from [the article on loading gltf files](load-gltf.html)
 and make it load and free files.
 
 ```js
@@ -432,7 +432,7 @@ loadFiles();
 
 and we get
 
-{{{example url="../threejs-cleanup-loaded-files.html"}}}
+{{{example url="cleanup-loaded-files.html"}}}
 
 Some notes about the code.
 

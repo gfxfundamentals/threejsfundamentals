@@ -3,10 +3,10 @@ Description: Comment utiliser les Cameras dans Three.js
 TOC: Caméras
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
+Le premier article s'intitule [Principes de base](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là.
 
-Parlons des caméras dans Three.js. Nous en avons déjà parlé dans [le premier article](threejs-fundamentals.html) mais ici nous allons entrer dans le détail.
+Parlons des caméras dans Three.js. Nous en avons déjà parlé dans [le premier article](fundamentals.html) mais ici nous allons entrer dans le détail.
 
 La caméra la plus courante dans Three.js et celle que nous avons utilisée jusqu'à présent, la [`PerspectiveCamera`](https://threejs.org/docs/#api/en/cameras/PerspectiveCamera). Elle donne une vue 3D où les choses lointaines semblent plus petites que les plus proches.
 
@@ -24,9 +24,9 @@ Je le signale seulement parce que je ne le savais pas. Et quand je voyais le mot
 
 Une `PerspectiveCamera` définit son frustum selon 4 propriétés. `near` définit l'endroit où commence l'avant du frustum. `far` où il finit. `fov`, le champ de vision, définit la hauteur de l'avant et de l'arrière du tronc en fonction de la propriété `near`. L'`aspect` se rapporte à la largeur de l'avant et de l'arrière du tronc. La largeur du tronc est juste la hauteur multipliée par l'aspect.
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
-Utilisons la scène de [l'article précédent](threejs-lights.html) avec son plan, sa sphère et son cube, et faisons en sorte que nous puissions ajuster les paramètres de la caméra.
+Utilisons la scène de [l'article précédent](lights.html) avec son plan, sa sphère et son cube, et faisons en sorte que nous puissions ajuster les paramètres de la caméra.
 
 Pour ce faire, nous allons créer un `MinMaxGUIHelper` pour les paramètres `near` et `far` où `far`
 est toujours supérieur `near`. Il aura des propriétés `min` et `max` que dat.GUI
@@ -74,7 +74,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 Chaque fois que les paramètres de la caméra changent, il faut appeler la fonction
 [`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix). Nous avons donc créé une fonction `updateCamera` transmise à dat.GUI pour l'appeler lorsque les choses changent.
 
-{{{example url="../threejs-cameras-perspective.html" }}}
+{{{example url="cameras-perspective.html" }}}
 
 Vous pouvez ajuster les valeurs et voir comment elles fonctionnent. Notez que nous n'avons pas rendu `aspect` réglable car il est pris à partir de la taille de la fenêtre, donc si vous souhaitez ajuster l'aspect, ouvrez l'exemple dans une nouvelle fenêtre, puis redimensionnez la fenêtre.
 
@@ -261,7 +261,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
 
 Et maintenant, vous pouvez utiliser une vue pour voir le frustum de l'autre.
 
-{{{example url="../threejs-cameras-perspective-2-scenes.html" }}}
+{{{example url="cameras-perspective-2-scenes.html" }}}
 
 Sur la gauche, vous pouvez voir la vue d'origine et sur la droite, vous pouvez voir une vue montrant le frustum sur la gauche. Lorsque vous ajustez `near`, `far`, `fov` et déplacez la caméra avec la souris, vous pouvez voir que seul ce qui se trouve à l'intérieur du frustum montré à droite apparaît dans la scène à gauche.
 
@@ -308,13 +308,13 @@ Nous devons également modifier un peu le code de dat.GUI pour autoriser 0,00001
 
 Que pensez-vous qu'il va se passer ?
 
-{{{example url="../threejs-cameras-z-fighting.html" }}}
+{{{example url="cameras-z-fighting.html" }}}
 
 Ceci est un exemple de *z fighting* où le GPU de votre ordinateur n'a pas assez de précision pour décider quels pixels sont devant et quels pixels sont derrière.
 
 Juste au cas où le problème ne s'afficherait pas sur votre machine, voici ce que je vois sur la mienne.
 
-<div class="threejs_center"><img src="resources/images/z-fighting.png" style="width: 570px;"></div>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
 
 Une solution consiste à indiquer à Three.js d'utiliser une méthode différente pour calculer quels pixels sont devant et lesquels sont derrière. Nous pouvons le faire en activant `logarithmicDepthBuffer` lorsque nous créons le [`WebGLRenderer`](https://threejs.org/docs/#api/en/renderers/WebGLRenderer)
 
@@ -328,7 +328,7 @@ Une solution consiste à indiquer à Three.js d'utiliser une méthode différent
 
 et avec ça, ça devrait marcher.
 
-{{{example url="../threejs-cameras-logarithmic-depth-buffer.html" }}}
+{{{example url="cameras-logarithmic-depth-buffer.html" }}}
 
 Si cela n'a pas résolu le problème pour vous, vous avez rencontré une raison pour laquelle vous ne pouvez pas toujours utiliser cette solution. Cette raison est due au fait que seuls certains GPU le prennent en charge. En septembre 2018, presque aucun appareil mobile ne prenait en charge cette solution, contrairement à la plupart des ordinateurs de bureau.
 
@@ -389,7 +389,7 @@ Enfin, nous avons juste besoin de changer la partie qui rend le côté gauche po
 
 et maintenant vous pouvez voir une `OrthographicCamera` au boulot.
 
-{{{example url="../threejs-cameras-orthographic-2-scenes.html" }}}
+{{{example url="cameras-orthographic-2-scenes.html" }}}
 
 Une `OrthographicCamera` est souvent utilisée pour dessiner des objets en 2D. Il faut décider du nombre d'unités que la caméra doit afficher. Par exemple, si vous voulez qu'un pixel du canvas corresponde à une unité de l'appareil photo, vous pouvez faire quelque chose comme.
 
@@ -435,8 +435,8 @@ camera.zoom = 1;
 
 Chargeons ensuite 6 textures et créons 6 plans, un pour chaque texture. Nous allons associer chaque plan à un `THREE.Object3D` pour faciliter le décalage du plan afin que son centre semble être dans son coin supérieur gauche.
 
-Pour travailler en local sur votre machine, vous aurez besoin d'une [configuration spécifique](threejs-setup.html).
-Vous voudrez peut-être en savoir plus sur [l'utilisation des textures](threejs-textures.html).
+Pour travailler en local sur votre machine, vous aurez besoin d'une [configuration spécifique](setup.html).
+Vous voudrez peut-être en savoir plus sur [l'utilisation des textures](textures.html).
 
 ```js
 const loader = new THREE.TextureLoader();
@@ -518,15 +518,15 @@ function render(time) {
 
 Et vous pouvez voir les images rebondir parfaitement sur les bords de la toile en utilisant les mathématiques des pixels, tout comme une toile 2D.
 
-{{{example url="../threejs-cameras-orthographic-canvas-top-left-origin.html" }}}
+{{{example url="cameras-orthographic-canvas-top-left-origin.html" }}}
 
 Une autre utilisation courante d'une caméra orthographique est de dessiner les vues haut, bas, gauche, droite, avant et arrière d'un programme de modélisation 3D ou d'un éditeur de moteur de jeu.
 
-<div class="threejs_center"><img src="resources/images/quad-viewport.png" style="width: 574px;"></div>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 
 Dans la capture d'écran ci-dessus, vous pouvez voir que 1 vue est une vue en perspective et 3 vues sont des vues orthogonales.
 
-C'est la base des caméras. Nous aborderons quelques façons courantes de déplacer les caméras dans d'autres articles. Pour l'instant passons aux [ombres](threejs-shadows.html).
+C'est la base des caméras. Nous aborderons quelques façons courantes de déplacer les caméras dans d'autres articles. Pour l'instant passons aux [ombres](shadows.html).
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-cameras.js"></script>
+<script type="module" src="../resources/threejs-cameras.js"></script>

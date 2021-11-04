@@ -3,7 +3,7 @@ Description: Animated merged objects with Morphtargets
 TOC: Optimizing Lots of Objects Animated
 
 This article is a continuation of [an article about optimizing lots of objects
-](threejs-optimize-lots-of-objects.html). If you haven't read that
+](optimize-lots-of-objects.html). If you haven't read that
 yet please read it before proceeding. 
 
 In the previous article we merged around 19000 cubes into a
@@ -217,7 +217,7 @@ The one more change we need from the previous example is we need to make
 and with that we should be able to show 4 sets of data. Hover the mouse over the labels
 or touch them to switch sets
 
-{{{example url="../threejs-lots-of-objects-multiple-data-sets.html" }}}
+{{{example url="lots-of-objects-multiple-data-sets.html" }}}
 
 Note, there are a few strange data points that really stick out. I wonder what's up
 with those!??! In any case how do we animate between these 4 sets of data.
@@ -372,10 +372,10 @@ because the original webgl globe uses
 We need to include the library
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-+import {TWEEN} from './resources/threejs/r132/examples/jsm/libs/tween.min.js';
+import * as THREE from './build/three.module.js';
+import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from '/examples/jsm/libs/tween.min.js';
 ```
 
 And then create a `Tween` to animate the influences.
@@ -401,7 +401,7 @@ function showFileInfo(fileInfos, fileInfo) {
 
 We're also suppose to call `TWEEN.update` every frame inside our render loop
 but that points out a problem. "tween.js" is designed for continuous rendering
-but we are [rendering on demand](threejs-rendering-on-demand.html). We could
+but we are [rendering on demand](rendering-on-demand.html). We could
 switch to continuous rendering but it's sometimes nice to only render on demand
 as it well stop using the user's power when nothing is happening
 so let's see if we can make it animate on demand.
@@ -499,7 +499,7 @@ render();
 
 And with that we should be animating between data sets.
 
-{{{example url="../threejs-lots-of-objects-morphtargets.html" }}}
+{{{example url="lots-of-objects-morphtargets.html" }}}
 
 That seems to work but unfortunately we lost the colors.
 
@@ -721,7 +721,7 @@ function render() {
 
 And with that we should have the colors animating as well as the boxes.
 
-{{{example url="../threejs-lots-of-objects-morphtargets-w-colors.html" }}}
+{{{example url="lots-of-objects-morphtargets-w-colors.html" }}}
 
 I hope going through this was helpful. Using morphtargets either through the
 services three.js provides or by writing custom shaders is a common technique to
@@ -730,7 +730,7 @@ another target and morph from that to their first positions on the globe. That
 might be a cool way to introduce the globe.
 
 Next you might be interested in adding labels to a globe which is covered
-in [Aligning HTML Elements to 3D](threejs-align-html-elements-to-3d.html).
+in [Aligning HTML Elements to 3D](align-html-elements-to-3d.html).
 
 Note: We could try to just graph percent of men or percent of women or the raw
 difference but based on how we are displaying the info, cubes that grow from the

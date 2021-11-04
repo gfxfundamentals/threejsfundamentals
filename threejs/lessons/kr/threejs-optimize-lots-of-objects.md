@@ -3,7 +3,7 @@ Description: 요소를 합쳐 최적화하는 법을 알아봅니다
 TOC: 요소가 많을 때 최적화하는 방법
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
 
@@ -147,11 +147,11 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 
 데이터가 잘 렌더링된 것 같네요.
 
-이제 이걸 3D로 만들어봅시다. [불필요한 렌더링 제거하기](threejs-rendering-on-demand.html)에서 썼던 예제를 가져와 각 데이터마다 육면체를 하나씩 만들 겁니다.
+이제 이걸 3D로 만들어봅시다. [불필요한 렌더링 제거하기](rendering-on-demand.html)에서 썼던 예제를 가져와 각 데이터마다 육면체를 하나씩 만들 겁니다.
 
 먼저 아래 텍스처로 간단한 지구본 모형을 만들겠습니다.
 
-<div class="threejs_center"><img src="../resources/images/world.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/world.jpg" style="width: 600px"></div>
 
 아래는 지구본을 만드는 코드입니다.
 
@@ -165,7 +165,7 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 }
 ```
 
-위 코드에서는 텍스처를 불러온 후 `render` 함수를 호출하게 했습니다. 화면을 반복해서 렌더링하지 않고 [필요할 때만 렌더링](threejs-rendering-on-demand.html)하므로, 텍스처를 불러온 뒤 다시 한 번 렌더링해야 합니다.
+위 코드에서는 텍스처를 불러온 후 `render` 함수를 호출하게 했습니다. 화면을 반복해서 렌더링하지 않고 [필요할 때만 렌더링](rendering-on-demand.html)하므로, 텍스처를 불러온 뒤 다시 한 번 렌더링해야 합니다.
 
 다음으로 데이터를 하나의 점으로 표시하는 대신 좌표 데이터마다 육면체를 하나씩 생성합니다.
 
@@ -239,7 +239,7 @@ function addBoxes(file) {
   </div>
 </div>
 
-[씬 그래프에 관한 글](threejs-scenegraph.html)에서 배웠듯 육면체를 다른 `THREE.Object3D`의 자식으로 두는 것도 한 가지 해결 방법이지만, 씬 그래프 요소가 많아지만 그만큼 성능이 떨어집니다.
+[씬 그래프에 관한 글](scenegraph.html)에서 배웠듯 육면체를 다른 `THREE.Object3D`의 자식으로 두는 것도 한 가지 해결 방법이지만, 씬 그래프 요소가 많아지만 그만큼 성능이 떨어집니다.
 
 `lonHelper`, `latHelper`, `positionHelper`를 계층 구조로 만든 건 구체 주위에 육면체를 배치할 좌표를 찾기 위해서입니다.
 
@@ -269,19 +269,19 @@ loadFile('resources/data/gpw/gpw_v4_basic_demographic_characteristics_rev10_a000
 +  .then(render);
 ```
 
-[필요할 때만 렌더링 함수를 호출](threejs-rendering-on-demand.html)하게 해놨으므로 지구본과 육면체들을 추가한 뒤 `render` 함수를 직접 호출해야 합니다.
+[필요할 때만 렌더링 함수를 호출](rendering-on-demand.html)하게 해놨으므로 지구본과 육면체들을 추가한 뒤 `render` 함수를 직접 호출해야 합니다.
 
-{{{example url="../threejs-lots-of-objects-slow.html" }}}
+{{{example url="lots-of-objects-slow.html" }}}
 
 위 예제를 드래그해 지구본을 돌려보면 뭔가 버벅임을 느낄 수 있을 겁니다.
 
-[개발자 도구를 열어](threejs-debugging-javascript.html) 브라우저의 FPS 미터를 켜면 프레임율을 확인할 수 있습니다.
+[개발자 도구를 열어](debugging-javascript.html) 브라우저의 FPS 미터를 켜면 프레임율을 확인할 수 있습니다.
 
-<div class="threejs_center"><img src="resources/images/bring-up-fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/bring-up-fps-meter.gif"></div>
 
 제 환경에서는 평균 프레임이 20fps보다 낮네요.
 
-<div class="threejs_center"><img src="resources/images/fps-meter.gif"></div>
+<div class="threejs_center"><img src="../resources/images/fps-meter.gif"></div>
 
 아마 더 안 좋은 컴퓨터에서는 이보다 더 심할 겁니다. 최적화할 방법을 찾아봐야겠네요.
 
@@ -375,12 +375,12 @@ function addBoxes(file) {
 물론 `BufferGeometryUtils`을 불러와야죠.
 
 ```js
-import { BufferGeometryUtils } from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
+import { BufferGeometryUtils } from '/examples/jsm/utils/BufferGeometryUtils.js';
 ```
 
 이제 제 컴퓨터에서는 적어도 60 프레임 이상이 나오네요.
 
-{{{example url="../threejs-lots-of-objects-merged.html" }}}
+{{{example url="lots-of-objects-merged.html" }}}
 
 성능 문제는 해결했지만 육면체가 하나의 mesh이기에 이전과 달리 육면체의 색이 전부 같습니다. 여기서 색을 따로 지정하려면? 여러 방법이 있겠지만 정점 색(vertex color)을 쓰는 방법이 제일 간단할 겁니다.
 
@@ -457,11 +457,11 @@ scene.add(mesh);
 
 이제 색이 다시 정상적으로 보입니다.
 
-{{{example url="../threejs-lots-of-objects-merged-vertexcolors.html" }}}
+{{{example url="lots-of-objects-merged-vertexcolors.html" }}}
 
 geometry를 합치는 건 꽤 자주 사용하는 최적화 기법입니다. 예를 들어 나무 100개를 하나의 geometry로 합치거나, 돌무더기를 하나의 돌 geometry로 합치거나, 울타리의 각 기둥을 하나의 mesh로 합치는 경우가 해당되죠. 마인크래프트의 경우도 모든 타일을 하나하나 다 렌더링하기보다 타일을 하나로 합쳐 보이지 않는 면은 제거하는 기법을 사용할 확률이 높습니다.
 
-하지만 요소를 하나의 mesh로 합쳐버리면 별도의 요소였던 특정 부분을 조작하기가 어렵습니다. 상황에 따라 좋은 방법도 다 다를 테죠. [다음 글](threejs-optimize-lots-of-objects-animated.html)에서는 그 방법 중 하나를 살펴보겠습니다.
+하지만 요소를 하나의 mesh로 합쳐버리면 별도의 요소였던 특정 부분을 조작하기가 어렵습니다. 상황에 따라 좋은 방법도 다 다를 테죠. [다음 글](optimize-lots-of-objects-animated.html)에서는 그 방법 중 하나를 살펴보겠습니다.
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lots-of-objects.js"></script>
+<script type="module" src="../resources/threejs-lots-of-objects.js"></script>

@@ -12,7 +12,7 @@ TOC: 鼠标选取对象
 
 THREE.js 提供了 `RayCaster` 类来做这些事情。
 
-接下来，让我们先创建一个包含100个对象的场景，然后试着去拾取这些对象。可以从样例[threejs-响应式](threejs-responsive.html)开始。
+接下来，让我们先创建一个包含100个对象的场景，然后试着去拾取这些对象。可以从样例[threejs-响应式](responsive.html)开始。
 
 改动一些代码
 使摄像机成为一个对象的子元素，旋转这个对象时，摄像机会像绑定在自拍杆上一样，在场景中游弋。
@@ -184,7 +184,7 @@ function render(time) {
 ```
 
 这是最终结果
-{{{example url="../threejs-picking-raycaster.html" }}}
+{{{example url="picking-raycaster.html" }}}
 
 这种方式看起来效果不错，而且能处理很多用户场景，但是也存在几个问题：
 1. 这是基于CPU运算的
@@ -195,7 +195,7 @@ function render(time) {
    如果，你有一个变形或者拟态几何形状的着色器，Javascript无法理解这个变形，它会给出错误的答案。举例：据我所知，你不能对有皮肤的对象使用这种方式。
 3. 无法处理透明的孔洞
 举个例子，为立方体应用这个纹理
-<div class="threejs_center"><img class="checkerboard" src="../resources/images/frame.png"></div>
+<div class="threejs_center"><img class="checkerboard" src="../examples/resources/images/frame.png"></div>
 
 改动代码如下：
 ```js
@@ -219,10 +219,10 @@ for (let i = 0; i < numObjects; ++i) {
 ```
 
 运行后，你就能看到问题所在。
-{{{example url="../threejs-picking-raycaster-transparency.html" }}}
+{{{example url="picking-raycaster-transparency.html" }}}
 
 试着透过盒子拾取一些物体，但是你无法做到
-<div class="threejs_center"><img src="resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
+<div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
 
 这是因为 JavaScript 无法通过简单的查看纹理和材质，就推测出你的对象是否存在一部分是透明的或者不透明。
 
@@ -302,7 +302,7 @@ function setPickPosition(event) {
 }
 ```
 
-首先，我们将 `PickHelper` 修改为 `GPUPickHelper`。这里使用了 `WebGLRenderTarget`，如同我们在 [多个渲染目标](threejs-rendertargets.html)中介绍的一样，此处，我们的渲染目标只有1像素的尺寸，1×1。
+首先，我们将 `PickHelper` 修改为 `GPUPickHelper`。这里使用了 `WebGLRenderTarget`，如同我们在 [多个渲染目标](rendertargets.html)中介绍的一样，此处，我们的渲染目标只有1像素的尺寸，1×1。
 
 ```js
 -class PickHelper {
@@ -391,6 +391,6 @@ function setPickPosition(event) {
 
 现在，你应该可以透过透明的部分进行拾取操作了
 
-{{{example url="../threejs-picking-gpu.html" }}}
+{{{example url="picking-gpu.html" }}}
 
 至此，对于如何实现拾取，希望此文能给你一些灵感。在后续的文章中，也许，我们可以看看如何使用鼠标操作对象。

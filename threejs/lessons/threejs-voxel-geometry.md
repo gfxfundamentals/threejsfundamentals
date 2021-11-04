@@ -57,16 +57,16 @@ for (let y = 0; y < cellSize; ++y) {
 ```
 
 The rest of the code is based on the example from
-[the article on rendering on demand](threejs-rendering-on-demand.html).
+[the article on rendering on demand](rendering-on-demand.html).
 
-{{{example url="../threejs-voxel-geometry-separate-cubes.html" }}}
+{{{example url="voxel-geometry-separate-cubes.html" }}}
 
 It takes a while to start and if you try to move the camera
-it's likely too slow. Like [the article on how to optimize lots of objects](threejs-optimize-lots-of-objects.html)
+it's likely too slow. Like [the article on how to optimize lots of objects](optimize-lots-of-objects.html)
 the problem is there are just way too many objects. 256x256
 is 65536 boxes!
 
-Using [the technique of merging the geometry](threejs-rendering-on-demand.html)
+Using [the technique of merging the geometry](rendering-on-demand.html)
 will fix the issue for this example but what if instead of just making
 a single layer we filled in everything below the ground with voxel. 
 In other words change the loop filling in the voxels to this
@@ -499,7 +499,7 @@ for (let y = 0; y < cellSize; ++y) {
 ```
 
 and some code to actually generate geometry like we covered in
-[the article on custom BufferGeometry](threejs-custom-buffergeometry.html).
+[the article on custom BufferGeometry](custom-buffergeometry.html).
 
 ```js
 const {positions, normals, indices} = world.generateGeometryDataForCell(0, 0, 0);
@@ -521,7 +521,7 @@ scene.add(mesh);
 
 let's try it
 
-{{{example url="../threejs-voxel-geometry-culled-faces.html" }}}
+{{{example url="voxel-geometry-culled-faces.html" }}}
 
 That seems to be working! Okay, let's add in textures.
 
@@ -530,7 +530,7 @@ of [CC-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) licensed mi
 by [Joshtimus](https://www.minecraftforum.net/members/Joshtimus).
 I picked a few at random and built this [texture atlas](https://www.google.com/search?q=texture+atlas).
 
-<div class="threejs_center"><img class="checkerboard" src="../resources/images/minecraft/flourish-cc-by-nc-sa.png" style="width: 512px; image-rendering: pixelated;"></div>
+<div class="threejs_center"><img class="checkerboard" src="../examples/resources/images/minecraft/flourish-cc-by-nc-sa.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 To make things simple they are arranged a voxel type per column
 where the top row is the side of a voxel. The 2nd row is
@@ -708,7 +708,7 @@ class VoxelWorld {
 }
 ```
 
-We then need to [load the texture](threejs-textures.html)
+We then need to [load the texture](textures.html)
 
 ```js
 const loader = new THREE.TextureLoader();
@@ -787,7 +787,7 @@ for (let y = 0; y < cellSize; ++y) {
 
 and with that we get textures!
 
-{{{example url="../threejs-voxel-geometry-culled-faces-with-textures.html"}}}
+{{{example url="voxel-geometry-culled-faces-with-textures.html"}}}
 
 Let's make it support more than one cell.
 
@@ -962,7 +962,7 @@ function allowUncheck() {
 
 And this below code will let us set a voxel based on where
 the user clicks. It uses code similar to the code we
-made in [the article on picking](threejs-picking.html)
+made in [the article on picking](picking.html)
 but it's not using the built in `RayCaster`. Instead
 it's using `VoxelWorld.intersectRay` which returns
 the position of intersection and the normal of the face
@@ -1140,7 +1140,7 @@ we ask for a cell that doesn't exist a new `Mesh` is made
 and added to the correct place in world space.
 At the end we update the attributes and indices with the new data.
 
-{{{example url="../threejs-voxel-geometry-culled-faces-ui.html"}}}
+{{{example url="voxel-geometry-culled-faces-ui.html"}}}
 
 Some notes:
 
@@ -1191,5 +1191,5 @@ I hope this has given you some ideas where to start and how
 to generate some what efficient geometry.
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-voxel-geometry.js"></script>
+<script type="module" src="../resources/threejs-voxel-geometry.js"></script>
 

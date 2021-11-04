@@ -194,7 +194,7 @@ function render(time) {
 
 その結果がこれです。
 
-{{{example url="../threejs-multiple-scenes-v1.html" }}}
+{{{example url="multiple-scenes-v1.html" }}}
 
 最初の `<span>` が赤いキューブ、2つ目の `span` が青いひし形です。
 
@@ -222,9 +222,9 @@ const scene = new THREE.Scene();
 +scene.background = new THREE.Color('red');
 ```
 
-そして、<a href="../threejs-multiple-scenes-v2.html" target="_blank">素早く上下にスクロール</a>すると問題が分かります。以下はスクロールが10倍に遅くなった動画です。
+そして、<a href="../examples/multiple-scenes-v2.html" target="_blank">素早く上下にスクロール</a>すると問題が分かります。以下はスクロールが10倍に遅くなった動画です。
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
 
 別のトレードオフになる別の方法に切り替える事もできます。
 キャンバスのCSSを `position: fixed` から `position: absolute` に切り替えます。
@@ -250,9 +250,9 @@ function render(time) {
 `position: absolute` は、キャンバスをページの残りの部分と一緒にスクロールさせます。
 これはレンダリングに時間がかかりすぎても、描画したものがスクロールしてもページに密着します。
 ページがスクロールされた位置に合わせてキャンバスを移動し再レンダリングします。
-ウィンドウの端だけが一瞬レンダリングされていないビットが表示されますが、<a href="../threejs-multiple-scenes-v2.html" target="_blank">ページの真ん中にあるものは一致している</a>のでスライドしません。新しい方法で10倍に遅くなった結果を見てみましょう。
+ウィンドウの端だけが一瞬レンダリングされていないビットが表示されますが、<a href="../examples/multiple-scenes-v2.html" target="_blank">ページの真ん中にあるものは一致している</a>のでスライドしません。新しい方法で10倍に遅くなった結果を見てみましょう。
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-fixed.gif"></div>
 
 ## もっと汎用的なコードにする
 
@@ -354,7 +354,7 @@ function render(time) {
 
 `sceneInfo1` と `sceneInfo2` が不要になり、メッシュを回転させていたコードがシーンごとに固有になりました。
 
-{{{example url="../threejs-multiple-scenes-generic.html" }}}
+{{{example url="multiple-scenes-generic.html" }}}
 
 ## HTML Datasetを使う
 
@@ -442,7 +442,7 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 
 見た目の変更はありませんが、コードはさらに汎用的になっています。
 
-{{{examples url="../threejs-multiple-scenes-selector.html" }}}
+{{{examples url="multiple-scenes-selector.html" }}}
 
 ## 各要素にコントロールを追加する
 
@@ -450,7 +450,7 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 最初にコントロール用のスクリプトを追加します。
 
 ```js
-import {TrackballControls} from './resources/threejs/r132/examples/jsm/controls/TrackballControls.js';
+import {TrackballControls} from '/examples/jsm/controls/TrackballControls.js';
 ```
 
 そして `TrackballControls` を各シーンに追加し、シーンに関連付けられた要素を渡します。
@@ -541,10 +541,10 @@ const sceneInitFunctionsByName = {
 
 オブジェクトをドラッグすると回転するようになりました。
 
-{{{example url="../threejs-multiple-scenes-controls.html" }}}
+{{{example url="multiple-scenes-controls.html" }}}
 
 これらのテクニックはこのサイト自体にも使われています。
-特に[プリミティブの記事](threejs-primitives.html)と[マテリアルの記事](threejs-materials.html)では、このテクニックを使ってページ全体に様々なサンプルを追加しています。
+特に[プリミティブの記事](primitives.html)と[マテリアルの記事](materials.html)では、このテクニックを使ってページ全体に様々なサンプルを追加しています。
 
 もう1つの解決策はオフスクリーンのキャンバスにレンダリングし、各要素で結果を2Dキャンバスにコピーする事です。
 この解決策の利点は、分離した各領域を合成する方法に制限がないです。
@@ -687,7 +687,7 @@ function render(time) {
 
 結果は同じように見えます。
 
-{{{example url="../threejs-multiple-scenes-copy-canvas.html" }}}
+{{{example url="multiple-scenes-copy-canvas.html" }}}
 
 この解決策のもう1つの利点は、Web workerでレンダリングするために[`OffscreenCanvas`](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)のテクニックも使用しています。
 残念ながら2020年7月現在、`OffscreenCanvas` はChromeのみの対応となっています。

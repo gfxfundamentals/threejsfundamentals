@@ -25,7 +25,7 @@ ou en ligne via une balise `<script type="module">`. Voici un exemple des deux
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 
@@ -35,7 +35,7 @@ import * as THREE from './resources/threejs/r132/build/three.module.js';
 Les chemins doivent être absolus ou relatifs. Ces derniers débutent toujours par `./` ou `../`,
 ce qui est différent des autres balises telles que `<img>`, `<a>` et les références css.
 
-Davantage de détails se trouvent à la fin de [cet article](threejs-fundamentals.html).
+Davantage de détails se trouvent à la fin de [cet article](fundamentals.html).
 
 ## `document.querySelector` et `document.querySelectorAll`
 
@@ -337,7 +337,7 @@ Quelques exemples
 Si vous activez [la règle `no-undef`](https://eslint.org/docs/rules/no-undef)
 alors VSCode via ESLint vous avertira de l'utilisation de nombreuses variables non définies.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
 
 Ci-dessous vous pouvez voir que nous avons écrit `doTheThing` à la place `doThing`.
 `doThing` se retrouve souligné en rouge et un passage au dessus me dira que
@@ -346,7 +346,7 @@ c'est non défini. Une erreur est donc évitée.
 Vous aurez des avertissements (*warnings*) en utilisant `THREE` donc ajoutez `/* global THREE */`
 en haut de vos fichiers JavaScript pour notifier à eslint que `THREE` existe.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 Ci-dessus, vous pouvez voir que eslint connaît la règle que les noms commençant par
 une majuscule `UpperCaseNames` sont des constructeurs et vous devez donc utiliser `new`.
@@ -357,12 +357,12 @@ Par exemple, précédemment nous avons indiquer que nous devions utiliser `const
 
 Ici nous avons utilisé `var` et nous avons été avertis que nous devions utiliser `let` ou `const`
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
 
 Ici nous avons utilisé `let` mais comme la valeur de la variable ne change jamais, nous
 nous voyons suggérer l'utilisation de `const`.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
 
 Bien sûr, si vous préférez conserver `var`, vous pouvez désactiver cette règle.
 Comme écrit plus haut, nous préférons privilégier `const` et `let` à la place de `var`

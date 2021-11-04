@@ -8,12 +8,12 @@ is to load and display 3D models. A common format is the .OBJ
 
 Searching the net I found [this CC-BY-NC 3.0 windmill 3D model](https://www.blendswap.com/blends/view/69174) by [ahedov](https://www.blendswap.com/user/ahedov).
 
-<div class="threejs_center"><img src="resources/images/windmill-obj.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj.jpg"></div>
 
 I downloaded the .blend file from that site, loaded it into [Blender](https://blender.org)
 and exported it as an .OBJ file.
 
-<div class="threejs_center"><img style="width: 827px;" src="resources/images/windmill-export-as-obj.jpg"></div>
+<div class="threejs_center"><img style="width: 827px;" src="../resources/images/windmill-export-as-obj.jpg"></div>
 
 > Note: If you've never used Blender you might be in for a surprise
 in that Blender does things differently than just about every
@@ -32,12 +32,12 @@ to really go through some lessons.
 
 In any case I used these export options
 
-<div class="threejs_center"><img style="width: 239px;" src="resources/images/windmill-export-options.jpg"></div>
+<div class="threejs_center"><img style="width: 239px;" src="../resources/images/windmill-export-options.jpg"></div>
 
 Let's try to display it!
 
 I started with the directional lighting example from 
-[the lights article](threejs-lights.html) and I combined it with
+[the lights article](lights.html) and I combined it with
 the hemispherical lighting example so I ended up with one
 `HemisphereLight` and one `DirectionalLight`. I also removed all the GUI stuff
 related to adjusting the lights. I also removed the cube and sphere
@@ -46,7 +46,7 @@ that were being added to the scene.
 From that the first thing we need to do is include the `OBJLoader` loader in our script.
 
 ```js
-import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
+import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
 ```
 
 Then to load the .OBJ file we create an instance of `OBJLoader`,
@@ -64,7 +64,7 @@ the loaded model to our scene.
 
 If we run that what happens?
 
-{{{example url="../threejs-load-obj-no-materials.html" }}}
+{{{example url="load-obj-no-materials.html" }}}
 
 Well it's close but we're getting errors about materials since we haven't
 given the scene any materials and .OBJ files don't have material
@@ -114,7 +114,7 @@ map_Ns windmill_001_base_SPEC.jpg
 We can see there are 2 materials referencing 5 jpg textures
 but where are the texture files?
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files.png"></div>
 
 All we got was an .OBJ file and an .MTL file.
 
@@ -122,31 +122,31 @@ At least for this model it turns out the textures are embedded
 in the .blend file we downloaded. We can ask blender to
 export those files to by picking **File->External Data->Unpack All Into Files**
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-export-textures.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-export-textures.jpg"></div>
 
 and then choosing **Write Files to Current Directory**
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-overwrite.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-overwrite.jpg"></div>
 
 This ends up writing the files in the same folder as the .blend file 
 in a sub folder called **textures**.
 
-<div class="threejs_center"><img style="width: 758px;" src="resources/images/windmill-exported-texture-files.png"></div>
+<div class="threejs_center"><img style="width: 758px;" src="../resources/images/windmill-exported-texture-files.png"></div>
 
 I copied those textures into the same folder I exported the .OBJ
 file to.
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 Now that we have the textures available we can load the .MTL file.
 
 First we need to include the `MTLLoader`;
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
-+import {MTLLoader} from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
+import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
++import {MTLLoader} from '/examples/jsm/loaders/MTLLoader.js';
 ```
 
 Then we first load the .MTL file. When it's finished loading we add
@@ -168,15 +168,15 @@ and then load the .OBJ file.
 
 And if we try that...
 
-{{{example url="../threejs-load-obj-materials.html" }}}
+{{{example url="load-obj-materials.html" }}}
 
 Note that if we spin the model around you'll see the windmill cloth
 disappears
 
-<div class="threejs_center"><img style="width: 528px;" src="resources/images/windmill-missing-cloth.jpg"></div>
+<div class="threejs_center"><img style="width: 528px;" src="../resources/images/windmill-missing-cloth.jpg"></div>
 
 We need the material on the blades to be double sided, something
-we went over in [the article on materials](threejs-materials.html).
+we went over in [the article on materials](materials.html).
 There is no easy way to fix this in the .MTL file. Off the top of my 
 head I can think of 3 ways to fix this.
 
@@ -234,7 +234,7 @@ And with that change you should still see the cloth on the blades
 when looking from behind but there's one more issue. If we zoom in close
 we see things are turning blocky.
 
-<div class="threejs_center"><img style="width: 700px;" src="resources/images/windmill-blocky.jpg"></div>
+<div class="threejs_center"><img style="width: 700px;" src="../resources/images/windmill-blocky.jpg"></div>
 
 What's going on?
 
@@ -244,7 +244,7 @@ purple where as bump maps are black and white. Normal maps represent
 the direction of the surface where as bump maps represent the height of
 the surface.
 
-<div class="threejs_center"><img style="width: 256px;" src="../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
+<div class="threejs_center"><img style="width: 256px;" src="../examples/resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
 Looking at [the source for the MTLLoader](https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432)
 it expects the keyword `norm` for normal maps so let's edit the .MTL file
@@ -284,13 +284,13 @@ map_Ns windmill_001_base_SPEC.jpg
 and now when we load it it will be using the normal maps as normal maps and
 we can see the back of the blades.
 
-{{{example url="../threejs-load-obj-materials-fixed.html" }}}
+{{{example url="load-obj-materials-fixed.html" }}}
 
 Let's load a different file.
 
 Searching the net I found this [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) windmill 3D model made by [Roger Gerzner / GERIZ.3D Art](http://www.gerzi.ch/).
 
-<div class="threejs_center"><img src="resources/images/windmill-obj-2.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj-2.jpg"></div>
 
 It had a .OBJ version already available. Let's load it up (note I removed the .MTL loader for now)
 
@@ -299,7 +299,7 @@ It had a .OBJ version already available. Let's load it up (note I removed the .M
 +  objLoader.load('resources/models/windmill-2/windmill.obj', ...
 ```
 
-{{{example url="../threejs-load-obj-wat.html" }}}
+{{{example url="load-obj-wat.html" }}}
 
 Hmmm, nothing appears. What's the problem? I wonder what size the model is?
 We can ask THREE.js what size the model is and try to set our
@@ -319,7 +319,7 @@ objLoader.load('resources/models/windmill_2/windmill.obj', (root) => {
 +  console.log(boxCenter);
 ```
 
-Looking in [the JavaScript console](threejs-debugging-javascript.html) I see
+Looking in [the JavaScript console](debugging-javascript.html) I see
 
 ```js
 size 2123.6499788469982
@@ -330,7 +330,7 @@ Our camera is currently only showing about 100 units with `near` at 0.1 and `far
 Our ground plane is only 40 units across so basically this windmill model is so big, 2000 units, 
 that it's surrounding our camera and all parts of it our outside our frustum.
 
-<div class="threejs_center"><img style="width: 280px;" src="resources/images/camera-inside-windmill.svg"></div>
+<div class="threejs_center"><img style="width: 280px;" src="../resources/images/camera-inside-windmill.svg"></div>
 
 We could manually fix that but we could also make the camera auto frame our scene.
 Let's try that. We can then use the box we just computed adjust the camera settings to
@@ -338,7 +338,7 @@ view the entire scene. Note that there is no *right* answer
 on where to put the camera. We could be facing the scene from any direction at any
 altitude so we'll just have to pick something.
 
-As we went over in [the article on cameras](threejs-cameras.html) the camera defines a frustum.
+As we went over in [the article on cameras](cameras.html) the camera defines a frustum.
 That frustum is defined by the field of view (`fov`) and the `near` and `far` settings. We
 want to know given whatever field of view the camera currently has, how far away does the camera
 need to be so the box containing the scene fits inside the frustum assuming the frustum
@@ -346,7 +346,7 @@ extended forever. In other words let's assume `near` is 0.00000001 and `far` is 
 
 Since we know the size of the box and we know the field of view we have this triangle
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/camera-fit-scene.svg"></div>
 
 You can see on the left is the camera and the blue frustum is projecting out in
 front of it. We just computed the box that contains the the windmill. We need to
@@ -356,7 +356,7 @@ inside the frustum.
 Using basic *right triangle* trigonometry and [SOHCAHTOA](https://www.google.com/search?q=SOHCAHTOA), 
 given we know the field of view for the frustum and we know the size of the box we can compute the *distance*.
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 Based on that diagram the formula for computing distance is
 
@@ -428,7 +428,7 @@ of the scene.
 
 Now if we try that we get...
 
-{{{example url="../threejs-load-obj-auto-camera.html" }}}
+{{{example url="load-obj-auto-camera.html" }}}
 
 This almost works. Use the mouse to rotate the camera and you
 should see the windmill. The problem is the windmill is large and the box's center is at about (0, 770, 0). So, when we move the camera from where it
@@ -436,7 +436,7 @@ starts (0, 10, 20) to `distance` units way from the center in the direction the 
 is relative to the center that's moving the camera almost straight down below
 the windmill.
 
-<div class="threejs_center"><img style="width: 360px;" src="resources/images/computed-camera-position.svg"></div>
+<div class="threejs_center"><img style="width: 360px;" src="../resources/images/computed-camera-position.svg"></div>
 
 Let's change it to move sideways from the center of the box to in whatever direction
 the camera is from the center. All we need to do to do that is zero out the `y` component
@@ -458,7 +458,7 @@ become a vector parallel to the XZ plane. In other words parallel to the ground.
 If you look at the bottom of the windmill you'll see a small square. That is our ground
 plane. 
 
-<div class="threejs_center"><img style="width: 365px;" src="resources/images/tiny-ground-plane.jpg"></div>
+<div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
 It's only 40x40 units and so is way too small relative to the windmill.
 Since the windmill is over 2000 units big let's change the size of the ground plane to
@@ -481,7 +481,7 @@ texture.repeat.set(repeats, repeats);
 
 and now we can see this windmill
 
-{{{example url="../threejs-load-obj-auto-camera-xz.html" }}}
+{{{example url="load-obj-auto-camera-xz.html" }}}
 
 Let's add the materials back. Like before there is a .MTL file that references
 some textures but looking at the files I quickly see an issue.
@@ -520,7 +520,7 @@ course it depends on your use case. I made them each 1024x1024 and saved them at
 50% quality setting in Photoshop. Getting a file listing
 
 ```shell
- $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+ $ ls -l ../threejs.org/manual/examples/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
@@ -638,7 +638,7 @@ Just like above we just need to edit the .MTL file
 
 Given all that if we now try it out it should load up with materials.
 
-{{{example url="../threejs-load-obj-materials-windmill2.html" }}}
+{{{example url="load-obj-materials-windmill2.html" }}}
 
 Loading models often runs into these kinds of issues. Common issues include:
 
@@ -674,7 +674,7 @@ Loading models often runs into these kinds of issues. Common issues include:
   the textures. They are currently a total of 10meg!!!
 
   Also remember
-  like we mentioned in the [article on textures](threejs-textures.html) that
+  like we mentioned in the [article on textures](textures.html) that
   textures take memory so a 50k JPG that expands to 4096x4096 will download
   fast but still take a ton of memory.
 
@@ -685,5 +685,5 @@ This is one of the main reasons why .OBJ is not really a good format. If I was t
 is because it's simple and doesn't support many features it works more often than not. Especially if you're making something still like
 an architectural image and there's no need to animate anything it's not a bad way to get static props into a scene.
 
-Next up we'll try [loading a gLTF scene](threejs-load-gltf.html). The gLTF format supports many more features.
+Next up we'll try [loading a gLTF scene](load-gltf.html). The gLTF format supports many more features.
 

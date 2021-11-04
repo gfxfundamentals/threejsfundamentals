@@ -10,7 +10,7 @@ const fs = require('fs');
 const path = require('path');
 const semver = require('semver');
 const liveEditor = require('@gfxfundamentals/live-editor');
-const liveEditorPath = path.dirname(require.resolve('@gfxfundamentals/live-editor'));
+//const liveEditorPath = path.dirname(require.resolve('@gfxfundamentals/live-editor'));
 const jsdom = require('jsdom');
 const {JSDOM} = jsdom;
 
@@ -34,15 +34,17 @@ module.exports = function(grunt) {
     return s_isMdRE.test(filename);
   }
 
-  function notFolder(filename) {
+  /*
+    function notFolder(filename) {
     return !fs.statSync(filename).isDirectory();
   }
 
   function noMdsNoFolders(filename) {
     return noMds(filename) && notFolder(filename);
   }
+  */
 
-  grunt.initConfig({
+  const config = {
     eslint: {
       lib: {
         src: [
@@ -67,17 +69,25 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          { expand: false, src: '*', dest: 'out/', filter: noMdsNoFolders, },
-          { expand: true, cwd: `${liveEditor.monacoEditor}/`, src: 'min/**', dest: 'out/monaco-editor/', nonull: true, },
-          { expand: true, cwd: `${liveEditorPath}/src/`, src: '**', dest: 'out/threejs/resources/', nonull: true, },
-          { expand: true, src: 'threejs/**', dest: 'out/', filter: noMds, },
-          { expand: true, src: '3rdparty/**', dest: 'out/', },
+          { expand: true, cwd: 'threejs/resources', src: '**', dest: '../three.js/manual/examples/resources', },
+          { expand: true, cwd: 'threejs/lessons/resources', src: '**', dest: '../three.js/manual/resources', },
+          { expand: true, cwd: 'threejs', src: '*.js', dest: '../three.js/manual/examples', },
+          { expand: true, cwd: `${liveEditor.monacoEditor}/`, src: 'min/**', dest: '../three.js/manual/3rdparty/monaco-editor/', nonull: true, },
+          { expand: false, src: '3rdparty/split.min.js', dest: '../three.js/manual/3rdparty/split.min.js', },
+          { expand: false, src: 'threejs/lessons/lang.css', dest: '../three.js/manual/resources/lang.css', },
+          { expand: false, src: 'threejs/lessons/kr/lang.css', dest: '../three.js/manual/ko/lang.css', },
+          { expand: false, src: 'threejs/lessons/zh_cn/lang.css', dest: '../three.js/manual/zh_cn/lang.css', },
+          { expand: false, src: 'index.html', dest: '../three.js/manual/index.html', },
+          //{ expand: true, src: '3rdparty/**', dest: '../three.js/manual/', },
         ],
       },
     },
-    clean: [
-      'out/**/*',
-    ],
+    clean: {
+      options: {force: true},
+      foo: [
+        '../three.js/manual/**/*',
+      ],
+    },
     buildlesson: {
       main: {
         files: [],
@@ -88,7 +98,6 @@ module.exports = function(grunt) {
         files: [
           'threejs/**',
           '3rdparty/**',
-          'node_modules/@gfxfundamentals/live-editor/src/**',
         ],
         tasks: ['copy'],
         options: {
@@ -105,21 +114,32 @@ module.exports = function(grunt) {
         },
       },
     },
-  });
+  };
+
+  {
+    const examples = fs.readdirSync('threejs').filter(f => f.endsWith('.html'));
+    for (const example of examples) {
+      config.copy.main.files.push({
+        //expand: false,
+        //cwd: 'threejs',
+        src: path.join('threejs', example),
+        dest: `../three.js/manual/examples/${example.replace('threejs-', '')}`,
+      });
+    }
+  }
+  //console.log(JSON.stringify(config, null, 2));
+  //process.exit(2);
+
+  grunt.initConfig(config);
+
 
   let changedFiles = {};
   const onChange = grunt.util._.debounce(function() {
     grunt.config('copy.main.files', Object.keys(changedFiles).filter(noMds).map((file) => {
       const copy = {
         src: file,
-        dest: 'out/',
+        dest: '../three.js/manual/',
       };
-      if (file.indexOf('live-editor') >= 0) {
-        copy.cwd = `${path.dirname(file)}/`;
-        copy.src = path.basename(file);
-        copy.expand = true;
-        copy.dest = 'out/threejs/resources/';
-      }
       return copy;
     }));
     grunt.config('buildlesson.main.files', Object.keys(changedFiles).filter(mdsOnly).map((file) => {
@@ -138,6 +158,7 @@ module.exports = function(grunt) {
     const supportedLangs = {
       'en': true,
       'zh': true,
+      'ja': true,
       'ko': true,
     };
 
@@ -436,40 +457,16 @@ module.exports = function(grunt) {
   }
 
   const buildSettings = {
-    outDir: 'out',
+    outDir: '../three.js/manual',
     baseUrl: 'https://threejs.org',
     rootFolder: 'threejs',
+    lessonFolder: 'threejs/lessons',
     lessonGrep: 'threejs*.md',
-    siteName: 'ThreeJSFundamentals',
-    siteThumbnail: 'threejsfundamentals.jpg',  // in rootFolder/lessons/resources
+    siteName: 'three',
+    siteThumbnail: 'https://threejs.org/files/share.png',  // in rootFolder/lessons/resources
     templatePath: 'build/templates',
     owner: 'gfxfundamentals',
     repo: 'threejsfundamentals',
-    thumbnailOptions: {
-      thumbnailBackground: 'threejsfundamentals-background.jpg',
-      text: [
-        {
-          font: 'bold 100px lesson-font',
-          verticalSpacing: 100,
-          offset: [100, 120],
-          textAlign: 'left',
-          shadowOffset: [15, 15],
-          strokeWidth: 15,
-          textWrapWidth: 1000,
-        },
-        {
-          font: 'bold 60px lesson-font',
-          text: 'threejsfundamentals.org',
-          verticalSpacing: 100,
-          offset: [-100, -90],
-          textAlign: 'right',
-          shadowOffset: [8, 8],
-          strokeWidth: 15,
-          textWrapWidth: 1000,
-          color: 'hsl(340, 100%, 70%)',
-        },
-      ],
-    },
     postHTMLFn: fixThreeJSLinks,
   };
 
@@ -481,14 +478,14 @@ module.exports = function(grunt) {
         filenames.add(filename);
       });
     });
-    const buildStuff = require('@gfxfundamentals/lesson-builder');
+    const buildStuff = require('./build/build.js');
     const settings = {...buildSettings, filenames};
     const finish = this.async();
     buildStuff(settings).finally(finish);
   });
 
   grunt.registerTask('buildlessons', function() {
-    const buildStuff = require('@gfxfundamentals/lesson-builder');
+    const buildStuff = require('./build/build.js');
     const finish = this.async();
     buildStuff(buildSettings).finally(finish);
   });

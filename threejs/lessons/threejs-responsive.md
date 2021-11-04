@@ -3,7 +3,7 @@ Description: How to make your three.js fit different sized displays.
 TOC: Responsive Design
 
 This is the second article in a series of articles about three.js.
-The first article was [about fundamentals](threejs-fundamentals.html).
+The first article was [about fundamentals](fundamentals.html).
 If you haven't read that yet you might want to start there.
 
 This article is about how to make your three.js app be responsive
@@ -60,7 +60,7 @@ setting the canvas to `block` that issue goes away.
 
 Here's the result
 
-{{{example url="../threejs-responsive-no-resize.html" }}}
+{{{example url="responsive-no-resize.html" }}}
 
 You can see the canvas is now filling the page but there are 2
 problems. One our cubes are stretched. They are not cubes they
@@ -68,13 +68,13 @@ are more like boxes. Too tall or too wide. Open the
 example in its own window and resize it. You'll see how
 the cubes get stretched wide and tall.
 
-<img src="resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
 
 The second problem is they look low resolution or blocky and
 blurry. Stretch the window really large and you'll really see
 the issue.
 
-<img src="resources/images/resize-low-res.png" class="threejs_center nobg">
+<img src="../resources/images/resize-low-res.png" class="threejs_center nobg">
 
 Let's fix the stretchy problem first. To do that we need
 to set the aspect of the camera to the aspect of the canvas's
@@ -96,13 +96,13 @@ function render(time) {
 
 Now the cubes should stop being distorted.
 
-{{{example url="../threejs-responsive-update-camera.html" }}}
+{{{example url="responsive-update-camera.html" }}}
 
 Open the example in a separate window and resize the window
 and you should see the cubes are no longer stretched tall or wide.
 They stay the correct aspect regardless of window size.
 
-<img src="resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
 
 Now let's fix the blockiness.
 
@@ -170,24 +170,24 @@ Since the aspect is only going to change if the canvas's display size
 changed we only set the camera's aspect if `resizeRendererToDisplaySize`
 returns `true`.
 
-{{{example url="../threejs-responsive.html" }}}
+{{{example url="responsive.html" }}}
 
 It should now render with a resolution that matches the display
 size of the canvas.
 
 To make the point about letting CSS handle the resizing let's take
-our code and put it in a [separate `.js` file](../threejs-responsive.js).
+our code and put it in a [separate `.js` file](../examples/threejs-responsive.js).
 Here then are a few more examples where we let CSS choose the size and notice we had
 to change zero code for them to work.
 
 Let's put our cubes in the middle of a paragraph of text.
 
-{{{example url="../threejs-responsive-paragraph.html" startPane="html" }}}
+{{{example url="responsive-paragraph.html" startPane="html" }}}
 
 and here's our same code used in an editor style layout
 where the control area on the right can be resized.
 
-{{{example url="../threejs-responsive-editor.html" startPane="html" }}}
+{{{example url="responsive-editor.html" startPane="html" }}}
 
 The important part to notice is no code changed. Only our HTML and CSS
 changed.
@@ -265,12 +265,12 @@ There is no special case where magic is happening behind the scenes.
 
 Here's an example using the code above.
 
-{{{example url="../threejs-responsive-hd-dpi.html" }}}
+{{{example url="responsive-hd-dpi.html" }}}
 
 It might be hard to see the difference but if you have an HD-DPI
 display and you compare this sample to those above you should
 notice the edges are more crisp.
 
 This article covered a very basic but fundamental topic. Next up lets quickly
-[go over the basic primitives that three.js provides](threejs-primitives.html).
+[go over the basic primitives that three.js provides](primitives.html).
 

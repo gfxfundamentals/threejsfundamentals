@@ -3,7 +3,7 @@ Description: Materials in Three.js
 TOC: Materials
 
 This article is part of a series of articles about three.js. The
-first article is [three.js fundamentals](threejs-fundamentals.html). If
+first article is [three.js fundamentals](fundamentals.html). If
 you haven't read that yet and you're new to three.js you might want to
 consider starting there.
 
@@ -274,7 +274,7 @@ There's really a lot to consider with materials and we actually still
 have a bunch more to go. In particular we've mostly ignored textures
 which open up a whole slew of options. Before we cover textures though
 we need to take a break and cover
-[setting up your development environment](threejs-setup.html)
+[setting up your development environment](setup.html)
 
 <div class="threejs_bottombar">
 <h3>material.needsUpdate</h3>
@@ -308,5 +308,5 @@ switch from using one to using the other.
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-materials.js"></script>
+<script type="module" src="../resources/threejs-materials.js"></script>
 

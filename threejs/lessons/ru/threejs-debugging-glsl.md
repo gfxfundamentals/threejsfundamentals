@@ -37,7 +37,7 @@ gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
 Если ваши нормали не выглядят нормально, то у вас есть ключ к пониманию, где искать.
 Если вы манипулируете нормалями в шейдере фрагментов, вы можете использовать ту же технику, чтобы нарисовать результат этой манипуляции. 
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
 Точно так же, если мы используем текстуры, будут координаты текстуры, и мы можем нарисовать их чем-то вроде 
 
@@ -48,7 +48,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 `fract` есть в случае, если мы используем текстурные координаты, которые выходят за пределы диапазона от 0 до 1.
 Это часто встречается, если для `texture.repeat` установлено значение больше 1. 
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 Вы можете делать подобные вещи для всех значений в вашем фрагментном шейдере.
 Выясните, каким может быть их диапазон, добавьте код для установки `gl_FragColor` с диапазоном от 0,0 до 1,0. 
@@ -65,7 +65,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 Расширяя сцену и глядя на ее `children`, я бы проверил, что мировые матрицы выглядят разумно (без `NaN`) и последние 4 значения каждой матрицы выглядят разумно для моей сцены. 
 Если я ожидаю, что моя сцена будет иметь размеры 50x50x50 единиц, а некоторые матрицы показывают 552352623.123, то явно что-то не так. 
 
-<div class="threejs_center"><img src="resources/images/inspect-matrices.gif"></div>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
 
 Как и в случае с фрагментным шейдером, мы также можем рисовать значения из вершинного шейдера, передавая их фрагментному шейдеру. 
 Объявите переменные в обоих и передайте значение, которое вы не уверены, правильно. Фактически, если мой шейдер использует нормали, 

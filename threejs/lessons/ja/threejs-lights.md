@@ -3,9 +3,9 @@ Description: ライトの設定
 TOC: ライト
 
 この記事はThree.jsの連載記事の1つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
-まだ読んでいない場合は、Three.jsの基礎知識や[セットアップ](threejs-setup.html)から始めると良いと思います。
-前回の記事は[テクスチャ](threejs-textures.html)でした。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
+まだ読んでいない場合は、Three.jsの基礎知識や[セットアップ](setup.html)から始めると良いと思います。
+前回の記事は[テクスチャ](textures.html)でした。
 
 今回はthree.jsの色々な種類のライトの使い方を確認していきます。
 
@@ -26,8 +26,8 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 `OrbitControls` はthree.jsのオプション機能なので、importする必要があります。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 これでOrbitControlsを利用できます。
@@ -46,7 +46,7 @@ controls.targetのY座標を5にして `controls.update` を呼び出します�
 この平面に2 x 2ピクセルの小さなチェッカーボードのテクスチャを適用します。
 
 <div class="threejs_center">
-  <img src="../resources/images/checker.png" class="border" style="
+  <img src="../examples/resources/images/checker.png" class="border" style="
     image-rendering: pixelated;
     width: 128px;
   ">
@@ -151,7 +151,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 これで以下のような結果になります。
 
-{{{example url="../threejs-lights-ambient.html" }}}
+{{{example url="lights-ambient.html" }}}
 
 シーンをクリックしてドラッグして、カメラを*軌道*に乗せます。
 
@@ -193,7 +193,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 これが結果です。
 
-{{{example url="../threejs-lights-hemisphere.html" }}}
+{{{example url="lights-hemisphere.html" }}}
 
 まだ正しくライティング表現ができてなく、キューブと球体が平面に見えます。
 別のライトと組み合わせて使用される `HemisphereLight` は、空や地面の色に良い影響を与えます。
@@ -228,7 +228,7 @@ gui.add(light.target.position, 'z', -10, 10);
 gui.add(light.target.position, 'y', 0, 10);
 ```
 
-{{{example url="../threejs-lights-directional.html" }}}
+{{{example url="lights-directional.html" }}}
 
 なんだか見づらいですね。
 Three.jsにはシーンに追加できるヘルパーオブジェクトがたくさんあり、シーンの見えない部分を視覚化するのに役立ちます。
@@ -275,7 +275,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 
 これでライトを動かす事ができるようになりました。
 
-{{{example url="../threejs-lights-directional-w-helper.html" }}}
+{{{example url="lights-directional-w-helper.html" }}}
 
 カメラを軌道に乗せると見やすくなります。
 この平面は `DirectionalLight` を表しており、DirectionalLightが一方向からのライティングを計算します。
@@ -337,7 +337,7 @@ makeXYZGUI(gui, light.position, 'position', updateLight);
 
 これを試してみて下さい。
 
-{{{example url="../threejs-lights-point.html" }}}
+{{{example url="lights-point.html" }}}
 
 `distance` が > 0 の時にライトがフェードアウトしている事に注目して下さい。
 
@@ -366,7 +366,7 @@ scene.add(helper);
 ```
 
 集中光源の円錐体の角度は [`angle`](SpotLight.angle)プロパティでラジアン単位で設定します。
-[テクスチャ記事](threejs-textures.html)の `DegRadHelper` を使い、度数でUIに表示します。
+[テクスチャ記事](textures.html)の `DegRadHelper` を使い、度数でUIに表示します。
 
 ```js
 gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
@@ -380,7 +380,7 @@ gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange
 gui.add(light, 'penumbra', 0, 1, 0.01);
 ```
 
-{{{example url="../threejs-lights-spot-w-helper.html" }}}
+{{{example url="lights-spot-w-helper.html" }}}
 
 デフォルトの `penumbra` が0の場合、集中光源は非常にシャープなエッジを持っていますが、1 に向けて `penumbra` を調整するとエッジがぼやけます。
 
@@ -434,9 +434,9 @@ gui.add(light, 'penumbra', 0, 1, 0.01);
 ライトを可視化するために `RectAreaLightHelper` をimportします。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {RectAreaLightUniformsLib} from './resources/threejs/r132/examples/jsm/lights/RectAreaLightUniformsLib.js';
-+import {RectAreaLightHelper} from './resources/threejs/r132/examples/jsm/helpers/RectAreaLightHelper.js';
+import * as THREE from './build/three.module.js';
++import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
++import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```
 
 `RectAreaLightUniformsLib.init` を呼び出します。
@@ -489,7 +489,7 @@ makeXYZGUI(gui, light.position, 'position');
 
 そして、これが結果です。
 
-{{{example url="../threejs-lights-rectarea.html" }}}
+{{{example url="lights-rectarea.html" }}}
 
 説明してない事が1つあり、 `WebGLRenderer` に `physicallyCorrectLights` を設定します。
 ライトとの距離は、ライトの落ち方に影響を与えます。
@@ -532,11 +532,11 @@ gui.add(light, 'decay', 0, 4, 0.01);
 gui.add(light, 'power', 0, 2000);
 ```
 
-{{{example url="../threejs-lights-point-physically-correct.html" }}}
+{{{example url="lights-point-physically-correct.html" }}}
 
 シーンにライトを追加するたびに、Three.jsのレンダリング速度が遅くなる事に注意して下さい。
 
-次は[カメラの扱い方](threejs-cameras.html)についてです。
+次は[カメラの扱い方](cameras.html)についてです。
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-lights.js"></script>
+<script type="module" src="../resources/threejs-lights.js"></script>

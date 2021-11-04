@@ -2,21 +2,21 @@ Title: Three.js 场景图
 Description: 什么是场景图?
 TOC: 场景图
 
-本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](threejs-fundamentals.html)。 如果你还没有读过它，建议先从那里开始。
+本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](fundamentals.html)。 如果你还没有读过它，建议先从那里开始。
 
 Three.js 的核心可以说是它的场景图（scene gprah）。场景图在 3D 引擎是一个图中节点的层次结构，其中每个节点代表了一个局部空间（local space）。
 
-<img src="resources/images/scenegraph-generic.svg" align="center">
+<img src="../resources/images/scenegraph-generic.svg" align="center">
 
 这有点抽象，所以我们试着举一些例子。
 
 比如这样一个例子：太阳系、太阳、地球、月亮。
 
-<img src="resources/images/scenegraph-solarsystem.svg" align="center">
+<img src="../resources/images/scenegraph-solarsystem.svg" align="center">
 
 地球绕着太阳转，月球绕着地球转，月球绕着地球转了一圈。从月球的角度看，它是在地球的 "局部空间 "中旋转。尽管它相对于太阳的运动是一些疯狂的像螺线图一样的曲线，但从月球的角度来看，它只需要关注自身围绕地球这个局部空间的旋转即可。
 
-{{{diagram url="resources/moon-orbit.html" }}}
+{{{diagram url="../resources/moon-orbit.html" }}}
 
 换个角度想，生活在地球上的你，不用思考关于地球自转和绕太阳公转的问题。你只是走路或开车或游泳或跑步，好像地球从未移动或者旋转。你走路、开车、游泳、跑步、生活在地球这个 "局部空间"，即使相对于太阳来说，你是以每小时 1000 英里的速度绕着地球旋转，并以每小时 6 万 7 千英里的速度围绕太阳旋转。你在太阳系中的位置与头上的月亮相似，但你不必担心自己的位置。你只需担心你在地球 "局部空间 "中相对于地球的位置。
 
@@ -79,7 +79,7 @@ objects.forEach((obj) => {
 
 由于我们将 `sunMesh` 添加到 `objects` 数组中，它将会旋转。
 
-{{{example url="../threejs-scenegraph-sun.html" }}}
+{{{example url="scenegraph-sun.html" }}}
 
 现在让我们把地球（earth）也加进去。
 
@@ -98,7 +98,7 @@ objects.push(earthMesh);
 
 我们使用相同的 `sphereGeometry` 和新的蓝色的 `earthMaterial` 来制作一个 `earthMesh` 。我们将其定位在太阳的左边 10 个单位，并将其添加到场景中。由于我们将它添加到了我们的 `objects` 数组中，所以它也会旋转。
 
-{{{example url="../threejs-scenegraph-sun-earth.html" }}}
+{{{example url="scenegraph-sun-earth.html" }}}
 
 你可以看到太阳和地球都在自转，但地球并没有绕着太阳转。让我们把地球变成太阳的子节点吧。
 
@@ -109,7 +109,7 @@ objects.push(earthMesh);
 
 然后...
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit.html" }}}
+{{{example url="scenegraph-sun-earth-orbit.html" }}}
 
 到底发生了什么？为什么地球和太阳一样大？为什么离太阳这么远？我居然要把摄像机从 50 单位移到 150 单位以上才能看到地球。
 
@@ -117,7 +117,7 @@ objects.push(earthMesh);
 
 目前，我们的场景图是这样的：
 
-<img src="resources/images/scenegraph-sun-earth.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth.svg" align="center">
 
 为了解决这个问题，我们添加一个空的场景图节点。我们将把太阳和地球都作为该节点的子节点。
 
@@ -145,11 +145,11 @@ objects.push(earthMesh);
 
 我们的新场景图是这样的：
 
-<img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center">
 
 `sunMesh` 和 `earthMesh` 都是 `solarSystem` 的子网格。三者都在旋转，现在因为 `earthMesh` 不是 `sunMesh` 的子网格，所以不再按 5 倍比例缩放。
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit-fixed.html" }}}
+{{{example url="scenegraph-sun-earth-orbit-fixed.html" }}}
 
 好多了。地球比太阳小，而且绕着太阳转的同时自转。
 
@@ -183,11 +183,11 @@ objects.push(earthMesh);
 
 新的场景图是这样的：
 
-<img src="resources/images/scenegraph-sun-earth-moon.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center">
 
 就是这样
 
-{{{example url="../threejs-scenegraph-sun-earth-moon.html" }}}
+{{{example url="scenegraph-sun-earth-moon.html" }}}
 
 你可以看到月亮照着本文开头所提到的螺线图形式旋转，但我们不必手动计算它。我们只需要设置我们的场景图来为我们做这件事。
 
@@ -210,7 +210,7 @@ objects.forEach((node) => {
 
 在我们的例子中，我们希望轴即使在球体内部也能出现。要做到这一点，我们将其材质（material）的 `depthTest` 属性设置为 false，这意味着它们不会检查其是否在其他东西后面进行绘制。我们还将它们的 `renderOrder` 属性设置为 1（默认值为 0），这样它们就会在所有球体之后被绘制。否则一个球体可能会画在它们上面，把它们遮住。
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes.html" }}}
 
 我们可以看到<span style="color:red">x (红色)</span> 和
 <span style="color:blue">z (蓝色)</span>轴。由于我们是直视下方，而每个物体只是围绕 y 轴旋转，所以我们看不到<span style="color:green">y (绿色)</span>轴。
@@ -280,19 +280,19 @@ class AxisGridHelper {
 
 需要注意的是，我们将 `AxesHelper` 的 `renderOrder` 设置为 2，将`GridHelper`的设置为 1，这样轴就会在网格之后绘制。否则网格可能会覆盖轴。
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes-grids.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes-grids.html" }}}
 
 选中 `solarSystem`，你会看到地球是如何像我们上面设定的那样，从中心出发正好 10 个单位。你可以看到地球是如何处在 `solarSystem` 的局部空间（_local space_）内。同样地，如果你打开 `earthOrbit`，你会看到月球距离 `earthOrbit` 的局部空间（_local space_）的中心正好 2 个单位。
 
 再举几个场景图的例子。在一个简单的游戏世界中，一辆汽车可能有这样的场景图。
 
-<img src="resources/images/scenegraph-car.svg" align="center">
+<img src="../resources/images/scenegraph-car.svg" align="center">
 
 如果你移动车体，所有的轮子都会随之移动。如果你想让车身和轮子分开弹跳，你可以将车身和轮子作为代表汽车框架的框架（frame）节点的子节点。
 
 另一个例子是游戏世界中的人类。
 
-<img src="resources/images/scenegraph-human.svg" align="center">
+<img src="../resources/images/scenegraph-human.svg" align="center">
 
 你可以看到对于人类来说，场景图会变得很复杂。事实上，上面的场景图已经被简化了。例如，你可以把它扩展到覆盖每根手指（至少还有 28 个节点）和每个脚趾（还有 28 个节点），再加上脸部和下巴、眼睛，也许还有更多。
 
@@ -300,7 +300,7 @@ class AxisGridHelper {
 
 这是场景图。网格（mesh）的颜色为绿色，`Object3D` 为蓝色，灯光（light）为金色，摄像机（camera）为紫色。其中一台摄像机没有被添加进场景图。
 
-<div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 在代码中查看这些节点的设置。
 
@@ -387,8 +387,8 @@ const camera = cameras[(time * 0.25) % cameras.length | 0];
 infoElem.textContent = camera.desc;
 ```
 
-{{{example url="../threejs-scenegraph-tank.html"}}}
+{{{example url="scenegraph-tank.html"}}}
 
 我希望这能让你对场景图的工作原理以及你可能使用它们的方法有一些了解。制作 `Object3D` 节点，并将东西作为它们的子节点，是使用好 three.js 这样的 3D 引擎的重要一步。通常来说，让东西按照你想要的方式移动和旋转可能需要一些复杂的数学来。例如，如果没有场景图，计算月亮的运动或者汽车的轮子相对于车身的位置会非常复杂，但是使用场景图就会变得简单很多。
 
-[接下来，我们会介绍一下材质](threejs-materials.html).
+[接下来，我们会介绍一下材质](materials.html).

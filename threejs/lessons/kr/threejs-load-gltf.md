@@ -2,7 +2,7 @@ Title: Three.js에서 .GLTF 파일 불러오기
 Description: .GLTF 파일을 불러오는 법을 배웁니다
 TOC: .GLTF 파일 불러오기
 
-이전 글에서는 [.OBJ 파일을 불러오는 법](threejs-load-obj.html)에 대해
+이전 글에서는 [.OBJ 파일을 불러오는 법](load-obj.html)에 대해
 배웠습니다. 이전 글을 읽지 않았다면 먼저 읽고 오길 권장합니다.
 
 이전 글에서 말했듯 .OBJ 파일은 굉장히 오래된 파일 형식이고 구성이 간단합니다.
@@ -63,9 +63,9 @@ glTF는 특정 목적으로 고안되었기에 대부분의 경우 glTF 파일�
 하나 찾았습니다(작가: [antonmoek](https://sketchfab.com/antonmoek)). 뭔가 괜찮은
 예제가 나올 것 같은 예감이 드네요.
 
-<div class="threejs_center"><img src="resources/images/cartoon_lowpoly_small_city_free_pack.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/cartoon_lowpoly_small_city_free_pack.jpg"></div>
 
-[.OBJ에 관한 글에서 썼던 예제](threejs-load-obj.html)를 가져와 .OBJ 파일을 불러오는
+[.OBJ에 관한 글에서 썼던 예제](load-obj.html)를 가져와 .OBJ 파일을 불러오는
 코드를 .GLTF를 불러오는 코드로 바꾸겠습니다.
 
 아래의 기존 코드를
@@ -103,22 +103,22 @@ mtlLoader.loadMtl('resources/models/windmill/windmill-fixed.mtl', (mtl) => {
 추가합니다.
 
 ```html
--import { LoaderSupport } from './resources/threejs/r132/examples/jsm/loaders/LoaderSupport.js';
--import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
--import { MTLLoader } from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
-+import { GLTFLoader } from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
+-import { LoaderSupport } from '/examples/jsm/loaders/LoaderSupport.js';
+-import { OBJLoader } from '/examples/jsm/loaders/OBJLoader.js';
+-import { MTLLoader } from '/examples/jsm/loaders/MTLLoader.js';
++import { GLTFLoader } from '/examples/jsm/loaders/GLTFLoader.js';
 ```
 
 이제 실행해보죠.
 
-{{{example url="../threejs-load-gltf.html" }}}
+{{{example url="load-gltf.html" }}}
 
 이런 걸 마법이라고 하나봅니다. 텍스처를 비롯해 모든 게 한 번에 완성됐네요.
 
 여기에 자동차가 도로를 따라 달리도록 할 수 있다면 더 멋있겠습니다. 먼저 장면(scene)에서
 차가 별도의 요소인지 확인하고, 별도의 요소라면 이 요소를 다룰 수 있는 방법을 찾아야 합니다.
 
-먼저 간단하게 함수를 만들어 씬 그래프를 [자바스크립트 콘솔](threejs-debugging-javascript.html)에
+먼저 간단하게 함수를 만들어 씬 그래프를 [자바스크립트 콘솔](debugging-javascript.html)에
 띄워보겠습니다.
 
 ```js
@@ -145,7 +145,7 @@ gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.glt
   console.log(dumpObject(root).join('\n'));
 ```
 
-[코드를 실행하니](../threejs-load-gltf-dump-scenegraph.html) 아래와 같은 결과가
+[코드를 실행하니](../examples/load-gltf-dump-scenegraph.html) 아래와 같은 결과가
 나왔습니다.
 
 ```text
@@ -242,7 +242,7 @@ OSG_Scene [Scene]
 
 잘 작동하는지 볼까요?
 
-{{{example url="../threejs-load-gltf-rotate-cars.html" }}}
+{{{example url="load-gltf-rotate-cars.html" }}}
 
 음... 기준축이 제각각인 것을 보니 이 파일을 만든 디자이너가 애니메이션까지
 고려하지는 않은 듯합니다. 트럭들이 전부 이상한 방향으로 도네요.
@@ -295,7 +295,7 @@ OSG_Scene [Scene]
 
 이제 기준축이 제대로 정렬되었습니다.
 
-{{{example url="../threejs-load-gltf-rotate-cars-fixed.html" }}}
+{{{example url="load-gltf-rotate-cars-fixed.html" }}}
 
 이제 자동차를 달리게 만들어봅시다.
 
@@ -303,12 +303,12 @@ OSG_Scene [Scene]
 도로 전체를 달리는 뒤얽힌 경로를 만들어 자동차를 해당 경로에 놓을 수는 있죠.
 아래 스크린샷은 경로를 반쯤 완성했을 때 블렌더의 화면을 캡쳐한 것입니다.
 
-<div class="threejs_center"><img src="resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
+<div class="threejs_center"><img src="../resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
 
 이제 블렌더에서 데이터를 추출해야 합니다. 다행히 경로만을 골라 내보낼 수 있네요.
 "write nurbs"를 체크해 경로를 .OBJ 파일로 내보냅니다.
 
-<div class="threejs_center"><img src="resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
+<div class="threejs_center"><img src="../resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
 
 .OBJ 파일을 열어보니 각 정점 데이터가 있습니다. 이를 배열로 바꿔 사용하도록
 하죠.
@@ -345,7 +345,7 @@ Three.js에는 몇 가지 곡선 클래스가 있습니다. 이 경우 `CatmullR
 
 만약 위 정점으로 곡선을 생성하면 다음 그림과 같은 곡선이 생길 겁니다.
 
-<div class="threejs_center"><img src="resources/images/car-curves-before.png" style="width: 400px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-before.png" style="width: 400px"></div>
 
 모서리가 각지면 좀 더 깔끔할 듯하네요. 정점을 몇 개 더 추가해 원하는
 결과를 만들어봅시다. 각 정점 짝마다 10% 아래에 하나, 두 정점 사이 90%
@@ -353,7 +353,7 @@ Three.js에는 몇 가지 곡선 클래스가 있습니다. 이 경우 `CatmullR
 
 우리가 원하는 곡선은 다음과 같죠.
 
-<div class="threejs_center"><img src="resources/images/car-curves-after.png" style="width: 400px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-after.png" style="width: 400px"></div>
 
 아래는 곡선을 생성하는 코드입니다.
 
@@ -411,7 +411,7 @@ let curveObject;
 코드의 첫 블럭에서 곡선을 만듭니다. 두 번째 블럭에서는 곡선에서 250개의
 정점을 받은 뒤, 이 정점들을 이어 곡선을 시각화합니다.
 
-하지만 [예제](../threejs-load-gltf-car-path.html)를 실행하니 곡선이 보이지
+하지만 [예제](../examples/load-gltf-car-path.html)를 실행하니 곡선이 보이지
 않습니다. 일단 어디에 있는지 확인하기 위해 깊이 테스트(depth test) 옵션을
 끄고, 마지막에 렌더링하도록 설정하겠습니다.
 
@@ -423,12 +423,12 @@ let curveObject;
 
 다시 예제를 실행해보니 곡선이 너무 작은 게 문제였네요.
 
-<div class="threejs_center"><img src="resources/images/car-curves-too-small.png" style="width: 498px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-too-small.png" style="width: 498px"></div>
 
 블렌더로 계층 구조를 확인해보니 디자이너가 자동차 부모의 스케일(scale)을
 건드렸습니다.
 
-<div class="threejs_center"><img src="resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
+<div class="threejs_center"><img src="../resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
 
 실제 3D 앱에서 스케일을 건드리는 것은 좋지 않습니다. 갖은 문제를 일으켜
 개발자를 좌절의 굴레에 빠지게 하거든요. 디자이너 입장에서야 각각의 크기를
@@ -471,7 +471,7 @@ function dumpObject(obj, lines, isLast = true, prefix = '') {
 }
 ```
 
-[코드를 실행](../threejs-load-gltf-dump-scenegraph-extra.html)하니
+[코드를 실행](../examples/load-gltf-dump-scenegraph-extra.html)하니
 다음과 같은 결과가 나옵니다.
 
 ```text
@@ -638,13 +638,13 @@ for (const car of loadedCars.children.slice()) {
 }
 ```
 
-{{{example url="../threejs-load-gltf-animated-cars.html" }}}
+{{{example url="load-gltf-animated-cars.html" }}}
 
 몇 분 투자한 것 치고는 괜찮은 결과물이네요!
 
 마지막으로 그림자까지 추가하면 완벽할 것 같습니다.
 
-[그림자에 관한 글](threejs-shadows.html)의 `DirectionalLight` 그림자 예제를 가져와
+[그림자에 관한 글](shadows.html)의 `DirectionalLight` 그림자 예제를 가져와
 그대로 코드에 붙여 넣습니다.
 
 그리고 파일을 불러온 뒤, 모든 요소의 그림자 설정을 켜줍니다.
@@ -709,7 +709,7 @@ const scene = new THREE.Scene();
 +scene.background = new THREE.Color('#DEFEFF');
 ```
 
-{{{example url="../threejs-load-gltf-shadows.html" }}}
+{{{example url="load-gltf-shadows.html" }}}
 
 이 글이 씬 그래프를 포함한 파일을 불러오고, 몇몇 문제를 해결하는 데 도움이
 되었으면 합니다.

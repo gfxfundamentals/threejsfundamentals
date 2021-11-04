@@ -3,25 +3,25 @@ Description: シーングラフとはなにか？
 TOC: シーングラフ
 
 この記事はthree.jsについてのシリーズ記事の一つです。
-最初の記事は[Three.jsの基礎](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎](fundamentals.html)です。
 まだ読んでない人は、そちらから先に読んでみるといいかもしれません。
 
 Three.jsの核心は間違いなくシーングラフです。
 3Dエンジンのシーングラフは、各ノードがローカルな空間を表現している、グラフ内のノードの階層です。
 
-<img src="resources/images/scenegraph-generic.svg" align="center">
+<img src="../resources/images/scenegraph-generic.svg" align="center">
 
 抽象的なので、例をいくつか挙げてみましょう。
 
 例の一つは太陽系、太陽・地球・月でしょうか。
 
-<img src="resources/images/scenegraph-solarsystem.svg" align="center">
+<img src="../resources/images/scenegraph-solarsystem.svg" align="center">
 
 地球は太陽を回っています。月は地球を回っています。
 月は地球の周りを円を描いて移動しています。月から見ると、地球の"ローカルな空間"を回っていることになります。
 太陽との相対的な動きは、月の視点から見るとクレイジーな螺旋のような曲線に見えますが、単に地球のローカルな空間を周回していると捉える必要があります。
 
-{{{diagram url="resources/moon-orbit.html" }}}
+{{{diagram url="../resources/moon-orbit.html" }}}
 
 別の考え方をしてみます。地球が地軸の周りを自転していることも、太陽の周りを公転していることも、
 地球に住んでいるあなたが考える必要はありません。
@@ -101,7 +101,7 @@ objects.forEach((obj) => {
 
 `sunMesh`を`objects`配列に追加したので、回転します。
 
-{{{example url="../threejs-scenegraph-sun.html" }}}
+{{{example url="scenegraph-sun.html" }}}
 
 さて、地球を追加してみましょう。
 
@@ -121,7 +121,7 @@ objects.push(earthMesh);
 これは`objects`配列にそれを追加されたので、同様に回転します。
 
 
-{{{example url="../threejs-scenegraph-sun-earth.html" }}}
+{{{example url="scenegraph-sun-earth.html" }}}
 
 太陽と地球の両方が回転して見えますが、地球は太陽の周りを公転していません。
 地球を太陽の子要素にしてみましょう。
@@ -133,7 +133,7 @@ objects.push(earthMesh);
 
 そして...
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit.html" }}}
+{{{example url="scenegraph-sun-earth-orbit.html" }}}
 
 なにが起きましたか？なぜ地球が太陽と同じ大きさで、こんなに離れているのでしょうか。
 地球を見るためには、実際のところ、カメラを50ユニット上から、150ユニット上に動かす必要がありました。
@@ -146,7 +146,7 @@ objects.push(earthMesh);
 
   シーングラフは、このようになります。
 
-<img src="resources/images/scenegraph-sun-earth.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth.svg" align="center">
 
 これを修正するため、シーングラフに空のノードを追加しましょう。
 そして、太陽と地球の両方をそのノードの子要素にしましょう。
@@ -176,12 +176,12 @@ objects.push(earthMesh);
 
 新しいシーングラフは、このようになります。
 
-<img src="resources/images/scenegraph-sun-earth-fixed.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-fixed.svg" align="center">
 
 `sunMesh`と`earthMesh`は共に`solarSystem`の子要素です。3つ全部が回転していますが、
 いま`earthMesh`は`sunMesh`の子要素ではないので、5倍に拡大されません。
 
-{{{example url="../threejs-scenegraph-sun-earth-orbit-fixed.html" }}}
+{{{example url="scenegraph-sun-earth-orbit-fixed.html" }}}
 
 とてもよくなりました。地球は太陽よりも小さく、太陽の周りを公転しつつ、自転しています。
 
@@ -214,11 +214,11 @@ objects.push(earthMesh);
 そして、このノードに`earthMesh`と`moonMesh`の両方を追加しました。
 新しいシーングラフは、このようになります。
 
-<img src="resources/images/scenegraph-sun-earth-moon.svg" align="center">
+<img src="../resources/images/scenegraph-sun-earth-moon.svg" align="center">
 
 そして、このように描画されます。
 
-{{{example url="../threejs-scenegraph-sun-earth-moon.html" }}}
+{{{example url="scenegraph-sun-earth-moon.html" }}}
 
 記事の上部でお見せした螺旋のパターンに沿った月が見えます。
 しかし、手動で操作する必要はありませんでした。
@@ -248,7 +248,7 @@ objects.forEach((node) => {
 全ての球体の後に描画されるように、`renderOrder`も1に設定します（デフォルト値は0です）。
 そうしないと、球体が軸の上に描画され、軸を覆ってしまう可能性があります。
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes.html" }}}
 
 <span style="color:red">x (赤)</span> と<span style="color:blue">z (青)</span>の
 軸が見えます。私たちはオブジェクトをまっすぐ見下ろしていて、オブジェクトはy軸を中心に
@@ -338,7 +338,7 @@ class AxisGridHelper {
 こうすることで、軸はグリッドの後に描画されます。
 そうしないと、グリッドが軸を上書きしてしまうかもしれません。
 
-{{{example url="../threejs-scenegraph-sun-earth-moon-axes-grids.html" }}}
+{{{example url="scenegraph-sun-earth-moon-axes-grids.html" }}}
 
 `solarSystem`のチェックをオンにすると、上で設定したように、
 どのように地球が中心からちょうど10ユニットにあるか分かるでしょう。
@@ -349,7 +349,7 @@ class AxisGridHelper {
 もう少しシーングラフの例を紹介します。
 簡単なゲームの世界の自動車は、このようなシーングラフだとしましょう。
 
-<img src="resources/images/scenegraph-car.svg" align="center">
+<img src="../resources/images/scenegraph-car.svg" align="center">
 
 もし車のbody全体を動かすと、それに伴ってwheelsが動くでしょう。
 もしbodyにwheelsとは別にバウンドして欲しいとすると、
@@ -357,7 +357,7 @@ bodyとwheelsを、車のフレームを表す"frame"ノードの子要素にで
 
 別の例はゲームの世界の人間です。
 
-<img src="resources/images/scenegraph-human.svg" align="center">
+<img src="../resources/images/scenegraph-human.svg" align="center">
 
 とても複雑な人間のシーングラフを見てください。
 実際は、上記のシーングラフは単純化されています。
@@ -372,7 +372,7 @@ bodyとwheelsを、車のフレームを表す"frame"ノードの子要素にで
 これがシーングラフです。メッシュは緑色、`Object3D`は青色、明かりは金色、カメラは紫色です。
 シーングラフに追加されていないカメラが一つあります。
 
-<div class="threejs_center"><img src="resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
+<div class="threejs_center"><img src="../resources/images/scenegraph-tank.svg" style="width: 800px;"></div>
 
 コードを見て、これらのノードの設定を確認してください。
 
@@ -475,7 +475,7 @@ const camera = cameras[time * .25 % cameras.length | 0];
 infoElem.textContent = camera.desc;
 ```
 
-{{{example url="../threejs-scenegraph-tank.html"}}}
+{{{example url="scenegraph-tank.html"}}}
 
 シーングラフの動作と、使い方のアイデアを、この例から得られればと思います。
 `Object3D`ノードを作り、物体をその子要素にすることは、three.jsのような3Dエンジンを上手く使うために
@@ -484,4 +484,4 @@ infoElem.textContent = camera.desc;
 例えばシーングラフなしで、月の動きを操作したり、車の車体に対して壮太知的に車輪を置いたりすることは、
 とても難しいかもしれません。しかし、シーングラフを使うことで、とても簡単になるのです。
 
-[次はマテリアルを説明します](threejs-materials.html)。
+[次はマテリアルを説明します](materials.html)。

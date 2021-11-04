@@ -20,7 +20,7 @@
   categoryMapping: {
     'basics': 'Three.js란?',
     'solutions': '활용하기',
-    'webvr': '웹VR',
+    'webxr': '웹VR',
     'optimization': '최적화하기',
     'tips': '팁',
     'fundamentals': '기본 구조',

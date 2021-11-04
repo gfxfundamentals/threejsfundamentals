@@ -5,7 +5,7 @@ TOC: Оптимизация множества анимированных объ
 {{{warning msgId="updateNeeded"}}}
 
 Эта статья является продолжением  [статьи об оптимизации множества объектов
-](threejs-optimize-lots-of-objects.html). Если вы еще не прочитали это, пожалуйста, прочитайте его, прежде чем продолжить.  
+](optimize-lots-of-objects.html). Если вы еще не прочитали это, пожалуйста, прочитайте его, прежде чем продолжить.  
 
 В предыдущей статье мы объединили около 19000 кубов в одну геометрию. Это имело преимущество, заключающееся в том, 
 что оно оптимизировало наш рисунок из 19000 кубов, но имело тот недостаток, что затрудняло перемещение любого отдельного куба. 
@@ -215,7 +215,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 и с этим мы должны быть в состоянии показать 4 набора данных. Наведите указатель мыши на ярлыки или коснитесь их, чтобы переключать наборы 
 
 
-{{{example url="../threejs-lots-of-objects-multiple-data-sets.html" }}}
+{{{example url="lots-of-objects-multiple-data-sets.html" }}}
 
 Обратите внимание, что есть несколько странных точек данных, которые действительно выделяются. 
 Интересно, что с ними? ??! В любом случае, как мы анимируем между этими 4 наборами данных. 
@@ -365,10 +365,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 Нам нужно включить библиотеку 
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-+import {TWEEN} from './resources/threejs/r132/examples/jsm/libs/tween.min.js';
+import * as THREE from './build/three.module.js';
+import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from '/examples/jsm/libs/tween.min.js';
 ```
 
 А затем создайте `Tween` чтобы оживить влияние.
@@ -394,7 +394,7 @@ function showFileInfo(fileInfos, fileInfo) {
 ```
 
 Мы также предполагаем вызывать TWEEN.update каждый кадр в нашем цикле рендеринга, но это указывает на проблему. 
-"tween.js" предназначен для непрерывного рендеринга, но мы делаем [рендеринг по требованию ](threejs-rendering-on-demand.html). 
+"tween.js" предназначен для непрерывного рендеринга, но мы делаем [рендеринг по требованию ](rendering-on-demand.html). 
 Мы могли бы переключиться на непрерывный рендеринг, но иногда приятно рендерить только по требованию, так как он перестает использовать 
 силу пользователя, когда ничего не происходит, поэтому давайте посмотрим, сможем ли мы сделать его анимированным по запросу. 
 
@@ -492,7 +492,7 @@ render();
 
 И с этим мы должны анимировать между наборами данных. 
 
-{{{example url="../threejs-lots-of-objects-morphtargets.html" }}}
+{{{example url="lots-of-objects-morphtargets.html" }}}
 
 Кажется, это работает, но, к сожалению, мы потеряли цвета. 
 
@@ -688,7 +688,7 @@ scene.add(mesh);
 
 И с этим у нас должны быть оживляющие цвета так же как коробки. 
 
-{{{example url="../threejs-lots-of-objects-morphtargets-w-colors.html" }}}
+{{{example url="lots-of-objects-morphtargets-w-colors.html" }}}
 
 Я надеюсь, что пройти через это было полезно. Использование morphtargets либо через сервисы,
 которые предоставляет three.js, либо путем написания пользовательских шейдеров - 
@@ -698,7 +698,7 @@ scene.add(mesh);
 
 
 Далее вас может заинтересовать добавление ярлыков к глобусу, который описан в разделе. 
- [ «Выравнивание элементов HTML в 3D»](threejs-align-html-elements-to-3d.html).
+ [ «Выравнивание элементов HTML в 3D»](align-html-elements-to-3d.html).
 
 Примечание: мы могли бы попытаться просто изобразить процент мужчин
 или женщин или общую разницу, но основываясь на том, как мы отображаем 

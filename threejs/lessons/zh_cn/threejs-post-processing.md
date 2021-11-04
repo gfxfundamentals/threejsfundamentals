@@ -2,7 +2,7 @@ Title: Three.js 后期处理
 Description: 怎么在THREE.js中做后期处理
 TOC: 后期处理
 
-*后置处理*通常是指应用到2d图像上的某种特效或者是滤镜。在ThreeJs的场景中,我们有的是由很多网格(mesh)构成的场景(scene)。我们将其渲染成2d图像。一般来说，图像被直接渲染成canvas然后在浏览器中被展示,然而在结果被输出到canvas之前，我们也可以通过另外的一个[render target](threejs-rendertargets.html)并应用一些后置效果。这被称为Post Processing，因为它发生在主场景渲染过程之后。
+*后置处理*通常是指应用到2d图像上的某种特效或者是滤镜。在ThreeJs的场景中,我们有的是由很多网格(mesh)构成的场景(scene)。我们将其渲染成2d图像。一般来说，图像被直接渲染成canvas然后在浏览器中被展示,然而在结果被输出到canvas之前，我们也可以通过另外的一个[render target](rendertargets.html)并应用一些后置效果。这被称为Post Processing，因为它发生在主场景渲染过程之后。
 
 后置处理的示例 比如 Instagram 的滤镜，photoshop的滤镜。
 
@@ -10,11 +10,11 @@ ThreeJs拥有一些案例课程去帮助建立一个后置处理管道。工作�
 
 每一个`Pass`阶段都可以增加一些后置处理特效，添加小插图，模糊，添加光晕，添加噪点，调整色相，饱和度，对比度等等。最终把效果渲染到canvas。
 
-理解`EffectComposer`是如何工作的是有一点重要的。它创建两个[render targets](threejs-rendertargets.html)。让我们称他们为**rtA**和**rtB**
+理解`EffectComposer`是如何工作的是有一点重要的。它创建两个[render targets](rendertargets.html)。让我们称他们为**rtA**和**rtB**
 
 然后你调用`EffectComposer.addPass`按照你想要应用它们的顺序增加`pass`。然后它们就被向下图所示的被应用。
 
-<div class="threejs_center"><img src="resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
 
 首先 你传入`RenderPass`的场景被渲染到rtA，不管rta的内容是啥，它继续向下一个`pass`传递。下一个`pass`将它作为输入做一些操作然后将其写入到rtB。然后rtB传到下一个`pass`,将rtB作为输入作一些操作然后在写回rtA。这个过程在整个pass过程中持续发生。
 
@@ -29,7 +29,7 @@ ThreeJs拥有一些案例课程去帮助建立一个后置处理管道。工作�
 ## renderToScreen 
 → 是否将当前的内容渲染到画布上。通常来说你需要在你最后添加的`pass`设置这一项为`true`
 
-让我们将他们结合起来写一个简单的例子。 我们将从这个例子开始 [the article on responsiveness](threejs-responsive.html)
+让我们将他们结合起来写一个简单的例子。 我们将从这个例子开始 [the article on responsiveness](responsive.html)
 
 第一步，我们创建一个`EffectComposer`
 
@@ -73,10 +73,10 @@ composer.addPass(filmPass);
 为了使用这些类,我们需要导入一些js模块
 
 ```js
-import {EffectComposer} from './resources/threejs/r132/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from './resources/threejs/r132/examples/jsm/postprocessing/RenderPass.js';
-import {BloomPass} from './resources/threejs/r132/examples/jsm/postprocessing/BloomPass.js';
-import {FilmPass} from './resources/threejs/r132/examples/jsm/postprocessing/FilmPass.js';
+import {EffectComposer} from '/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from '/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from '/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from '/examples/jsm/postprocessing/FilmPass.js';
 ```
 
 对于几乎所有的后期处理EffectComposer.js，RenderPass.js 都是必需的。
@@ -116,7 +116,7 @@ import {FilmPass} from './resources/threejs/r132/examples/jsm/postprocessing/Fil
 
 `EffectComposer.render` 需要花费`deltaTime`自最后一帧渲染后的数秒时间。如果任何一个有动画，它将各种效果传递下去。在这个示例中`FilmPass`被动画化了。
 
-{{{example url="../threejs-postprocessing.html" }}}
+{{{example url="postprocessing.html" }}}
 
 要在运行时更改效果参数，通常需要设置统一的值。让我们添加一个GUI来调整一些参数。为了您可以轻松调整哪些值以及如何调整它们您需要深入了解该效果的代码。
 

@@ -2,7 +2,7 @@ Title: Three.js 纹理
 Description: 在three.js中使用纹理
 TOC: 纹理
 
-本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](threejs-fundamentals.html)。上一篇[文章](threejs-setup.html)是关于本文的环境搭建。如果你还没有读过它，建议先从那里开始。
+本文是关于 three.js 系列文章的一部分。第一篇文章是 [three.js 基础](fundamentals.html)。上一篇[文章](setup.html)是关于本文的环境搭建。如果你还没有读过它，建议先从那里开始。
 
 纹理是Three.js中的一种大话题，我还不能100%地确定在什么层面上解释它们，但我会试着去做它。这里面有很多主题，而且很多主题是相互关联的，所以很难一下子解释清楚。下面是本文的快速目录。
 
@@ -27,7 +27,7 @@ TOC: 纹理
 纹理一般是指我们常见的在一些第三方程序中创建的图像，如Photoshop或GIMP。比如我们把这张图片放在立方体上。
 
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
+  <img src="../examples/resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 我们将修改我们的第一个例子中的其中一个。我们需要做的就是创建一个`TextureLoader`。调用它的[`load`](TextureLoader.load)方法，同时传入图像的URL，并将材质的 `map` 属性设置为该方法的返回值，而不是设置它的 `color`属性。
@@ -42,7 +42,7 @@ const material = new THREE.MeshBasicMaterial({
 ```
 注意，我们使用的是 `MeshBasicMaterial`， 所以没有必要增加光线
 
-{{{example url="../threejs-textured-cube.html" }}}
+{{{example url="textured-cube.html" }}}
 
 ## <a name="six"></a> 6种纹理，在立方体的每个面上都有不同的纹理。
 
@@ -50,14 +50,14 @@ const material = new THREE.MeshBasicMaterial({
 
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -83,13 +83,13 @@ const loader = new THREE.TextureLoader();
 
 有效果了！
 
-{{{example url="../threejs-textured-cube-6-textures.html" }}}
+{{{example url="textured-cube-6-textures.html" }}}
 
 但需要注意的是，并不是所有的几何体类型都支持多种材质。`BoxGeometry` 和 `BoxGeometry` 可以使用6种材料，每个面一个。`ConeGeometry` 和 `ConeGeometry` 可以使用2种材料，一种用于底部，一种用于侧面。 `CylinderGeometry` 和 `CylinderGeometry` 可以使用3种材料，分别是底部、顶部和侧面。对于其他情况，你需要建立或加载自定义几何体和（或）修改纹理坐标。
 
 在其他3D引擎中，如果你想在一个几何体上使用多个图像，使用 [纹理图集（Texture Atlas）](https://en.wikipedia.org/wiki/Texture_atlas) 更为常见，性能也更高。纹理图集是将多个图像放在一个单一的纹理中，然后使用几何体顶点上的纹理坐标来选择在几何体的每个三角形上使用纹理的哪些部分。
 
-什么是纹理坐标？它们是添加到一块几何体的每个顶点上的数据，用于指定该顶点对应的纹理的哪个部分。当我们开始[构建自定义几何体时（building custom geometry）](threejs-custom-buffergeometry.html)，我们会介绍它们。
+什么是纹理坐标？它们是添加到一块几何体的每个顶点上的数据，用于指定该顶点对应的纹理的哪个部分。当我们开始[构建自定义几何体时（building custom geometry）](custom-buffergeometry.html)，我们会介绍它们。
 
 ## <a name="loading"></a> 加载纹理
 
@@ -124,7 +124,7 @@ loader.load('resources/images/wall.jpg', (texture) => {
 
 除非你清除你的浏览器的缓存并且连接缓慢，你不太可能看到任何差异，但放心，它正在等待纹理加载。
 
-{{{example url="../threejs-textured-cube-wait-for-texture.html" }}}
+{{{example url="textured-cube-wait-for-texture.html" }}}
 
 ### <a name="waitmany"></a> 等待多个纹理加载
 
@@ -210,7 +210,7 @@ loadManager.onLoad = () => {
 ```
 除非你清除了你的缓存，而且连接速度很慢，否则你可能看不到加载栏。
 
-{{{example url="../threejs-textured-cube-wait-for-all-textures.html" }}}
+{{{example url="textured-cube-wait-for-all-textures.html" }}}
 
 ## <a name="cors"></a> 从其他源加载纹理
 
@@ -224,7 +224,7 @@ loadManager.onLoad = () => {
 
 注意，这里没有提到任何关于压缩的问题。我可以做一个.jpg的图片，然后把它的压缩率设置的超级高。比如说我在做一个房子的场景。在房子里面有一张桌子，我决定在桌子的顶面放上这个木质的纹理
 
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 那张图片只有157k，所以下载起来会比较快，但[实际上它的大小是3024×3761像素](resources/images/compressed-but-large-wood-texture.jpg).。按照上面的公式，那就是
 
@@ -246,7 +246,7 @@ loadManager.onLoad = () => {
 
 让我们把这个16x16的纹理应用到
 
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
 
 一个立方体上。
 
@@ -268,7 +268,7 @@ GPU怎么知道小立方体的每一个像素需要使用哪些颜色？如果�
 
 Mips 是纹理的副本，每一个都是前一个 mip 的一半宽和一半高，其中的像素已经被混合以制作下一个较小的 mip。Mips一直被创建，直到我们得到1x1像素的Mip。对于上面的图片，所有的Mip最终会变成这样的样子
 
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 现在，当立方体被画得很小，只有1或2个像素大时，GPU可以选择只用最小或次小级别的mip来决定让小立方体变成什么颜色。
 
@@ -495,11 +495,11 @@ gui.add(new DegRadHelper(texture, 'rotation'), 'value', -360, 360)
 
 最后需要注意的是，如果你改变了纹理上的 `wrapS` 或 `wrapT`，你还必须设置 [`texture.needsUpdate`](Texture.needsUpdate)，以便three.js知道并应用这些设置。其他的设置会自动应用。
 
-{{{example url="../threejs-textured-cube-adjust.html" }}}
+{{{example url="textured-cube-adjust.html" }}}
 
 这只是进入纹理主题的一个步骤。在某些时候，我们将介绍纹理坐标以及其他9种可应用于材料的纹理类型。
 
-现在我们继续说说[灯光](threejs-lights.html)。
+现在我们继续说说[灯光](lights.html)。
 
 <!--
 alpha
@@ -513,5 +513,5 @@ metalness
 roughness
 -->
 
-<link rel="stylesheet" href="resources/threejs-textures.css">
-<script type="module" src="resources/threejs-textures.js"></script>
+<link rel="stylesheet" href="../resources/threejs-textures.css">
+<script type="module" src="../resources/threejs-textures.js"></script>

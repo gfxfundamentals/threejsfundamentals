@@ -2,21 +2,21 @@ Title: Three.js 후처리
 Description: Three.js로 후처리하는 법을 알아봅니다
 TOC: 후처리
 
-*후처리(post processing)*란 보통 2D 이미지에 어떤 효과나 필터를 넣는 것을 의미합니다. Three.js는 다양한 mesh로 이루어진 장면을 2D 이미지로 렌더링하죠. 일반적으로 이 이미지는 바로 캔버스를 통해 브라우저 화면에 렌더링됩니다. 하지만 대신 이 이미지를 [렌더 타겟에 렌더링하고](threejs-rendertargets.html) 캔버스에 보내기 전 임의의 *후처리* 효과를 줄 수 있습니다.
+*후처리(post processing)*란 보통 2D 이미지에 어떤 효과나 필터를 넣는 것을 의미합니다. Three.js는 다양한 mesh로 이루어진 장면을 2D 이미지로 렌더링하죠. 일반적으로 이 이미지는 바로 캔버스를 통해 브라우저 화면에 렌더링됩니다. 하지만 대신 이 이미지를 [렌더 타겟에 렌더링하고](rendertargets.html) 캔버스에 보내기 전 임의의 *후처리* 효과를 줄 수 있습니다.
 
 인스타그램 필터, 포토샵 필터 등이 후처리의 좋은 예이죠.
 
-Three.js에는 후처리를 순차적으로 처리해주는 모범 클래스가 있습니다. 일단 `EffectComposer`의 인스턴스를 만들고 여기에 `Pass` 객체(효과, 필터)들을 추가합니다. 그리고 `EffectComposer.render` 메서드를 호출하면 현재 장면을 [렌더 타겟](threejs-rendertargets.html)에 렌더링한 뒤 각 pass*를 순서대로 적용합니다.
+Three.js에는 후처리를 순차적으로 처리해주는 모범 클래스가 있습니다. 일단 `EffectComposer`의 인스턴스를 만들고 여기에 `Pass` 객체(효과, 필터)들을 추가합니다. 그리고 `EffectComposer.render` 메서드를 호출하면 현재 장면을 [렌더 타겟](rendertargets.html)에 렌더링한 뒤 각 pass*를 순서대로 적용합니다.
 
 ※ 편의상 `Pass` 인스턴스를 pass로 번역합니다.
 
 이 pass는 비넷(vignette), 흐림(blur), 블룸(bloom), 필름 그레인(film grain) 효과 또는 hue, 채도(saturation), 대비(contrast) 조정 등의 후처리 효과로, 이 효과를 모두 적용한 결과물을 최종적으로 캔버스에 렌더링합니다.
 
-여기서 어느 정도 `EffectComposer`의 원리를 이해할 필요가 있습니다. `EffectComposer`는 두 개의 [렌더 타겟](threejs-rendertargets.html)을 사용합니다. 편의상 이 둘을 **rtA**, **rtB**라고 부르도록 하죠.
+여기서 어느 정도 `EffectComposer`의 원리를 이해할 필요가 있습니다. `EffectComposer`는 두 개의 [렌더 타겟](rendertargets.html)을 사용합니다. 편의상 이 둘을 **rtA**, **rtB**라고 부르도록 하죠.
 
 `EffectComposer.addPass`를 각 pass를 적용할 순서대로 호출하고 `EffectComposer.render`를 호출하면 pass*는 아래 그림과 같은 순서로 적용됩니다.
 
-<div class="threejs_center"><img src="resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
 
 먼저 `RenderPass`에 넘긴 장면을 **rtA**에 렌더링합니다. 그리고 **rtA**를 다음 pass에 넘겨주면 해당 pass는 **rtA**에 pass를 적용한 결과를 **rtB**에 렌더링합니다. 그런 다음 **rtB**를 다음 pass로 넘겨 적용한 결과를 **rtA**에, **rtA**에 pass를 적용한 결과를 다시 **rtB**에, 이런 식으로 모든 pass가 끝날 때까지 계속 반복합니다.
 
@@ -38,7 +38,7 @@ Three.js에는 후처리를 순차적으로 처리해주는 모범 클래스가 
 
 지정한 렌더 타겟이 아닌 캔버스에 렌더링할지의 여부입니다. 보통 `EffectComposer`에 추가하는 마지막 pass에 이 옵션을 true로 설정합니다.
 
-간단한 예제를 만들어봅시다. [반응형 디자인에 관한 글](threejs-responsive.html)에서 썼던 예제를 가져오겠습니다.
+간단한 예제를 만들어봅시다. [반응형 디자인에 관한 글](responsive.html)에서 썼던 예제를 가져오겠습니다.
 
 추가로 먼저 `EffectComposer` 인스턴스를 생성합니다.
 
@@ -82,10 +82,10 @@ composer.addPass(filmPass);
 또 이 클래스들을 사용하기 위해 여러 스크립트를 불러와야 합니다.
 
 ```js
-import { EffectComposer } from './resources/threejs/r132/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from './resources/threejs/r132/examples/jsm/postprocessing/RenderPass.js';
-import { BloomPass } from './resources/threejs/r132/examples/jsm/postprocessing/BloomPass.js';
-import { FilmPass } from './resources/threejs/r132/examples/jsm/postprocessing/FilmPass.js';
+import { EffectComposer } from '/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from '/examples/jsm/postprocessing/RenderPass.js';
+import { BloomPass } from '/examples/jsm/postprocessing/BloomPass.js';
+import { FilmPass } from '/examples/jsm/postprocessing/FilmPass.js';
 ```
 
 대부분의 후처리에는 `EffectComposer.js`와 `RenderPass.js`가 필수입니다.
@@ -125,7 +125,7 @@ import { FilmPass } from './resources/threejs/r132/examples/jsm/postprocessing/F
 
 `EffectComposer.render` 메서드는 인자로 마지막 프레임을 렌더링한 이후의 시간값인 `deltaTime`을 인자로 받습니다. pass에 애니메이션이 필요할 경우를 대비해 이 값을 넘겨주기 위해서이죠. 예제의 경우에는 `FilmPass`에 애니메이션이 있습니다.
 
-{{{example url="../threejs-postprocessing.html" }}}
+{{{example url="postprocessing.html" }}}
 
 런타임에 효과의 속성을 변경할 때는 보통 uniform의 value 값을 바꿉니다. GUI를 추가해 이 속성을 조정할 수 있게 만들어보죠. 어떤 속성을 어떻게 조작할 수 있는지는 해당 효과의 소스 코드를 열어봐야 알 수 있습니다.
 
@@ -179,7 +179,7 @@ const gui = new GUI();
 
 이제 각 설정을 조작할 수 있습니다.
 
-{{{example url="../threejs-postprocessing-gui.html" }}}
+{{{example url="postprocessing-gui.html" }}}
 
 여기까지 잘 따라왔다면 이제 효과를 직접 만들어볼 수 있습니다.
 
@@ -247,8 +247,8 @@ gui.add(colorPass.uniforms.color.value, 'b', 0, 4).name('blue');
 
 색을 혼합하는 간단한 후처리 쉐이더를 완성했습니다.
 
-{{{example url="../threejs-postprocessing-custom.html" }}}
+{{{example url="postprocessing-custom.html" }}}
 
 언급했듯 이 글에서 GLSL의 작성법과 사용자 지정 쉐이더를 만드는 법을 모두 다루기는 무리입니다. WebGL이 어떻게 동작하는지 알고 싶다면 [이 시리즈](https://webglfundamentals.org)를 참고하세요. [Three.js의 후처리 쉐이더 소스 코드](https://github.com/mrdoob/three.js/tree/master/examples/js/shaders)를 분석하는 것도 좋은 방법입니다. 상대적으로 복잡한 쉐이더도 있지만 작은 것부터 차근차근 살펴본다면 언젠가 전체를 이해할 수 있을 거예요.
 
-아쉽게도 Three.js의 후처리 효과 대부분은 공식 문서가 없어 [예제를 참고하거나](https://github.com/mrdoob/three.js/tree/master/examples) [후처리 효과의 소스 코드](https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing)를 직접 분석해야 합니다. 부디 이 글과 이 시리즈의 [렌더 타겟에 관한 글](threejs-rendertargets.html)이 좋은 출발점을 마련해주었으면 좋겠네요.
+아쉽게도 Three.js의 후처리 효과 대부분은 공식 문서가 없어 [예제를 참고하거나](https://github.com/mrdoob/three.js/tree/master/examples) [후처리 효과의 소스 코드](https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing)를 직접 분석해야 합니다. 부디 이 글과 이 시리즈의 [렌더 타겟에 관한 글](rendertargets.html)이 좋은 출발점을 마련해주었으면 좋겠네요.

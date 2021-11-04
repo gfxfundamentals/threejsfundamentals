@@ -2,7 +2,7 @@ Title: Three.js 图元
 Description: 关于 Three.js 图元
 TOC: 图元
 
-这篇文章是关于 Three.js 系列文章中的一篇。第一篇是 [基础](threejs-fundamentals.html)。
+这篇文章是关于 Three.js 系列文章中的一篇。第一篇是 [基础](fundamentals.html)。
 如果你还没有阅读，建议从那里开始。
 
 Three.js 有很多图元。图元就是一些 3D 的形状，在运行时根据大量参数生成。
@@ -60,9 +60,9 @@ Three.js 有很多图元。图元就是一些 3D 的形状，在运行时根据�
 使用顶点的数量在创建时就定好了，相应的创建存储，填充顶点数据。
 但用 `Geometry` 你就能随时添加顶点。
 
-我们会在 [另一篇文章](threejs-custom-buffergeometry.html) 中来讲创建自定义几何体。
+我们会在 [另一篇文章](custom-buffergeometry.html) 中来讲创建自定义几何体。
 现在，我们来为创建每一个图元作为例子。
-我们从 [上一篇文章的例子](threejs-responsive.html) 开始。
+我们从 [上一篇文章的例子](responsive.html) 开始。
 
 在接近顶部的地方，先设置背景颜色:
 
@@ -159,7 +159,7 @@ function addSolidGeometry(x, y, geometry) {
 
 这是结果：
 
-{{{example url="../threejs-primitives.html" }}}
+{{{example url="primitives.html" }}}
 
 上面的模式有一些值得注意的例外。最大的可能就是 `TextGeometry`。在为文字生成网格前需要先加载 3D 字体数据。
 数据的加载是异步的，所以在尝试创建几何体前需要等待。通过将字体加载 Promise 化，我们可以让这个过程更简单。
@@ -168,7 +168,7 @@ function addSolidGeometry(x, y, geometry) {
 
 ```js
 {
-  const loader = new THREE.FontLoader();
+  const loader = new FontLoader();
   // 将字体加载过程 promise 化
   function loadFont(url) {
     return new Promise((resolve, reject) => {
@@ -177,8 +177,8 @@ function addSolidGeometry(x, y, geometry) {
   }
 
   async function doit() {
-    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejsfundamentals: url */
-    const geometry = new THREE.TextGeometry('three.js', {
+    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejs.org: url */
+    const geometry = new TextGeometry('three.js', {
       font: font,
       size: 3.0,
       height: .2,
@@ -208,13 +208,13 @@ function addSolidGeometry(x, y, geometry) {
 
 如果我们像之前的例子一样接着调用 `addSolidGeometry`，它又会设置位置，这是不对的。
 在我们的例子中，我们创建了一个 `Object3D` 是 Three.js 场景图中的标准节点。
-`Mesh` 也是继承自 `Object3D` 的。我们会在 [另一篇文章中涉及场景图是如何工作的](threejs-scenegraph.html)。
+`Mesh` 也是继承自 `Object3D` 的。我们会在 [另一篇文章中涉及场景图是如何工作的](scenegraph.html)。
 现在知道它们像 DOM 的节点就行了，子节点是相对与父节点绘制的。
 创建一个 `Object3D`，并将网格设置成它的子节点，我们就能将 `Object3D` 放置在任何位置，并保持我们之前设置的中心。
 
 如果不这么做，文字会偏离中心。
 
-{{{example url="../threejs-primitives-text.html" }}}
+{{{example url="primitives-text.html" }}}
 
 注意，左边的没有绕着中心旋转，而右边的绕着中心旋转。
 
@@ -311,11 +311,11 @@ const material = new THREE.PointsMaterial({
 所以，选择适合你情况的方案。细分的越少，运行的越流畅，使用的内存也会更少。
 你需要根据你的具体情况选择合适的方案。
 
-如果上面的形状不符合你的使用需求，你可以从 [.obj 文件](threejs-load-obj.html) 或 [.gltf 文件](threejs-load-gltf.html) 加载几何体。
-你也可以创建 [自定义 Geometry](threejs-custom-buffergeometry.html)。
+如果上面的形状不符合你的使用需求，你可以从 [.obj 文件](load-obj.html) 或 [.gltf 文件](load-gltf.html) 加载几何体。
+你也可以创建 [自定义 Geometry](custom-buffergeometry.html)。
 
-接下来是 [Three.js 的场景图是如何工作的及如何使用它](threejs-scenegraph.html)。
+接下来是 [Three.js 的场景图是如何工作的及如何使用它](scenegraph.html)。
 
-<link rel="stylesheet" href="resources/threejs-primitives.css">
-<script type="module" src="resources/threejs-primitives.js"></script>
+<link rel="stylesheet" href="../resources/threejs-primitives.css">
+<script type="module" src="../resources/threejs-primitives.js"></script>
 

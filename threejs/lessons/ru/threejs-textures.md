@@ -3,8 +3,8 @@ Description: Использование текстур в three.js
 TOC: Текстуры
 
 Эта статья является частью серии статей о three.js. 
-Первая статья - [основы Three.js](threejs-fundamentals.html).
-[Предыдущая статья](threejs-setup.html) была о настройках окружения для этой статьи.
+Первая статья - [основы Three.js](fundamentals.html).
+[Предыдущая статья](setup.html) была о настройках окружения для этой статьи.
 Если вы их еще не читали, советую вам сделать это.
 
 Текстуры - это своего рода большая тема в Three.js, и я не уверен на 100%, на каком 
@@ -34,7 +34,7 @@ TOC: Текстуры
 давайте поместим это изображение на куб.
 
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
+  <img src="../examples/resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 Мы изменим один из наших первых примеров. Все, что нам нужно сделать, это создать `TextureLoader`. Вызовите 
@@ -52,7 +52,7 @@ const material = new THREE.MeshBasicMaterial({
 
 Обратите внимание, что мы используем `MeshBasicMaterial` поэтому не нужно никаких источников света.
 
-{{{example url="../threejs-textured-cube.html" }}}
+{{{example url="textured-cube.html" }}}
 
 ## <a name="six"></a> 6 текстур, разные для каждой грани куба
 
@@ -60,14 +60,14 @@ const material = new THREE.MeshBasicMaterial({
 
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -93,7 +93,7 @@ const loader = new THREE.TextureLoader();
 
 Оно работает!
 
-{{{example url="../threejs-textured-cube-6-textures.html" }}}
+{{{example url="textured-cube-6-textures.html" }}}
 
 Однако следует отметить, что по умолчанию единственной геометрией, которая поддерживает 
 несколько материалов, является `BoxGeometry` и `BoxGeometry`. В других случаях вам 
@@ -150,7 +150,7 @@ loader.load('../resources/images/wall.jpg', (texture) => {
 Если вы не очистите кеш вашего браузера и у вас не будет медленного соединения, 
 вы вряд ли увидите разницу, но будьте уверены, что она ожидает загрузки текстуры.
 
-{{{example url="../threejs-textured-cube-wait-for-texture.html" }}}
+{{{example url="textured-cube-wait-for-texture.html" }}}
 
 ### <a name="waitmany"></a> Ожидание загрузки нескольких текстур
 
@@ -242,7 +242,7 @@ loadManager.onLoad = () => {
 
 Если вы не очистите свой кеш и у вас медленное соединение, вы можете не увидеть полосу загрузки.
 
-{{{example url="../threejs-textured-cube-wait-for-all-textures.html" }}}
+{{{example url="textured-cube-wait-for-all-textures.html" }}}
 
 ## <a name="cors"></a> Загрузка текстур из других источников. CROS
 
@@ -266,7 +266,7 @@ loadManager.onLoad = () => {
 .jpg и установить его компрессию очень высокой. Например, допустим, я делал сцену из дома. 
 Внутри дома есть стол, и я решил положить эту текстуру дерева на верхнюю поверхность стола.
 
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 Это изображение всего 157 Кб, поэтому оно будет загружаться относительно быстро, но на 
 [самом деле оно имеет размер 3024 x 3761 пикселей](resources/images/compressed-but-large-wood-texture.jpg). 
@@ -301,7 +301,7 @@ PNG-файлы имеют сжатие без потерь, поэтому PNG-�
 
 Давайте применим эту текстуру 16x16
 
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="border" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="border" align="center"></div>
 
 Это куб
 
@@ -330,7 +330,7 @@ Mips - это копии текстуры, каждая из которых в �
 Мипы создаются до тех пор, пока мы не доберемся до 1 х 1 пикселя. 
 Поскольку изображение выше всех мипов в конечном итоге будет что-то вроде этого
 
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 Теперь, когда куб нарисован настолько маленьким, что его размер составляет всего 1 или 2 пикселя, 
 графический процессор может использовать только наименьший или почти минимальный уровень мипа, 
@@ -596,12 +596,12 @@ gui.add(new DegRadHelper(texture, 'rotation'), 'value', -360, 360)
 `wrapT` на текстуре, вы также должны установить [`texture.needsUpdate`](Texture.needsUpdate) 
 так, чтобы Three.js знал, чтобы применить эти настройки. Другие настройки применяются автоматически.
 
-{{{example url="../threejs-textured-cube-adjust.html" }}}
+{{{example url="textured-cube-adjust.html" }}}
 
 Это только один шаг в тему текстур. В какой-то момент мы рассмотрим текстурные координаты, 
 а также 9 других типов текстур, которые можно применить к материалам.
 
-А пока давайте перейдем к [свету](threejs-lights.html).
+А пока давайте перейдем к [свету](lights.html).
 
 <!--
 alpha 
@@ -615,5 +615,5 @@ metalness
 roughness
 -->
 
-<script type="module" src="resources/threejs-textures.js"></script>
-<link rel="stylesheet" href="resources/threejs-textures.css">
+<script type="module" src="../resources/threejs-textures.js"></script>
+<link rel="stylesheet" href="../resources/threejs-textures.css">

@@ -5,7 +5,7 @@ TOC: Add a Background or Skybox
 Most of the articles here use a solid color for a background.
 
 Adding as static background can be as simple as setting some CSS. Taking
-an example from [the article on making THREE.js responsive](threejs-responsive.html)
+an example from [the article on making THREE.js responsive](responsive.html)
 we only need to change 2 things.
 
 We need to add some CSS to our canvas to set its background to an image
@@ -40,10 +40,10 @@ function main() {
 
 And we get a background.
 
-{{{example url="../threejs-background-css.html" }}}
+{{{example url="background-css.html" }}}
 
 If we want the background to be able to be affected by [post processing
-effects](threejs-post-processing.html) then we need to draw the background using
+effects](post-processing.html) then we need to draw the background using
 THREE.js.
 
 THREE.js makes this some what simple. We can just set the background of the scene to
@@ -57,7 +57,7 @@ scene.background = bgTexture;
 
 which gives us
 
-{{{example url="../threejs-background-scene-background.html" }}}
+{{{example url="background-scene-background.html" }}}
 
 This gets us a background image but its stretched to fit the screen.
 
@@ -92,9 +92,9 @@ function render(time) {
 
 and now THREE.js drawing the background. There is no visible difference from
 the CSS version at the top but now if we used a [post processing
-effect](threejs-post-processing.html) the background would be affected too.
+effect](post-processing.html) the background would be affected too.
 
-{{{example url="../threejs-background-scene-background-fixed-aspect.html" }}}
+{{{example url="background-scene-background-fixed-aspect.html" }}}
 
 Of course a static background is not usually what we want in a 3D scene. Instead
 we usually want some kind of *skybox*. A skybox is just that, box with the sky
@@ -106,7 +106,7 @@ it, draw it from the inside. On each side of the cube put a texture (using
 texture coordinates) that looks like some image of the horizon. It's also often
 common to use a sky sphere or a sky dome with a texture drawn on it. You can
 probably figure that one out on your own. Just make a cube or sphere, 
-[apply a texture](threejs-textures.html), mark it as `THREE.BackSide` so we 
+[apply a texture](textures.html), mark it as `THREE.BackSide` so we 
 render the inside instead of the outside, and either put it in your scene directly 
 or like above, or, make 2 scenes, a special one to draw the skybox/sphere/dome and the
 normal one to draw everything else. You'd use your normal `PerspectiveCamera` to
@@ -121,14 +121,14 @@ Here are the 6 images of a cubemap from the computer history museum in Mountain
 View, California.
 
 <div class="threejs_center">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
 </div>
 <div class="threejs_center">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
 </div>
 
 To use them we use `CubeTextureLoader` to load them and then use that as a the
@@ -180,7 +180,7 @@ function render(time) {
 Let's add some controls in so we can rotate the camera.
 
 ```js
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -201,7 +201,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 and try it out. Drag on the example to rotate the camera and see the cubemap
 surrounds us.
 
-{{{example url="../threejs-background-cubemap.html" }}}
+{{{example url="background-cubemap.html" }}}
 
 Another option is to use an Equirectangular map. This is the kind of picture a
 [360 camera](https://google.com/search?q=360+camera) takes.
@@ -209,7 +209,7 @@ Another option is to use an Equirectangular map. This is the kind of picture a
 [Here's one](https://hdrihaven.com/hdri/?h=tears_of_steel_bridge) I found from
 [this site](https://hdrihaven.com).
 
-<div class="threejs_center"><img src="../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
 
 It's not much different. First we load the equirectangular image as a texture
 and then, in the callback after it has loaded, we can call `WebGLCubeRenderTarget.fromEquirectangularTexture`
@@ -242,7 +242,7 @@ Passing in the height of the equirectangular image seems like a good bet.
 
 And that's all there is to it.
 
-{{{example url="../threejs-background-equirectangularmap.html" }}}
+{{{example url="background-equirectangularmap.html" }}}
 
 Rather than do it at load time you can also convert an equirectangular image
 to a cubemap beforehand. [Here's a site that will do it for you](https://matheowis.github.io/HDRI-to-CubeMap/).

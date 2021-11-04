@@ -3,7 +3,7 @@ Description: Three.jsのテクスチャの使い方
 TOC: テクスチャ
 
 この記事はthree.jsについてのシリーズ記事の一つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでない人は、そちらから先に読んでみるといいかもしれません。
 
 テクスチャはThree.jsの大きなトピックの一つです。
@@ -33,7 +33,7 @@ Three.jsにはたくさんのトピックがあり、互いに関係している
 例えば、この画像を立方体に乗せてみましょう。
 
 <div class="threejs_center">
-  <img src="../resources/images/wall.jpg" style="width: 600px;" class="border" >
+  <img src="../examples/resources/images/wall.jpg" style="width: 600px;" class="border" >
 </div>
 
 最初の例を修正してみましょう。`TextureLoader`を作ることで、必要なことはすべてできます。
@@ -51,7 +51,7 @@ const material = new THREE.MeshBasicMaterial({
 
 `MeshBasicMaterial`を使っているので、光源が必要ないことに注意してください。
 
-{{{example url="../threejs-textured-cube.html" }}}
+{{{example url="textured-cube.html" }}}
 
 ## <a name="six"></a> 立方体の各面に異なる6つのテクスチャを貼り付ける
 
@@ -59,14 +59,14 @@ const material = new THREE.MeshBasicMaterial({
 
 <div class="threejs_center">
   <div>
-    <img src="../resources/images/flower-1.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-2.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-3.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-1.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-2.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-3.jpg" style="width: 100px;" class="border" >
   </div>
   <div>
-    <img src="../resources/images/flower-4.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-5.jpg" style="width: 100px;" class="border" >
-    <img src="../resources/images/flower-6.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-4.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-5.jpg" style="width: 100px;" class="border" >
+    <img src="../examples/resources/images/flower-6.jpg" style="width: 100px;" class="border" >
   </div>
 </div>
 
@@ -92,7 +92,7 @@ const loader = new THREE.TextureLoader();
 
 動きました！
 
-{{{example url="../threejs-textured-cube-6-textures.html" }}}
+{{{example url="textured-cube-6-textures.html" }}}
 
 ただし、全ての種類のジオメトリが複数のマテリアルに対応しているわけではないことに注意してください。
 `BoxGeometry`と`BoxGeometry`は、それぞれの面に6つのマテリアルを使えます。
@@ -108,7 +108,7 @@ const loader = new THREE.TextureLoader();
 
 テクスチャの座標とはなんでしょうか？ジオメトリ頂点に与えられたデータのことで、
 テクスチャのどの部分がその頂点に対応するか指定するものです。
-[カスタムジオメトリの構築](threejs-custom-buffergeometry.html)を始めるときに説明します。
+[カスタムジオメトリの構築](custom-buffergeometry.html)を始めるときに説明します。
 
 ## <a name="loading"></a> テクスチャの読み込み
 
@@ -150,7 +150,7 @@ loader.load('resources/images/wall.jpg', (texture) => {
 ブラウザのキャッシュをクリアし、接続が遅くならない限り、違いが分かることはないと思いますが、
 ちゃんとテクスチャが読み込まれるのを待っているので、安心してください。
 
-{{{example url="../threejs-textured-cube-wait-for-texture.html" }}}
+{{{example url="textured-cube-wait-for-texture.html" }}}
 
 ### <a name="waitmany"></a> 複数テクスチャの読み込みを待つ
 
@@ -241,7 +241,7 @@ loadManager.onLoad = () => {
 
 キャッシュを削除して低速なコネクションを作らない限りは、プログレスバーを見ることできないかもしれません。
 
-{{{example url="../threejs-textured-cube-wait-for-all-textures.html" }}}
+{{{example url="textured-cube-wait-for-all-textures.html" }}}
 
 ## <a name="cors"></a> 異なるオリジンからのテクスチャの読み込み
 
@@ -265,7 +265,7 @@ three.jsで使うことができるようなヘッダーを送っています。
 圧縮については言及していないことに注意してください。.jpgイメージを作り、超高圧縮することもできます。
 例えば、家のシーンを作っているとしましょう。家の中には、テーブルがあり、上面に木目のテクスチャを置くことに決めました。
 
-<div class="threejs_center"><img class="border" src="resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/compressed-but-large-wood-texture.jpg" align="center" style="width: 300px"></div>
 
 
 このイメージはたった157kなので、比較的速くダウンロードすることができます。しかし、
@@ -299,7 +299,7 @@ WebGLにおいて、JPGがPNGよりも省メモリではないことを覚えて
 
 この16x16のテクスチャを
 
-<div class="threejs_center"><img src="resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mip-low-res-enlarged.png" class="nobg" align="center"></div>
 
 立方体に適用してみます。
 
@@ -325,7 +325,7 @@ MIPはテクスチャのコピーで、ピクセルがブレンドされて次�
 MIPは1x1ピクセルのMIPが得られるまで作られます。
 全てのMIP上の画像はこのようになります。
 
-<div class="threejs_center"><img src="resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
+<div class="threejs_center"><img src="../resources/images/mipmap-low-res-enlarged.png" class="nobg" align="center"></div>
 
 さて、立方体が1、2ピクセルの小ささに描かれたとき、どんな色にするか決めるため、GPUは最も小さなMIPレベルか次に小さいMIPか選ぶことができます。
 
@@ -584,12 +584,12 @@ gui.add(new DegRadHelper(texture, 'rotation'), 'value', -360, 360)
 three.jsが設定の適用を知るために、[`texture.needsUpdate`](Texture.needsUpdate)も設定しなければならないことです。ほかの設定は自動的に適用されます。
 
 
-{{{example url="../threejs-textured-cube-adjust.html" }}}
+{{{example url="textured-cube-adjust.html" }}}
 
 これはテクスチャのトピックへの第一歩にすぎません。
 ある時点で、テクスチャの座標や、マテリアルが適用できる別の9種のテクスチャについても説明します。
 
-今のところは、[光源](threejs-lights.html)に進みましょう。
+今のところは、[光源](lights.html)に進みましょう。
 
 <!--
 alpha
@@ -603,5 +603,5 @@ metalness
 roughness
 -->
 
-<link rel="stylesheet" href="resources/threejs-textures.css">
-<script type="module" src="resources/threejs-textures.js"></script>
+<link rel="stylesheet" href="../resources/threejs-textures.css">
+<script type="module" src="../resources/threejs-textures.js"></script>

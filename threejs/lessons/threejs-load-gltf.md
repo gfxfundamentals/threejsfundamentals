@@ -2,7 +2,7 @@ Title: Three.js Loading a .GLTF File
 Description: Loading a .GLTF File
 TOC: Load a .GLTF file
 
-In a previous lesson we [loaded an .OBJ file](threejs-load-obj.html). If
+In a previous lesson we [loaded an .OBJ file](load-obj.html). If
 you haven't read it you might want to check it out first.
 
 As pointed out over there the .OBJ file format is very old and fairly
@@ -64,9 +64,9 @@ Searching the net I found [this low-poly city](https://sketchfab.com/models/edd1
 by [antonmoek](https://sketchfab.com/antonmoek) which seemed like if we're lucky
 might make a good example.
 
-<div class="threejs_center"><img src="resources/images/cartoon_lowpoly_small_city_free_pack.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/cartoon_lowpoly_small_city_free_pack.jpg"></div>
 
-Starting with [an example from the .OBJ article](threejs-load-obj.html) I removed the code
+Starting with [an example from the .OBJ article](load-obj.html) I removed the code
 for loading .OBJ and replaced it with code for loading .GLTF
 
 The old .OBJ code was
@@ -103,15 +103,15 @@ I kept the auto framing code as before
 We also need to include the `GLTFLoader` and we can get rid of the `OBJLoader`.
 
 ```html
--import {LoaderSupport} from './resources/threejs/r132/examples/jsm/loaders/LoaderSupport.js';
--import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
--import {MTLLoader} from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
-+import {GLTFLoader} from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
+-import {LoaderSupport} from '/examples/jsm/loaders/LoaderSupport.js';
+-import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
+-import {MTLLoader} from '/examples/jsm/loaders/MTLLoader.js';
++import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
 ```
 
 And running that we get
 
-{{{example url="../threejs-load-gltf.html" }}}
+{{{example url="load-gltf.html" }}}
 
 Magic! It just works, textures and all.
 
@@ -120,7 +120,7 @@ I needed to check if the scene had the cars as separate entities
 and if they were setup in a way I could use them.
 
 I wrote some code to dump put the scenegraph to the [JavaScript
-console](threejs-debugging-javascript.html).
+console](debugging-javascript.html).
 
 Here's the code to print out the scenegraph.
 
@@ -148,7 +148,7 @@ gltfLoader.load('resources/models/cartoon_lowpoly_small_city_free_pack/scene.glt
   console.log(dumpObject(root).join('\n'));
 ```
 
-[Running that](../threejs-load-gltf-dump-scenegraph.html) I got this listing
+[Running that](../examples/load-gltf-dump-scenegraph.html) I got this listing
 
 ```text
 OSG_Scene [Scene]
@@ -247,7 +247,7 @@ of each child of `cars`.
 
 And we get
 
-{{{example url="../threejs-load-gltf-rotate-cars.html" }}}
+{{{example url="load-gltf-rotate-cars.html" }}}
 
 Hmmm, it looks like unfortunately this scene wasn't designed to
 animate the cars as their origins are not setup for that purpose.
@@ -306,7 +306,7 @@ the new `Object3D` a `cars` array.
 
 This fixes the orientation of the cars. 
 
-{{{example url="../threejs-load-gltf-rotate-cars-fixed.html" }}}
+{{{example url="load-gltf-rotate-cars-fixed.html" }}}
 
 Now let's drive them around.
 
@@ -316,12 +316,12 @@ drives down all the roads and then put the cars on the path.
 Here's a picture from Blender about half way through building
 the path.
 
-<div class="threejs_center"><img src="resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
+<div class="threejs_center"><img src="../resources/images/making-path-for-cars.jpg" style="width: 1094px"></div>
 
 I needed a way to get the data for that path out of Blender.
 Fortunately I was able to select just my path and export .OBJ checking "write nurbs".
 
-<div class="threejs_center"><img src="resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
+<div class="threejs_center"><img src="../resources/images/blender-export-obj-write-nurbs.jpg" style="width: 498px"></div>
 
 Opening the .OBJ file I was able to get a list of points
 which I formatted into this
@@ -359,7 +359,7 @@ it tries to make a smooth curve going through the points.
 In fact putting those points in directly will generate
 a curve like this
 
-<div class="threejs_center"><img src="resources/images/car-curves-before.png" style="width: 400px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-before.png" style="width: 400px"></div>
 
 but we want a sharper corners. It seemed like if we computed
 some extra points we could get what we want. For each pair
@@ -369,7 +369,7 @@ and pass the result to `CatmullRomCurve3`.
 
 This will give us a curve like this
 
-<div class="threejs_center"><img src="resources/images/car-curves-after.png" style="width: 400px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-after.png" style="width: 400px"></div>
 
 Here's the code to make the curve 
 
@@ -429,7 +429,7 @@ The second part of that code generates 250 points
 from the curve and then creates an object to display
 the lines made by connecting those 250 points.
 
-Running [the example](../threejs-load-gltf-car-path.html) I didn't see
+Running [the example](../examples/load-gltf-car-path.html) I didn't see
 the curve. To make it visible I made it ignore the depth test and
 render last
 
@@ -441,12 +441,12 @@ render last
 
 And that's when I discovered it was way too small.
 
-<div class="threejs_center"><img src="resources/images/car-curves-too-small.png" style="width: 498px"></div>
+<div class="threejs_center"><img src="../resources/images/car-curves-too-small.png" style="width: 498px"></div>
 
 Checking the hierarchy in Blender I found out that the artist had
 scaled the node all the cars are parented to.
 
-<div class="threejs_center"><img src="resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
+<div class="threejs_center"><img src="../resources/images/cars-scale-0.01.png" style="width: 342px;"></div>
 
 Scaling is bad for real time 3D apps. It causes all kinds of
 issues and ends up being no end of frustration when doing
@@ -493,7 +493,7 @@ function dumpObject(obj, lines, isLast = true, prefix = '') {
 }
 ```
 
-And the result from [running it](../threejs-load-gltf-dump-scenegraph-extra.html)
+And the result from [running it](../examples/load-gltf-dump-scenegraph-extra.html)
 
 ```text
 OSG_Scene [Scene]
@@ -668,14 +668,14 @@ for (const car of loadedCars.children.slice()) {
 
 And the result.
 
-{{{example url="../threejs-load-gltf-animated-cars.html" }}}
+{{{example url="load-gltf-animated-cars.html" }}}
 
 Not bad for a few minutes work.
 
 The last thing I wanted to do is turn on shadows.
 
 To do this I grabbed all the GUI code from the `DirectionalLight` shadows
-example in [the article on shadows](threejs-shadows.html) and pasted it
+example in [the article on shadows](shadows.html) and pasted it
 into our latest code.
 
 Then, after loading, we need to turn on shadows on all the objects.
@@ -743,7 +743,7 @@ const scene = new THREE.Scene();
 
 And ... shadows
 
-{{{example url="../threejs-load-gltf-shadows.html" }}}
+{{{example url="load-gltf-shadows.html" }}}
 
 I hope walking through this project was useful and showed some
 good examples of working though some of the issues of loading

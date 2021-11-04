@@ -3,7 +3,7 @@ Description: 異なるディスプレイサイズにThree.jsを適用させる�
 TOC: レスポンシブデザイン
 
 これはthree.jsの2番目の連載記事です。
-最初の記事は [Three.jsの基礎知識](threejs-fundamentals.html) でした。
+最初の記事は [Three.jsの基礎知識](fundamentals.html) でした。
 まだ読んでいない場合はそこから始めて下さい。
 
 この記事はthree.jsアプリをどんな状況にもレスポンシブにする方法を説明します。
@@ -44,16 +44,16 @@ htmlとbodyの高さは100%にしウィンドウ一杯に設定します。
 
 その結果がこちらにあります。
 
-{{{example url="../threejs-responsive-no-resize.html" }}}
+{{{example url="responsive-no-resize.html" }}}
 
 canvasがページを埋め尽くすようになりましたが、2つ問題があります。
 1つはキューブが伸びています。キューブは立方体でなく箱のようなものです。高すぎて広がりすぎています。サンプルを開いてブラウザのウィンドウサイズをリサイズすると、キューブが伸びていて高すぎるのがわかります。
 
-<img src="resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
 
 2つ目の問題は解像度が低い、または濃淡にムラがありぼやけて見える事です。ウィンドウを大きく引き伸ばすとこの問題がわかります。
 
-<img src="resources/images/resize-low-res.png" class="threejs_center nobg">
+<img src="../resources/images/resize-low-res.png" class="threejs_center nobg">
 
 まず引き伸びている問題を解決しましょう。そのためにはカメラのアスペクトをcanvasの表示サイズのアスペクトに設定する必要があります。canvasの `clientWidth` と `clientHeight` を参照する事で設定を行う事ができます。
 
@@ -72,11 +72,11 @@ function render(time) {
 
 これでキューブが歪むのを止められます。
 
-{{{example url="../threejs-responsive-update-camera.html" }}}
+{{{example url="responsive-update-camera.html" }}}
 
 サンプルを別ウィンドウで開きウィンドウのサイズを変更すると、キューブが縦にも横にも伸びていない事がわかるはずです。ウィンドウの大きさに関係なく、正しいアスペクトを保っています。
 
-<img src="resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
 
 次はブロックノイズを修正していきましょう。
 
@@ -130,21 +130,21 @@ function render(time) {
 
 キャンバスの表示サイズが変更されて `resizeRendererToDisplaySize` が `true` を返した場合のみ、カメラのアスペクトを設定します。
 
-{{{example url="../threejs-responsive.html" }}}
+{{{example url="responsive.html" }}}
 
 これでキャンバスの表示サイズに合った解像度でレンダリングされるようになりました。
 
-CSSにリサイズ処理を任せた場合のポイントを明確にするために、このコードを [分離した `.js` ファイル](../threejs-responsive.js) に入れてみましょう。
+CSSにリサイズ処理を任せた場合のポイントを明確にするために、このコードを [分離した `.js` ファイル](../examples/threejs-responsive.js) に入れてみましょう。
 ここではCSSがサイズを選択するいくつかのサンプルがあります。
 それらが動作するようにゼロからコードを変更しなければならなかった事に気づくでしょう。
 
 文章の段落の真ん中にキューブを置いてみましょう。
 
-{{{example url="../threejs-responsive-paragraph.html" startPane="html" }}}
+{{{example url="responsive-paragraph.html" startPane="html" }}}
 
 エディタスタイルのレイアウトで右側のコントロールエリアのサイズを変更できるようにしたのと同じコードです。
 
-{{{example url="../threejs-responsive-editor.html" startPane="html" }}}
+{{{example url="responsive-editor.html" startPane="html" }}}
 
 注目すべき重要な部分はコードが変更されていない事です。HTMLとCSSだけが変更されました。
 
@@ -199,8 +199,8 @@ three.jsを使っていると実際のキャンバスの描画バッファのサ
 
 上のコードを使った例です。
 
-{{{example url="../threejs-responsive-hd-dpi.html" }}}
+{{{example url="responsive-hd-dpi.html" }}}
 
 違いがわかりにくいかもしれませんが、HD-DPIディスプレイをお持ちの方はこのサンプルを上のサンプルと比較してみて下さい。エッジがより鮮明になっている事がわかると思います。
 
-基礎な内容ですがこの記事ではとても基本的な所を取り上げました。次は[three.jsが提供する基本的なプリミティブについて簡単に説明します。](threejs-primitives.html)
+基礎な内容ですがこの記事ではとても基本的な所を取り上げました。次は[three.jsが提供する基本的なプリミティブについて簡単に説明します。](primitives.html)

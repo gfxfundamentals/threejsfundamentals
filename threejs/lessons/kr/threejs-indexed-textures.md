@@ -2,16 +2,16 @@ Title: 피킹과 색상에 인덱스 텍스처 사용하기
 Description: 인덱스 텍스처를 사용해 피킹을 구현하고, 색상을 정하는 법을 알아봅니다
 TOC: 피킹과 색상에 인덱스 텍스처 사용하기
 
-※ 이 글은 [HTML 요소를 3D로 정렬하기](threejs-align-html-elements-to-3d.html)에서 이어집니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.
+※ 이 글은 [HTML 요소를 3D로 정렬하기](align-html-elements-to-3d.html)에서 이어집니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.
 
 
 Three.js를 쓰다보면 창의적인 해결법이 필요할 때가 있습니다. 저도 나름 시리즈를 진행하며 나름 많은 해결법을 찾고, 적어 놓았죠. 혹 필요한 게 있다면 확인해보기 바랍니다. 물론 그게 최적의 해결법이라고 단언할 수는 없지만요.
 
-[이전 글](threejs-align-html-elements-to-3d.html)에서는 3D 지구본 주위에 나라 이름을 표기했습니다. 여기서 더 나아가 사용자가 나라를 선택하고 자기가 선택한 나라를 보게 한다면 어떨까요? 또 어떻게 구현할 수 있을까요?
+[이전 글](align-html-elements-to-3d.html)에서는 3D 지구본 주위에 나라 이름을 표기했습니다. 여기서 더 나아가 사용자가 나라를 선택하고 자기가 선택한 나라를 보게 한다면 어떨까요? 또 어떻게 구현할 수 있을까요?
 
-가장 쉽게 떠오르는 방법은 각 나라마다 geometry를 만드는 겁니다. 이전에 했던 것처럼 [피킹(picking)](threejs-picking.html)을 써서 구현할 수 있겠죠. 이미 각 나라의 3D geometry는 만들었으니 사용자가 mesh를 클릭했을 때 어떤 나라를 클릭했는지 알 수 있을 겁니다.
+가장 쉽게 떠오르는 방법은 각 나라마다 geometry를 만드는 겁니다. 이전에 했던 것처럼 [피킹(picking)](picking.html)을 써서 구현할 수 있겠죠. 이미 각 나라의 3D geometry는 만들었으니 사용자가 mesh를 클릭했을 때 어떤 나라를 클릭했는지 알 수 있을 겁니다.
 
-시험삼아 [이전 글](threejs-align-html-elements-to-3d.html)에서 윤곽선을 만들기 위해 사용했던 데이터로 각 나라마다 3D mesh를 만들어봤습니다. 결과로 15.5MB짜리 GLTF(.glb) 파일이 나왔죠. 사용자가 간단한 지구본을 보려고 15.5MB나 다운 받아야 한다니, 개인적인 의견이지만 너무 과한 듯합니다.
+시험삼아 [이전 글](align-html-elements-to-3d.html)에서 윤곽선을 만들기 위해 사용했던 데이터로 각 나라마다 3D mesh를 만들어봤습니다. 결과로 15.5MB짜리 GLTF(.glb) 파일이 나왔죠. 사용자가 간단한 지구본을 보려고 15.5MB나 다운 받아야 한다니, 개인적인 의견이지만 너무 과한 듯합니다.
 
 데이터를 압축할 수 있는 방법이야 많습니다. 예를 들어 특정 알고리즘을 도입해 윤곽선의 해상도를 낮출 수 있죠. 이 글에서는 시도하지 않을 텐데, 이유는 미국의 경우 데이터를 많이 줄일 수 있겠지만 캐나다나 섬이 많은 나라는 그렇지 않을 것이기 때문입니다.
 
@@ -19,13 +19,13 @@ Three.js를 쓰다보면 창의적인 해결법이 필요할 때가 있습니다
 
 32비트 부동 소수 대신 16비트 방식으로 데이터를 저장할 수도 있습니다. 또는 [드레이코 압축기](https://google.github.io/draco/) 같은 프로그램을 사용하는 것만으로 충분히 데이터를 줄일 수 있을지도 모르죠. 전 따로 드레이코 압축기를 사용해보진 않았으니 여러분이 한 번 써보시고 알려주신다면 감사하겠습니다 😅.
 
-이 글에서는 [피킹에 관한 글](threejs-picking.html) 마지막에서 다뤘던 [GPU 피킹](threejs-picking.html)을 사용해보겠습니다. 각 mesh에 id 역할을 할 고유한 색을 부여하고 해당 mesh를 클릭했을 때 해당 픽셀의 색상값으로 사용자가 어떤 mesh를 클릭했는지 알아내는 방법이죠.
+이 글에서는 [피킹에 관한 글](picking.html) 마지막에서 다뤘던 [GPU 피킹](picking.html)을 사용해보겠습니다. 각 mesh에 id 역할을 할 고유한 색을 부여하고 해당 mesh를 클릭했을 때 해당 픽셀의 색상값으로 사용자가 어떤 mesh를 클릭했는지 알아내는 방법이죠.
 
 일단 각 나라에 고유한 색상을 부여한 뒤, 이 색상값을 인덱스로 나라 배열을 만듭니다. 그리고 피킹용 텍스처를 만든 뒤 이걸로 지구본을 렌더링합니다. 이러면 사용자가 클릭한 픽셀을 확인해 어떤 나라를 클릭했는지 알 수 있겠죠.
 
 먼저 [약간의 코드](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)를 작성해 아래의 텍스처를 만들었습니다.
 
-<div class="threejs_center"><img src="../resources/data/world/country-index-texture.png" style="width: 700px;"></div>
+<div class="threejs_center"><img src="../examples/resources/data/world/country-index-texture.png" style="width: 700px;"></div>
 
 > 참고: 이 텍스트를 만드는 데 사용한 데이터는 이 [웹사이트](http://thematicmapping.org/downloads/world_borders.php)이며, 라이선스는 [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/)입니다.
 
@@ -33,7 +33,7 @@ Three.js를 쓰다보면 창의적인 해결법이 필요할 때가 있습니다
 
 이제 나라에 피킹을 적용해 봅시다.
 
-[GPU 피킹 예제](threejs-picking.html)의 코드를 가져와 피킹용 장면(scene)을 따로 만듭니다.
+[GPU 피킹 예제](picking.html)의 코드를 가져와 피킹용 장면(scene)을 따로 만듭니다.
 
 ```js
 const pickingScene = new THREE.Scene();
@@ -204,7 +204,7 @@ function updateLabels() {
 
 이제 나라를 선택해 볼 수 있습니다.
 
-{{{example url="../threejs-indexed-textures-picking.html" }}}
+{{{example url="indexed-textures-picking.html" }}}
 
 위 예제는 여전히 영역 크기에 따라 나라 이름을 보여주긴 하나, 특정 나라를 클릭하면 해당 나라의 이름만 보여줄 겁니다.
 
@@ -237,13 +237,13 @@ const palette = [
 
 이미지 데이터의 각 픽셀은 팔레트의 인덱스를 가리킵니다. 위 데이터를 위 팔레트로 해석하면 다음과 같은 이미지가 나오겠죠.
 
-<div class="threejs_center"><img src="resources/images/7x7-indexed-face.png"></div>
+<div class="threejs_center"><img src="../resources/images/7x7-indexed-face.png"></div>
 
 예제의 경우 이미 각 나라별로 고유 색을 부여한 텍스처가 있습니다. 이 텍스처에 팔레트를 적용하면 각 나라에 다른 색을 부여할 수 있겠죠. 또 이 팔레트의 색을 바꾸면 각 나라의 색도 바뀔 겁니다. 그러니 팔레트의 색을 전부 검정으로 바꾼 뒤, 선택한 나라만 다른 색으로 바꾸면 해당 나라를 선택했다는 것을 시각적으로 나타낼 수 있을 겁니다.
 
 컬러 팔레트 기법을 사용하려면 쉐이더를 직접 만들어야 합니다. Three.js의 내장 쉐이더를 수정해서 사용하면 조명이나 다른 기능도 나중에 사용할 수 있으니 이 방법을 사용하도록 하죠.
 
-[다중 애니메이션 요소 최적화하기](threejs-optimize-lots-of-objects-animated.html)에서 다뤘듯 재질의 `onBeforeCompile` 속성에 함수를 지정하면 내장 쉐이더를 수정할 수 있습니다.
+[다중 애니메이션 요소 최적화하기](optimize-lots-of-objects-animated.html)에서 다뤘듯 재질의 `onBeforeCompile` 속성에 함수를 지정하면 내장 쉐이더를 수정할 수 있습니다.
 
 아래는 내장 fragment 쉐이더를 수정하기 전입니다.
 
@@ -292,7 +292,7 @@ void main() {
 
 저 때 `diffuseColor`는 아까 만들었던 윤곽선 텍스처에서 색상을 가져온 상태일 테니, 이 색상값으로 팔레트 텍스처에서 새로운 색상값을 가져 올 수 있을 겁니다.
 
-[이전에 했던 것](threejs-optimize-lots-of-objects-animated.html)처럼 바꿀 문자열 정보를 배열로 만들어 `Material.onBeforeCompile`에서 쉐이더를 수정하겠습니다.
+[이전에 했던 것](optimize-lots-of-objects-animated.html)처럼 바꿀 문자열 정보를 배열로 만들어 `Material.onBeforeCompile`에서 쉐이더를 수정하겠습니다.
 
 ```js
 {
@@ -395,7 +395,7 @@ scene.add(new THREE.Mesh(geometry, material));
 
 이제 예제를 실행하면 각 나라의 색상이 무작위로 지정된 것이 보일 겁니다.
 
-{{{example url="../threejs-indexed-textures-random-colors.html" }}}
+{{{example url="indexed-textures-random-colors.html" }}}
 
 인덱싱과 팔레트 텍스처가 잘 작동하는 것을 확인했으니, 이제 팔레트를 조작해 선택한 나라의 색상만 바꾸도록 해봅시다.
 
@@ -481,7 +481,7 @@ function unselectAllCountries() {
 
 이제 선택한 나라가 강조되어 보일 겁니다.
 
-{{{example url="../threejs-indexed-textures-picking-and-highlighting.html" }}}
+{{{example url="indexed-textures-picking-and-highlighting.html" }}}
 
 잘 작동하는 것 같네요!
 
@@ -563,8 +563,8 @@ canvas.addEventListener('pointerup', pickCountry);
 
 제 기준에서는 이 정도면 충분한 *듯하네요*.
 
-{{{example url="../threejs-indexed-textures-picking-debounced.html" }}}
+{{{example url="indexed-textures-picking-debounced.html" }}}
 
 저는 UX 전문가가 아니니 더 나은 방법이 있을 경우 알려주시면 감사하겠습니다.
 
-이 글이 인덱스(indexed) 그래픽을 활용하고, Three.js의 쉐이더를 수정해 간단한 효과를 구현하는 데 도움이 되었다면 좋겠네요. 쉐이더를 작성할 때 쓴 GLSL에 대해 다루기에는 너무 내용이 방대하니 [후처리에 관한 글](threejs-post-processing.html)에 있는 링크를 참고하기 바랍니다.
+이 글이 인덱스(indexed) 그래픽을 활용하고, Three.js의 쉐이더를 수정해 간단한 효과를 구현하는 데 도움이 되었다면 좋겠네요. 쉐이더를 작성할 때 쓴 GLSL에 대해 다루기에는 너무 내용이 방대하니 [후처리에 관한 글](post-processing.html)에 있는 링크를 참고하기 바랍니다.

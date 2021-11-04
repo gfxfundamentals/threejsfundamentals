@@ -3,7 +3,7 @@ Description: 如何让你的three.js适应不同尺寸的显示器。
 TOC: 响应式设计
 
 这是three.js系列文章的第二篇。
-第一篇是[关于基础](threejs-fundamentals.html)。
+第一篇是[关于基础](fundamentals.html)。
 如果你还没有阅读第一篇那你应该从第一篇开始。
 
 本篇文章是关于如何让你的three.js应用自适应各种情况。
@@ -49,17 +49,17 @@ HTML中的body默认有5个像素的margin值所以设置margin为0来移除marg
 
 这里是结果。
 
-{{{example url="../threejs-responsive-no-resize.html" }}}
+{{{example url="responsive-no-resize.html" }}}
 
 你可以看到canvas充满了整个页面，但是有两个问题。
 第一是我们的立方体被拉伸了。他们不是立方体了更像是个盒子，太高或者太宽。 在新标签中打开它然后改变尺寸你就能看到立方体是怎么在宽高上被拉伸的。
 
-<img src="resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-incorrect-aspect.png" width="407" class="threejs_center nobg">
 
 另一个问题是立方体看起来分辨率太低或者说块状化或者有点模糊。
 将窗口拉伸的非常大你就能看到问题。
 
-<img src="resources/images/resize-low-res.png" class="threejs_center nobg">
+<img src="../resources/images/resize-low-res.png" class="threejs_center nobg">
 
 我们先解决拉伸的问题。为此我们要将相机的宽高比设置为canvas的宽高比。
 我们可以通过canvas的`clientWidth`和`clientHeight`属性来实现。
@@ -79,12 +79,12 @@ function render(time) {
 
 现在立方体应该不会变形了。
 
-{{{example url="../threejs-responsive-update-camera.html" }}}
+{{{example url="responsive-update-camera.html" }}}
 
 在新标签页中打开例子你应该能看到立方体的宽高不会再被拉伸了。
 他们都会保持正确的比例不管窗口的尺寸如何。
 
-<img src="resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
+<img src="../resources/images/resize-correct-aspect.png" width="407" class="threejs_center nobg">
 
 我们现在来解决块状化的问题。
 
@@ -147,21 +147,21 @@ function render(time) {
 因为只有canvas的显示尺寸变化时宽高比才变化所以我们
 只在`resizeRendererToDisplaySize`函数返回`true`时才设置摄像机的宽高比。
 
-{{{example url="../threejs-responsive.html" }}}
+{{{example url="responsive.html" }}}
 
 现在渲染的分辨率应该是和canvas的显示尺寸一样的。
 
-为了说清楚让CSS处理调整尺寸我们将代码放进[一个单独的js文件](../threejs-responsive.js)。
+为了说清楚让CSS处理调整尺寸我们将代码放进[一个单独的js文件](../examples/threejs-responsive.js)。
 这里还有一些例子我们让CSS决定尺寸的大小并且注意我们并没有改变任何
 代码来让他们工作。
 
 我们将立方体放在文字段落的中间。
 
-{{{example url="../threejs-responsive-paragraph.html" startPane="html" }}}
+{{{example url="responsive-paragraph.html" startPane="html" }}}
 
 这是我们在编辑器样式布局中使用的相同代码，右侧的控制区域可以调整大小。
 
-{{{example url="../threejs-responsive-editor.html" startPane="html" }}}
+{{{example url="responsive-editor.html" startPane="html" }}}
 
 重点注意我们的代码并没有改变，只有我们的HTML和CSS变了。
 
@@ -219,11 +219,11 @@ HD-DPI代表每英寸高密度点显示器(视网膜显示器)。它指的是当
 
 这是一个使用上面代码的例子。
 
-{{{example url="../threejs-responsive-hd-dpi.html" }}}
+{{{example url="responsive-hd-dpi.html" }}}
 
 可能很难看出区别但是如果你有一个HD-DPI显示器
 和上面的例子做对比你就能发现边角更清晰。
 
 这篇文章涵盖了一个非常基础但是很有必要的主题。接下来我们快速
-[过一遍three.js提供的基本的东西 ](threejs-primitives.html).
+[过一遍three.js提供的基本的东西 ](primitives.html).
 

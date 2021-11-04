@@ -1,5 +1,5 @@
 <div class="threejs_image {{className}}">
-  <img class="" src="/docs/fundamentals{{{examplePath}}}{{{url}}}">
+  <img class="" src="{{{url}}}">
   {{#caption}}
   <div class="threejs_center">{{{../caption}}}</div>
   {{/caption}}

@@ -3,7 +3,7 @@ Description: Three.js의 원시 모델을 살펴봅니다.
 TOC: 원시 모델
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
 
@@ -47,9 +47,9 @@ Three.js에는 다양한 원시 모델이 있습니다. 먼저 Three.js의 원�
 <div id="Diagram-EdgesGeometry" data-primitive="EdgesGeometry">다른 <code>geometry</code>를 받는 헬퍼 객체로, 각 면 사이의 각이 일정 값 이상일 때만 모서리를 표시합니다. 상단의 육면체 예제를 보면 육면체를 만드는 삼각형이 표면에 전부 표시된 것을 확인할 수 있는데, <code>EdgesGeometry</code>를 사용할 경우 표면에 있던 선들이 전부 사라집니다. 아래 예제의 <code>thresholdAngle</code> 값을 조정해 해당 값 이하인 모서리가 전부 사라지는 것을 확인해보세요.</div>
 <div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">매개변수로 받은 <code>geometry</code>의 모서리 하나당 하나의 선분(2개의 점)을 가진 <code>geometry</code>를 생성합니다. WebGl은 보통 선분 하나당 2개의 점을 필요로 합니다. 때문에 이 모델을 사용하지 않는 경우, 모서리가 없어지거나 추가되는 현상이 발생할 수 있습니다. 예를 들어 2D 삼각형을 만드는 경우, 대부분 3개의 점을 이용해 삼각형을 만들려고 할 겁니다. <code>wireframe: true</code>라는 옵션이 있기는 하나, 이를 이용해 삼각형을 만들면 (WebGl은 삼각형을 만들 때 6개의 점을 요구하므로. 역주) 출력되는 건 선 하나 뿐일 겁니다. 삼각형 <code>geometry</code>를 <code>WireframeGeometry</code>에 넘겨주면 6개의 점과 3개의 선분을 가진 새 <code>geometry</code>를 생성합니다.</div>
 
-[커스텀 geometry를 만드는 법](threejs-custom-buffergeometry.html)에 대해서는
+[커스텀 geometry를 만드는 법](custom-buffergeometry.html)에 대해서는
 나중에 자세히 다룰 것이므로, 지금은 각 원시 모델로 예제를 만들어 보겠습니다.
-예제 코드는 [지난 글](threejs-responsive.html)에서 썼던 예제를 쓸 거에요.
+예제 코드는 [지난 글](responsive.html)에서 썼던 예제를 쓸 거에요.
 
 먼저 배경색을 지정합니다.
 
@@ -153,7 +153,7 @@ function addSolidGeometry(x, y, geometry) {
 
 아래 코드를 보면 각 `geometry`마다 비슷한 단락으로 이루어진 것을 확인할 수 있습니다.
 
-{{{example url="../threejs-primitives.html" }}}
+{{{example url="primitives.html" }}}
 
 몇몇 예외가 보일 텐데, 가장 크게 두드러진 것은 아마 `TextGeometry`일 겁니다.
 `TextGeometry`는 텍스트의 `mesh`를 생성하기 위해 3D 폰트 데이터를 필요로 합니다.
@@ -165,7 +165,7 @@ function addSolidGeometry(x, y, geometry) {
 
 ```js
 {
-  const loader = new THREE.FontLoader();
+  const loader = new FontLoader();
   // promisify font loading
   function loadFont(url) {
     return new Promise((resolve, reject) => {
@@ -174,8 +174,8 @@ function addSolidGeometry(x, y, geometry) {
   }
 
   async function doit() {
-    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejsfundamentals: url */
-    const geometry = new THREE.TextGeometry('three.js', {
+    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejs.org: url */
+    const geometry = new TextGeometry('three.js', {
       font: font,
       size: 3.0,
       height: .2,
@@ -210,7 +210,7 @@ function addSolidGeometry(x, y, geometry) {
 만약 이대로 다른 예제처럼 `addSolidGeometry` 함수를 호출한다면 위치값을
 재할당해버릴 겁니다. 그러니 대신 Three.js의 씬 그래프의 기본 요소(node)인
 `Object3D`를 하나 만듭니다(`Mesh` 또한 `Object3D`의 자식 요소임).
-씬 그래프가 어떻게 작동하는가에 대해서는 [다른 글](threejs-scenegraph.html)에서 자세히 다룰 것이므로,
+씬 그래프가 어떻게 작동하는가에 대해서는 [다른 글](scenegraph.html)에서 자세히 다룰 것이므로,
 당장은 DOM 요소처럼 자식 요소가 부모 요소를 기반으로 생성된다는
 것만 알아둡시다. `Object3D`를 생성해 텍스트를 감싸면 텍스트의 회전 중심은
 유지한 채로 위치값을 얼마든지 조정할 수 있습니다.
@@ -218,7 +218,7 @@ function addSolidGeometry(x, y, geometry) {
 만약 `addSolidGeometry`를 그냥 사용한다면 아래 왼쪽의 예제처럼
 회전축이 아예 빗나가겠죠.
 
-{{{example url="../threejs-primitives-text.html" }}}
+{{{example url="primitives-text.html" }}}
 
 예제의 왼쪽 텍스트는 회전축이 중앙에서 벗어났지만, 오른쪽 텍스트는
 중앙을 중심으로 회전합니다.
@@ -332,13 +332,13 @@ const material = new THREE.PointsMaterial({
 포기할지 결정하는 것은 순전히 여러분의 몫입니다.
 
 원시 모델 중 어떤 것도 실제 프로젝트에 적용하기가 어렵다면,
-[.obj 파일](threejs-load-obj.html) 또는 [.gltf 파일](threejs-load-gltf.html)을
+[.obj 파일](load-obj.html) 또는 [.gltf 파일](load-gltf.html)을
 로드하여 사용할 수 있습니다. 또는
-[커스텀 BufferGeometry](threejs-custom-buffergeometry.html)를 생성할 수도 있죠.
+[커스텀 BufferGeometry](custom-buffergeometry.html)를 생성할 수도 있죠.
 
-다음 장에서는 [씬 그래프와 그 사용법](threejs-scenegraph.html)에 대해
+다음 장에서는 [씬 그래프와 그 사용법](scenegraph.html)에 대해
 알아보겠습니다.
 
-<link rel="stylesheet" href="resources/threejs-primitives.css">
-<script type="module" src="resources/threejs-primitives.js"></script>
+<link rel="stylesheet" href="../resources/threejs-primitives.css">
+<script type="module" src="../resources/threejs-primitives.js"></script>
 

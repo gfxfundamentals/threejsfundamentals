@@ -3,10 +3,10 @@ Description: Three.js의 안개에 대해 알아봅니다
 TOC: 안개(Fog)
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
-※ 카메라에 대해 잘 모른다면, 먼저 [카메라에 관한 글](threejs-cameras.html)을
+※ 카메라에 대해 잘 모른다면, 먼저 [카메라에 관한 글](cameras.html)을
 먼저 읽기 바랍니다.
 
 
@@ -99,7 +99,7 @@ const scene = new THREE.Scene();
 안개를 `near = 1`, `far = 2`로 설정하면 정육면체가 중간부터 사라지기
 시작하겠죠.
 
-{{{example url="../threejs-fog.html" }}}
+{{{example url="fog.html" }}}
 
 인터페이스를 추가해 안개를 조정할 수 있도록 하겠습니다. 이번에도 [dat.GUI](https://github.com/dataarts/dat.gui)를
 사용할 거예요. dat.GUI는 객체와 객체의 속성 키값을 받아 자동으로 인터페이스를
@@ -224,7 +224,7 @@ class FogGUIHelper {
 }
 ```
 
-{{{example url="../threejs-fog-gui.html" }}}
+{{{example url="fog-gui.html" }}}
 
 `near`를 1.9 정도, `far`를 2.0 정도로 설정하면 안개의 경계가 굉장히
 선명해질 겁니다. 정육면체들이 카메라에서 2칸 떨어져 있으므로 `near`를
@@ -261,4 +261,4 @@ class FogGUIHelper {
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-fog.js"></script>
+<script type="module" src="../resources/threejs-fog.js"></script>

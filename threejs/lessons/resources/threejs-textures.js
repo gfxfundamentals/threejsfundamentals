@@ -1,4 +1,4 @@
-import * as THREE from '../../resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 import {threejsLessonUtils} from './threejs-lesson-utils.js';
 
 {
@@ -18,7 +18,7 @@ import {threejsLessonUtils} from './threejs-lesson-utils.js';
     };
   }
 
-  const filterTextureInfo = loadTextureAndPromise('/threejs/lessons/resources/images/mip-example.png');
+  const filterTextureInfo = loadTextureAndPromise('/manual/resources/images/mip-example.png');
   const filterTexture = filterTextureInfo.texture;
   const filterTexturePromise = filterTextureInfo.promise;
 

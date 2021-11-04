@@ -111,7 +111,7 @@ function render(time) {
 
 見てください！
 
-{{{example url="../threejs-render-target.html" }}}
+{{{example url="render-target.html" }}}
 
 立方体が赤いのはレンダーターゲットのテクスチャとしてレンダリングした`rtScene`の`background`を赤でクリアーしたからです。
 

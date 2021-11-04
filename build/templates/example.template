@@ -1,5 +1,5 @@
 <div translate="no" class="threejs_example_container notranslate">
-  <div><iframe class="threejs_example notranslate" translate="no" style="{{width}} {{height}}" src="/docs/fundamentals/threejs/resources/editor.html?url=/docs/fundamentals{{{examplePath}}}{{{encodedUrl}}}{{{params}}}"></iframe></div>
-  <a class="threejs_center" href="/docs/fundamentals{{{examplePath}}}{{{url}}}" target="_blank">{{{caption}}}</a>
+  <div><iframe class="threejs_example notranslate" translate="no" style="{{width}} {{height}}" src="/manual/examples/resources/editor.html?url=/manual/examples/{{{encodedUrl}}}{{{params}}}"></iframe></div>
+  <a class="threejs_center" href="/manual/examples/{{{url}}}" target="_blank">{{{caption}}}</a>
 </div>
 

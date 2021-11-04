@@ -3,9 +3,9 @@ Description: Three.jsでのフォグ
 TOC: フォグ
 
 この記事はThree.jsの連載記事の1つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでいない場合、そこから始めると良いかもしれません。
-カメラの記事を読んでない方は、まずは[この記事](threejs-cameras.html)を読んでみて下さい。
+カメラの記事を読んでない方は、まずは[この記事](cameras.html)を読んでみて下さい。
 
 一般的には3Dエンジンでのフォグ（霧）は、カメラからの距離によって特定の色にフェードアウトする方法です。
 three.jsでは `Fog` または `FogExp2` オブジェクトを作成し、シーンに[`fog`](Scene.fog) プロパティを設定してフォグを追加します。
@@ -95,7 +95,7 @@ const scene = new THREE.Scene();
 立方体は1の大きさで z = 0 です。
 つまり、フォグを `near = 1` と `far = 2` と設定し、立方体の中心付近でフェードアウトしています。
 
-{{{example url="../threejs-fog.html" }}}
+{{{example url="fog.html" }}}
 
 フォグを調整するインターフェースを追加してみましょう。
 ここでも[dat.GUI](https://github.com/dataarts/dat.gui)を使用します。
@@ -219,7 +219,7 @@ class FogGUIHelper {
 }
 ```
 
-{{{example url="../threejs-fog-gui.html" }}}
+{{{example url="fog-gui.html" }}}
 
 `near` を1.9、`far` を2.0にすると以下のようになりました。
 曇っていない状態と完全に曇っている状態との中間では、シャープなグラデーションします。
@@ -254,4 +254,4 @@ class FogGUIHelper {
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-fog.js"></script>
+<script type="module" src="../resources/threejs-fog.js"></script>

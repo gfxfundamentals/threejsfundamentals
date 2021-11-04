@@ -5,26 +5,26 @@ TOC: ポストプロセス
 *ポストプロセス*とは、一般的には2D画像に何らかのエフェクトやフィルターを適用する事です。
 Three.jsの場合、たくさんのメッシュが入ったシーンがあり、そのシーンを2D画像にレンダリングします。
 通常はその2D画像はキャンバスに直接レンダリングしブラウザに表示されますが、
-代わりに[レンダーターゲットにレンダリング](threejs-rendertargets.html)し、キャンバス描画前に*ポストプロセス*エフェクトを適用できます。
+代わりに[レンダーターゲットにレンダリング](rendertargets.html)し、キャンバス描画前に*ポストプロセス*エフェクトを適用できます。
 メインシーンのレンダリング後に行われるため、ポストプロセスと呼ばれています。
 
 ポストプロセスの例としては、InstagramやPhotoshopのフィルターなどがあります。
 
 Three.jsには、ポストプロセスのパイプラインを設定するサンプルクラスがいくつかあります。
 今回は最初に `EffectComposer` を作成し、複数の `Pass` オブジェクトを追加します。
-次に `EffectComposer.render` を呼び出し、シーンを [レンダーターゲット](threejs-rendertargets.html)にレンダリングしてそれぞれの `Pass` を適用します。
+次に `EffectComposer.render` を呼び出し、シーンを [レンダーターゲット](rendertargets.html)にレンダリングしてそれぞれの `Pass` を適用します。
 
 それぞれの `Pass` には、ビネットの追加、ブラーやブルームの適用、フィルムグレインの適用、色相、彩度、コントラストの調整などのポストプロセスを適用できます。
 最後のレンダリングでポストプロセス結果をキャンバスにレンダリングします。
 
 `EffectComposer` 関数がどのようなものか理解するのは少し重要です。
-ここでは2つの[レンダーターゲット](threejs-rendertargets.html)を作成します。
+ここでは2つの[レンダーターゲット](rendertargets.html)を作成します。
 これを**rtA**と**rtB**と呼ぶ事にしましょう。
 
 次に `EffectComposer.addPass` を呼び出し、それぞれのPassに適用したい順番で追加します。
 Passは*次の図のように*適用されます。
 
-<div class="threejs_center"><img src="resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
 
 `RenderPass`に渡されたシーンは、まず**rtA**にレンダリングされ**rtA**は次のPassに渡されます。
 このPassは**rtA**を入力として使用し、**rtB**に結果を書き込みます。
@@ -51,7 +51,7 @@ Passは*次の図のように*適用されます。
 通常は `EffectComposer` に追加する最後のPassでtrueに設定する必要があります。
 
 基本的な例をまとめてみましょう。
-まずは[レスポンシブデザインの記事](threejs-responsive.html)から例を挙げてみます。
+まずは[レスポンシブデザインの記事](responsive.html)から例を挙げてみます。
 
 そのためにまず `EffectComposer` を作成します。
 
@@ -99,10 +99,10 @@ composer.addPass(filmPass);
 これらのクラスを使用するには、以下をインポートする必要があります。
 
 ```js
-import {EffectComposer} from './resources/threejs/r132/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from './resources/threejs/r132/examples/jsm/postprocessing/RenderPass.js';
-import {BloomPass} from './resources/threejs/r132/examples/jsm/postprocessing/BloomPass.js';
-import {FilmPass} from './resources/threejs/r132/examples/jsm/postprocessing/FilmPass.js';
+import {EffectComposer} from '/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from '/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from '/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from '/examples/jsm/postprocessing/FilmPass.js';
 ```
 
 ほとんどのポストプロセスには `EffectComposer.js` と `RenderPass.js` が必須です。
@@ -144,7 +144,7 @@ import {FilmPass} from './resources/threejs/r132/examples/jsm/postprocessing/Fil
 deltaTimeをアニメーションしてる様々なエフェクトに渡します。
 今回は `FilmPass` がアニメーションしています。
 
-{{{example url="../threejs-postprocessing.html" }}}
+{{{example url="postprocessing.html" }}}
 
 実行時にエフェクトパラメーターを変更するには、uniformの値を設定する必要があります。
 パラメータを調整するためのGUIを追加してみましょう。
@@ -200,7 +200,7 @@ const gui = new GUI();
 
 これで設定を調整できるようになりました。
 
-{{{example url="../threejs-postprocessing-gui.html" }}}
+{{{example url="postprocessing-gui.html" }}}
 
 これはあなた自身のエフェクトを作る小さな1歩です。
 
@@ -278,7 +278,7 @@ gui.add(colorPass.uniforms.color.value, 'b', 0, 4).name('blue');
 
 色で乗算するシンプルなポストプロセスエフェクトができました。
 
-{{{example url="../threejs-postprocessing-custom.html" }}}
+{{{example url="postprocessing-custom.html" }}}
 
 GLSLやカスタムシェーダーの詳細は、ネット上にたくさんの記事があります。
 WebGL自体がどのように動作するかを知りたいならば、[これらの記事](https://webglfundamentals.org)をチェックしてみて下さい。
@@ -287,4 +287,4 @@ WebGL自体がどのように動作するかを知りたいならば、[これ�
 
 残念ながらThree.jsレポートにあるほとんどのポストプロセスエフェクトは文書化されていないので、使用するには[この例](https://github.com/mrdoob/three.js/tree/master/examples)か
 [エフェクト自体のコード](https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing)を読んで下さい。
-これらのシンプルな例と[レンダーターゲット](threejs-rendertargets.html)の記事がポストプロセスを始めるのに十分な知識を提供してくれると思います。
+これらのシンプルな例と[レンダーターゲット](rendertargets.html)の記事がポストプロセスを始めるのに十分な知識を提供してくれると思います。

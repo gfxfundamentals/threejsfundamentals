@@ -2,7 +2,7 @@ Title: Three.jsでアニメーションする多くのオブジェクトを最�
 Description: モーフターゲットでアニメーションするオブジェクトをマージする
 TOC: アニメーションする多くのオブジェクトを最適化
 
-この記事は[多くのオブジェクトを最適化](threejs-optimize-lots-of-objects.html)の続きです。まだ読んでいない場合は先に読んでみて下さい。
+この記事は[多くのオブジェクトを最適化](optimize-lots-of-objects.html)の続きです。まだ読んでいない場合は先に読んでみて下さい。
 
 前回の記事では約19000個のキューブを単体のジオメトリにマージしました。
 19000個のキューブの描画を最適化する利点がありましたが、個々のキューブを動かすのが難しくなる欠点がありました。
@@ -199,7 +199,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 
 これで4つのデータセットを表示できるようになるはずです。ラベルの上にマウスを置いたり、タッチしてデータセットを切り替える事ができます。
 
-{{{example url="../threejs-lots-of-objects-multiple-data-sets.html" }}}
+{{{example url="lots-of-objects-multiple-data-sets.html" }}}
 
 注意してほしいのは突出したいくつかの奇妙なデータポイントがあります。
 
@@ -342,10 +342,10 @@ showFileInfo(fileInfos, fileInfos[0]);
 アニメーションライブラリをimportする必要があります。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import * as BufferGeometryUtils from './resources/threejs/r132/examples/jsm/utils/BufferGeometryUtils.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-+import {TWEEN} from './resources/threejs/r132/examples/jsm/libs/tween.min.js';
+import * as THREE from './build/three.module.js';
+import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
++import {TWEEN} from '/examples/jsm/libs/tween.min.js';
 ```
 
 そして、影響を与えるアニメーションの `Tween` を作成します。
@@ -371,7 +371,7 @@ function showFileInfo(fileInfos, fileInfo) {
 ```
 
 レンダリングループ内でフレームごとに `TWEEN.update` を呼び出しますが問題があります。
-"tween.js"は連続的なレンダリング用に設計されていますが、ここでは[要求されたレンダリング](threejs-rendering-on-demand.html)をしています。
+"tween.js"は連続的なレンダリング用に設計されていますが、ここでは[要求されたレンダリング](rendering-on-demand.html)をしています。
 連続的なレンダリングに切り替えれますが、何も起きていない時にはレンダリングコストを下げた方が良いため、要求されたレンダリングだけにするのもいいかもしれません。
 これを助けるために `TweenManager` を作ります。
 TweenManagerは `update` メソッドを持ち、再度呼び出す必要がある場合は `true` を返し、全てのアニメーションが終了した場合は `false` を返します。
@@ -466,7 +466,7 @@ render();
 
 そして、データセットでクロスフェードアニメーションを行う必要があります。
 
-{{{example url="../threejs-lots-of-objects-morphtargets.html" }}}
+{{{example url="lots-of-objects-morphtargets.html" }}}
 
 これでクロスフェードアニメーションが上手く動くようですが、残念ながら色を失ってしまいました。
 
@@ -678,14 +678,14 @@ function render() {
 
 これで色をクロスフェードアニメーションさせる事ができます。
 
-{{{example url="../threejs-lots-of-objects-morphtargets-w-colors.html" }}}
+{{{example url="lots-of-objects-morphtargets-w-colors.html" }}}
 
 これがお役に立てれば幸いです。
 three.jsが提供するサービスを利用するか、カスタムシェーダーを使ってモーフターゲットを使うのは多くのオブジェクトを移動させるための一般的なテクニックです。
 例として全てのキューブに別の目標を設定し、そこから地球上での最初の位置へと変化します。
 地球儀を紹介するにはかっこいいかもしれません。
 
-次は[HTML要素を3Dに整列させる](threejs-align-html-elements-to-3d.html)で説明している地球儀にラベルを追加します。
+次は[HTML要素を3Dに整列させる](align-html-elements-to-3d.html)で説明している地球儀にラベルを追加します。
 
 注: 男性や女性の割合、または正の差をグラフ化する事もできますが、情報を表示する方法に基づいて地表から成長するキューブはほとんどのキューブが低い方が良いでしょう。
 これらの他の比較を使用した場合、ほとんどのキューブは最大高さの約1/2の大きさになり可視化として良くありません。

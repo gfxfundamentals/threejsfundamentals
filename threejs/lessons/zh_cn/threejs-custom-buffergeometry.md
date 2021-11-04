@@ -4,14 +4,14 @@ TOC: 自定义缓冲几何体
 
 在three.js中， `BufferGeometry` 是用来代表所有几何体的一种方式。 `BufferGeometry` 本质上是一系列 `BufferAttribute`s 的 *名称* 。每一个 `BufferAttribute` 代表一种类型数据的数组：位置，法线，颜色，uv，等等…… 这些合起来， `BufferAttribute`s 代表每个顶点所有数据的 *并行数组* 。
 
-<div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 上面提到，我们有四个属性：`position`, `normal`, `color`, `uv` 。
 它们指的是 *并行数组* ，代表每个属性的第N个数据集属于同一个顶点。index=4的顶点被高亮表示贯穿所有属性的平行数据定义一个顶点。
 
 这就告诉我们，这是一个方块的数据图，高亮的地方代表一个角。
 
-<div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 考虑下方块的单个角，不同的面都需要一个不同的法线。法线是面朝向的信息。在图中，在方块的角周围用箭头表示的法线，代表共用顶点位置的面需要指向不同方向的法线。
 
@@ -112,7 +112,7 @@ for (const vertex of vertices) {
 在上面我们创建了3个JavaScript原生数组， `positions`, `normals` 和 `uvs` 。
 然后我们将他们转换为 `Float32Array` 的类型数组[TypedArrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)。 `BufferAttribute` 是类型数组而不是原生数组。同时 `BufferAttribute` 需要你设定每个顶点有多少组成成分。对于位置和法线，每个顶点我们需要3个组成成分，x、y和z。对于UVs我们需要2个，u和v。
 
-{{{example url="../threejs-custom-buffergeometry-cube.html"}}}
+{{{example url="custom-buffergeometry-cube.html"}}}
 
 那会是大量的数据。我们可以做点改善，可以用索引来代表顶点。看回我们的方块数据，每个面由2个三角形组成，每个三角形3个顶点，总共6个，但是其中2个是完全一样的；同样的位置，同样的法线，和同样的uv。因此，我们可以移除匹配的顶点，然后用索引代表他们。首先我们移除匹配的顶点。
 
@@ -192,7 +192,7 @@ geometry.setAttribute(
 +]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-indexed.html"}}}
+{{{example url="custom-buffergeometry-cube-indexed.html"}}}
 
 如果你没有提供法线数据的话， `BufferGeometry` 有个方法[`computeVertexNormals`](BufferGeometry.computeVertexNormals)可以用来计算法线。不幸的是，因为如果顶点的其他数据不同的话，位置数据不能被共享，调用  `computeVertexNormals` 会让你的几何体像球面或者圆筒一样连接自身。
 
@@ -259,7 +259,7 @@ geometry.setIndex([
 ]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-typedarrays.html"}}}
+{{{example url="custom-buffergeometry-cube-typedarrays.html"}}}
 
 一个使用类型数组的好理由，是如果你想动态更新顶点数据的任何一部分。
 
@@ -267,7 +267,7 @@ geometry.setIndex([
 
 这里是用来产生球面的位置和索引数据的代码。代码共享了四边形内的顶点数据，但是四边形之间的没有共享，因为我们需要分别地移动每个四边形。
 
-因为我懒，所以我通过3个 `Object3D` 对象的层级关系，计算球面的点。关于如何计算在这篇文章有解释[the article on optimizing lots of objects](threejs-optimize-lots-of-objects.html)。
+因为我懒，所以我通过3个 `Object3D` 对象的层级关系，计算球面的点。关于如何计算在这篇文章有解释[the article on optimizing lots of objects](optimize-lots-of-objects.html)。
 
 ```js
 function makeSpherePositions(segmentsAround, segmentsDown) {
@@ -378,14 +378,14 @@ positionAttribute.needsUpdate = true;
 
 我们设置 `positionAttribute.needsUpdate` 告诉THREE.js更新我们的改变。
 
-{{{example url="../threejs-custom-buffergeometry-dynamic.html"}}}
+{{{example url="custom-buffergeometry-dynamic.html"}}}
 
 我希望这些例子能对如何使用 `BufferGeometry` 直接创建你自己的几何体和如何动态更新 `BufferAttribute` 的内容发挥作用。
 
 <!-- needed in English only to prevent warning from outdated translations -->
 <a href="resources/threejs-geometry.svg"></a>
-<a href="threejs-custom-geometry.html"></a>
+<a href="custom-geometry.html"></a>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
 

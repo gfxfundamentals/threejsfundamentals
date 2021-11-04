@@ -7,11 +7,11 @@ TOC: 加载 .OBJ 文件
 
 在网上搜索，我找到了[CC-BY-NC 3.0风车3D模型](https://www.blendswap.com/blends/view/69174)，作者是[阿赫多夫](https://www.blendswap.com/user/ahedov)。
 
-<div class="threejs_center"><img src="resources/images/windmill-obj.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj.jpg"></div>
 
 我从那个网站下载了.blend文件，并将其加载到[Blender](https://Blender.org)并将其导出为.OBJ文件。
 
-<div class="threejs_center"><img style="width: 827px;" src="resources/images/windmill-export-as-obj.jpg"></div>
+<div class="threejs_center"><img style="width: 827px;" src="../resources/images/windmill-export-as-obj.jpg"></div>
 
 > 注意：如果你从未使用过Blender，你可能会感到意外，Blender里做的事情不同于你用过的其他程序。你可能需要留出一些时间阅读Blender的一些基本操作。
 
@@ -19,16 +19,16 @@ TOC: 加载 .OBJ 文件
 
 一般我会使用以下的导出设置：
 
-<div class="threejs_center"><img style="width: 239px;" src="resources/images/windmill-export-options.jpg"></div>
+<div class="threejs_center"><img style="width: 239px;" src="../resources/images/windmill-export-options.jpg"></div>
 
 让我们一起来尝试将它展示出来。
 
-基于[光线文章](threejs-lights.html)中的定向光线（`DirectionalLight`）示例，结合半球光线（`HemisphereLight`）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。
+基于[光线文章](lights.html)中的定向光线（`DirectionalLight`）示例，结合半球光线（`HemisphereLight`）示例。相对于示例，我删除了所有与调整灯光相关的GUI内容，还删除了添加到场景中的立方体和球体。
 
 第一件要做的事就是将`OBJLoader`添加到代码中。
 
 ```js
-import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
+import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
 ```
 
 然后创建`OBJLoader`的实例并通过URL加载我们的.OBJ文件，并在回调函数中将已加载完的模型添加到场景（scene）里。
@@ -44,7 +44,7 @@ import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader
 
 如果这样跑一下会怎么样？
 
-{{{example url="../threejs-load-obj-no-materials.html" }}}
+{{{example url="load-obj-no-materials.html" }}}
 
 这已经相当接近，但是材质（material）显示异常。场景里材质显示异常是因为.OBJ文件格式是不包含材质数据的。
 
@@ -84,35 +84,35 @@ map_Ns windmill_001_base_SPEC.jpg
 
 我们能看到2个材质，引用了五张纹理图片，但是这些纹理文件在哪里呢？
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files.png"></div>
 
 我们只得到一个.OBJ文件以及一个.MTL文件。
 
 我们所下载的.blend文件是包含了模型的纹理，所以我们可以让blender点击**File->External Data->Unpack All Into Files**导出这些文件。
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-export-textures.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-export-textures.jpg"></div>
 
 选择 **Write Files to Current Directory**
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-overwrite.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-overwrite.jpg"></div>
 
 这样就会在.blend文件的目录下创建出一个**textures**文件夹。
 
-<div class="threejs_center"><img style="width: 758px;" src="resources/images/windmill-exported-texture-files.png"></div>
+<div class="threejs_center"><img style="width: 758px;" src="../resources/images/windmill-exported-texture-files.png"></div>
 
 我复制这些纹理放到我导出的.OBJ目录里。
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 现在.MTL文件就能加载到这些纹理。
 
 首先要引用 `MTLLoader`;
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
-+import {MTLLoader} from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
+import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
++import {MTLLoader} from '/examples/jsm/loaders/MTLLoader.js';
 ```
 
 {{{warning msgId="badTranslation"}}}
@@ -134,13 +134,13 @@ import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader
 
 尝试一下：
 
-{{{example url="../threejs-load-obj-materials.html" }}}
+{{{example url="load-obj-materials.html" }}}
 
 注意当旋转模型时，会发现风车布是消失了的。
 
-<div class="threejs_center"><img style="width: 528px;" src="resources/images/windmill-missing-cloth.jpg"></div>
+<div class="threejs_center"><img style="width: 528px;" src="../resources/images/windmill-missing-cloth.jpg"></div>
 
-我们需要设置这个材质为双面，在[关于材质的文章](threejs-materials.html)有详细说明。
+我们需要设置这个材质为双面，在[关于材质的文章](materials.html)有详细说明。
 在.MTL里不好修复这个问题，在我脑海里有三个解决办法：
 
 1. 加载模型后，遍历所有材质，设置成双面。
@@ -185,13 +185,13 @@ import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader
 
 修改之后，当你从后面看的时候，你仍然可以看到风车布，但是还有一个问题。如果我们放大近看，我们看到的东西正在变成块状。
 
-<div class="threejs_center"><img style="width: 700px;" src="resources/images/windmill-blocky.jpg"></div>
+<div class="threejs_center"><img style="width: 700px;" src="../resources/images/windmill-blocky.jpg"></div>
 
 发生了什么？
 
 看看纹理，有2个纹理命名包含了NOR，这是法线贴图（NORmal map）。法线贴图通常是紫色的，而凹凸贴图则是黑白的。法线贴图表示表面的方向，而凹凸贴图则表示表面的高度。
 
-<div class="threejs_center"><img style="width: 256px;" src="../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
+<div class="threejs_center"><img style="width: 256px;" src="../examples/resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
 看[MTLLoader源码](https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432)，`norm`是标记为法线贴图，我们手动修改一下.MTL文件。
 
@@ -229,13 +229,13 @@ map_Ns windmill_001_base_SPEC.jpg
 
 现在当我们加载它时它将使用法线贴图作为法线贴图，我们可以看到叶片的背面。
 
-{{{example url="../threejs-load-obj-materials-fixed.html" }}}
+{{{example url="load-obj-materials-fixed.html" }}}
 
 现在尝试加载不同的模型：
 
 网络搜索我找到[CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/) 风车3D模型，由[Roger Gerzner / GERIZ.3D Art](http://www.gerzi.ch/)制作。
 
-<div class="threejs_center"><img src="resources/images/windmill-obj-2.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj-2.jpg"></div>
 
 它已经有了一个.obj版本。让我们加载它(注意，我现在已经删除了.MTL加载器)
 
@@ -244,7 +244,7 @@ map_Ns windmill_001_base_SPEC.jpg
 +  objLoader.load('resources/models/windmill-2/windmill.obj', ...
 ```
 
-{{{example url="../threejs-load-obj-wat.html" }}}
+{{{example url="load-obj-wat.html" }}}
 
 嗯,没有东西出现。是什么问题?我想知道这个模型的尺寸是多少?我们可以问THREE.js模型的大小，并尝试自动设置相机的参数。
 
@@ -261,7 +261,7 @@ objLoader.load('resources/models/windmill_2/windmill.obj', (root) => {
 +  console.log(boxCenter);
 ```
 
-在[JavaScript控制台](threejs-debugging-javascript.html)能看到：
+在[JavaScript控制台](debugging-javascript.html)能看到：
 
 ```js
 size 2123.6499788469982
@@ -270,21 +270,21 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 
 我们的相机目前只显示大约100个单位，最近0.1和最远100。我们的地平面只有40个单位宽，所以这个风车模型是如此之大，达2000个单位，摄像机被包含在模型里面，所有能展示的部分都在截锥体外面。
 
-<div class="threejs_center"><img style="width: 280px;" src="resources/images/camera-inside-windmill.svg"></div>
+<div class="threejs_center"><img style="width: 280px;" src="../resources/images/camera-inside-windmill.svg"></div>
 
 我们可以手动修复该问题，也可以使相机自动对场景进行构图。 让我们尝试一下，我们可以使用刚计算出的框调整摄像机设置以查看整个场景。 请注意，关于将相机放置在哪里，并没有正确的答案。 我们可以从任何方向，在任何高度面对场景，因此我们只需要选择一些东西即可。
 
-在[关于相机的文章](threejs-cameras.html)讨论提到，相机定义了一个截锥体。该截锥体由视场(`fov`：the field of view)和远(`far`)近(`near`)设置定义。我们想知道的是，给定当前的视场，摄像机需要设置多远，才能使包含场景的盒子在截锥体内，假设截锥体永远延伸，即假设`near`是0.00000001，`far`是无穷大(infinity)。
+在[关于相机的文章](cameras.html)讨论提到，相机定义了一个截锥体。该截锥体由视场(`fov`：the field of view)和远(`far`)近(`near`)设置定义。我们想知道的是，给定当前的视场，摄像机需要设置多远，才能使包含场景的盒子在截锥体内，假设截锥体永远延伸，即假设`near`是0.00000001，`far`是无穷大(infinity)。
 
 因为我们知道盒子的大小也知道视野（FOV:the field of view），所以我们有了这个三角形。
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/camera-fit-scene.svg"></div>
 
 你可以看到在左边的是相机，在它前方投射出蓝色的截锥体。我们只是计算了包含风车的盒子。我们需要计算相机应该离方框有多远，使得盒子在截锥体内。
 
 利用基本的直角三角形函数和[SOHCAHTOA](https://www.google.com/search?q=SOHCAHTOA)，已知截锥体的视场和方框的大小，就可以计算出距离。
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 根据该图，计算距离的公式为：
 
@@ -349,11 +349,11 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
 
 现在的效果是：
 
-{{{example url="../threejs-load-obj-auto-camera.html" }}}
+{{{example url="load-obj-auto-camera.html" }}}
 
 这效果已经差不多了。用鼠标旋转照相机，你应该能看到风车。问题是风车很大，盒子中心约为(0,770,0)。所以,当我们把相机从(0,10,20)移到到`distance`单位距离，摄像头是风车的正下方。
 
-<div class="threejs_center"><img style="width: 360px;" src="resources/images/computed-camera-position.svg"></div>
+<div class="threejs_center"><img style="width: 360px;" src="../resources/images/computed-camera-position.svg"></div>
 
 修改代码使摄像头不管在哪个方向，都能对准盒子侧面中心。我们要做的就是把盒子到摄像机的`y`分量归零。然后，当我们标准化这个向量它就会变成一个平行于XZ平面的向量。换句话说，平行于地面。
 
@@ -371,7 +371,7 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
 
 如果你看风车的底部，你会看到一个小正方形，这是我们的地板。
 
-<div class="threejs_center"><img style="width: 365px;" src="resources/images/tiny-ground-plane.jpg"></div>
+<div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
 它只有40x40个单位，相对于风车来说太小了。由于风车超过2000个单位大，让我们改变地面的大小来适配。我们还需要调整重复次数，否则不能看到棋盘。
 
@@ -391,7 +391,7 @@ texture.repeat.set(repeats, repeats);
 
 现在再看看这个风车：
 
-{{{example url="../threejs-load-obj-auto-camera-xz.html" }}}
+{{{example url="load-obj-auto-camera-xz.html" }}}
 
 现在把材质加回去，就像之前有一个.mtl文件，它引用了一些纹理。但是看了一下这些文件，我很快发现了一个问题。
 
@@ -417,7 +417,7 @@ TGA的另一个问题是，浏览器本身不支持它们，所以加载它们�
 加载文件的大小分别为2048x2048。这对我来说似乎是一种浪费，但当然这取决于您的实际情况。我把它们分别做成1024x1024，并在Photoshop中以50%的质量保存。文件列表：
 
 ```shell
- $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+ $ ls -l ../threejs.org/manual/examples/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
@@ -528,7 +528,7 @@ Kd 1.00 1.00 1.00
 
 现在试一试附带材质的效果：
 
-{{{example url="../threejs-load-obj-materials-windmill2.html" }}}
+{{{example url="load-obj-materials-windmill2.html" }}}
 
 加载模型经常遇到这类问题。常见的问题包括
 
@@ -549,7 +549,7 @@ Kd 1.00 1.00 1.00
 
   大多数3D模型是为建筑、电影和广告或游戏制作的。对于建筑和电影，没有人真正关心纹理的大小。对于游戏来说，因为游戏内存有限，并且大多数游戏都在本地运行，所以文件也不能太多。网页一般要求加载快，所以你需要看纹理，并尽量使他们尽可能小，但仍然看起来很好。事实上，第一个风车模型也应该调整纹理，它们目前总共是10M。
 
-  还记得我们在[关于纹理的文章](threejs-textures.html)中提到的纹理占用内存，所以一个50k的JPG扩展到4096x4096会下载很快，但仍然需要大量的内存。
+  还记得我们在[关于纹理的文章](textures.html)中提到的纹理占用内存，所以一个50k的JPG扩展到4096x4096会下载很快，但仍然需要大量的内存。
 
 我最不想展示的就是旋转风车。不幸的是. obj文件没有层次结构（hierarchy）。这意味着每个风车模型基本上都是一个单独的网格（mesh）。你不能转动风车的叶片，因为它们没有与建筑物的其他部分分开。
 

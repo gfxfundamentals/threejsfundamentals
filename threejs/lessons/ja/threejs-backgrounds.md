@@ -5,7 +5,7 @@ TOC: 背景やスカイボックスを追加する
 このサイトのほとんどの記事では、背景に無地の色を使っています。
 
 静的な背景として追加するには、CSSを設定するだけで簡単にできます。
-[Three.jsのレスポンシブデザインの記事](threejs-responsive.html)を例にすると、変更が必要なのは2箇所だけです。
+[Three.jsのレスポンシブデザインの記事](responsive.html)を例にすると、変更が必要なのは2箇所だけです。
 
 キャンバスにCSSを追加して背景を画像に設定する必要があります。
 
@@ -38,9 +38,9 @@ function main() {
 
 これで背景を設定できました。
 
-{{{example url="../threejs-background-css.html" }}}
+{{{example url="background-css.html" }}}
 
-背景に[ポストプロセス効果](threejs-post-processing.html)を与えたい場合は、Three.jsを使い背景を描画する必要があります。
+背景に[ポストプロセス効果](post-processing.html)を与えたい場合は、Three.jsを使い背景を描画する必要があります。
 
 THREE.jsで簡単にできます。シーンの背景をテクスチャに設定すれば良いのです。
 
@@ -52,7 +52,7 @@ scene.background = bgTexture;
 
 このようになります。
 
-{{{example url="../threejs-background-scene-background.html" }}}
+{{{example url="background-scene-background.html" }}}
 
 背景画像がありますが、画面に合わせて引き伸ばされています。
 
@@ -85,9 +85,9 @@ function render(time) {
 ```
 
 今度はThree.jsで背景を描画してます。
-CSSの時と比べて目に見える違いはありませんが、[ポストプロセス効果](threejs-post-processing.html)を使うと背景にも影響が出て違いがわかります。
+CSSの時と比べて目に見える違いはありませんが、[ポストプロセス効果](post-processing.html)を使うと背景にも影響が出て違いがわかります。
 
-{{{example url="../threejs-background-scene-background-fixed-aspect.html" }}}
+{{{example url="background-scene-background-fixed-aspect.html" }}}
 
 もちろん、静的な背景は通常は3Dシーンに求めるものではありません。
 その代わりに何らかの *スカイボックス* が欲しいです。
@@ -98,7 +98,7 @@ CSSの時と比べて目に見える違いはありませんが、[ポストプ�
 キューブの各面に地平線の画像のようなテクスチャ（テクスチャ座標を使用）を貼り付けます。
 また、スカイボックスの代わりに天球やスカイドームを使う事もよくあります。
 それらでの実装は自分で調べればわかると思います。
-キューブや球体を作り[テクスチャを適用](threejs-textures.html)し、`THREE.BackSide` としてマークを付けます。
+キューブや球体を作り[テクスチャを適用](textures.html)し、`THREE.BackSide` としてマークを付けます。
 そして、外側ではなく内側にレンダリングし、直接シーンに入れるか、上記のようにするか、2つのシーンを作るか、スカイボックス/球体/ドームを描くための特別なシーンと
 他の全てのものを描画するために使用します。
 描画には通常の `PerspectiveCamera` を使います。`OrthographicCamera` は必要ないです。
@@ -110,14 +110,14 @@ CSSの時と比べて目に見える違いはありませんが、[ポストプ�
 カリフォルニア州マウンテンビューにあるコンピュータ歴史博物館のキューブマップの画像6枚をご紹介します。
 
 <div class="threejs_center">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
 </div>
 <div class="threejs_center">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
 </div>
 
 `CubeTextureLoader` を使用してキューブマップ画像を読み込み、シーンの背景として使用します。
@@ -189,14 +189,14 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 これを試してみて下さい。
 ドラッグしてカメラを回転させ、キューブマップが周囲を取り囲んでいるのを見てみましょう。
 
-{{{example url="../threejs-background-cubemap.html" }}}
+{{{example url="background-cubemap.html" }}}
 
 もう1つの方法は正距円筒図を使用する事です。
 [360カメラ](https://google.com/search?q=360+camera)で撮るとこんな感じの写真になります。
 
 [このサイト](https://hdrihaven.com)で見つけたのが[こちら](https://hdrihaven.com/hdri/?h=tears_of_steel_bridge)です。
 
-<div class="threejs_center"><img src="../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
 
 たいして変わらないですね。
 まず、正距円筒図をテクスチャとして読み込み、読み込み後のコールバックで `WebGLCubeRenderTarget.fromEquirectangularTexture` を呼び出して、正距円筒図テクスチャからキューブマップを生成します。
@@ -226,6 +226,6 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 そして、これが全てです。
 
-{{{example url="../threejs-background-equirectangularmap.html" }}}
+{{{example url="background-equirectangularmap.html" }}}
 
 テクスチャを読み込み時に行うのではなく、あらかじめ等角画像をキューブマップに変換しておく事ともできます。[こんなサイトもあります](https://matheowis.github.io/HDRI-to-CubeMap/)。

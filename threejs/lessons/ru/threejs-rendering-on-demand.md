@@ -20,14 +20,14 @@ requestAnimationFrame(render);
 Изменения включают в себя окончательную загрузку текстур или моделей, 
 данные, поступающие из какого-либо внешнего источника, пользователь, изменяющий настройку или камеру, или другой соответствующий ввод. 
 
-Давайте возьмем пример из [статьи об отзывчивости](threejs-responsive.html)
+Давайте возьмем пример из [статьи об отзывчивости](responsive.html)
 и изменим его для отображения по требованию. 
 
 Сначала мы добавим в OrbitControls, чтобы можно было что-то изменить, что мы можем сделать в ответ. 
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 и настроить их
@@ -108,7 +108,7 @@ window.addEventListener('resize', render);
 
 И с этим мы получаем что-то, что рендерит по требованию.
 
-{{{example url="../threejs-render-on-demand.html" }}}
+{{{example url="render-on-demand.html" }}}
 
 У `OrbitControls` есть опции для добавления некоторой инерции, чтобы они чувствовали себя менее интенсивными. 
 Мы можем включить это, установив для свойства `enableDamping` значение true. 
@@ -167,17 +167,17 @@ render();
 Затем попробуйте нажать на приведенный выше пример и сделайте то же самое, и вы сможете увидеть разницу. 
 В приведенном примере при нажатии клавиши со стрелкой или перетаскивании мышью, кубики проскальзывают. 
 
-{{{example url="../threejs-render-on-demand-w-damping.html" }}}
+{{{example url="render-on-demand-w-damping.html" }}}
 
 Давайте также добавим простой графический интерфейс dat.GUI и внесем его изменения по запросу. 
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
-Давайте позволим установить цвет и шкалу х каждого куба. Чтобы установить цвет, мы будем использовать `ColorGUIHelper`, который мы создали в [статье о светах](threejs-lights.html).
+Давайте позволим установить цвет и шкалу х каждого куба. Чтобы установить цвет, мы будем использовать `ColorGUIHelper`, который мы создали в [статье о светах](lights.html).
 
 Сначала нам нужно создать графический интерфейс
 
@@ -214,7 +214,7 @@ function makeInstance(geometry, color, x) {
 который вы можете передать обратный вызов для вызова, когда графический интерфейс изменяет значение.
 В нашем случае нам просто нужно вызвать `requestRenderIfNotRequested`. При вызове `folder.open` папка запускается расширенной. 
 
-{{{example url="../threejs-render-on-demand-w-gui.html" }}}
+{{{example url="render-on-demand-w-gui.html" }}}
 
 Я надеюсь, что это дает некоторое представление о том, как сделать three.js визуализированным 
 по требованию, а не непрерывно. Приложения / страницы, которые отображают Three.js по требованию, 

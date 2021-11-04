@@ -2,9 +2,9 @@ Title: Three.js 캔버스 텍스처
 Description: 캔버스를 Three.js 텍스처로 쓰는 방법을 알아봅니다
 TOC: 캔버스로 동적 텍스처 만들기
 
-※ 이 글은 [텍스처에 관한 글](threejs-textures.html)에서 이어집니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.
+※ 이 글은 [텍스처에 관한 글](textures.html)에서 이어집니다. 이전 글을 읽지 않았다면 먼저 읽고 오기 바랍니다.
 
-[이전 글](threejs-textures.html)에서 텍스처를 다룰 때는 주로 이미지 파일로 텍스처를 만들었습니다. 하지만 경우에 따라서는 런타임에 텍스처를 만들어야 할 수도 있죠. `CanvasTexture`를 사용하면 캔버스를 텍스처로 활용할 수 있습니다.
+[이전 글](textures.html)에서 텍스처를 다룰 때는 주로 이미지 파일로 텍스처를 만들었습니다. 하지만 경우에 따라서는 런타임에 텍스처를 만들어야 할 수도 있죠. `CanvasTexture`를 사용하면 캔버스를 텍스처로 활용할 수 있습니다.
 
 캔버스 텍스처는 `<canvas>` 요소를 인자로 받습니다. 2D 캔버스 API에 대해 잘 모른다면 [MDN의 튜토리얼](https://developer.mozilla.org/ko/docs/Web/API/Canvas_API/Tutorial)을 참고하세요.
 
@@ -46,7 +46,7 @@ requestAnimationFrame(render);
 
 {{{example url="../canvas-random-dots.html" }}}
 
-이제 위 캔버스를 텍스처로 만들어봅시다. [이전 글](threejs-textures.html)에서 정육면체에 텍스처를 입혔던 예제를 가져오겠습니다. 이미지를 불러오는 코드를 제거하고 대신 `CanvasTexture`에 방금 만든 캔버스를 넘겨 인스턴스를 생성합니다.
+이제 위 캔버스를 텍스처로 만들어봅시다. [이전 글](textures.html)에서 정육면체에 텍스처를 입혔던 예제를 가져오겠습니다. 이미지를 불러오는 코드를 제거하고 대신 `CanvasTexture`에 방금 만든 캔버스를 넘겨 인스턴스를 생성합니다.
 
 ```js
 const cubes = [];  // 정육면체를 회전시키기 위한 배열입니다.
@@ -100,15 +100,15 @@ function render(time) {
 
 이제 정육면체에 캔버스 텍스처가 적용되었을 겁니다.
 
-{{{example url="../threejs-canvas-textured-cube.html" }}}
+{{{example url="canvas-textured-cube.html" }}}
 
-Three.js가 캔버스 텍스처를 렌더링할 때는 이전에 [별도의 글](threejs-rendertargets.html)에서 설명했던 `RenderTarget`을 쓰는 게 더 좋습니다.
+Three.js가 캔버스 텍스처를 렌더링할 때는 이전에 [별도의 글](rendertargets.html)에서 설명했던 `RenderTarget`을 쓰는 게 더 좋습니다.
 
 캔버스 텍스처는 주로 장면에 텍스트를 삽입할 때 사용합니다. 예를 들어 캐릭터의 명찰에 이름을 표기하는 경우 캔버스 텍스처를 명찰의 텍스처로 사용할 수 있겠죠.
 
 한 번 3명의 사람이 있는 장면을 만들어 각 사람에게 명찰을 달아봅시다.
 
-위 예제를 그대로 가져와 정육면체 관련 코드를 지웁니다. 배경은 하얀색으로 바꾸고 두 개의 [조명](threejs-lights.html)을 넣습니다.
+위 예제를 그대로 가져와 정육면체 관련 코드를 지웁니다. 배경은 하얀색으로 바꾸고 두 개의 [조명](lights.html)을 넣습니다.
 
 ```js
 const scene = new THREE.Scene();
@@ -236,8 +236,8 @@ const scene = new THREE.Scene();
 마지막으로 `OrbitControls`를 넣어 카메라를 움직일 수 있도록 합니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -257,7 +257,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 사람 위에 간단한 명찰이 붙었습니다.
 
-{{{example url="../threejs-canvas-textured-labels.html" }}}
+{{{example url="canvas-textured-labels.html" }}}
 
 나쁘지 않은 예제이지만 몇 가지 짚고 넘어가야 할 것들이 있습니다.
 
@@ -332,7 +332,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 이제 명찰의 텍스트가 크기에 맞춰지고 가운데 정렬됩니다.
 
-{{{example url="../threejs-canvas-textured-labels-scale-to-fit.html" }}}
+{{{example url="canvas-textured-labels-scale-to-fit.html" }}}
 
 위 예제에서는 텍스처마다 캔버스를 따로 썼습니다. 텍스처마다 캔버스를 따로 쓸지는 여러분의 선택에 달렸습니다. 만약 캔버스를 자주 업데이트해야 한다면 텍스처마다 캔버스를 따로 두는 게 좋겠죠. 반대로 아예, 또는 가끔 업데이트할 거라면 하나의 캔버스를 돌려 쓰는 게 더 나을 겁니다. 명찰은 업데이트할 일이 없으니 위 코드를 고쳐 하나의 캔버스를 쓰도록 해보죠.
 
@@ -374,8 +374,8 @@ function makePerson(x, labelWidth, size, name, color) {
   ...
 ```
 
-{{{example url="../threejs-canvas-textured-labels-one-canvas.html" }}}
+{{{example url="canvas-textured-labels-one-canvas.html" }}}
 
-아직 언급하지 않은 다른 문제점이 있습니다. 카메라를 사람 뒤로 돌리면 명찰이 뒤집혀 보인다는 거죠. 만약 명찰을 배지 형태로 사용할 거라면 크게 문제될 일은 없습니다. 하지만 명찰을 3D 게임 캐릭터의 이름표로 사용할 거라면 이름표가 항상 카메라를 향해야 하겠죠. 이 방법에 대해서는 [빌보드와 파사드](threejs-billboards.html)에서 다루겠습니다.
+아직 언급하지 않은 다른 문제점이 있습니다. 카메라를 사람 뒤로 돌리면 명찰이 뒤집혀 보인다는 거죠. 만약 명찰을 배지 형태로 사용할 거라면 크게 문제될 일은 없습니다. 하지만 명찰을 3D 게임 캐릭터의 이름표로 사용할 거라면 이름표가 항상 카메라를 향해야 하겠죠. 이 방법에 대해서는 [빌보드와 파사드](billboards.html)에서 다루겠습니다.
 
-단순히 이름표를 구현하는 경우라면 [HTML을 이용한 방법](threejs-align-html-elements-to-3d.html)을 사용할 수도 있습니다. 다만 [HTML 이름표](threejs-align-html-elements-to-3d.html)는 항상 3D 요소 위에 있죠. 예제의 명찰은 *3차원 세계 안*에 있기에 다른 물체에 의해 가려지길 원할 경우 유용합니다.
+단순히 이름표를 구현하는 경우라면 [HTML을 이용한 방법](align-html-elements-to-3d.html)을 사용할 수도 있습니다. 다만 [HTML 이름표](align-html-elements-to-3d.html)는 항상 3D 요소 위에 있죠. 예제의 명찰은 *3차원 세계 안*에 있기에 다른 물체에 의해 가려지길 원할 경우 유용합니다.

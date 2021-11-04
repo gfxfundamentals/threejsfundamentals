@@ -6,7 +6,7 @@ TOC: Post Processing
 a 2D image. In the case of THREE.js we have a scene with a bunch of meshes in
 it. We render that scene into a 2D image. Normally that image is rendered
 directly into the canvas and displayed in the browser but instead we can [render
-it to a render target](threejs-rendertargets.html) and then apply some *post
+it to a render target](rendertargets.html) and then apply some *post
 processing* effects to the result before drawing it to the canvas. It's called
 post processing because it happens after (post) the main scene processing.
 
@@ -16,20 +16,20 @@ Photoshop filters, etc...
 THREE.js has some example classes to help setup a post processing pipeline. The
 way it works is you create an `EffectComposer` and to it you add multiple `Pass`
 objects. You then call `EffectComposer.render` and it renders your scene to a
-[render target](threejs-rendertargets.html) and then applies each `Pass`.
+[render target](rendertargets.html) and then applies each `Pass`.
 
 Each `Pass` can be some post processing effect like adding a vignette, blurring,
 applying a bloom, applying film grain, adjusting the hue, saturation, contrast,
 etc... and finally rendering the result to the canvas.
 
 It's a little bit important to understand how `EffectComposer` functions. It
-creates two [render targets](threejs-rendertargets.html). Let's call them
+creates two [render targets](rendertargets.html). Let's call them
 **rtA** and **rtB**.
 
 Then, you call `EffectComposer.addPass` to add each pass in the order you want
 to apply them. The passes are then applied *something like* this.
 
-<div class="threejs_center"><img src="resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-postprocessing.svg" style="width: 600px"></div>
 
 First the scene you passed into `RenderPass` is rendered to **rtA**, then
 **rtA** is passed to the next pass, whatever it is. That pass uses **rtA** as
@@ -58,7 +58,7 @@ target. Usually you need to set this to true on the last pass you add to your
 `EffectComposer`.
 
 Let's put together a basic example. We'll start with the example from [the
-article on responsiveness](threejs-responsive.html).
+article on responsiveness](responsive.html).
 
 To that first we create an `EffectComposer`.
 
@@ -107,10 +107,10 @@ render to the next render target.
 To use these classes we need to import a bunch of scripts.
 
 ```js
-import {EffectComposer} from './resources/threejs/r132/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from './resources/threejs/r132/examples/jsm/postprocessing/RenderPass.js';
-import {BloomPass} from './resources/threejs/r132/examples/jsm/postprocessing/BloomPass.js';
-import {FilmPass} from './resources/threejs/r132/examples/jsm/postprocessing/FilmPass.js';
+import {EffectComposer} from '/examples/jsm/postprocessing/EffectComposer.js';
+import {RenderPass} from '/examples/jsm/postprocessing/RenderPass.js';
+import {BloomPass} from '/examples/jsm/postprocessing/BloomPass.js';
+import {FilmPass} from '/examples/jsm/postprocessing/FilmPass.js';
 ```
 
 For pretty much any post processing `EffectComposer.js`, and `RenderPass.js`
@@ -155,7 +155,7 @@ the canvas.
 the last frame was rendered. It passes this to the various effects in case any
 of them are animated. In this case the `FilmPass` is animated.
 
-{{{example url="../threejs-postprocessing.html" }}}
+{{{example url="postprocessing.html" }}}
 
 To change effect parameters at runtime usually requires setting uniform values.
 Let's add a gui to adjust some of the parameters. Figuring out which values you
@@ -216,7 +216,7 @@ const gui = new GUI();
 
 and now we can adjust those settings
 
-{{{example url="../threejs-postprocessing-gui.html" }}}
+{{{example url="postprocessing-gui.html" }}}
 
 That was a small step to making our own effect.
 
@@ -301,7 +301,7 @@ gui.add(colorPass.uniforms.color.value, 'b', 0, 4).name('blue');
 
 Gives us a simple postprocessing effect that multiplies by a color.
 
-{{{example url="../threejs-postprocessing-custom.html" }}}
+{{{example url="postprocessing-custom.html" }}}
 
 As mentioned about all the details of how to write GLSL and custom shaders is
 too much for these articles. If you really want to know how WebGL itself works
@@ -315,4 +315,4 @@ Most of the post processing effects in the THREE.js repo are unfortunately
 undocumented so to use them you'll have to [read through the examples](https://github.com/mrdoob/three.js/tree/master/examples) or 
 [the code for the effects themselves](https://github.com/mrdoob/three.js/tree/master/examples/js/postprocessing).
 Hopefully these simple example and the article on 
-[render targets](threejs-rendertargets.html) provide enough context to get started.
+[render targets](rendertargets.html) provide enough context to get started.

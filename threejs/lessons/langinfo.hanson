@@ -32,7 +32,7 @@
   categoryMapping: {
     'basics': 'Basics',
     'solutions': 'Solutions',
-    'webvr': 'WebVR',
+    'webxr': 'WebXR',
     'optimization': 'Optimization',
     'tips': 'Tips',
     'fundamentals': 'Fundamentals',

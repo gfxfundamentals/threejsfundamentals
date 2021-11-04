@@ -3,12 +3,12 @@ Description: Shadows in Three.js
 TOC: Shadows
 
 This article is part of a series of articles about three.js. The
-first article is [three.js fundamentals](threejs-fundamentals.html). If
+first article is [three.js fundamentals](fundamentals.html). If
 you haven't read that yet and you're new to three.js you might want to
 consider starting there. The
-[previous article was about cameras](threejs-cameras.html) which is
+[previous article was about cameras](cameras.html) which is
 important to have read before you read this article as well as
-the [article before that one about lights](threejs-lights.html).
+the [article before that one about lights](lights.html).
 
 Shadows on computers can be a complicated topic. There are various
 solutions and all of them have tradeoffs including the solutions
@@ -45,9 +45,9 @@ draw it above the ground below your object.
 
 For example let's use this texture as a fake shadow
 
-<div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
+<div class="threejs_center"><img src="../examples/resources/images/roundshadow.png"></div>
 
-We'll use some of the code from [the previous article](threejs-cameras.html).
+We'll use some of the code from [the previous article](cameras.html).
 
 Let's set the background color to white.
 
@@ -123,7 +123,7 @@ Now we'll make a bunch of spheres. For each sphere we'll create a `base`
 children of the base. That way if we move the base both the sphere and the shadow
 will move. We need to put the shadow slightly above the ground to prevent z-fighting.
 We also set `depthWrite` to false so that the shadows don't mess each other up.
-We'll go over both of these issues in [another article](threejs-transparency.html).
+We'll go over both of these issues in [another article](transparency.html).
 The shadow is a `MeshBasicMaterial` because it doesn't need lighting.
 
 We make each sphere a different hue and then save off the base, the sphere mesh,
@@ -231,7 +231,7 @@ function render(time) {
 
 And here's 15 kind of bouncing balls.
 
-{{{example url="../threejs-shadows-fake.html" }}}
+{{{example url="shadows-fake.html" }}}
 
 In some apps it's common to use a round or oval shadow for everything but
 of course you could also use different shaped shadow textures. You might also
@@ -244,7 +244,7 @@ appears to also use this kind of shadow for the main character.
 So, moving on to shadow maps, there are 3 lights which can cast shadows. The `DirectionalLight`,
 the `PointLight`, and the `SpotLight`.
 
-Let's start with the `DirectionalLight` with the helper example from [the lights article](threejs-lights.html).
+Let's start with the `DirectionalLight` with the helper example from [the lights article](lights.html).
 
 The first thing we need to do is turn on shadows in the renderer.
 
@@ -287,13 +287,13 @@ mesh.receiveShadow = true;
 
 And then we run it.
 
-{{{example url="../threejs-shadows-directional-light.html" }}}
+{{{example url="shadows-directional-light.html" }}}
 
 What happened? Why are parts of the shadows missing?
 
 The reason is shadow maps are created by rendering the scene from the point
 of view of the light. In this case there is a camera at the `DirectionalLight`
-that is looking at its target. Just like [the camera's we previously covered](threejs-cameras.html)
+that is looking at its target. Just like [the camera's we previously covered](cameras.html)
 the light's shadow camera defines an area inside of which
 the shadows get rendered. In the example above that area is too small.
 
@@ -307,7 +307,7 @@ scene.add(cameraHelper);
 
 And now you can see the area for which shadows are cast and received.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
+{{{example url="shadows-directional-light-with-camera-helper.html" }}}
 
 Adjust the target x value back and forth and it should be pretty clear that only
 what's inside the light's shadow camera box is where shadows are drawn.
@@ -317,7 +317,7 @@ We can adjust the size of that box by adjusting the light's shadow camera.
 Let's add some GUI setting to adjust the light's shadow camera box. Since a
 `DirectionalLight` represents light all going in a parallel direction, the
 `DirectionalLight` uses an `OrthographicCamera` for its shadow camera.
-We went over how an `OrthographicCamera` works in [the previous article about cameras](threejs-cameras.html).
+We went over how an `OrthographicCamera` works in [the previous article about cameras](cameras.html).
 
 Recall an `OrthographicCamera` defines
 its box or *view frustum* by its `left`, `right`, `top`, `bottom`, `near`, `far`,
@@ -345,7 +345,7 @@ class DimensionGUIHelper {
 }
 ```
 
-We'll also use the `MinMaxGUIHelper` we created in the [camera article](threejs-cameras.html)
+We'll also use the `MinMaxGUIHelper` we created in the [camera article](cameras.html)
 to adjust `near` and `far`.
 
 ```js
@@ -387,7 +387,7 @@ updateCamera();
 
 And now that we've given the light's shadow camera a GUI we can play with the values.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
+{{{example url="shadows-directional-light-with-camera-gui.html" }}}
 
 Set the `width` and `height` to about 30 and you can see the shadows are correct
 and the areas that need to be in shadow for this scene are entirely covered.
@@ -396,7 +396,7 @@ But this brings up the question, why not just set `width` and `height` to some
 giant numbers to just cover everything? Set the `width` and `height` to 100
 and you might see something like this
 
-<div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
 What's going on with these low-res shadows?!
 
@@ -429,21 +429,21 @@ The `aspect` is set automatically based on the size of the shadow map.
 ```
 
 and we added back in the `penumbra` and `angle` settings
-from our [article about lights](threejs-lights.html).
+from our [article about lights](lights.html).
 
-{{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
+{{{example url="shadows-spot-light-with-camera-gui.html" }}}
 
 <!--
 You can notice, just like the last example if we set the angle high
 then the shadow map, the texture is spread over a very large area and
 the resolution of our shadows gets really low.
 
-div class="threejs_center"><img src="resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
+div class="threejs_center"><img src="../resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
 
 You can increase the size of the shadow map as mentioned above. You can
 also blur the result
 
-{{{example url="../threejs-shadows-spot-light-with-shadow-radius" }}}
+{{{example url="shadows-spot-light-with-shadow-radius" }}}
 -->
 
 
@@ -489,7 +489,7 @@ And of course we need to switch the light to a `PointLight`.
 +scene.add(helper);
 ```
 
-{{{example url="../threejs-shadows-point-light.html" }}}
+{{{example url="shadows-point-light.html" }}}
 
 Use the `position` GUI settings to move the light around
 and you'll see the shadows fall on all the walls. You can

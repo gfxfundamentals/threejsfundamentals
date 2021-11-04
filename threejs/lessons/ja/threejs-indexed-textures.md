@@ -2,21 +2,21 @@ Title: 圧縮テクスチャのピッキングとカラー
 Description: 圧縮テクスチャのピッキングとカラー
 TOC: 圧縮テクスチャのピッキングとカラー
 
-この記事は[Three.jsでHTML要素を3Dに揃える](threejs-align-html-elements-to-3d.html)の続きです。
+この記事は[Three.jsでHTML要素を3Dに揃える](align-html-elements-to-3d.html)の続きです。
 まだ読んでいない人はそちらから読んでみて下さい。
 
 Three.jsを使う時には、クリエイティブな解決策を考えなければならない事もあります。
 これが素晴らしい解決策かわかりませんが、共有して何か解決策の提案があるか見てみようと思いました。
 
-[前回の記事](threejs-align-html-elements-to-3d.html)では3Dの地球儀の周りに国名を表示しました。
+[前回の記事](align-html-elements-to-3d.html)では3Dの地球儀の周りに国名を表示しました。
 ユーザーに国を選択させて、その国の選択内容を表示させるにはどうすれば良いでしょうか？
 
 最初に思いつくのは国ごとにジオメトリを生成する事です。
-以前取り上げた[ピッキングを使った解決策](threejs-picking.html)があります。
+以前取り上げた[ピッキングを使った解決策](picking.html)があります。
 国ごとに3Dジオメトリを作ります。
 ユーザーが国のメッシュをクリックすると、どの国がクリックされたのか分かります。
 
-この解決策を確認するために[前回の記事](threejs-align-html-elements-to-3d.html)のアウトライン生成に使った同じデータを使用し、全ての国の3Dメッシュを生成してみました。
+この解決策を確認するために[前回の記事](align-html-elements-to-3d.html)のアウトライン生成に使った同じデータを使用し、全ての国の3Dメッシュを生成してみました。
 その結果、15.5MBのバイナリGLTF(.glb)ファイルができました。
 15.5MBをダウンロードさせるのは、私にはやりすぎのように思えます。
 
@@ -34,7 +34,7 @@ Three.jsを使う時には、クリエイティブな解決策を考えなけれ
 もしくは[draco compression](https://google.github.io/draco/)のようなものを使う事もできるし、それだけで充分かもしれません。
 私は確認してないですが、ぜひご自身で確認して結果がどうなったか教えて下さい😅
 
-私の場合は[ピッキングの記事](threejs-picking.html)の最後に取り上げた[GPUピッキングの解決策](threejs-picking.html)について考えてみました。
+私の場合は[ピッキングの記事](picking.html)の最後に取り上げた[GPUピッキングの解決策](picking.html)について考えてみました。
 この解決策では、メッシュのIDを表すユニークなカラーで全てのメッシュを描画しました。
 全てのメッシュを描画し、クリックしてカラーを確認しました。
 
@@ -45,7 +45,7 @@ Three.jsを使う時には、クリエイティブな解決策を考えなけれ
 
 そこでこのようなテクスチャを生成する[コード](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)を書いてみました。
 
-<div class="threejs_center"><img src="../resources/data/world/country-index-texture.png" style="width: 700px;"></div>
+<div class="threejs_center"><img src="../examples/resources/data/world/country-index-texture.png" style="width: 700px;"></div>
 
 注：このテクスチャを生成するために使用されたデータは[このウェブサイト](http://thematicmapping.org/downloads/world_borders.php)からのもので[CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/)ライセンスです。
 
@@ -54,7 +54,7 @@ Three.jsを使う時には、クリエイティブな解決策を考えなけれ
 
 これを使い国をピッキングしてみましょう。
 
-[GPUピッキング例](threejs-picking.html)からコードを取得すると、ピッキングシーンが必要です。
+[GPUピッキング例](picking.html)からコードを取得すると、ピッキングシーンが必要です。
 
 ```js
 const pickingScene = new THREE.Scene();
@@ -228,7 +228,7 @@ function updateLabels() {
 
 これで国を選択できるようになります。
 
-{{{example url="../threejs-indexed-textures-picking.html" }}}
+{{{example url="indexed-textures-picking.html" }}}
 
 地域に基づいて国を表示しますが、1つをクリックすると1つだけラベルが表示されます。
 
@@ -266,7 +266,7 @@ const palette = [
 画像データの各ピクセルがパレットへのインデックスとなります。
 上記のパレットを使い、画像データを解釈すると次のような画像が得られます。
 
-<div class="threejs_center"><img src="resources/images/7x7-indexed-face.png"></div>
+<div class="threejs_center"><img src="../resources/images/7x7-indexed-face.png"></div>
 
 この場合、上記のテクスチャは国ごとに異なるIDを持っています。
 そこでパレットのテクスチャを通して同じテクスチャを使い、それぞれの国のカラーを出せば良いのです。
@@ -277,7 +277,7 @@ const palette = [
 three.jsでデフォルトのシェーダーを変更してみましょう。
 そうすれば、必要に応じてライティングなどの機能も使えます。
 
-[アニメーションする多くのオブジェクトを最適化の記事](threejs-optimize-lots-of-objects-animated.html)で解説したように、
+[アニメーションする多くのオブジェクトを最適化の記事](optimize-lots-of-objects-animated.html)で解説したように、
 マテリアルの `onBeforeCompile` プロパティに関数を追加するとデフォルトのシェーダーを変更できます。
 
 デフォルトのフラグメントシェーダーはコンパイル前は以下のようになっています。
@@ -328,7 +328,7 @@ void main() {
 
 シェーダーで `diffuseColor` は既にアウトラインテクスチャのカラーになっているはずなので、パレットテクスチャからカラーを探して最終的な結果にそれらをミックスします。
 
-[前にやった](threejs-optimize-lots-of-objects-animated.html)ように検索文字列と置換文字列の配列を作り、`Material.onBeforeCompile` でシェーダーに適用します。
+[前にやった](optimize-lots-of-objects-animated.html)ように検索文字列と置換文字列の配列を作り、`Material.onBeforeCompile` でシェーダーに適用します。
 
 ```js
 {
@@ -441,7 +441,7 @@ scene.add(new THREE.Mesh(geometry, material));
 
 ランダムなカラーがついた国を手に入れる事ができました。
 
-{{{example url="../threejs-indexed-textures-random-colors.html" }}}
+{{{example url="indexed-textures-random-colors.html" }}}
 
 インデックスとパレットテクスチャの動作が確認できたので、パレットを操作してハイライトにしてみましょう。
 
@@ -527,7 +527,7 @@ function unselectAllCountries() {
 
 1つ以上の国を強調する事ができるようにする必要があります。
 
-{{{example url="../threejs-indexed-textures-picking-and-highlighting.html" }}}
+{{{example url="indexed-textures-picking-and-highlighting.html" }}}
 
 これで動作しました！
 
@@ -615,10 +615,10 @@ canvas.addEventListener('pointerup', pickCountry);
 
 これらの変更を加えると私にはそれが機能しているように*見えます*。
 
-{{{example url="../threejs-indexed-textures-picking-debounced.html" }}}
+{{{example url="indexed-textures-picking-debounced.html" }}}
 
 私はUXの専門家ではないので、もっと良い解決策があれば教えて下さい。
 
 インデックスグラフィックスがどのように役立つのか、また、three.jsが作るシェーダーを変更してシンプルな機能を追加する方法が少しでも理解してもらえたと思います。
 シェーダーが書かれている言語のGLSLの使い方は、この記事で扱うには内容が大きすぎます。
-[ポストプロセスの記事](threejs-post-processing.html)にGLSLのリンクがあるので確認してみて下さい。
+[ポストプロセスの記事](post-processing.html)にGLSLのリンクがあるので確認してみて下さい。

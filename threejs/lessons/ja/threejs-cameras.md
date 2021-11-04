@@ -3,11 +3,11 @@ Description: Three.jsでのカメラの使い方
 TOC: カメラ
 
 この記事はThree.jsの連載記事の1つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでいない場合、そこから始めると良いかもしれません。
 
 three.jsでのカメラの話をしましょう。
-[最初の記事](threejs-fundamentals.html)でいくつか取り上げましたが、ここではもっと詳しく取り上げます。
+[最初の記事](fundamentals.html)でいくつか取り上げましたが、ここではもっと詳しく取り上げます。
 
 `PerspectiveCamera（透視投影カメラ）` はthree.jsで最も一般的なカメラで、今までの記事で使ってきました。
 遠くのものが近くのものよりも小さく見える3Dビューを提供します。
@@ -35,9 +35,9 @@ three.jsでのカメラの話をしましょう。
 `aspect` は錐台の前面と背面の幅です。
 錐台の幅は高さにaspectを掛けたものです。
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
-[前回の記事](threejs-lights.html)から地面となる平面、球体、立方体のあるシーンを利用し、カメラの設定を調整してみましょう。
+[前回の記事](lights.html)から地面となる平面、球体、立方体のあるシーンを利用し、カメラの設定を調整してみましょう。
 
 `near` と `far` の設定用に `MinMaxGUIHelper` を作成します。
 `far` が常に `near` よりも大きい値になるようにします。
@@ -86,7 +86,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 カメラ設定の変更時、カメラの [`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix) 関数を呼び出す必要があります。
 `updateCamera` という関数を作り、それをdat.GUI変更時に呼び出すようにします。
 
-{{{example url="../threejs-cameras-perspective.html" }}}
+{{{example url="cameras-perspective.html" }}}
 
 値を調整すると動作が確認できます。
 `aspect` を調整したい場合は、新しいウィンドウでサンプルを開いてからウィンドウサイズを変更して下さい。
@@ -279,7 +279,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
 
 片方のviewを使い、もう片方の錐台を見るれるようになりました。
 
-{{{example url="../threejs-cameras-perspective-2-scenes.html" }}}
+{{{example url="cameras-perspective-2-scenes.html" }}}
 
 左側はオリジナルのビュー、右側はカメラの錐台を表示するビューがあります。
 マウスで `near`、`far`、`fov` を調整してカメラを動かすと、右側に表示されている錐台の内側だけが左側のシーンに表示されています。
@@ -333,13 +333,13 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 何が起こると思いますか？
 
-{{{example url="../threejs-cameras-z-fighting.html" }}}
+{{{example url="cameras-z-fighting.html" }}}
 
 これはGPUがどのピクセルが前後にあるか判断する精度が不足してる時に *Zファイティング* が発生する例です。
 
 あなたのマシンでは問題が表示されない可能性がありますが、私のマシンでは以下のように表示されます。
 
-<div class="threejs_center"><img src="resources/images/z-fighting.png" style="width: 570px;"></div>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
 
 1つ目の解決策はどのピクセルが前後にあるかを計算するために、three.jsの別メソッドを使用します。
 これは `WebGLRenderer` の作成時に `logarithmicDepthBuffer` を有効にします。
@@ -354,7 +354,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 これで上手く動くかもしれません。
 
-{{{example url="../threejs-cameras-logarithmic-depth-buffer.html" }}}
+{{{example url="cameras-logarithmic-depth-buffer.html" }}}
 
 これで問題が解決しない場合、この解決策が使えない理由の1つに遭遇した事になります。
 その理由は、特定のGPUのみをサポートしているためです。
@@ -430,7 +430,7 @@ const gui = new GUI();
 
 これで `OrthographicCamera` が動作しているのが見れるようになりました。
 
-{{{example url="../threejs-cameras-orthographic-2-scenes.html" }}}
+{{{example url="cameras-orthographic-2-scenes.html" }}}
 
 three.jsで2次元のものを描画する場合には、`OrthographicCamera` が最もよく使われます。
 カメラの表示台数を決める必要があります。
@@ -558,17 +558,17 @@ function render(time) {
 
 2Dキャンバスのようにピクセル計算を使い、画像がキャンバスの縁からピクセルのように跳ね返っているのが分かります。
 
-{{{example url="../threejs-cameras-orthographic-canvas-top-left-origin.html" }}}
+{{{example url="cameras-orthographic-canvas-top-left-origin.html" }}}
 
 `OrthographicCamera` のもう1つの一般的な用途は3Dモデリングツールやゲームエンジンで、上、下、左、右、正面、背面のビューを描画する場合です。
 
-<div class="threejs_center"><img src="resources/images/quad-viewport.png" style="width: 574px;"></div>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 
 上記のスクリーンショットでは右上のビューが透視投影図、左上のビューが平行投影図です。
 
 それがカメラの基本です。
 カメラを動かすための一般的な方法は別の記事で紹介します。
-とりあえず[影](threejs-shadows.html)についてのページに移りましょう。
+とりあえず[影](shadows.html)についてのページに移りましょう。
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-cameras.js"></script>
+<script type="module" src="../resources/threejs-cameras.js"></script>

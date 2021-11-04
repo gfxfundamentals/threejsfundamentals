@@ -8,7 +8,7 @@ First we'll go over the easy part. Let's make a
 scene with 8 cubes placed in a 2x2x2 grid.
 
 We'll start with the example from
-[the article on rendering on demand](threejs-rendering-on-demand.html)
+[the article on rendering on demand](rendering-on-demand.html)
 which had 3 cubes and modify it to have 8. First
 let's change our `makeInstance` function to take
 an x, y, and z
@@ -113,18 +113,18 @@ function makeInstance(geometry, color, x, y, z) {
 
 and with that we get 8 transparent cubes
 
-{{{example url="../threejs-transparency.html"}}}
+{{{example url="transparency.html"}}}
 
 Drag on the example to rotate the view. 
 
 So it seems easy but ... look closer. The cubes are
 missing their backs.
 
-<div class="threejs_center"><img src="resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
 <div class="threejs_center">no backs</div>
 
 We learned about the [`side`](Material.side) material property in 
-[the article on materials](threejs-materials.html).
+[the article on materials](materials.html).
 So, let's set it to `THREE.DoubleSide` to get both sides of each cube to be drawn.
 
 ```js
@@ -139,12 +139,12 @@ const material = new THREE.MeshPhongMaterial({
 
 And we get
 
-{{{example url="../threejs-transparency-doubleside.html" }}}
+{{{example url="transparency-doubleside.html" }}}
 
 Give it a spin. It kind of looks like it's working as we can see backs
 except on closer inspection sometimes we can't.
 
-<div class="threejs_center"><img src="resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
 <div class="threejs_center">the left back face of each cube is missing</div>
 
 This happens because of the way 3D objects are generally drawn. For each geometry
@@ -161,7 +161,7 @@ the very first example would have failed between cubes with some cubes blocking
 out others. Unfortunately for individual triangles shorting would be extremely slow. 
 
 The cube has 12 triangles, 2 for each face, and the order they are drawn is 
-[the same order they are built in the geometry](threejs-custom-buffergeometry.html)
+[the same order they are built in the geometry](custom-buffergeometry.html)
 so depending on which direction we are looking the triangles closer to the camera
 might get drawn first. In that case the triangles in the back aren't drawn.
 This is why sometimes we don't see the backs.
@@ -191,14 +191,14 @@ function makeInstance(geometry, color, x, y, z) {
 
 Any with that it *seems* to work.
 
-{{{example url="../threejs-transparency-doubleside-hack.html" }}}
+{{{example url="transparency-doubleside-hack.html" }}}
 
 It assumes that the three.js's sorting is stable. Meaning that because we
 added the `side: THREE.BackSide` mesh first and because it's at the exact same
 position that it will be drawn before the `side: THREE.FrontSide` mesh.
 
 Let's make 2 intersecting planes (after deleting all the code related to cubes).
-We'll [add a texture](threejs-textures.html) to each plane.
+We'll [add a texture](textures.html) to each plane.
 
 ```js
 const planeWidth = 1;
@@ -230,14 +230,14 @@ makeInstance(geometry, 'lightblue',  Math.PI * 0.5, 'resources/images/hmmmface.p
 This time we can use `side: THREE.DoubleSide` since we can only ever see one
 side of a plane at a time. Also note we pass our `render` function to the texture
 loading function so that when the texture finishes loading we re-render the scene.
-This is because this sample is [rendering on demand](threejs-rendering-on-demand.html)
+This is because this sample is [rendering on demand](rendering-on-demand.html)
 instead of rendering continuously.
 
-{{{example url="../threejs-transparency-intersecting-planes.html"}}}
+{{{example url="transparency-intersecting-planes.html"}}}
 
 And again we see a similar issue.
 
-<div class="threejs_center"><img src="resources/images/transparency-planes.png" style="width: 408px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-planes.png" style="width: 408px;"></div>
 <div class="threejs_center">half a face is missing</div>
 
 The solution here is to manually split the each pane into 2 panes
@@ -275,7 +275,7 @@ How you accomplish that is up to you. If I was using modeling package like
 [Blender](https://blender.org) I'd probably do this manually by adjusting
 texture coordinates. Here though we're using `PlaneGeometry` which by
 default stretches the texture across the plane. Like we [covered
-before](threejs-textures.html) By setting the [`texture.repeat`](Texture.repeat)
+before](textures.html) By setting the [`texture.repeat`](Texture.repeat)
 and [`texture.offset`](Texture.offset) we can scale and move the texture to get
 the correct half of the face texture on each plane.
 
@@ -283,7 +283,7 @@ The code above also makes a `Object3D` and parents the 2 planes to it.
 It seemed easier to rotate a parent `Object3D` than to do the math
 required do it without. 
 
-{{{example url="../threejs-transparency-intersecting-planes-fixed.html"}}}
+{{{example url="transparency-intersecting-planes-fixed.html"}}}
 
 This solution really only works for simple things like 2 planes that
 are not changing their intersection position.
@@ -300,8 +300,8 @@ Let's try on the 2 planes. First let's use different textures.
 The textures above were 100% opaque. These 2 use transparency.
 
 <div class="spread">
-  <div><img class="checkerboard" src="../resources/images/tree-01.png"></div>
-  <div><img class="checkerboard" src="../resources/images/tree-02.png"></div>
+  <div><img class="checkerboard" src="../examples/resources/images/tree-01.png"></div>
+  <div><img class="checkerboard" src="../examples/resources/images/tree-02.png"></div>
 </div>
 
 Going back to the 2 planes that intersect (before we split them) let's
@@ -333,7 +333,7 @@ function makeInstance(geometry, color, rotY, url) {
 
 Before we run this let's add a small UI so we can more easily play with the `alphaTest`
 and `transparent` settings. We'll use dat.gui like we introduced
-in the [article on three.js's scenegraph](threejs-scenegraph.html).
+in the [article on three.js's scenegraph](scenegraph.html).
 
 First we'll make a helper for dat.gui that sets every material in the scene
 to a value
@@ -381,18 +381,18 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
 and of course we need to include dat.gui
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
 and here's the results
 
-{{{example url="../threejs-transparency-intersecting-planes-alphatest.html"}}}
+{{{example url="transparency-intersecting-planes-alphatest.html"}}}
 
 You can see it works but zoom in and you'll see one plane has white lines.
 
-<div class="threejs_center"><img src="resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
 
 This is the same depth issue from before. That plane was drawn first
 so the plane behind is not drawn. There is no perfect solution.

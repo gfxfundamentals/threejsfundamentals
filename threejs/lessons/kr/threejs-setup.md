@@ -3,7 +3,7 @@ Description: Three.js의 개발 환경을 구성해봅니다
 TOC: 개발 환경
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
 
@@ -20,7 +20,7 @@ Three.js의 다른 요소를 더 살펴보기 전에, 개발 환경을 구축하
 만약 UI가 있는 웹 서버를 찾는다면
 [Servez](https://greggman.github.io/servez)를 추천합니다.
 
-{{{image url="resources/servez.gif" className="border" }}}
+{{{image url="../resources/servez.gif" className="border" }}}
 
 압축을 푼 경로를 지정하고, "Start" 버튼을 클릭하세요. 그런 다음
 [`http://localhost:8080/`](http://localhost:8080/)로 이동하기만
@@ -53,11 +53,11 @@ OS X를 사용한다면 다음과 같이 설치할 수 있습니다.
 
 정상적으로 작동했다면 다음과 같은 메시지가 뜰 겁니다.
 
-{{{image url="resources/servez-response.png" }}}
+{{{image url="../resources/servez-response.png" }}}
 
 다음으로 브라우저에서 [`http://localhost:8080/`](http://localhost:8080/)로
 접속하세요. 경로를 지정하지 않으면 현재 경로를 서버의 ROOT 경로로 사용합니다.
 
 만약 Servez가 마음에 들지 않는다면, [다른 간단한 웹 서버](https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver)를 사용해도 좋습니다.
 
-이제 개발 환경을 갖추었으니, [텍스처](threejs-textures.html)에 대해 알아봅시다.
+이제 개발 환경을 갖추었으니, [텍스처](textures.html)에 대해 알아봅시다.

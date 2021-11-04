@@ -11,14 +11,14 @@ also means data is loaded and parsed in the worker so possibly less jank while
 the page loads.
 
 Getting *started* using it is pretty straight forward. Let's port the 3 spinning cube
-example from [the article on responsiveness](threejs-responsive.html).
+example from [the article on responsiveness](responsive.html).
 
 Workers generally have their code separated
 into another script file whereas most of the examples on this site have had
 their scripts embedded into the HTML file of the page they are on.
 
 In our case we'll make a file called `offscreencanvas-cubes.js` and
-copy all the JavaScript from [the responsive example](threejs-responsive.html) into it. We'll then
+copy all the JavaScript from [the responsive example](responsive.html) into it. We'll then
 make the changes needed for it to run in a worker.
 
 We still need some JavaScript in our HTML file. The first thing
@@ -88,7 +88,7 @@ You can see above we just look up the handler based on the `type` pass it the `d
 that was sent from the main page.
 
 So now we just need to start changing the `main` we pasted into 
-`offscreencanvas-cubes.js` from [the responsive article](threejs-responsive.html).
+`offscreencanvas-cubes.js` from [the responsive article](responsive.html).
 
 Instead of looking up the canvas from the DOM we'll receive it from the
 event data.
@@ -244,7 +244,7 @@ function main() {
 
 and with that, if your browser supports `OffscreenCanvas` this example should work
 
-{{{example url="../threejs-offscreencanvas.html" }}}
+{{{example url="offscreencanvas.html" }}}
 
 So that's great but since not every browser supports `OffscreenCanvas` at the moment
 let's change the code to work with both `OffscreenCanvas` and if not then fallback to using
@@ -280,7 +280,7 @@ we rename `main` to `init` since we already have a `main` in our
 HTML file and we need to export `init` and `state`
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 -const state = {
 +export const state = {
@@ -445,10 +445,10 @@ function startMainPage(canvas) {
 and with that our example will run either in an OffscreenCanvas or
 fallback to running in the main page.
 
-{{{example url="../threejs-offscreencanvas-w-fallback.html" }}}
+{{{example url="offscreencanvas-w-fallback.html" }}}
 
 So that was relatively easy. Let's try picking. We'll take some code from
-the `RayCaster` example from [the article on picking](threejs-picking.html)
+the `RayCaster` example from [the article on picking](picking.html)
 and make it work offscreen.
 
 Let's copy the `shared-cube.js` to `shared-picking.js` and add the
@@ -630,7 +630,7 @@ window.addEventListener('touchend', clearPickPosition);
 
 and with that picking should be working with `OffscreenCanvas`.
 
-{{{example url="../threejs-offscreencanvas-w-picking.html" }}}
+{{{example url="offscreencanvas-w-picking.html" }}}
 
 Let's take it one more step and add in the `OrbitControls`.
 This will be little more involved. The `OrbitControls` use
@@ -644,7 +644,7 @@ of the DOM events they use. Maybe we could pass in our own
 object that has the same API surface as a DOM element. 
 We only need to support the features the OrbitControls need.
 
-Digging through the [OrbitControls source code](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r132/examples/js/controls/OrbitControls.js)
+Digging through the [OrbitControls source code](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)
 it looks like we need to handle the following events.
 
 * contextmenu
@@ -678,7 +678,7 @@ tell the difference.
 Here's the code for the worker part.
 
 ```js
-import {EventDispatcher} from './resources/threejs/r132/build/three.module.js';
+import {EventDispatcher} from '../../build/three.module.js';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -763,8 +763,8 @@ self.onmessage = function(e) {
 In our shared three.js code we need to import the `OrbitControls` and set them up.
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 
 export function init(data) {
 -  const {canvas} = data;
@@ -1191,7 +1191,7 @@ function startMainPage(canvas) {
 
 and now we should have OrbitControls working with OffscreenCanvas
 
-{{{example url="../threejs-offscreencanvas-w-orbitcontrols.html" }}}
+{{{example url="offscreencanvas-w-orbitcontrols.html" }}}
 
 This is probably the most complicated example on this site. It's a
 little hard to follow because there are 3 files involved for each

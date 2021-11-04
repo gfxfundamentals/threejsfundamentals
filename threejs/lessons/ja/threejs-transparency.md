@@ -7,7 +7,7 @@ Three.jsでの透過は簡単な方法と難しい方法があります。
 まずは簡単な方法を見ていきましょう。
 2 x 2 x 2のグリッドに8個のキューブを配置したシーンを作ってみましょう。
 
-[要求されたレンダリングの記事](threejs-rendering-on-demand.html)の例から始めて、3個から8個のキューブになるように修正します。
+[要求されたレンダリングの記事](rendering-on-demand.html)の例から始めて、3個から8個のキューブになるように修正します。
 まず `makeInstance` 関数の引数に x, y, z を追加しましょう。
 
 ```js
@@ -107,16 +107,16 @@ function makeInstance(geometry, color, x, y, z) {
 
 8個の透明なキューブになりました。
 
-{{{example url="../threejs-transparency.html"}}}
+{{{example url="transparency.html"}}}
 
 上記の動作サンプルの上でドラッグしてビューを回転してみて下さい。
 
 簡単に修正できたようですが...よく見て下さい。キューブの裏面がないです。
 
-<div class="threejs_center"><img src="resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
 <div class="threejs_center">no backs</div>
 
-[マテリアルの記事](threejs-materials.html)でマテリアルのプロパティ[`side`](Material.side)について学びました。
+[マテリアルの記事](materials.html)でマテリアルのプロパティ[`side`](Material.side)について学びました。
 `THREE.DoubleSide` に設定し、各キューブの両面が描画されるようにします。
 
 ```js
@@ -131,12 +131,12 @@ const material = new THREE.MeshPhongMaterial({
 
 これが結果です。
 
-{{{example url="../threejs-transparency-doubleside.html" }}}
+{{{example url="transparency-doubleside.html" }}}
 
 回転させてみて下さい。
 裏面を見ると上手く動作してるように見えますが、時々できない事があります。
 
-<div class="threejs_center"><img src="resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
 <div class="threejs_center">the left back face of each cube is missing</div>
 
 これは3Dオブジェクトの一般的な描画で発生します。
@@ -152,7 +152,7 @@ Three.jsでは `Mesh` のようなオブジェクトに対してこれを行い�
 そうでなければ、最初のサンプルではいくつかのキューブが他のキューブをブロックし、描画に失敗していたでしょう。
 残念ながら、個々の三角形が破綻し非常に遅くなります。
 
-キューブには12個の三角形が各面に2個ずつあり、描画される順番は[ジオメトリで作られた順番と同じ](threejs-custom-buffergeometry.html)です。
+キューブには12個の三角形が各面に2個ずつあり、描画される順番は[ジオメトリで作られた順番と同じ](custom-buffergeometry.html)です。
 そのため、どちらの方向を見ているかによって、カメラに近い三角形が最初に描画されるかもしれません。
 その場合、裏面の三角形は描画されません。これにより時々裏面が見えない事があります。
 
@@ -179,14 +179,14 @@ function makeInstance(geometry, color, x, y, z) {
 
 それは *動作してるように見えます* 。
 
-{{{example url="../threejs-transparency-doubleside-hack.html" }}}
+{{{example url="transparency-doubleside-hack.html" }}}
 
 この方法はThree.jsの並び順が安定している事が前提です。
 
 つまり、最初に `side. THREE.BackSide` のメッシュを描画し、その後に `side.THREE.FrontSide` のメッシュを描画し、2つとも同じ位置にある場合です。
 
 交差する平面を2つ作ってみましょう（キューブに関連するコードを全て削除後）。
-各面に[テクスチャを追加](threejs-textures.html)します。
+各面に[テクスチャを追加](textures.html)します。
 
 ```js
 const planeWidth = 1;
@@ -217,13 +217,13 @@ makeInstance(geometry, 'lightblue',  Math.PI * 0.5, 'resources/images/hmmmface.p
 
 平面は一度に片側しか見れないため、今回は `side: THREE.DoubleSide` を使えます。
 また、`render` 関数にテクスチャ読み込み関数を渡し、読み込みの終了時に再レンダリングする事にも注意して下さい。
-このサンプルが連続したレンダリングではなく、[要求されたレンダリング](threejs-rendering-on-demand.html)になっているためです。
+このサンプルが連続したレンダリングではなく、[要求されたレンダリング](rendering-on-demand.html)になっているためです。
 
-{{{example url="../threejs-transparency-intersecting-planes.html"}}}
+{{{example url="transparency-intersecting-planes.html"}}}
 
 そしてまたしても同じような問題が発生しています。
 
-<div class="threejs_center"><img src="resources/images/transparency-planes.png" style="width: 408px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-planes.png" style="width: 408px;"></div>
 <div class="threejs_center">half a face is missing</div>
 
 この解決策は各表面を手動で2つの表面に分割し、交差しないようにします。
@@ -259,13 +259,13 @@ function makeInstance(geometry, color, rotY, url) {
 どうやって達成するかはあなた次第です。
 [Blender](https://blender.org)のようなモデリングツールを使用していた場合は、テクスチャ座標を手動で調整すると思います。
 ここでは `PlaneGeometry` を使用していますが、デフォルトではテクスチャを平面全体に引き伸ばします。
-[テクステャの記事で説明](threejs-textures.html)したように [`texture.repeat`](Texture.repeat) と [`texture.offset`](Texture.offset) を設定し、
+[テクステャの記事で説明](textures.html)したように [`texture.repeat`](Texture.repeat) と [`texture.offset`](Texture.offset) を設定し、
 各平面上の表面のテクスチャから正しい半分が得られるようにテクスチャを拡大縮小したり移動させたりできます。
 
 上記のコードでは `Object3D` を作成し、その親となる2つの平面を作成しています。
 親の `Object3D` を回転させた方が必要な計算するよりも簡単そうです。
 
-{{{example url="../threejs-transparency-intersecting-planes-fixed.html"}}}
+{{{example url="transparency-intersecting-planes-fixed.html"}}}
 
 この解決策は、交点の位置を変えない2つの平面のような単純なものにしか機能しません。
 
@@ -280,8 +280,8 @@ function makeInstance(geometry, color, rotY, url) {
 先ほどのテクスチャは不透明100％でした。この2つは透過を利用しています。
 
 <div class="spread">
-  <div><img class="checkerboard" src="../resources/images/tree-01.png"></div>
-  <div><img class="checkerboard" src="../resources/images/tree-02.png"></div>
+  <div><img class="checkerboard" src="../examples/resources/images/tree-01.png"></div>
+  <div><img class="checkerboard" src="../examples/resources/images/tree-02.png"></div>
 </div>
 
 交差する2つの平面（分割する前）に戻り、これらのテクスチャを使用して [`alphaTest`](Material.alphaTest) を設定してみましょう。
@@ -311,7 +311,7 @@ function makeInstance(geometry, color, rotY, url) {
 ```
 
 これを実行する前に小さなUIを追加し、`alphaTest` と `transparent` の設定をもっと簡単に操作できるようにしましょう。
-今回は[シーングラフの記事](threejs-scenegraph.html)で紹介したようにdat.guiを使います。
+今回は[シーングラフの記事](scenegraph.html)で紹介したようにdat.guiを使います。
 
 まず、シーン内の全てのマテリアルに値を設定するdat.guiのヘルパーを作ります。
 
@@ -365,11 +365,11 @@ import {OrbitControls} from './resources/threejs/r119/examples/jsm/controls/Orbi
 
 その結果がこちらです。
 
-{{{example url="../threejs-transparency-intersecting-planes-alphatest.html"}}}
+{{{example url="transparency-intersecting-planes-alphatest.html"}}}
 
 動作していますが、ズームしてみると1つの平面に白い線が入っているのがわかります。
 
-<div class="threejs_center"><img src="resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
 
 これは前と同じ、深さの問題です。
 その平面が先に描画されていたので、後ろの平面は描画されません。

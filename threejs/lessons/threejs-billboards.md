@@ -2,12 +2,12 @@ Title: Three.js Billboards
 Description: How to make things always face the camera.
 TOC: Billboards and Facades
 
-In [a previous article](threejs-canvas-textures.html) we used a `CanvasTexture`
+In [a previous article](canvas-textures.html) we used a `CanvasTexture`
 to make labels / badges on characters. Sometimes we'd like to make labels or
 other things that always face the camera. Three.js provides the `Sprite` and
 `SpriteMaterial` to make this happen.
 
-Let's change the badge example from [the article on canvas textures](threejs-canvas-textures.html)
+Let's change the badge example from [the article on canvas textures](canvas-textures.html)
 to use `Sprite` and `SpriteMaterial`
 
 ```js
@@ -48,12 +48,12 @@ function makePerson(x, labelWidth, size, name, color) {
 
 and the labels now always face the camera
 
-{{{example url="../threejs-billboard-labels-w-sprites.html" }}}
+{{{example url="billboard-labels-w-sprites.html" }}}
 
 One problem is from certain angles the labels now intersect the
 characters. 
 
-<div class="threejs_center"><img src="resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
+<div class="threejs_center"><img src="../resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
 
 We can move the position of the labels to fix.
 
@@ -74,7 +74,7 @@ label.scale.x = canvas.width  * labelBaseScale;
 label.scale.y = canvas.height * labelBaseScale;
 ```
 
-{{{example url="../threejs-billboard-labels-w-sprites-adjust-height.html" }}}
+{{{example url="billboard-labels-w-sprites-adjust-height.html" }}}
 
 Another thing we can do with billboards is draw facades.
 
@@ -159,7 +159,7 @@ const scene = new THREE.Scene();
 
 and we get a grid of trees
 
-{{{example url="../threejs-billboard-trees-no-billboards.html" }}}
+{{{example url="billboard-trees-no-billboards.html" }}}
 
 There are 11x11 or 121 trees. Each tree is made from a 12 polygon
 cone and a 48 polygon trunk so each tree is 60 polygons. 121 * 60
@@ -174,7 +174,7 @@ some code to try to generate one.
 
 Let's write some code to render an object to a texture
 using a `RenderTarget`. We covered rendering to a `RenderTarget`
-in [the article on render targets](threejs-rendertargets.html).
+in [the article on render targets](rendertargets.html).
 
 ```js
 function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
@@ -233,10 +233,10 @@ Some things to note about the code above:
 We're using the field of view (`fov`) defined above this code.
 
 We're computing a box that contains the tree the same way
-we did in [the article on loading a .obj file](threejs-load-obj.html)
+we did in [the article on loading a .obj file](load-obj.html)
 with a few minor changes.
 
-We call `frameArea` again adapted [the article on loading a .obj file](threejs-load-obj.html).
+We call `frameArea` again adapted [the article on loading a .obj file](load-obj.html).
 In this case we compute how far the camera needs to be away from the object
 given its field of view to contain the object. We then position the camera -z that distance
 from the center of the box that contains the object.
@@ -310,7 +310,7 @@ scene.background = new THREE.Color('lightblue');
 
 and now we get a scene of tree facades
 
-{{{example url="../threejs-billboard-trees-static-billboards.html" }}}
+{{{example url="billboard-trees-static-billboards.html" }}}
 
 Compare to the trees models above and you can see it looks fairly similar.
 We used a low-res texture, just 64x64 pixels so the facades are blocky.

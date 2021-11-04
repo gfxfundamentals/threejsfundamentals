@@ -5,16 +5,16 @@ TOC: Пользовательская Geometry
 <div class="warning">
 <strong>NOTE!</strong> This article is deprecated. Three.js r125
 removed support for <code>Geometry</code>. Please refer to
-the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometry</a>.
+the article on <a href="custom-buffergeometry.html">custom BufferGeometry</a>.
 </div>
 
-В [предыдущей статье](threejs-primitives.html) рассказывалось о различных встроенных примитивах, включенных в THREE.js. В этой статье мы рассмотрим создание нашей собственной геометрии. 
+В [предыдущей статье](primitives.html) рассказывалось о различных встроенных примитивах, включенных в THREE.js. В этой статье мы рассмотрим создание нашей собственной геометрии. 
 
 Просто для ясности, если вы серьезно относитесь к созданию 3D-контента, наиболее распространенный способ - использовать пакет 3D-моделирования, такой как [Blender](https://blender.org),
 [Maya](https://www.autodesk.com/products/maya/overview),
 [3D Studio Max](https://www.autodesk.com/products/3ds-max/overview),
 [Cinema4D](https://www.maxon.net/en-us/) и т. д. 
-Вы создадите модель, а затем экспортируете в [gLTF](threejs-load-gltf.html) или [.obj](threejs-load-obj.html) и загрузите их. 
+Вы создадите модель, а затем экспортируете в [gLTF](load-gltf.html) или [.obj](load-obj.html) и загрузите их. 
 Какой бы вариант вы ни выбрали, рассчитывайте потратить 2 или 3 недели на изучение соответствующих учебных пособий, поскольку все они имеют полезную кривую обучения. 
 
 Тем не менее, бывают случаи, когда мы можем захотеть сгенерировать нашу собственную трехмерную геометрию в коде вместо использования пакета моделирования. 
@@ -27,7 +27,7 @@ the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometr
 
 Заметьте, когда я говорю, что `Geometry` медленнее, я имею в виду, что она медленнее запускается и медленнее изменяется, но отрисовывается она не медленнее, поэтому, если вы не планируете изменять свою геометрию, тогда, пока она не слишком велика, будет только немного больше. задержка для вашей программы, чтобы начать использовать `Geometry` против `BufferGeometry`. Мы изучим оба способа. Пока что давайте использовать геометрию, так как легче понять IMO. 
 
-Сначала давайте сделаем куб с `Geometry`. Начнем с примера из [статьи об отзывчивости](threejs-responsive.html). 
+Сначала давайте сделаем куб с `Geometry`. Начнем с примера из [статьи об отзывчивости](responsive.html). 
 
 Давайте удалим код, который использует `BoxGeometry`, и заменим ее на `Geometry`. 
 
@@ -41,7 +41,7 @@ the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometr
 
 Теперь давайте добавим 8 углов куба. Вот 8 углов. 
 
-<div class="threejs_center"><img src="resources/cube-vertex-positions.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-positions.svg" style="width: 500px"></div>
 
 Сосредоточив вокруг начала координат, мы можем добавить позиции вершин, как это
 
@@ -60,13 +60,13 @@ const geometry = new THREE.Geometry();
 ```
 
 Затем нам нужно сделать треугольники, по 2 на каждую грань куба
-<div class="threejs_center"><img src="resources/cube-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
 Мы делаем это, создавая объекты `Face3` и определяя индексы 3 вершин, которые составляют эту грань.
 
 Порядок, в котором мы указываем вершины, важен. Чтобы указывать на внешнюю сторону куба, они должны быть указаны в направлении против часовой стрелки, когда этот треугольник направлен на камеру. 
 
-<div class="threejs_center"><img src="resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
 Следуя этой схеме, мы можем указать 12 треугольников, которые делают куб таким
 
@@ -134,7 +134,7 @@ function makeInstance(geometry, color, x) {
 ```
 
 и мы получаем кубики, которые мы сделали сами.
-{{{example url="../threejs-custom-geometry-cube.html" }}}
+{{{example url="custom-geometry-cube.html" }}}
 
 Мы можем указать цвет для каждой грани, установив свойство `color` каждой стороны.
 
@@ -154,7 +154,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 +const material = new THREE.MeshBasicMaterial({vertexColors: true});
 ```
 
-{{{example url="../threejs-custom-geometry-cube-face-colors.html" }}}
+{{{example url="custom-geometry-cube-face-colors.html" }}}
 
 Вместо этого мы можем установить цвет каждой отдельной вершины, установив для свойства `vertexColors` массив из 3 цветов для 3 вершин. 
 
@@ -168,7 +168,7 @@ geometry.faces.forEach((face, ndx) => {
 });
 ```
 
-{{{example url="../threejs-custom-geometry-cube-vertex-colors.html" }}}
+{{{example url="custom-geometry-cube-vertex-colors.html" }}}
 
 Чтобы использовать освещение, нам нужны нормали. Нормали - это векторы, которые определяют направление. Так же, как цвета, мы можем указать нормаль для грани, установив свойство `normal` для каждой стороны с помощью
 
@@ -203,7 +203,7 @@ geometry.computeFaceNormals();
 ```
 
 и теперь наши кубики будут освещены.
-{{{example url="../threejs-custom-geometry-cube-face-normals.html" }}}
+{{{example url="custom-geometry-cube-face-normals.html" }}}
 
 Использование нормалей сторон всегда даст нам граненый взгляд. Мы можем использовать нормали вершин для более гладкого вида, вызывая `Geometry.computeVertexNormals` 
 
@@ -214,7 +214,7 @@ geometry.computeFaceNormals();
 
 К сожалению, куб не является хорошим выбором для нормалей вершин, поскольку это означает, что каждая вершина получает свою нормаль от нормалей всех граней, которые она разделяет.
 
-{{{example url="../threejs-custom-geometry-cube-vertex-normals.html" }}}
+{{{example url="custom-geometry-cube-vertex-normals.html" }}}
 
 Добавление текстурных координат, иногда называемых UV, выполняется через массив слоев параллельных массивов в массив `faces` , который устанавливается через `Geometry.faceVertexUvs`. Для нашего куба мы могли бы сделать что-то вроде
 
@@ -262,13 +262,13 @@ function makeInstance(geometry, color, x) {
   ...
 ```
 
-{{{example url="../threejs-custom-geometry-cube-texcoords.html" }}}
+{{{example url="custom-geometry-cube-texcoords.html" }}}
 
 Собрав все это вместе, давайте создадим простую сетку ландшафта на основе карты высот. 
 
 Ландшафт на основе карты высот - это то место, где у вас есть двумерный массив высот, который вы применяете к сетке. Простой способ получить двумерный массив высот - нарисовать их в программе для редактирования изображений. Вот изображение, которое я нарисовал. Это 96x64 пикселей 
 
-<div class="threejs_center"><img src="../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+<div class="threejs_center"><img src="../examples/resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 Мы загрузим это и затем сгенерируем из него сетку карты высот. Мы можем использовать `ImageLoader` для загрузки изображения. 
 
@@ -291,7 +291,7 @@ function createHeightmap(image) {
 
 Мы извлекли данные из изображения, теперь мы сделаем сетку ячеек. Ячейки - это квадраты, образованные центральными точками каждого пикселя изображения 
 
-<div class="threejs_center"><img src="resources/heightmap-points.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-points.svg" style="width: 500px"></div>
 
 Для каждой ячейки мы сгенерируем 5 вершин. Один для каждого угла ячейки и один в центральной точке ячейки со средней высотой 4 угловых высот. 
 
@@ -336,7 +336,7 @@ for (let z = 0; z < cellsDeep; ++z) {
 
 Затем мы сделаем 4 треугольника из этих 5 вершин
 
-<div class="threejs_center"><img src="resources/heightmap-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-triangles.svg" style="width: 500px"></div>
 
 ```js
     // create 4 triangles
@@ -387,8 +387,8 @@ for (let z = 0; z < cellsDeep; ++z) {
 * добавим `OrbitControls`
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -423,10 +423,10 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 ```
 
 и мы удалим код, связанный с вращением кубов.
-{{{example url="../threejs-custom-geometry-heightmap.html" }}}
+{{{example url="custom-geometry-heightmap.html" }}}
 
 Я надеюсь, что это была полезная инструкция для создания вашей собственной геометрии с использованием `Geometry`. 
 В другой статье мы рассмотрим `BufferGeometry`. 
 
-В [другой статье](threejs-custom-buffergeometry.html) мы рассмотрим `BufferGeometry`. 
+В [другой статье](custom-buffergeometry.html) мы рассмотрим `BufferGeometry`. 
 

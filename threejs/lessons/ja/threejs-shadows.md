@@ -3,9 +3,9 @@ Description: Three.jsのシャドウ
 TOC: シャドウ
 
 この記事はThree.jsの連載記事の1つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでいない場合、そこから始めると良いかもしれません。
-この記事を読む前に、[前回のカメラの記事](threejs-cameras.html)と[ライトの記事](threejs-lights.html)も読んでおくと良いです。
+この記事を読む前に、[前回のカメラの記事](cameras.html)と[ライトの記事](lights.html)も読んでおくと良いです。
 
 コンピュータ上での影の表現は複雑なトピックになります。
 three.jsで利用できる解決策も含め様々な解決策がありますが、どれもトレードオフがあります。
@@ -31,9 +31,9 @@ Three.jsは *シャドウマップ* をデフォルトで使用してます。
 
 例えばこのテクスチャをフェイクシャドウしてみましょう。
 
-<div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
+<div class="threejs_center"><img src="../examples/resources/images/roundshadow.png"></div>
 
-[前回の記事](threejs-cameras.html)のコードの一部を使用します。
+[前回の記事](cameras.html)のコードの一部を使用します。
 
 背景色を白に設定してみましょう。
 
@@ -107,7 +107,7 @@ const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 これでbaseを動かすと、球体とシャドウの両方が動きます。
 Ｚファイティングを防ぐためにシャドウを少し上にします。
 また、`depthWrite` をfalseにしてシャドウがお互いに混乱しないようにします。
-この2つの問題は[別の記事](threejs-transparency.html)で解説します。
+この2つの問題は[別の記事](transparency.html)で解説します。
 このシャドウは照明が不要なので `MeshBasicMaterial` にします。
 
 各球体を異なる色相、ベース、球体メッシュ、シャドウのメッシュ、各球体のyの初期位置を保存します。
@@ -213,7 +213,7 @@ function render(time) {
 
 そして、ここに15種類の跳ねるボールがあります。
 
-{{{example url="../threejs-shadows-fake.html" }}}
+{{{example url="shadows-fake.html" }}}
 
 全てのオブジェクトに丸や楕円形のシャドウを使用するのが一般的です。
 異なる形状のシャドウのテクスチャを使用できます。
@@ -225,7 +225,7 @@ function render(time) {
 そこでシャドウマップに移りますが、シャドウを落とす事ができるライトが3つあります。
 `DirectionalLight` と `PointLight` と `SpotLight` です。
 
-まずは、[ライトの記事](threejs-lights.html)のヘルパーの例を参考に `DirectionalLight` を使ってみましょう。
+まずは、[ライトの記事](lights.html)のヘルパーの例を参考に `DirectionalLight` を使ってみましょう。
 
 最初にレンダラーのシャドウを有効にします。
 
@@ -266,14 +266,14 @@ mesh.receiveShadow = true;
 
 これを実行してみます。
 
-{{{example url="../threejs-shadows-directional-light.html" }}}
+{{{example url="shadows-directional-light.html" }}}
 
 何が起こったのでしょうか？
 なぜ影の一部が欠けているのでしょうか？
 
 これはシャドウマップは光の視点でシーンをレンダリングし作成されるからです。
 この場合、`DirectionalLight` にカメラがあり、ターゲットを見ています。
-[以前取り上げたカメラと同じように](threejs-cameras.html)
+[以前取り上げたカメラと同じように](cameras.html)
 ライトのシャドウカメラは影がレンダリングされ、内部の領域を定義します。
 上記の例ではその面積が小さすぎます。
 
@@ -286,7 +286,7 @@ scene.add(cameraHelper);
 
 これでシャドウが落とされ受け取れる領域が見えるようになりました。
 
-{{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
+{{{example url="shadows-directional-light-with-camera-helper.html" }}}
 
 ターゲットのX値を前後に調整すると、ライトのシャドウカメラボックスの中にあるものだけが影を描画する場所が明確になります。
 
@@ -294,7 +294,7 @@ scene.add(cameraHelper);
 
 ライトのシャドウカメラボックスを調整するためのGUIを追加してみましょう。
 `DirectionLight` は全ての光が平行な方向に進むので、`DirectionalLight` はシャドウカメラに `OrthographicCamera` を使います。
-[以前のカメラの記事](threejs-cameras.html)で `OrthographicCamera` がどのように動作するかを説明しました。
+[以前のカメラの記事](cameras.html)で `OrthographicCamera` がどのように動作するかを説明しました。
 
 `OrthographicCamera` は、`left`、`right`、`top`、`bottom`、`near`、`far`、`zoom` プロパティでその箱、または *錐台の視点* を定義してる事を思い出して下さい。
 
@@ -320,7 +320,7 @@ class DimensionGUIHelper {
 }
 ```
 
-[カメラの記事](threejs-cameras.html)で作成した `MinMaxGUIHelper` を使い `near` と `far` を調整します。
+[カメラの記事](cameras.html)で作成した `MinMaxGUIHelper` を使い `near` と `far` を調整します。
 
 ```js
 const gui = new GUI();
@@ -360,7 +360,7 @@ updateCamera();
 
 これでライトのシャドウカメラにGUIを追加したので値を変更できます。
 
-{{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
+{{{example url="shadows-directional-light-with-camera-gui.html" }}}
 
 `width` と `height` を30ぐらいにすると、シャドウが正しく描画されこのシーンでシャドウにする設定が完全にカバーできました。
 
@@ -368,7 +368,7 @@ updateCamera();
 なぜ `width` と `height` に巨大な数値を設定して全てをカバーしないのでしょうか？
 `width` と `height` を100にすると、以下のようなものが表示されます。
 
-<div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
 この低解像度のシャドウはどうなっているでしょうか！？
 
@@ -401,21 +401,21 @@ Ok but what about `near` and `far` I hear you thinking. Can we set `near` to 0.0
 +const light = new THREE.SpotLight(color, intensity);
 ```
 
-[ライトの記事](threejs-lights.html)にあった `penumbra` と `angle` の設定を元に戻しました。
+[ライトの記事](lights.html)にあった `penumbra` と `angle` の設定を元に戻しました。
 
-{{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
+{{{example url="shadows-spot-light-with-camera-gui.html" }}}
 
 <!--
 You can notice, just like the last example if we set the angle high
 then the shadow map, the texture is spread over a very large area and
 the resolution of our shadows gets really low.
 
-div class="threejs_center"><img src="resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
+div class="threejs_center"><img src="../resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
 
 You can increase the size of the shadow map as mentioned above. You can
 also blur the result
 
-{{{example url="../threejs-shadows-spot-light-with-shadow-radius" }}}
+{{{example url="shadows-spot-light-with-shadow-radius" }}}
 -->
 
 そして最後に `PointLight` でシャドウをつけます。
@@ -457,7 +457,7 @@ also blur the result
 +scene.add(helper);
 ```
 
-{{{example url="../threejs-shadows-point-light.html" }}}
+{{{example url="shadows-point-light.html" }}}
 
 GUIの `position` を使ってライトを移動させると、壁一面にシャドウが落ちます。
 また、`near` と `far` の設定を調整できます。

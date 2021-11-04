@@ -3,11 +3,11 @@ Description: Three.js의 카메라에 대해 알아봅니다
 TOC: 카메라(Cameras)
 
 ※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 [Three.js의 기본 구조에 관한 글](threejs-fundamentals.html)을
+먼저 [Three.js의 기본 구조에 관한 글](fundamentals.html)을
 읽고 오길 권장합니다.
 
 
-이번 장에서는 카메라(cameras)에 대해 알아보겠습니다. [첫 번째 장](threejs-fundamentals.html)에서
+이번 장에서는 카메라(cameras)에 대해 알아보겠습니다. [첫 번째 장](fundamentals.html)에서
 일부 다루긴 했지만, 중요 요소인 만큼 더 자세히 살펴볼 필요가 있습니다.
 
 Three.js에서 가장 자주 사용하는 카메라는 여태까지 썼던 `PerspectiveCamera`(원근 카메라)입니다.
@@ -34,9 +34,9 @@ Three.js에서 가장 자주 사용하는 카메라는 여태까지 썼던 `Pers
 거리에 따라 절두체의 높이를 계산해 적용합니다. `aspect`는 절두체의 너비에 관여하는 비율으로, 절두체의
 너비는 절두체의 높이에 이 비율을 곱한 값입니다.
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
-[이전 장](threejs-lights.html)에서 썼던 바닥면, 구체, 정육면체로 이루어진 예제를 다시 사용해
+[이전 장](lights.html)에서 썼던 바닥면, 구체, 정육면체로 이루어진 예제를 다시 사용해
 카메라의 속성을 조정할 수 있도록 만들겠습니다.
 
 `near` 속성은 항상 `far` 속성보다 커야 하니, 이를 제어할 `MinMaxGUIHelper` 헬퍼 클래스를
@@ -86,7 +86,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 메서드를 호출해야 하므로, `updateCamera`라는 함수를 만들어 값이 변경될 때마다 함수를 호출하도록
 합니다.
 
-{{{example url="../threejs-cameras-perspective.html" }}}
+{{{example url="cameras-perspective.html" }}}
 
 값을 조정하며 카메라가 어떤 식으로 작동하는지 확인해보세요. `aspect`는 창의 비율을 그대로 사용하도록
 설정되어 있으므로, 이를 바꾸고 싶다면 예제를 새 창에서 열어 코드를 직접 수정해야 합니다.
@@ -283,7 +283,7 @@ const minMaxGUIHelper = new MinMaxGUIHelper(camera, 'near', 'far', 0.1);
 
 이제 두 번째 화면에서 첫 번째 카메라의 절두체를 확인할 수 있습니다.
 
-{{{example url="../threejs-cameras-perspective-2-scenes.html" }}}
+{{{example url="cameras-perspective-2-scenes.html" }}}
 
 왼쪽은 기존의 화면과 같고 오른쪽에 왼쪽 카메라의 절두체가 보입니다.
 패널에서 `near`, `far`, `fov` 값을 조정하거나 마우스로 화면을 움직여보면,
@@ -335,14 +335,14 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 어떤 결과가 나올 것 같나요?
 
-{{{example url="../threejs-cameras-z-fighting.html" }}}
+{{{example url="cameras-z-fighting.html" }}}
 
 이는 *z-파이팅(z-fighting, Stitching)*의 한 예입니다. 컴퓨터의 GPU가 어떤 픽셀이
 앞이고 어떤 픽셀을 뒤로 보내야할지 결정할 정밀도가 모자를 때 발생하는 현상이죠.
 
 위 예제가 어떻게 해도 정상적으로 보인다면, 아래 이미지를 보기 바랍니다.
 
-<div class="threejs_center"><img src="resources/images/z-fighting.png" style="width: 570px;"></div>
+<div class="threejs_center"><img src="../resources/images/z-fighting.png" style="width: 570px;"></div>
 
 한 가지 해결책은 Three.js에게 픽셀의 앞 뒤를 결정할 때 다른 방법을 쓰도록 설정하는
 것입니다. `WebGLRenderer`를 생성할 때 `logarithmicDepthBuffer` 속성을 활성화해주면
@@ -358,7 +358,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 대게의 경우 정상적으로 보일 겁니다.
 
-{{{example url="../threejs-cameras-logarithmic-depth-buffer.html" }}}
+{{{example url="cameras-logarithmic-depth-buffer.html" }}}
 
 문제가 그대로라면 *이 해결책을 쓸 수 없는 건가?*라는 의문에 빠질 수 있습니다.
 이 해결책이 먹히지 않은 이유는 일부 GPU만 이 기능을 지원하기 때문이죠. 2018년
@@ -435,7 +435,7 @@ const gui = new GUI();
 
 이제 `OrthographicCamera`가 어떻게 작동하는지 확인할 차례입니다.
 
-{{{example url="../threejs-cameras-orthographic-2-scenes.html" }}}
+{{{example url="cameras-orthographic-2-scenes.html" }}}
 
 Three.js에서 `OrthographicCamera`는 주로 2D 요소를 표현하기 위해 사용합니다.
 카메라에 얼마나 많은 요소를 보여줄지만 결정하면 되죠. 만약 canvas의 1픽셀을
@@ -566,19 +566,19 @@ function render(time) {
 이미지가 완벽하게 가장자리에서 튕기는 것을 확인할 수 있을 겁니다. 2D canvas에서
 픽셀값을 이용해 구현할 때와 같은 방식이죠.
 
-{{{example url="../threejs-cameras-orthographic-canvas-top-left-origin.html" }}}
+{{{example url="cameras-orthographic-canvas-top-left-origin.html" }}}
 
 `OrthographicCamera`는 게임 엔진 에디터 등에서처럼 3D 모델링 결과물의 상, 하, 좌, 우,
 앞, 뒤를 렌더링할 때도 사용합니다.
 
-<div class="threejs_center"><img src="resources/images/quad-viewport.png" style="width: 574px;"></div>
+<div class="threejs_center"><img src="../resources/images/quad-viewport.png" style="width: 574px;"></div>
 
 위 스크린샷의 1개의 화면만 원근(perspective) 카메라이고 나머지 3개는 정사영(orthographic)
 카메라입니다.
 
 여기까지 카메라의 기초에 대해 살펴보았습니다. 카메라를 움직이는 방법에 대해서는 다른
-글에서 좀 더 상세히 설명할 거예요. 다음은 장에서는 [그림자(shadows)](threejs-shadows.html)에
+글에서 좀 더 상세히 설명할 거예요. 다음은 장에서는 [그림자(shadows)](shadows.html)에
 대해 먼저 살펴보겠습니다.
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-cameras.js"></script>
+<script type="module" src="../resources/threejs-cameras.js"></script>

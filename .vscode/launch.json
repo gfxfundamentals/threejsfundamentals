@@ -10,7 +10,18 @@
       "request": "launch",
       "name": "Build Lessons",
       "program": "${workspaceFolder}/node_modules/grunt/bin/grunt",
-      "args": ["buildlessons"],
+      "args": ["buildlessons", "--debug", "--stack"],
+      "console": "internalConsole",
+      "env": {
+        "ARTICLE_FILTER": "fundamentals"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Build (Full)",
+      "program": "${workspaceFolder}/node_modules/grunt/bin/grunt",
+      "args": ["build", "--debug", "--stack"],
       "console": "internalConsole",
       "env": {
         "ARTICLE_FILTER": "fundamentals"

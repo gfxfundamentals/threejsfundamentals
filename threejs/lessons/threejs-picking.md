@@ -13,7 +13,7 @@ A few optimizations would include first checking if the ray intersects with an o
 THREE.js provides a `RayCaster` class that does exactly this.
 
 Let's make a scene with a 100 objects and try picking them. We'll
-start with an example from [the article on responsive pages](threejs-responsive.html)
+start with an example from [the article on responsive pages](responsive.html)
 
 A few changes
 
@@ -196,7 +196,7 @@ function render(time) {
 
 and here's the result
 
-{{{example url="../threejs-picking-raycaster.html" }}}
+{{{example url="picking-raycaster.html" }}}
 
 This appears to work great and it probably does for many use cases
 but there are several issues.
@@ -225,7 +225,7 @@ but there are several issues.
 
 As an example let's apply this texture to the cubes.
 
-<div class="threejs_center"><img class="checkerboard" src="../resources/images/frame.png"></div>
+<div class="threejs_center"><img class="checkerboard" src="../examples/resources/images/frame.png"></div>
 
 We'll just make these changes
 
@@ -251,11 +251,11 @@ for (let i = 0; i < numObjects; ++i) {
 
 And running that you should quickly see the issue
 
-{{{example url="../threejs-picking-raycaster-transparency.html" }}}
+{{{example url="picking-raycaster-transparency.html" }}}
 
 Try to pick something through a box and you can't
 
-<div class="threejs_center"><img src="resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
+<div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
 
 This is because JavaScript can't easily look into the textures and materials and figure out if part of your object is really transparent or not.
 
@@ -335,7 +335,7 @@ function setPickPosition(event) {
 }
 ```
 
-Then let's change the `PickHelper` into a `GPUPickHelper`. It will use a `WebGLRenderTarget` like we covered the [article on render targets](threejs-rendertargets.html). Our render target here is only a single pixel in size, 1x1. 
+Then let's change the `PickHelper` into a `GPUPickHelper`. It will use a `WebGLRenderTarget` like we covered the [article on render targets](rendertargets.html). Our render target here is only a single pixel in size, 1x1. 
 
 ```js
 -class PickHelper {
@@ -425,6 +425,6 @@ and pass it the `pickScene` instead of the `scene`.
 
 And now it should let you pick through the transparent parts
 
-{{{example url="../threejs-picking-gpu.html" }}}
+{{{example url="picking-gpu.html" }}}
 
 I hope that gives some idea of how to implement picking. In a future article maybe we can cover how to manipulate objects with the mouse.

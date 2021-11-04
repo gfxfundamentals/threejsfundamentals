@@ -19,13 +19,13 @@ requestAnimationFrame(render);
 これを解決する最も明確な方法は、最初に一度レンダリングして何か変更された時だけレンダリングする事です。
 変更にはテクスチャやモデルの読込完了、外部ソースからのデータ受取、ユーザーによる設定やカメラ調整などその他の関連する入力などが含まれます。
 
-[レスポンシブデザインの記事](threejs-responsive.html)を例に要求に応じてレンダリングするように修正してみましょう。
+[レスポンシブデザインの記事](responsive.html)を例に要求に応じてレンダリングするように修正してみましょう。
 
 最初に `OrbitControls` を追加します。これで何かの変更を反映してレンダリングする事ができます。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 次に以下のように設定します。
@@ -106,7 +106,7 @@ window.addEventListener('resize', render);
 
 これで要求されたらレンダリングする事ができます。
 
-{{{example url="../threejs-render-on-demand.html" }}}
+{{{example url="render-on-demand.html" }}}
 
 `OrbitControls` には慣性のようなものを追加して動きを滑らかにするオプションがあります。
 これを有効にするには `enableDamping` プロパティをtrueに設定します。
@@ -162,18 +162,18 @@ render();
 次にこのページの一番上のサンプルで同じ事をしてみて下さい。
 一番上のサンプルでは矢印キーを押したりドラッグしたりするとスナップし、以下のサンプルではスライドします。
 
-{{{example url="../threejs-render-on-demand-w-damping.html" }}}
+{{{example url="render-on-demand-w-damping.html" }}}
 
 シンプルなdat.GUIを追加し、GUIで値の変更時にレンダリングを要求してみましょう。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
 各キューブの色と×スケールを設定できるようにしましょう。
-色を設定するには[照明の記事](threejs-lights.html)で作成した `ColorGUIHelper` を使います。
+色を設定するには[照明の記事](lights.html)で作成した `ColorGUIHelper` を使います。
 
 まずはGUIを作成する必要があります。
 
@@ -209,7 +209,7 @@ function makeInstance(geometry, color, x) {
 dat.GUIには `onChange` メソッドがあり、GUIで値を変更時にコールバックを渡す事ができます。今回は `requestRenderIfNotRequested` をコールバックするだけです。
 `folder.open` でフォルダ展開できます。
 
-{{{example url="../threejs-render-on-demand-w-gui.html" }}}
+{{{example url="render-on-demand-w-gui.html" }}}
 
 three.jsを連続したレンダリングでなく、要求に応じてレンダリングさせる方法のヒントになれば幸いです。
 three.jsを要求に応じてレンダリングするアプリ/ページはあまり一般的ではありませんが、three.jsを使用しているページの多くはゲームや3Dアニメーション、エディタ、3Dグラフ生成、商品カタログなどのアートです。

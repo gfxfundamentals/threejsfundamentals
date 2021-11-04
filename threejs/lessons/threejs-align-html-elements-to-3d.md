@@ -3,7 +3,7 @@ Description: How to line up an HTML Element to match a point in 3D space
 TOC: Aligning HTML Elements to 3D
 
 This article is part of a series of articles about three.js. The first article
-is [three.js fundamentals](threejs-fundamentals.html). If you haven't read that
+is [three.js fundamentals](fundamentals.html). If you haven't read that
 yet and you're new to three.js you might want to consider starting there. 
 
 Sometimes you'd like to display some text in your 3D scene. You have many options
@@ -11,14 +11,14 @@ each with pluses and minuses.
 
 * Use 3D text
 
-  If you look at the [primitives article](threejs-primitives.html) you'll see `TextGeometry` which
+  If you look at the [primitives article](primitives.html) you'll see `TextGeometry` which
   makes 3D text. This might be useful for flying logos but probably not so useful for stats, info,
   or labelling lots of things.
 
 * Use a texture with 2D text drawn into it.
 
-  The article on [using a Canvas as a texture](threejs-canvas-textures.html) shows using
-  a canvas as a texture. You can draw text into a canvas and [display it as a billboard](threejs-billboards.html).
+  The article on [using a Canvas as a texture](canvas-textures.html) shows using
+  a canvas as a texture. You can draw text into a canvas and [display it as a billboard](billboards.html).
   The plus here might be that the text is integrated into the 3D scene. For something like a computer terminal
   shown in a 3D scene this might be perfect.
 
@@ -30,13 +30,13 @@ each with pluses and minuses.
 This article will cover this last approach.
 
 Let's start simple. We'll make a 3D scene with a few primitives and then add a label to each primitive. We'll start
-with an example from [the article on responsive pages](threejs-responsive.html) 
+with an example from [the article on responsive pages](responsive.html) 
 
-We'll add some `OrbitControls` like we did in [the article on lighting](threejs-lights.html).
+We'll add some `OrbitControls` like we did in [the article on lighting](lights.html).
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -183,20 +183,20 @@ const tempV = new THREE.Vector3();
 
 And with that we have labels aligned to their corresponding objects.
 
-{{{example url="../threejs-align-html-to-3d.html" }}}
+{{{example url="align-html-to-3d.html" }}}
 
 There are a couple of issues we probably want to deal with.
 
 One is that if we rotate the objects so they overlap all the labels
 overlap as well.
 
-<div class="threejs_center"><img src="resources/images/overlapping-labels.png" style="width: 307px;"></div>
+<div class="threejs_center"><img src="../resources/images/overlapping-labels.png" style="width: 307px;"></div>
 
 Another is that if we zoom way out so that the objects go outside
 the frustum the labels will still appear.
 
 A possible solution to the problem of overlapping objects is to use
-the [picking code from the article on picking](threejs-picking.html).
+the [picking code from the article on picking](picking.html).
 We'll pass in the position of the object on the screen and then
 ask the `RayCaster` to tell us which objects were intersected.
 If our object is not the first one then we are not in the front.
@@ -263,7 +263,7 @@ This *kind of* works because the normalized coordinates we computed include a `z
 value that goes from -1 when at the `near` part of our camera frustum to +1 when
 at the `far` part of our camera frustum.
 
-{{{example url="../threejs-align-html-to-3d-w-hiding.html" }}}
+{{{example url="align-html-to-3d-w-hiding.html" }}}
 
 For the frustum check, the solution above fails as we're only checking the origin of the object. For a large
 object. That origin might go outside the frustum but half of the object might still be in the frustum.
@@ -301,7 +301,7 @@ const inFrustum = frustum.contains(someMesh));
 
 Our current overlapping solution has similar issues. Picking is slow. We could
 use gpu based picking like we covered in the [picking
-article](threejs-picking.html) but that is also not free. Which solution you
+article](picking.html) but that is also not free. Which solution you
 chose depends on your needs.
 
 Another issue is the order the labels appear. If we change the code to have
@@ -327,7 +327,7 @@ and set the CSS so these don't wrap
 
 Then we can run into this issue
 
-<div class="threejs_center"><img src="resources/images/label-sorting-issue.png" style="width: 401px;"></div>
+<div class="threejs_center"><img src="../resources/images/label-sorting-issue.png" style="width: 401px;"></div>
 
 You can see above the purple box is in the back but its label is in front of the aqua box.
 
@@ -365,7 +365,7 @@ by setting the `z-index` of the container of the labels
 
 and now the labels should always be in the correct order.
 
-{{{example url="../threejs-align-html-to-3d-w-sorting.html" }}}
+{{{example url="align-html-to-3d-w-sorting.html" }}}
 
 While we're at it let's do one more example to show one more issue.
 Let's draw a globe like Google Maps and label the countries.
@@ -378,7 +378,7 @@ I [wrote some code](https://github.com/gfxfundamentals/threejsfundamentals/blob/
 to load the data, and generate country outlines and some JSON data with the names
 of the countries and their locations.
 
-<div class="threejs_center"><img src="../resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
+<div class="threejs_center"><img src="../examples/resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
 
 The JSON data is an array of entries something like this
 
@@ -407,9 +407,9 @@ The JSON data is an array of entries something like this
 where min, max, lat, lon, are all in latitude and longitude degrees.
 
 Let's load it up. The code is based on the examples from [optimizing lots of
-objects](threejs-optimize-lots-of-objects.html) though we are not drawing lots
+objects](optimize-lots-of-objects.html) though we are not drawing lots
 of objects we'll be using the same solutions for [rendering on
-demand](threejs-rendering-on-demand.html).
+demand](rendering-on-demand.html).
 
 The first thing is to make a sphere and use the outline texture.
 
@@ -447,7 +447,7 @@ loadCountryData();
 
 Now let's use that data to generate and place the labels.
 
-In the article on [optimizing lots of objects](threejs-optimize-lots-of-objects.html)
+In the article on [optimizing lots of objects](optimize-lots-of-objects.html)
 we had setup a small scene graph of helper objects to make it easy to 
 compute latitude and longitude positions on our globe. See that article 
 for an explanation of how they work.
@@ -557,7 +557,7 @@ function render() {
 
 And this is what we get
 
-{{{example url="../threejs-align-html-elements-to-3d-globe-too-many-labels.html" }}}
+{{{example url="align-html-elements-to-3d-globe-too-many-labels.html" }}}
 
 That is way too many labels!
 
@@ -724,8 +724,8 @@ Finally, since I'm not sure what good values are for these settings lets
 add a GUI so we can play with them
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
@@ -764,7 +764,7 @@ function updateLabels() {
 
 and here's the result
 
-{{{example url="../threejs-align-html-elements-to-3d-globe.html" }}}
+{{{example url="align-html-elements-to-3d-globe.html" }}}
 
 You can see as you rotate the earth labels that go behind disappear.
 Adjust the `minVisibleDot` to see the cutoff change.
@@ -781,7 +781,7 @@ to the countries in the center of the view, etc ... Lots to think about.
 In any case I hope these examples gave you some idea of how to align HTML
 elements with your 3D. A few things I might change.
 
-Next up let's make it so you can [pick and highlight a country](threejs-indexed-textures.html).
+Next up let's make it so you can [pick and highlight a country](indexed-textures.html).
 
-<link rel="stylesheet" href="resources/threejs-align-html-elements-to-3d.css">
-<script type="module" src="resources/threejs-align-html-elements-to-3d.js"></script>
+<link rel="stylesheet" href="../resources/threejs-align-html-elements-to-3d.css">
+<script type="module" src="../resources/threejs-align-html-elements-to-3d.js"></script>

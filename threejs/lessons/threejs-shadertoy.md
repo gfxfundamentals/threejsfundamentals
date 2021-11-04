@@ -16,12 +16,12 @@ and many of the result are amazing. But, it is not best practice.
 
 Compare [this amazing shadertoy shader that draws an entire city](https://www.shadertoy.com/view/XtsSWs)
 
-<div class="threejs_center"><img src="resources/images/shadertoy-skyline.png"></div>
+<div class="threejs_center"><img src="../resources/images/shadertoy-skyline.png"></div>
 
 Fullscreen on my GPU it runs at about 5 frames a second. Contrast that to
 [a game like Cities: Skylines](https://store.steampowered.com/app/255710/Cities_Skylines/)
 
-<div class="threejs_center"><img src="resources/images/cities-skylines.jpg" style="width: 600px;"></div>
+<div class="threejs_center"><img src="../resources/images/cities-skylines.jpg" style="width: 600px;"></div>
 
 This game runs 30-60 frames a second on the same machine because it uses more
 traditional techniques, drawing buildings made from triangles with textures on
@@ -102,7 +102,7 @@ The [Shadertoy docs define several more](https://www.shadertoy.com/howto). For
 now let's write something that handles the two being used in the shader above.
 
 The first thing to do is let's make a single plane that fills the canvas. If you
-haven't read it yet we did this in [the article on backgrounds](threejs-backgrounds.html)
+haven't read it yet we did this in [the article on backgrounds](backgrounds.html)
 so let's grab that example but remove the cubes. It's pretty short so here's the
 entire thing
 
@@ -152,12 +152,12 @@ function main() {
 main();
 ```
 
-As [explained in the backgrounds article](threejs-backgrounds.html) an
+As [explained in the backgrounds article](backgrounds.html) an
 `OrthographicCamera` with these parameters and a 2 unit plane will fill the
 canvas. For now all we'll get is a red canvas as our plane is using a red
 `MeshBasicMaterial`.
 
-{{{example url="../threejs-shadertoy-prep.html" }}}
+{{{example url="shadertoy-prep.html" }}}
 
 Now that we have something working let's add the shadertoy shader. 
 
@@ -243,7 +243,7 @@ and before rendering we need to set the values of the uniforms
 > [is not documented on shadertoy.com](https://www.shadertoy.com/howto). It's
 > not used above so just setting it to 1 for now. ¯\\\_(ツ)\_/¯
 
-{{{example url="../threejs-shadertoy-basic.html" }}}
+{{{example url="shadertoy-basic.html" }}}
 
 This [matches what we see on Shadertoy for a new shader](https://www.shadertoy.com/new),
 at least as of January 2019 😉. What's the shader above doing? 
@@ -268,7 +268,7 @@ Counting below I see about 6.3 repeats. We can see the blue between the red
 since it's offset by 4 via the `+vec3(0,2,4)`. Without that the blue and red
 would overlap perfectly making purple.
 
-{{{example url="../threejs-shadertoy-basic-x40.html" }}}
+{{{example url="shadertoy-basic-x40.html" }}}
 
 Knowing how simple the inputs are and then seeing results like
 [a city canal](https://www.shadertoy.com/view/MdXGW2),
@@ -308,7 +308,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 ```
 
 Passing a texture into a shader is similar to 
-[passing one into a normal material](threejs-textures.html) but we need to set
+[passing one into a normal material](textures.html) but we need to set
 up the texture on the uniforms.
 
 First we'll add the uniform for the texture to the shader. They're referred to
@@ -325,7 +325,7 @@ uniform float iTime;
 ...
 ```
 
-Then we can load a texture like we covered [here](threejs-textures.html) and assign the uniform's value.
+Then we can load a texture like we covered [here](textures.html) and assign the uniform's value.
 
 ```js
 +const loader = new THREE.TextureLoader();
@@ -341,7 +341,7 @@ const uniforms = {
 };
 ```
 
-{{{example url="../threejs-shadertoy-bleepy-blocks.html" }}}
+{{{example url="shadertoy-bleepy-blocks.html" }}}
 
 So far we've been using Shadertoy shaders as they are used on
 [Shadertoy.com](https://shadertoy.com), namely drawing to cover the canvas.
@@ -417,9 +417,9 @@ uniforms.iTime.value = time;
 ```
 
 Otherwise I copied back in the original camera and code that sets up 3 rotating
-cubes from [the article on responsiveness](threejs-responsive.html). The result:
+cubes from [the article on responsiveness](responsive.html). The result:
 
-{{{example url="../threejs-shadertoy-as-texture.html" }}}
+{{{example url="shadertoy-as-texture.html" }}}
 
 I hope this at least gets you started on how to use a shadertoy shader with
 three.js. Again, it's important to remember that most shadertoy shaders are an

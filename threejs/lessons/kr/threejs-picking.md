@@ -12,7 +12,7 @@ TOC: 물체를 마우스로 피킹하기
 
 Three.js에는 이런 작업을 대신해주는 `RayCaster` 클래스가 있습니다.
 
-한번 물체 100개가 있는 장면을 만들어 여기서 피킹을 구현해봅시다. 예제는 [반응형 디자인](threejs-responsive.html)에서 썼던 예제를 가져와 사용하겠습니다.
+한번 물체 100개가 있는 장면을 만들어 여기서 피킹을 구현해봅시다. 예제는 [반응형 디자인](responsive.html)에서 썼던 예제를 가져와 사용하겠습니다.
 
 우선 카메라를 별도 `Object3D`의 자식으로 추가해 카메라가 셀카봉처럼 장면 주위를 돌 수 있도록 합니다.
 
@@ -192,7 +192,7 @@ function render(time) {
 
 결과를 볼까요?
 
-{{{example url="../threejs-picking-raycaster.html" }}}
+{{{example url="picking-raycaster.html" }}}
 
 딱히 문제는 없어 보입니다. 실제로 사용하는 경우도 대부분 문제 없이 잘 되겠지만, 이 방법에는 몇 가지 문제점이 있습니다.
 
@@ -212,7 +212,7 @@ function render(time) {
 
 예제를 하나 만들어보죠. 아래와 같은 텍스처를 정육면체에 적용해봅시다.
 
-<div class="threejs_center"><img class="checkerboard" src="../resources/images/frame.png"></div>
+<div class="threejs_center"><img class="checkerboard" src="../examples/resources/images/frame.png"></div>
 
 그다지 추가할 건 많지 않습니다.
 
@@ -238,11 +238,11 @@ for (let i = 0; i < numObjects; ++i) {
 
 예제를 실행시키면 바로 문제가 보일 겁니다.
 
-{{{example url="../threejs-picking-raycaster-transparency.html" }}}
+{{{example url="picking-raycaster-transparency.html" }}}
 
 정육면체의 빈 공간을 통해 무언가를 선택할 수가 없죠.
 
-<div class="threejs_center"><img src="resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
+<div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
 
 이는 자바스크립트가 텍스처나 재질을 보고 해당 요소가 투명한지 판단하기가 어렵기 때문입니다.
 
@@ -322,7 +322,7 @@ function setPickPosition(event) {
 }
 ```
 
-`PickHelper` 클래스도 `GPUPickHelper`로 변경합니다. [렌더 타겟(render target)에 관한 글](threejs-rendertargets.html)에서 다룬 `WebGLRenderTarget`을 써 구현하되, 이번 렌더 타겟의 크기는 1x1, 1픽셀입니다.
+`PickHelper` 클래스도 `GPUPickHelper`로 변경합니다. [렌더 타겟(render target)에 관한 글](rendertargets.html)에서 다룬 `WebGLRenderTarget`을 써 구현하되, 이번 렌더 타겟의 크기는 1x1, 1픽셀입니다.
 
 ```js
 -class PickHelper {
@@ -412,6 +412,6 @@ function setPickPosition(event) {
 
 이제 투명한 부분을 관통해 요소를 선택할 수 있습니다.
 
-{{{example url="../threejs-picking-gpu.html" }}}
+{{{example url="picking-gpu.html" }}}
 
 이 글이 피킹을 구현하는 데 도움이 되었으면 좋겠네요. 나중에 요소를 마우스로 조작하는 법에 대해서도 한 번 써보겠습니다.

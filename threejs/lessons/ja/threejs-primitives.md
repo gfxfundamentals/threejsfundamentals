@@ -3,7 +3,7 @@ Description: three.js プリミティブの旅
 TOC: プリミティブ
 
 この記事はthree.jsについてのシリーズ記事の一つです。
-最初の記事は[Three.jsの基礎知識](threejs-fundamentals.html)です。
+最初の記事は[Three.jsの基礎知識](fundamentals.html)です。
 まだ読んでない人は、そちらから先に読んでみるといいかもしれません。
 
 Three.jsは多くのプリミティブがあります。
@@ -50,9 +50,9 @@ Three.jsは多くのプリミティブがあります。
 <div id="Diagram-EdgesGeometry" data-primitive="EdgesGeometry">異なるジオメトリを入力として、その面同士の角度が閾値以上なら角を作り出す、補助オブジェクト。例えば、記事の最初の方で紹介した立方体を見てみると、それぞれの面に、立方体を作っている全ての三角形の線が表示されています。<code>EdgesGeometry</code>を代わりに使うことで、面内の線は全て除去されます。下記のthresholdAngleを調整してみてください。閾値以下の角が消えて見えるでしょう。</div>
 <div id="Diagram-WireframeGeometry" data-primitive="WireframeGeometry">1つの角ごとに1つの線分（2点）を持つジオメトリを生成する。WebGLは線分を作るのに2点が必要なので、この機能がないと、しばしば角を忘れたり、余分な角を作ってしまうでしょう。例えば、たった3点しかない1つの三角形あるとします。<code>wireframe: true</code>のマテリアルを使ってそれを描こうとした場合、1本の線分しか得られません。<code>WireframeGeometry</code>にその三角形のジオメトリを渡すと、6点からなる3つの線分を持った新しいジオメトリを生成します。</div>
 
-[別の記事](threejs-custom-buffergeometry.html)で、カスタムジオメトリの作成について説明します。
+[別の記事](custom-buffergeometry.html)で、カスタムジオメトリの作成について説明します。
 今はそれぞれの種類のプリミティブを作成する例を作ってみます。
-[以前の記事](threejs-responsive.html)を例に始めましょう。
+[以前の記事](responsive.html)を例に始めましょう。
 
 最初の方で、背景色を指定します。
 
@@ -152,7 +152,7 @@ function addSolidGeometry(x, y, geometry) {
 
 結果はこのようになります：
 
-{{{example url="../threejs-primitives.html" }}}
+{{{example url="primitives.html" }}}
 
 上記のパターンには、2つの特筆すべき例外があります。
 一番大きなものは、たぶん`TextGeometry`です。テキストのメッシュを作るときは、事前に3Dフォントデータを読み込む必要があります。このデータの読み込みは非同期的に行われるので、ジオメトリを作ろうとする前に、読み込みを待つ必要があります。フォントの読み込みにpromiseを使うと、もっと速く読み込むことができます。
@@ -162,7 +162,7 @@ function addSolidGeometry(x, y, geometry) {
 
 ```js
 {
-  const loader = new THREE.FontLoader();
+  const loader = new FontLoader();
   // promisify font loading
   function loadFont(url) {
     return new Promise((resolve, reject) => {
@@ -171,8 +171,8 @@ function addSolidGeometry(x, y, geometry) {
   }
 
   async function doit() {
-    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejsfundamentals: url */
-    const geometry = new THREE.TextGeometry('three.js', {
+    const font = await loadFont('resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejs.org: url */
+    const geometry = new TextGeometry('three.js', {
       font: font,
       size: 3.0,
       height: .2,
@@ -205,14 +205,14 @@ three.jsはデフォルトで、テキストを左端中心に回転するよう
 再び位置が設定されてしまいますが、それはよくありませんよね。
 そのためこの例では、three.jsのシーングラフの標準的なノードである`Object3D`を作ります。
 `Mesh`は同様に`Object3D`を継承しています。
-[別の記事](threejs-scenegraph.html)でどのようにシーングラフが働くかカバーします。
+[別の記事](scenegraph.html)でどのようにシーングラフが働くかカバーします。
 今はとりあえず、DOMノードのように、子ノードは親ノードと関連して描画されると知っていれば十分です。
 `Object3D`を作成し、メッシュをその子にすることで、どこにでも`Object3D`に配置し、
 先ほど設定した中心のオフセットを維持したままにできます。
 
 こうしないと、テキストが中央からずれて回ってしまうことになります。
 
-{{{example url="../threejs-primitives-text.html" }}}
+{{{example url="primitives-text.html" }}}
 
 左側のものは自身の中心の周りを回転していませんが、右側のものはそうなっていることに
 注意してください。
@@ -326,12 +326,12 @@ const material = new THREE.PointsMaterial({
 物体は、選んだ細分化が小さいほど、より滑らかに動いて、省メモリになることでしょう。
 あなたの特定の状況にふさわしい、正しいトレードオフは何か、決めなければいけません。
 
-みなさんの用途に適した形状がないなら、例えば、[.obj file](threejs-load-obj.html)
-や[.gltf file](threejs-load-gltf.html)からジオメトリを読み込むことができます。
-[カスタムBufferGeometry](threejs-custom-buffergeometry.html)を作ることもできます。
+みなさんの用途に適した形状がないなら、例えば、[.obj file](load-obj.html)
+や[.gltf file](load-gltf.html)からジオメトリを読み込むことができます。
+[カスタムBufferGeometry](custom-buffergeometry.html)を作ることもできます。
 
-次は、[threeのシーングラフの動き方と使い方](threejs-scenegraph.html)を説明します。
+次は、[threeのシーングラフの動き方と使い方](scenegraph.html)を説明します。
 
-<link rel="stylesheet" href="resources/threejs-primitives.css">
-<script type="module" src="resources/threejs-primitives.js"></script>
+<link rel="stylesheet" href="../resources/threejs-primitives.css">
+<script type="module" src="../resources/threejs-primitives.js"></script>
 

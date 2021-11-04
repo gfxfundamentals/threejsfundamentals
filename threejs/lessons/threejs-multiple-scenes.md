@@ -197,7 +197,7 @@ function render(time) {
 
 And here it is
 
-{{{example url="../threejs-multiple-scenes-v1.html" }}}
+{{{example url="multiple-scenes-v1.html" }}}
 
 You can see where the first `<span>` is there's a red cube and where the second `span` is there's a blue diamond.
 
@@ -226,9 +226,9 @@ const scene = new THREE.Scene();
 +scene.background = new THREE.Color('red');
 ```
 
-And if we <a href="../threejs-multiple-scenes-v2.html" target="_blank">quickly scroll up and down</a> we'll see the issue. Here's a animation of scrolling slowed down by 10x.
+And if we <a href="../examples/multiple-scenes-v2.html" target="_blank">quickly scroll up and down</a> we'll see the issue. Here's a animation of scrolling slowed down by 10x.
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
 
 We can switch to a different method which has a different tradeoff. We'll switch the canvas's CSS from `position: fixed` to `position: absolute`. 
 
@@ -252,9 +252,9 @@ function render(time) {
 ```
 
 `position: fixed` kept the canvas from scrolling at all
-while the rest of the page scrolled over it. `position: absolute` will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we're too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but <a href="../threejs-multiple-scenes-v2.html" target="_blank">the stuff in the middle of the page should match up</a> and not slide. Here's a view of the results of the new method slowed down 10x.
+while the rest of the page scrolled over it. `position: absolute` will let the canvas scroll with the rest of the page which means whatever we draw will stick with the page as it scrolls even if we're too slow to render. When we finally get a chance to render then we move the canvas so it matches where the page has been scrolled and then we re-render. This means only the edges of the window will show some un-rendered bits for a moment but <a href="../examples/multiple-scenes-v2.html" target="_blank">the stuff in the middle of the page should match up</a> and not slide. Here's a view of the results of the new method slowed down 10x.
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-fixed.gif"></div>
 
 ## Making it more Generic
 
@@ -353,7 +353,7 @@ Now the setup code for each scene just adds itself to the list of scenes
 
 With that we no longer need `sceneInfo1` and `sceneInfo2` and the code that was rotating the meshes is now specific to each scene.
 
-{{{example url="../threejs-multiple-scenes-generic.html" }}}
+{{{example url="multiple-scenes-generic.html" }}}
 
 ## Using HTML Dataset
 
@@ -438,14 +438,14 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 
 No change to the visuals but the code is even more generic.
 
-{{{examples url="../threejs-multiple-scenes-selector.html" }}}
+{{{examples url="multiple-scenes-selector.html" }}}
 
 ## Adding Controls to each element
 
 Adding interactively, for example a `TrackballControls` is just as easy. First we add the script for the control.
 
 ```js
-import {TrackballControls} from './resources/threejs/r132/examples/jsm/controls/TrackballControls.js';
+import {TrackballControls} from '/examples/jsm/controls/TrackballControls.js';
 ```
 
 And then we can add a `TrackballControls` to each scene passing in the element associated with that scene.
@@ -533,9 +533,9 @@ const sceneInitFunctionsByName = {
 
 And now if you drag the objects they'll rotate.
 
-{{{example url="../threejs-multiple-scenes-controls.html" }}}
+{{{example url="multiple-scenes-controls.html" }}}
 
-These techniques are used on this site itself. In particular [the article about primitives](threejs-primitives.html) and [the article about materials](threejs-materials.html) use this technique to add the various examples throughout the article.
+These techniques are used on this site itself. In particular [the article about primitives](primitives.html) and [the article about materials](materials.html) use this technique to add the various examples throughout the article.
 
 One more solution would be to render to an off screen canvas and copy the result to a 2D canvas at each element.
 The advantage to this solution is there is no limit on how you can composite each separate area. With the previous
@@ -679,7 +679,7 @@ function render(time) {
 
 The result looks the same
 
-{{{example url="../threejs-multiple-scenes-copy-canvas.html" }}}
+{{{example url="multiple-scenes-copy-canvas.html" }}}
 
 One other advantage to this solution is you could potentially use
 [`OffscreenCanvas`](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas)

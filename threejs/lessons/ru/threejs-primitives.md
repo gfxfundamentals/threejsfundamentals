@@ -3,7 +3,7 @@ Description: Обзор примитивов three.js.
 TOC: Примитивы
 
 Эта статья является частью серии статей о three.js. 
-Первая была [об основах](threejs-fundamentals.html).
+Первая была [об основах](fundamentals.html).
 Если вы её еще не читали, советую вам сделать это.
 
 Three.js имеет большое количество примитивов. Примитивы, как правило, 
@@ -45,7 +45,7 @@ Three.js имеет большое количество примитивов. П
 
 Мы рассмотрим создание пользовательской геометрии в другой статье. 
 А пока давайте создадим пример создания каждого типа примитива. 
-Начнем с [примеров из предыдущей статьи](threejs-responsive.html).
+Начнем с [примеров из предыдущей статьи](responsive.html).
 
 Близ вершины давайте установим цвет фона в светло-серый
 
@@ -156,7 +156,7 @@ function addSolidGeometry(x, y, geometry) {
 
 Вот результат:
 
-{{{example url="../threejs-primitives.html" }}}
+{{{example url="primitives.html" }}}
 
 Есть несколько заметных исключений из шаблона выше. 
 Самым большим, вероятно, является `TextGeometry`. Он должен 
@@ -171,9 +171,9 @@ function addSolidGeometry(x, y, geometry) {
 
 ```
 {
-  const loader = new THREE.FontLoader();
+  const loader = new FontLoader();
   loader.load('../resources/threejs/fonts/helvetiker_regular.typeface.json', (font) => {
-    const geometry = new THREE.TextGeometry('three.js', {
+    const geometry = new TextGeometry('three.js', {
       font: font,
       size: 3.0,
       height: .2,
@@ -210,7 +210,7 @@ function addSolidGeometry(x, y, geometry) {
 примерах, это снова установило бы позицию, что не годится. 
 Итак, в этом случае мы создаем `Object3D` стандартный узел для графа 
 сцены three.js. `Mesh` так же наследуется от `Object3D`. Мы рассмотрим, 
-[как работает график сцены, в другой статье](threejs-scenegraph.html).
+[как работает график сцены, в другой статье](scenegraph.html).
 На данный момент достаточно знать, что, как и DOM-узлы, дети рисуются 
 относительно своего родителя. Сделав `Object3D` и сделав нашу сетку 
 дочерней по отношению к этому, мы можем расположить `Object3D`  в то 
@@ -219,7 +219,7 @@ function addSolidGeometry(x, y, geometry) {
 
 Если бы мы этого не делали, текст был бы оторван от центра.
 
-{{{example url="../threejs-primitives-text.html" }}}
+{{{example url="primitives-text.html" }}}
 
 Обратите внимание, что то что слева не вращается вокруг своего центра, 
 как то, что справа.
@@ -299,7 +299,7 @@ function addLineGeometry(x, y, geometry) {
 памяти они будут занимать. Вы должны решить для себя, каков правильный 
 компромисс для вашей конкретной ситуации.
 
-Далее давайте рассмотрим [как работает граф сцены и как его использовать](threejs-scenegraph.html).
+Далее давайте рассмотрим [как работает граф сцены и как его использовать](scenegraph.html).
 
-<script type="module" src="resources/threejs-primitives.js"></script>
-<link rel="stylesheet" href="resources/threejs-primitives.css">
+<script type="module" src="../resources/threejs-primitives.js"></script>
+<link rel="stylesheet" href="../resources/threejs-primitives.css">

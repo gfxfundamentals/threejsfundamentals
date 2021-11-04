@@ -20,7 +20,7 @@ ES2015 모듈은 스크립트 안에서 `import` 키워드나, 인라인 `<scrip
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 
@@ -30,7 +30,7 @@ import * as THREE from './resources/threejs/r132/build/three.module.js';
 모듈의 경로는 반드시 상대 경로나 절대 경로여야 합니다. `<img>`, `<a>` 태그, CSS 경로와
 달리 여기서 상대 경로란 `./`이나 `../`로 시작하는 경로를 말합니다.
 
-더 자세한 것은 [이 글](threejs-fundamentals.html)의 마지막 부분을 참고하세요.
+더 자세한 것은 [이 글](fundamentals.html)의 마지막 부분을 참고하세요.
 
 ## `document.querySelector`와 `document.querySelectorAll`
 
@@ -376,7 +376,7 @@ const v = Vector();     // 모든 함수가 소문자로 시작할 경우 에러
 예를 들어 [`no-undef` 규칙](https://eslint.org/docs/rules/no-undef)을 활성화하면
 VSCode는 ESLint를 통해 변수의 값이 지정되지 않은 경우 경고를 출력할 겁니다.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
 
 위 예시에서 작성자는 `doTheThing` 함수를 `doThing`로 잘못 적었습니다. 그러자 `doThing`
 아래에 밑줄이 생겼죠. 그리고 그 위에 커서를 올리면 해당 함수를 선언하지 않았다고
@@ -385,7 +385,7 @@ VSCode는 ESLint를 통해 변수의 값이 지정되지 않은 경우 경고를
 `THREE`를 쓸 때도 경고가 나타날 것이므로 코드 상단에 `/* global THREE */`를 선언해
 `THREE`가 미리 선언되었음을 알려줄 수 있습니다.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 위 이미지에서 ESLint는 `대문자로 시작하는 이름`은 생성자이니 `new` 키워드를 사용하라고
 알려줍니다. [`new-cap` 규칙](https://eslint.org/docs/rules/new-cap) 덕에 에러를 하나
@@ -396,11 +396,11 @@ VSCode는 ESLint를 통해 변수의 값이 지정되지 않은 경우 경고를
 
 아래 이미지에서 작성자는 `var`를 썼는데, `let`이나 `const`를 쓰라는 경고를 받았습니다.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
 
 또 `let`을 쓰고 재할당을 하지 않자 `const`를 쓰라고 제안합니다.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
 
 물론 `var`가 더 좋다고 생각하면 이 규칙을 꺼버리면 됩니다. 이 규칙을 쓰는 건 제가 성능과
 버그 예방 면에서 `var`보다 `let`과 `const`를 쓰는 걸 더 좋아하기 때문이죠.

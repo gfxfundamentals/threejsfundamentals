@@ -3,7 +3,7 @@ Description: Tour d'horizon des primitives de Three.js
 TOC: Primitives
 
 Cet article fait partie d'une série consacrée à Three.js.
-Le premier article s'intitule [Principes de base](threejs-fundamentals.html).
+Le premier article s'intitule [Principes de base](fundamentals.html).
 Si vous ne l'avez pas encore lu, vous voudriez peut-être commencer par là.
 
 Three.js a un grand nombre de primitives. Les primitives
@@ -62,9 +62,9 @@ triangulaire à un <code>WireframeGeometry</code> vous obtenez une nouvelle géo
 3 segments de lignes utilisant 6 points.</div>
 
 Nous reviendrons sur la création de géométrie personnalisée dans
-[un autre article](threejs-custom-buffergeometry.html). Pour l'instant,
+[un autre article](custom-buffergeometry.html). Pour l'instant,
 faisons un exemple en créant chaque type de primitive. Nous
-commencerons par les [exemples vus dans l'article précédent](threejs-responsive.html).
+commencerons par les [exemples vus dans l'article précédent](responsive.html).
 
 Mais tout d'abord, définissons un couleur de fond :
 
@@ -177,7 +177,7 @@ Si vous regardez dans le code ci-dessous, vous verrez une section similaire pour
 
 Voici le résultat :
 
-{{{example url="../threejs-primitives.html" }}}
+{{{example url="primitives.html" }}}
 
 Il y a quelques exceptions notables au modèle ci-dessus.
 La plus grande est probablement le `TextGeometry`. Il doit charger
@@ -192,7 +192,7 @@ Et enfin, nous créons la géométrie et appelons `addObject` pour l'ajouter à 
 
 ```js
 {
-  const loader = new THREE.FontLoader();
+  const loader = new FontLoader();
   // promisify font loading
   function loadFont(url) {
     return new Promise((resolve, reject) => {
@@ -201,8 +201,8 @@ Et enfin, nous créons la géométrie et appelons `addObject` pour l'ajouter à 
   }
 
   async function doit() {
-    const font = await loadFont('../resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejsfundamentals: url */
-    const geometry = new THREE.TextGeometry('three.js', {
+    const font = await loadFont('../resources/threejs/fonts/helvetiker_regular.typeface.json');  /* threejs.org: url */
+    const geometry = new TextGeometry('three.js', {
       font: font,
       size: 3.0,
       height: .2,
@@ -241,7 +241,7 @@ exemples précédents, il s'établirait une position
 qui ne serait pas correcte. Donc, dans ce cas, nous créons un `Object3D`
 qui est un nœud standard pour les scènes three.js. `Mesh`
 hérite également de `Object3D` (confère l'article
-[comment un graphe de scène fonctionne](threejs-scenegraph.html)).
+[comment un graphe de scène fonctionne](scenegraph.html)).
 Pour l'instant, il suffit de savoir que,
 comme les nœuds DOM, les enfants sont placés de façon relative par rapport à leur parent.
 En créant un `Object3D` et en faisant de notre maillage (mesh) un
@@ -251,7 +251,7 @@ fixé précédemment.
 
 Si nous ne faisions pas cela, le texte serait alors décentré !
 
-{{{example url="../threejs-primitives-text.html" }}}
+{{{example url="primitives-text.html" }}}
 
 Notons que celui de gauche ne tourne pas autour de son centre
 alors que celui de droite le fait.
@@ -371,11 +371,11 @@ plus les choses auront des chances de se dérouler sans heurts et moins il vous 
 Vous devrez décider vous-même du compromis qui convient le mieux à cas d'utilisation.
 
 Si aucune des formes ci-dessus ne correspond à votre cas d'utilisation, vous pouvez
-charger la géométrie par exemple à partir d'un [fichier .obj](threejs-load-obj.html)
-ou d'un [fichier .gltf](threejs-load-gltf.html).
-Vous pouvez également créer votre [BufferGeometry](threejs-custom-buffergeometry.html).
+charger la géométrie par exemple à partir d'un [fichier .obj](load-obj.html)
+ou d'un [fichier .gltf](load-gltf.html).
+Vous pouvez également créer votre [BufferGeometry](custom-buffergeometry.html).
 
-Voyons maintenant l'article traitant sur [comment fonctionne un graphe de scène three.js et comment l'utiliser](threejs-scenegraph.html).
+Voyons maintenant l'article traitant sur [comment fonctionne un graphe de scène three.js et comment l'utiliser](scenegraph.html).
 
-<link rel="stylesheet" href="resources/threejs-primitives.css">
-<script type="module" src="resources/threejs-primitives.js"></script>
+<link rel="stylesheet" href="../resources/threejs-primitives.css">
+<script type="module" src="../resources/threejs-primitives.js"></script>

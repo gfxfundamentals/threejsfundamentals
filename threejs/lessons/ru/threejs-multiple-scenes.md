@@ -202,7 +202,7 @@ function render(time) {
 
 И вот оно
 
-{{{example url="../threejs-multiple-scenes-v1.html" }}}
+{{{example url="multiple-scenes-v1.html" }}}
 
 Вы можете увидеть, где на первом месте `<span>` находится красный куб, 
 а на втором `span` - синий ромб.
@@ -232,10 +232,10 @@ const scene = new THREE.Scene();
 +scene.background = new THREE.Color('red');
 ```
 
-И если мы <a href="../threejs-multiple-scenes-v2.html" target="_blank">быстро прокрутим вверх и вниз</a> 
+И если мы <a href="../examples/multiple-scenes-v2.html" target="_blank">быстро прокрутим вверх и вниз</a> 
 мы увидим проблему. Вот анимация прокрутки, замедленная в 10 раз.
 
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-skew.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-skew.gif"></div>
 
 Мы можем использовать другой метод, который имеет другой компромисс. 
 Мы переключим CSS холста с `position: fixed` на `position: absolute`. 
@@ -268,9 +268,9 @@ function render(time) {
 рендеринга, мы перемещаем холст так, чтобы он соответствовал 
 месту прокрутки страницы, и затем мы повторно визуализируем. 
 Это означает, что только на краях окна будут отображаться некоторые не визуализированные биты, но
-<a href="../threejs-multiple-scenes-v2.html" target="_blank"> материал в середине страницы должен совпадать</a>, 
+<a href="../examples/multiple-scenes-v2.html" target="_blank"> материал в середине страницы должен совпадать</a>, 
 а не скользить. Вот представление результатов нового метода, замедленного в 10 раз.
-<div class="threejs_center"><img class="border" src="resources/images/multi-view-fixed.gif"></div>
+<div class="threejs_center"><img class="border" src="../resources/images/multi-view-fixed.gif"></div>
 
 ## Делаем это более универсальным
 
@@ -376,7 +376,7 @@ function render(time) {
 При этом нам больше не нужно `sceneInfo1` и `sceneInfo2`. 
 Код, который вращал меши, теперь специфичен для каждой сцены.
 
-{{{example url="../threejs-multiple-scenes-generic.html" }}}
+{{{example url="multiple-scenes-generic.html" }}}
 
 ## Использование набора данных в HTML
 
@@ -464,7 +464,7 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 
 Никаких изменений в визуальных элементах, но код легче переиспользовать.
 
-{{{examples url="../threejs-multiple-scenes-selector.html" }}}
+{{{examples url="multiple-scenes-selector.html" }}}
 
 ## Добавление элементов управления к каждому элементу
 
@@ -472,7 +472,7 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 Сначала мы добавляем скрипт для контролов.
 
 ```js
-import {TrackballControls} from './resources/threejs/r132/examples/jsm/controls/TrackballControls.js';
+import {TrackballControls} from '/examples/jsm/controls/TrackballControls.js';
 ```
 
 И затем мы можем добавить `TrackballControls` к каждой сцене, передавая элемент, связанный с этой сценой.
@@ -563,8 +563,8 @@ const sceneInitFunctionsByName = {
 
 Теперь, если вы перетащите объекты, они будут вращаться.
 
-{{{examples url="../threejs-multiple-scenes-controls.html" }}}
+{{{examples url="multiple-scenes-controls.html" }}}
 
 Эти методы используются на самом сайте. В частности, 
-[статья о примитивах](threejs-primitives.html) и [о материалах](threejs-materials.html) 
+[статья о примитивах](primitives.html) и [о материалах](materials.html) 
 используют эту технику для добавления различных примеров по всей статье.

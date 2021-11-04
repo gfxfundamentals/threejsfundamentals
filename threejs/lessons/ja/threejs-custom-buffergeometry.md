@@ -5,11 +5,11 @@ TOC: カスタムバッファジオメトリ
 `BufferGeometry`は全てのジオメトリを表現する方法です。
 BufferGeometryは`BufferAttribute`を使います。１つの`BufferAttribute`はジオメトリを作るための１種類のデータに対応しています。vertexの位置情報を格納するための`BufferAttribute`、color情報を格納するための`BufferAttribute`、normal情報を格納するための`BufferAttribute`がそれぞれあります。
 
-<div class="threejs_center"><img src="resources/threejs-attributes.svg" style="width: 700px"></div>
+<div class="threejs_center"><img src="../resources/threejs-attributes.svg" style="width: 700px"></div>
 
 上の図では`position`, `normal`, `color`, `uv`それぞれのattribute情報を格納した`BufferAttribute`を表しています。これらは*並列な配列*です。*並列な配列*というのはN番目にあるデータはN番目のvertexに対応しており、それがattributeの数だけあるという意味です。図ではindex=4のattributeがハイライトされています。
 
-<div class="threejs_center"><img src="resources/cube-faces-vertex.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-faces-vertex.svg" style="width: 500px"></div>
 
 上の図のハイライトされたvertexには、このvertexに接する全ての面に異なるnormalが必要です。normalとはどの方向を向いているかの情報です。
 この図ではnormalは角の頂点の周りの矢印で示されており、その頂点に接する全ての面には異なる方向を指すnormalが必要です。
@@ -114,7 +114,7 @@ for (const vertex of vertices) {
 
 上の例では`positions`, `normals`, `uvs`の３つのJavaScriptのネイティブ配列を作りました。次に`Float32Array`型の[TypedArrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray)に変換します。`BufferAttribute`はネイティブ配列ではなくTypedArrayである必要があります。さらにそれぞれの`BufferAttribute`に対して「１つのvertexに対していくつの要素が必要か」を指定する必要があります。例えばpositionやnormalsは３次元なので１つのvertexつき３つの要素を必要とします。UVはテクスチャ上の２次元の点なので２つの要素を必要とします。
 
-{{{example url="../threejs-custom-buffergeometry-cube.html"}}}
+{{{example url="custom-buffergeometry-cube.html"}}}
 
 かなり大量のデータです。この配列からvertexを選ぶときにはインデックスを使います。１つの三角形は３つのvertexで構成されていて２つの三角形が１つのfaceを作っています。これが６枚で１つの立方体を構成しています。１つのfaceを構成する２つの三角形を作っているvertexは２つが同じデータを持っています。position, normal, UVすべて同じです。そこで重複しているデータを１つ消して１つにして、そのデータを別のインデックスで指定します。
 
@@ -196,7 +196,7 @@ geometry.setAttribute(
 +]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-indexed.html"}}}
+{{{example url="custom-buffergeometry-cube-indexed.html"}}}
 
 `Geometry`と同じように`BufferGeometry`も[`computeVertexNormals`](BufferGeometry.computeVertexNormals)メソッドを持っています。これは特に指定がない場合に自動的にnormalを計算するメソッドです。ただし`Geometry`の場合と違いvertexがfaceによって共有されていないために`computeVertexNormals`の結果も少し違います。
 
@@ -261,7 +261,7 @@ geometry.setIndex([
 ]);
 ```
 
-{{{example url="../threejs-custom-buffergeometry-cube-typedarrays.html"}}}
+{{{example url="custom-buffergeometry-cube-typedarrays.html"}}}
 
 TypedArrayはプログラムが走っている状態でvertexの編集をしたいときに便利です。
 
@@ -269,7 +269,7 @@ TypedArrayはプログラムが走っている状態でvertexの編集をした�
 
 球体の位置とindexを生成するコードです。四角形の中でvertexを共有していますが四角形と四角形でvertexを共有することはありません。共有してしまうと１つの四角形が出たり入ったりするたびに隣の四角形が移動してしまいます。今回は別々に移動させたいのでそうしています。
 
-面倒なので３つの`Object3D`階層を用意して球体のvertexを計算します。くわしくは[たくさんのオブジェクトを最適化するこの記事](threejs-optimize-lots-of-objects.html)をご覧ください。
+面倒なので３つの`Object3D`階層を用意して球体のvertexを計算します。くわしくは[たくさんのオブジェクトを最適化するこの記事](optimize-lots-of-objects.html)をご覧ください。
 
 ```js
 function makeSpherePositions(segmentsAround, segmentsDown) {
@@ -377,10 +377,10 @@ positionAttribute.needsUpdate = true;
 
 最後に`positionAttribute.needsUpdate`を設定してTHREE.jsに変更が必要であることを伝えます。
 
-{{{example url="../threejs-custom-buffergeometry-dynamic.html"}}}
+{{{example url="custom-buffergeometry-dynamic.html"}}}
 
 `BufferGeometry`を作って`BufferAttribute`をアップデートする方法を紹介しました。
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-custom-buffergeometry.js"></script>
+<script type="module" src="../resources/threejs-custom-buffergeometry.js"></script>
 

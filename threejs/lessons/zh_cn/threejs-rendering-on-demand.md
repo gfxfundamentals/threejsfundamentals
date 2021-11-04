@@ -16,7 +16,7 @@ requestAnimationFrame(render);
 
 显而易见的解决方法是一开始的时候渲染一次, 只有当什么东西改变了以后再次渲染. 这种改变包括纹理的变化, 或者再入了模型, 其他源传来了什么数据, 用户调整了设置或者是动了摄像机. 
 
-我们以[响应式设计](threejs-responsive.html)这一章为例, 稍作修改以满足按需渲染.
+我们以[响应式设计](responsive.html)这一章为例, 稍作修改以满足按需渲染.
 
 首先我们添加`OrbitControls`, 这样当摄像机改变之后场景就可以随之渲染
 
@@ -24,8 +24,8 @@ First we'll add in the `OrbitControls` so there is something that could change
 that we can render in response to.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 然后
@@ -101,7 +101,7 @@ window.addEventListener('resize', render);
 ```
 然后我们就实现了按需渲染的功能
 
-{{{example url="../threejs-render-on-demand.html" }}}
+{{{example url="render-on-demand.html" }}}
 `OrbitControls` 有个选项可以增加某种惯性, 让整个画面显得不那么僵硬. 我们启用`enableDamping`来实现它
 
 ```js
@@ -148,17 +148,17 @@ render();
 
 可能很难看出来有什么不同. 试着点一下下面的例子, 然后用方向键移动, 或者拖拽旋转. 然后在上面的例子中做同样的事, 你应该能感觉出来区别. 上面的像是一帧帧在放幻灯片, 下面则是丝滑柔顺.
 
-{{{example url="../threejs-render-on-demand-w-damping.html" }}}
+{{{example url="render-on-demand-w-damping.html" }}}
 
 让我们加一个简单的GUI
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {GUI} from '../3rdparty/dat.gui.module.js';
 ```
 
-这个控制器可以改变每个立方体的颜色和在x方向缩放. 为了设置颜色我们用了`ColorGUIHelper`, 这个在[光线](threejs-lights.html)一章提到过
+这个控制器可以改变每个立方体的颜色和在x方向缩放. 为了设置颜色我们用了`ColorGUIHelper`, 这个在[光线](lights.html)一章提到过
 
 
 ```js
@@ -191,6 +191,6 @@ function makeInstance(geometry, color, x) {
 上面的GUI用了一个`onChange`方法, 在数值改变的时候调用传入一个回调函数. 这个例子中, 我们仅仅需要它调用`requestRenderIfNotRequested`. `folder.open`是使折叠菜单展开的方法
 
 
-{{{example url="../threejs-render-on-demand-w-gui.html" }}}
+{{{example url="render-on-demand-w-gui.html" }}}
 
 我希望这篇文章能在将连续渲染改成按需渲染的时候给你一些启发. 按需渲染不像是连续渲染那么常见, 因为3D游戏或者艺术创作中必须要让场景动出来. 但是有些场合, 例如地图浏览器, 3D编辑器, 3D图产生器等等的, 可能还是按需渲染比较好. 

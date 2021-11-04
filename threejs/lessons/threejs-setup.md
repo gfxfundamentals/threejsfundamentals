@@ -3,7 +3,7 @@ Description: How to setup your development environment for three.js
 TOC: Setup
 
 This article is one in a series of articles about three.js.
-The first article was [about three.js fundamentals](threejs-fundamentals.html).
+The first article was [about three.js fundamentals](fundamentals.html).
 If you haven't read that yet you might want to start there.
 
 Before we go any further we need to talk about setting up your
@@ -20,7 +20,7 @@ Next download one of these simple web servers.
 If you'd prefer a web server with a user interface there's
 [Servez](https://greggman.github.io/servez)
 
-{{{image url="resources/servez.gif" className="border" }}}
+{{{image url="../resources/servez.gif" className="border" }}}
 
 Just point it at the folder where you unzipped the files, click "Start", then go to
 in your browser [`http://localhost:8080/`](http://localhost:8080/) or if you'd
@@ -50,7 +50,7 @@ Or if you're like me
 
 It should print something like
 
-{{{image url="resources/servez-response.png" }}}
+{{{image url="../resources/servez-response.png" }}}
 
 Then in your browser go to [`http://localhost:8080/`](http://localhost:8080/).
 
@@ -59,4 +59,4 @@ If you don't specify a path then servez will serve the current folder.
 If either of those options are not to your liking
 [there are many other simple servers to choose from](https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver).
 
-Now that you have a server setup we can move on to [textures](threejs-textures.html).
+Now that you have a server setup we can move on to [textures](textures.html).

@@ -2,7 +2,7 @@ Title: Three.js Post Processing 3DLUT
 Description: How to implement a 3DLUT Post Process in THREE.js
 TOC: Applying a LUT File for effects
 
-In the last article we went over [post processing](threejs-post-processing.html).
+In the last article we went over [post processing](post-processing.html).
 One of the common ways to post process is called a LUT or 3DLUT. LUT stands for LookUp Table. A 3DLUT is therefore a 3 dimensional look up table.
 
 How it works is we make a cube of colors. Then we index the cube using the colors of our source image. For each pixel in the original image we look up a position in the cube based on the red, green, and blue colors of the original pixel. The value we pull out of the 3DLUT is the new color.
@@ -11,23 +11,23 @@ In Javascript we might do it like this. Imagine the colors are specified in inte
 
     const newColor = lut[origColor.red][origColor.green][origColor.bue]
 
-Of course a 256x256x256 array would be rather large but as we pointed out in [the article on textures](threejs-textures.html) textures are referenced from values of 0.0 to 1.0 regardless of the dimensions of the texture.
+Of course a 256x256x256 array would be rather large but as we pointed out in [the article on textures](textures.html) textures are referenced from values of 0.0 to 1.0 regardless of the dimensions of the texture.
 
 Let's imagine an 8x8x8 cube.
 
-<div class="threejs_center"><img src="resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-rgb.svg" class="noinvertdark" style="width: 500px"></div>
 
 First we might fill in the corners with 0,0,0 corner being pure black, the opposite 1,1,1 corner pure white. 1,0,0 being pure <span style="color:red;">red</span>. 0,1,0 being pure <span style="color:green;">green</span> and 0,0,1 being <span style="color:blue;">blue</span>. 
 
-<div class="threejs_center"><img src="resources/images/3dlut-axis.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-axis.svg" class="noinvertdark" style="width: 500px"></div>
 
 We'd add in the colors down each axis.
 
-<div class="threejs_center"><img src="resources/images/3dlut-edges.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-edges.svg" class="noinvertdark" style="width: 500px"></div>
 
 And the colors on edges that use 2 or more channels.
 
-<div class="threejs_center"><img src="resources/images/3dlut-standard.svg" class="noinvertdark" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-standard.svg" class="noinvertdark" style="width: 500px"></div>
 
 And finally fill in all the colors in between. This is an "identity" 3DLUT. It produces the exact same output as input. If you look up a color you'll get the same color out.
 
@@ -39,15 +39,15 @@ If we change the cube to shades of amber though then as we look up colors, we lo
 
 Using this techinque by supplying a different lookup table we can apply all kinds of effects. Basically any effect that can be computed based only on a single color input. Those effects include adjusting hue, contrast, saturation, color cast, tint, brightness, exposure, levels, curves, posterize, shadows, highlghts, and many others. Even better they can all be combined into a single look up table.
 
-To use it we need a scene to apply it to. Let's throw together a quick scene. We'll start with a glTF file and display it like we covered in [the article on loading a glTF](threejs-load-gltf.html). The model we're loading is [this model](https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee) by [The Ice Wolves](https://sketchfab.com/sarath.irn.kat005). It uses no lights so I removed the lights.
+To use it we need a scene to apply it to. Let's throw together a quick scene. We'll start with a glTF file and display it like we covered in [the article on loading a glTF](load-gltf.html). The model we're loading is [this model](https://sketchfab.com/models/a1d315908e9f45e5a3bc618bdfd2e7ee) by [The Ice Wolves](https://sketchfab.com/sarath.irn.kat005). It uses no lights so I removed the lights.
 
-We'll also add a background image like we covered in [backgrounds and skyboxs](threejs-backgrounds.html).
+We'll also add a background image like we covered in [backgrounds and skyboxs](backgrounds.html).
 
-{{{example url="../threejs-postprocessing-3dlut-prep.html" }}}
+{{{example url="postprocessing-3dlut-prep.html" }}}
 
 Now that we have a scene we need a 3DLUT. The simplest 3DLUT is a 2x2x2 identity LUT where *identity* means nothing happens. It's like multiplying by 1 or doing nothing, even though we're looking up colors in the LUT each color in maps to the same color out.
 
-<div class="threejs_center"><img src="resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-standard-2x2.svg" class="noinvertdark" style="width: 200px"></div>
 
 WebGL1 doesn't support 3D textures so we'll use 4x2 2D texture and treat it as a 3D texture inside a custom shader where each slice of the cube is spread out horizontally across the texture.
 
@@ -86,7 +86,7 @@ const lutTextures = [
 ];
 ```
 
-Taking the example using a custom shader from [the article on post processing](threejs-post-processing.html) lets use these 2 custom shaders instead.
+Taking the example using a custom shader from [the article on post processing](post-processing.html) lets use these 2 custom shaders instead.
 
 ```js
 const lutShader = {
@@ -227,11 +227,11 @@ composer.render(delta);
 
 Given it's the identity 3DLUT nothing changes
 
-{{{example url="../threejs-postprocessing-3dlut-identity.html" }}}
+{{{example url="postprocessing-3dlut-identity.html" }}}
 
 but we select the unfiltered LUT we get something much more interesting
 
-<div class="threejs_center"><img src="resources/images/unfiltered-3dlut.jpg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/images/unfiltered-3dlut.jpg" style="width: 500px"></div>
 
 Why does this happen? Because with filtering on, the GPU linearly interpolates between the colors. With filtering off it does no interpolation so looking up colors in the 3DLUT only gives one of the exact colors in the 3DLUT.
 
@@ -279,11 +279,11 @@ The larger the resolution the more fine adjustments we can make but being a cube
 
 Let's set the size to 16 and then click save the file which gives us this file.
 
-<div class="threejs_center"><img src="resources/images/identity-lut-s16.png"></div>
+<div class="threejs_center"><img src="../resources/images/identity-lut-s16.png"></div>
 
 We also need to capture an image of the thing we want to apply the LUT to, in this case the scene we created above before applying any effects. Note that normally we could right click on the scene above and pick "Save As..." but the `OrbitControls` might be preventing right clicking depending on your OS. In my case I used my OSes screen capture feature to get a screenshot.
 
-<div class="threejs_center"><img src="resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-screen-capture.jpg" style="width: 600px"></div>
 
 We then go it into an image editor, in my case Photoshop, load up the sample image, and paste the 3DLUT in the top left corner
 
@@ -292,11 +292,11 @@ We then go it into an image editor, in my case Photoshop, load up the sample ima
 > I'm guessing it was trying to match DPI or something. Loading the lut file
 > separately and then copying and pasting it into the screen capture worked.
 
-<div class="threejs_center"><img src="resources/images/3dlut-photoshop-before.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-photoshop-before.jpg" style="width: 600px"></div>
 
 We then use any of the color based full image adjustments to adjust the image. For Photoshop most of the adjustments we can use are available under the Image->Adjustments menu.
 
-<div class="threejs_center"><img src="resources/images/3dlut-photoshop-after.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../resources/images/3dlut-photoshop-after.jpg" style="width: 600px"></div>
 
 After we've adjusted the image to our liking you can see the 3DLUT slices we placed in the top left corner have the same adjustments applied.
 
@@ -412,7 +412,7 @@ const lutTextures = [
 
 And here's a bunch of luts to choose from.
 
-{{{example url="../threejs-postprocessing-3dlut.html" }}}
+{{{example url="postprocessing-3dlut.html" }}}
 
 One last thing, just for fun, it turns out there's a standard LUT format defined by Adobe. If you [search on the net you can find lots of these LUT files](https://www.google.com/search?q=lut+files).
 
@@ -487,15 +487,15 @@ updateGUI();
 
 so you should be able to [download an Adobe LUT](https://www.google.com/search?q=lut+files) and then drag and drop it on the example below.
 
-{{{example url="../threejs-postprocessing-3dlut-w-loader.html" }}}
+{{{example url="postprocessing-3dlut-w-loader.html" }}}
 
 Note that Adobe LUTs are not designed for online usage. They are large files. You can convert them to smaller files and save as our PNG format by dragging and dropping on the sample below, choosing a size and clicking "Save...".
 
 The sample below is just a modification of the code above. We only draw the background picture, no glTF file. That picture is an identity lut image created from the script above. We then use the effect to apply whatever LUT file is loaded so the result is the image we'd need to reproduce the LUT file as a PNG.
 
-{{{example url="../threejs-postprocessing-adobe-lut-to-png-converter.html" }}}
+{{{example url="postprocessing-adobe-lut-to-png-converter.html" }}}
 
-One thing completely skipped is how the shader itself works. Hopefully we can cover a little more GLSL in the future. For now, if you're curious, you can follow the links in the [post processing article](threejs-post-processing.html) as well as maybe [take a look at this video](https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s).
+One thing completely skipped is how the shader itself works. Hopefully we can cover a little more GLSL in the future. For now, if you're curious, you can follow the links in the [post processing article](post-processing.html) as well as maybe [take a look at this video](https://www.youtube.com/watch?v=rfQ8rKGTVlg#t=24m30s).
 
-<script type="module" src="resources/threejs-post-processing-3dlut.js"></script>
+<script type="module" src="../resources/threejs-post-processing-3dlut.js"></script>
 

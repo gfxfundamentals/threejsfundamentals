@@ -2,9 +2,9 @@ Title: Three.js 빌보드(Billboards)
 Description: 물체가 항상 카메라를 바라보도록 하는 법을 알아봅니다
 TOC: 빌보드와 파사드
 
-[이전 글](threejs-canvas-textures.html)에서는 `CanvasTexture`를 이용해 캐릭터에 이름표/명찰을 붙이는 법을 알아봤습니다. 때로는 이 이름표가 항상 카메라를 향하게 해야 할 경우도 있겠죠. Three.js의 `Sprite`와 `SpriteMaterial`을 사용하면 이걸 쉽게 구현할 수 있습니다.
+[이전 글](canvas-textures.html)에서는 `CanvasTexture`를 이용해 캐릭터에 이름표/명찰을 붙이는 법을 알아봤습니다. 때로는 이 이름표가 항상 카메라를 향하게 해야 할 경우도 있겠죠. Three.js의 `Sprite`와 `SpriteMaterial`을 사용하면 이걸 쉽게 구현할 수 있습니다.
 
-[캔버스 텍스처에 관한 글](threejs-canvas-textures.html)의 명찰 예제를 가져와 여기에 `Sprite`와 `SpriteMaterial`을 사용해봅시다.
+[캔버스 텍스처에 관한 글](canvas-textures.html)의 명찰 예제를 가져와 여기에 `Sprite`와 `SpriteMaterial`을 사용해봅시다.
 
 ```js
 function makePerson(x, labelWidth, size, name, color) {
@@ -44,11 +44,11 @@ function makePerson(x, labelWidth, size, name, color) {
 
 이제 명찰이 항상 카메라를 바라봅니다.
 
-{{{example url="../threejs-billboard-labels-w-sprites.html" }}}
+{{{example url="billboard-labels-w-sprites.html" }}}
 
 하지만 특정 각도에서 보니 명찰이 사람과 겹쳐 보입니다.
 
-<div class="threejs_center"><img src="resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
+<div class="threejs_center"><img src="../resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
 
 간단히 명찰의 위치를 옮겨버리면 문제를 해결할 수 있겠죠.
 
@@ -67,7 +67,7 @@ label.scale.x = canvas.width  * labelBaseScale;
 label.scale.y = canvas.height * labelBaseScale;
 ```
 
-{{{example url="../threejs-billboard-labels-w-sprites-adjust-height.html" }}}
+{{{example url="billboard-labels-w-sprites-adjust-height.html" }}}
 
 추가로 이 빌보드(billboard, 광고판)*에 파사드를 적용할 수 있습니다.
 
@@ -148,7 +148,7 @@ const scene = new THREE.Scene();
 +scene.background = new THREE.Color('lightblue');
 ```
 
-{{{example url="../threejs-billboard-trees-no-billboards.html" }}}
+{{{example url="billboard-trees-no-billboards.html" }}}
 
 나무는 11x11, 총 121그루입니다. 각 나무는 12각형 원뿔과 48각형 원통으로 이루어졌으니, 나무 하나 당 삼각형이 60개인 셈입니다. 121 * 60이면 총 삼각형 7260개네요. 물론 그다지 많은 수는 아니지만 더 세밀한 3차원 나무는 하나당 1000-3000개의 삼각형이 필요할 겁니다. 나무 하나당 3000개면 총 36300개의 삼각형을 그려야 하는 셈이죠.
 
@@ -156,7 +156,7 @@ const scene = new THREE.Scene();
 
 그래픽 프로그램으로 파사드를 만들 수도 있지만, 코드를 작성해 직접 하나를 만들어봅시다.
 
-`RenderTarget`을 이용해 3D 물체를 텍스처로 바꾸는 코드를 작성합니다. `RenderTarget`에 렌더링하는 법은 [이전 글](threejs-rendertargets.html)에서 다루었으니 참고 바랍니다.
+`RenderTarget`을 이용해 3D 물체를 텍스처로 바꾸는 코드를 작성합니다. `RenderTarget`에 렌더링하는 법은 [이전 글](rendertargets.html)에서 다루었으니 참고 바랍니다.
 
 ```js
 function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
@@ -213,9 +213,9 @@ function makeSpriteTexture(textureSize, obj) {
 
 위 예제는 코드 밖에서 선언한 시야각 (field of view, `fov`)을 사용했습니다.
 
-[.obj 파일 불러오기](threejs-load-obj.html)에서 썼던 방법을 약간 수정해 나무를 감싼 육면체를 계산했습니다.
+[.obj 파일 불러오기](load-obj.html)에서 썼던 방법을 약간 수정해 나무를 감싼 육면체를 계산했습니다.
 
-[.obj 파일 불러오기](threejs-load-obj.html)에서 썼던 `frameArea`도 가져왔습니다. 이번에는 주어진 시아갹에 해당 물체가 포함되게 하려면 얼마나 떨어져야 하는지 계산할 때 사용했죠. 그리고 이 결과값으로 카메라를 물체를 감싼 육면체 중심에서 -z축 방향으로 옮겼습니다.
+[.obj 파일 불러오기](load-obj.html)에서 썼던 `frameArea`도 가져왔습니다. 이번에는 주어진 시아갹에 해당 물체가 포함되게 하려면 얼마나 떨어져야 하는지 계산할 때 사용했죠. 그리고 이 결과값으로 카메라를 물체를 감싼 육면체 중심에서 -z축 방향으로 옮겼습니다.
 
 절두체의 크기를 1.1 (`fudge(속임수)`)만큼 키워 나무가 렌더 타겟에 완전히 들어가도록 했습니다. 물체가 절두체 안에 있는지 계산한 결과는 물체의 가장자리를 포함하지 않기에 그대로 뒀다면 물체가 카메라 밖으로 벗어나 보였을 겁니다. 카메라가 완전히 물체를 담는 값을 계산할 수도 있지만, 그건 공간 낭비이기도 하기에 단순히 *속임수*를 사용한 것이죠.
 
@@ -277,7 +277,7 @@ scene.background = new THREE.Color('lightblue');
 
 나무 파사드로 이루어진 장면을 완성했습니다.
 
-{{{example url="../threejs-billboard-trees-static-billboards.html" }}}
+{{{example url="billboard-trees-static-billboards.html" }}}
 
 아까 만들었던 예제와 비교해보면 꽤 비슷할 겁니다. 예제에서는 저-해상도 텍스처, 64x64 픽셀 텍스처를 사용했기에 파사드가 각져 보입니다. 해상도를 높일 수도 있지만, 파사드는 대게 먼 거리에서 작게 보이는 물체에 사용하기에 저-해상도로 사용해도 그다지 문제가 없습니다. 게다가 몇 픽셀되지도 않는 나무를 렌더링하는 데 낭비되는 자원을 절약할 수 있죠.
 

@@ -2,14 +2,14 @@ Title: Three.jsのビルボード
 Description: 常にカメラの方を向かせる
 TOC: Billboards and Facades
 
-[前回のページでは](threejs-canvas-textures.html) `CanvasTexture`を使ってラベルとバッジを作りました。バッジなどが常にカメラの方向を向いて文字が読める状態になっているという効果が欲しい時があります（訳註：ビルボード効果と言います）。Three.jsは`Sprite`と`SpriteMaterial` を使ってビルボード効果を実現できます。
+[前回のページでは](canvas-textures.html) `CanvasTexture`を使ってラベルとバッジを作りました。バッジなどが常にカメラの方向を向いて文字が読める状態になっているという効果が欲しい時があります（訳註：ビルボード効果と言います）。Three.jsは`Sprite`と`SpriteMaterial` を使ってビルボード効果を実現できます。
 
-In [a previous article](threejs-canvas-textures.html) we used a `CanvasTexture`
+In [a previous article](canvas-textures.html) we used a `CanvasTexture`
 to make labels / badges on characters. Sometimes we'd like to make labels or
 other things that always face the camera. Three.js provides the `Sprite` and
 `SpriteMaterial` to make this happen.
 
-[この記事](threejs-canvas-textures.html)からサンプルを拝借して`Sprite`と`SpriteMaterial`を使ってみましょう。
+[この記事](canvas-textures.html)からサンプルを拝借して`Sprite`と`SpriteMaterial`を使ってみましょう。
 
 ```js
 function makePerson(x, labelWidth, size, name, color) {
@@ -48,11 +48,11 @@ function makePerson(x, labelWidth, size, name, color) {
 ```
 はい、常にラベルがカメラの方を向くようになりました。
 
-{{{example url="../threejs-billboard-labels-w-sprites.html" }}}
+{{{example url="billboard-labels-w-sprites.html" }}}
 
 しかし角度によってはラベルがオブジェクトに食い込んでしまうことがあります。
 
-<div class="threejs_center"><img src="resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
+<div class="threejs_center"><img src="../resources/images/billboard-label-z-issue.png" style="width: 455px;"></div>
 
 ラベルの位置を動かしましょう。
 
@@ -73,7 +73,7 @@ label.scale.x = canvas.width  * labelBaseScale;
 label.scale.y = canvas.height * labelBaseScale;
 ```
 
-{{{example url="../threejs-billboard-labels-w-sprites-adjust-height.html" }}}
+{{{example url="billboard-labels-w-sprites-adjust-height.html" }}}
 
 ビルボード効果を使ってファケード（訳註：ハリボテのようなもの）を作ることもできます。
 
@@ -154,7 +154,7 @@ const scene = new THREE.Scene();
 
 はい、木がたくさんできました。
 
-{{{example url="../threejs-billboard-trees-no-billboards.html" }}}
+{{{example url="billboard-trees-no-billboards.html" }}}
 
 １２１個の木があります。１つにつき１２ポリゴンのコーンと４８ポリゴンのシリンダーがあるので１つの木は６０ポリゴンです。
 これが１２１個あるので７２６０ポリゴンです。このシンプルな木ならそれほど問題ありませんが、リアルな木を作ろうとしたら１つの木につき１０００から３０００のポリゴンがあるのが普通です。ということは１２１個表示するには３６万３千ポリゴン必要です。木を表示するだけで動作が重くなるかもしれません。
@@ -164,7 +164,7 @@ const scene = new THREE.Scene();
 ペイントソフトで描いた絵をPlaneにはってもいいのですがここは学んだことを使いましょう。
 
 `RenderTarget`を使ってThree.js内で絵を描き、Planeに貼ってみます。
-[この記事](threejs-rendertargets.html)が参考になります。
+[この記事](rendertargets.html)が参考になります。
 
 ```js
 function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
@@ -218,7 +218,7 @@ function makeSpriteTexture(textureSize, obj) {
 }
 ```
 
-まずフィールドオブビュー（`fov`）を設定しています。カメラの視野範囲におさまる木を[この記事](threejs-load-obj.html)と同じ方法で計算しています。
+まずフィールドオブビュー（`fov`）を設定しています。カメラの視野範囲におさまる木を[この記事](load-obj.html)と同じ方法で計算しています。
 
 さらに`frameArea`を使っています。これは木を表示する最も近いカメラの位置を計算してカメラに設定しています。仮想的なスタジオで木の写真をとっているような状態です。
 
@@ -276,7 +276,7 @@ scene.background = new THREE.Color('lightblue');
 
 完成です。
 
-{{{example url="../threejs-billboard-trees-static-billboards.html" }}}
+{{{example url="billboard-trees-static-billboards.html" }}}
 
 ３Dモデルと違って近づくとハリボテであることがバレてしまいます。今回は64x64ピクセルで作りましたがもちろん高解像にすることもできます。しかしそれでも３Dモデルのように近づいてもエッジが綺麗というわけにはいかないので、通常はカメラが近づくことがない遠く離れた木や山に使います。
 

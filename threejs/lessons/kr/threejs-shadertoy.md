@@ -10,11 +10,11 @@ TOC: 쉐이더토이 쉐이더 활용하기
 
 아래의 [쉐이더로 도시 전체를 렌더링한 쉐이더토이 예제](https://www.shadertoy.com/view/XtsSWs)를 한 번 봅시다.
 
-<div class="threejs_center"><img src="resources/images/shadertoy-skyline.png"></div>
+<div class="threejs_center"><img src="../resources/images/shadertoy-skyline.png"></div>
 
 제 컴퓨터에서 FHD 해상도를 기준으로 약 5 프레임 내외가 나옵니다. 이를 [시티즈: 스카이라인(Cities: Skylines)](https://store.steampowered.com/app/255710/Cities_Skylines/) 같은 게임과 비교해보면
 
-<div class="threejs_center"><img src="resources/images/cities-skylines.jpg" style="width: 600px;"></div>
+<div class="threejs_center"><img src="../resources/images/cities-skylines.jpg" style="width: 600px;"></div>
 
 같은 컴퓨터에서 30-60 프레임이 나옵니다. 이 게임이 텍스처를 입힌 삼각형을 렌더링하는 등 좀 더 일반적인 기법을 사용했기 때문이죠.
 
@@ -63,7 +63,7 @@ GLSL은 자바스크립트와 달리 C나 C++처럼 변수를 선언할 때 해�
 
 [쉐이더토이 공식 문서에는 몇 가지 변수를 더 언급](https://www.shadertoy.com/howto)해 놓았지만, 일단은 위 두 변수를 활용해 예제를 하나 만들어보겠습니다.
 
-먼저 캔버스 전체를 채울 평면을 하나 만듭니다. [배경과 하늘상자 추가하기](threejs-backgrounds.html)에서 정육면체를 뺀 예제를 가져오겠습니다. 코드가 길지 않으니 아래에 전부 적도록 하죠.
+먼저 캔버스 전체를 채울 평면을 하나 만듭니다. [배경과 하늘상자 추가하기](backgrounds.html)에서 정육면체를 뺀 예제를 가져오겠습니다. 코드가 길지 않으니 아래에 전부 적도록 하죠.
 
 ```js
 function main() {
@@ -111,9 +111,9 @@ function main() {
 main();
 ```
 
-[배경과 하늘상자 추가하기](threejs-backgrounds.html)에서도 설명했지만 위와 같이 `OrthographicCamera`를 설정하면 2칸짜리 평면이 캔버스 전체를 채우게 됩니다. 당장은 평면이 빨간 `MeshBasicMaterial`을 사용했기에 캔버스 전체가 빨갛게 보입니다.
+[배경과 하늘상자 추가하기](backgrounds.html)에서도 설명했지만 위와 같이 `OrthographicCamera`를 설정하면 2칸짜리 평면이 캔버스 전체를 채우게 됩니다. 당장은 평면이 빨간 `MeshBasicMaterial`을 사용했기에 캔버스 전체가 빨갛게 보입니다.
 
-{{{example url="../threejs-shadertoy-prep.html" }}}
+{{{example url="shadertoy-prep.html" }}}
 
 이제 쉐이더토이에서 쉐이더를 가져와 적용해봅시다.
 
@@ -190,7 +190,7 @@ fragment 쉐이더와 균등 변수를 `ShaderMaterial`에 넘겨줍니다.
 
 > 참고: [쉐이더토이 공식 문서](https://www.shadertoy.com/howto)를 뒤져봤지만 `iResolution`가 왜 `vec3`여야 하는지, 3번째 값은 어디에 쓰이는 건지 알아내지 못했습니다. 일단 예제에서는 쓰지 않는 값이니 1로 설정하고 넘어가야겠네요. ¯＼\_(ツ)\_/¯
 
-{{{example url="../threejs-shadertoy-basic.html" }}}
+{{{example url="shadertoy-basic.html" }}}
 
 [쉐이더토이에서 "New"를 클릭했을 때 나왔던 결과](https://www.shadertoy.com/new)와 똑같네요. 물론 2019년 1월 기준으로 말이죠😉. 이 쉐이더는 어떻게 이런 결과를 만들어낸 걸까요?
 
@@ -210,7 +210,7 @@ fragment 쉐이더와 균등 변수를 `ShaderMaterial`에 넘겨줍니다.
 
 아래 예제를 보니 파도가 약 6개 하고 1/3 정도 보입니다. 파란선 사이에 빨간선이 보이는 건 파란색의 위치를 `+ vec3(0,2,4)`로 4만큼 옮겼기 때문이죠. 이렇게 하지 않았다면 빨강과 파랑이 완전히 겹쳐 자주색으로 보였을 겁니다.
 
-{{{example url="../threejs-shadertoy-basic-x40.html" }}}
+{{{example url="shadertoy-basic-x40.html" }}}
 
 주어지는 값이 이렇게 단순한데 이걸로 [도심 운하](https://www.shadertoy.com/view/MdXGW2), [숲](https://www.shadertoy.com/view/4ttSWf), [달팽이](https://www.shadertoy.com/view/ld3Gz2), [버섯](https://www.shadertoy.com/view/4tBXR1) 등을 구현하다니 정말 놀랍네요. 다만 삼각형으로 장면을 구성하는 일반적인 방법에 비해 왜 이 방법이 안 좋은지 분명히 하지 않은 게 아쉽습니다. 한 픽셀 한 픽셀 정성들여 픽셀의 색상을 연산하니 그만큼 한 프레임을 만드는 데 시간이 많이 걸릴 수밖에 없죠.
 
@@ -240,7 +240,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 }
 ```
 
-쉐이더에 텍스처를 넘겨주는 건 [재질(material)에 텍스처를 넘겨주는 것](threejs-textures.html)과 비슷하나, 대신 텍스처를 균등 변수에 지정해야 합니다.
+쉐이더에 텍스처를 넘겨주는 건 [재질(material)에 텍스처를 넘겨주는 것](textures.html)과 비슷하나, 대신 텍스처를 균등 변수에 지정해야 합니다.
 
 먼저 쉐이더에 균등 변수를 추가합니다. 텍스처는 GLSL에서 `sampler2D`라고 불립니다.
 
@@ -255,7 +255,7 @@ uniform float iTime;
 ...
 ```
 
-다음으로 [이 글](threejs-textures.html)에서 했던 것처럼 텍스처를 불러와 균등 변수에 지정합니다.
+다음으로 [이 글](textures.html)에서 했던 것처럼 텍스처를 불러와 균등 변수에 지정합니다.
 
 ```js
 +const loader = new THREE.TextureLoader();
@@ -271,7 +271,7 @@ const uniforms = {
 };
 ```
 
-{{{example url="../threejs-shadertoy-bleepy-blocks.html" }}}
+{{{example url="shadertoy-bleepy-blocks.html" }}}
 
 여태까지는 [쉐이더토이 사이트](https://shadertoy.com)에 나와있는 대로 캔버스 전체에 쉐이더를 구현했습니다. 하지만 쉐이더를 사용할 때 꼭 예제 형식에 얽매일 필요는 없겠죠. 쉐이더토이의 작가들은 대부분 `fragCoord`와 `iResolution`을 사용한다는 것만 기억하면 됩니다. `fragCoord`가 꼭 픽셀의 좌표여야할 이유는 없다는 말입니다. 이를 텍스처 좌표로 바꿔 쉐이더를 텍스처처럼 사용할 수도 있죠. 이렇게 쉐이더 함수로 텍스처를 만드는 기법을 [*절차적 텍스처(procedural texture)*](https://www.google.com/search?q=procedural+texture)라고 합니다.
 
@@ -331,8 +331,8 @@ const uniforms = {
 uniforms.iTime.value = time;
 ```
 
-여기에 [반응형 디자인에 관한 글](threejs-responsive.html)에서 카메라와 회전하는 정육면체 3개를 가져왔습니다. 이제 한 번 실행해보죠.
+여기에 [반응형 디자인에 관한 글](responsive.html)에서 카메라와 회전하는 정육면체 3개를 가져왔습니다. 이제 한 번 실행해보죠.
 
-{{{example url="../threejs-shadertoy-as-texture.html" }}}
+{{{example url="shadertoy-as-texture.html" }}}
 
 이 글이 Three.js에서 쉐이더토이의 쉐이더를 활용하는 데 도움이 되었으면 합니다. 누차 말하지만 쉐이더토이의 쉐이더는 실제 사용하기 위해 제작되었다기보다-함수 하나로 모든 요소를 만드는-연습용 챌린지에 가깝습니다. 하지만 그래도 쉐이더토이에 올라온 쉐이더들은 여전히 인상 깊고, 놀랍습니다. 배울 점도 굉장히 많죠.

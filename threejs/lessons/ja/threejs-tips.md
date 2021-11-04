@@ -41,13 +41,13 @@ const saveBlob = (function() {
 }());
 ```
 
-以下は[レスポンシブデザインの記事](threejs-responsive.html)の例で、上記のコードにボタンを配置するためのCSSを追加したものです。
+以下は[レスポンシブデザインの記事](responsive.html)の例で、上記のコードにボタンを配置するためのCSSを追加したものです。
 
-{{{example url="../threejs-tips-screenshot-bad.html"}}}
+{{{example url="tips-screenshot-bad.html"}}}
 
 試してみるとこのようなスクリーンショットが出てきました。
 
-<div class="threejs_center"><img src="resources/images/screencapture-413x313.png"></div>
+<div class="threejs_center"><img src="../resources/images/screencapture-413x313.png"></div>
 
 はい、ただの黒い画像です。
 
@@ -110,7 +110,7 @@ elem.addEventListener('click', () => {
 
 そして上手く機能するはずです。
 
-{{{example url="../threejs-tips-screenshot-good.html" }}}
+{{{example url="tips-screenshot-good.html" }}}
 
 別の解決策については次の項目を参照して下さい。
 
@@ -135,14 +135,14 @@ const canvas = document.querySelector('#c');
 +renderer.autoClearColor = false;
 ```
 
-{{{example url="../threejs-tips-preservedrawingbuffer.html" }}}
+{{{example url="tips-preservedrawingbuffer.html" }}}
 
 もしお絵かきプログラムを作ろうとしているのであれば、解像度を変更するとブラウザはキャンバスをクリアしてしまうのでこれは解決策にはなりません。
 ディスプレイのサイズに応じて解像度を変えています。ウィンドウのサイズが変わると表示サイズも変わります。
 これにはユーザーが別のタブでファイルをダウンロードし、ブラウザがステータスバーを追加した場合も含まれます。
 また、ユーザーがスマートフォンを回転しブラウザが縦から横に切り替わった時も含まれます。
 
-お絵かきプログラムを作りたいのであれば、[レンダーターゲットを使用してテクスチャにレンダリング](threejs-rendertargets.html)して下さい。
+お絵かきプログラムを作りたいのであれば、[レンダーターゲットを使用してテクスチャにレンダリング](rendertargets.html)して下さい。
 
 ---
 
@@ -216,7 +216,7 @@ document.querySelectorAll('canvas').forEach((canvas) => {
 2つ目はキーボード入力をうけつけますがハイライトされます。
 3つ目は両方の問題を解決しています。
 
-{{{example url="../threejs-tips-tabindex.html"}}}
+{{{example url="tips-tabindex.html"}}}
 
 ---
 
@@ -253,7 +253,7 @@ Three.jsのデフォルトではキャンバスは[`premultipliedAlpha: true`](W
 
 いずれにしても透明なキャンバスを使った簡単な例で設定してみましょう。
 
-[レスポンシブデザインの記事](threejs-responsive.html)の例に上記の設定を適用してみました。
+[レスポンシブデザインの記事](responsive.html)の例に上記の設定を適用してみました。
 マテリアルも透明感のあるものにしてみました。
 
 ```js
@@ -312,7 +312,7 @@ body {
 
 `pointer-events: none` はマウスやタッチイベントをキャンバスから見えなくするので、その下のテキストを選択できる事に注意して下さい。
 
-{{{example url="../threejs-tips-transparent-canvas.html" }}}
+{{{example url="tips-transparent-canvas.html" }}}
 
 ---
 
@@ -368,4 +368,4 @@ body {
 }
 ```
 
-{{{example url="../threejs-tips-html-background.html"}}}
+{{{example url="tips-html-background.html"}}}

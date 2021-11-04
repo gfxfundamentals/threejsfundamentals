@@ -16,7 +16,7 @@ tout ce que vous avez à écrire par vous même si vous aviez à utiliser WebGL 
 
 Ces tutoriels supposent que JavaScript vous est connu et, pour grande partie,
 se conforment au style ES6. [Consultez ici une brève liste des choses que vous êtes
-déjà censés connaître](threejs-prerequisites.html).
+déjà censés connaître](prerequisites.html).
 
 La plupart des navigateurs qui supportent three.js se mettent à jour automatiquement
 donc la plupart des utilisateurs devraient être capables d'exécuter ce code.
@@ -35,7 +35,7 @@ d'une application Three.js. Elle requiert de créer un ensemble d'objets
 et de les connecter. Voici un diagramme qui représente une application
 Three.js de petite taille:
 
-<div class="threejs_center"><img src="resources/images/threejs-structure.svg" style="width: 768px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-structure.svg" style="width: 768px;"></div>
 
 Voici ce qui est à remarquer dans le diagramme ci-dessus :
 
@@ -44,7 +44,7 @@ Voici ce qui est à remarquer dans le diagramme ci-dessus :
   partie de la scène 3D qui est à l'intérieur de l'espace visible (en réalité une pyramide tronquée ou *frustum*)
   de la caméra dans une image 2D affichée dans un canevas (*canvas*).
 
-* Il y a un [graphe de scène](threejs-scenegraph.html) qui est une structure arborescente,
+* Il y a un [graphe de scène](scenegraph.html) qui est une structure arborescente,
   constituée de divers objets tel qu'un objet `Scene`, de multiple maillages (`Mesh`),
   des lumières (`Light`), des groupes (`Group`), des objets 3D `Object3D` et des objets `Camera`.
   Un objet `Scene` définit la racine d'un graphe de scène et contient des propriétés telles que
@@ -53,13 +53,13 @@ Voici ce qui est à remarquer dans le diagramme ci-dessus :
   comment ils sont orientés. Les enfants sont positionnés et orientés par rapport à leur parent.
   Par exemple, les roues d'une voiture sont les enfants du châssis impliquant que si l'on déplace
   ou oriente la voiture, les roues suivront automatiquement son déplacement. Plus de
-  détails sont donnés dans [l'article sur les graphes de scène](threejs-scenegraph.html).
+  détails sont donnés dans [l'article sur les graphes de scène](scenegraph.html).
 
   Il est à noter sur que ce diagramme `Camera` est patiellement placé dans le graphe de scène.
   Cela permet d'attirer l'attention qu'en Three.js, contrairement aux autres objets, une `Camera` ne doit
   pas forcément faire partie du graphe de scène pour être opérationnelle. Une `Camera`, de la même
   façon que les autres objets, enfant d'un autre objet, se déplace et s'oriente par rapport à son
-  objet parent. A la fin de [l'article sur les graphes de scène](threejs-scenegraph.html), l'inclusion
+  objet parent. A la fin de [l'article sur les graphes de scène](scenegraph.html), l'inclusion
   de multiples objets `Camera` dans un unique graphe de scène est donné en exemple.
 
 * Les objets de type `Mesh` représentent une géométrie (`Geometry`) liée à un matériau (`Material`)
@@ -72,26 +72,26 @@ Voici ce qui est à remarquer dans le diagramme ci-dessus :
 
 * Les objets `Geometry` représentent les données associées aux sommets d'une géométrie telle qu'une
   sphère, un cube, un avion, un chien, un chat, un humain, un arbre, un bâtiment, etc...
-  Three.js fournit plusieurs types intégrés de [primitives géométriques](threejs-primitives.html).
-  Vous pouvez aussi [créer vos propres géométries](threejs-custom-buffergeometry.html) ou
-  [charger des géométries à partir d'un fichier](threejs-load-obj.html).
+  Three.js fournit plusieurs types intégrés de [primitives géométriques](primitives.html).
+  Vous pouvez aussi [créer vos propres géométries](custom-buffergeometry.html) ou
+  [charger des géométries à partir d'un fichier](load-obj.html).
 
 * Les objets `Material` représentent les
-  [propriétés de surface utilisées pour dessiner la géométrie](threejs-materials.html)
+  [propriétés de surface utilisées pour dessiner la géométrie](materials.html)
   telles que la couleur à utiliser ou le pouvoir réfléchissant (brillance). Un matériau (`Material`)
   peut aussi se référer à un ou plusieurs objets `Texture` dont l'utilité est, par exemple, de plaquer
   une image sur la surface d'une géométrie.
 
-* Les objets `Texture` représentent généralement des images soit [chargées de fichiers image](threejs-textures.html),
-  soit [générées par le biais d'un canevas](threejs-canvas-textures.html) ou
-  [résultant du rendu d'une autre scène](threejs-rendertargets.html).
+* Les objets `Texture` représentent généralement des images soit [chargées de fichiers image](textures.html),
+  soit [générées par le biais d'un canevas](canvas-textures.html) ou
+  [résultant du rendu d'une autre scène](rendertargets.html).
 
-* Les objets `Light` représentent [différentes sortent de lumière](threejs-lights.html).
+* Les objets `Light` représentent [différentes sortent de lumière](lights.html).
 
 Maintenant que tout cela a été défini, nous allons présenter un exemple de type *"Hello Cube"* utilisant un
 nombre minimum d'élements Three.js :
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-no-light-scene.svg" style="width: 500px;"></div>
 
 Tout d'abord, chargeons Three.js :
 
@@ -121,7 +121,7 @@ dans le document html :
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 +function main() {
 +  const canvas = document.querySelector('#c');
@@ -161,7 +161,7 @@ la plupart des angles dans Three.js sont exprimés en radians à l'exception
 de la caméra perspective.
 
 `aspect` est l'aspect de l'affichage dans le canevas. Cela sera détaillé
-[dans un autre article](threejs-responsive.html). Toutefois, par défaut,
+[dans un autre article](responsive.html). Toutefois, par défaut,
 un canevas est de taille 300x150 pixels ce qui lui confère l'aspect 300/150 ou 2.
 
 `near` et `far` délimitent la portion de l'espace devant la caméra dont
@@ -172,7 +172,7 @@ Ces 4 paramètres définissent une pyramide tronquée ou *"frustum"*.
 En d'autres termes, il s'agit d'une autre forme 3D à l'instar des sphères,
 cubes et prismes.
 
-<img src="resources/frustum-3d.svg" width="500" class="threejs_center"/>
+<img src="../resources/frustum-3d.svg" width="500" class="threejs_center"/>
 
 L'espacement entre les plans *near* et *far* est déterminé
 par le champ de vision. La largeur est fixée par le champ de vision et l'aspect.
@@ -189,7 +189,7 @@ camera.position.z = 2;
 
 Voici ce que nous voudrions voir :
 
-<img src="resources/scene-down.svg" width="500" class="threejs_center"/>
+<img src="../resources/scene-down.svg" width="500" class="threejs_center"/>
 
 Dans le schéma ci-dessus, nous pouvons voir que notre caméra est placée
 en `z = 2`. Elle regarde le long de la direction -Z.
@@ -200,7 +200,7 @@ est plus grand que les 75 degrés spécifié pour le champ vertical.
 
 Ensuite, nous créons une `Scene`. Dans Three.js, une `Scene` est la racine
 du graphe de scène. Tout ce que nous voulons que Three.js dessine doit être ajouté
-à la scène. Cela sera davantage détaillé dans [un futur article sur le fonctionnement des scènes](threejs-scenegraph.html).
+à la scène. Cela sera davantage détaillé dans [un futur article sur le fonctionnement des scènes](scenegraph.html).
 
 ```js
 const scene = new THREE.Scene();
@@ -246,7 +246,7 @@ renderer.render(scene, camera);
 
 Voici un exemple fonctionnel :
 
-{{{example url="../threejs-fundamentals.html" }}}
+{{{example url="fundamentals.html" }}}
 
 Il est difficile de déterminer s'il s'agit d'un cube 3D puisque nous
 l'observons suivant l'axe -Z sur lequel le cube est lui même aligné.
@@ -294,12 +294,12 @@ demandons une autre image pour l'animation afin de poursuivre notre boucle.
 
 A l'extérieur de la boucle, nous appelons `requestAnimationFrame` une première fois pour activer la boucle.
 
-{{{example url="../threejs-fundamentals-with-animation.html" }}}
+{{{example url="fundamentals-with-animation.html" }}}
 
 C'est un peu mieux mais il est toujours difficile de percevoir la 3D.
 Ce qui aiderait serait d'ajouter de la lumière.
 Three.js propose plusieurs type de lumière que nous détaillerons dans
-[un futur article](threejs-lights.html). Pour le moment, créons une lumière directionnelle.
+[un futur article](lights.html). Pour le moment, créons une lumière directionnelle.
 
 ```js
 {
@@ -326,11 +326,11 @@ lumières. Nous le remplaçons par un `MeshPhongMaterial` qui est affecté par l
 
 Voici à présent la nouvelle structure de notre programme :
 
-<div class="threejs_center"><img src="resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-1cube-with-directionallight.svg" style="width: 500px;"></div>
 
 Et voici son fonctionnement :
 
-{{{example url="../threejs-fundamentals-with-light.html" }}}
+{{{example url="fundamentals-with-light.html" }}}
 
 Cela devrait à présent apparaître très clairement en 3D.
 
@@ -386,7 +386,7 @@ function render(time) {
 
 et voilà le résultat.
 
-{{{example url="../threejs-fundamentals-3-cubes.html" }}}
+{{{example url="fundamentals-3-cubes.html" }}}
 
 Si nous le comparons au schéma précédent, nous constatons qu'il
 est conforme à nos attentes. Les cubes en X = -2 et X = +2
@@ -396,14 +396,14 @@ canevas est extrême.
 
 A présent, notre programme est schématisé par la figure suivante :
 
-<div class="threejs_center"><img src="resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
+<div class="threejs_center"><img src="../resources/images/threejs-3cubes-scene.svg" style="width: 610px;"></div>
 
 Comme nous pouvons le constater, nous avons 3 objets de type `Mesh`, chacun référençant
 la même `BoxGeometry`. Chaque `Mesh` référence également un `MeshPhongMaterial` unique
 de sorte que chaque cube possède une couleur différente.
 
 Nous espérons que cette courte introduction vous aide à débuter.
-[La prochaine étape consiste à  rendre notre code réactif et donc adaptable à de multiples situations](threejs-responsive.html).
+[La prochaine étape consiste à  rendre notre code réactif et donc adaptable à de multiples situations](responsive.html).
 
 <div class="threejs_bottombar">
 <h3>es6 modules, Three.js et structure de dossiers</h3>
@@ -414,7 +414,7 @@ par le biais d'une balise <code>&lt;script type="module"&gt;</code>. Voici un ex
 </p>
 <pre class=prettyprint>
 &lt;script type="module"&gt;
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 

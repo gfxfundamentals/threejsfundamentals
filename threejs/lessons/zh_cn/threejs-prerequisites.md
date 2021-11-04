@@ -287,7 +287,7 @@ eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-esli
 如果你开启[`no-undef`规则](https://eslint.org/docs/rules/no-undef)然后
 VSCode通过ESLint将会警告你很多没有定义的变量。 
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
 
 上面你可以看到我将`doTheThing`误写成了`doThing`。有一个红色的曲线
 在`doThing`下面并且鼠标悬停会提醒我们它未定义。这样就避免了一个错误。
@@ -295,7 +295,7 @@ VSCode通过ESLint将会警告你很多没有定义的变量。
 使用`THREE`会得到警告所以将`/* global THREE */`放在你的
 JavaScript文件的顶部来告诉eslint`THREE`的存在。
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 上面你可以看到eslint知道使用`UpperCaseNames`规则的是构造函数
 所以你应该使用`new`操作符。另一个错误被捕捉并避免了。这是[the
@@ -307,11 +307,11 @@ JavaScript文件的顶部来告诉eslint`THREE`的存在。
 
 这里我使用了`var`它警告我应该使用`let`或者`const`
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
 
 这里我是用了`let`但是它发现我一直没改变值所以建议我使`const`。
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
 
 当然如果你更希望继续使用`var`你只要关闭那条规则。
 如我上面所说所以我更喜欢使用`const`和`let`而不是`var`因为

@@ -3,7 +3,7 @@ Description: Материалы в Three.js
 TOC: Материалы
 
 Эта статья является частью серии статей о three.js. 
-Первая была [об основах](threejs-fundamentals.html).
+Первая была [об основах](fundamentals.html).
 Если вы её еще не читали, советую вам сделать это.
 
 Three.js предоставляет несколько типов материалов. Они определяют, 
@@ -278,7 +278,7 @@ The `MeshNormalMaterial` Покажет вам *нормали* геометри
 предстоит сделать. Мы в основном игнорировали текстуры, 
 которые открывают множество свойств. Прежде чем мы рассмотрим текстуры, 
 мы должны сделать перерыв и обсудить
-[настройку разрабочего окружения](threejs-setup.html)
+[настройку разрабочего окружения](setup.html)
 
 <div class="threejs_bottombar">
 <h3>material.needsUpdate</h3>
@@ -318,5 +318,5 @@ flat shaded
 </div>
 
 <canvas id="c"></canvas>
-<script type="module" src="resources/threejs-materials.js"></script>
+<script type="module" src="../resources/threejs-materials.js"></script>
 

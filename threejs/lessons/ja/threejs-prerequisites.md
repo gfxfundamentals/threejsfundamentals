@@ -20,7 +20,7 @@ es6モジュールはスクリプトの中で `import` キーワード、また�
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 
@@ -29,7 +29,7 @@ import * as THREE from './resources/threejs/r132/build/three.module.js';
 
 パスは絶対パス、または相対パスでなければなりません。相対パスは常に `./` または `../` で始まり `<img>` や `<a>` などの他のタグやcss参照とは異なります。
 
-詳細は[この記事](threejs-fundamentals.html)の最後に記載しています。
+詳細は[この記事](fundamentals.html)の最後に記載しています。
 
 ## `document.querySelector` と `document.querySelectorAll`
 
@@ -307,14 +307,14 @@ const v = Vector();     // clearly an error if all functions start with a lowerc
 
 [`no-undef` ルール](https://eslint.org/docs/rules/no-undef) を有効にすると、VSCodeのEsLintで多くの未定義の変数について警告します。
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
 
 上記は `doTheThing` のスペルを  `doThing` と間違えている事がわかります。
 `doThing` の下に赤い波線があり、その上をホバリングすると定義されていない事がわかります。
 1つのエラーが回避されました。
 `THREE` を使用して警告が表示された場合、eslintに `THREE` が存在する事を伝えるため、JavaScriptファイルの先頭に `/* global THREE */` を追加します。
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 上記では、eslintは `アッパーキャメルケース` がコンストラクターであるというルールを知っているため、 `new` を使用する必要があります。
 他のエラーをキャッチして避けます。これは[`new-cap` ルール](https://eslint.org/docs/rules/new-cap) です。
@@ -323,11 +323,11 @@ const v = Vector();     // clearly an error if all functions start with a lowerc
 上記の例では `var` でなく `const` と `let` を使用するルールを適用しました。
 コードでは `var` を使用しましたが、`let` または `const` を使用する必要があると警告されました。
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
 
 ここでは `let` を使用しましたが、値を変更しない事がわかったため、 `const` を使用することが提案されました。
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
 
 もちろん、 `var` を使い続けたい場合は、そのルールをオフにすることができます。
 上記で記述したように `var` よりも `const` と `let` を使用することを好みます。

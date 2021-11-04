@@ -9,7 +9,7 @@ TOC: 게임 만들기
 
 팩맨(PacMan)을 2D로 구현한다면 팩맨이 코너를 돌 때 바로 90도 꺾기만 하면 됩니다. 프레임 사이에 따로 처리해줘야 할 것이 없죠. 하지만 3D의 세계에서는 바로 방향을 틀기보다 몇 프레임에 걸쳐 서서히 방향을 트는 게 일반적입니다. 아주 간단한 차이점이지만, 이것 때문에 작업이 훨씬 복잡해집니다.
 
-이 글에서 다룰 내용은 Three.js에 관한 것이라고 보기 어렵습니다. 왜냐하면 **Three.js는 게임 엔진이 아니기 때문**이죠. Three.js는 3D 라이브러리입니다. 3D 요소를 계열화하는 [씬 그래프](threejs-scenegraph.html)와 3D 요소를 렌더링하도록 도와주는 기능 등을 제공하죠. 하지만 게임과 관련한 기능은 지원하지 않습니다. 충돌(collision), 물리(physics), 입력 시스템, 패스 파인딩(path finding) 등등.. 이런 기능은 직접 만들어야 합니다.
+이 글에서 다룰 내용은 Three.js에 관한 것이라고 보기 어렵습니다. 왜냐하면 **Three.js는 게임 엔진이 아니기 때문**이죠. Three.js는 3D 라이브러리입니다. 3D 요소를 계열화하는 [씬 그래프](scenegraph.html)와 3D 요소를 렌더링하도록 도와주는 기능 등을 제공하죠. 하지만 게임과 관련한 기능은 지원하지 않습니다. 충돌(collision), 물리(physics), 입력 시스템, 패스 파인딩(path finding) 등등.. 이런 기능은 직접 만들어야 합니다.
 
 결국 이 글의 *미완성* 게임을 만드는 데 꽤 많은 코드를 썼습니다. 아까 말했듯 제가 코드를 너무 지나치게 짰을 수도 있고, 더 간단한 해결책이 있을 수도 있으나, 저는 글을 마무리한 지금도 충분히 많은 코드를 썼는지, 설명을 빠뜨린 것이 없는지 걱정됩니다.
 
@@ -19,19 +19,19 @@ TOC: 게임 만들기
 
 [opengameart.org](https://opengameart.org) 사이트에서 [quaternius](https://opengameart.org/users/quaternius) 작가의 [움직이는 기사 모델](https://opengameart.org/content/lowpoly-animated-knight)을 찾았습니다.
 
-<div class="threejs_center"><img src="resources/images/knight.jpg" style="width: 375px;"></div>
+<div class="threejs_center"><img src="../resources/images/knight.jpg" style="width: 375px;"></div>
 
 [같은 작가](https://opengameart.org/users/quaternius)가 만든 작품 중에 [움직이는 동물들](https://opengameart.org/content/lowpoly-animated-farm-animal-pack)도 있더군요.
 
-<div class="threejs_center"><img src="resources/images/animals.jpg" style="width: 606px;"></div>
+<div class="threejs_center"><img src="../resources/images/animals.jpg" style="width: 606px;"></div>
 
 이 모델들로 꽤 괜찮은 게임을 만들 수 있을 것 같습니다. 모델들을 불러와보죠.
 
-[glTF 파일 불러오기](threejs-load-gltf.html)에 대해서는 이전에 다뤘었습니다. 동일한 방법을 사용하지만 이번에는 모델이 여러 개이기도 하고, 모델을 전부 불러오기 전에 게임을 시작해선 안 됩니다.
+[glTF 파일 불러오기](load-gltf.html)에 대해서는 이전에 다뤘었습니다. 동일한 방법을 사용하지만 이번에는 모델이 여러 개이기도 하고, 모델을 전부 불러오기 전에 게임을 시작해선 안 됩니다.
 
 이런 경우를 대비해 Three.js는 `LoadingManager`를 제공합니다. `LoadingManager`의 인스턴스를 생성해 다른 로더(loader)에 넘겨주기면 되죠. `LoadingManager`의 [`onProgress`](LoadingManager.onProgress)와 [`onLoad`](LoadingManager.onLoad) 속성에 콜백 함수를 지정하면 되는데, [`onLoad`](LoadingManager.onLoad)는 모든 파일을 불러온 뒤 호출하고, [`onProgress`](LoadingManager.onProgress)는 각 파일을 불러왔을 때 호출합니다. [`onProgress`](LoadingManager.onProgress)를 이용하면 프로그래스 바를 보여줄 수 있죠.
 
-[glTF 파일 불러오기](threejs-load-gltf.html) 예제를 가져와 카메라 절두체(frustum)를 조정하는 코드를 지우고 아래 코드를 추가합니다.
+[glTF 파일 불러오기](load-gltf.html) 예제를 가져와 카메라 절두체(frustum)를 조정하는 코드를 지우고 아래 코드를 추가합니다.
 
 ```js
 const manager = new THREE.LoadingManager();
@@ -178,13 +178,13 @@ function init() {
 
 이제 애니메이션이 들어간 모델을 화면에 띄워봅시다.
 
-[이전 glTF 파일 예제](threejs-load-gltf.html)와 달리 이번에는 각 모델을 하나 이상 배치할 계획입니다. 그러니 파일을 불러온 뒤 바로 장면에 넣는 대신 각 glTF의 씬 그래프(scene), 이 경우에는 움직이는 캐릭터를 복사해야 합니다. 다행히 Three.js에는 `SkeletonUtil.clone`이라는 함수가 있어 이를 쉽게 구현할 수 있죠. 먼저 해당 모듈을 불러오겠습니다.
+[이전 glTF 파일 예제](load-gltf.html)와 달리 이번에는 각 모델을 하나 이상 배치할 계획입니다. 그러니 파일을 불러온 뒤 바로 장면에 넣는 대신 각 glTF의 씬 그래프(scene), 이 경우에는 움직이는 캐릭터를 복사해야 합니다. 다행히 Three.js에는 `SkeletonUtil.clone`이라는 함수가 있어 이를 쉽게 구현할 수 있죠. 먼저 해당 모듈을 불러오겠습니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-+import { SkeletonUtils } from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
+import * as THREE from './build/three.module.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from '/examples/jsm/loaders/GLTFLoader.js';
++import { SkeletonUtils } from '/examples/jsm/utils/SkeletonUtils.js';
 ```
 
 그리고 아까 불러왔던 모델을 복사합니다.
@@ -264,7 +264,7 @@ function render(now) {
 
 이제 각 모델과 모델의 첫 번째 애니메이션이 보일 겁니다.
 
-{{{example url="../threejs-game-load-models.html"}}}
+{{{example url="game-load-models.html"}}}
 
 모든 애니메이션을 확인할 수 있도록 예제를 수정해봅시다. 애니메이션 클립을 전부 액션으로 만들어 재생할 수 있도록 만들겠습니다.
 
@@ -343,7 +343,7 @@ window.addEventListener('keydown', (e) => {
 
 이제 예제를 클릭한 뒤 숫자키 1-8번을 누르면 각 번호에 해당하는 모델의 애니메이션이 바뀔 겁니다.
 
-{{{example url="../threejs-game-check-animations.html"}}}
+{{{example url="game-check-animations.html"}}}
 
 Three.js 관련 내용은 여기까지입니다. 여태까지 다수의 파일을 불러오는 법, 텍스처가 씌워진 모델을 복사하는 법, 해당 모델의 애니메이션을 재생하는 법을 알아봤죠. 실제 게임에서는 `AnimationAction` 객체로 다양한 동작을 직접 처리해줘야 합니다.
 
@@ -706,7 +706,7 @@ function render(now) {
 
 예제를 실행하면 플레이어 하나만 보일 겁니다.
 
-{{{example url="../threejs-game-just-player.html"}}}
+{{{example url="game-just-player.html"}}}
 
 단순히 Entity Component System을 구현하는 데만 너무 많은 코드를 쓴 게 아닌가 싶지만, 이 정도가 대부분의 게임이 갖춰야할 기본입니다.
 
@@ -922,9 +922,9 @@ class Player extends Component {
 <body>
   <canvas id="c"></canvas>
 +  <div id="ui">
-+    <div id="left"><img src="resources/images/left.svg"></div>
++    <div id="left"><img src="../resources/images/left.svg"></div>
 +    <div style="flex: 0 0 40px;"></div>
-+    <div id="right"><img src="resources/images/right.svg"></div>
++    <div id="right"><img src="../resources/images/right.svg"></div>
 +  </div>
   <div id="loading">
     <div>
@@ -1071,7 +1071,7 @@ class InputManager {
 
 이제 화살표 키나 화면을 터치해 캐릭터를 움직일 수 있을 겁니다.
 
-{{{example url="../threejs-game-player-input.html"}}}
+{{{example url="game-player-input.html"}}}
 
 물론 플레이어가 화면 밖으로 나갔을 때 카메라를 움직이거나, "화면 밖 = 죽음"이라는 설정을 넣을 수도 있습니다. 하지만 이것까지 다룬다면 안 그래도 긴 글이 더 길어질 테니 이 방법으로 만족하겠습니다.
 
@@ -1360,7 +1360,7 @@ class Player extends Component {
 
 예제를 처음 만들었을 때는 동물들이 모두 같은 크기의 경계 원(radius)을 썼지만, 이렇게 하고 보니 말과 퍼그(강아지)의 크기가 같은 게 말이 안 된다는 생각이 들었습니다. 그래서 각 모델의 크기에 따라 경계 원을 따로 지정했죠. 그리고 상태를 보여주면 좋겠다는 생각이 들어 상태를 보여 줄 `StatusDisplayHelper` 컴포넌트를 추가했습니다.
 
-또한 `PolarGridHelper`를 써 각 캐릭터의 경계 원이 보이도록 했고, [HTML 요소를 3D로 정렬하기](threejs-align-html-elements-to-3d.html)에서 썼던 방법으로 각 캐릭터의 상태를 HTML로 보여주도록 했습니다.
+또한 `PolarGridHelper`를 써 각 캐릭터의 경계 원이 보이도록 했고, [HTML 요소를 3D로 정렬하기](align-html-elements-to-3d.html)에서 썼던 방법으로 각 캐릭터의 상태를 HTML로 보여주도록 했습니다.
 
 먼저 각 요소를 담을 HTML을 추가합니다.
 
@@ -1368,9 +1368,9 @@ class Player extends Component {
 <body>
   <canvas id="c"></canvas>
   <div id="ui">
-    <div id="left"><img src="resources/images/left.svg"></div>
+    <div id="left"><img src="../resources/images/left.svg"></div>
     <div style="flex: 0 0 40px;"></div>
-    <div id="right"><img src="resources/images/right.svg"></div>
+    <div id="right"><img src="../resources/images/right.svg"></div>
   </div>
   <div id="loading">
     <div>
@@ -1480,10 +1480,10 @@ class Animal extends Component {
 추가로 dat.GUI를 이용해 위 디버깅 요소들를 켜고 끌 수 있도록 합니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from './resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-import { SkeletonUtils } from './resources/threejs/r132/examples/jsm/utils/SkeletonUtils.js';
+import * as THREE from './build/three.module.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from '/examples/jsm/loaders/GLTFLoader.js';
+import { SkeletonUtils } from '/examples/jsm/utils/SkeletonUtils.js';
 +import { GUI } from '../3rdparty/dat.gui.module.js';
 ```
 
@@ -1515,17 +1515,17 @@ class StateDisplayHelper extends Component {
 
 게임의 가장 기본적인 틀을 완성했네요.
 
-{{{example url="../threejs-game-conga-line.html"}}}
+{{{example url="game-conga-line.html"}}}
 
 원래 처음에는 [지렁이 게임](https://www.google.com/search?q=snake+game)을 만들려고 했습니다. 동물이 기차에 붙어 기차가 길어질수록 장애물을 피하기 어려워지는 게임이죠. 예제에 몇 가지 장애물 놓거나 화면 둘레에 벽을 세우기도 했습니다.
 
 하지만 예제에서 사용한 동물은 이에 적합하지 않습니다. 예제의 동물들은 대부분 위에서 봤을 때 길고 폭이 얇거든요. 아래는 얼룩말을 위에서 본 것입니다.
 
-<div class="threejs_center"><img src="resources/images/zebra.png" style="width: 113px;"></div>
+<div class="threejs_center"><img src="../resources/images/zebra.png" style="width: 113px;"></div>
 
 예제는 원 모양의 경계로 요소끼리의 충돌을 감지하기에 아래와 같이 울타리에 닿는 경우도 충돌로 감지할 겁니다.
 
-<div class="threejs_center"><img src="resources/images/zebra-collisions.svg" style="width: 400px;"></div>
+<div class="threejs_center"><img src="../resources/images/zebra-collisions.svg" style="width: 400px;"></div>
 
 동물과 동물이 부딪히는 경우에도 마찬가지입니다. 특히 게임에서는 이래서 좋을 게 없죠.
 
@@ -1697,7 +1697,7 @@ function rand(min, max) {
 
 위 코드에서는 `CoroutineRunner`를 만들고 `emitNotes` 코루틴을 추가했습니다. 이 함수는 0.5초에서 1초 사이마다 계속해서 `Note` 컴포넌트를 생성합니다.
 
-`Note` 컴포넌트를 만들려면 먼저 텍스처가 필요합니다. 음표 이미지를 불러올 수도 있지만, [캔버스로 텍스처 만들기](threejs-canvas-textures.html)에서 다뤘던 것처럼 캔버스를 이용해 직접 음표를 만들겠습니다.
+`Note` 컴포넌트를 만들려면 먼저 텍스처가 필요합니다. 음표 이미지를 불러올 수도 있지만, [캔버스로 텍스처 만들기](canvas-textures.html)에서 다뤘던 것처럼 캔버스를 이용해 직접 음표를 만들겠습니다.
 
 ```js
 function makeTextTexture(str) {
@@ -1716,7 +1716,7 @@ const noteTexture = makeTextTexture('♪');
 
 위에서 만든 텍스처는 하얀색으로, 나중에 텍스처를 사용할 때 색을 따로 지정해 원하는 색의 음표를 그릴 수 있습니다.
 
-이제 음표 텍스처를 만들었으니 `Note` 컴포넌트를 만들 차례입니다. 음표 컴포넌트는 [빌보드에 관한 글](threejs-billboards.html)에서 다뤘던 `SpriteMaterial`과 `Sprite`를 사용합니다.
+이제 음표 텍스처를 만들었으니 `Note` 컴포넌트를 만들 차례입니다. 음표 컴포넌트는 [빌보드에 관한 글](billboards.html)에서 다뤘던 `SpriteMaterial`과 `Sprite`를 사용합니다.
 
 ```js
 class Note extends Component {
@@ -1794,7 +1794,7 @@ function init() {
   }
 ```
 
-{{{example url="../threejs-game-conga-line-w-notes.html"}}}
+{{{example url="game-conga-line-w-notes.html"}}}
 
 누군가 `setTimeout`을 쓰면 안 되냐고 물을지도 모르겠습니다. `setTimeout`을 쓰지 않은 건 `setTimeout`은 게임의 프레임 주기와 무관하기 때문입니다. 예를 들어 예제에서는 프레임 간 시간값을 최대 1/20초로 제한했죠. 방금 구축한 코루틴 시스템도 이 제한을 따를 테지만, `setTimeout`을 쓰면 그렇지 않을 겁니다.
 

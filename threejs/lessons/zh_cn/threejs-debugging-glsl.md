@@ -31,7 +31,7 @@ gl_FragColor = vec4(vNormal * 0.5 + 0.5, 1);
 
 尝试一些你知道会生效的然后你就会开始知道改变某个常量它应该是什么样子的。如果你改变的常量看起来和正常情况不太一样，你就有线索去排查了。如果你正在操作片段着色器中的常量，你可以使用同样的技术来绘制操作的结果。
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-normals.jpg" style="width: 650px;"></div>
 
 类似的，如果我们使用纹理，会有纹理坐标，我们可以用类似的东西来绘制它们
 
@@ -41,7 +41,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 
 如果我们使用的纹理坐标超出了0到1的范围，那么问题就在`fract`那里。 如果 texture.repeat 设置为大于1的值，这种情况很常见。
 
-<div class="threejs_center"><img src="resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
+<div class="threejs_center"><img src="../resources/images/standard-primitive-uvs.jpg" style="width: 650px;"></div>
 
 你可以在片段着色器中对所有的值做类似的事情。弄清楚它们的范围可能是什么，添加一些代码来设置 gl _ fragcolor，该范围可从0.0到1.0。
 
@@ -53,7 +53,7 @@ gl_FragColor = vec4(fract(vUv), 0, 1);
 相机的`world matrix`和投影矩阵是不是`NaN`？扩展场景并观察它的`children`，我会检查`world matrix`看起来是否合理(没有 NaN) ，
 每个矩阵的最后4个值对于我的场景来说是否合理。如果我期望我的场景是50x50x50单位，而一些矩阵显示552352623.123显然有问题。
 
-<div class="threejs_center"><img src="resources/images/inspect-matrices.gif"></div>
+<div class="threejs_center"><img src="../resources/images/inspect-matrices.gif"></div>
 
 就像我们为片段着色器所做的一样，我们也可以通过将顶点着色器的值传递给片段着色器来绘制这些值。
 在它们上都定义一个变量，并传递那个你也不知道正确与否的值。实际上如果我的着色器使用正在被使用的常量，

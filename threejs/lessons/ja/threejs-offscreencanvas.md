@@ -8,11 +8,11 @@ TOC: Web WorkerでOffscreenCanvasを使用する
 また、データが読み込まれWorkerで解析されてるのでページ読み込み中にページ表示の途切れは少ないでしょう。
 
 OffscreenCanvasの利用を*開始*するのは非常に簡単です。
-[レスポンシブデザインの記事](threejs-responsive.html)から3つのキューブを回転させるコードに修正してみましょう。
+[レスポンシブデザインの記事](responsive.html)から3つのキューブを回転させるコードに修正してみましょう。
 
 通常はWorkerのコードを別ファイルに分離しますが、このサイトのほとんどのサンプルコードではスクリプトをHTMLファイルに埋め込んでいます。
 
-ここでは `offscreencanvas-cubes.js` というファイルを作成し、[レスポンシブデザインの例](threejs-responsive.html)から全てのJavaScriptをコピーして下さい。
+ここでは `offscreencanvas-cubes.js` というファイルを作成し、[レスポンシブデザインの例](responsive.html)から全てのJavaScriptをコピーして下さい。
 そして、Workerで実行するために必要な変更を行います。
 
 HTMLファイルにはJavaScriptのいくつかの処理が必要です。
@@ -73,7 +73,7 @@ self.onmessage = function(e) {
 ```
 
 上記コードのように `type` に基づいてハンドラを検索し、メインページから送られてきた `data` を渡します。
-あとは[レスポンシブデザインの記事](threejs-responsive.html)から `offscreencanvas-cubes.js` に貼り付けた `main` を変更するだけです。
+あとは[レスポンシブデザインの記事](responsive.html)から `offscreencanvas-cubes.js` に貼り付けた `main` を変更するだけです。
 
 DOMからキャンバスを探すのではなく、イベントデータからキャンバスを受け取ります。
 
@@ -228,7 +228,7 @@ function main() {
 
 ブラウザが `OffscreenCanvas` をサポートしていれば、このサンプルは動作するはずです。
 
-{{{example url="../threejs-offscreencanvas.html" }}}
+{{{example url="offscreencanvas.html" }}}
 
 これは素晴らしい事ですが、今の所は全てのブラウザが `OffscreenCanvas` をサポートしている訳ではなく、
 `OffscreenCanvas` サポートありとサポートなしの両方で動作するコードに変更し、サポートなしの場合はメインページのキャンバスを通常のように表示します。
@@ -259,7 +259,7 @@ function main() {
 次にHTMLファイルには既に `main` があり、`init` と `state` をエクスポートする必要があるため `main` の名前を `init` に変更します。
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 -const state = {
 +export const state = {
@@ -421,10 +421,10 @@ function startMainPage(canvas) {
 
 このサンプルコードではOffscreenCanvasで実行、またはメインページで実行されるようにフォールバックしています。
 
-{{{example url="../threejs-offscreencanvas-w-fallback.html" }}}
+{{{example url="offscreencanvas-w-fallback.html" }}}
 
 比較的簡単でした。ピッキングしてみましょう。
-[ピッキングの記事](threejs-picking.html)にある `RayCaster` の例からコードをいくつか取り出し、画面外でオフスクリーンが動作するようにします。
+[ピッキングの記事](picking.html)にある `RayCaster` の例からコードをいくつか取り出し、画面外でオフスクリーンが動作するようにします。
 
 `shared-cube.js` を `shared-picking.js` にコピーし、ピッキング部分を追加してみましょう。
 この例では `PickHelper` をコピーします。
@@ -602,7 +602,7 @@ window.addEventListener('touchend', clearPickPosition);
 
 これでこのピッキングは `OffscreenCanvas` で動作するはずです。
 
-{{{example url="../threejs-offscreencanvas-w-picking.html" }}}
+{{{example url="offscreencanvas-w-picking.html" }}}
 
 もう1歩踏み込んで `OrbitControls` を追加してみましょう。
 これはもう少し複雑です。
@@ -613,7 +613,7 @@ window.addEventListener('touchend', clearPickPosition);
 OrbitControlsは `HTMLElement` を取り、それに使用するDOMイベントのほとんどをアタッチします。
 OrbitControlsが必要とする機能をサポートする必要があります。
 
-[OrbitControlsのソースコード](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/resources/threejs/r132/examples/js/controls/OrbitControls.js)を掘り下げてみると、次のイベントを処理する必要があるように見えます。
+[OrbitControlsのソースコード](https://github.com/mrdoob/three.js/blob/master/examples/jsm/controls/OrbitControls.js)を掘り下げてみると、次のイベントを処理する必要があるように見えます。
 
 * contextmenu
 * pointerdown
@@ -640,7 +640,7 @@ OrbitControlsが必要とする機能をサポートする必要があります�
 ここにWorker部分のコードがあります。
 
 ```js
-import {EventDispatcher} from './resources/threejs/r132/build/three.module.js';
+import {EventDispatcher} from '../../build/three.module.js';
 
 class ElementProxyReceiver extends EventDispatcher {
   constructor() {
@@ -721,8 +721,8 @@ self.onmessage = function(e) {
 共有のthree.jsコードでは `OrbitControls` をインポートして設定する必要があります。
 
 ```js
-import * as THREE from './resources/threejs/r132/build/three.module.js';
-+import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from '../../build/three.module.js';
++import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 
 export function init(data) {
 -  const {canvas} = data;
@@ -1138,7 +1138,7 @@ function startMainPage(canvas) {
 
 これでOrbitControlsがOffscreenCanvasで動作するようになりました。
 
-{{{example url="../threejs-offscreencanvas-w-orbitcontrols.html" }}}
+{{{example url="offscreencanvas-w-orbitcontrols.html" }}}
 
 これはおそらくこのサイトで最も複雑な例です。
 各サンプルには3つのファイルが含まれているので少しわかりにくいです。

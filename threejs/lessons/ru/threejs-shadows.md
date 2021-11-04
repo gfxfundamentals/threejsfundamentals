@@ -2,10 +2,10 @@ Title: Three.js Тени
 Description: Тени в Three.js
 TOC: Тени
 
-Эта статья является частью серии статей о three.js. Первая статья - [основы Three.js](threejs-fundamentals.html). 
+Эта статья является частью серии статей о three.js. Первая статья - [основы Three.js](fundamentals.html). 
 Если вы еще не читали их, и вы новичок в three.js, возможно, вы захотите начать с них.
-[Предыдущая статья была о камерах](threejs-cameras.html) ,которые важно прочитать, прежде чем читать эту статью, а также
-[статью, посвященную свету](threejs-lights.html).
+[Предыдущая статья была о камерах](cameras.html) ,которые важно прочитать, прежде чем читать эту статью, а также
+[статью, посвященную свету](lights.html).
 
 Тени на компьютерах могут быть сложной темой. Существуют различные решения, и у всех есть свои компромиссы, включая решения, доступные в three.js.
 
@@ -32,9 +32,9 @@ Three.js по умолчанию использует *shadow maps*. Shadow map 
 
 Например, давайте использовать эту текстуру в качестве поддельной тени
 
-<div class="threejs_center"><img src="../resources/images/roundshadow.png"></div>
+<div class="threejs_center"><img src="../examples/resources/images/roundshadow.png"></div>
 
-Мы будем использовать часть кода из [предыдущей статьи](threejs-cameras.html).
+Мы будем использовать часть кода из [предыдущей статьи](cameras.html).
 
 Давайте установим цвет фона на белый. 
 
@@ -104,7 +104,7 @@ const shadowGeo = new THREE.PlaneGeometry(planeSize, planeSize);
 
 Теперь мы сделаем кучу сфер. Для каждой сферы мы создадим `base` `THREE.Object3D` и сделаем сетку теневой плоскости и дочернюю сетку базовой сферы.
 Таким образом, если мы переместим основание, то и сфера, и тень будут двигаться. Нам нужно поместить тень немного выше земли, чтобы предотвратить z-fighting.
-Мы также устанавливаем значение `deepWrite` в `false`, чтобы тени не мешали друг другу. Мы рассмотрим оба эти вопроса в [другой статье](threejs-transparency.html).
+Мы также устанавливаем значение `deepWrite` в `false`, чтобы тени не мешали друг другу. Мы рассмотрим оба эти вопроса в [другой статье](transparency.html).
 Тень - это `MeshBasicMaterial`, потому что ей не нужно освещение. 
 
 Мы делаем каждую сферу разным оттенком, а затем сохраняем ее вне основы, сетки сфер, сетки теней и начальной y-позиции каждой сферы.
@@ -209,7 +209,7 @@ function render(time) {
 
 И вот 15 видов прыгающих шаров.
 
-{{{example url="../threejs-shadows-fake.html" }}}
+{{{example url="shadows-fake.html" }}}
 
 В некоторых приложениях обычно используют круглую или овальную тень для всего, но, конечно, 
 вы также можете использовать теневые текстуры различной формы. Вы также можете придать тени более жесткий край.
@@ -221,7 +221,7 @@ function render(time) {
 Итак, переходя к теневым картам, есть 3 источника света, которые могут отбрасывать тени. `DirectionalLight`, `PointLight` и `SpotLight`.
 
 
-Давайте начнем с `DirectionalLight` c вспомогательного примера из [статьи о светах](threejs-lights.html).
+Давайте начнем с `DirectionalLight` c вспомогательного примера из [статьи о светах](lights.html).
 
 Первое, что нам нужно сделать, это включить тени в рендерере.
 
@@ -262,12 +262,12 @@ mesh.receiveShadow = true;
 
 И тогда мы запустим это.
 
-{{{example url="../threejs-shadows-directional-light.html" }}}
+{{{example url="shadows-directional-light.html" }}}
 
 Что произошло? Почему части теней отсутствуют? 
 
 Причина в том, что карты теней создаются путем рендеринга сцены с точки зрения света. 
-В этом случае в `DirectionalLight` есть камера, которая смотрит на свою цель.  Точно так же, как [камера, которую мы ранее покрывали](threejs-cameras.html),
+В этом случае в `DirectionalLight` есть камера, которая смотрит на свою цель.  Точно так же, как [камера, которую мы ранее покрывали](cameras.html),
 камера тени определяет область, внутри которой рендерится тени. В приведенном выше примере эта область слишком мала.
 
 Чтобы визуализировать эту область, мы можем получить теневую камеру и добавить `CameraHelper` к сцене.
@@ -279,7 +279,7 @@ scene.add(cameraHelper);
 
 И теперь вы можете видеть область, для которой отбрасываются и принимаются тени.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-helper.html" }}}
+{{{example url="shadows-directional-light-with-camera-helper.html" }}}
 
 Отрегулируйте целевое значение x назад и вперед, и должно быть довольно ясно, что только то, что находится внутри блока камеры тени, находится там, где рисуются тени. 
 
@@ -288,7 +288,7 @@ scene.add(cameraHelper);
 Давайте добавим некоторые настройки графического интерфейса, чтобы отрегулировать тень камеры освещения. 
 Поскольку `DirectionalLight` представляет свет, движущийся в параллельном направлении,
 `DirectionalLight` использует `OrthographicCamera` для своей теневой камеры. Мы рассмотрели, как работает 
-`OrthographicCamera` в [предыдущей статье о камерах](threejs-cameras.html).
+`OrthographicCamera` в [предыдущей статье о камерах](cameras.html).
 
 Напомним, `OrthographicCamera` определяет свою рамку или вид усечения по своим свойствам `left`, `right`, `top`, `bottom`, `near`, `far` и `zoom`. 
 
@@ -355,14 +355,14 @@ updateCamera();
 
 И теперь, когда мы дали теневой камере световой интерфейс, мы можем играть со значениями.
 
-{{{example url="../threejs-shadows-directional-light-with-camera-gui.html" }}}
+{{{example url="shadows-directional-light-with-camera-gui.html" }}}
 
 Установите `ширину` и `высоту` около 30, и вы увидите, что тени правильные и области, которые должны находиться в тени для этой сцены, полностью покрыты. 
 
 Но это поднимает вопрос, почему бы просто не установить `ширину` и `высоту` для некоторых гигантских чисел, 
 чтобы просто покрыть все? Установите `ширину` и `высоту` 100, и вы можете увидеть что-то вроде этого
 
-<div class="threejs_center"><img src="resources/images/low-res-shadow-map.png" style="width: 369px"></div>
+<div class="threejs_center"><img src="../resources/images/low-res-shadow-map.png" style="width: 369px"></div>
 
 Что происходит с этими тенями в низком разрешении ?!
 
@@ -391,21 +391,21 @@ Ok but what about `near` and `far` I hear you thinking. Can we set `near` to 0.0
 +const light = new THREE.SpotLight(color, intensity);
 ```
 
-и мы добавили обратно в настройку `полутени` и `угол` из нашей [статьи о светах](threejs-lights.html).
+и мы добавили обратно в настройку `полутени` и `угол` из нашей [статьи о светах](lights.html).
 
-{{{example url="../threejs-shadows-spot-light-with-camera-gui.html" }}}
+{{{example url="shadows-spot-light-with-camera-gui.html" }}}
 
 <!--
 You can notice, just like the last example if we set the angle high
 then the shadow map, the texture is spread over a very large area and
 the resolution of our shadows gets really low.
 
-div class="threejs_center"><img src="resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
+div class="threejs_center"><img src="../resources/images/low-res-shadow-map-spotlight.png" style="width: 344px"></div>
 
 You can increase the size of the shadow map as mentioned above. You can
 also blur the result
 
-{{{example url="../threejs-shadows-spot-light-with-shadow-radius" }}}
+{{{example url="shadows-spot-light-with-shadow-radius" }}}
 -->
 
 
@@ -446,7 +446,7 @@ also blur the result
 +scene.add(helper);
 ```
 
-{{{example url="../threejs-shadows-point-light.html" }}}
+{{{example url="shadows-point-light.html" }}}
 
 Используйте настройки GUI для перемещения света, и вы увидите, как тени падают на все стены. 
 Вы также можете настроить ближние и дальние настройки и видеть, как и другие тени, 

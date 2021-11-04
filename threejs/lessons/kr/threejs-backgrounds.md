@@ -5,7 +5,7 @@ TOC: 배경, 하늘 상자 추가하기
 이 시리즈의 예제 대부분은 단색 배경을 사용했습니다.
 
 Three.js에서 단순한 배경을 넣는 건 CSS만큼이나 쉽습니다. [반응형 디자인에 관한
-글](threejs-responsive.html)의 예제에서 2가지만 바꿔주면 되죠.
+글](responsive.html)의 예제에서 2가지만 바꿔주면 되죠.
 
 먼저 CSS로 canvas에 배경을 추가합니다.
 
@@ -39,9 +39,9 @@ function main() {
 
 간단하지 않나요?
 
-{{{example url="../threejs-background-css.html" }}}
+{{{example url="background-css.html" }}}
 
-배경이 [후처리 효과](threejs-post-processing.html)의 영향을 받게 하려면
+배경이 [후처리 효과](post-processing.html)의 영향을 받게 하려면
 Three.js로 배경을 렌더링해야 합니다.
 
 간단히 장면의 배경에 텍스처를 입혀주기만 하면 되죠.
@@ -52,7 +52,7 @@ const bgTexture = loader.load('resources/images/daikanyama.jpg');
 scene.background = bgTexture; 
 ```
 
-{{{example url="../threejs-background-scene-background.html" }}}
+{{{example url="background-scene-background.html" }}}
 
 배경이 지정되긴 했지만, 화면에 맞춰 늘어났네요.
 
@@ -86,9 +86,9 @@ function render(time) {
 ```
 
 이제 Three.js가 배경을 렌더링합니다. 그냥 보기에 CSS와 큰 차이는 없지만,
-[후처리 효과](threejs-post-processing.html)의 영향을 받는다는 점이 다릅니다.
+[후처리 효과](post-processing.html)의 영향을 받는다는 점이 다릅니다.
 
-{{{example url="../threejs-background-scene-background-fixed-aspect.html" }}}
+{{{example url="background-scene-background-fixed-aspect.html" }}}
 
 물론 3D 장면을 만들 때 단순한 배경을 자주 사용하진 않습니다. 대신 주로 일종의
 *하늘 상자(skybox)*를 사용하죠. 하늘 상자란 말 그대로 하늘을 그려놓은 상자로써,
@@ -97,7 +97,7 @@ function render(time) {
 일반적으로 육면체에 텍스처를 입히고 안쪽을 렌더링하도록 설정해 하늘 상자를
 구현합니다. 각 면에 수평선처럼 보이는 이미지를 텍스처로 배치하는 거죠(텍스처
 좌표를 이용해). 하늘 구체(sky sphere)나 하늘 돔(sky dom)도 자주 사용하는
-방식입니다. 다시 말해 육면체나 구체를 만들고, [텍스처를 입힌](threejs-textures.html)
+방식입니다. 다시 말해 육면체나 구체를 만들고, [텍스처를 입힌](textures.html)
 뒤, 바깥 면이 아닌 안쪽 면을 렌더링하도록 `THREE.BackSide` 값을 넣어주면
 됩니다. 그리고 바로 장면(scene)에 추가하거나, 하늘 상자/구체/돔을 담당할
 장면 하나, 다른 요소를 담당할 장면 하나 이렇게 총 2개를 만들 수도 있죠.
@@ -112,14 +112,14 @@ function render(time) {
 사진입니다.
 
 <div class="threejs_center">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-x.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-x.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-y.jpg" style="width: 200px" class="border">
 </div>
 <div class="threejs_center">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
-  <img src="../resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-y.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/pos-z.jpg" style="width: 200px" class="border">
+  <img src="../examples/resources/images/cubemaps/computer-history-museum/neg-z.jpg" style="width: 200px" class="border">
 </div>
 
 이들을 `CubeTextureLoader`로 불러와 장면의 배경으로 설정합니다.
@@ -172,7 +172,7 @@ function render(time) {
 카메라도 조작이 가능하도록 만듭니다.
 
 ```js
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -192,7 +192,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 예제를 드래그하면 큐브맵이 주위를 둘러싼 게 보일 겁니다.
 
-{{{example url="../threejs-background-cubemap.html" }}}
+{{{example url="background-cubemap.html" }}}
 
 다른 방법은 등장방형도법(Equirectangular map)을 이용하는 겁니다. 이런 사진은
 주로 [360도 카메라](https://google.com/search?q=360+camera)로 촬영합니다.
@@ -200,7 +200,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 [다음 사진](https://hdrihaven.com/hdri/?h=tears_of_steel_bridge)은 [이 사이트](https://hdrihaven.com)에서
 가져온 사진입니다.
 
-<div class="threejs_center"><img src="../resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
+<div class="threejs_center"><img src="../examples/resources/images/equirectangularmaps/tears_of_steel_bridge_2k.jpg" style="width: 600px"></div>
 
 등장방형도법의 사용법은 별로 다르지 않습니다. 먼저 등장방형도법 이미지를 텍스처로 불러온 뒤, 콜백에서 불러온 이미지 텍스처를 `WebGLCubeRenderTarget.fromEquirectangularTexture`를 호출할 때 넘겨주면 큐브맵(정육면체를 펼친 모양의 텍스처)를 만들 수 있습니다. `WebGLCubeRenderTarget`을 생성할 때 큐브맵의 크기를 지정해주기만 하면 되죠. 예제의 경우 등장방형도법 이미지의 높이를 넘겨주면 될 겁니다.
 
@@ -229,7 +229,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 어렵지 않게 등장방형도법 텍스처를 구현했습니다.
 
-{{{example url="../threejs-background-equirectangularmap.html" }}}
+{{{example url="background-equirectangularmap.html" }}}
 
 등장방형도법은 복잡한 쉐이더를 사용하기에 큐브맵보다 성능이 떨어집니다.
 다행히 등장방형도법 이미지를 큐브맵으로 바꾸는 건 그다지 어려운 일이 아니죠.

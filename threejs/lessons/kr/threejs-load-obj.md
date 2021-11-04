@@ -9,12 +9,12 @@ Three.js로 프로젝트를 진행할 때, 3D 모델 파일을 불러와 사용�
 인터넷을 검색해 [CC-BY-NC 3.0 풍자 3D 모델](https://www.blendswap.com/blends/view/69174)을
 하나 가져왔습니다(작가: [ahedov](https://www.blendswap.com/user/ahedov)).
 
-<div class="threejs_center"><img src="resources/images/windmill-obj.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj.jpg"></div>
 
 다운받은 파일 형식이 .blend네요. [블렌더(Blender)](https://blender.org)로
 파일을 열어 .OBJ 형식으로 변환하겠습니다.
 
-<div class="threejs_center"><img style="width: 827px;" src="resources/images/windmill-export-as-obj.jpg"></div>
+<div class="threejs_center"><img style="width: 827px;" src="../resources/images/windmill-export-as-obj.jpg"></div>
 
 > 블렌더는 다른 프로그램과 다른 점이 많아 낯설게 느껴질 수 있습니다.
 블렌더를 처음 접한다면, 글 읽기를 잠시 멈추고 블렌더의 기본 UI 가이드를
@@ -29,11 +29,11 @@ Three.js로 프로젝트를 진행할 때, 3D 모델 파일을 불러와 사용�
 
 특별한 일이 없다면 저는 파일을 내보낼 때 아래의 옵션을 사용합니다.
 
-<div class="threejs_center"><img style="width: 239px;" src="resources/images/windmill-export-options.jpg"></div>
+<div class="threejs_center"><img style="width: 239px;" src="../resources/images/windmill-export-options.jpg"></div>
 
 자 이제 한 번 화면에 띄워보죠!
 
-[조명에 관한 글](threejs-lights.html)에서 썼던 예제를 가져와 이 예제를
+[조명에 관한 글](lights.html)에서 썼던 예제를 가져와 이 예제를
 반구광(hemisphere light) 예제와 합칩니다. 그러면 장면에는 `HemisphereLight`
 하나, `DirectionalLight` 하나가 있는 셈입니다. 또 GUI 관련 코드와 정육면체,
 구체 관련 코드도 지웁니다.
@@ -41,7 +41,7 @@ Three.js로 프로젝트를 진행할 때, 3D 모델 파일을 불러와 사용�
 다음으로 먼저 `OBJLoader` 모듈을 스크립트에 로드합니다.
 
 ```js
-import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
+import { OBJLoader } from '/examples/jsm/loaders/OBJLoader.js';
 ```
 
 `OBJLoader`의 인스턴스를 생성한 뒤 .OBJ 파일의 경로와 콜백 함수를 넘겨
@@ -59,7 +59,7 @@ import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoad
 
 어떤 결과가 나올까요?
 
-{{{example url="../threejs-load-obj-no-materials.html" }}}
+{{{example url="load-obj-no-materials.html" }}}
 
 뭔가 성공한 듯하지만 재질(materials)이 없어 오류가 납니다. .OBJ 파일에도
 재질이 없고 따로 재질을 지정하지도 않았기 때문이죠.
@@ -105,38 +105,38 @@ map_Ns windmill_001_base_SPEC.jpg
 파일을 살펴보면 2개의 재질과 5개의 jpg 텍스처가 보이는데, 텍스처 파일은
 디렉토리 내에 보이지 않습니다. 대체 어디에 있는 걸까요?
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files.png"></div>
 
 생성된 거라고는 .OBJ 파일 하나와 .MTL 파일 하나 뿐입니다.
 
 사실 방금 사용한 모델의 텍스처는 .blend 파일에 포함되어 있습니다.
 **File->External Data->Unpack All Into Files**를 선택하고
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-export-textures.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-export-textures.jpg"></div>
 
 **Write Files to Current Directory**를 선택해 텍스처를 별도 파일로
 내보낼 수 있습니다.
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-overwrite.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-overwrite.jpg"></div>
 
 이러면 .blend 파일과 같은 경로의 **textures** 폴더 안에 텍스처 파일이
 생성됩니다.
 
-<div class="threejs_center"><img style="width: 758px;" src="resources/images/windmill-exported-texture-files.png"></div>
+<div class="threejs_center"><img style="width: 758px;" src="../resources/images/windmill-exported-texture-files.png"></div>
 
 내보낸 텍스처를 복사해 .OBJ 파일과 같은 경로에 두겠습니다.
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 이제 .MTL 파일에서 사용할 텍스처를 생성했으니 .MTL 파일을 불러오도록 합시다.
 
 `MTLLoader` 모듈을 불러옵니다.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
-+import { MTLLoader } from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
+import * as THREE from './build/three.module.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
+import { OBJLoader } from '/examples/jsm/loaders/OBJLoader.js';
++import { MTLLoader } from '/examples/jsm/loaders/MTLLoader.js';
 ```
 
 {{{warning msgId="badTranslation"}}}
@@ -157,14 +157,14 @@ import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoad
 }
 ```
 
-{{{example url="../threejs-load-obj-materials.html" }}}
+{{{example url="load-obj-materials.html" }}}
 
 얼핏 제대로 불러온 것 같지만 아직 부족한 점이 있습니다. 모델을 이리저리
 회전시켜 보면 풍차의 날개 뒷면이 사라지는 것을 볼 수 있을 겁니다.
 
-<div class="threejs_center"><img style="width: 528px;" src="resources/images/windmill-missing-cloth.jpg"></div>
+<div class="threejs_center"><img style="width: 528px;" src="../resources/images/windmill-missing-cloth.jpg"></div>
 
-[재질에 관한 글](threejs-materials.html)을 읽었다면 원인이 무엇인지 알
+[재질에 관한 글](materials.html)을 읽었다면 원인이 무엇인지 알
 겁니다. 일단 풍차의 날개 양면을 모두 렌더링하도록 설정해야 겠네요. .MTL
 파일을 직접 수정하기는 어렵습니다. 그렇다면 쉽게 떠올릴 수 있는 방법은
 3가지 정도죠.
@@ -216,7 +216,7 @@ import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoad
 해결책을 적용하면 날개가 제대로 보일 겁니다. 하지만 문제가 하나 더 남았습니다.
 모델을 확대해보면 텍스처가 굉장히 각져 보일 거예요.
 
-<div class="threejs_center"><img style="width: 700px;" src="resources/images/windmill-blocky.jpg"></div>
+<div class="threejs_center"><img style="width: 700px;" src="../resources/images/windmill-blocky.jpg"></div>
 
 뭐가 문제일까요?
 
@@ -225,7 +225,7 @@ import { OBJLoader } from './resources/threejs/r132/examples/jsm/loaders/OBJLoad
 자주색을 띱니다. 범프 맵이 표면의 높이를 나타낸다면 법선 맵은 표면의 방향을
 나타내죠.
 
-<div class="threejs_center"><img style="width: 256px;" src="../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
+<div class="threejs_center"><img style="width: 256px;" src="../examples/resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
 [MTLLoader의 소스 코드](https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432)를
 살펴보면 법선 맵의 키(key)가 `norm`이어야 한다고 합니다. 간단히 .MTL 파일을
@@ -265,14 +265,14 @@ map_Ns windmill_001_base_SPEC.jpg
 
 이제 법선 맵이 정상적으로 적용되었고, 날개의 뒷면도 제대로 보입니다.
 
-{{{example url="../threejs-load-obj-materials-fixed.html" }}}
+{{{example url="load-obj-materials-fixed.html" }}}
 
 다른 파일도 불러와봅시다.
 
 인터넷을 뒤져 [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/)
 풍차 3D 모델을 발견했습니다(작가: [Roger Gerzner / GERIZ.3D Art](http://www.gerzi.ch/)).
 
-<div class="threejs_center"><img src="resources/images/windmill-obj-2.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj-2.jpg"></div>
 
 .OBJ 형식으로 다운 받을 수 있으므로, 해당 형식으로 받아 불러오겠습니다(잠깐
 .MTL 로더를 제거했습니다).
@@ -282,7 +282,7 @@ map_Ns windmill_001_base_SPEC.jpg
 +  objLoader.load('resources/models/windmill-2/windmill.obj', ...
 ```
 
-{{{example url="../threejs-load-obj-wat.html" }}}
+{{{example url="load-obj-wat.html" }}}
 
 음, 아무것도 나타나지 않습니다. 뭐가 문제일까요? 모델의 원래 크기 때문일까요?
 Three.js로부터 모델 사이즈를 구해 카메라를 한 번 업데이트해보겠습니다.
@@ -301,7 +301,7 @@ objLoader.load('resources/models/windmill_2/windmill.obj', (root) => {
 +  console.log(boxCenter);
 ```
 
-[자바스크립트 콘솔](threejs-debugging-javascript.html)을 확인해보면 아래와
+[자바스크립트 콘솔](debugging-javascript.html)을 확인해보면 아래와
 같은 결과가 보일 겁니다.
 
 ```js
@@ -313,14 +313,14 @@ center p { x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125 }
 땅도 40x40칸인데 이 모델은 2000칸이죠. 카메라의 시야보다 훨씬 크니 절두체 영역
 밖에 있는 게 당연합니다.
 
-<div class="threejs_center"><img style="width: 280px;" src="resources/images/camera-inside-windmill.svg"></div>
+<div class="threejs_center"><img style="width: 280px;" src="../resources/images/camera-inside-windmill.svg"></div>
 
 수작업으로 고칠 수도 있지만, 카메라가 장면의 크기를 자동으로 감지하도록 만들어보겠습니다.
 방금 모델의 크기를 구할 때 썼던 육면체를 이용하면 되겠네요. 카메라의 위치를 정하는 데
 *정해진* 방법은 없습니다. 경우에 따라 카메라의 방향과 위치가 다르니 그때 그때 상황에
 맞춰 방법을 찾아야 하죠.
 
-[카메라에 관해 배운 내용](threejs-cameras.html)을 떠올려봅시다. 카메라를 만들려면
+[카메라에 관해 배운 내용](cameras.html)을 떠올려봅시다. 카메라를 만들려면
 절두체를 정의해야 하죠. 절두체는 `fov(시야각, field of view)`, `near`, `far` 속성을
 지정해 정의합니다. 시야각이 얼마이든, 절두체가 무한히 늘어난다고 가정할 때, 장면을
 둘러싼 육면체가 절두체 안에 들어오게 하려면 카메라를 얼마나 멀리 보내야 할까요? 그러니까
@@ -328,7 +328,7 @@ center p { x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125 }
 
 다행히 시야각과 육면체의 크기를 아니 다음 그림과 같은 삼각형을 사용할 수 있습니다.
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/camera-fit-scene.svg"></div>
 
 그림에서 왼쪽은 카메라이고, 카메라에서 뻗어나온 파란 절두체가 풍차를 투사합니다.
 방금 풍차를 둘러싼 육면체의 위치값을 계산했죠. 이제 얼마나 카메라를 멀리 보내야
@@ -342,7 +342,7 @@ center p { x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125 }
 Cos = Adjacent(밑변) 나누기 Hypotenuse, Tan = Oppsite 나누기 Adjacent와 같은
 식으로 외웁니다. 이를 줄여서 SOH-CAH-TOA(소-카-토아)라고 부릅니다. 역주.
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 그림을 기반으로 계산식을 짜보겠습니다.
 
@@ -409,14 +409,14 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
 
 이제 코드를 실행하면...
 
-{{{example url="../threejs-load-obj-auto-camera.html" }}}
+{{{example url="load-obj-auto-camera.html" }}}
 
 성공했습니다. 마우스로 장면을 드래그하면 풍차가 보일 거예요. 하지만 카메라가 풍차의
 정면이 아닌 아래쪽을 먼저 보여줍니다. 이는 풍차가 너무 커서 육면체의 중심이 약
 (0, 770, 0)인데, 카메라를 육면체의 중심에서 기존 위치 (0, 10, 20) 방향으로 `distance`만큼
 옮겼기에 풍차의 아래쪽에 카메라가 위치하게 된 것입니다.
 
-<div class="threejs_center"><img style="width: 360px;" src="resources/images/computed-camera-position.svg"></div>
+<div class="threejs_center"><img style="width: 360px;" src="../resources/images/computed-camera-position.svg"></div>
 
 카메라의 기존 위치에 상관없이 육면체의 중심을 기준으로 카메라를 배치해보겠습니다.
 단순히 카메라와 육면체 간 벡터의 `y` 요소를 0으로 만들면 됩니다. `y` 요소를 0으로
@@ -435,7 +435,7 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
 
 풍차의 아랫면을 보면 작은 정사각형이 하나 보일 겁니다. 원래 땅으로 썼던 평면이죠.
 
-<div class="threejs_center"><img style="width: 365px;" src="resources/images/tiny-ground-plane.jpg"></div>
+<div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
 원래 땅은 40x40칸이었으니 풍차에 비해 훨씬 작은 것이 당연합니다. 풍차의 크기는
 2000칸이 넘습니다. 땅을 풍차에 맞게 키워야 겠네요. 또 크기만 키우면 체크무늬가
@@ -455,7 +455,7 @@ texture.magFilter = THREE.NearestFilter;
 texture.repeat.set(repeats, repeats);
 ```
 
-{{{example url="../threejs-load-obj-auto-camera-xz.html" }}}
+{{{example url="load-obj-auto-camera-xz.html" }}}
 
 이제 재질을 다시 붙여봅시다. 이전 모델과 마찬가지로 텍스처에 대한 데이터를 담은
 .MTL 파일이 보입니다. 하지만 동시에 다른 문제도 보이네요.
@@ -493,7 +493,7 @@ TGA 파일의 문제점 중 하나는 압축을 거의 하지 않는다는 점�
 다시 파일 구조를 살펴보죠.
 
 ```shell
- $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+ $ ls -l ../threejs.org/manual/examples/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
@@ -613,7 +613,7 @@ Kd 1.00 1.00 1.00
 
 위 변경 사항을 모두 반영하면 재질이 정상적으로 적용될 겁니다.
 
-{{{example url="../threejs-load-obj-materials-windmill2.html" }}}
+{{{example url="load-obj-materials-windmill2.html" }}}
 
 모델을 불러올 때 주의해야 하는 점을 몇 가지만 적어보겠습니다.
 
@@ -646,7 +646,7 @@ Kd 1.00 1.00 1.00
   첫 번째로 쓴 풍차의 경우, 실제로 사용하려면 텍스처를 손볼 필요가 있습니다. 지금은 총 용량이 무려 10MB가
   넘거든요!!!
 
-  또한 [텍스처에 관한 글](threejs-textures.html)에서 말했듯, 텍스처의 해상도도 고려해야 합니다. 50KB짜리
+  또한 [텍스처에 관한 글](textures.html)에서 말했듯, 텍스처의 해상도도 고려해야 합니다. 50KB짜리
   4096x4096 JPG 이미지는 불러오는 속도는 빠를지 몰라도 굉장히 많은 메모리를 차지할 테니까요.
 
 마지막으로 풍차가 돌아가는 것을 보여주고 싶지만, .OBJ 파일에는 계층 구조가 없습니다. 다시 말해 풍차의 모든

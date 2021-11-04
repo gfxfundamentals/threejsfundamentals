@@ -13,7 +13,7 @@
   categoryMapping: {
     'basics': '基础',
     'solutions': '解决方案',
-    'webvr': 'WebVR',
+    'webxr': 'WebXR',
     'optimization': '优化',
     'tips': '技巧',
     'fundamentals': '基础',

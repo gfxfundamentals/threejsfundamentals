@@ -5,11 +5,11 @@ TOC: 사용자 지정 Geometry
 <div class="warning">
 <strong>NOTE!</strong> This article is deprecated. Three.js r125
 removed support for <code>Geometry</code>. Please refer to
-the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometry</a>.
+the article on <a href="custom-buffergeometry.html">custom BufferGeometry</a>.
 </div>
 
 
-[이전 글](threejs-primitives.html)에서는 Three.js의 내장 원시 모델에
+[이전 글](primitives.html)에서는 Three.js의 내장 원시 모델에
 대해 살펴보았죠. 이 글에서는 이런 모델, geometry를 직접 만들어 볼 것입니다.
 
 거듭 이야기하지만, 정말 진지하게 3D 컨텐츠를 만들 생각이라면
@@ -17,8 +17,8 @@ the article on <a href="threejs-custom-buffergeometry.html">custom BufferGeometr
 [마야(Maya)](https://www.autodesk.com/products/maya/overview),
 [3D Studio Max](https://www.autodesk.com/products/3ds-max/overview),
 [시네마4D(Cinema4D)](https://www.maxon.net/en-us/) 등의 3D 모델링
-프로그램을 사용하는 것이 좋습니다. 모델을 만들고 [gLTF](threejs-load-gltf.html)나
-[.obj](threejs-load-obj.html) 포멧으로 저장하여 프로젝트에서 불러오는
+프로그램을 사용하는 것이 좋습니다. 모델을 만들고 [gLTF](load-gltf.html)나
+[.obj](load-obj.html) 포멧으로 저장하여 프로젝트에서 불러오는
 것이죠. 어떤 프로그램을 선택하든 튜토리얼에는 유용한 내용이 많으니, 2주에서
 3주 정도는 해당 프로그램의 튜토리얼을 익히는 데 투자하기 바랍니다.
 
@@ -45,7 +45,7 @@ Three.js에서 사용자 지정 geometry는 `Geometry` 또는 `BufferGeometry`,
 단계에서만 약간 더 느릴 뿐입니다. 결국에는 둘 다 살펴보겠지만, 일단-제 생각에-훨씬
 간단하고 이해하기 쉬운 `Geometry`를 먼저 써봅시다.
 
-먼저 정육면체를 만들겠습니다. [반응형 디자인에 관한 글](threejs-responsive.html)에서
+먼저 정육면체를 만들겠습니다. [반응형 디자인에 관한 글](responsive.html)에서
 썼던 예제를 일부 가져오도록 하죠.
 
 먼저 `BoxGeometry`를 `Geometry`로 교체합니다.
@@ -60,7 +60,7 @@ Three.js에서 사용자 지정 geometry는 `Geometry` 또는 `BufferGeometry`,
 
 이제 정육면체의 꼭지점를 추가합니다. 정육면체의 모서리는 총 8개이죠.
 
-<div class="threejs_center"><img src="resources/cube-vertex-positions.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-positions.svg" style="width: 500px"></div>
 
 중점을 중심으로 각 꼭지점을 추가합니다.
 
@@ -80,7 +80,7 @@ const geometry = new THREE.Geometry();
 
 다음으로 정육면체 한 면에 2개씩, 총 삼각형 12개를 추가해야 합니다.
 
-<div class="threejs_center"><img src="resources/cube-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-triangles.svg" style="width: 500px"></div>
 
 `Face3` 인스턴스를 만들어 3 꼭지점의 인덱스(index)를 넘겨주면 삼각형
 면(face)을 만들 수 있습니다.
@@ -89,7 +89,7 @@ const geometry = new THREE.Geometry();
 바라볼 때, 면이 정육면체의 바깥쪽을 향하려면 시계 반대 방향 순으로 인덱스를
 넘겨줘야 합니다.
 
-<div class="threejs_center"><img src="resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/cube-vertex-winding-order.svg" style="width: 500px"></div>
 
 이 패턴대로 정육면체를 구성할 삼각형 12개를 만들어봅시다.
 
@@ -161,7 +161,7 @@ function makeInstance(geometry, color, x) {
 
 자, 이제 실행해보죠.
 
-{{{example url="../threejs-custom-geometry-cube.html" }}}
+{{{example url="custom-geometry-cube.html" }}}
 
 각 삼각형 면의 `color` 속성을 바꿔 색을 따로 지정할 수 있습니다.
 
@@ -181,7 +181,7 @@ geometry.faces[10].color = geometry.faces[11].color = new THREE.Color('magenta')
 +const material = new THREE.MeshBasicMaterial({ vertexColors: true });
 ```
 
-{{{example url="../threejs-custom-geometry-cube-face-colors.html" }}}
+{{{example url="custom-geometry-cube-face-colors.html" }}}
 
 또는 삼각형 면의 `vertexColors` 속성에 각 꼭지점의 색상을 지정할 수도 있습니다.
 
@@ -195,7 +195,7 @@ geometry.faces.forEach((face, ndx) => {
 });
 ```
 
-{{{example url="../threejs-custom-geometry-cube-vertex-colors.html" }}}
+{{{example url="custom-geometry-cube-vertex-colors.html" }}}
 
 빛을 사용하려면 법선을 추가해야 합니다. 법선이란 특정 방향을 나타내는 벡터값으로,
 색과 마찬가지로 법선도 각 삼각형 면의 `normal` 속성을 지정해 추가할 수 있습니다.
@@ -232,7 +232,7 @@ geometry.computeFaceNormals();
 
 이제 정육면체들이 빛의 영향을 받습니다.
 
-{{{example url="../threejs-custom-geometry-cube-face-normals.html" }}}
+{{{example url="custom-geometry-cube-face-normals.html" }}}
 
 삼각형 면 법선을 사용하면 물체가 각진 느낌을 줍니다. 꼭지점 법선을 사용하면
 훨씬 부드러워 보일 수 있죠. 꼭지점 법선은 `Geometry.computeVertexNormals`를
@@ -246,7 +246,7 @@ geometry.computeFaceNormals();
 아쉽게도 정육면체는 꼭지점 법선의 예제로 적당하지 않습니다. 각 꼭지점이 같은
 꼭지점을 쓰는 모든 삼각형 면에서 법선을 가져오기 때문이죠.
 
-{{{example url="../threejs-custom-geometry-cube-vertex-normals.html" }}}
+{{{example url="custom-geometry-cube-vertex-normals.html" }}}
 
 UV라고도 불리는, 텍스처 좌표는 `Geometry.faceVertexUvs` 속성에 삼각형 면들의
 층(layer)을 배열로 지정해 추가할 수 있습니다. 정육면체의 경우 다음처럼 지정할
@@ -280,7 +280,7 @@ geometry.faceVertexUvs[0].push(
 중요한 건 `faceVertexUvs`는 층의 배열이라는 점입니다. 하나의 층은 별도의 UV 좌표이죠.
 기본적으로 하나의 UV 층, 층 0이 있어, 예제에서는 그냥 그 층에 UV를 추가했습니다.
 
-다시 삼각형 면 법선을 계산하도록 코드를 바꾸고, 이번에는 재질에 [텍스처를 추가](threejs-textures.html)하겠습니다.
+다시 삼각형 면 법선을 계산하도록 코드를 바꾸고, 이번에는 재질에 [텍스처를 추가](textures.html)하겠습니다.
 
 ```js
 -geometry.computeVertexNormals();
@@ -299,7 +299,7 @@ function makeInstance(geometry, color, x) {
   ...
 ```
 
-{{{example url="../threejs-custom-geometry-cube-texcoords.html" }}}
+{{{example url="custom-geometry-cube-texcoords.html" }}}
 
 다음으로는 이 글에서 배운 것을 총 동원해 지형 mesh를 기반으로 높이 맵(heightmap)을
 만들어보겠습니다.
@@ -308,7 +308,7 @@ function makeInstance(geometry, color, x) {
 말합니다. 이차원 높이 배열을 만드는 가장 쉬운 방법은 이미지 편집 프로그램을
 사용하는 것이죠. 아래는 제가 만든 96x64 픽셀의 이미지입니다.
 
-<div class="threejs_center"><img src="../resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
+<div class="threejs_center"><img src="../examples/resources/images/heightmap-96x64.png" style="width: 512px; image-rendering: pixelated;"></div>
 
 이 이미지의 데이터를 불러와 높이 맵 mesh를 만들겠습니다. 이미지 데이터를
 불러올 때는 `ImageLoader`를 활용합니다.
@@ -332,7 +332,7 @@ function createHeightmap(image) {
 이미지에서 데이터를 추출했으니, 이제 격자를 만들어야 합니다. 이미지의 픽셀
 하나당 정사각형 격자 한 칸을 만듭니다.
 
-<div class="threejs_center"><img src="resources/heightmap-points.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-points.svg" style="width: 500px"></div>
 
 격자 한 칸당 꼭지점 5개를 만듭니다. 정사각형의 각 꼭지점 당 하나씩 총 4개를 두고,
 네 꼭지점의 높이를 평균내 중앙에 하나를 둡니다.
@@ -378,7 +378,7 @@ for (let z = 0; z < cellsDeep; ++z) {
 
 다음으로 방금 만든 5개의 정점을 모아 4개의 삼각형을 만들어야 합니다.
 
-<div class="threejs_center"><img src="resources/heightmap-triangles.svg" style="width: 500px"></div>
+<div class="threejs_center"><img src="../resources/heightmap-triangles.svg" style="width: 500px"></div>
 
 ```js
     // 삼각형 4개를 만듭니다
@@ -429,8 +429,8 @@ for (let z = 0; z < cellsDeep; ++z) {
 `OrbitControls`를 추가하고,
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-+import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
++import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
 ```js
@@ -467,9 +467,9 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
 정육면체를 회전시키는 코드는 필요없으니 삭제하도록 하죠.
 
-{{{example url="../threejs-custom-geometry-heightmap.html" }}}
+{{{example url="custom-geometry-heightmap.html" }}}
 
 이 글이 `Geometry`를 활용하는 데 도움이 되었으면 합니다.
 
-글이 길어졌으니 `BufferGeometry`는 [다음 글](threejs-custom-buffergeometry.html)에서
+글이 길어졌으니 `BufferGeometry`는 [다음 글](custom-buffergeometry.html)에서
 살펴보도록 하겠습니다.

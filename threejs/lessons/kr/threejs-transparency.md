@@ -7,7 +7,7 @@ Three.js에서 투명도는 간단하지만 동시에 까다로운 주제입니�
 먼저 쉬운 것부터 알아보죠. 예제로 정육면체 8개를 2x2x2 그리드에 맞춘 장면을
 만들어보겠습니다.
 
-[불필요한 렌더링 제거하기](threejs-rendering-on-demand.html)에서 썼던
+[불필요한 렌더링 제거하기](rendering-on-demand.html)에서 썼던
 예제를 가져와 정육면체 3개를 8개로 수정합니다. 먼저 `makeInstance` 함수가
 x, y, z 값을 받도록 수정하겠습니다.
 
@@ -110,17 +110,17 @@ function makeInstance(geometry, color, x, y, z) {
 
 이제 8개의 반투명한 정육면체가 생겼습니다.
 
-{{{example url="../threejs-transparency.html"}}}
+{{{example url="transparency.html"}}}
 
 예제를 드래그하면 화면을 회전시킬 수 있습니다.
 
 완벽한데요, 라고 생각했다면 좀 더 자세히 보세요. 정육면체의 뒷면이 하나도
 보이지 않습니다.
 
-<div class="threejs_center"><img src="resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-cubes-no-backs.png" style="width: 416px;"></div>
 <div class="threejs_center">뒷면이 보이지 않는다</div>
 
-이전에 [재질(material)에 관해](threejs-materials.html) 배울 때 [`side`](Material.side)
+이전에 [재질(material)에 관해](materials.html) 배울 때 [`side`](Material.side)
 속성에 대해 배웠었죠. 이 속성을 `THREE.DoubleSide`로 설정해 정육면체의
 양면이 모두 보이도록 해봅시다.
 
@@ -134,12 +134,12 @@ const material = new THREE.MeshPhongMaterial({
 });
 ```
 
-{{{example url="../threejs-transparency-doubleside.html" }}}
+{{{example url="transparency-doubleside.html" }}}
 
 예제를 돌려보세요. 뭔가 해결된 듯 하지만 자세히 보면 가끔 뒷면 또는 뒷면의
 일부가 보이지 않습니다.
 
-<div class="threejs_center"><img src="resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-cubes-some-backs.png" style="width: 368px;"></div>
 <div class="threejs_center">정육면체의 왼쪽 뒷면이 보이지 않는다</div>
 
 이는 3D 요소를 렌더링하는 방식 때문입니다. WebGL은 각 geometry의 삼각형을
@@ -156,7 +156,7 @@ const material = new THREE.MeshPhongMaterial({
 없었을 겁니다.
 
 정육면체에는 한 면에 2개, 총 12개의 삼각형이 있습니다. 각 삼각형의 렌더링 순서는
-[geometry에 관한 글에서 봤던 것](threejs-custom-buffergeometry.html)과 같죠.
+[geometry에 관한 글에서 봤던 것](custom-buffergeometry.html)과 같죠.
 시선에 따라 카메라에서 가까운 삼각형을 먼저 렌더링할 겁니다. 앞면을 뒷면보다 먼저
 렌더링하니, 때때로 뒷면이 보이지 않을 수밖에 없죠.
 
@@ -184,7 +184,7 @@ function makeInstance(geometry, color, x, y, z) {
 
 어찌어찌 해결된 *것처럼* 보입니다.
 
-{{{example url="../threejs-transparency-doubleside-hack.html" }}}
+{{{example url="transparency-doubleside-hack.html" }}}
 
 Three.js의 분류 기준은 고정적인 듯합니다. `side: THREE.BackSide` mesh를 먼저
 넣고, 그 다음 정확히 같은 위치에 `side: THREE.FrontSide` mesh를 넣었으니까요.
@@ -221,14 +221,14 @@ makeInstance(geometry, 'lightblue',  Math.PI * 0.5, 'resources/images/hmmmface.p
 
 평면은 한 번에 한 면밖에 보지 못하니, `side: THREE.DoubleSide`로 설정했습니다. 또한
 텍스처를 전부 불러왔을 때 장면을 다시 렌더링하도록 `render` 함수를 `loader.load`
-메서드에 넘겨줬습니다. 이는 [필요에 따른 렌더링](threejs-rendering-on-demand.html)을
+메서드에 넘겨줬습니다. 이는 [필요에 따른 렌더링](rendering-on-demand.html)을
 구현하기 위한 것이죠.
 
-{{{example url="../threejs-transparency-intersecting-planes.html"}}}
+{{{example url="transparency-intersecting-planes.html"}}}
 
 아까와 비슷한 문제가 보입니다.
 
-<div class="threejs_center"><img src="resources/images/transparency-planes.png" style="width: 408px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-planes.png" style="width: 408px;"></div>
 <div class="threejs_center">면의 반쪽이 사라졌다</div>
 
 평면을 둘로 쪼개 실제로는 교차하지 않게끔 만들면 문제를 해결할 수 있습니다.
@@ -263,7 +263,7 @@ function makeInstance(geometry, color, rotY, url) {
 
 저걸 어떻게 구현할지는 여러분의 선택입니다. [블렌더(Blender)](https://blender.org)
 같은 3D 에디터를 사용했다면 텍스처 좌표를 직접 수정했겠죠. 예제의 경우에는
-`PlaneGeometry`를 썼습니다. [이전에 다뤘듯](threejs-textures.html)
+`PlaneGeometry`를 썼습니다. [이전에 다뤘듯](textures.html)
 이 geometry는 기본적으로 텍스처를 크기에 맞춰 늘립니다. [`texture.repeat`](Texture.repeat)
 속성과 [`texture.offset`](Texture.offset) 속성을 조정해 각 면에 적절한
 텍스처를 입혀줄 수 있죠.
@@ -272,7 +272,7 @@ function makeInstance(geometry, color, rotY, url) {
 하면 복잡한 계산 없이 간단하게 `Object3D`만 돌려서 두 평면 다 회전시킬
 수 있죠.
 
-{{{example url="../threejs-transparency-intersecting-planes-fixed.html"}}}
+{{{example url="transparency-intersecting-planes-fixed.html"}}}
 
 이 방법은 교차점이 변하지 않는 정말 간단한 경우에만 가능합니다.
 
@@ -287,8 +287,8 @@ function makeInstance(geometry, color, rotY, url) {
 이번에는 각 면에는 각각 다른, 부분적으로 투명한 텍스처를 사용할 겁니다.
 
 <div class="spread">
-  <div><img class="checkerboard" src="../resources/images/tree-01.png"></div>
-  <div><img class="checkerboard" src="../resources/images/tree-02.png"></div>
+  <div><img class="checkerboard" src="../examples/resources/images/tree-01.png"></div>
+  <div><img class="checkerboard" src="../examples/resources/images/tree-02.png"></div>
 </div>
 
 아까 평면 2개를 교차해놓았던(반으로 가르기 전) 예제를 가져와 이 텍스처에
@@ -319,7 +319,7 @@ function makeInstance(geometry, color, rotY, url) {
 ```
 
 이대로 실행해도 되지만, 간단한 UI를 만들어 `alphaTest`와 `transparent` 속성을
-갖고 놀 수 있게 해보겠습니다. [씬 그래프에 관한 글](threejs-scenegraph.html)에서
+갖고 놀 수 있게 해보겠습니다. [씬 그래프에 관한 글](scenegraph.html)에서
 소개했던 dat.GUI를 써서요.
 
 먼저 dat.GUI에 지정할 헬퍼 클래스를 만들겠습니다. 이 헬퍼 클래스는 장면 안 모든
@@ -368,16 +368,16 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
 물론 dat.GUI 모듈도 불러와야죠.
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import { OrbitControls } from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import * as THREE from './build/three.module.js';
+import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 +import { GUI } from '../3rdparty/dat.gui.module.js';
 ```
 
-{{{example url="../threejs-transparency-intersecting-planes-alphatest.html"}}}
+{{{example url="transparency-intersecting-planes-alphatest.html"}}}
 
 예제를 확대해보면 평면에 하얀 테두리가 보일 겁니다.
 
-<div class="threejs_center"><img src="resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
+<div class="threejs_center"><img src="../resources/images/transparency-alphatest-issues.png" style="width: 532px;"></div>
 
 이는 앞서 봤던 예제와 같은 문제입니다. 하얀 테두리를 가진 요소가 먼저 그려져
 뒤에 있는 요소가 일부 가려진 것이죠. 완벽한 해결책은 없습니다. 그때그때 상황에

@@ -20,7 +20,7 @@ TOC: マウスでオブジェクトをピッキング
 Three.jsにはこれを行う `RayCaster` クラスを提供しています。
 
 100個のオブジェクトがあるシーンを作ってピッキングしてみましょう。
-[レスポンシブデザインの記事](threejs-responsive.html)のコード例から始めてみます。
+[レスポンシブデザインの記事](responsive.html)のコード例から始めてみます。
 
 いくつかの変更点
 
@@ -205,7 +205,7 @@ function render(time) {
 
 その結果がこれです。
 
-{{{example url="../threejs-picking-raycaster.html" }}}
+{{{example url="picking-raycaster.html" }}}
 
 望んだ動作でおそらく多くのユースケースに対応できますが、いくつか問題点があります。
 
@@ -229,7 +229,7 @@ function render(time) {
 
 例として、このテクスチャをキューブに適用してみましょう。
 
-<div class="threejs_center"><img class="checkerboard" src="../resources/images/frame.png"></div>
+<div class="threejs_center"><img class="checkerboard" src="../examples/resources/images/frame.png"></div>
 
 以下のように変更します。
 
@@ -255,11 +255,11 @@ for (let i = 0; i < numObjects; ++i) {
 
 以下の例で動作確認をすると、すぐにこの問題が分かると思います。
 
-{{{example url="../threejs-picking-raycaster-transparency.html" }}}
+{{{example url="picking-raycaster-transparency.html" }}}
 
 ボックスの穴の部分でピックしてみて下さい。
 
-<div class="threejs_center"><img src="resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
+<div class="threejs_center"><img src="../resources/images/picking-transparent-issue.jpg" style="width: 635px;"></div>
 
 この原因は、JavaScriptがテクスチャやマテリアルを調べて、オブジェクトの一部が本当に透明か判断できないからです。
 
@@ -356,7 +356,7 @@ function setPickPosition(event) {
 ```
 
 `PickHelper` を `GPUPickHelper` に変更してみましょう。
-[レンダーターゲットの記事](threejs-rendertargets.html)で説明したように `WebGLRenderTarget` を使います。
+[レンダーターゲットの記事](rendertargets.html)で説明したように `WebGLRenderTarget` を使います。
 ここでのレンダーターゲットは1 x 1の1ピクセルのサイズしかありません。
 
 ```js
@@ -447,7 +447,7 @@ function setPickPosition(event) {
 
 そして、透明な部分を選択するようにする必要があります。
 
-{{{example url="../threejs-picking-gpu.html" }}}
+{{{example url="picking-gpu.html" }}}
 
 ピッキングを実装する方法のアイデアをいくつか得られたと思います。
 今後の記事ではマウスを使ってオブジェクトを操作する方法を取り上げるかもしれません。

@@ -7,11 +7,11 @@ TOC: OBJファイルの読み込み
 
 ネットで検索し[ahedov](https://www.blendswap.com/user/ahedov)さんの[CC-BY-NC 3.0 風車3Dモデル](https://www.blendswap.com/blends/view/69174)を見つけました。
 
-<div class="threejs_center"><img src="resources/images/windmill-obj.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj.jpg"></div>
 
 blendファイルをダウンロードし[Blender](https://blender.org)で読み込んでOBJファイルを書き出してみました。
 
-<div class="threejs_center"><img style="width: 827px;" src="resources/images/windmill-export-as-obj.jpg"></div>
+<div class="threejs_center"><img style="width: 827px;" src="../resources/images/windmill-export-as-obj.jpg"></div>
 
 > 注意：Blenderを使った事がない人は、Blenderは今まで使ってきた他のプログラムとは異なり驚くかもしれません。また、Blenderの基本的なUI操作を理解する時間が必要かもしれません。
 
@@ -22,17 +22,17 @@ blendファイルをダウンロードし[Blender](https://blender.org)で読み
 
 いずれにしても、私は以下のExportオプションを使用しました。
 
-<div class="threejs_center"><img style="width: 239px;" src="resources/images/windmill-export-options.jpg"></div>
+<div class="threejs_center"><img style="width: 239px;" src="../resources/images/windmill-export-options.jpg"></div>
 
 それでは表示してみましょう！
 
-[ライティングの記事](threejs-lights.html) にあるディレクショナルライティングの例から始めて、半球ライティングの例と組み合わせて `HemisphereLight` と `DirectionalLight` を1つ作る事にしました。その結果として `HemisphereLight` は1つ、`DirectionalLight` は1つになりました。
+[ライティングの記事](lights.html) にあるディレクショナルライティングの例から始めて、半球ライティングの例と組み合わせて `HemisphereLight` と `DirectionalLight` を1つ作る事にしました。その結果として `HemisphereLight` は1つ、`DirectionalLight` は1つになりました。
 また、ライトの調整に関連する全てのGUIを削除しました。シーンに追加していたキューブとスフィアも削除しました。
 
 まず最初に `OBJLoader` のローダーをコードに含める必要があります。
 
 ```js
-import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
+import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
 ```
 
 次にOBJファイルをロードするために `OBJLoader` のインスタンスを作成し、OBJファイルのURLを渡し、ロードされたモデルをシーンに追加するコールバックを渡します。
@@ -48,7 +48,7 @@ import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader
 
 それを実行したらどうなりますか？
 
-{{{example url="../threejs-load-obj-no-materials.html" }}}
+{{{example url="load-obj-no-materials.html" }}}
 
 これはやりたい事に近いですが、シーンにマテリアルとOBJファイルにマテリアルのパラメーターがなく、マテリアルのエラーが発生しています。
 
@@ -93,35 +93,35 @@ map_Ns windmill_001_base_SPEC.jpg
 
 5つのjpgテクスチャを参照しているマテリアルが2つありますが、テクスチャのファイルはどこにあるのでしょうか？
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files.png"></div>
 
 存在するのはOBJファイルとMTLファイルだけです。
 
 このモデルではテクスチャはダウンロードしたblendファイルに埋め込まれている事が判明しました。
 blenderで **File->External Data->Unpack All Into Files** を選択し、これらのファイルをエクスポートする事ができます。
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-export-textures.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-export-textures.jpg"></div>
 
 そして **Write Files to Current Directory** を選択します。
 
-<div class="threejs_center"><img style="width: 828px;" src="resources/images/windmill-overwrite.jpg"></div>
+<div class="threejs_center"><img style="width: 828px;" src="../resources/images/windmill-overwrite.jpg"></div>
 
 これでテクスチャのファイルはblendファイルと同じフォルダ内の **textures** というサブフォルダに出力されます。
 
-<div class="threejs_center"><img style="width: 758px;" src="resources/images/windmill-exported-texture-files.png"></div>
+<div class="threejs_center"><img style="width: 758px;" src="../resources/images/windmill-exported-texture-files.png"></div>
 
 これらのテクスチャをOBJファイルと同じフォルダにコピーしました。
 
-<div class="threejs_center"><img style="width: 757px;" src="resources/images/windmill-exported-files-with-textures.png"></div>
+<div class="threejs_center"><img style="width: 757px;" src="../resources/images/windmill-exported-files-with-textures.png"></div>
 
 テクスチャを利用できるようになったのでMTLファイルをロードします。
 `MTLLoader` をimportする必要があります。
 
 ```js
-import * as THREE from './resources/three/r132/build/three.module.js';
-import {OrbitControls} from './resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
-import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader.js';
-+import {MTLLoader} from './resources/threejs/r132/examples/jsm/loaders/MTLLoader.js';
+import * as THREE from './build/three.module.js';
+import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
+import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
++import {MTLLoader} from '/examples/jsm/loaders/MTLLoader.js';
 ```
 
 まず、MTLファイルをロードします。
@@ -142,13 +142,13 @@ import {OBJLoader} from './resources/threejs/r132/examples/jsm/loaders/OBJLoader
 
 それを試してみると...
 
-{{{example url="../threejs-load-obj-materials.html" }}}
+{{{example url="load-obj-materials.html" }}}
 
 モデルを回転させると風車の布が消える事に注意して下さい。
 
-<div class="threejs_center"><img style="width: 528px;" src="resources/images/windmill-missing-cloth.jpg"></div>
+<div class="threejs_center"><img style="width: 528px;" src="../resources/images/windmill-missing-cloth.jpg"></div>
 
-風車の羽根のマテリアルは両面に適用する必要があり、これは[マテリアルの記事](threejs-materials.html)で説明しました。
+風車の羽根のマテリアルは両面に適用する必要があり、これは[マテリアルの記事](materials.html)で説明しました。
 MTLファイルを簡単に修正する方法はありません。
 私の思いつきではこの問題を修正する3つの方法があります。
 
@@ -198,7 +198,7 @@ MTLファイルを簡単に修正する方法はありません。
 この変更で背面から見た時にはまだ風車の羽根に布が見えるはずですが、もう1つ問題があります。
 近くで拡大すると濃淡のむらがある事がわかります。
 
-<div class="threejs_center"><img style="width: 700px;" src="resources/images/windmill-blocky.jpg"></div>
+<div class="threejs_center"><img style="width: 700px;" src="../resources/images/windmill-blocky.jpg"></div>
 
 これはどうしたんでしょう？
 
@@ -207,7 +207,7 @@ MTLファイルを簡単に修正する方法はありません。
 ノーマルマップは一般的に紫色ですが、バンプマップは黒と白になっています。
 ノーマルマップはサーフェスの方向を表し、バンプマップはサーフェスの高さを表します。
 
-<div class="threejs_center"><img style="width: 256px;" src="../resources/models/windmill/windmill_001_base_NOR.jpg"></div>
+<div class="threejs_center"><img style="width: 256px;" src="../examples/resources/models/windmill/windmill_001_base_NOR.jpg"></div>
 
 [MTLLoaderのソースを見ると](https://github.com/mrdoob/three.js/blob/1a560a3426e24bbfc9ca1f5fb0dfb4c727d59046/examples/js/loaders/MTLLoader.js#L432)ノーマルマップのキーワード `norm` を期待しているのでMTLファイルを編集してみましょう。
 
@@ -245,13 +245,13 @@ map_Ns windmill_001_base_SPEC.jpg
 
 これでロードするとノーマルマップとして扱うようになり、風車の羽根の裏が描画されるようになりました。
 
-{{{example url="../threejs-load-obj-materials-fixed.html" }}}
+{{{example url="load-obj-materials-fixed.html" }}}
 
 別のファイルを読み込んでみましょう。
 
 ネットで検索すると[Roger Gerzner / GERIZ.3D Art](http://www.gerzi.ch/)で作られた[CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/)の風車の3Dモデルを見つけました。
 
-<div class="threejs_center"><img src="resources/images/windmill-obj-2.jpg"></div>
+<div class="threejs_center"><img src="../resources/images/windmill-obj-2.jpg"></div>
 
 これにはOBJファイルが既にありました。
 それをロードしてみましょう（ここでMTLローダーを削除した事に注意して下さい）
@@ -261,7 +261,7 @@ map_Ns windmill_001_base_SPEC.jpg
 +  objLoader.load('resources/models/windmill-2/windmill.obj', ...
 ```
 
-{{{example url="../threejs-load-obj-wat.html" }}}
+{{{example url="load-obj-wat.html" }}}
 
 うーん、何も出てこない...。何が問題でしょうか？
 モデルのサイズはどれくらいなんだろう？
@@ -281,7 +281,7 @@ objLoader.load('resources/models/windmill_2/windmill.obj', (root) => {
 +  console.log(boxCenter);
 ```
 
-[JavaScriptコンソール](threejs-debugging-javascript.html)を見ると
+[JavaScriptコンソール](debugging-javascript.html)を見ると
 
 ```js
 size 2123.6499788469982
@@ -291,7 +291,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 現在カメラは `near` が0.1、`far` が100で約100ユニットしか表示されていません。
 地上は40ユニットしかなく、この風車のモデルは2000ユニットと非常に大きく、カメラとその全ての部分が錐台の外にあります。
 
-<div class="threejs_center"><img style="width: 280px;" src="resources/images/camera-inside-windmill.svg"></div>
+<div class="threejs_center"><img style="width: 280px;" src="../resources/images/camera-inside-windmill.svg"></div>
 
 手動で修正することもできますが、シーンを自動でフレーム化する事もできます。
 
@@ -299,14 +299,14 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 先ほど計算したボックスを使いシーン全体を表示するためにカメラの設定を調整する事ができます。カメラをどこに置くかは *正解はない* 事に注意して下さい。
 どの方向から見てもどの高さでも向き合う事ができるので何かを選ぶしかないですね。
 
-[カメラの記事](threejs-cameras.html)で説明したようにカメラは錐台を定義します。
+[カメラの記事](cameras.html)で説明したようにカメラは錐台を定義します。
 視野 (`fov`) と `near` と `far` の設定によって錐台が定義されます。
 カメラが現在持っている視野がどのようなものであっても、シーンが入っているボックスが画面外が永遠に伸びていると仮定して画面外の中に収まるように、カメラはどのくらい離れている必要があるのかを知りたいです。
 つまり `near` は0.00000001、`far` は無限大であるとすると `near` は0.00000001、`far` は無限大です。
 
 ボックスの大きさと視野が分かっているので次のような三角形ができます。
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/camera-fit-scene.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/camera-fit-scene.svg"></div>
 
 左側にカメラがあり、青い錐台が突き出しているのが分かります。
 風車が入っているボックスを計算してみました。
@@ -315,7 +315,7 @@ center p {x: -0.00006103515625, y: 770.0909731090069, z: -3.313507080078125}
 基本的な *直角三角形* の三角法と[SOHCAHTOA](https://www.google.com/search?q=SOHCAHTOA)を使用します。
 視野とボックスの大きさが分かっていれば *距離* を計算できます。
 
-<div class="threejs_center"><img style="width: 600px;" src="resources/images/field-of-view-camera.svg"></div>
+<div class="threejs_center"><img style="width: 600px;" src="../resources/images/field-of-view-camera.svg"></div>
 
 この図に基づいて距離を計算する式は次のようになります。
 
@@ -387,14 +387,14 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
 
 それを試してみると...
 
-{{{example url="../threejs-load-obj-auto-camera.html" }}}
+{{{example url="load-obj-auto-camera.html" }}}
 
 これはほぼ動作してますね。
 カメラを回転させるためにマウスを使用し、風車が表示されるはずです。
 問題は風車が大きく、箱の中心が(0,770,0)くらいにあります。
 つまり、カメラをスタート地点(0, 10, 20)から中心から `距離` 単位で移動させると、カメラは中心に対して相対的に風車の下をほぼ真下に移動しています。
 
-<div class="threejs_center"><img style="width: 360px;" src="resources/images/computed-camera-position.svg"></div>
+<div class="threejs_center"><img style="width: 360px;" src="../resources/images/computed-camera-position.svg"></div>
 
 ボックスの中心からカメラのある方向に横に移動するように変更してみましょう。
 そのために必要なのはボックスからカメラまでのベクトルの `y` をゼロにする事です。
@@ -415,7 +415,7 @@ function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
 
 風車の底を見ると小さな四角いものが見えます。それが地上面です。
 
-<div class="threejs_center"><img style="width: 365px;" src="resources/images/tiny-ground-plane.jpg"></div>
+<div class="threejs_center"><img style="width: 365px;" src="../resources/images/tiny-ground-plane.jpg"></div>
 
 40 × 40ユニットしかないので風車に比べて小さすぎます。
 風車の大きさが2000ユニットを超えているので、地上面の大きさをもっとピッタリしたものに変えてみましょう。
@@ -438,7 +438,7 @@ texture.repeat.set(repeats, repeats);
 
 これで風車を見る事ができます。
 
-{{{example url="../threejs-load-obj-auto-camera-xz.html" }}}
+{{{example url="load-obj-auto-camera-xz.html" }}}
 
 マテリアルを元に戻してみましょう。
 先ほどと同じようにテクスチャを参照しているMTLファイルがありますが、ファイルを見てみるとすぐに問題点が浮き上がります。
@@ -477,7 +477,7 @@ JPGはダウンロードするためにファイルをロス有り圧縮を行�
 ファイルリストを取得すると
 
 ```shell
- $ ls -l ../threejsfundamentals.org/threejs/resources/models/windmill
+ $ ls -l ../threejs.org/manual/examples/resources/models/windmill
  -rw-r--r--@ 1 gregg  staff     299 May 20  2009 windmill.mtl
  -rw-r--r--@ 1 gregg  staff  142989 May 20  2009 windmill.obj
  -rw-r--r--@ 1 gregg  staff  259927 Nov  7 18:37 windmill_diffuse.jpg
@@ -598,7 +598,7 @@ Three.jsではスペキュラカラーをどの程度反射させるかの入力
 
 それを考慮し試してみるとマテリアルが一杯になるはずです。
 
-{{{example url="../threejs-load-obj-materials-windmill2.html" }}}
+{{{example url="load-obj-materials-windmill2.html" }}}
 
 モデルをロードするとこのような問題が発生することがよくあります。
 よくある問題には以下のようなものがあります。
@@ -628,7 +628,7 @@ Three.jsではスペキュラカラーをどの程度反射させるかの入力
   Webページはできるだけ速く読みたいので、テクスチャをできるだけ小さく、かつ見栄えの良いものにする必要があります。
   実際に最初の風車では、間違いなくテクスチャについて何かをするべきでした。現在のサイズ合計は10MBです!
 
-   [テクスチャの記事](threejs-textures.html)で述べたようにテクスチャはメモリを取ります。
+   [テクスチャの記事](textures.html)で述べたようにテクスチャはメモリを取ります。
    4096 x 4096に展開された50kのJPGは高速にダウンロードされますが、大量のメモリを消費する事を覚えておいて下さい。
 
 最後に見せたかったのは風車を回している所です。残念ながらOBJファイルには階層がありません。

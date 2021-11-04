@@ -24,7 +24,7 @@ both
 
 ```html
 <script type="module">
-import * as THREE from './resources/threejs/r132/build/three.module.js';
+import * as THREE from '../../build/three.module.js';
 
 ...
 
@@ -34,7 +34,7 @@ import * as THREE from './resources/threejs/r132/build/three.module.js';
 Paths must be absolute or relative. Relative paths always start with `./` or `../`
 which is different than other tags like `<img>` and `<a>` and css references.
 
-More details are mentioned at the bottom of [this article](threejs-fundamentals.html).
+More details are mentioned at the bottom of [this article](fundamentals.html).
 
 ## `document.querySelector` and `document.querySelectorAll`
 
@@ -379,7 +379,7 @@ Some examples
 If you enable [the `no-undef` rule](https://eslint.org/docs/rules/no-undef) then
 VSCode via ESLint will warn you of many undefined variables. 
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-defined.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-defined.png"></div>
 
 Above you can see I mis-spelled `doTheThing` as `doThing`. There's a red squiggle
 under `doThing` and hovering over it it tells me it's undefined. One error
@@ -388,7 +388,7 @@ avoided.
 If you're using `<script>` tags to include three.js you'll get warnings using `THREE` so add `/* global THREE */` at the top of your
 JavaScript files to tell eslint that `THREE` exists. (or better, use `import` 😉)
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-not-a-constructor.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-not-a-constructor.png"></div>
 
 Above you can see eslint knows the rule that `UpperCaseNames` are constructors
 and so you should be using `new`. Another error caught and avoided. This is [the
@@ -400,11 +400,11 @@ should use `const` and `let` over `var`.
 
 Here I used `var` and it warned me I should use `let` or `const`
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-var.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-var.png"></div>
 
 Here I used `let` but it saw I never change the value so it suggested I use `const`.
 
-<div class="threejs_center"><img style="width: 615px;" src="resources/images/vscode-eslint-let.png"></div>
+<div class="threejs_center"><img style="width: 615px;" src="../resources/images/vscode-eslint-let.png"></div>
 
 Of course if you'd prefer to keep using `var` you can just turn off that rule.
 As I said above though I prefer to use `const` and `let` over `var` as they just
