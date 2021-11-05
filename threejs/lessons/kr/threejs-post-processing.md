@@ -155,7 +155,7 @@ if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 이제 어떻게 값을 지정해야 하는지 알았으니 이 값을 조작하는 GUI를 만들어봅시다.
 
 ```js
-import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
+import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 일단 모듈을 로드합니다.

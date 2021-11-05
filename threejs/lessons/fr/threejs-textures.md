@@ -441,7 +441,7 @@ const material = new THREE.MeshBasicMaterial({
 Ensuite, utilisons [dat.GUI](https://github.com/dataarts/dat.gui) pour fournir une interface simple.
 
 ```js
-import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 Comme nous l'avons fait dans les exemples précédents avec dat.GUI, nous utiliserons une classe simple pour donner à dat.GUI un objet qu'il peut manipuler en degrés mais qu'il définira en radians.

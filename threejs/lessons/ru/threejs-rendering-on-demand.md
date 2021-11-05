@@ -174,7 +174,7 @@ render();
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
++import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 Давайте позволим установить цвет и шкалу х каждого куба. Чтобы установить цвет, мы будем использовать `ColorGUIHelper`, который мы создали в [статье о светах](lights.html).

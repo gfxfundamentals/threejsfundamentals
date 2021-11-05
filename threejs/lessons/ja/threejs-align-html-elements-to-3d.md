@@ -703,7 +703,7 @@ for (const countryInfo of countryInfos) {
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
++import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 ```js

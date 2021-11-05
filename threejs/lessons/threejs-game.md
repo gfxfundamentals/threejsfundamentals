@@ -1682,7 +1682,7 @@ import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
 import * as SkeletonUtils from '/examples/jsm/utils/SkeletonUtils.js';
-+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
++import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 ```js

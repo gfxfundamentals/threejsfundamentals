@@ -520,7 +520,7 @@ const material = new THREE.MeshBasicMaterial({
 다시 한 번 [dat.GUI](https://github.com/dataarts/dat.gui)가 등장할 때입니다.
 
 ```js
-import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
+import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 이전 예제처럼 간단한 헬퍼 클래스를 만들어 각도(degrees)로 값을 조절하면

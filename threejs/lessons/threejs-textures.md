@@ -529,7 +529,7 @@ const material = new THREE.MeshBasicMaterial({
 Then we'll use [dat.GUI](https://github.com/dataarts/dat.gui) again to provide a simple interface.
 
 ```js
-import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 As we did in previous dat.GUI examples we'll use a simple class to

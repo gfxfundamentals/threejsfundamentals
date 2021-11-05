@@ -155,7 +155,7 @@ render();
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
++import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 这个控制器可以改变每个立方体的颜色和在x方向缩放. 为了设置颜色我们用了`ColorGUIHelper`, 这个在[光线](lights.html)一章提到过

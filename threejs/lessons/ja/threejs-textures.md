@@ -510,7 +510,7 @@ const material = new THREE.MeshBasicMaterial({
 ここでも、簡単なインターフェースを提供するために[dat.GUI](https://github.com/dataarts/dat.gui)を使います。
 
 ```js
-import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 以前のdat.GUIの例でしたように、dat.GUIに度数で操作できるオブジェクトを与え、

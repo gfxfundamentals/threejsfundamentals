@@ -178,7 +178,7 @@ render();
 ```js
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
++import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. [조명에 관한 글](lights.html)에서

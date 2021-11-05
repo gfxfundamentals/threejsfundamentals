@@ -370,7 +370,7 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
 ```js
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
++import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
 ```
 
 {{{example url="transparency-intersecting-planes-alphatest.html"}}}
