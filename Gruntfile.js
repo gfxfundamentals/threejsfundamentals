@@ -76,6 +76,7 @@ module.exports = function(grunt) {
           { expand: false, src: '3rdparty/split.min.js', dest: '../three.js/manual/3rdparty/split.min.js', },
           { expand: false, src: 'threejs/lessons/lang.css', dest: '../three.js/manual/resources/lang.css', },
           { expand: false, src: 'threejs/lessons/kr/lang.css', dest: '../three.js/manual/ko/lang.css', },
+          { expand: true, cwd: 'threejs/lessons/kr/resources', src: '**', dest: '../three.js/manual/ko/resources', },
           { expand: false, src: 'threejs/lessons/zh_cn/lang.css', dest: '../three.js/manual/zh_cn/lang.css', },
           { expand: false, src: 'index.html', dest: '../three.js/manual/index.html', },
           //{ expand: true, src: '3rdparty/**', dest: '../three.js/manual/', },
