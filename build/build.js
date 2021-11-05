@@ -699,9 +699,9 @@ const Builder = function(outBaseDir, options) {
       if (data) {
         link = data.headers.link || data.link;
       } else {
-        return;  // no translation
-        //data = g_originalByFileName[fileName];
-        //link = data.headers.link || addLangToLink(data.link);
+        // no translation
+        data = g_originalByFileName[fileName];
+        link = data.headers.link || addLangToLink(data.link);
       }
       const toc = data.headers.toc || data.headers.title;
       if (toc === '#') {
@@ -882,12 +882,12 @@ const Builder = function(outBaseDir, options) {
     const missing = g_origArticles.filter(name => articlesFilenames.indexOf(name) < 0);
     for (const name of missing) {
       const ext = path.extname(name);
-      const baseName = name.substr(0, name.length - ext.length);
-      const outFileName = path.join(outBaseDir, options.lessonsDstPath, baseName + '.html');
+      const baseName = name.substr(0, name.length - ext.length).replace('threejs-', '');
+      const outFileName = path.join(options.lessonsDstPath, baseName + '.html');
       const data = {...loadMD(path.join(g_origPath, name))};
       data.content = g_langInfo.missing;
       const extra = {
-        origLink: '/' + slashify(path.join(g_origPath, baseName + '.html')),
+        origLink: '/manual/en/' + baseName + '.html',
         toc: options.toc,
       };
       console.log('  generating missing:', outFileName);  // eslint-disable-line

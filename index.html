@@ -69,21 +69,11 @@
 
 			let language = 'en';
 
-			if ( /^(api|manual|examples)/.test( hash ) ) {
+			const hashLanguage = /^(.*?)\//.exec( hash );
 
-				const hashLanguage = /^(api|manual|examples)\/(.*?)\//.exec( hash );
+			if ( hashLanguage ) {
 
-				if ( hashLanguage === null ) {
-
-					// Route old non-localized api links
-
-					window.location.hash = hash.replace( /^(api|manual|examples)/, '$1/en' );
-
-				} else {
-
-					language = hashLanguage[ 2 ];
-
-				}
+				language = hashLanguage[ 1 ];
 
 			}
 
