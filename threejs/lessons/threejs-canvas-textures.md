@@ -261,7 +261,7 @@ What's left is to add some `OrbitControls` so we can move
 the camera.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 

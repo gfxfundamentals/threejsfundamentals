@@ -243,7 +243,7 @@ it for skinned animated characters. Fortunately there's a utility function,
 the utils.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
 +import * as SkeletonUtils from '/examples/jsm/utils/SkeletonUtils.js';
@@ -1678,11 +1678,11 @@ While we're at it lets make it so we can turn them on/off using dat.GUI like
 we've used else where
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
 import * as SkeletonUtils from '/examples/jsm/utils/SkeletonUtils.js';
-+import {GUI} from '../3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 ```js

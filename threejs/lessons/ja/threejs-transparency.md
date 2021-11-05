@@ -360,7 +360,7 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
 ```js
 import * as THREE from './resources/three/r119/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r119/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '../3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 その結果がこちらです。

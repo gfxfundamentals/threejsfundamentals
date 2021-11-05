@@ -368,9 +368,9 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
 물론 dat.GUI 모듈도 불러와야죠.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '../3rdparty/dat.gui.module.js';
++import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 {{{example url="transparency-intersecting-planes-alphatest.html"}}}

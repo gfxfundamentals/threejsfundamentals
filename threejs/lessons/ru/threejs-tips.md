@@ -367,7 +367,7 @@ three.js не конфликтует с JavaScript, выполняющим др�
 На вашей веб-странице просто вставьте iframe, например 
 
 ```html
-<iframe id="background" src="threejs-responsive.html">
+<iframe id="background" src="responsive.html">
 <div>
   Your content goes here.
 </div>

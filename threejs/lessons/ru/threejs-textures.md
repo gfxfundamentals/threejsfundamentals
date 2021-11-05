@@ -521,7 +521,7 @@ const material = new THREE.MeshBasicMaterial({
 для обеспечения простого интерфейса.
 
 ```js
-import {GUI} from '../3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 Как мы делали в предыдущих примерах dat.GUI, мы будем использовать простой класс, 

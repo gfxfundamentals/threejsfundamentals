@@ -26,7 +26,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 별도 모듈이므로, 먼저 페이지에 로드해야 합니다.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -447,7 +447,7 @@ gui.add(light, 'penumbra', 0, 1, 0.01);
 `RectAreaLightHelper`도 같이 불러와 조명을 시각화하겠습니다.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import { RectAreaLightUniformsLib } from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
 +import { RectAreaLightHelper } from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```

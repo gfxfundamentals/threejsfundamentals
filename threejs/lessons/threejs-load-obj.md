@@ -143,7 +143,7 @@ Now that we have the textures available we can load the .MTL file.
 First we need to include the `MTLLoader`;
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 import {OBJLoader} from '/examples/jsm/loaders/OBJLoader.js';
 +import {MTLLoader} from '/examples/jsm/loaders/MTLLoader.js';

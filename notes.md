@@ -1,1 +1,3 @@
-* make it go to lang on index
+* fix vr
+* fix offscreen canvas export
+* fix lots of objects animated

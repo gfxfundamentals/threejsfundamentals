@@ -387,7 +387,7 @@ for (let z = 0; z < cellsDeep; ++z) {
 * добавим `OrbitControls`
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 

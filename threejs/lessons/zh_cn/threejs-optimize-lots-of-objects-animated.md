@@ -313,7 +313,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 我们这里首先引入它
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {BufferGeometryUtils} from '/examples/jsm/utils/BufferGeometryUtils.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {TWEEN} from '/examples/jsm/libs/tween.min.js';

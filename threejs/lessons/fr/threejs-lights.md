@@ -22,7 +22,7 @@ const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 Ajoutons ensuite `OrbitControls`. `OrbitControls` permet à l'utilisateur de tourner ou de mettre la caméra en *orbite* autour d'un certain point. Il s'agit d'une fonctionnalité facultative de Three.js, nous devons donc d'abord l'importer
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -402,7 +402,7 @@ Le [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight) ne f
 Pour utiliser [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight) nous devons importer [`RectAreaLightHelper`](https://threejs.org/docs/#api/en/helpers/RectAreaLightHelper) pour nous aider à voir la lumière.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
 +import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```

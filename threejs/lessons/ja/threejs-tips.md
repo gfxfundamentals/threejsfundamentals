@@ -347,7 +347,7 @@ body {
 ウェブページへiframeを挿入したとします。例えば
 
 ```html
-<iframe id="background" src="threejs-responsive.html">
+<iframe id="background" src="responsive.html">
 <div>
   Your content goes here.
 </div>

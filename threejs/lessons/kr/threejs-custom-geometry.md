@@ -429,7 +429,7 @@ for (let z = 0; z < cellsDeep; ++z) {
 `OrbitControls`를 추가하고,
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 

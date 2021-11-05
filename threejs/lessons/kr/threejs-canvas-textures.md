@@ -236,7 +236,7 @@ const scene = new THREE.Scene();
 마지막으로 `OrbitControls`를 넣어 카메라를 움직일 수 있도록 합니다.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 

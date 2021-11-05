@@ -26,7 +26,7 @@ TOC: HTML 요소를 3D로 정렬하기
 여기에 `OrbitControls`를 넣습니다. [조명에 관한 글](lights.html)에서 다뤘었죠.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -652,9 +652,9 @@ for (const countryInfo of countryInfos) {
 마지막으로 어떤 값이 적당한지 알기 어려우니 이 값을 조정할 수 있도록 GUI를 추가합니다.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '../3rdparty/dat.gui.module.js';
++import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 ```js

@@ -446,7 +446,7 @@ A few minor changes to make it easier to view.
 * include the `OrbitControls`
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 

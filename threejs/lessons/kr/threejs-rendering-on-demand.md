@@ -30,7 +30,7 @@ requestAnimationFrame(render);
 먼저 뭔가 변화를 일으킬 수 있는 요소가 필요하니 `OrbitControls`를 추가합니다.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 
 ...
@@ -176,9 +176,9 @@ render();
 간단한 dat.GUI를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '../3rdparty/dat.gui.module.js';
++import { GUI } from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. [조명에 관한 글](lights.html)에서

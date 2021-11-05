@@ -29,7 +29,7 @@ an optional feature of three.js so first we need to include them
 in our page
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -477,7 +477,7 @@ To use the `RectAreaLight` we need to include some extra three.js optional data 
 include the `RectAreaLightHelper` to help us visualize the light
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {RectAreaLightUniformsLib} from '/examples/jsm/lights/RectAreaLightUniformsLib.js';
 +import {RectAreaLightHelper} from '/examples/jsm/helpers/RectAreaLightHelper.js';
 ```

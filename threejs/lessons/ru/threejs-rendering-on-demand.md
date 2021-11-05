@@ -26,7 +26,7 @@ requestAnimationFrame(render);
 Сначала мы добавим в OrbitControls, чтобы можно было что-то изменить, что мы можем сделать в ответ. 
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -172,9 +172,9 @@ render();
 Давайте также добавим простой графический интерфейс dat.GUI и внесем его изменения по запросу. 
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '../3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 Давайте позволим установить цвет и шкалу х каждого куба. Чтобы установить цвет, мы будем использовать `ColorGUIHelper`, который мы создали в [статье о светах](lights.html).

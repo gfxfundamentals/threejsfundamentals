@@ -24,7 +24,7 @@ requestAnimationFrame(render);
 最初に `OrbitControls` を追加します。これで何かの変更を反映してレンダリングする事ができます。
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -167,9 +167,9 @@ render();
 シンプルなdat.GUIを追加し、GUIで値の変更時にレンダリングを要求してみましょう。
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '../3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 各キューブの色と×スケールを設定できるようにしましょう。

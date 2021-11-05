@@ -24,7 +24,7 @@ First we'll add in the `OrbitControls` so there is something that could change
 that we can render in response to.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -153,9 +153,9 @@ render();
 让我们加一个简单的GUI
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '../3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 这个控制器可以改变每个立方体的颜色和在x方向缩放. 为了设置颜色我们用了`ColorGUIHelper`, 这个在[光线](lights.html)一章提到过

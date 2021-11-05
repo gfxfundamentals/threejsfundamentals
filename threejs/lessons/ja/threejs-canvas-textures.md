@@ -254,7 +254,7 @@ const scene = new THREE.Scene();
 残作業はカメラを動かせるように `OrbitControls` を追加します。
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 

@@ -146,7 +146,7 @@ if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 让我们快速创建一个GUI来设置这些值
 
 ```glsl
-import {GUI} from '../3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 和

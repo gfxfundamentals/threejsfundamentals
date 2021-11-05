@@ -342,7 +342,7 @@ showFileInfo(fileInfos, fileInfos[0]);
 アニメーションライブラリをimportする必要があります。
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import * as BufferGeometryUtils from '/examples/jsm/utils/BufferGeometryUtils.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 +import {TWEEN} from '/examples/jsm/libs/tween.min.js';

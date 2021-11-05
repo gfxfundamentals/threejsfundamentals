@@ -337,7 +337,7 @@ body {
 해당 웹 페이지에 iframe만 추가하면 되죠.
 
 ```html
-<iframe id="background" src="threejs-responsive.html">
+<iframe id="background" src="responsive.html">
 <div>
   내용 내용 내용 내용
 </div>

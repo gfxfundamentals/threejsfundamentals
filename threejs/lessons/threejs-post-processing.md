@@ -192,7 +192,7 @@ So which makes it pretty clear how to set them.
 Let's make a quick GUI to set those values
 
 ```js
-import {GUI} from '../3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 and

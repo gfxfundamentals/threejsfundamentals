@@ -426,7 +426,7 @@ const material = new THREE.MeshBasicMaterial({
 然后，我们会再次使用 [dat.GUI](https://github.com/dataarts/dat.gui) 来提供一个简单的界面。
 
 ```js
-import {GUI} from '../3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 正如我们在之前的dat.GUI例子中所做的那样，我们将使用一个简单的类来给dat.GUI提供一个可以以度数为单位进行操作的对象，但它将以弧度为单位设置该属性。

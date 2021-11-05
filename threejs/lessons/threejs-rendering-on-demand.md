@@ -30,7 +30,7 @@ First we'll add in the `OrbitControls` so there is something that could change
 that we can render in response to.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 +import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 ```
 
@@ -179,9 +179,9 @@ below slides.
 Let's also add a simple dat.GUI GUI and make its changes render on demand.
 
 ```js
-import * as THREE from './build/three.module.js';
+import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '../3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/dat.gui.module.js';
 ```
 
 Let's allow setting the color and x scale of each cube. To be able to set the
