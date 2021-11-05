@@ -67,6 +67,29 @@ class ControllerPickHelper {
 Without doing anything else this alone would give us 1 or 2 lines in the scene
 showing where the user's pointing devices are and which way they are pointing.
 
+One problem we have though, we don't want have our `RayCaster` pick the line itself
+so an easy solution is separate the objects we wanted to be able to pick from the
+objects we don't by parenting them under another `Object3D`.
+
+```js
+const scene = new THREE.Scene();
++// object to put pickable objects on so we can easily
++// separate them from non-pickable objects
++const pickRoot = new THREE.Object3D();
++scene.add(pickRoot);
+
+...
+
+function makeInstance(geometry, color, x) {
+  const material = new THREE.MeshPhongMaterial({color});
+
+  const cube = new THREE.Mesh(geometry, material);
+-  scene.add(cube);
++  pickRoot.add(cube);
+
+...
+```
+
 Next let's add some code to pick from the controllers. This is the first time
 we've picked with something not the camera. In our [article on picking](picking.html)
 the user uses the mouse or finger to pick which means picking comes from the camera
@@ -99,7 +122,7 @@ class ControllerPickHelper {
       this.controllers.push({controller, line});
     }
   }
-+  update(scene, time) {
++  update(pickablesParent, time) {
 +    this.reset();
 +    for (const {controller, line} of this.controllers) {
 +      // cast a ray through the from the controller
@@ -107,7 +130,7 @@ class ControllerPickHelper {
 +      this.raycaster.ray.origin.setFromMatrixPosition(controller.matrixWorld);
 +      this.raycaster.ray.direction.set(0, 0, -1).applyMatrix4(this.tempMatrix);
 +      // get the list of objects the ray intersected
-+      const intersections = this.raycaster.intersectObjects(scene.children);
++      const intersections = this.raycaster.intersectObjects(pickablesParent.children);
 +      if (intersections.length) {
 +        const intersection = intersections[0];
 +        // make the line touch the object
@@ -152,7 +175,7 @@ class ControllerPickHelper {
 +    this.objectToColorMap.clear();
 +    this.controllerToObjectMap.clear();
 +  }
-  update(scene, time) {
+  update(pickablesParent, time) {
 +    this._reset();
 
     ...
@@ -209,7 +232,7 @@ function render(time) {
 
   ...
 
-+  pickHelper.update(scene, time);
++  pickHelper.update(pickablesParent, time);
 
   renderer.render(scene, camera);
 }
