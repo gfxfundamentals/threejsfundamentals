@@ -420,22 +420,18 @@
 
 		// Routing
 
-		function setUrlFragment( pageName ) { // eslint-disable-line no-undef
+		function setUrl( href ) { // eslint-disable-line no-undef
 
-			// Handle navigation from the subpages (iframes):
-			// First separate the member (if existing) from the page name,
-			// then identify the subpage's URL and set it as URL fragment (re-adding the member)
-
-			const splitPageName = decomposePageName( pageName, '.', '.' );
-
-			const currentProperties = pageProperties[ splitPageName[ 0 ] ];
-
-			if ( currentProperties ) {
-
-				window.location.hash = currentProperties.pageURL + splitPageName[ 1 ];
-
+			// yea I know this is hacky.
+			const url = new URL(href);
+			const re = /^(\/(?:manual|docs\/#?\w+))\/(\w\w|\w\w_\w\w)\/(.*?)$/;
+			const m = re.exec(`${url.pathname}${url.search}${url.hash}`);
+			const [,base, lang, path] = m;
+			if (base.includes('manual')) {
+				window.location.hash = `#${lang}/${path.replace('.html', '')}`;
 				createNewIframe();
-
+			} else {
+				window.location.href = href;
 			}
 
 		}
