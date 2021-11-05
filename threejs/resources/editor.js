@@ -181,7 +181,7 @@ async function getWorkerScripts(text, baseUrl, scriptInfos = {}) {
   const importRE = /(import.*?)('|")(.*?)('|")/g;
 
   const newScripts = [];
-  const slashRE = /\/manual\/[^/]+$/;
+  const slashRE = /\/manual\/examples\/[^/]+$/;
 
   function replaceWithUUID(match, prefix, quote, url) {
     const fqURL = getFQUrl(url, baseUrl);
