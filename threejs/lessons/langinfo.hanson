@@ -4,14 +4,14 @@
   defaultExampleCaption: "click here to open in a separate window",
   title: 'three.js fundamentals',
   description: 'Learn Three.js',
-  link: 'http://threejsfundamentals.org/',
+  link: 'https://threejs.org/',
   commentSectionHeader: `
     <div>
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/discussions">Question</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=&template=request.md&title=">Request</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>?
-       <a href="https://github.com/gfxfundamentals/threejsfundamentals/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?
+       <a href="https://github.com/mrdoob/three.js/discussions">Question</a>?
+       <a href="https://github.com/mrdoob/three.js/issues/new?assignees=&labels=suggested+topic&template=suggest-topic.md&title=%5BSUGGESTION%5D">Suggestion</a>?
+       <a href="https://github.com/mrdoob/three.js/issues/new?assignees=&labels=&template=request.md&title=">Request</a>?
+       <a href="https://github.com/mrdoob/three.js/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Issue</a>?
+       <a href="https://github.com/mrdoob/three.js/issues/new?assignees=&labels=bug+%2F+issue&template=bug-issue-report.md&title=">Bug</a>?
     </div>
     <div class="lesson-comment-notes">
        Use <b>&lt;pre&gt;&lt;code&gt;</b>code goes here<b>&lt;/code&gt;&lt;/pre&gt;</b> for code blocks
@@ -19,7 +19,7 @@
   `,
   missing: `
      Sorry this article has not been translated yet.
-     [Translations Welcome](https://github.com/gfxfundamentals/threejsfundamentals)! 😄
+     [Translations Welcome](https://github.com/mrdoob/three.js)! 😄
      
      [Here's the original English article for now]({{{origLink}}}).
   `,

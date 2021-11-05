@@ -367,7 +367,7 @@ Googleマップのような地球儀を描いて、国名のラベルを貼っ�
 国境を含む[このデータ](http://thematicmapping.org/downloads/world_borders.php)を見つけました。
 このデータは[CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/)ライセンスです。
 
-データを読み込んで、国の概要と国名、その位置を含むJSONデータを生成するための[コード](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)を書いてみました。
+データを読み込んで、国の概要と国名、その位置を含むJSONデータを生成するための[コード](https://github.com/mrdoob/three.js/blob/master/manual/resources/tools/geo-picking/)を書いてみました。
 
 <div class="threejs_center"><img src="../examples/resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
 

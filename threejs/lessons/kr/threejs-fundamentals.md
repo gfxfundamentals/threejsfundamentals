@@ -448,10 +448,4 @@ import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js
 import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
 import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>만약 여러분이 <code>&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code> 같은 스타일을 선호한다면,
-<a href="https://r105.threejsfundamentals.org">이 사이트의 이전 버젼을 확인해보시기 바랍니다</a>.
-Three.js에는 하위 호환성을 보장하는 정책이 있습니다. Three.js의 개발자들은 여러분이 특정 버젼을 골라서 쓸
-거라고 가정 하에 라이브러리를 개발하죠. 새 버젼으로 업그레이드할 때는 <a href="https://github.com/mrdoob/three.js/wiki/Migration-Guide">마이그레이션 가이드</a>를 참조해 바뀐 사항을 업데이트 하면 됩니다. es6 모듈과 스크립트
-버젼을 모두 다루기는 너무 버거우니 이 사이트에서는 es6 모듈 스타일만 사용할 것입니다. 개발자들이 늘상 추천하듯
-구형 브라우저를 지원하려면 바벨 등의 <a href="https://babeljs.io">트랜스파일러</a>를 찾아보기 바랍니다.</p>
 </div>

@@ -478,15 +478,4 @@ import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js
 import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
 import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>Si vous préférez la vieille manière <code>&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code>,
-vous pouvez consulter <a href="https://r105.threejsfundamentals.org">une version plus ancienne de ce site</a>.
-Three.js a pour politique de ne pas s'embarrasser avec la rétro compatibilité.
-Cela suppose que vous utilisez une version spécifique de la bibliothèque que vous aurez téléchargé et
-incorporé à votre projet. Lors de la mise à jour vers une nouvelle version de Three.js,
-vous pouvez lire le <a href="https://github.com/mrdoob/three.js/wiki/Migration-Guide">guide de migration</a>
-pour voir ce que vous avez à changer. Cela nécessiterait beaucoup de travail de maintenir
-à la fois une version de ce site avec les modules es6 et une autre avec le script global.
-Pour cela, nous n'utiliserons que les modules es6. Comme dit par ailleurs,
-pour le support des anciens navigateurs, vous pouvez utiliser un
-<a href="https://babeljs.io">transpileur</a>.</p>
 </div>

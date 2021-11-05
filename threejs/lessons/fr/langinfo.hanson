@@ -4,11 +4,11 @@
   defaultExampleCaption: "Cliquer ici pour ouvrir dans une fenêtre séparée",
   title: 'Three.js, notions de base',
   description: 'Apprendre à utiliser Three.js.',
-  link: 'http://threejsfundamentals.org/',
+  link: 'https://threejs.org/',
   commentSectionHeader: `
     <div>Problèmes / bug ? <a href="http://github.com/gfxfundamentals/threejsfundamentals/issues">Les reporter sur github</a>.</div>
   `,
-  missing: "Désolé, cet article n'a pas encore été traduit. [Les traductions sont le bienvenue](https://github.com/gfxfundamentals/threejsfundamentals)! 😄\n\n[Voici l'article anglais originel pour le moment]({{{origLink}}}).",
+  missing: "Désolé, cet article n'a pas encore été traduit. [Les traductions sont le bienvenue](https://github.com/mrdoob/three.js)! 😄\n\n[Voici l'article anglais originel pour le moment]({{{origLink}}}).",
   toc: 'Table des matières',
   categoryMapping: {
     'basics': 'Bases',

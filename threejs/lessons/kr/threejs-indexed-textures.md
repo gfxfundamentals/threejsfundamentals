@@ -23,7 +23,7 @@ Three.js를 쓰다보면 창의적인 해결법이 필요할 때가 있습니다
 
 일단 각 나라에 고유한 색상을 부여한 뒤, 이 색상값을 인덱스로 나라 배열을 만듭니다. 그리고 피킹용 텍스처를 만든 뒤 이걸로 지구본을 렌더링합니다. 이러면 사용자가 클릭한 픽셀을 확인해 어떤 나라를 클릭했는지 알 수 있겠죠.
 
-먼저 [약간의 코드](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)를 작성해 아래의 텍스처를 만들었습니다.
+먼저 [약간의 코드](https://github.com/mrdoob/three.js/blob/master/manual/resources/tools/geo-picking/)를 작성해 아래의 텍스처를 만들었습니다.
 
 <div class="threejs_center"><img src="../examples/resources/data/world/country-index-texture.png" style="width: 700px;"></div>
 

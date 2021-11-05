@@ -357,6 +357,4 @@ import {OrbitControls} from './someFolder/examples/jsm/controls/OrbitControls.js
 import * as THREE from 'https://unpkg.com/three@0.108.0/<b>build/three.module.js</b>';
 import {OrbitControls} from 'https://unpkg.com/three@0.108.0/examples/jsm/controls/OrbitControls.js';
 </pre>
-<p>如果你偏向于旧式的<code>&lt;script src="path/to/three.js"&gt;&lt;/script&gt;</code>样式，你可以查看<a href="https://r105.threejsfundamentals.org">这个网站的旧版本</a>。
-Three.js的政策是不担心向后的兼容性。他们希望你使用特定的版本，就像希望你下载代码并把它放在你的项目中一样。当升级到较新的版本时，你可以阅读 <a href="https://github.com/mrdoob/three.js/wiki/Migration-Guide">迁移指南</a> 看看你需要改变什么。如果要同时维护一个es6模块和一个类脚本版本的网站，那工作量就太大了，所以今后本网站将只显示es6模块样式。正如其他地方说过的那样，为了支持旧版浏览器，请考虑使用<a href="https://babeljs.io">转换器</a>。</p>
 </div>

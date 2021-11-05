@@ -879,7 +879,6 @@ const Builder = function(outBaseDir, options) {
     }
 
     // generate place holders for non-translated files
-    /*
     const missing = g_origArticles.filter(name => articlesFilenames.indexOf(name) < 0);
     for (const name of missing) {
       const ext = path.extname(name);
@@ -899,7 +898,6 @@ const Builder = function(outBaseDir, options) {
           extra,
           data);
     }
-    */
 
     function utcMomentFromGitLog(result, filename, timeType) {
       const dateStr = result.stdout.split('\n')[0].trim();

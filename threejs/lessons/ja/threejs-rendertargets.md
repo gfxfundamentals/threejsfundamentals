@@ -4,7 +4,7 @@ TOC: レンダーターゲット
 
 レンダーターゲットとはレンダリングする先のテクスチャです。一度レンダリングすればテクスチャのように使うことができます。
 
-簡単な例を作ってみましょう。[レスポンシブデザインの記事](https://threejsfundamentals.org/threejs/lessons/threejs-responsive.html)にある例を試してみましょう。
+簡単な例を作ってみましょう。[レスポンシブデザインの記事](responsive.html)にある例を試してみましょう。
 
 レンダーターゲットへのレンダリングは通常のレンダリングとほぼ同じです。まず`WebGLRenderTarget`を作ります。
 
@@ -30,7 +30,7 @@ rtScene.background = new THREE.Color('red');
 
 アスペクトをキャンバスのアスペクトではなくレンダーターゲットのアスペクトに設定したことに注意してください。レンダリング先のアスペクトに合わせるのが正解です。この例では立方体の側面につかうテクスチャにレンダリング先にします。立方体の側面ば正方形なのでアスペクトは1.0です。
 
-いろいろ入れてみましょう。この例ではライトと３つの立方体を[この前の記事](https://threejsfundamentals.org/threejs/lessons/threejs-responsive.html)から使います。
+いろいろ入れてみましょう。この例ではライトと３つの立方体を[この前の記事](responsive.html)から使います。
 
 ```js
 {
@@ -115,7 +115,7 @@ function render(time) {
 
 立方体が赤いのはレンダーターゲットのテクスチャとしてレンダリングした`rtScene`の`background`を赤でクリアーしたからです。
 
-レンダーターゲットは色々な使い方ができます。[シャドウ](https://threejsfundamentals.org/threejs/lessons/threejs-shadows.html)もレンダーターゲットを使います。[ピッキング](https://threejsfundamentals.org/threejs/lessons/threejs-picking.html)もレンダーターゲットを使います。[ポストプロセッシング効果](https://threejsfundamentals.org/threejs/lessons/threejs-post-processing.html)もレンダーターゲットを使います。車のミラーを再現するために車の背後をレンダリングしたテクスチャを利用できますし、３Dゲームに出てくる監視モニターにも使うことができます。
+レンダーターゲットは色々な使い方ができます。[シャドウ](shadows.html)もレンダーターゲットを使います。[ピッキング](picking.html)もレンダーターゲットを使います。[ポストプロセッシング効果](post-processing.html)もレンダーターゲットを使います。車のミラーを再現するために車の背後をレンダリングしたテクスチャを利用できますし、３Dゲームに出てくる監視モニターにも使うことができます。
 
 `WebGLRenderTarget`を使う時にはいくつか注意点があります。
 

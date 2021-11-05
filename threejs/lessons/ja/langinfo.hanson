@@ -4,11 +4,11 @@
   defaultExampleCaption: 'ここをクリックして別のウィンドウで開きます',
   title: 'Three Fundamentals',
   description: 'Three.jsを学習する',
-  link: 'http://threejsfundamentals.org/threejs/lessons/ja',
+  link: 'https://threejs.org/',
   commentSectionHeader: `
-    <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
+    <div>Issue/Bug? <a href="https://github.com/mrdoob/three.js/issues">またはgithubでissueを作って下さい</a>.</div>
   `,
-  missing: 'すいません、この記事はまだ翻訳してません. [Translations Welcome](https://github.com/gfxfundamentals/threejsfundamentals)! 😄\n\n[ここに元の英語の記事があります]({{{origLink}}}).',
+  missing: 'すいません、この記事はまだ翻訳してません. [Translations Welcome](https://github.com/mrdoob/three.js)! 😄\n\n[ここに元の英語の記事があります]({{{origLink}}}).',
   toc: '目次',
   categoryMapping: {
     'basics': '基本',

@@ -43,7 +43,7 @@ Three.jsを使う時には、クリエイティブな解決策を考えなけれ
 この圧縮テクスチャ（インデックステクスチャ）を使って地球儀を画面外に描画します。
 ユーザーがクリックしたピクセルのカラーを見ると国のIDが分かります。
 
-そこでこのようなテクスチャを生成する[コード](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)を書いてみました。
+そこでこのようなテクスチャを生成する[コード](https://github.com/mrdoob/three.js/blob/master/manual/resources/tools/geo-picking/)を書いてみました。
 
 <div class="threejs_center"><img src="../examples/resources/data/world/country-index-texture.png" style="width: 700px;"></div>
 

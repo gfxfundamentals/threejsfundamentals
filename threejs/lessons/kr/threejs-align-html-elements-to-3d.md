@@ -336,7 +336,7 @@ z값은 소수점 단위의 값이기에 충분히 큰 숫자를 지정하지 �
 
 인터넷을 뒤져 [각 나라의 영역 데이터](http://thematicmapping.org/downloads/world_borders.php)를 찾았습니다. 라이선스는 [CC-BY-SA](http://creativecommons.org/licenses/by-sa/3.0/)네요.
 
-개인적으로 [코드를 작성](https://github.com/gfxfundamentals/threejsfundamentals/blob/master/threejs/lessons/tools/geo-picking/)해 각 나라의 윤곽선을 만들고 나라의 이름과 위치를 JSON 데이터로 만들었습니다. 
+개인적으로 [코드를 작성](https://github.com/mrdoob/three.js/blob/master/manual/resources/tools/geo-picking/)해 각 나라의 윤곽선을 만들고 나라의 이름과 위치를 JSON 데이터로 만들었습니다. 
 
 <div class="threejs_center"><img src="../examples/resources/data/world/country-outlines-4k.png" style="background: black; width: 700px"></div>
 
