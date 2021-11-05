@@ -1,4 +1,4 @@
-Title: Three.js - Освещение
+Title: - Освещение
 Description: Настройка освещения
 TOC: Освещение
 

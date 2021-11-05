@@ -1,4 +1,4 @@
-Title: Three.js Rendering on Demand
+Title: Rendering on Demand
 Description: How to use less energy.
 TOC: Rendering On Demand
 

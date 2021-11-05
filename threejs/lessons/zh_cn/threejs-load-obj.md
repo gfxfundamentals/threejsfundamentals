@@ -1,4 +1,4 @@
-Title: Three.js 加载 .OBJ 文件
+Title: 加载 .OBJ 文件
 Description: 加载 .OBJ 文件
 TOC: 加载 .OBJ 文件
 

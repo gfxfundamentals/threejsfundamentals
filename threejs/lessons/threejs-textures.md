@@ -1,4 +1,4 @@
-Title: Three.js Textures
+Title: Textures
 Description: Using textures in three.js
 TOC: Textures
 

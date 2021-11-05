@@ -1,4 +1,4 @@
-Title: Three.js 自定义缓冲几何体
+Title: 自定义缓冲几何体
 Description: 如何创建你自己的缓冲几何体
 TOC: 自定义缓冲几何体
 

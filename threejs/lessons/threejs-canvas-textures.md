@@ -1,4 +1,4 @@
-Title: Three.js Canvas Textures
+Title: Canvas Textures
 Description: How to use a canvas as a texture in Three.js
 TOC: Using A Canvas for Dynamic Textures
 

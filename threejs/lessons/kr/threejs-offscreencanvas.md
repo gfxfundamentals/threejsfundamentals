@@ -1,4 +1,4 @@
-Title: Three.js OffscreenCanvas
+Title: OffscreenCanvas
 Description: Three.js에서 웹 워커를 활용하는 법을 알아봅니다
 TOC: 웹 워커에서 OffscreenCanvas 사용하기
 

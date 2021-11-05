@@ -1,4 +1,4 @@
-Title: Three.js 그림자
+Title: 그림자
 Description: Three.js의 그림자에 대해 알아봅니다
 TOC: 그림자(Shadows)
 

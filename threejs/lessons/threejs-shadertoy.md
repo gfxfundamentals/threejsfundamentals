@@ -1,4 +1,4 @@
-Title: Three.js and Shadertoy
+Title: and Shadertoy
 Description: How to use Shadertoy shaders in THREE.js
 TOC: Using Shadertoy shaders
 

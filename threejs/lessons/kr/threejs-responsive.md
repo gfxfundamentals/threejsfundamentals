@@ -1,4 +1,4 @@
-Title: Three.js 반응형 디자인
+Title: 반응형 디자인
 Description: Three.js 프로젝트를 반응형으로 만들기
 TOC: 반응형 디자인
 

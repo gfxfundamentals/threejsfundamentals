@@ -1,4 +1,4 @@
-Title: Three.js 摄像机
+Title: 摄像机
 Description: 设置摄像机
 TOC: 摄像机
 

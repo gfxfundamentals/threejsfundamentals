@@ -1,4 +1,4 @@
-Title: Three.js 후처리
+Title: 후처리
 Description: Three.js로 후처리하는 법을 알아봅니다
 TOC: 후처리
 

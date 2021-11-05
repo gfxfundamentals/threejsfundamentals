@@ -1,4 +1,4 @@
-Title: Three.js 자바스크립트 디버깅
+Title: 자바스크립트 디버깅
 Description: Three.js에서 자바스크립트 디버깅하는 법을 알아봅니다
 TOC: 자바스크립트 디버깅
 

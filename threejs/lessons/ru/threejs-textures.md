@@ -1,4 +1,4 @@
-Title: Three.js Текстуры
+Title: Текстуры
 Description: Использование текстур в three.js
 TOC: Текстуры
 

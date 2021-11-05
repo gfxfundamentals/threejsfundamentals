@@ -1,4 +1,4 @@
-Title: Three.js Советы
+Title: Советы
 Description: Небольшие вопросы, которые могут появится, используя three.js
 TOC: #
 

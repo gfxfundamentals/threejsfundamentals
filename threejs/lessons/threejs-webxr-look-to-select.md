@@ -1,4 +1,4 @@
-Title: Three.js VR - Look to Select
+Title: VR - Look to Select
 Description: How to implement Look to Select.
 TOC: VR - Look To Select
 

@@ -1,4 +1,4 @@
-Title: Three.js Post Processing 3DLUT
+Title: Post Processing 3DLUT
 Description: How to implement a 3DLUT Post Process in THREE.js
 TOC: Applying a LUT File for effects
 

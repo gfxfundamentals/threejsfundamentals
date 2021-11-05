@@ -1,4 +1,4 @@
-Title: Three.js 光照
+Title: 光照
 Description: 设置光照
 TOC: 光照
 

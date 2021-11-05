@@ -1,4 +1,4 @@
-Title: Three.js Custom Geometry
+Title: Custom Geometry
 Description: How to make your own geometry.
 TOC: Custom Geometry
 

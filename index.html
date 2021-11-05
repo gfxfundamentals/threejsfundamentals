@@ -436,6 +436,10 @@
 
 		}
 
+		function setTitle(title) {
+			document.title = `${title} - three.js manual`;
+		}
+
 		function createNewIframe() {
 
 			// Change the content displayed in the iframe
@@ -451,27 +455,22 @@
 			// Note: iframe.contentWindow.location.replace(hash) should work, too,
 			// but it doesn't work in Edge with links from the subpages!
 
-			let subtitle;
-
 			const oldIframe = iframe;
 			iframe = oldIframe.cloneNode();
 
 			if ( hash ) {
 
 				iframe.src = splitHash[ 0 ] + '.html' + splitHash[ 1 ];
-				subtitle = titles[ splitHash[ 0 ] ] + splitHash[ 1 ] + ' – ';
 				iframe.style.display = 'unset';
 
 			} else {
 
 				iframe.src = '';
-				subtitle = '';
 				iframe.style.display = 'none';
 
 			}
 
 			document.body.replaceChild( iframe, oldIframe );
-			document.title = subtitle + 'three.js docs';
 
 		}
 

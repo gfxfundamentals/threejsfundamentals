@@ -1,4 +1,4 @@
-Title: Three.js 拾取
+Title: 拾取
 Description: 在Three.js中，鼠标选取对象
 TOC: 鼠标选取对象
 

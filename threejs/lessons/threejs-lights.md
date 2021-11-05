@@ -1,4 +1,4 @@
-Title: Three.js Lights
+Title: Lights
 Description: Setting up Lights
 TOC: Lights
 

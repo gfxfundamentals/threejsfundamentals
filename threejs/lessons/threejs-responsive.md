@@ -1,4 +1,4 @@
-Title: Three.js Responsive Design
+Title: Responsive Design
 Description: How to make your three.js fit different sized displays.
 TOC: Responsive Design
 

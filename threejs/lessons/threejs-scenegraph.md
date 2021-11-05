@@ -1,4 +1,4 @@
-Title: Three.js Scene Graph
+Title: Scene Graph
 Description: What's a scene graph?
 TOC: Scenegraph
 

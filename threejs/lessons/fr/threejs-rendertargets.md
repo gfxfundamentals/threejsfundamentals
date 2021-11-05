@@ -1,4 +1,4 @@
-Title: Three.js Render Targets
+Title: Render Targets
 Description: How to render to a texture.
 TOC: Render Targets
 

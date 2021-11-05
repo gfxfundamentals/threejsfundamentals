@@ -1,4 +1,4 @@
-Title: Three.js 优化对象的同时保持动画效果
+Title: 优化对象的同时保持动画效果
 Description: 使用morphtarget优化
 TOC: 优化对象的同时保持动画效果
 

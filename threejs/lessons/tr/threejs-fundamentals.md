@@ -1,4 +1,4 @@
-Title: Three.js Temelleri
+Title: Temelleri
 Description: Temeller ile birlikte ilk Three.js dersiniz
 TOC: Temel Bilgiler
 

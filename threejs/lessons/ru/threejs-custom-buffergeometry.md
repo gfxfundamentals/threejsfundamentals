@@ -1,4 +1,4 @@
-Title: Three.js Пользовательская BufferGeometry
+Title: Пользовательская BufferGeometry
 Description: Создание собственной геометрии BufferGeometry.
 TOC: Пользовательская BufferGeometry
 

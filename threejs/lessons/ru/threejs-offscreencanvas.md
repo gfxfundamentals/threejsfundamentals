@@ -1,4 +1,4 @@
-Title: Three.js OffscreenCanvas
+Title: OffscreenCanvas
 Description: Использование three.js в воркере
 TOC: Использование OffscreenCanvas в воркере
 

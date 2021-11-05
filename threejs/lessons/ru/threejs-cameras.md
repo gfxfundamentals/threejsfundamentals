@@ -1,4 +1,4 @@
-Title: Three.js - Камера
+Title: - Камера
 Description: Как использовать камеру в Three.js
 TOC: Камера
 

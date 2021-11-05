@@ -1,4 +1,4 @@
-Title: Three.js Setup
+Title: Setup
 Description: How to setup your development environment for three.js
 TOC: Setup
 

@@ -1,4 +1,4 @@
-Title: Three.js Пользовательская Geometry
+Title: Пользовательская Geometry
 Description: Как сделать свою собственную геометрию.
 TOC: Пользовательская Geometry
 

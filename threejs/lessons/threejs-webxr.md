@@ -1,4 +1,4 @@
-Title: Three.js VR
+Title: VR
 Description: How to use Virtual Reality in Three.js.
 TOC: VR - Basics
 

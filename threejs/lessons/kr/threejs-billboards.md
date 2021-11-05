@@ -1,4 +1,4 @@
-Title: Three.js 빌보드(Billboards)
+Title: 빌보드(Billboards)
 Description: 물체가 항상 카메라를 바라보도록 하는 법을 알아봅니다
 TOC: 빌보드와 파사드
 

@@ -2,6 +2,15 @@
 <html lang="{{langInfo.langCode}}">
   <head>
     <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@threejs">
+    <meta name="twitter:title" content="Three.js – {{title}}">
+    <meta property="og:image" content="https://threejs.org/files/share.png">
+    <link rel="shortcut icon" href="/files/favicon_white.ico" media="(prefers-color-scheme: dark)">
+    <link rel="shortcut icon" href="/files/favicon.ico" media="(prefers-color-scheme: light)">
+
     <link rel="stylesheet" href="/manual/resources/lang.css">
     {{#ifexists filename="/threejs/lessons/{{langCode}}/lang.css" langCode=langInfo.baseDirname}}
     <link rel="stylesheet" href="/manual/{{langInfo.langCode}}/lang.css">

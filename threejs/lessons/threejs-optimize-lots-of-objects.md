@@ -1,4 +1,4 @@
-Title: Three.js Optimize Lots of Objects
+Title: Optimize Lots of Objects
 Description: Optimize by merging Objects
 TOC: Optimizing Lots of Objects
 

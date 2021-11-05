@@ -1,4 +1,4 @@
-Title: Three.js 피킹(Picking)
+Title: 피킹(Picking)
 Description: Three.js에서 마우스로 요소를 선택하는 법을 알아봅니다
 TOC: 물체를 마우스로 피킹하기
 

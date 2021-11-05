@@ -1,4 +1,4 @@
-Title: Three.js マテリアル
+Title: マテリアル
 Description: Three.jsのマテリアル
 TOC: マテリアル
 

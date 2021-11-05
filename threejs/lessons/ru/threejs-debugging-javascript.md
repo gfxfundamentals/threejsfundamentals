@@ -1,4 +1,4 @@
-Title: Three.js Отладка JavaScript
+Title: Отладка JavaScript
 Description: Отладка JavaScript с THREE.js
 TOC: Отладка JavaScript
 

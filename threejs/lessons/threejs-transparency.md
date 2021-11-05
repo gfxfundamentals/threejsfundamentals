@@ -1,4 +1,4 @@
-Title: Three.js Transparency
+Title: Transparency
 Description: How to deal with transparency issues in THREE.js
 TOC: How to Draw Transparent Objects
 

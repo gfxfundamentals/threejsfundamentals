@@ -1,4 +1,4 @@
-Title: Three.js 材质
+Title: 材质
 Description: Three.js中的材质
 TOC: 材质
 

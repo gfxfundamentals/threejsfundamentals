@@ -1,4 +1,4 @@
-Title: Three.js GLSL 디버깅
+Title: GLSL 디버깅
 Description: GLSL 쉐이더 디버깅에 대해 알아봅니다
 TOC: GLSL 디버깅
 

@@ -1,4 +1,4 @@
-Title: Three.js Post Processing
+Title: Post Processing
 Description: How to Post Process in THREE.js
 TOC: Post Processing
 

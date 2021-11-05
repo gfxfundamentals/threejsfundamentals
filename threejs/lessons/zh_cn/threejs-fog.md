@@ -1,4 +1,4 @@
-Title: Three.js 雾
+Title: 雾
 Description: Three.js中的雾
 TOC: 雾
 

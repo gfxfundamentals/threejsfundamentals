@@ -1,4 +1,4 @@
-Title: Three.js Voxel(Minecraft Like) Geometry
+Title: Voxel(Minecraft Like) Geometry
 Description: How to make voxel geometry like Minecraft
 TOC: Making Voxel Geometry (Minecraft)
 

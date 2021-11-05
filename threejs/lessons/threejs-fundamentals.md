@@ -1,4 +1,4 @@
-Title: Three.js Fundamentals
+Title: Fundamentals
 Description: Your first Three.js lesson starting with the fundamentals
 TOC: Fundamentals
 

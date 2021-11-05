@@ -1,4 +1,4 @@
-Title: Three.js 복셀 Geometry
+Title: 복셀 Geometry
 Description: 마인크래프트 같은 복셀 geometry를 만드는 법을 알아봅니다
 TOC: 복셀 Geometry(마인크래프트) 만들기
 

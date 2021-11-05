@@ -1,4 +1,4 @@
-Title: Three.js 개발 환경 구성하기
+Title: 개발 환경 구성하기
 Description: Three.js의 개발 환경을 구성해봅니다
 TOC: 개발 환경
 

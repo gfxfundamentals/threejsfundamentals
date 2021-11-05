@@ -1,4 +1,4 @@
-Title: Three.js Тени
+Title: Тени
 Description: Тени в Three.js
 TOC: Тени
 

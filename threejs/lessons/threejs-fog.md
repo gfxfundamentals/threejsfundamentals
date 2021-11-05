@@ -1,4 +1,4 @@
-Title: Three.js Fog
+Title: Fog
 Description: Fog in Three.js
 TOC: Fog
 

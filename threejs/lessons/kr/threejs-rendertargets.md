@@ -1,4 +1,4 @@
-Title: Three.js 렌더 타겟
+Title: 렌더 타겟
 Description: Three.js에서 장면을 텍스처로 만드는 방법을 알아봅니다
 TOC: 렌더 타겟(Render Targets)
 

@@ -1,4 +1,4 @@
-Title: Three.js 메모리 해제하기
+Title: 메모리 해제하기
 Description: Three.js를 사용할 때 메모리를 해제하는 법을 알아봅니다
 TOC: 메모리 해제하기
 

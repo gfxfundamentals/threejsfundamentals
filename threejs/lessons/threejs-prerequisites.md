@@ -1,4 +1,4 @@
-Title: Three.js Prerequisites
+Title: Prerequisites
 Description: What you need to know to use this site.
 TOC: Prerequisites
 

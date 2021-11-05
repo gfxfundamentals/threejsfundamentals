@@ -1,4 +1,4 @@
-Title: Three.js 배경과 하늘 상자
+Title: 배경과 하늘 상자
 Description: THREE.js에서 배경을 넣는 법을 알아봅니다
 TOC: 배경, 하늘 상자 추가하기
 

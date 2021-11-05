@@ -1,4 +1,4 @@
-Title: Three.js Optimize Lots of Objects Animated
+Title: Optimize Lots of Objects Animated
 Description: Animated merged objects with Morphtargets
 TOC: Optimizing Lots of Objects Animated
 

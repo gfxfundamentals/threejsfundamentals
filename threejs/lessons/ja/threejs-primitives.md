@@ -1,4 +1,4 @@
-Title: Three.js のプリミティブ　
+Title: のプリミティブ　
 Description: three.js プリミティブの旅
 TOC: プリミティブ
 

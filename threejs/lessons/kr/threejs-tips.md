@@ -1,4 +1,4 @@
-Title: Three.js 팁
+Title: 팁
 Description: Three.js를 쓸 때 필요할 수도 있는 것들
 TOC: #
 

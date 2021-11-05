@@ -1,4 +1,4 @@
-Title: Three.js 纹理
+Title: 纹理
 Description: 在three.js中使用纹理
 TOC: 纹理
 

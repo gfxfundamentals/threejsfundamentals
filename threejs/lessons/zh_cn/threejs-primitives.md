@@ -1,4 +1,4 @@
-Title: Three.js 图元
+Title: 图元
 Description: 关于 Three.js 图元
 TOC: 图元
 

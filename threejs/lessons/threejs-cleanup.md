@@ -1,4 +1,4 @@
-Title: Three.js Cleanup
+Title: Cleanup
 Description: How to use free memory used by Three.js
 TOC: Freeing Resources
 

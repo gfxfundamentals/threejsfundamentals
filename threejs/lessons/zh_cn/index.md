@@ -1,4 +1,4 @@
-Title: Three.js 基础
+Title: 基础
 
 帮助学习 Three.js 的系列文章。
 

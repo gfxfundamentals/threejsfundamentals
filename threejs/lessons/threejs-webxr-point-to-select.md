@@ -1,4 +1,4 @@
-Title: Three.js VR - 3DOF Point to Select
+Title: VR - 3DOF Point to Select
 Description: How to implement 3DOF Point to Select.
 TOC: VR - Point To Select
 

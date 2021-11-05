@@ -1,4 +1,4 @@
-Title: Three.js Indexed Textures for Picking and Color
+Title: Indexed Textures for Picking and Color
 Description: Using Indexed Textures for Picking and Color
 TOC: Using Indexed Textures for Picking and Color
 

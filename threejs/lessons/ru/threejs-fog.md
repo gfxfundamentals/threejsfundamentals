@@ -1,4 +1,4 @@
-Title: Three.js Туман
+Title: Туман
 Description: Туман в Three.js
 TOC: Туман
 

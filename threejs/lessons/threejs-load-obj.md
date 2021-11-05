@@ -1,4 +1,4 @@
-Title: Three.js Loading a .OBJ File
+Title: Loading a .OBJ File
 Description: Loading a .OBJ File
 TOC: Load an .OBJ file
 

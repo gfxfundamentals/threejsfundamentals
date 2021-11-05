@@ -1,4 +1,4 @@
-Title: Three.js 투명도
+Title: 투명도
 Description: Three.js에서 투명도를 설정하는 법을 알아봅니다
 TOC: 물체의 투명도 설정하기
 

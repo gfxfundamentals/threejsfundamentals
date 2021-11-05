@@ -1,4 +1,4 @@
-Title: Three.js Custom BufferGeometry
+Title: Custom BufferGeometry
 Description: How to make your own BufferGeometry.
 TOC: Custom BufferGeometry
 

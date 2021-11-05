@@ -1,4 +1,4 @@
-Title: Three.js Debugging JavaScript
+Title: Debugging JavaScript
 Description: How to debug JavaScript with THREE.js
 TOC: Debugging JavaScript
 

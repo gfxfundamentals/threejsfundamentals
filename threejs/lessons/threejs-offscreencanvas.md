@@ -1,4 +1,4 @@
-Title: Three.js OffscreenCanvas
+Title: OffscreenCanvas
 Description: How to use three.js in a web worker
 TOC: Using OffscreenCanvas in a Web Worker
 

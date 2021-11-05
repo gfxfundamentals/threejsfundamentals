@@ -1,4 +1,4 @@
-Title: Three.js Multiple Canvases Multiple Scenes
+Title: Multiple Canvases Multiple Scenes
 Description: How to draw stuff all over the page with THREE.js
 TOC: Multiple Canvases, Multiple Scenes
 

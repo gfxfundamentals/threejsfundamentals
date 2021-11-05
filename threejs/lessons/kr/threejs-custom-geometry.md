@@ -1,4 +1,4 @@
-Title: Three.js 사용자 지정 Geometry
+Title: 사용자 지정 Geometry
 Description: 사용자 지정 geometry를 만드는 법에 대해 알아봅니다
 TOC: 사용자 지정 Geometry
 

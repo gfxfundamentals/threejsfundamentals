@@ -1,4 +1,4 @@
-Title: Three.js Tips
+Title: Tips
 Description: Small issues that might trip you up using three.js
 TOC: #
 

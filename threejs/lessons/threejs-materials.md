@@ -1,4 +1,4 @@
-Title: Three.js Materials
+Title: Materials
 Description: Materials in Three.js
 TOC: Materials
 

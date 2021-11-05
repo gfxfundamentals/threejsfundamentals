@@ -1,4 +1,4 @@
-Title: Three.js 카메라
+Title: 카메라
 Description: Three.js의 카메라에 대해 알아봅니다
 TOC: 카메라(Cameras)
 

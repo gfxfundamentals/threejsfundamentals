@@ -1,4 +1,4 @@
-Title: Three.js 캔버스 텍스처
+Title: 캔버스 텍스처
 Description: 캔버스를 Three.js 텍스처로 쓰는 방법을 알아봅니다
 TOC: 캔버스로 동적 텍스처 만들기
 

@@ -1,4 +1,4 @@
-Title: Three.js 안개
+Title: 안개
 Description: Three.js의 안개에 대해 알아봅니다
 TOC: 안개(Fog)
 

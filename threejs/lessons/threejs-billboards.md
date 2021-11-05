@@ -1,4 +1,4 @@
-Title: Three.js Billboards
+Title: Billboards
 Description: How to make things always face the camera.
 TOC: Billboards and Facades
 

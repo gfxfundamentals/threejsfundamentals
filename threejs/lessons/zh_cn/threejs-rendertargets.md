@@ -1,4 +1,4 @@
-Title: Three.js 渲染目标
+Title: 渲染目标
 Description: 如何渲染到纹理
 TOC: 渲染目标
 

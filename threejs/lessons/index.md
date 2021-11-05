@@ -1,4 +1,4 @@
-Title: Three.js Fundamentals
+Title: Fundamentals
 
 A set of articles to help learn Three.js.
 

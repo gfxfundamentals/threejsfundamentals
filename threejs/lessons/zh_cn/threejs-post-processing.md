@@ -1,4 +1,4 @@
-Title: Three.js 后期处理
+Title: 后期处理
 Description: 怎么在THREE.js中做后期处理
 TOC: 后期处理
 

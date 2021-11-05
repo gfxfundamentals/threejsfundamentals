@@ -1,4 +1,4 @@
-Title: Three.js Loading a .GLTF File
+Title: Loading a .GLTF File
 Description: Loading a .GLTF File
 TOC: Load a .GLTF file
 

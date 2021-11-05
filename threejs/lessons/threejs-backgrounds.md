@@ -1,4 +1,4 @@
-Title: Three.js Backgrounds and Skyboxes
+Title: Backgrounds and Skyboxes
 Description: How to add a background in THREE.js
 TOC: Add a Background or Skybox
 

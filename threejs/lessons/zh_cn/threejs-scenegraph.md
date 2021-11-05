@@ -1,4 +1,4 @@
-Title: Three.js 场景图
+Title: 场景图
 Description: 什么是场景图?
 TOC: 场景图
 

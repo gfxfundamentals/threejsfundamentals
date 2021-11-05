@@ -1,4 +1,4 @@
-Title: Three.js Shadows
+Title: Shadows
 Description: Shadows in Three.js
 TOC: Shadows
 

@@ -1,4 +1,4 @@
-Title: Three.js 阴影
+Title: 阴影
 Description: Three.js 的阴影
 TOC: 阴影
 

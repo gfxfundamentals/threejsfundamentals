@@ -1,4 +1,4 @@
-Title: Three.js 按需渲染
+Title: 按需渲染
 Description: 如何节约资源
 TOC: 按需渲染
 

@@ -1,4 +1,4 @@
-Title: Three.js Cameras
+Title: Cameras
 Description: How to use Cameras in Three.js
 TOC: Cameras
 

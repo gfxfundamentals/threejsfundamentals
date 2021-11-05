@@ -1,4 +1,4 @@
-Title: Three.js Temelleri
+Title: Temelleri
 
 Three.js öğrenmenize yardımcı olacak makale serisi.
 

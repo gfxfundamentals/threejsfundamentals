@@ -1,4 +1,4 @@
-Title: Three.js Picking
+Title: Picking
 Description: Selecting Objects with the Mouse in Three.js
 TOC: Picking Objects with the mouse
 

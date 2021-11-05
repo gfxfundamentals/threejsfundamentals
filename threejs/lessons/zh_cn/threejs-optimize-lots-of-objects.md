@@ -1,4 +1,4 @@
-Title: Three.js 大量对象的优化
+Title: 大量对象的优化
 Description: 通过合并进行优化
 TOC: 大量对象的优化
 

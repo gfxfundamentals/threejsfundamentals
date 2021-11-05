@@ -1,4 +1,4 @@
-Title: Three.js Primitives
+Title: Primitives
 Description: A tour of three.js primitives.
 TOC: Primitives
 
