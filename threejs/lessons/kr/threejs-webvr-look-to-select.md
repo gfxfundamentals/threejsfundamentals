@@ -3,15 +3,15 @@ Description: Look to Select을 시행하는 방법
 TOC: VR - Look To Select
 
 **NOTE: 이 페이지의 예시에는 VR 지원 기기가 필요합니다. 
-VR기기 없이는 동작하지 않으며 그 이유를 [이전 글](threejs-webvr.html)
+VR 기기 없이는 동작하지 않으며 그 이유를 [이전 글](threejs-webvr.html)
 에서 확인할 수 있습니다.**
 
-[이전 글](threejs-webvr.html)에서 우리는 three.js를 사용한 매우 간단한 VR 예제를 살펴보고 다양한 종류의 VR 시스템에 대해 이야기 했습니다.
+[이전 글](threejs-webvr.html)에서 우리는 three.js를 사용한 매우 간단한 VR 예제를 살펴보고 다양한 종류의 VR 시스템에 대해 이야기했습니다.
 
-가장 간단하고 흔한 것은 기본적으로 5달러에서 50달러의 얼굴 마스크에 넣는 전화기인 VR 구글 카드보드 스타일입니다.
+가장 간단하고 흔한 것은 기본적으로 5달러에서 50달러의 얼굴 마스크에 넣는 전화기인 VR 구글 카드 보드 스타일입니다.
 이런 종류의 VR에는 컨트롤러가 없기 때문에 사람들은 사용자 입력을 허용하기 위한 창의적인 해결책을 생각해 내야 합니다.
 
-이때 가장 일반적인 해결책은 사용자가 무언가를 잠시동안 가리킬 경우 그것이 선택되는 "Look to Select"입니다.
+이때 가장 일반적인 해결책은 사용자가 무언가를 잠시 동안 가리킬 경우 그것이 선택되는 "Look to Select"입니다.
 
 "Look to Select"를 구현해봅시다! 먼저 [이전 글의 예시](threejs-webvr.html)에서 시작해 [Three.js 피킹](threejs-picking.html)에서 만든 `PickHelper`를 추가할 것입니다.
 
@@ -62,9 +62,9 @@ function render(time) {
 +  pickHelper.pick({x: 0, y: 0}, scene, camera, time);
 ```
 
-원래의 피킹 예시에서 우리는 마우스 좌표를 CSS픽셀에서 캔버스를 가로질러 -1에서 +1로 가는 정규화된 좌표로 변환했습니다.
+원래의 피킹 예시에서 우리는 마우스 좌표를 CSS 픽셀에서 캔버스를 가로질러 -1에서 +1로 가는 정규화된 좌표로 변환했습니다.
 
-이 경우 우리는 항상 카메라가 마주보고 있는 화면의 중심을 선택하기 때문에 정규화된 좌표의 중심인 x와 y 모두에 대해 0을 통과합니다.
+이 경우 우리는 항상 카메라가 마주 보고 있는 화면의 중심을 선택하기 때문에 정규화된 좌표의 중심인 x와 y 모두에 대해 0을 통과합니다.
 
 그리고 우리가 그 물체들을 볼 때 그 물체들은 번쩍거릴 것입니다.
 
@@ -92,7 +92,7 @@ const far = 1;
 const camera = new THREE.OrthographicCamera(left, right, top, bottom, near, far);
 ```
 
-그리고 캔버스의 크기가 변경되면 업데이트하는것을 잊지 마십시오.
+그리고 캔버스의 크기가 변경되면 업데이트하는 것을 잊지 마십시오.
 
 ```js
 function render(time) {
@@ -184,11 +184,11 @@ function render(time) {
 [텍스처](threejs-textures.html)는 0에서 1까지 정규화된 텍스처 좌표를 사용하여 geometry에 매핑됩니다.
 즉, 기본 래핑 모드인 `THREE.ClampToEdge`로 설정된 2x1 픽셀 이미지를 의미하며,
 텍스처 좌표를 -0.5만큼 조정하면 전체 메시가 첫 번째 색상이 되고 텍스처 좌표를 +0.5만큼 조정하면 전체 메시가 두 번째 색상이 됩니다.
-필터링 설정을 `THREE.NearestFilter`로 설정하면 geometry에서 두 색상 간의 전환을 이동할 수 있습니다.
+필터링을 `THREE.NearestFilter`로 설정하면 geometry를 통해 두 색상 간의 전환이 가능해집니다.
 
 [배경과 관련된 글](threejs-backgrounds.html)에서 다루었던 것처럼 배경의 질감을 더해봅시다.
 2x2 색상 셋을 사용하지만 텍스처의 반복 설정을 8x8 그리드로 설정할 수 있습니다.
-이렇게 하면 커서가 렌더링되어 다른 색상과 대조하여 확인할 수 있습니다.
+이렇게 하면 커서가 렌더링 되어 다른 색상과 대조하여 확인할 수 있습니다.
 
 ```js
 +const backgroundColors = new Uint8Array([
@@ -210,7 +210,7 @@ const scene = new THREE.Scene();
 
 {{{example url="../threejs-webvr-look-to-select-selector.html" }}}
 
-몇가지 주목하고 **시도해야 할 것들**이 있습니다.
+몇 가지 주목하고 **시도해야 할 것들**이 있습니다.
 
 * 다음과 같이 `cursorMaterial`의 `blending`, `blendSrc`, `blendDst`
   속성을 설정합니다.
@@ -338,13 +338,13 @@ class PickHelper {
 
 위의 코드를 보시면 커서 형상, 텍스처, 매테리얼을 만들기 위해 모든 코드를 추가한 것을 볼 수 있습니다.
 그리고 카메라의 자식으로 추가해서 항상 카메라 앞에 놓이게 합니다.
-커서가 렌더링되지 않을 경우 카메라를 장면에 추가해야 합니다.
+커서가 렌더링 되지 않을 경우 카메라를 장면에 추가해야 합니다.
 
 ```js
 +scene.add(camera);
 ```
 
-이 다음 이번에 피킹할 것이 지난번과 같은지 확인합니다.
+이 다음 이번에 피킹 할 것이 지난번과 같은지 확인합니다.
 타이머에 경과 시간을 추가하고 타이머가 한계치에 도달하면 선택한 항목을 반환합니다.
 
 이제 큐브들을 고르는데 그것을 사용해 봅시다.
@@ -424,7 +424,7 @@ const boxDepth = 1;
 
 {{{example url="../threejs-webvr-look-to-select-w-cursor.html" }}}
 
-이 예제가 구글 카드보드 레벨 UX의 "look to select"를 구현하는 방법에 대한 아이디어를 주었기를 바랍니다.
+이 예제가 구글 카드 보드 레벨 UX의 "look to select"를 구현하는 방법에 대한 아이디어를 주었기를 바랍니다.
 텍스쳐 좌표 오프셋을 사용한 슬라이딩 텍스쳐도 일반적으로 유용한 기법입니다.
 
 다음으로는 [VR 컨트롤러가 있는 사용자가 사물을 가리키고 이동할 수 있는 방법을 알아보겠습니다.](threejs-webvr-point-to-select.html).
