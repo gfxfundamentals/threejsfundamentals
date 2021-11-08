@@ -7,6 +7,23 @@
 		<link rel="shortcut icon" href="../files/favicon_white.ico" media="(prefers-color-scheme: dark)"/>
 		<link rel="shortcut icon" href="../files/favicon.ico" media="(prefers-color-scheme: light)" />
 		<link rel="stylesheet" type="text/css" href="../files/main.css">
+		<style>
+			/*
+				note: I don't know why the docs page is the way it is but it would
+				seem to make sense for the iframe to be the size you want the content
+				rather then every piece of content be responsible for knowing how to 
+				adjust itself to handle the left panel?
+			*/
+			iframe {
+				padding-left: var(--panel-width);
+			}
+			@media all and ( max-width: 640px ) {
+				iframe {
+					padding-left: 0;
+				}
+			}
+
+		</style>
 		<!-- console sandbox -->
 		<script src="../build/three.min.js" async defer></script>
 	</head>
