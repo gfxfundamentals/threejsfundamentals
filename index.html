@@ -437,8 +437,19 @@
 				const m = re.exec(hrefNoOrigin);
 				const [,base, path] = m;
 				if (base.includes('manual')) {
-					window.location.hash = `#${path.replace('.html', '')}`;
-					createNewIframe();
+					const newHash = `#${path.replace('.html', '')}`;
+					// Only create new iframe if we're actually changing pages.
+					// We could just be going to an anchor on the same page.
+					const newPrefix = newHash.split('#')[1];
+					const oldPrefix = window.location.hash.split('#')[1];
+					if (newPrefix === oldPrefix) {
+						const newUrl = new URL(window.location.href);
+						newUrl.hash = newHash;
+						window.history.pushState({}, '', newUrl.href);
+					} else {
+						window.location.hash = newHash;
+						createNewIframe();
+					}
 					return;
 				}
 			}
@@ -468,6 +479,18 @@
 			iframe = oldIframe.cloneNode();
 
 			if ( hash ) {
+
+				// We can have 2 hashes. One for the main page, one for the page it's referencing
+				// In other words
+				//	 #en/somePage#someSectionOfPage
+				const subHash = splitHash[0].indexOf('#');
+				if (subHash) {
+					const beforeSubHash = splitHash[0].substr(0, subHash);
+					const afterSubHash = splitHash[0].substr(subHash);
+					iframe.src = `${beforeSubHash}.html${afterSubHash}${splitHash[ 1 ]}`;
+				} else {
+					iframe.src = splitHash[ 0 ] + '.html' + splitHash[ 1 ];
+				}
 
 				iframe.src = splitHash[ 0 ] + '.html' + splitHash[ 1 ];
 				iframe.style.display = 'unset';

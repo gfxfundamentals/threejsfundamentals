@@ -11,10 +11,15 @@
       // otherwise we'll end up with 3rd party
       // sites under the frame.
       a.addEventListener('click', e => {
-        if (a.target !== '_blank') {
-          e.preventDefault();
-          window.parent.setUrl(a.href);
+        // opening a new tab?
+        if (a.target === '_blank') {
+          return;
         }
+        // change changing hashes?
+        if (a.origin !== window.location.origin || a.pathname !== window.location.pathname) {
+          e.preventDefault();
+        }
+        window.parent.setUrl(a.href);
       });
     });
     window.parent.setTitle(document.title);
@@ -31,7 +36,7 @@
     window.prettyPrint();
   }
 
-  // help translation sites not translate code samples
+  // help translation services translate comments.
   document.querySelectorAll('span[class=com]').forEach(elem => {
     elem.classList.add('translate', 'yestranslate');
     elem.setAttribute('translate', 'yes');
