@@ -413,20 +413,22 @@
 		function setUrl( href ) { // eslint-disable-line no-undef
 
 			// yea I know this is hacky.
+			const re = /^(\/(?:manual\/|docs\/#?))(.*?)$/;
 			const url = new URL(href);
-			const re = /^(\/(?:manual|docs\/#?\w+))\/(\w\w|\w\w_\w\w)\/(.*?)$/;
-			const m = re.exec(`${url.pathname}${url.search}${url.hash}`);
-			const [,base, lang, path] = m;
-			if (base.includes('manual')) {
-				window.location.hash = `#${lang}/${path.replace('.html', '')}`;
-				createNewIframe();
-			} else {
-				window.location.href = href;
+			if (url.origin === window.location.origin) {
+				const hrefNoOrigin = url.href.substr(url.origin.length);
+				const m = re.exec(hrefNoOrigin);
+				const [,base, path] = m;
+				if (base.includes('manual')) {
+					window.location.hash = `#${path.replace('.html', '')}`;
+					createNewIframe();
+					return;
+				}
 			}
-
+			window.location.href = href;
 		}
 
-		function setTitle(title) {
+		function setTitle(title) { // eslint-disable-line no-undef
 			document.title = `${title} - three.js manual`;
 		}
 
