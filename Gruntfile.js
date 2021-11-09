@@ -73,7 +73,6 @@ module.exports = function(grunt) {
           { expand: true, cwd: 'threejs/lessons/resources', src: '**', dest: '../three.js/manual/resources', },
           { expand: true, cwd: 'threejs', src: '*.js', dest: '../three.js/manual/examples', },
           { expand: true, cwd: `${liveEditor.monacoEditor}/`, src: 'min/**', dest: '../three.js/manual/3rdparty/monaco-editor/', nonull: true, },
-          { expand: false, src: '3rdparty/dat.gui.module.js', dest: '../three.js/manual/3rdparty/dat.gui.module.js', },
           { expand: false, src: '3rdparty/split.min.js', dest: '../three.js/manual/3rdparty/split.min.js', },
           { expand: false, src: 'threejs/lessons/lang.css', dest: '../three.js/manual/resources/lang.css', },
           { expand: false, src: 'threejs/lessons/kr/lang.css', dest: '../three.js/manual/ko/lang.css', },
