@@ -81,10 +81,10 @@ const scene = new THREE.Scene();
 
 {{{example url="fog.html" }}}
 
-让我们添加界面来调整雾。我们将再次使用[dat.GUI](https://github.com/dataarts/dat.gui)。dat.GUI接收对象和属性参数，并自动为其创建界面。我们能够简单地操纵雾的 `near` 和 `far` 属性，但是 `near` 数值大于 `far` 是无效的，所以我们创建助手（helper）来确保 `near` 和 `far` 属性，让 `near` 小于或等于  `far` ， `far` 大于或等于 `near`。
+让我们添加界面来调整雾。我们将再次使用[lil-gui](https://github.com/georgealways/lil-gui)。lil-gui接收对象和属性参数，并自动为其创建界面。我们能够简单地操纵雾的 `near` 和 `far` 属性，但是 `near` 数值大于 `far` 是无效的，所以我们创建助手（helper）来确保 `near` 和 `far` 属性，让 `near` 小于或等于  `far` ， `far` 大于或等于 `near`。
 
 ```js
-// We use this class to pass to dat.gui
+// We use this class to pass to lil-gui
 // so when it manipulates near or far
 // near is never > far and far is never < near
 class FogGUIHelper {
@@ -126,19 +126,19 @@ class FogGUIHelper {
 
 当我们设置摄像机的时候，设置（助手的 `near` 和 `far` 以调节雾的最小值和最大值。
 
-最后两行调用 `.listen()` 告诉dat.GUI *监听* 变化。当我们编辑 `far` 改变了 `near` 或者编辑 `near` 改变了 `far` ，dat.GUI将会为我们更新其他属性的UI。
+最后两行调用 `.listen()` 告诉lil-gui *监听* 变化。当我们编辑 `far` 改变了 `near` 或者编辑 `near` 改变了 `far` ，lil-gui将会为我们更新其他属性的UI。
 
-或许能够改变雾的颜色是个不错的主意，但是如上面提到的，我们需要保持雾的颜色和背景颜色一致。所以，让我们在助手上添加另一个 *虚拟* 属性，当dat.GUI改变它时会设置这两个颜色。
+或许能够改变雾的颜色是个不错的主意，但是如上面提到的，我们需要保持雾的颜色和背景颜色一致。所以，让我们在助手上添加另一个 *虚拟* 属性，当lil-gui改变它时会设置这两个颜色。
 
-dat.GUI能够通过4种方式设置颜色。分别是6位hex字符串 (如: `#112233`)，色相、饱和度、明度的对象 (如: `{h: 60, s: 1, v: }`)，RGB数组 (如: `[255, 128, 64]`)，或者RGBA数组 (如: `[127, 200, 75, 0.3]`)。
+lil-gui能够通过4种方式设置颜色。分别是6位hex字符串 (如: `#112233`)，色相、饱和度、明度的对象 (如: `{h: 60, s: 1, v: }`)，RGB数组 (如: `[255, 128, 64]`)，或者RGBA数组 (如: `[127, 200, 75, 0.3]`)。
 
-对于我们的目的而言，最简单的是用hex字符串的方式，因为dat.GUI只修改单个数值。幸运的是通过 `THREE.Color` 的 [`getHexString`](Color.getHexString) 方法我们能轻松地获得这个字符串，只需要在其前面添加 '#' 。
+对于我们的目的而言，最简单的是用hex字符串的方式，因为lil-gui只修改单个数值。幸运的是通过 `THREE.Color` 的 [`getHexString`](Color.getHexString) 方法我们能轻松地获得这个字符串，只需要在其前面添加 '#' 。
 
 ```js
-// We use this class to pass to dat.gui
+// We use this class to pass to lil-gui
 // so when it manipulates near or far
 // near is never > far and far is never < near
-+// Also when dat.gui manipulates color we'll
++// Also when lil-gui manipulates color we'll
 +// update both the fog and background colors.
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {

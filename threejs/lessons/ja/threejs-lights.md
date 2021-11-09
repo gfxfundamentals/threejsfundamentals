@@ -119,10 +119,10 @@ scene.add(light);
 ```
 
 ライトのパラメーターを調整できるようにします。
-今回も[dat.GUI](https://github.com/dataarts/dat.gui)を使います。
-dat.GUIで色を調整するにはヘルパーが必要です。
-プロパティをdat.GUIにCSSの16進数の形で表示します(例: `#FF8844`)。
-ヘルパーは名前付きプロパティから色を取得し、16進数の文字列に変換してdat.GUIに渡します。dat.GUIがヘルパーのプロパティを設定し、結果をライトの色に戻します。
+今回も[lil-gui](https://github.com/georgealways/lil-gui)を使います。
+lil-guiで色を調整するにはヘルパーが必要です。
+プロパティをlil-guiにCSSの16進数の形で表示します(例: `#FF8844`)。
+ヘルパーは名前付きプロパティから色を取得し、16進数の文字列に変換してlil-guiに渡します。lil-guiがヘルパーのプロパティを設定し、結果をライトの色に戻します。
 
 これがヘルパーです。
 
@@ -141,7 +141,7 @@ class ColorGUIHelper {
 }
 ```
 
-dat.GUIの設定は以下の通りです。
+lil-guiの設定は以下の通りです。
 
 ```js
 const gui = new GUI();
@@ -181,7 +181,7 @@ const intensity = 1;
 scene.add(light);
 ```
 
-dat.GUIのコードを修正し、両方の色を編集してみましょう。
+lil-guiのコードを修正し、両方の色を編集してみましょう。
 
 ```js
 const gui = new GUI();
@@ -241,7 +241,7 @@ scene.add(helper);
 ```
 
 ライトの位置とターゲットの両方を設定できるようにしておきましょう。
-`Vector3` が与えられた時に `dat.GUI` を使い `x`, `y`, `z` プロパティを調整できる関数を作ります。
+`Vector3` が与えられた時に `lil-gui` を使い `x`, `y`, `z` プロパティを調整できる関数を作ります。
 
 ```js
 function makeXYZGUI(gui, vector3, name, onChangeFn) {
@@ -254,7 +254,7 @@ function makeXYZGUI(gui, vector3, name, onChangeFn) {
 ```
 
 変更時は常にヘルパーの `update` 関数を呼び出す必要があります。
-そのため、dat.GUIが値を更新時に `onChangeFn` 関数を渡しています。
+そのため、lil-guiが値を更新時に `onChangeFn` 関数を渡しています。
 
 makeXYZGUI関数はlight.positionとlight.target.positionの両方に使えます。
 

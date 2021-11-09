@@ -311,9 +311,9 @@ function makeInstance(geometry, color, rotY, url) {
 ```
 
 これを実行する前に小さなUIを追加し、`alphaTest` と `transparent` の設定をもっと簡単に操作できるようにしましょう。
-今回は[シーングラフの記事](scenegraph.html)で紹介したようにdat.guiを使います。
+今回は[シーングラフの記事](scenegraph.html)で紹介したようにlil-guiを使います。
 
-まず、シーン内の全てのマテリアルに値を設定するdat.guiのヘルパーを作ります。
+まず、シーン内の全てのマテリアルに値を設定するlil-guiのヘルパーを作ります。
 
 ```js
 class AllMaterialPropertyGUIHelper {
@@ -355,12 +355,12 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 ```
 
-もちろん、dat.guiを含める必要があります。
+もちろん、lil-guiを含める必要があります。
 
 ```js
 import * as THREE from './resources/three/r119/build/three.module.js';
 import {OrbitControls} from './resources/threejs/r119/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 その結果がこちらです。

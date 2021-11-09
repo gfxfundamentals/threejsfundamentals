@@ -218,7 +218,7 @@ Vous pouvez voir les axes
 
 Il peut être difficile de voir certains d'entre eux car il y a 2 paires d'axes qui se chevauchent. Le `sunMesh` et le `solarSystem` sont tous les deux à la même position. De même, `earthMesh` et `earthOrbit` sont à la même position. Ajoutons quelques contrôles simples pour nous permettre de les activer/désactiver pour chaque nœud. Pendant que nous y sommes, ajoutons également un autre assistant appelé `GridHelper`. Il crée une grille 2D sur le plan X,Z. Par défaut, la grille est de 10x10 unités.
 
-Nous allons également utiliser [dat.GUI](https://github.com/dataarts/dat.gui), une librairie d'interface utilisateur très populaire pour les projets Three.js. dat.GUI prend un objet et un nom de propriété sur cet objet et, en fonction du type de la propriété, crée automatiquement une interface utilisateur pour manipuler cette propriété.
+Nous allons également utiliser [lil-gui](https://github.com/georgealways/lil-gui), une librairie d'interface utilisateur très populaire pour les projets Three.js. lil-gui prend un objet et un nom de propriété sur cet objet et, en fonction du type de la propriété, crée automatiquement une interface utilisateur pour manipuler cette propriété.
 
 Nous voulons créer à la fois un `GridHelper` et un `AxesHelper` pour chaque nœud. Nous avons besoin d'un label pour chaque nœud, nous allons donc nous débarrasser de l'ancienne boucle et faire appel à une fonction pour ajouter les helpers pour chaque nœud.
 
@@ -243,14 +243,14 @@ Nous voulons créer à la fois un `GridHelper` et un `AxesHelper` pour chaque n�
 +makeAxisGrid(moonOrbit, 'moonOrbit');
 +makeAxisGrid(moonMesh, 'moonMesh');
 ```
-`makeAxisGrid` crée un `AxisGridHelper` qui est une classe que nous allons créer pour rendre dat.GUI heureux. Comme il est dit ci-dessus, dat.GUI créera automatiquement une interface utilisateur qui manipule la propriété nommée d'un objet. Cela créera une interface utilisateur différente selon le type de propriété. Nous voulons qu'il crée une case à cocher, nous devons donc spécifier une propriété bool. Mais, nous voulons que les axes et la grille apparaissent/disparaissent en fonction d'une seule propriété, nous allons donc créer une classe qui a un getter et un setter pour une propriété. De cette façon, nous pouvons laisser dat.GUI penser qu'il manipule une seule propriété, mais en interne, nous pouvons définir la propriété visible de `AxesHelper` et `GridHelper` pour un nœud.
+`makeAxisGrid` crée un `AxisGridHelper` qui est une classe que nous allons créer pour rendre lil-gui heureux. Comme il est dit ci-dessus, lil-gui créera automatiquement une interface utilisateur qui manipule la propriété nommée d'un objet. Cela créera une interface utilisateur différente selon le type de propriété. Nous voulons qu'il crée une case à cocher, nous devons donc spécifier une propriété bool. Mais, nous voulons que les axes et la grille apparaissent/disparaissent en fonction d'une seule propriété, nous allons donc créer une classe qui a un getter et un setter pour une propriété. De cette façon, nous pouvons laisser lil-gui penser qu'il manipule une seule propriété, mais en interne, nous pouvons définir la propriété visible de `AxesHelper` et `GridHelper` pour un nœud.
 
 ```js
-// Activer/désactiver les axes et la grille dat.GUI 
+// Activer/désactiver les axes et la grille lil-gui 
 // nécessite une propriété qui renvoie un bool 
 // pour décider de faire une case à cocher 
 // afin que nous créions un setter et un getter pour `visible` 
-// que nous pouvons dire à dat.GUI de regarder.
+// que nous pouvons dire à lil-gui de regarder.
 class AxisGridHelper {
   constructor(node, units = 10) {
     const axes = new THREE.AxesHelper();

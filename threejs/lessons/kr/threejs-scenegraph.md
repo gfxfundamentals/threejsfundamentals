@@ -274,8 +274,8 @@ objects.forEach((node) => {
 `GridHelper`도 추가해보겠습니다. `GridHelper`는 X, Z축으로 2D 격자(grid)를
 만다는 클래스로, 기본값은 10x10 칸입니다.
 
-또 Three.js와 함께 사용하기로 유명한 [dat.GUI](https://github.com/dataarts/dat.gui)도
-사용할 겁니다. dat.GUI는 UI 라이브러리로, 객체와 속성 이름을 넘겨받고, 해당 속성의
+또 Three.js와 함께 사용하기로 유명한 [lil-gui](https://github.com/georgealways/lil-gui)도
+사용할 겁니다. lil-gui는 UI 라이브러리로, 객체와 속성 이름을 넘겨받고, 해당 속성의
 타입을 기반으로 속성값을 UI로 조정할 수 있게 해줍니다.
 
 각 요소에 `GridHelper`와 `AxesHelper`를 추가하겠습니다. 각 노드에 헬퍼를
@@ -304,19 +304,19 @@ objects.forEach((node) => {
 ```
 
 `makeAxisGrid` 함수는 나중에 만들 `AxisGridHelper`를 생성하여
-dat.GUI에 붙이는 역할을 합니다. 예제에서는 체크박스를 만들 것이므로,
+lil-gui에 붙이는 역할을 합니다. 예제에서는 체크박스를 만들 것이므로,
 `boolean` 타입으로 속성을 지정해주겠습니다. 또 하나의 속성이 바뀔 때
 축과 격자가 동시에 나타나고 사라지게 할 것이니 getter와 setter가
-있는 간단한 클래스를 하나 만들겠습니다. 이러면 dat.GUI가 하나의
+있는 간단한 클래스를 하나 만들겠습니다. 이러면 lil-gui가 하나의
 속성을 바꿀 때 요소의 `AxesHelper`와 `GridHelper`의 속성을
 동시에 조작할 수 있죠.
 
 ```js
 /* 
  * 축과 격자를 동시에 켜고 끕니다
- * dat.GUI가 체크박스를 만들게 하려면 boolean 타입의
+ * lil-gui가 체크박스를 만들게 하려면 boolean 타입의
  * 속성을 지정해줘야 하므로, `visible` 속성에
- * getter와 setter를 지정해 dat.GUI가 이 속성을
+ * getter와 setter를 지정해 lil-gui가 이 속성을
  * 바라보도록 합니다
  */
 class AxisGridHelper {

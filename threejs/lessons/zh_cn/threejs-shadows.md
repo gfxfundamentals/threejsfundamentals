@@ -280,7 +280,7 @@ scene.add(cameraHelper);
 
 回忆`OrthographicCamera 正交相机`的定义和其视图的用法，以及其属性：`left`, `right`, `top`, `bottom`, `near`, `far`,`zoom`
 
-我们再次为 dat.GUI 创建一个`DimensionGUIHelper`类。这个类的作用是响应式的通过一个属性来设置两个相关的属性。然后将其加入到 dat.GUI 选项中。
+我们再次为 lil-gui 创建一个`DimensionGUIHelper`类。这个类的作用是响应式的通过一个属性来设置两个相关的属性。然后将其加入到 lil-gui 选项中。
 我们根据`width`的值设置 `left`和`right`，根据`height`的值设置`up` 和 `down`
 
 ```js

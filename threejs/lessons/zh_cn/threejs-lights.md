@@ -106,7 +106,7 @@ const light = new THREE.AmbientLight(color, intensity);
 scene.add(light);
 ```
 
-我们添加一些控制代码，使我们可以动态地改变光照的参数，还是使用 [dat.GUI](https://github.com/dataarts/dat.gui) 来实现。为了可以通过 `dat.GUI` 调节颜色，我们创建一个辅助对象。对象内有一个 `getter` 和 `setter`，当 `dat.GUI` 从对象内获取 `value` 值的时候，触发了 `getter`，会根据创建对象实例时传入的 `object` 和 `prop`，返回一个十六进制色值的字符串，当通过 `dat.GUI` 控制改变这个 `value` 的时候，就触发了 `setter`，会用十六进制的色值字符串作为参数调用 `object.prop.set`。
+我们添加一些控制代码，使我们可以动态地改变光照的参数，还是使用 [lil-gui](https://github.com/georgealways/lil-gui) 来实现。为了可以通过 `lil-gui` 调节颜色，我们创建一个辅助对象。对象内有一个 `getter` 和 `setter`，当 `lil-gui` 从对象内获取 `value` 值的时候，触发了 `getter`，会根据创建对象实例时传入的 `object` 和 `prop`，返回一个十六进制色值的字符串，当通过 `lil-gui` 控制改变这个 `value` 的时候，就触发了 `setter`，会用十六进制的色值字符串作为参数调用 `object.prop.set`。
 
 以下是 helper 类的代码：
 
@@ -125,7 +125,7 @@ class ColorGUIHelper {
 }
 ```
 
-以及创建 dat.GUI 的代码：
+以及创建 lil-gui 的代码：
 
 ```js
 const gui = new GUI();
@@ -163,7 +163,7 @@ const intensity = 1;
 scene.add(light);
 ```
 
-同时修改一下 `dat.GUI` 部分，使得可以控制两种颜色：
+同时修改一下 `lil-gui` 部分，使得可以控制两种颜色：
 
 ```js
 const gui = new GUI();
@@ -196,7 +196,7 @@ scene.add(light.target);
 
 注意，不仅 `light` ，我们还把 [`light.target`](DirectionalLight.target) 也添加到了场景中。方向光（`DirectionalLight`）的方向是从它的位置照向目标点的位置。
 
-下面代码是将目标点坐标属性添加到 `dat.GUI`，使得我们可以控制目标位置
+下面代码是将目标点坐标属性添加到 `lil-gui`，使得我们可以控制目标位置
 
 ```js
 const gui = new GUI();
@@ -216,7 +216,7 @@ const helper = new THREE.DirectionalLightHelper(light);
 scene.add(helper);
 ```
 
-我们顺便实现一下对光源位置和目标点位置的控制逻辑。我们创建一个辅助函数，使得可以通过 `dat.GUI` 改变传入的 `Vector3` 类型对象的 `x`，`y`，和 `z` 的值。
+我们顺便实现一下对光源位置和目标点位置的控制逻辑。我们创建一个辅助函数，使得可以通过 `lil-gui` 改变传入的 `Vector3` 类型对象的 `x`，`y`，和 `z` 的值。
 
 ```js
 function makeXYZGUI(gui, vector3, name, onChangeFn) {
@@ -228,7 +228,7 @@ function makeXYZGUI(gui, vector3, name, onChangeFn) {
 }
 ```
 
-注意，当辅助对象所表示的不可见对象有所改变的时候，我们必须调用辅助对象的 `update` 方法来更新辅助对象本身的状态。因此我们传入一个 `onChangeFn` 函数，每当 `dat.GUI` 改变了某个值的时候，就会被调用。
+注意，当辅助对象所表示的不可见对象有所改变的时候，我们必须调用辅助对象的 `update` 方法来更新辅助对象本身的状态。因此我们传入一个 `onChangeFn` 函数，每当 `lil-gui` 改变了某个值的时候，就会被调用。
 
 应用到光照位置与目标点位置的控制，就如下所示：
 

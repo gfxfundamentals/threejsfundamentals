@@ -1477,14 +1477,14 @@ class Animal extends Component {
 }
 ```
 
-추가로 dat.GUI를 이용해 위 디버깅 요소들를 켜고 끌 수 있도록 합니다.
+추가로 lil-gui를 이용해 위 디버깅 요소들를 켜고 끌 수 있도록 합니다.
 
 ```js
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from '/examples/jsm/loaders/GLTFLoader.js';
 import { SkeletonUtils } from '/examples/jsm/utils/SkeletonUtils.js';
-+import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
++import { GUI } from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 ```js

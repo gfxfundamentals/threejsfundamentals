@@ -110,8 +110,8 @@ scene.add(light);
 ```
 
 Faisons aussi en sorte que nous puissions ajuster les paramètres de la lumière.
-Utilisons à nouveau [dat.GUI](https://github.com/dataarts/dat.gui).
-Pour pouvoir ajuster la couleur via dat.GUI, nous avons besoin d'un petit 'helper' qui fournit à dat.GUI une couleur en hexadécimale (eg: `#FF8844`). Notre 'helper' obtiendra la couleur d'une propriété nommée, la convertira en une chaîne hexadécimale à offrir à dat.GUI. Lorsque dat.GUI essaie de définir la propriété de l'assistant, nous attribuons le résultat à la couleur de la lumière.
+Utilisons à nouveau [lil-gui](https://github.com/georgealways/lil-gui).
+Pour pouvoir ajuster la couleur via lil-gui, nous avons besoin d'un petit 'helper' qui fournit à lil-gui une couleur en hexadécimale (eg: `#FF8844`). Notre 'helper' obtiendra la couleur d'une propriété nommée, la convertira en une chaîne hexadécimale à offrir à lil-gui. Lorsque lil-gui essaie de définir la propriété de l'assistant, nous attribuons le résultat à la couleur de la lumière.
 
 Voici notre 'helper':
 
@@ -130,7 +130,7 @@ class ColorGUIHelper {
 }
 ```
 
-Et voici le code de configuartion de dat.GUI
+Et voici le code de configuartion de lil-gui
 
 ```js
 const gui = new GUI();
@@ -169,7 +169,7 @@ const intensity = 1;
 scene.add(light);
 ```
 
-Mettons aussi à jour le dat.GUI avec ces 2 couleurs
+Mettons aussi à jour le lil-gui avec ces 2 couleurs
 
 ```js
 const gui = new GUI();
@@ -203,7 +203,7 @@ scene.add(light.target);
 Notez que nous avons dû ajouter une `light` et une `light.target`
 à la scéne. Une `DirectionalLight` doit illuminer une cible.
 
-Faisons en sorte que nous puissions déplacer la cible en l'ajoutant à dat.GUI.
+Faisons en sorte que nous puissions déplacer la cible en l'ajoutant à lil-gui.
 
 ```js
 const gui = new GUI();
@@ -224,7 +224,7 @@ const helper = new THREE.DirectionalLightHelper(light);
 scene.add(helper);
 ```
 
-Pendant que nous y sommes, faisons en sorte que nous puissions définir à la fois la position de la lumière et la cible. Pour ce faire, nous allons créer une fonction qui, étant donné un `Vector3`, ajustera ses propriétés `x`, `y` et `z` à l'aide de `dat.GUI`.
+Pendant que nous y sommes, faisons en sorte que nous puissions définir à la fois la position de la lumière et la cible. Pour ce faire, nous allons créer une fonction qui, étant donné un `Vector3`, ajustera ses propriétés `x`, `y` et `z` à l'aide de `lil-gui`.
 
 ```js
 function makeXYZGUI(gui, vector3, name, onChangeFn) {
@@ -236,7 +236,7 @@ function makeXYZGUI(gui, vector3, name, onChangeFn) {
 }
 ```
 
-Notez que nous devons appeler la fonction `update` du 'helper' à chaque fois que nous modifions quelque chose afin que l'assistant sache se mettre à jour. En tant que tel, nous passons une fonction `onChangeFn` pour être appelée à chaque fois que dat.GUI met à jour une valeur.
+Notez que nous devons appeler la fonction `update` du 'helper' à chaque fois que nous modifions quelque chose afin que l'assistant sache se mettre à jour. En tant que tel, nous passons une fonction `onChangeFn` pour être appelée à chaque fois que lil-gui met à jour une valeur.
 
 Ensuite, nous pouvons l'utiliser à la fois pour la position de la lumière et la position de la cible comme ceci
 
@@ -299,7 +299,7 @@ Notez qu'à un certain niveau, un `PointLightHelper` n'a pas de point. Il dessin
 Une `PointLight` a une propriété supplémentaire, [`distance`](PointLight.distance).
 Si la `distance` est de 0, le `PointLight` brille à l'infini. Si la `distance` est supérieure à 0, la lumière brille de toute son intensité vers la lumière et s'estompe jusqu'à n'avoir aucune influence à des unités de `distance` de la lumière.
 
-Mettons à jour dat.GUI pour pouvoir modifier la distance.
+Mettons à jour lil-gui pour pouvoir modifier la distance.
 
 ```js
 const gui = new GUI();
@@ -340,7 +340,7 @@ scene.add(helper);
 
 L'angle du cône de la `Spotlight` est défini avec la propriété [`angle`](SpotLight.angle)
 en radians. Utilisons notre `DegRadHelper` vu dans
-[l'article sur les textures](textures.html) pour modifier l'angle avec dat.GUI.
+[l'article sur les textures](textures.html) pour modifier l'angle avec lil-gui.
 
 ```js
 gui.add(new DegRadHelper(light, 'angle'), 'value', 0, 90).name('angle').onChange(updateLight);
@@ -436,7 +436,7 @@ scene.add(light);
 
 Une chose à noter est que contrairement au [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) et à la [`SpotLight`](https://threejs.org/docs/#api/en/lights/SpotLight), la [`RectAreaLight`](https://threejs.org/docs/#api/en/lights/RectAreaLight) n'utilise pas de cible. Elle utilise juste sa rotation. Une autre chose à noter est que le 'helper' doit être un enfant de la lumière. Ce n'est pas un enfant de la scène comme les autres 'helpers'.
 
-Ajustons-la également à dat.GUI. Nous allons le faire pour que nous puissions faire pivoter la lumière et ajuster sa `width` et sa `height`
+Ajustons-la également à lil-gui. Nous allons le faire pour que nous puissions faire pivoter la lumière et ajuster sa `width` et sa `height`
 
 ```js
 const gui = new GUI();
@@ -480,7 +480,7 @@ light.decay = 2;
 light.distance = Infinity;
 ```
 
-et mettons à jour dat.GUI pour pouvoir changer `power` et `decay`
+et mettons à jour lil-gui pour pouvoir changer `power` et `decay`
 
 ```js
 const gui = new GUI();

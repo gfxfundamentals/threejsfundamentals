@@ -84,11 +84,11 @@ Dans l'exemple ci-dessous, le 'near' de la caméra est à 0,1 et le `far` à 5. 
 
 {{{example url="fog.html" }}}
 
-Mettons à jour notre dat.GUI pour jouer avec le brouillard.
-[dat.GUI](https://github.com/dataarts/dat.gui) prend un objet et une propriété et crée automatiquement une interface de contrôle pour cette propriété. Nous pourrions simplement le laisser manipuler les propriétés `near` et `far` du brouillard, mais il est impossible que `near` soit supérieur à `far`. Assurons-nous de cela.
+Mettons à jour notre lil-gui pour jouer avec le brouillard.
+[lil-gui](https://github.com/georgealways/lil-gui) prend un objet et une propriété et crée automatiquement une interface de contrôle pour cette propriété. Nous pourrions simplement le laisser manipuler les propriétés `near` et `far` du brouillard, mais il est impossible que `near` soit supérieur à `far`. Assurons-nous de cela.
 
 ```js
-// On utilise cette classe pour passer à dat.gui
+// On utilise cette classe pour passer à lil-gui
 // donc quand il manipule near ou far
 // near n'est jamais > far et far n'est jamais < near
 class FogGUIHelper {
@@ -130,23 +130,23 @@ On peut l'ajouter comme ceci.
 
 Les paramètres `near` et `far` définissent les valeurs minimales et maximales pour ajuster le brouillard. Ils sont définis lors de la configuration de la caméra.
 
-Le `.listen()` à la fin des 2 lignes, dit à dat.GUI *d'écouter*
-les changements. Ainsi, que nous changions `near` ou `far`, dat.GUI mettra automatiquement à jour les deux propriétés pour nous.
+Le `.listen()` à la fin des 2 lignes, dit à lil-gui *d'écouter*
+les changements. Ainsi, que nous changions `near` ou `far`, lil-gui mettra automatiquement à jour les deux propriétés pour nous.
 
-Il peut également être agréable de pouvoir changer la couleur du brouillard, mais comme mentionné ci-dessus, nous devons synchroniser la couleur du brouillard et la couleur de l'arrière-plan. Ajoutons donc une autre propriété *virtuelle* à notre helper qui définira les deux couleurs lorsque dat.GUI la manipule.
+Il peut également être agréable de pouvoir changer la couleur du brouillard, mais comme mentionné ci-dessus, nous devons synchroniser la couleur du brouillard et la couleur de l'arrière-plan. Ajoutons donc une autre propriété *virtuelle* à notre helper qui définira les deux couleurs lorsque lil-gui la manipule.
 
-dat.GUI peut manipuler les couleurs de 4 façons différentes. Sous la forme d'une chaîne hexadécimale à 6 chiffres (ex : `#112233`). Sous la forme HSL (ex : `{h: 60, s: 1, v: }`).
+lil-gui peut manipuler les couleurs de 4 façons différentes. Sous la forme d'une chaîne hexadécimale à 6 chiffres (ex : `#112233`). Sous la forme HSL (ex : `{h: 60, s: 1, v: }`).
 En tant que tableau RGB (ex : `[255, 128, 64]`). Ou, comme un tableau RGBA (ex : `[127, 200, 75, 0.3]`).
 
 Il est plus simple d'utiliser la première solution, la version chaîne hexadécimale, ainsi 
-dat.GUI nemanipule qu'une seule valeur. Heureusement, `THREE.Color`
+lil-gui nemanipule qu'une seule valeur. Heureusement, `THREE.Color`
 a une méthode pour cela : [`getHexString`](Color.getHexString) qui permet d'obtenir une telle chaîne, il suffit juste d'ajouter un '#' au début.
 
 ```js
-/// On utilise cette classe pour passer à dat.gui
+/// On utilise cette classe pour passer à lil-gui
 // donc quand il manipule near ou far
 // near n'est jamais > far et far n'est jamais < near
-+// Aussi, lorsque dat.gui manipule la couleur, nous allons
++// Aussi, lorsque lil-gui manipule la couleur, nous allons
 +// mettre à jour les couleurs du brouillard et de l'arrière-plan.
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {

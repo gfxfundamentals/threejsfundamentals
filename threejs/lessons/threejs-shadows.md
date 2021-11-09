@@ -323,8 +323,8 @@ Recall an `OrthographicCamera` defines
 its box or *view frustum* by its `left`, `right`, `top`, `bottom`, `near`, `far`,
 and `zoom` properties.
 
-Again let's make a helper class for the dat.GUI. We'll make a `DimensionGUIHelper`
-that we'll pass an object and 2 properties. It will present one property that dat.GUI
+Again let's make a helper class for the lil-gui. We'll make a `DimensionGUIHelper`
+that we'll pass an object and 2 properties. It will present one property that lil-gui
 can adjust and in response will set the two properties one positive and one negative.
 We can use this to set `left` and `right` as `width` and `up` and `down` as `height`.
 

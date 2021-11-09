@@ -164,12 +164,12 @@ render();
 
 {{{example url="render-on-demand-w-damping.html" }}}
 
-シンプルなdat.GUIを追加し、GUIで値の変更時にレンダリングを要求してみましょう。
+シンプルなlil-guiを追加し、GUIで値の変更時にレンダリングを要求してみましょう。
 
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 各キューブの色と×スケールを設定できるようにしましょう。
@@ -206,7 +206,7 @@ function makeInstance(geometry, color, x) {
 }
 ```
 
-dat.GUIには `onChange` メソッドがあり、GUIで値を変更時にコールバックを渡す事ができます。今回は `requestRenderIfNotRequested` をコールバックするだけです。
+lil-guiには `onChange` メソッドがあり、GUIで値を変更時にコールバックを渡す事ができます。今回は `requestRenderIfNotRequested` をコールバックするだけです。
 `folder.open` でフォルダ展開できます。
 
 {{{example url="render-on-demand-w-gui.html" }}}

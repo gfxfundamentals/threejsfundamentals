@@ -127,11 +127,11 @@ scene.add(light);
 ```
 
 Let's also make it so we can adjust the light's parameters.
-We'll use [dat.GUI](https://github.com/dataarts/dat.gui) again.
-To be able to adjust the color via dat.GUI we need a small helper
-that presents a property to dat.GUI that looks like a CSS hex color string
+We'll use [lil-gui](https://github.com/georgealways/lil-gui) again.
+To be able to adjust the color via lil-gui we need a small helper
+that presents a property to lil-gui that looks like a CSS hex color string
 (eg: `#FF8844`). Our helper will get the color from a named property,
-convert it to a hex string to offer to dat.GUI. When dat.GUI tries
+convert it to a hex string to offer to lil-gui. When lil-gui tries
 to set the helper's property we'll assign the result back to the light's
 color.
 
@@ -152,7 +152,7 @@ class ColorGUIHelper {
 }
 ```
 
-And here's our code setting up dat.GUI
+And here's our code setting up lil-gui
 
 ```js
 const gui = new GUI();
@@ -198,7 +198,7 @@ const intensity = 1;
 scene.add(light);
 ```
 
-Let's also update the dat.GUI code to edit both colors
+Let's also update the lil-gui code to edit both colors
 
 ```js
 const gui = new GUI();
@@ -266,7 +266,7 @@ scene.add(helper);
 While we're at it let's make it so we can set both the position
 of the light and the target. To do this we'll make a function
 that given a `Vector3` will adjust its `x`, `y`, and `z` properties
-using `dat.GUI`.
+using `lil-gui`.
 
 ```js
 function makeXYZGUI(gui, vector3, name, onChangeFn) {
@@ -281,7 +281,7 @@ function makeXYZGUI(gui, vector3, name, onChangeFn) {
 Note that we need to call the helper's `update` function
 anytime we change something so the helper knows to update
 itself. As such we pass in an `onChangeFn` function to
-get called anytime dat.GUI updates a value.
+get called anytime lil-gui updates a value.
 
 Then we can use that for both the light's position
 and the target's position like this

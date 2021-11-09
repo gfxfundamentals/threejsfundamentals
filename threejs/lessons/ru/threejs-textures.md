@@ -517,15 +517,15 @@ const material = new THREE.MeshBasicMaterial({
 });
 ```
 
-Затем мы снова будем использовать [dat.GUI](https://github.com/dataarts/dat.gui) 
+Затем мы снова будем использовать [lil-gui](https://github.com/georgealways/lil-gui) 
 для обеспечения простого интерфейса.
 
 ```js
-import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
-Как мы делали в предыдущих примерах dat.GUI, мы будем использовать простой класс, 
-чтобы дать dat.GUI объект, которым он может манипулировать в градусах, 
+Как мы делали в предыдущих примерах lil-gui, мы будем использовать простой класс, 
+чтобы дать lil-gui объект, которым он может манипулировать в градусах, 
 но установит свойство в радианах.
 
 ```js
@@ -545,7 +545,7 @@ class DegRadHelper {
 
 Нам также нужен класс, который будет конвертировать из строки, например, `"123"` 
 в число `123`, так как для Three.js требуются числа для настроек перечисления, 
-например, `wrapS` и `wrapT`, а dat.GUI использует только строки для перечислений.
+например, `wrapS` и `wrapT`, а lil-gui использует только строки для перечислений.
 
 ```js
 class StringToNumberHelper {

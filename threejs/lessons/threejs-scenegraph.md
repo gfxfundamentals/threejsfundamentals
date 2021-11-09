@@ -279,8 +279,8 @@ to turn them on/off for each node.
 While we're at it let's also add another helper called the `GridHelper`. It
 makes a 2D grid on the X,Z plane. By default the grid is 10x10 units.
 
-We're also going to use [dat.GUI](https://github.com/dataarts/dat.gui) which is
-a UI library that is very popular with three.js projects. dat.GUI takes an
+We're also going to use [lil-gui](https://github.com/georgealways/lil-gui) which is
+a UI library that is very popular with three.js projects. lil-gui takes an
 object and a property name on that object and based on the type of the property
 automatically makes a UI to manipulate that property.
 
@@ -311,21 +311,21 @@ some function to add the helpers for each node
 ```
 
 `makeAxisGrid` makes an `AxisGridHelper` which is a class we'll create
-to make dat.GUI happy. Like it says above dat.GUI
+to make lil-gui happy. Like it says above lil-gui
 will automagically make a UI that manipulates the named property
 of some object. It will create a different UI depending on the type
 of property. We want it to create a checkbox so we need to specify
 a `bool` property. But, we want both the axes and the grid
 to appear/disappear based on a single property so we'll make a class
-that has a getter and setter for a property. That way we can let dat.GUI
+that has a getter and setter for a property. That way we can let lil-gui
 think it's manipulating a single property but internally we can set
 the visible property of both the `AxesHelper` and `GridHelper` for a node.
 
 ```js
 // Turns both axes and grid visible on/off
-// dat.GUI requires a property that returns a bool
+// lil-gui requires a property that returns a bool
 // to decide to make a checkbox so we make a setter
-// and getter for `visible` which we can tell dat.GUI
+// and getter for `visible` which we can tell lil-gui
 // to look at.
 class AxisGridHelper {
   constructor(node, units = 10) {

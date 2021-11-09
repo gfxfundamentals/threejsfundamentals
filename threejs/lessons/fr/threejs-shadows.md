@@ -261,12 +261,12 @@ Ajustez la valeur x cible dans les deux sens et il devrait être assez clair que
 
 Nous pouvons ajuster la taille de cette boîte en ajustant la caméra d'ombre de la lumière.
 
-Ajoutons quelques paramètres à dat.GUI pour ajuster les ombres. Étant donné qu'une [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) représente la lumière allant dans une direction parallèle, la [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) utilise une [`OrthographicCamera`](https://threejs.org/docs/#api/en/cameras/OrthographicCamera) pour sa caméra d'ombre. Nous avons expliqué le fonctionnement d'une caméra orthographique dans [l'article précédent sur les caméras](cameras.html).
+Ajoutons quelques paramètres à lil-gui pour ajuster les ombres. Étant donné qu'une [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) représente la lumière allant dans une direction parallèle, la [`DirectionalLight`](https://threejs.org/docs/#api/en/lights/DirectionalLight) utilise une [`OrthographicCamera`](https://threejs.org/docs/#api/en/cameras/OrthographicCamera) pour sa caméra d'ombre. Nous avons expliqué le fonctionnement d'une caméra orthographique dans [l'article précédent sur les caméras](cameras.html).
 
 Pour rappel, une `OrthographicCamera` définit son *frustum* par ses propriètès `left`, `right`, `top`, `bottom`, `near`, `far` et `zoom`.
 
-Créons à nouveau un helper pour dat.GUI. Appelons-le `DimensionGUIHelper`
-et passons-lui un objet et 2 propriétés. Il dispose d'une propriété que dat.GUI peut ajuster et en réponse définit les deux propriétés, une positive et une négative.
+Créons à nouveau un helper pour lil-gui. Appelons-le `DimensionGUIHelper`
+et passons-lui un objet et 2 propriétés. Il dispose d'une propriété que lil-gui peut ajuster et en réponse définit les deux propriétés, une positive et une négative.
 Nous pouvons l'utiliser pour définir `left` et `right` en tant que `width` et `up`, `down` en tant que `height`.
 
 ```js
@@ -308,7 +308,7 @@ gui.add(light, 'intensity', 0, 2, 0.01);
 +}
 ```
 
-Disons à dat.GUI d'appeler la fonction `updateCamera` à chaque changement.
+Disons à lil-gui d'appeler la fonction `updateCamera` à chaque changement.
 Écrivons cette fonction pour mettre à jour la lumière et son helper, la caméra d'ombre de la lumière et son helper.
 
 ```js
@@ -404,7 +404,7 @@ Et bien sûr, il faut passer la lumière en `PointLight`.
 
 {{{example url="shadows-point-light.html" }}}
 
-Utilisez les paramètres position de dat.GUI pour déplacer la lumière et vous verrez les ombres se projeter sur tous les murs. Vous pouvez également ajuster les paramètres near et far et voir comment les autres ombres se comportent.
+Utilisez les paramètres position de lil-gui pour déplacer la lumière et vous verrez les ombres se projeter sur tous les murs. Vous pouvez également ajuster les paramètres near et far et voir comment les autres ombres se comportent.
 
 <!--
 self shadow, shadow acne

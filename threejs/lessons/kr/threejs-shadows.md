@@ -318,7 +318,7 @@ target의 x 값을 조정해보면 그림자용 카메라 범위 안에 있는 �
 `OrthographicCamera`의 시야는 육면체나 *절두체(frustum)*로 정의한다고 했었죠. `left`,
 `right`, `top`, `bottom`, `near`, `far`, `zoom` 속성을 지정해서요.
 
-dat.GUI가 쓸 간단한 헬퍼 클래스를 하나 더 만들겠습니다. 이 `DimensionGUIHelper`는
+lil-gui가 쓸 간단한 헬퍼 클래스를 하나 더 만들겠습니다. 이 `DimensionGUIHelper`는
 객체와 속성 이름 2개를 인자로 받아, GUI가 하나의 값을 조정할 때 하나의 값은 양수로,
 다른 값은 음수로 지정합니다. 이렇게 하면 `left`와 `right`값을 `width`로, `up`과
 `down`값을 `height`로 바꾸어 조작할 수 있죠.

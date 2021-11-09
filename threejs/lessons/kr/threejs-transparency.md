@@ -320,9 +320,9 @@ function makeInstance(geometry, color, rotY, url) {
 
 이대로 실행해도 되지만, 간단한 UI를 만들어 `alphaTest`와 `transparent` 속성을
 갖고 놀 수 있게 해보겠습니다. [씬 그래프에 관한 글](scenegraph.html)에서
-소개했던 dat.GUI를 써서요.
+소개했던 lil-gui를 써서요.
 
-먼저 dat.GUI에 지정할 헬퍼 클래스를 만들겠습니다. 이 헬퍼 클래스는 장면 안 모든
+먼저 lil-gui에 지정할 헬퍼 클래스를 만들겠습니다. 이 헬퍼 클래스는 장면 안 모든
 재질을 해당 값으로 변경할 겁니다.
 
 ```js
@@ -365,12 +365,12 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 ```
 
-물론 dat.GUI 모듈도 불러와야죠.
+물론 lil-gui 모듈도 불러와야죠.
 
 ```js
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
++import { GUI } from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 {{{example url="transparency-intersecting-planes-alphatest.html"}}}

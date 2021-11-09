@@ -169,12 +169,12 @@ render();
 
 {{{example url="render-on-demand-w-damping.html" }}}
 
-Давайте также добавим простой графический интерфейс dat.GUI и внесем его изменения по запросу. 
+Давайте также добавим простой графический интерфейс lil-gui и внесем его изменения по запросу. 
 
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 Давайте позволим установить цвет и шкалу х каждого куба. Чтобы установить цвет, мы будем использовать `ColorGUIHelper`, который мы создали в [статье о светах](lights.html).
@@ -210,7 +210,7 @@ function makeInstance(geometry, color, x) {
 }
 ```
 
-Вы можете видеть выше элементы управления dat.GUI имеют метод `onChange`, 
+Вы можете видеть выше элементы управления lil-gui имеют метод `onChange`, 
 который вы можете передать обратный вызов для вызова, когда графический интерфейс изменяет значение.
 В нашем случае нам просто нужно вызвать `requestRenderIfNotRequested`. При вызове `folder.open` папка запускается расширенной. 
 

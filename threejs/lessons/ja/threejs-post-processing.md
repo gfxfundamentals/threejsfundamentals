@@ -176,7 +176,7 @@ if ( scanlinesCount !== undefined ) this.uniforms.sCount.value = scanlinesCount;
 これらの値を設定する簡単なGUIを作ってみましょう。
 
 ```js
-import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 そして

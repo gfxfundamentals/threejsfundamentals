@@ -526,14 +526,14 @@ const material = new THREE.MeshBasicMaterial({
 });
 ```
 
-Then we'll use [dat.GUI](https://github.com/dataarts/dat.gui) again to provide a simple interface.
+Then we'll use [lil-gui](https://github.com/georgealways/lil-gui) again to provide a simple interface.
 
 ```js
-import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
-As we did in previous dat.GUI examples we'll use a simple class to
-give dat.GUI an object that it can manipulate in degrees
+As we did in previous lil-gui examples we'll use a simple class to
+give lil-gui an object that it can manipulate in degrees
 but that will set a property in radians.
 
 ```js
@@ -553,7 +553,7 @@ class DegRadHelper {
 
 We also need a class that will convert from a string like `"123"` into
 a number like `123` since three.js requires numbers for enum settings
-like `wrapS` and `wrapT` but dat.GUI only uses strings for enums.
+like `wrapS` and `wrapT` but lil-gui only uses strings for enums.
 
 ```js
 class StringToNumberHelper {

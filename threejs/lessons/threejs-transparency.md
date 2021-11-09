@@ -332,10 +332,10 @@ function makeInstance(geometry, color, rotY, url) {
 ```
 
 Before we run this let's add a small UI so we can more easily play with the `alphaTest`
-and `transparent` settings. We'll use dat.gui like we introduced
+and `transparent` settings. We'll use lil-gui like we introduced
 in the [article on three.js's scenegraph](scenegraph.html).
 
-First we'll make a helper for dat.gui that sets every material in the scene
+First we'll make a helper for lil-gui that sets every material in the scene
 to a value
 
 ```js
@@ -378,12 +378,12 @@ gui.add(new AllMaterialPropertyGUIHelper('transparent', scene), 'value')
     .onChange(requestRenderIfNotRequested);
 ```
 
-and of course we need to include dat.gui
+and of course we need to include lil-gui
 
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 and here's the results

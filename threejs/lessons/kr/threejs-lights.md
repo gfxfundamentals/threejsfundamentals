@@ -119,10 +119,10 @@ const light = new THREE.AmbientLight(color, intensity);
 scene.add(light);
 ```
 
-이 조명도 [dat.GUI](https://github.com/dataarts/dat.gui)를 사용해
-속성을 조정할 수 있도록 만들겠습니다. dat.GUI로 색상을 조정하려면 간단한
+이 조명도 [lil-gui](https://github.com/georgealways/lil-gui)를 사용해
+속성을 조정할 수 있도록 만들겠습니다. lil-gui로 색상을 조정하려면 간단한
 헬퍼 클래스가 필요합니다. 이 클래스는 색상을 CSS hex(예: `#FF8844`) 값으로
-변경해 dat.GUI에 넘겨주는 역할을 할 거예요. 그리고 dat.GUI가 클래스의
+변경해 lil-gui에 넘겨주는 역할을 할 거예요. 그리고 lil-gui가 클래스의
 속성을 지정할 때, 이를 조명에 직접 지정하도록 합니다.
 
 ```js
@@ -140,7 +140,7 @@ class ColorGUIHelper {
 }
 ```
 
-아래는 dat.GUI를 만드는 코드입니다.
+아래는 lil-gui를 만드는 코드입니다.
 
 ```js
 const gui = new GUI();
@@ -180,7 +180,7 @@ const intensity = 1;
 scene.add(light);
 ```
 
-마찬가지로 dat.GUI를 수정해 두 색상을 조정할 수 있도록 합니다.
+마찬가지로 lil-gui를 수정해 두 색상을 조정할 수 있도록 합니다.
 
 ```js
 const gui = new GUI();
@@ -242,7 +242,7 @@ scene.add(helper);
 ```
 
 하는 김에 조명과 목표 둘 다 위치를 조정할 수 있도록 하겠습니다.
-`Vector3` 객체를 인자로 받아, `dat.GUI`로 이 객체의 `x`, `y`,
+`Vector3` 객체를 인자로 받아, `lil-gui`로 이 객체의 `x`, `y`,
 `z` 속성을 조정하는 함수를 하나 만듭니다.
 
 ```js
@@ -256,7 +256,7 @@ function makeXYZGUI(gui, vector3, name, onChangeFn) {
 ```
 
 헬퍼 객체를 사용할 때는 헬퍼 객체의 `update` 메서드를 수동으로
-호출해줘야 합니다. 한 예로 dat.GUI가 객체 속성을 변경할 때마다
+호출해줘야 합니다. 한 예로 lil-gui가 객체 속성을 변경할 때마다
 인자로 넘겨준 `onChangeFn`에서 헬퍼 객체의 `update` 메서드를
 호출할 수 있죠.
 

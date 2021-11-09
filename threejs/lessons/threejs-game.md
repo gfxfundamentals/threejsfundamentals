@@ -1674,7 +1674,7 @@ class Animal extends Component {
 }
 ```
 
-While we're at it lets make it so we can turn them on/off using dat.GUI like
+While we're at it lets make it so we can turn them on/off using lil-gui like
 we've used else where
 
 ```js
@@ -1682,7 +1682,7 @@ import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from '/examples/jsm/loaders/GLTFLoader.js';
 import * as SkeletonUtils from '/examples/jsm/utils/SkeletonUtils.js';
-+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 ```js

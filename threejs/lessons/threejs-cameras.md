@@ -42,7 +42,7 @@ Let's use the scene from [the previous article](lights.html) that has a ground
 plane, a sphere, and a cube and make it so we can adjust the camera's settings.
 
 To do that we'll make a `MinMaxGUIHelper` for the `near` and `far` settings so `far`
-is always greater than `near`. It will have `min` and `max` properties that dat.GUI
+is always greater than `near`. It will have `min` and `max` properties that lil-gui
 will adjust. When adjusted they'll set the 2 properties we specify.
 
 ```js
@@ -86,7 +86,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 
 Anytime the camera's settings change we need to call the camera's
 [`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix) function
-so we made a function called `updateCamera` add passed it to dat.GUI to call it when things change.
+so we made a function called `updateCamera` add passed it to lil-gui to call it when things change.
 
 {{{example url="cameras-perspective.html" }}}
 
@@ -429,7 +429,7 @@ const gui = new GUI();
 +gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
 ```
 
-The call to `listen` tells dat.GUI to watch for changes. This is here because
+The call to `listen` tells lil-gui to watch for changes. This is here because
 the `OrbitControls` can also control zoom. For example the scroll wheel on
 a mouse will zoom via the `OrbitControls`.
 

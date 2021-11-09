@@ -485,7 +485,7 @@ it has
 2. Some CSS
 3. Lights
 4. Shadows
-5. DAT.gui code to manipulate shadows
+5. lil-gui code to manipulate shadows
 6. Code to load a .GLTF file
 7. Code to resize the canvas.
 8. Code to move the cars along paths
@@ -494,7 +494,7 @@ That's pretty huge. If your question is only about the path following part you
 can remove most of the HTML as you only need a `<canvas>` and a `<script>` tag
 for THREE.js. You can remove the CSS and the resizing code. You can remove .GLTF
 code because you only care about the path. You can remove the lights and the
-shadows by using a `MeshBasicMaterial`. You can certainly remove the DAT.gui
+shadows by using a `MeshBasicMaterial`. You can certainly remove the lil-gui
 code. The code makes a ground plane with a texture. It would be easier to use a
 `GridHelper`. Finally if our question is about moving things on a path we could
 just use cubes on the path instead of loaded car models.

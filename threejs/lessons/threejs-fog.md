@@ -107,16 +107,16 @@ will fade out right around their center.
 {{{example url="fog.html" }}}
 
 Let's add an interface so we can adjust the fog. Again we'll use
-[dat.GUI](https://github.com/dataarts/dat.gui). dat.GUI takes
+[lil-gui](https://github.com/georgealways/lil-gui). lil-gui takes
 an object and a property and automagically makes an interface
 for that type of property. We could just simply let it manipulate
 the fog's `near` and `far` properties but it's invalid to have
-`near` be greater than `far` so let's make a helper so dat.GUI
+`near` be greater than `far` so let's make a helper so lil-gui
 can manipulate a `near` and `far` property but we'll make sure `near`
 is less than or equal to `far` and `far` is greater than or equal `near`.
 
 ```js
-// We use this class to pass to dat.gui
+// We use this class to pass to lil-gui
 // so when it manipulates near or far
 // near is never > far and far is never < near
 class FogGUIHelper {
@@ -159,29 +159,29 @@ We can then add it like this
 The `near` and `far` parameters set the minimum and maximum values
 for adjusting the fog. They are set when we setup the camera.
 
-The `.listen()` at the end of the last 2 lines tells dat.GUI to *listen*
+The `.listen()` at the end of the last 2 lines tells lil-gui to *listen*
 for changes. That way when we change `near` because of an edit to `far`
-or we change `far` in response to an edit to `near` dat.GUI will update
+or we change `far` in response to an edit to `near` lil-gui will update
 the other property's UI for us.
 
 It might also be nice to be able to change the fog color but like was
 mentioned above we need to keep both the fog color and the background
 color in sync. So, let's add another *virtual* property to our helper
-that will set both colors when dat.GUI manipulates it.
+that will set both colors when lil-gui manipulates it.
 
-dat.GUI can manipulate colors in 4 ways, as a CSS 6 digit hex string (eg: `#112233`). As an hue, saturation, value, object (eg: `{h: 60, s: 1, v: }`).
+lil-gui can manipulate colors in 4 ways, as a CSS 6 digit hex string (eg: `#112233`). As an hue, saturation, value, object (eg: `{h: 60, s: 1, v: }`).
 As an RGB array (eg: `[255, 128, 64]`). Or, as an RGBA array (eg: `[127, 200, 75, 0.3]`).
 
 It's easiest for our purpose to use the hex string version since that way
-dat.GUI is only manipulating a single value. Fortunately `THREE.Color`
+lil-gui is only manipulating a single value. Fortunately `THREE.Color`
 as a [`getHexString`](Color.getHexString) method
 we get use to easily get such a string, we just have to prepend a '#' to the front.
 
 ```js
-// We use this class to pass to dat.gui
+// We use this class to pass to lil-gui
 // so when it manipulates near or far
 // near is never > far and far is never < near
-+// Also when dat.gui manipulates color we'll
++// Also when lil-gui manipulates color we'll
 +// update both the fog and background colors.
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {

@@ -261,9 +261,9 @@ objects.forEach((node) => {
 そのついでに、`GridHelper` というヘルパー関数も追加しておきましょう。
 これはX,Z平面に2次元グリッドを作ります。デフォルトでは、グリッドは10x10ユニットです。
 
-[dat.GUI](https://github.com/dataarts/dat.gui)も使います。
+[lil-gui](https://github.com/georgealways/lil-gui)も使います。
 これはthree.jsプロジェクトでとても一般的なUIライブラリです。
-dat.GUIはオブジェクトとそのオブジェクトの属性名を受け取り、
+lil-guiはオブジェクトとそのオブジェクトの属性名を受け取り、
 属性の型に基づいて、自動的にその属性を操作するUIを作成します。
 
 それぞれのノードに対して、`GridHelper`と`AxesHelper`の両方を作りたいです。
@@ -291,21 +291,21 @@ dat.GUIはオブジェクトとそのオブジェクトの属性名を受け取�
 +makeAxisGrid(moonMesh, 'moonMesh');
 ```
 
-`makeAxisGrid`は、dat.GUIをハッピーにする`AxisGridHelper`クラスを作ります。
-前述したように、dat.GUIは、オブジェクトの名前が付いた属性を操作するUIを自動的に生成します。
+`makeAxisGrid`は、lil-guiをハッピーにする`AxisGridHelper`クラスを作ります。
+前述したように、lil-guiは、オブジェクトの名前が付いた属性を操作するUIを自動的に生成します。
 属性の型に応じて異なるUIが作成されます。
 チェックボックスを作って欲しいので、`bool`属性を指定する必要があります。
 しかし、軸とグリッドの両方を一つの属性で表示/非表示にしたいので、
 属性のgetterとsetterを持ったクラスを作成します。
-この方法で、dat.GUIに一つの属性を操作するように思わせることができますが、
+この方法で、lil-guiに一つの属性を操作するように思わせることができますが、
 内部的には各ノードに`AxesHelper`と`GridHelper`の両方のvisible属性を設定することができます。
 
 
 ```js
 // Turns both axes and grid visible on/off
-// dat.GUI requires a property that returns a bool
+// lil-gui requires a property that returns a bool
 // to decide to make a checkbox so we make a setter
-// and getter for `visible` which we can tell dat.GUI
+// and getter for `visible` which we can tell lil-gui
 // to look at.
 class AxisGridHelper {
   constructor(node, units = 10) {

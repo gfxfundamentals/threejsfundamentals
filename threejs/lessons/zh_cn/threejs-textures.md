@@ -423,13 +423,13 @@ const material = new THREE.MeshBasicMaterial({
 });
 ```
 
-然后，我们会再次使用 [dat.GUI](https://github.com/dataarts/dat.gui) 来提供一个简单的界面。
+然后，我们会再次使用 [lil-gui](https://github.com/georgealways/lil-gui) 来提供一个简单的界面。
 
 ```js
-import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
-正如我们在之前的dat.GUI例子中所做的那样，我们将使用一个简单的类来给dat.GUI提供一个可以以度数为单位进行操作的对象，但它将以弧度为单位设置该属性。
+正如我们在之前的lil-gui例子中所做的那样，我们将使用一个简单的类来给lil-gui提供一个可以以度数为单位进行操作的对象，但它将以弧度为单位设置该属性。
 
 ```js
 class DegRadHelper {
@@ -446,7 +446,7 @@ class DegRadHelper {
 }
 ```
 
-我们还需要一个类，将 `"123"` 这样的字符串转换为 `123` 这样的数字，因为three.js的枚举设置需要数字，比如 `wrapS` 和 `wrapT`，但dat.GUI只使用字符串来设置枚举。
+我们还需要一个类，将 `"123"` 这样的字符串转换为 `123` 这样的数字，因为three.js的枚举设置需要数字，比如 `wrapS` 和 `wrapT`，但lil-gui只使用字符串来设置枚举。
 
 ```js
 class StringToNumberHelper {

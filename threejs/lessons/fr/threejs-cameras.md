@@ -29,7 +29,7 @@ Une `PerspectiveCamera` définit son frustum selon 4 propriétés. `near` défin
 Utilisons la scène de [l'article précédent](lights.html) avec son plan, sa sphère et son cube, et faisons en sorte que nous puissions ajuster les paramètres de la caméra.
 
 Pour ce faire, nous allons créer un `MinMaxGUIHelper` pour les paramètres `near` et `far` où `far`
-est toujours supérieur `near`. Il aura des propriétés `min` et `max` que dat.GUI
+est toujours supérieur `near`. Il aura des propriétés `min` et `max` que lil-gui
 pourra ajuster. Une fois ajustés, ils définiront les 2 propriétés que nous spécifions.
 
 ```js
@@ -57,7 +57,7 @@ class MinMaxGUIHelper {
 }
 ```
 
-Maintenant, nous pouvons configurer dat.GUI comme ça
+Maintenant, nous pouvons configurer lil-gui comme ça
 
 ```js
 function updateCamera() {
@@ -72,7 +72,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 ```
 
 Chaque fois que les paramètres de la caméra changent, il faut appeler la fonction
-[`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix). Nous avons donc créé une fonction `updateCamera` transmise à dat.GUI pour l'appeler lorsque les choses changent.
+[`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix). Nous avons donc créé une fonction `updateCamera` transmise à lil-gui pour l'appeler lorsque les choses changent.
 
 {{{example url="cameras-perspective.html" }}}
 
@@ -299,7 +299,7 @@ const far = 100;
 const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 ```
 
-Nous devons également modifier un peu le code de dat.GUI pour autoriser 0,00001 si la valeur est modifiée.
+Nous devons également modifier un peu le code de lil-gui pour autoriser 0,00001 si la valeur est modifiée.
 
 ```js
 -gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera);
@@ -357,14 +357,14 @@ camera.zoom = 0.2;
 
 Définissons `left` and `bottom` à -1 et `right` et `top` à 1. On devrait obtenir une boîte de 2 unités de large et 2 unités de haut, mais nous allons ajuster `left` et `top` en fonction de l'aspect du rectangle sur lequel nous dessinons. Nous utiliserons la propriété `zoom` pour faciliter le réglage du nombre d'unités réellement affichées par la caméra.
 
-Ajoutons un nouveau paramètre à dat.GUI pour le `zoom`.
+Ajoutons un nouveau paramètre à lil-gui pour le `zoom`.
 
 ```js
 const gui = new GUI();
 +gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
 ```
 
-L'appel à `listen` dit à dat.GUI de surveiller les changements. Il faut faire cela parce que `OrbitControls` peut contrôler le zoom. Par exemple, la molette de défilement d'une souris zoomera via les `OrbitControls`.
+L'appel à `listen` dit à lil-gui de surveiller les changements. Il faut faire cela parce que `OrbitControls` peut contrôler le zoom. Par exemple, la molette de défilement d'une souris zoomera via les `OrbitControls`.
 
 Enfin, nous avons juste besoin de changer la partie qui rend le côté gauche pour mettre à jour la `OrthographicCamera`.
 

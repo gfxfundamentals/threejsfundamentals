@@ -98,14 +98,14 @@ const scene = new THREE.Scene();
 {{{example url="fog.html" }}}
 
 フォグを調整するインターフェースを追加してみましょう。
-ここでも[dat.GUI](https://github.com/dataarts/dat.gui)を使用します。
-dat.GUIはオブジェクトとプロパティを受け取り、インタフェースを自動生成します。
+ここでも[lil-gui](https://github.com/georgealways/lil-gui)を使用します。
+lil-guiはオブジェクトとプロパティを受け取り、インタフェースを自動生成します。
 これでフォグの `near` と `far` プロパティを簡単に操作できます。
 しかし、 `near` が `far` より大きい場合は無効になります。
-dat.GUIで `near` と `far` を操作するヘルパーを作ってみましょう。
+lil-guiで `near` と `far` を操作するヘルパーを作ってみましょう。
 
 ```js
-// We use this class to pass to dat.gui
+// We use this class to pass to lil-gui
 // so when it manipulates near or far
 // near is never > far and far is never < near
 class FogGUIHelper {
@@ -148,13 +148,13 @@ class FogGUIHelper {
 `near` と `far` のパラメーターは、フォグを調整する最小値と最大値を設定します。
 これはカメラ設定時にセットします。
 
-最後の2行の `.listen()` をdat.GUIに変更し  *listen* するようにします。
-これで `near` や `far` の変更時、dat.GUIが他のプロパティのUIを更新してくれます。
+最後の2行の `.listen()` をlil-guiに変更し  *listen* するようにします。
+これで `near` や `far` の変更時、lil-guiが他のプロパティのUIを更新してくれます。
 
 フォグの色を変更できますが、上記で述べたようにフォグの色と背景色を同期させる必要があります。
-dat.GUI操作時に両方の色を変更する *virtual* プロパティをヘルパーに追加してみましょう。
+lil-gui操作時に両方の色を変更する *virtual* プロパティをヘルパーに追加してみましょう。
 
-dat.GUIでは4つの方法で色を操作できます。
+lil-guiでは4つの方法で色を操作できます。
 
 1. CSSの6桁の16進数(例: `#112233`)
 
@@ -164,14 +164,14 @@ dat.GUIでは4つの方法で色を操作できます。
 
 4. RGBA（例：`[127, 200, 75, 0.3]`）
 
-dat.GUIが単一の値を操作するので、16進数を使うのが一番簡単です。
+lil-guiが単一の値を操作するので、16進数を使うのが一番簡単です。
 幸運な事に `THREE.Color` で [`getHexString`](Color.getHexString) を使用でき、文字列を簡単に取得できます。
 
 ```js
-// We use this class to pass to dat.gui
+// We use this class to pass to lil-gui
 // so when it manipulates near or far
 // near is never > far and far is never < near
-+// Also when dat.gui manipulates color we'll
++// Also when lil-gui manipulates color we'll
 +// update both the fog and background colors.
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {
@@ -202,7 +202,7 @@ class FogGUIHelper {
 }
 ```
 
-`gui.addColor` を呼び出し、ヘルパーのvirtualプロパティにcolorのdat.GUIを追加します。
+`gui.addColor` を呼び出し、ヘルパーのvirtualプロパティにcolorのlil-guiを追加します。
 
 ```js
 {

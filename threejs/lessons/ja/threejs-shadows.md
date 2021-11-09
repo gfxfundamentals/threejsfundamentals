@@ -298,9 +298,9 @@ scene.add(cameraHelper);
 
 `OrthographicCamera` は、`left`、`right`、`top`、`bottom`、`near`、`far`、`zoom` プロパティでその箱、または *錐台の視点* を定義してる事を思い出して下さい。
 
-ここでもdat.GUIのヘルパークラスを作ってみましょう。
+ここでもlil-guiのヘルパークラスを作ってみましょう。
 オブジェクトと2つのプロパティを渡す `DimensionGUIHelper` を作ります。
-dat.GUIが調整できるプロパティを追加し、2つのプロパティの正と負の値を設定します。
+lil-guiが調整できるプロパティを追加し、2つのプロパティの正と負の値を設定します。
 これを使い `left` と `right` を `width` に、`up` と `down` を `height` に設定します。
 
 ```js

@@ -40,7 +40,7 @@ Three.js에서 가장 자주 사용하는 카메라는 여태까지 썼던 `Pers
 카메라의 속성을 조정할 수 있도록 만들겠습니다.
 
 `near` 속성은 항상 `far` 속성보다 커야 하니, 이를 제어할 `MinMaxGUIHelper` 헬퍼 클래스를
-만들겠습니다. 이 클래스는 dat.GUI가 제어할 `min`과 `max` 속성이 있고, dat.GUI가 이를 조정할
+만들겠습니다. 이 클래스는 lil-gui가 제어할 `min`과 `max` 속성이 있고, lil-gui가 이를 조정할
 때 지정한 두 가지 속성을 동시에 변경합니다.
 
 ```js
@@ -409,7 +409,7 @@ const gui = new GUI();
 +gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
 ```
 
-`listen` 메서드를 호출하면 dat.GUI가 변화를 감지합니다. 이렇게 한 이유는 `OrbitControls`이
+`listen` 메서드를 호출하면 lil-gui가 변화를 감지합니다. 이렇게 한 이유는 `OrbitControls`이
 마우스 휠 스크롤을 감지해 `zoom` 속성을 변경하기 때문이죠.
 
 끝으로 왼쪽 화면을 렌더링할 때 `OrthographicCamera`를 업데이트하도록 설정합니다.

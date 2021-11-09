@@ -438,13 +438,13 @@ const material = new THREE.MeshBasicMaterial({
 });
 ```
 
-Ensuite, utilisons [dat.GUI](https://github.com/dataarts/dat.gui) pour fournir une interface simple.
+Ensuite, utilisons [lil-gui](https://github.com/georgealways/lil-gui) pour fournir une interface simple.
 
 ```js
-import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
-Comme nous l'avons fait dans les exemples précédents avec dat.GUI, nous utiliserons une classe simple pour donner à dat.GUI un objet qu'il peut manipuler en degrés mais qu'il définira en radians.
+Comme nous l'avons fait dans les exemples précédents avec lil-gui, nous utiliserons une classe simple pour donner à lil-gui un objet qu'il peut manipuler en degrés mais qu'il définira en radians.
 
 ```js
 class DegRadHelper {
@@ -461,7 +461,7 @@ class DegRadHelper {
 }
 ```
 
-Nous avons également besoin d'une classe qui convertira une chaîne telle que `"123"` en un nombre tel que 123, car Three.js nécessite des nombres pour les paramètres d'énumération tels que `wrapS` et `wrapT`, mais dat.GUI n'utilise que des chaînes pour les énumérations.
+Nous avons également besoin d'une classe qui convertira une chaîne telle que `"123"` en un nombre tel que 123, car Three.js nécessite des nombres pour les paramètres d'énumération tels que `wrapS` et `wrapT`, mais lil-gui n'utilise que des chaînes pour les énumérations.
 
 ```js
 class StringToNumberHelper {

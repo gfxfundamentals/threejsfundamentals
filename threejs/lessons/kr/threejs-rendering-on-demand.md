@@ -173,12 +173,12 @@ render();
 
 {{{example url="render-on-demand-w-damping.html" }}}
 
-간단한 dat.GUI를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.
+간단한 lil-gui를 추가해 반복 렌더링 여부를 제어할 수 있도록 하겠습니다.
 
 ```js
 import * as THREE from '/build/three.module.js';
 import { OrbitControls } from '/examples/jsm/controls/OrbitControls.js';
-+import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
++import { GUI } from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 먼저 각 정육면체의 색과 x축 스케일을 조정하는 GUI를 추가합니다. [조명에 관한 글](lights.html)에서
@@ -215,7 +215,7 @@ function makeInstance(geometry, color, x) {
 }
 ```
 
-dat.GUI 컨트롤(control)의 `onChange` 메서드에 콜백 함수를 넘겨주면 GUI 값이 바뀔
+lil-gui 컨트롤(control)의 `onChange` 메서드에 콜백 함수를 넘겨주면 GUI 값이 바뀔
 때마다 콜백 함수를 호출합니다. 예제의 경우에는 단순히 `requestRenderIfNotRequested`
 함수를 넘겨주면 되죠. 그리고 `folder.open` 메서드를 호출해 폴더를 열어 둡니다.
 

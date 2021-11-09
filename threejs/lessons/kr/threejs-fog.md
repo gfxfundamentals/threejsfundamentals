@@ -101,15 +101,15 @@ const scene = new THREE.Scene();
 
 {{{example url="fog.html" }}}
 
-인터페이스를 추가해 안개를 조정할 수 있도록 하겠습니다. 이번에도 [dat.GUI](https://github.com/dataarts/dat.gui)를
-사용할 거예요. dat.GUI는 객체와 객체의 속성 키값을 받아 자동으로 인터페이스를
+인터페이스를 추가해 안개를 조정할 수 있도록 하겠습니다. 이번에도 [lil-gui](https://github.com/georgealways/lil-gui)를
+사용할 거예요. lil-gui는 객체와 객체의 속성 키값을 받아 자동으로 인터페이스를
 생성합니다. 단순히 안개의 `near`와 `far` 제어하도록 설정할 수도 있지만, `near`값이
 `far`값보다 큰 경우는 없기에 헬퍼를 만들어 `near`값을 항상 `far`보다 같거나
 작게, `far`값을 항상 `near`보다 같거나 크게 설정하도록 하겠습니다.
 
 ```js
 /**
- * 이 클래스의 인스턴스를 dat.GUI에 넘겨
+ * 이 클래스의 인스턴스를 lil-gui에 넘겨
  * near나 far 속성을 조정할 때 항상
  * near는 never >= far, far는 never <= near가 되도록 합니다
  **/
@@ -152,31 +152,31 @@ class FogGUIHelper {
 
 `near`와 `far` 인자는 각 안개 속성의 최솟값과 최댓값입니다.
 
-마지막 2줄의 `.listen()` 메서드를 호출하면 dat.GUI가 변화를 *감지*합니다.
+마지막 2줄의 `.listen()` 메서드를 호출하면 lil-gui가 변화를 *감지*합니다.
 `near` 속성을 바꿀 때 동시에 `far` 속성을 재할당하고, `far` 속성을 바꿀 때도
 동시에 `near`를 재할당하는데, 이 메서드를 호출하면 조작한 속성 외의 다른
 속성의 변화도 UI에 업데이트됩니다.
 
 여기에 안개의 색까지 조정할 수 있으면 금상첨화겠네요. 하지만 아까 설명했듯
 안개의 색을 바꾸려면 배경색도 같이 바꿔야 합니다. 헬퍼 클래스에 *가상* 속성을
-하나 만들어 dat.GUI가 이 속성을 변경할 때 배경색과 안개색을 같은 값으로
+하나 만들어 lil-gui가 이 속성을 변경할 때 배경색과 안개색을 같은 값으로
 바꿔주면 어떨까요?
 
-dat.GUI의 색상 타입은 4가지입니다. 하나는 CSS의 6자리 16진수 문자열(hex string, 예: `#f8f8f8`)이고,
+lil-gui의 색상 타입은 4가지입니다. 하나는 CSS의 6자리 16진수 문자열(hex string, 예: `#f8f8f8`)이고,
 하나는 hue(색상), saturation(채도), value 객체(예: `{ h: 60, s: 1, v: 0 }`),
 하나는 RGB 배열(예: `[ 255, 128, 64 ]`) 또는 RGBA 색상 배열(예: `[ 127, 200, 75, 0.3 ]`)이죠.
 
-`dat.GUI`가 하나의 값만 조작하도록 하는 게 제일 간단하니, 16진수 문자열을 사용하겠습니다.
+`lil-gui`가 하나의 값만 조작하도록 하는 게 제일 간단하니, 16진수 문자열을 사용하겠습니다.
 다행히 `THREE.Color`에는 [`getHexString`](Color.getHexString) 메서드가 있어 색상을
 문자열로 쉽게 바꿀 수 있죠. 앞에 '#'만 덧붙이면 됩니다.
 
 ```js
 /**
- * 이 클래스의 인스턴스를 dat.GUI에 넘겨
+ * 이 클래스의 인스턴스를 lil-gui에 넘겨
  * near나 far 속성을 조정할 때 항상
  * near는 never >= far, far는 never <= near가 되도록 합니다
  **/
-+// 또 dat.GUI가 color 속성을 조작할 때 안개와 배경색을 동시에 변경합니다
++// 또 lil-gui가 color 속성을 조작할 때 안개와 배경색을 동시에 변경합니다
 class FogGUIHelper {
 *  constructor(fog, backgroundColor) {
     this.fog = fog;

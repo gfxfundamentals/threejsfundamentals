@@ -217,7 +217,7 @@ objects.forEach((node) => {
 
 可能很难看到其中一些轴，因为有 2 对重叠的轴。`sunMesh` 和 `solarSystem` 都在同一位置。同样地，`earthMesh` 和 `earthOrbit` 也在同一位置。让我们添加一些简单的控制方法，让我们可以为每个节点打开/关闭它们。同时，我们还可以添加另一个名为 `GridHelper` 的帮助工具。它可以在 X,Z 平面上创建一个 2D 网格。默认情况下，网格是 10x10 单位。
 
-我们还将使用[dat.GUI](https://github.com/dataarts/dat.gui)，这是一个在 three.js 项目中非常流行的 UI 库。dat.GUI 会获取一个对象和该对象上的属性名，并根据属性的类型自动生成一个 UI 来操作该属性。
+我们还将使用[lil-gui](https://github.com/georgealways/lil-gui)，这是一个在 three.js 项目中非常流行的 UI 库。lil-gui 会获取一个对象和该对象上的属性名，并根据属性的类型自动生成一个 UI 来操作该属性。
 
 我们要为每个节点制作一个 `GridHelper` 和一个 `AxesHelper`。我们需要为每个节点添加一个标签，所以我们将删除旧的循环，转而调用一些函数为每个节点添加帮助程序。
 
@@ -243,13 +243,13 @@ objects.forEach((node) => {
 +makeAxisGrid(moonMesh, 'moonMesh');
 ```
 
-`makeAxisGrid` 创建了一个 `AxisGridHelper` 类，这是一个我们将创建的让 dat.GUI 满意的类。就像上面说的那样，dat.GUI 会自动地生成一个 UI 来操作某个对象的命名属性。它将根据属性的类型创建不同的 UI。我们希望它创建一个复选框，所以我们需要指定一个 `bool` 属性。但是，我们希望坐标轴和网格都能基于一个单一的属性出现/消失，所以我们将创建一个类，其有一个属性绑定了 getter 和 setter。这样我们就可以让 dat.GUI 认为它在操作一个单一的属性，但是在内部我们可以为一个节点设置 `AxesHelper` 和 `GridHelper` 的可见（visible）属性。
+`makeAxisGrid` 创建了一个 `AxisGridHelper` 类，这是一个我们将创建的让 lil-gui 满意的类。就像上面说的那样，lil-gui 会自动地生成一个 UI 来操作某个对象的命名属性。它将根据属性的类型创建不同的 UI。我们希望它创建一个复选框，所以我们需要指定一个 `bool` 属性。但是，我们希望坐标轴和网格都能基于一个单一的属性出现/消失，所以我们将创建一个类，其有一个属性绑定了 getter 和 setter。这样我们就可以让 lil-gui 认为它在操作一个单一的属性，但是在内部我们可以为一个节点设置 `AxesHelper` 和 `GridHelper` 的可见（visible）属性。
 
 ```js
 // 打开/关闭轴和网格的可见性
-// dat.GUI 要求一个返回类型为bool型的属性
+// lil-gui 要求一个返回类型为bool型的属性
 // 来创建一个复选框，所以我们为 `visible`属性
-// 绑定了一个setter 和 getter。 从而让dat.GUI
+// 绑定了一个setter 和 getter。 从而让lil-gui
 // 去操作该属性.
 class AxisGridHelper {
   constructor(node, units = 10) {

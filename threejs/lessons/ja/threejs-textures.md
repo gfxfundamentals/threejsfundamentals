@@ -507,13 +507,13 @@ const material = new THREE.MeshBasicMaterial({
 });
 ```
 
-ここでも、簡単なインターフェースを提供するために[dat.GUI](https://github.com/dataarts/dat.gui)を使います。
+ここでも、簡単なインターフェースを提供するために[lil-gui](https://github.com/georgealways/lil-gui)を使います。
 
 ```js
-import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
+import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
-以前のdat.GUIの例でしたように、dat.GUIに度数で操作できるオブジェクトを与え、
+以前のlil-guiの例でしたように、lil-guiに度数で操作できるオブジェクトを与え、
 ラジアン単位でプロパティを設定する簡単なクラスを使います。
 
 ```js
@@ -533,7 +533,7 @@ class DegRadHelper {
 
 `"123"`といった文字列から`123`といった数値に変換するクラスも必要です。
 これは、three.jsは`wrapS`や`wrapT`のようなenumの設定として数値が必要ですが、
-dat.GUIはenumに文字列のみを使うためです。
+lil-guiはenumに文字列のみを使うためです。
 
 ```js
 class StringToNumberHelper {

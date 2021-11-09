@@ -176,12 +176,12 @@ below slides.
 
 {{{example url="render-on-demand-w-damping.html" }}}
 
-Let's also add a simple dat.GUI GUI and make its changes render on demand.
+Let's also add a simple lil-gui GUI and make its changes render on demand.
 
 ```js
 import * as THREE from '/build/three.module.js';
 import {OrbitControls} from '/examples/jsm/controls/OrbitControls.js';
-+import {GUI} from '/manual/examples/3rdparty/dat.gui.module.js';
++import {GUI} from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 Let's allow setting the color and x scale of each cube. To be able to set the
@@ -219,7 +219,7 @@ function makeInstance(geometry, color, x) {
 }
 ```
 
-You can see above dat.GUI controls have an `onChange` method that you can pass a
+You can see above lil-gui controls have an `onChange` method that you can pass a
 callback to be called when the GUI changes a value. In our case we just need it
 to call `requestRenderIfNotRequested`. The call to `folder.open` makes the
 folder start expanded.

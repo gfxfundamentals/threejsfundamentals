@@ -27,7 +27,7 @@ TOC: 摄像机
 
 我们借用[上一篇文章](lights.html)的场景. 其中包含一个地平面, 一个球和一个立方体, 我们可以在其中调整摄像机的设置. 
 ·
-我们通过`MinMaxGUIHelper`来调整`near`, `far`的设置. 显然`near`应该总是比`far`要小. dat.GUI有`min`和`max`两个属性可调, 然后这两个属性将决定摄像机的设置. 
+我们通过`MinMaxGUIHelper`来调整`near`, `far`的设置. 显然`near`应该总是比`far`要小. lil-gui有`min`和`max`两个属性可调, 然后这两个属性将决定摄像机的设置. 
 
 
 ```js
@@ -69,7 +69,7 @@ gui.add(minMaxGUIHelper, 'min', 0.1, 50, 0.1).name('near').onChange(updateCamera
 gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera);
 ```
 
-任何时候摄像机的设置变动, 我们需要调用摄像机的[`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix)来更新设置. 我们写一个函数`updataCamera`, 当dat.GUI改变了属性的时候会调用它来更新参数. 
+任何时候摄像机的设置变动, 我们需要调用摄像机的[`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix)来更新设置. 我们写一个函数`updataCamera`, 当lil-gui改变了属性的时候会调用它来更新参数. 
 
 {{{example url="cameras-perspective.html" }}}
 
@@ -365,7 +365,7 @@ const gui = new GUI();
 +gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
 ```
 
-`listen`调用告诉dat.GUI去监视属性的变化. 写在这里是因为`OrbitControls`同样可以控制缩放. 在这个例子中, 鼠标滚轮将会通过`OrbitControls`控件来控制缩放. 
+`listen`调用告诉lil-gui去监视属性的变化. 写在这里是因为`OrbitControls`同样可以控制缩放. 在这个例子中, 鼠标滚轮将会通过`OrbitControls`控件来控制缩放. 
 
 最后更改aspect然后更新摄像机
 

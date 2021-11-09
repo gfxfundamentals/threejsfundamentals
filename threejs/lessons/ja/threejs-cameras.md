@@ -41,7 +41,7 @@ three.jsでのカメラの話をしましょう。
 
 `near` と `far` の設定用に `MinMaxGUIHelper` を作成します。
 `far` が常に `near` よりも大きい値になるようにします。
-MinMaxGUIHelperは `min` と `max` のプロパティがあり、dat.GUIで調整します。
+MinMaxGUIHelperは `min` と `max` のプロパティがあり、lil-guiで調整します。
 GUIで値を調整すると2つのプロパティに設定されます。
 
 ```js
@@ -84,7 +84,7 @@ gui.add(minMaxGUIHelper, 'max', 0.1, 50, 0.1).name('far').onChange(updateCamera)
 ```
 
 カメラ設定の変更時、カメラの [`updateProjectionMatrix`](PerspectiveCamera.updateProjectionMatrix) 関数を呼び出す必要があります。
-`updateCamera` という関数を作り、それをdat.GUI変更時に呼び出すようにします。
+`updateCamera` という関数を作り、それをlil-gui変更時に呼び出すようにします。
 
 {{{example url="cameras-perspective.html" }}}
 
@@ -403,7 +403,7 @@ const gui = new GUI();
 +gui.add(camera, 'zoom', 0.01, 1, 0.01).listen();
 ```
 
-`listen` 呼び出しはdat.GUIに変更を監視するようにします。
+`listen` 呼び出しはlil-guiに変更を監視するようにします。
 これは `OrbitControls` がズームも制御できるからです。
 例えばマウスのスクロールホイールは `OrbitControls` でズームします。
 

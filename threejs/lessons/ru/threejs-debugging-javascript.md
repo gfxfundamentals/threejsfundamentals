@@ -456,7 +456,7 @@ requestAnimationFrame(render);
 2. Some CSS
 3. Lights
 4. Shadows
-5. DAT.gui code to manipulate shadows
+5. lil-gui code to manipulate shadows
 6. Code to load a .GLTF file
 7. Code to resize the canvas.
 8. Code to move the cars along paths
@@ -465,7 +465,7 @@ requestAnimationFrame(render);
 так как вам нужен только тег `<canvas>` и `<script>` для THREE.js. Вы можете удалить CSS и код изменения размера.
 Вы можете удалить код .GLTF, потому что вам нужен только путь.
 Вы можете удалить источники света и тени с помощью `MeshBasicMaterial`. 
-Вы, конечно, можете удалить код `DAT.gui`. Код создает плоскость с текстурой. Было бы проще использовать `GridHelper`. 
+Вы, конечно, можете удалить код `lil-gui`. Код создает плоскость с текстурой. Было бы проще использовать `GridHelper`. 
 Наконец, если наш вопрос касается перемещения объектов по пути,
 мы могли бы просто использовать кубы на пути вместо загруженных моделей автомобилей. 
 

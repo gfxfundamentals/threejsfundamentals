@@ -517,10 +517,10 @@ const material = new THREE.MeshBasicMaterial({
 ```
 
 간단한 인터페이스를 만들어보죠.
-다시 한 번 [dat.GUI](https://github.com/dataarts/dat.gui)가 등장할 때입니다.
+다시 한 번 [lil-gui](https://github.com/georgealways/lil-gui)가 등장할 때입니다.
 
 ```js
-import { GUI } from '/manual/examples/3rdparty/dat.gui.module.js';
+import { GUI } from '/examples/jsm/libs/lil-gui.module.min.js';
 ```
 
 이전 예제처럼 간단한 헬퍼 클래스를 만들어 각도(degrees)로 값을 조절하면
@@ -541,7 +541,7 @@ class DegRadHelper {
 }
 ```
 
-또 문자열을 숫자형으로 변환시켜줄 클래스도 만듭니다. dat.GUI는 값을 문자열로
+또 문자열을 숫자형으로 변환시켜줄 클래스도 만듭니다. lil-gui는 값을 문자열로
 넘겨주는데, Three.js는 `wrapS`나 `wrapT` 등 enum 값을 지정할 때 숫자형만
 받기 때문이죠.
 
