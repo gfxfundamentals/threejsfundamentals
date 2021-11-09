@@ -236,31 +236,36 @@ Android 또는 iPhone에서 WebXR을 사용하려면 *VR 헤드셋*이 필요합
    손이 어떤 방향으로 향하고 있는지
    손을 뻗고, 만지고,
    밀기, 비틀기 등...
+   
+   
+   
+이 모든 것을 다루었지만 어떤 장치가 WebXR과 함께 작동할지 확신할 수 없습니다.
+Chrome을 실행할 때 대부분의 Android 휴대전화가 작동할 것이라고 99% 확신합니다.
+당신은  [`about:flags`](about:flags)에서 WebXR support를 켜야 할수도 있습니다. 
+
+Google Draydream 또한 비슷하게 작동할것입니다.  
+[`about:flags`](about:flags)에서 WebXR support 를 활성화 하세요.
+
+Oculus Rift, Vive 및 Vive Pro는 Cheome 이나 Firefox를 통해 작동합니다.
+
+Oculus Go와 Oculus Quest는 둘 다 사용자 정의 OS를 사용하지만 인터넷에 따르면 둘 다 작동하는 것으로 보입니다.
 
 
-With all that covered I don't for sure know which devices will work with WebXR.
-I'm 99% sure that most Android phones will work when running Chrome. You may
-need to turn on WebXR support in [`about:flags`](about:flags). I also know Google
-Daydream will also work and similarly you need to enable WebXR support in
-[`about:flags`](about:flags). Oculus Rift, Vive, and Vive Pro will work via
-Chrome or Firefox. I'm less sure about Oculus Go and Oculus Quest as both of
-them use custom OSes but according to the internet they both appear to work.
 
-Okay, after that long detour about VR Devices and WebXR
-there's some things to cover
+이제, VR 장치와 WebXR에 대한 긴 설명에 마지막으로 설명할 것이 있다.
 
-* Supporting both VR and Non-VR
+* VR 및 Non-VR 모두 지원
 
-  AFAICT, at least as of r112, there is no easy way to support
-both VR and non-VR modes with three.js. Ideally
-if not in VR mode you'd be able to control the camera using
-whatever means you want, for example the `OrbitControls`,
-and you'd get some kind of event when switching into and
-out of VR mode so that you could turn the controls on/off.
+내가 아는한 적어도 r112에서는 three.js 에 VR과 Non-VR 모드 모두를 지원하는 쉬운 방법이 없습니다.
 
-If three.js adds some support to do both I'll try to update
-this article. Until then you might need 2 versions of your 
-site OR pass in a flag in the URL, something like
+이상적으로
+VR 모드가 아니면  `OrbitControls`와 같은 것들을 사용하여 카메라를 제어할 수 있습니다.
+그리고 이 전환 과정에서 일조의 여러 이벤트가 발생합니다.
+VR 모드에서 벗어나 컨트롤을 켜고 끌 수 있습니다.
+
+만약 three.js가 앞서 말한 두가지를 지원해준다면 해당 artical을 업데이트 하도록 노력하겠습니다.
+그때까지는 2가지 버전의 사이트를 만들거나 다음과 같이 URL에 flag 를 pass in 해줍니다.
+
 
 ```
 https://mysite.com/mycooldemo?allowvr=true
@@ -327,61 +332,59 @@ function main() {
 +  }
 ```
 
-Whether that's good or bad I don't know. I have a feeling the differences
-between what's needed for VR and what's needed for non-VR are often
-very different so for all but the most simple things maybe 2 separate pages
-are better? You'll have to decide.
+어떤 방식이 적합하지는 모릅니다.
+VR에 필요한 것과 비 VR에 필요한 것 사이에는 종종  차이점을 느끼고 있습니다.
+둘은 매우 다르므로 가장 간단한 것을 제외하고는 2개의 별도 페이지일 수 있습니다.
+무엇이 더 좋은지는 사용자가 결정해야 합니다.
 
-Note for various reasons this will not work in the live editor
-on this site so if you want to check it out 
-<a href="../threejs-webvr-basic-vr-optional.html" target="_blank">click here</a>.
-It should start in non-VR mode and you can use the mouse or fingers to move
-the camera. Clicking "Allow VR" should switch to allow VR mode and you should
-be able to click "Enter VR" if you're on a VR device.
+여러 가지 이유로 라이브 편집기에서 작동하지 않습니다.
+이 사이트에 있으므로 확인하고 싶다면
+<a href="../threejs-webvr-basic-vr-optional.html" target="_blank">여기를 클릭하세요</a>.
+비 VR 모드에서 시작해야 하며 마우스나 손가락을 사용하여 이동할 수 있습니다.
+카메라. "허용 VR"을 클릭하면 VR 모드를 허용하도록 전환되어야 하며
+VR 기기를 사용 중인 경우 "VR 입력"을 클릭할 수 있습니다.
 
-* Deciding on the level of VR support
+* VR 지원 수준 결정
 
-  Above we covered 3 types of VR devices. 
+  위에서 우리는 3가지 유형의 VR 기기를 다루었습니다.
 
-  * 3DOF no input
+  * 3DOF input 없음
   * 3DOF + 3DOF input
   * 6DOF + 6DOF input
 
-  You need to decide how much effort you're willing to put in
-  to support each type of device.
+  목적에 따라 위 중 어떤 장치를 이용할지 결정해야합니다.
 
-  For example the simplest device has no input. The best you can
-  generally do is make it so there are some buttons or objects in the user's view
-  and if the user aligns some marker in the center of the display
-  on those objects for 1/2 a second or so then that button is clicked.
-  A common UX is to display a small timer that will appear over the object indicating
-  if you keep the marker there for a moment the object/button will be selected.
+  예를 들어 가장 단순한 장치에는 입력이 없습니다. 당신이 할 수있는 최선
+  일반적으로 사용자의 보기에 일부 버튼이나 개체가 있도록 만드는 것입니다.
+  사용자가 디스플레이 중앙에 일부 마커를 정렬하는 경우
+  1/2초 동안 해당 개체에서 해당 버튼을 클릭합니다.
+  일반적인 UX는 다음을 나타내는 개체 위에 나타날 작은 타이머를 표시하는 것입니다.
+  잠시 동안 마커를 유지하면 개체/버튼이 선택됩니다.
 
-  Since there is no other input that's about the best you can do
+  당신이 할 수 있는 최선에 대한 다른 입력이 없기 때문에
 
-  The next level up you have one 3DOF input device. Generally it
-  can point at things and the user has at least 2 buttons. The Daydream
-  also has a touchpad which provides normal touch inputs.
+  다음 레벨에는 하나의 3DOF 입력 장치가 있습니다. 일반적으로
+  사물을 가리킬 수 있고 사용자는 적어도 2개의 버튼을 가지고 있습니다. Daydream
+  또한 일반 터치 입력을 제공하는 터치 패드가 있습니다.
 
-  In any case if a user has this type of device it's far more
-  comfortable for the user to by able to point at things with
-  their controller than it is to make them do it with their
-  head by looking at things.
+  어쨌든 사용자가 이러한 유형의 장치를 가지고 있다면 서용자가 머리를 이용하여 가르키는 것보다
+  훨씬 더 간단히 물건을 가리킬 수 있어 편안합니다.
 
-  A similar level to that might be 3DOF or 6DOF device with a
-  game console controller. You'll have to decide what to do here.
-  I suspect the most common thing is the user still has to look
-  to point and the controller is just used for buttons.
+  그것과 유사한 수준은 게임 콘솔 컨트롤러를 포함한 3DOF 또는 6DOF 장치일 수 있습니다.
+  
+  여기서 무엇을 할지 결정해야 합니다.
+  
+  가장 흔한 것은 사용자가 여전히
+  바라 봐야하며 컨트롤러는 버튼용으로만 사용됩다는 점입니다.
 
-  The last level is a user with a 6DOF headset and 2 6DOF controllers.
-  Those users will find an experience that is only 3DOF to often
-  be frustrating. Similarly they usually expect to be able to 
-  virtually manipulate things with their hands in VR so you'll
-  have to decide if you want to support that or not.
+  마지막 레벨은 6DOF 헤드셋과 2개의 6DOF 컨트롤러를 사용하는 사용자입니다.
+  이러한 사용자는 종종 3DOF와 다를게 없는 경험을 할 수도 있을것입니다. 답답함. 
+  마찬가지로 그들은 일반적으로 다음을 수행할 수 있을 것으로 기대합니다.
+  VR에서 손으로 물건을 가상으로 조작하여
+  지원 여부를 결정해야 합니다.
 
-As you can see getting started in VR is pretty easy but
-actually making something shippable in VR will require
-lots of decision making and design.
+보시다시피 VR을 시작하는 것은 매우 쉽지만
+실제로 VR을 고르고 세팅하는데는 많은 디자인과 결정을 해야합니다.
 
-This was a pretty brief intro into VR with three.js. We'll
-cover some of the input methods in [future articles](threejs-webvr-look-to-select.html).
+이것은 three.js를 사용한 VR에 대한 아주 간단한 소개였습니다. 이제
+[future articles](threejs-webvr-look-to-select.html)에서 일부 입력 방법을 다루겠습니다.
