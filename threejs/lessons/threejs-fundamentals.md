@@ -176,8 +176,7 @@ cube, prism, frustum.
 The height of the near and far planes are determined by the field of view.
 The width of both planes is determined by the field of view and the aspect.
 
-Anything inside the defined frustum will be be drawn. Anything outside
-will not.
+Anything inside the defined frustum will be drawn. Anything outside will not.
 
 The camera defaults to looking down the -Z axis with +Y up. We'll put our cube
 at the origin so we need to move the camera back a little from the origin
