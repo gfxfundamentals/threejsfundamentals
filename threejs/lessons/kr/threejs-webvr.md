@@ -23,17 +23,17 @@ WebXR API. [the article on setting up](threejs-setup.html)에 언급된 서버
 URL을 기록해 두십시오. 컴퓨터의 로컬 IP 주소가 필요합니다. 일반적으로 `192`, `172` 또는 `10`으로 시작합니다.  `https://` 부분을 포함한 전체 주소를 입력하세요.
 
 VR 기기의 브라우저로 이동합니다. NOTE: 작업 컴퓨터와 VR 장치는 동일한 로컬 네트워크에 있어야 합니다.
-또는 WiFi이고 아마도 홈 네트워크에 있어야 할것입니다. NOTE: 많은 카페에서 이러한 방법으로 기계 대 기계 연결.
+또는 WiFi이고 아마도 홈 네트워크에 있어야 할것입니다. NOTE: 많은 카페에서 이러한 방법으로 기계 대 기계 연결을 합니다.
 
 
-아래와 같은 오류 메시지가 표시됩니다. "고급(advanced)"을 클릭한 다음 *진행(proceed)* 을 클릭한다.
+아래와 같은 오류 메시지가 표시됩니다. "고급(advanced)"을 클릭한 다음 *진행(proceed)* 을 클릭합니다.
 
 <div class="threejs_center"><img src="resources/images/https-warning.gif"></div>
 
 이제 예제를 실행할 수 있습니다.
 
 실제로 WebVR 개발을 하려는 경우 배워야 할 또 다른 사항은 
-[원격 디버깅(remote debugging)](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/) 이다.
+[원격 디버깅(remote debugging)](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/) 입니다.
 이를 통해 콘솔 경보, 오류, 실제로 [코드 디버그(debug your code)](threejs-debugging-javascript.html)가  가능하다.
 
 아래 코드가 작동하는 것을 보고 싶다면 이 사이트에서 코드를 실행할 수 있습니다.
@@ -45,7 +45,7 @@ import * as THREE from './resources/three/r132/build/three.module.js';
 +import {VRButton} from './resources/threejs/r132/examples/jsm/webxr/VRButton.js';
 ```
 
-이후 three.js's WebXR 지원을 활성화 하며, 그것의 VR button을 페이지에 추가하여 주어야한다.
+이후 three.js's WebXR 지원을 활성화 하며, 그것의 VR button을 페이지에 추가하여 주어야합니다.
 
 ```js
 function main() {
@@ -56,8 +56,8 @@ function main() {
 ```
 
 three.js가 렌더 루프를 실행하도록 해야 합니다. 지금까지 우리는 
-`requestAnimationFrame`loop 를 사용하였다. 하지만 VR을 지원하기 위해서 우리는 three.js가 우리의 render loop를 관리할 수 있도록 해야한다. 이 과정을 
-`WebGLRenderer.setAnimationLoop`를 호출 및  루프를 호출하는 함수를 전달하여 진행 가능하다.
+`requestAnimationFrame`loop 를 사용하였다. 하지만 VR을 지원하기 위해서 우리는 three.js가 우리의 render loop를 관리할 수 있도록 해야합니다. 이 과정을 
+`WebGLRenderer.setAnimationLoop`를 호출 및  루프를 호출하는 함수를 전달하여 진행 가능하게 합니다.
 
 ```js
 function render(time) {
@@ -104,7 +104,7 @@ cube.position.x = x;
 +cube.position.z = -2;
 ```
 
-카메라가  `z = 0` 에 있고 카메라는 -z축을 바라보기 때문에 우리는  `z = -2`에  배치 시켰습니다(cude)
+카메라가  `z = 0` 에 있고 카메라는 -z축을 바라보기 때문에 우리는  `z = -2`에  배치 시켰습니다(cude).
 
 
 이것은 매우 중요한 점을 제시합니다. **Units in VR are in meters**.
@@ -150,11 +150,11 @@ iOS에서 일반적으로 WebXR 지원은 2019년 5월 현재 지원되지 않�
 
 Android 또는 iPhone에서 WebXR을 사용하려면 *VR 헤드셋*이 필요합니다.
 전화용. 골판지로 만든 1개에 5달러부터 어디에서나 구입할 수 있습니다.
-100달러로. 불행히도 어떤 것을 추천해야 할지 모르겠습니다. 나는 구매했다
-그 중 6개는 수년에 걸쳐 생산되었으며 모두 품질이 다릅니다. 나는
-약 $25 이상을 지불한 적이 없습니다.
+100달러로. 불행히도 어떤 것을 추천해야 할지 모르겠습니다. 
+저는 여러가지 제품을 구입하였습니다. 그 중 6개는 수년에 걸쳐 생산되었으며 모두 품질이 다릅니다.
+$25 이상을 지불한 적은 없습니다.
 
-몇 가지 문제만 언급하자면(VR 헤드셋)
+VR 헤드셋의 몇 가지 문제만 언급하자면
 
 1. 휴대전화에 맞습니까?
 
@@ -252,7 +252,7 @@ Oculus Go와 Oculus Quest는 둘 다 사용자 정의 OS를 사용하지만 인�
 
 
 
-이제, VR 장치와 WebXR에 대한 긴 설명에 마지막으로 설명할 것이 있다.
+이제, VR 장치와 WebXR에 대한 긴 설명에 마지막을 설명하겠습니다.
 
 * VR 및 Non-VR 모두 지원
 
@@ -378,7 +378,7 @@ VR 기기를 사용 중인 경우 "VR 입력"을 클릭할 수 있습니다.
   바라 봐야하며 컨트롤러는 버튼용으로만 사용됩다는 점입니다.
 
   마지막 레벨은 6DOF 헤드셋과 2개의 6DOF 컨트롤러를 사용하는 사용자입니다.
-  이러한 사용자는 종종 3DOF와 다를게 없는 경험을 할 수도 있을것입니다. 답답함. 
+  이러한 사용자는 종종 3DOF와 다를게 없는 답답한 경험을 할 수도 있을것입니다.
   마찬가지로 그들은 일반적으로 다음을 수행할 수 있을 것으로 기대합니다.
   VR에서 손으로 물건을 가상으로 조작하여
   지원 여부를 결정해야 합니다.
