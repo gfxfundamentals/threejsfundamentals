@@ -79,12 +79,12 @@ async function main() {
     ctx.fill('evenodd');
   }
 
-  function stroke(ctx) {
-    ctx.save();
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.stroke();
-    ctx.restore();
-  }
+  // function stroke(ctx) {
+  //   ctx.save();
+  //   ctx.setTransform(1, 0, 0, 1, 0, 0);
+  //   ctx.stroke();
+  //   ctx.restore();
+  // }
 
   function draw(area) {
     const {properties, geometry} = area;

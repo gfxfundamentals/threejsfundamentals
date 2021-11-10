@@ -13,8 +13,9 @@ const assert = {
       throw new Error(`${actual} (actual) should NOT equal ${expected} (expected): ${[...args].join(' ')}`);
     }
   },
-}
+};
 
+/*
 function dumpBuf(buf) {
   for (let i = 0; i < buf.length; i += 32) {
     const p = [];
@@ -30,6 +31,7 @@ function dumpBuf(buf) {
     console.log(i.toString(16).padStart(8, '0'), ':', p.join(''), a.join(''));
   }
 }
+*/
 
 function parse(buf) {
   assert.strictEqual(buf[0], 0x47, 'bad header');
@@ -38,7 +40,7 @@ function parse(buf) {
   const flags = buf[3];
 
   const flag_x         = (flags >> 5) & 1;
-  const flag_empty_geo = (flags >> 4) & 1;  // 1 = empty, 0 non-empty
+  // const flag_empty_geo = (flags >> 4) & 1;  // 1 = empty, 0 non-empty
   const flag_byteOrder = (flags >> 0) & 1;  // 1 = little endian, 0 = big
   const flag_envelope  = (flags >> 1) & 7;
 
@@ -84,7 +86,7 @@ function parse(buf) {
   */
 
   let littleEndian;
-  let endianStack = [];
+  const endianStack = [];
 
   function pushByteOrder(byteOrder) {
     endianStack.push(littleEndian);
@@ -96,12 +98,12 @@ function parse(buf) {
   }
 
   const getDouble = () => { const v = dataView.getFloat64(cursor, littleEndian); cursor += 8 ; return v; };
-  const getFloat =  () => { const v = dataView.getFloat32(cursor, littleEndian); cursor += 4 ; return v; };
+  // const getFloat =  () => { const v = dataView.getFloat32(cursor, littleEndian); cursor += 4 ; return v; };
   const getInt8 =   () => { const v = dataView.getInt8(cursor, littleEndian);    cursor += 1 ; return v; };
-  const getUint8 =  () => { const v = dataView.getUint8(cursor, littleEndian);   cursor += 1 ; return v; };
-  const getInt16 =  () => { const v = dataView.getInt16(cursor, littleEndian);   cursor += 2 ; return v; };
-  const getUint16 = () => { const v = dataView.getUint16(cursor, littleEndian);  cursor += 2 ; return v; };
-  const getInt32 =  () => { const v = dataView.getInt32(cursor, littleEndian);   cursor += 4 ; return v; };
+  // const getUint8 =  () => { const v = dataView.getUint8(cursor, littleEndian);   cursor += 1 ; return v; };
+  // const getInt16 =  () => { const v = dataView.getInt16(cursor, littleEndian);   cursor += 2 ; return v; };
+  // const getUint16 = () => { const v = dataView.getUint16(cursor, littleEndian);  cursor += 2 ; return v; };
+  // const getInt32 =  () => { const v = dataView.getInt32(cursor, littleEndian);   cursor += 4 ; return v; };
   const getUint32 = () => { const v = dataView.getUint32(cursor, littleEndian);  cursor += 4 ; return v; };
 
   pushByteOrder(flag_byteOrder);

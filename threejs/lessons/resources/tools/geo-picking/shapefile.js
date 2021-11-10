@@ -256,8 +256,9 @@ var parsePolygon = function(record) {
 };
 
 function ringClockwise(ring) {
+  var n;
   if ((n = ring.length) < 4) return false;
-  var i = 0, n, area = ring[n - 1][1] * ring[0][0] - ring[n - 1][0] * ring[0][1];
+  var i = 0, area = ring[n - 1][1] * ring[0][0] - ring[n - 1][0] * ring[0][1];
   while (++i < n) area += ring[i - 1][1] * ring[i][0] - ring[i - 1][0] * ring[i][1];
   return area >= 0;
 }
@@ -429,7 +430,7 @@ prototype$1.cancel = shapefile_cancel;
 function open(shp$$1, dbf$$1, options) {
   if (typeof dbf$$1 === "string") {
     if (!/\.dbf$/.test(dbf$$1)) dbf$$1 += ".dbf";
-    dbf$$1 = path(dbf$$1, options);
+    dbf$$1 = path(dbf$$1);
   } else if (dbf$$1 instanceof ArrayBuffer || dbf$$1 instanceof Uint8Array) {
     dbf$$1 = array(dbf$$1);
   } else if (dbf$$1 != null) {
@@ -437,8 +438,8 @@ function open(shp$$1, dbf$$1, options) {
   }
   if (typeof shp$$1 === "string") {
     if (!/\.shp$/.test(shp$$1)) shp$$1 += ".shp";
-    if (dbf$$1 === undefined) dbf$$1 = path(shp$$1.substring(0, shp$$1.length - 4) + ".dbf", options).catch(function() {});
-    shp$$1 = path(shp$$1, options);
+    if (dbf$$1 === undefined) dbf$$1 = path(shp$$1.substring(0, shp$$1.length - 4) + ".dbf").catch(function() {});
+    shp$$1 = path(shp$$1);
   } else if (shp$$1 instanceof ArrayBuffer || shp$$1 instanceof Uint8Array) {
     shp$$1 = array(shp$$1);
   } else {
@@ -451,10 +452,10 @@ function open(shp$$1, dbf$$1, options) {
   });
 }
 
-function openShp(source, options) {
+function openShp(source) {
   if (typeof source === "string") {
     if (!/\.shp$/.test(source)) source += ".shp";
-    source = path(source, options);
+    source = path(source);
   } else if (source instanceof ArrayBuffer || source instanceof Uint8Array) {
     source = array(source);
   } else {
@@ -469,7 +470,7 @@ function openDbf(source, options) {
   encoding = new TextDecoder(encoding);
   if (typeof source === "string") {
     if (!/\.dbf$/.test(source)) source += ".dbf";
-    source = path(source, options);
+    source = path(source);
   } else if (source instanceof ArrayBuffer || source instanceof Uint8Array) {
     source = array(source);
   } else {

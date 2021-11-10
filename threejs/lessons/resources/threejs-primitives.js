@@ -965,7 +965,7 @@ const geometry = new THREE.WireframeGeometry(
               inputHolder.appendChild(input);
               input.addEventListener('input', () => {
                 params[name] = input.value;
-                valueElem.textContent = `'${input.value.replace(/'/g, '\'')}'`;
+                valueElem.textContent = `'${input.value}'`;
                 updateGeometry(root, info, params);
               });
               break;

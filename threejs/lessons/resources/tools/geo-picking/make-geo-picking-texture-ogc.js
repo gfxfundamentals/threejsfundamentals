@@ -1,6 +1,10 @@
+/* global require */
+/* global process */
+/* global parseGeom */
+/* global Buffer */
 const fs = require('fs');
 const path = require('path');
-const ogcParser = require('./ogc-parser');
+require('./ogc-parser');
 
 const baseDir = process.argv[2];
 

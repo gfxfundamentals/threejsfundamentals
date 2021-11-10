@@ -99,7 +99,6 @@ import {threejsLessonUtils} from './threejs-lesson-utils.js';
     ctx.canvas.width = size * scale;
     ctx.canvas.height = size * scale;
     ctx.scale(scale, scale);
-    ctx.fillStyle = level & 1 ? '#DDD' : '#000';
     ctx.fillStyle = `hsl(${180 + u * 360 | 0},100%,20%)`;
     ctx.fillRect(0, 0, size, size);
     ctx.fillStyle = `hsl(${u * 360 | 0},100%,50%)`;

@@ -268,17 +268,18 @@ async function parseHTML(url, html) {
     g.title = tm[1];
   }
 
+  const kScript = 'script';
   const scripts = [];
   html = html.replace(externalScriptRE, function(p0, p1, type, p2) {
     p1 = p1 || '';
-    scripts.push(`${p1}<script ${safeStr(type)}src="${p2}"></script>`);
+    scripts.push(`${p1}<${kScript} ${safeStr(type)}src="${p2}"></${kScript}>`);
     return '';
   });
 
   const dataScripts = [];
   html = html.replace(dataScriptRE, function(p0, p1, p2, p3) {
     p1 = p1 || '';
-    dataScripts.push(`${p1}<script ${p2}>${p3}</script>`);
+    dataScripts.push(`${p1}<${kScript} ${p2}>${p3}</${kScript}>`);
     return '';
   });
 
@@ -315,11 +316,6 @@ async function parseHTML(url, html) {
   g.html = html;
 }
 
-function cantGetHTML(e) {  // eslint-disable-line
-  console.log(e);  // eslint-disable-line
-  console.log("TODO: don't run editor if can't get HTML");  // eslint-disable-line
-}
-
 async function main() {
   const query = getQuery();
   g.url = getFQUrl(query.url);
@@ -332,7 +328,7 @@ async function main() {
     return;
   }
   await parseHTML(query.url, html);
-  setupEditor(query.url);
+  setupEditor();
   if (query.startPane) {
     const button = document.querySelector('.button-' + query.startPane);
     toggleSourcePane(button);
@@ -771,9 +767,6 @@ function compressToBase64(input) {
 }
 
 function _compress(uncompressed, bitsPerChar, getCharFromInt) {
-  if (uncompressed === null) {
-    return '';
-  }
   let i;
   let value;
   const context_dictionary = {};
@@ -959,7 +952,6 @@ function _compress(uncompressed, bitsPerChar, getCharFromInt) {
     }
     context_enlargeIn--;
     if (context_enlargeIn === 0) {
-      context_enlargeIn = Math.pow(2, context_numBits);
       context_numBits++;
     }
   }
@@ -1269,9 +1261,9 @@ function runIfNeeded() {
   }
 }
 
-function run(options) {
+function run() {
   g.setPosition = false;
-  const url = getSourceBlobFromEditor(options);
+  const url = getSourceBlobFromEditor();
   g.iframe.src = url;
 }
 
