@@ -19,6 +19,7 @@ Three.js中一个老生常谈的问题就是多个场景的渲染。比如当你
 
 以一个只有两个`Scene`的简单demo为例。首先，创建HTML结构：
 
+```html
 <canvas id="c"></canvas>
 <p>
   <span id="box" class="diagram left"></span>
@@ -30,9 +31,10 @@ Three.js中一个老生常谈的问题就是多个场景的渲染。比如当你
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 </p>
-
+```
 接着为它设置一些基本样式：
 
+```css
 #c {
   position: fixed;
   left: 0;
@@ -56,10 +58,13 @@ Three.js中一个老生常谈的问题就是多个场景的渲染。比如当你
   float: right;
   margin-left: .25em;
 }
+```
+
 我们将`Canvas`画幅设置为充满整个屏幕，并将其`z-index`设置为`-1`，使它始终位于其他元素的后面。当然，我们要给`virtual canvas`设置相应的宽高，因为此时还没有任何内容可以撑起它的大小。
 
 现在，创建两个`Scene`，其中一个添加了立方体，另一个为菱形，并分别为这两个`Scene`添加灯光`（Light）`和相机`（Camera）`。
 
+```js
 function makeScene(elem) {
   const scene = new THREE.Scene();
 
@@ -111,21 +116,23 @@ function setupScene2() {
 
 const sceneInfo1 = setupScene1();
 const sceneInfo2 = setupScene2();
+```
 
 接着创建一个视图信息获取函数`renderSceneInfo()`和视图渲染函数`render()`，用来渲染那些`virtual canvas`所在的元素出现在了可视区域的`Scene`。只需调用THREE.js的剪裁区域检测`Renderer.setScissorTest`方法，THREE.js就能实现仅渲染部分画布内容的功能，同时，我们需要调用`Renderer.setViewport`和`Renderer.setScissor`来分别设定视口大小和剪裁区域。
 
 参数说明如下：
->```js
+>
 >Renderer.setScissorTest( boolean : Boolean ) : null;
 >// 启用或禁用剪裁检测. 若启用，则只有在所定义的裁剪区域内的像素才会受之后的渲染器影响。
 >Renderer.setScissor ( x : Integer, y : Integer, width : Integer, height : Integer ) : null;
 >//将剪裁区域设为(x, y)到(x + width, y + height)
 >Renderer.### [setViewport]() ( x : Integer, y : Integer, width : Integer, height : Integer ) : null
 >//将视口大小设置为(x, y)到 (x + width, y + height).
->```
+>
 
 视图信息获取函数如下：
 
+```js
 function renderSceneInfo(sceneInfo) {
   const {scene, camera, elem} = sceneInfo;
 
@@ -152,9 +159,11 @@ function renderSceneInfo(sceneInfo) {
 
   renderer.render(scene, camera);
 }
+```
 
 视图渲染函数如下：
 
+```js
 function render(time) {
   time *= 0.001;
 
@@ -172,6 +181,7 @@ function render(time) {
 
   requestAnimationFrame(render);
 }
+```
 最终效果如下：
 
 {{{example url="../threejs-multiple-scenes-v1.html" }}}
@@ -183,32 +193,39 @@ function render(time) {
 虽然我们已经实现了同时渲染多个场景的功能，但是上面的代码依然存在一个问题，如果`Scenes`过于复杂、或者由于其他原因需要更长时间渲染，那么画布中`Scenes`渲染的位置总是会落后于页面的其他元素，如页面滚动时会出现明显的滞后。
 
 为了更直观的观察这个现象，我们给每个`Scene`加上边框，并设置背景颜色：
+
+```css
 .diagram {
   display: inline-block;
   width: 5em;
   height: 3em;
 +  border: 1px solid black;
 }
-And we set the background of each scene
-
+```
+给每个场景设置背景颜色
+```js
 const scene = new THREE.Scene();
 +scene.background = new THREE.Color('red');
-
+```
 此时，我们快速滚动屏幕，就会发现这个问题。屏幕滚动时的动画放慢十倍后的效果如下：
 
 为了解决这个问题，先将`Canvas`的定位方式由`position: fixed` 改为`position: absolute`。
 
+```css
 #c {
 -  position: fixed;
 +  position: absolute;
+```
 
 为了解决这个问题，先将`Canvas`的定位方式由`position: fixed` 改为`position: absolute`。
 
+```js
 function render(time) {
   ...
 
   const transform = `translateY(${window.scrollY}px)`;
   renderer.domElement.style.transform = transform;
+```
 `position: fixed` 会完全禁用画布的滚动，无论其他元素是否已经滚动到它的上；
 `position: absolute`则会保持画布与页面的其余部分一起滚动，这意味着我们绘制的任何东西都会与页面一起滚动，就算还未完全渲染出来。当场景完成渲染之后，然后移动画布，场景会与页面被滚动后的位置相匹配，并重新渲染，这就意味着，只有窗口的边缘会显示出一些还未被渲染的数据，当时页面中的场景不会出现这种现象。下面时利用以上方法后的效果（动画同样放慢了10倍）。
 
@@ -220,6 +237,7 @@ function render(time) {
 
 主渲染函数如下：
 
+```js
 const sceneElements = [];
 function addScene(elem, fn) {
   sceneElements.push({elem, fn});
@@ -260,12 +278,14 @@ function render(time) {
 
   requestAnimationFrame(render);
 }
+```
 从中可以看出，这个函数将遍历每一个包含了所有`Scene`元素的数组对象，且每个元素都由各自的`elem`和`fn`属性。
 
 这个函数将检查每个`Scene`元素是否进入可视区域，一旦进入就会调用它的场景初始化函数，并传给它当前的时间和对应的尺寸位置信息。
 
 现在，把每个`Scene`的信息添加到数组列表中：
 
+```js
 {
   const elem = document.querySelector('#box');
   const {scene, camera} = makeScene();
@@ -301,6 +321,7 @@ function render(time) {
     renderer.render(scene, camera);
   });
 }
+```
 至此，我们不再需要分别定义`sceneInfo1` 和 `sceneInfo2`，但每个场景对应的场景初始化函数都已生效。
 
 {{{example url="../threejs-multiple-scenes-generic.html" }}}
@@ -308,6 +329,8 @@ function render(time) {
 ### 使用HTML Dataset
 
 更好用的最后一步就是使用HTML [dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)，这是一种将自己的数据添加到HTML元素中的方法，我们不再使用`id="..."`，而是使用`data-diagram="..."`，就像这样：
+
+```html
 <canvas id="c"></canvas>
 <p>
 -  <span id="box" class="diagram left"></span>
@@ -321,18 +344,22 @@ function render(time) {
   When I was a kid I dreamed of going on an expedition inside a pyramid
   and finding a undiscovered tomb full of mummies and treasure.
 </p>
+```
 
 同时修改CSS选择器
 
+```css
 -.diagram
 +*[data-diagram] {
   display: inline-block;
   width: 5em;
   height: 3em;
 }
+```
 
 现在，我们构建一个对象，用来映射每个场景对应的场景初始化函数，并返回一个场景渲染函数。
 
+```js
 const sceneInitFunctionsByName = {
   'box': () => {
     const {scene, camera} = makeScene();
@@ -367,14 +394,19 @@ const sceneInitFunctionsByName = {
     };
   },
 };
+```
+
 我们还需要获取所有的`diagrams`,并调用初始化函数。
 
+```js
 document.querySelectorAll('[data-diagram]').forEach((elem) => {
   const sceneName = elem.dataset.diagram;
   const sceneInitFunction = sceneInitFunctionsByName[sceneName];
   const sceneRenderFunction = sceneInitFunction(elem);
   addScene(elem, sceneRenderFunction);
 });
+```
+
 经过这番改造，页面的呈现效果没有发生变化，但代码更加通用了。
 
 {{{examples url="../threejs-multiple-scenes-selector.html" }}}
@@ -383,10 +415,13 @@ document.querySelectorAll('[data-diagram]').forEach((elem) => {
 
 当需要交互时，我们需要为每个场景分别添加交互控件，如`TrackballControls`。首先，需要引入该控件。
 
+```js
 import {TrackballControls} from './resources/threejs/r132/examples/jsm/controls/TrackballControls.js';
+```
 
 接着给每个元素增加控制器：
 
+```js
 -function makeScene() {
 +function makeScene(elem) {
   const scene = new THREE.Scene();
@@ -416,9 +451,12 @@ import {TrackballControls} from './resources/threejs/r132/examples/jsm/controls/
 -  return {scene, camera};
 + return {scene, camera, controls};
 }
+```
+
 从中可以看到，我们将`camera`添加到`scene`中，而`light`则添加到`camera`上，这样可以保证`light`始终与`camera`相关联。因此，当我们通过控制器旋转`camera`的视角时，`light`会始终照亮这个视角。
 
 我们还需要在渲染函数中更新这些控件：
+```js
 const sceneInitFunctionsByName = {
 - 'box': () => {
 -    const {scene, camera} = makeScene();
@@ -461,6 +499,8 @@ const sceneInitFunctionsByName = {
     };
   },
 };
+```
+
 现在，控制器已经生效了，你可以拖动来查看效果：
 
 
@@ -477,12 +517,16 @@ const sceneInitFunctionsByName = {
 
 第一步，不再需要HTML上的Canvas元素了：
 
+```html
 <body>
 -  <canvas id="c"></canvas>
   ...
 </body>
+```
+
 画布的样式也需要改一下：
 
+```
 -#c {
 -  position: absolute;
 -  left: 0;
@@ -502,11 +546,14 @@ canvas {
   width: 5em;
   height: 3em;
 }
+```
+
 这样可以保证所有的`canvas`都能填满他们的容器。
 
 接下来还需要修改一下JavaScript代码，不需要再查找`canvas`元素了，取而代之的是需要创建一个，并且在一开始就要开启可视区域检测功能：
 
 
+```js
 function main() {
 -  const canvas = document.querySelector('#c');
 +  const canvas = document.createElement('canvas');
@@ -514,8 +561,11 @@ function main() {
 +  renderer.setScissorTest(true);
 
   ...
+```
+
 然后，对于每个场景，我们创建一个二维渲染上下文，并将其画布添加到该场景对应的元素中:
 
+```js
 const sceneElements = [];
 function addScene(elem, fn) {
 +  const ctx = document.createElement('canvas').getContext('2d');
@@ -523,8 +573,11 @@ function addScene(elem, fn) {
 -  sceneElements.push({elem, fn});
 +  sceneElements.push({elem, ctx, fn});
 }
+```
+
 在渲染时，如果渲染器的画布不够大导致无法渲染在这个区域，就增加其大小；如果这个区域的画布大小错误，就改变它的大小。最后，设置剪裁区域和视口大小、渲染该区域的场景并将结果复制到该区域的画布上。
 
+```js
 function render(time) {
   time *= 0.001;
 
@@ -585,6 +638,8 @@ function render(time) {
 
   requestAnimationFrame(render);
 }
+```
+
 最终结果与方法一一样：
 
 {{{example url="../threejs-multiple-scenes-copy-canvas.html" }}}
