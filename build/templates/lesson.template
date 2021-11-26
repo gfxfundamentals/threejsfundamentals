@@ -109,7 +109,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <div class="lesson">
     <div class="lesson-main">
       <p class="warning">
-      These articles have moved: Their new home is <a href="https://threejs.org/manual/#{{langInfo.langCode}}">https://threejs.org/manual</a>. 
+      These articles have moved: Their new home is <a href="https://threejs.org/manual/">https://threejs.org/manual/</a>. 
       </p>
     </div>
     <div class="lesson-comments">
