@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id></id>
     <title>three.js temelleri</title>
-    <updated>2021-10-21T07:56:28.000Z</updated>
+    <updated>2021-11-26T07:21:55.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>ThreeJSFundamentals Contributors</name>
@@ -16,11 +16,11 @@
         <id>https://threejsfundamentals.org/threejs/lessons/tr/threejs-fundamentals.html</id>
         <link href="https://threejsfundamentals.org/threejs/lessons/tr/threejs-fundamentals.html">
         </link>
-        <updated>2021-10-21T07:56:28.000Z</updated>
+        <updated>2021-11-26T07:21:55.000Z</updated>
         <author>
             <name>ThreeJSFundamentals Contributors</name>
             <uri>https://threejsfundamentals.org/contributors.html</uri>
         </author>
-        <published>2021-10-21T07:56:28.000Z</published>
+        <published>2021-11-26T07:21:55.000Z</published>
     </entry>
 </feed>

@@ -35,11 +35,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <meta name="description" content="Three.js의 개발 환경을 구성해봅니다">
 <meta name="keywords" content="webgl graphics three.js">
-<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ko.jpg">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 
 <meta property="og:title" content="Three.js 개발 환경 구성하기">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ko.jpg">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 <meta property="og:description" content="Three.js의 개발 환경을 구성해봅니다">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-setup.html">
 
@@ -50,7 +50,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:title" content="Three.js 개발 환경 구성하기">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/kr/threejs-setup.html">
 <meta name="twitter:description" content="Three.js의 개발 환경을 구성해봅니다">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ko.jpg">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 
   <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-setup.html">
   <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-setup.html">
@@ -76,7 +76,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     {
       "@type":"ImageObject",
       "@id":"https://threejsfundamentals.org/threejs/lessons/kr/threejs-setup.html#primaryimage",
-      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ko.jpg",
+      "url":"https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg",
       "width":1200,
       "height":630
     },
@@ -108,277 +108,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
-<div class="threejs_navbar">
-  <div>
-    <select class="language">
-    <option value="/threejs/lessons/threejs-setup.html">English
-    </option><option value="/threejs/lessons/fr/threejs-setup.html">Français
-    </option><option value="/threejs/lessons/ja/threejs-setup.html">日本語
-    </option><option value="/threejs/lessons/kr/threejs-setup.html" selected="">한국어
-    </option><option value="/threejs/lessons/ru/threejs-setup.html">Русский
-    </option><option value="/threejs/lessons/tr/threejs-setup.html">Türkçe
-    </option><option value="/threejs/lessons/zh_cn/threejs-setup.html">中文
-</option></select>
-
-
-    <a href="#toc">목차</a>
-  </div>
-</div>
-<div class="threejs_header">
-  <h1><a href="/threejs/lessons/kr/">threejsfundamentals.org</a></h1>
-<style>
-#forkongithub>div {
-    background: #000;
-    color: #fff;
-    font-family: arial,sans-serif;
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 40px;
-    font-size: 0.9rem;
-    line-height: 1.3rem;
-    position: relative;
-    transition: 0.5s;
-    display: block;
-    width: 400px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(200px) rotate(45deg) translate(10px,70px);
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
-    pointer-events: auto;
-}
-#forkongithub a {
-  text-decoration: none;
-  color: #fff;
-}
-#forkongithub>div:hover {
-    background: #c11;
-    color: #fff;
-}
-#forkongithub .contributors {
-  font-size: 0.75rem;
-  background: rgba(255,255,255,0.2);
-  line-height: 1.2;
-  padding: 0.1em;
-}
-#forkongithub>div::before,#forkongithub>div::after {
-    content: "";
-    width: 100%;
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    height: 1px;
-    background: #fff;
-}
-#forkongithub>div::after {
-    bottom: 1px;
-    top: auto;
-}
-
-#forkongithub{
-    z-index: 9999;
-    /* needed for firefox */
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    pointer-events: none;
-}
-#forkongithub svg{
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-}
-#forkongithub img {
-  width: 1em;
-  height: 1em;
-  border-radius: 100%;
-  vertical-align: middle;
-}
-
-@media (max-width: 900px) {
-    #forkongithub>div {
-        line-height: 1.2rem;
-    }
-}
-@media (max-width: 700px) {
-  #forkongithub {
-    display: none;
-  }
-}
-@media (max-width: 410px) {
-    #forkongithub>div {
-        font-size: 0.7rem;
-        transform: translateX(150px) rotate(45deg) translate(20px,40px);
-    }
-}
-
-</style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
-
-<svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
-    </g>
-</svg>
-</a></div></div></div>
-
-</div>
-
-
 <div class="container">
-  <div class="lesson-title">
-    <h1>Three.js 개발 환경 구성하기</h1>
-  </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>※ 이 글은 Three.js의 튜토리얼 시리즈로서,
-먼저 <a href="threejs-fundamentals.html">Three.js의 기본 구조에 관한 글</a>을
-읽고 오길 권장합니다.</p>
-<p>Three.js의 다른 요소를 더 살펴보기 전에, 개발 환경을 구축하는 방법에 대해
-알아보겠습니다. WebGL은 보안 때문에 기본적으로 로컬 파일을 직접 가져다 쓸
-수 없습니다. 말인즉 실제 프로젝트를 배포/테스트하려면 웹 서버를 써야한다는
-이야기죠. 다행히도 웹 서버 관련 라이브러리는 굉장히 많고, 사용하기도 쉽습니다.</p>
-<p>먼저 서버에 올릴 예시를 준비해야 합니다. 원한다면 <a href="https://github.com/gfxfundamentals/threejsfundamentals/archive/gh-pages.zip">이 사이트 전체를 다운</a>
-받을 수도 있죠. 다운 받은 뒤에는 압축 프로그램으로 압축을 풀어주세요.</p>
-<p>다음으로 간단한 웹 서버를 하나 다운 받습니다.</p>
-<p>만약 UI가 있는 웹 서버를 찾는다면
-<a href="https://greggman.github.io/servez">Servez</a>를 추천합니다.</p>
-<p></p><div class="threejs_image border">
-  <img class="" src="/threejs/lessons/resources/servez.gif">
-</div>
-
-<p></p>
-<p>압축을 푼 경로를 지정하고, "Start" 버튼을 클릭하세요. 그런 다음
-<a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a>로 이동하기만
-하면 됩니다. 만약 예제를 보고 싶다면 <a href="http://localhost:8080/threejs"><code class="notranslate" translate="no">http://localhost:8080/threejs</code></a>로
-이동하세요.</p>
-<p>서버를 중지하려면 Servez를 멈추거나 종료하면 됩니다.</p>
-<p>만약 CLI(Command Line Interface, 명령 줄 인터페이스)를 선호한다면(전 선호합니다)
-<a href="https://nodejs.org">node.js</a>를 써도 좋습니다. 다운 받아 설치한 다음 프롬프트 /
-콘솔 / 터미널 창을 엽니다. 윈도우를 사용한다면 설치 마법사가 "Node Command Prompt"를
-추가할 테니 그걸 사용해도 좋습니다.</p>
-<p>창을 띄웠으면 <a href="https://github.com/greggman/servez-cli"><code class="notranslate" translate="no">servez</code></a>를 설치합니다.</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">npm -g install servez
-</pre><p>OS X를 사용한다면 다음과 같이 설치할 수 있습니다.</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">sudo npm -g install servez
-</pre><p>설치가 완료되면 다음과 같이 Servez를 실행합니다.</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">servez path/to/folder/where/you/unzipped/files
-</pre><p>사족이지만, 다음처럼 쓸 수도 있죠.</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">cd path/to/folder/where/you/unzipped/files
-servez
-</pre><p>정상적으로 작동했다면 다음과 같은 메시지가 뜰 겁니다.</p>
-<p></p><div class="threejs_image ">
-  <img class="" src="/threejs/lessons/resources/servez-response.png">
-</div>
-
-<p></p>
-<p>다음으로 브라우저에서 <a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a>로
-접속하세요. 경로를 지정하지 않으면 현재 경로를 서버의 ROOT 경로로 사용합니다.</p>
-<p>만약 Servez가 마음에 들지 않는다면, <a href="https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver">다른 간단한 웹 서버</a>를 사용해도 좋습니다.</p>
-<p>이제 개발 환경을 갖추었으니, <a href="threejs-textures.html">텍스처</a>에 대해 알아봅시다.</p>
-
-    </div>
-    <div class="lesson-sidebar">
-        <select class="language">
-    <option value="/threejs/lessons/threejs-setup.html">English
-    </option><option value="/threejs/lessons/fr/threejs-setup.html">Français
-    </option><option value="/threejs/lessons/ja/threejs-setup.html">日本語
-    </option><option value="/threejs/lessons/kr/threejs-setup.html" selected="">한국어
-    </option><option value="/threejs/lessons/ru/threejs-setup.html">Русский
-    </option><option value="/threejs/lessons/tr/threejs-setup.html">Türkçe
-    </option><option value="/threejs/lessons/zh_cn/threejs-setup.html">中文
-</option></select>
-
-
-        <div id="toc">
-          <ul>  <li>Three.js란?</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-fundamentals.html">Three.js란?</a></li>
-<li><a href="/threejs/lessons/kr/threejs-responsive.html">반응형 디자인</a></li>
-<li><a href="/threejs/lessons/kr/threejs-prerequisites.html">먼저 알아야 할 것들</a></li>
-<li><a href="/threejs/lessons/kr/threejs-setup.html">개발 환경</a></li>
-        </ul>
-  <li>기본 구조</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-primitives.html">원시 모델</a></li>
-<li><a href="/threejs/lessons/kr/threejs-scenegraph.html">씬 그래프</a></li>
-<li><a href="/threejs/lessons/kr/threejs-materials.html">재질(Materials)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-textures.html">텍스처(Textures)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-lights.html">조명(Lights)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-cameras.html">카메라(Cameras)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-shadows.html">그림자(Shadows)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-fog.html">안개(Fog)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-rendertargets.html">렌더 타겟(Render Targets)</a></li>
-<li><a href="/threejs/lessons/kr/threejs-custom-buffergeometry.html">사용자 지정 BufferGeometry</a></li>
-        </ul>
-  <li>팁</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-rendering-on-demand.html">불필요한 렌더링 없애기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-debugging-javascript.html">자바스크립트 디버깅</a></li>
-<li><a href="/threejs/lessons/kr/threejs-debugging-glsl.html">GLSL 디버깅</a></li>
-<li><a href="/threejs/lessons/kr/threejs-tips.html#screenshot">스크린샷 찍기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-tips.html#preservedrawingbuffer">캔버스 초기화 방지하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-tips.html#tabindex">캔버스에서 키 입력 받기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-tips.html#transparent-canvas">캔버스를 투명하게 만들기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-tips.html#html-background">Three.js를 HTML 요소의 배경으로 사용하기</a></li>
-        </ul>
-  <li>최적화하기</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects.html">요소가 많을 때 최적화하는 방법</a></li>
-<li><a href="/threejs/lessons/kr/threejs-optimize-lots-of-objects-animated.html">애니메이션 요소가 많을 때 최적화하는 방법</a></li>
-<li><a href="/threejs/lessons/kr/threejs-offscreencanvas.html">웹 워커에서 OffscreenCanvas 사용하기</a></li>
-        </ul>
-  <li>활용하기</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-load-obj.html">.OBJ 파일 불러오기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-load-gltf.html">.GLTF 파일 불러오기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-backgrounds.html">배경, 하늘 상자 추가하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-transparency.html">물체의 투명도 설정하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-multiple-scenes.html">다중 캔버스, 다중 장면 만들기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-picking.html">물체를 마우스로 피킹하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-post-processing.html">후처리</a></li>
-<li><a href="/threejs/lessons/kr/threejs-post-processing-3dlut.html">LUT 파일로 후처리 효과 적용하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-shadertoy.html">쉐이더토이 쉐이더 활용하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-align-html-elements-to-3d.html">HTML 요소를 3D로 정렬하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-indexed-textures.html">피킹과 색상에 인덱스 텍스처 사용하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-canvas-textures.html">캔버스로 동적 텍스처 만들기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-billboards.html">빌보드와 파사드</a></li>
-<li><a href="/threejs/lessons/kr/threejs-cleanup.html">메모리 해제하기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-voxel-geometry.html">복셀 Geometry(마인크래프트) 만들기</a></li>
-<li><a href="/threejs/lessons/kr/threejs-game.html">게임 만들기</a></li>
-        </ul>
-  <li>웹VR</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-webvr.html">VR - Basics</a></li>
-<li><a href="/threejs/lessons/kr/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
-<li><a href="/threejs/lessons/kr/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
-        </ul>
-  <li>레퍼런스</li>
-        <ul>
-          <li><a href="/threejs/lessons/kr/threejs-material-table.html">재질(Material) 속성표</a></li>
-        </ul></ul>
-<ul>
-  <li>바로가기</li>
-  <ul>
-    <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">Github</a></li>
-    <li><a href="https://threejs.org">Three.js</a></li>
-    <li><a href="https://threejs.org/docs/">Three.js docs</a></li>
-  </ul>
-</ul>
-
-        </div>
+      <p class="warning">
+      These articles have moved: Their new home is <a href="https://threejs.org/manual/">https://threejs.org/manual/</a>. 
+      </p>
     </div>
     <div class="lesson-comments">
-        
-    <div>
-      <a href="http://github.com/greggman/threefundamentals/issues">Github</a>
-    </div>
-  
-
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

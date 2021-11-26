@@ -35,11 +35,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 <meta name="description" content="three.jsの開発環境のセットアップ方法">
 <meta name="keywords" content="webgl graphics three.js">
-<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg">
+<meta name="thumbnail" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 
 <meta property="og:title" content="Three.jsのセットアップ">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg">
+<meta property="og:image" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 <meta property="og:description" content="three.jsの開発環境のセットアップ方法">
 <meta property="og:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html">
 
@@ -50,7 +50,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <meta name="twitter:title" content="Three.jsのセットアップ">
 <meta name="twitter:url" content="https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html">
 <meta name="twitter:description" content="three.jsの開発環境のセットアップ方法">
-<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg">
+<meta name="twitter:image:src" content="https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg">
 
   <link rel="alternate" hreflang="en" href="https://webglfundamentals.org/threejs/lessons/threejs-setup.html">
   <link rel="alternate" hreflang="fr" href="https://webglfundamentals.org/threejs/lessons/fr/threejs-setup.html">
@@ -76,7 +76,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     {
       "@type":"ImageObject",
       "@id":"https://threejsfundamentals.org/threejs/lessons/ja/threejs-setup.html#primaryimage",
-      "url":"https://threejsfundamentals.org/threejs/lessons/screenshots/threejs-setup_ja.jpg",
+      "url":"https://threejsfundamentals.org/threejs/lessons/resources/threejsfundamentals.jpg",
       "width":1200,
       "height":630
     },
@@ -107,263 +107,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
-<div class="threejs_navbar">
-  <div>
-    <select class="language">
-    <option value="/threejs/lessons/threejs-setup.html">English
-    </option><option value="/threejs/lessons/fr/threejs-setup.html">Français
-    </option><option value="/threejs/lessons/ja/threejs-setup.html" selected="">日本語
-    </option><option value="/threejs/lessons/kr/threejs-setup.html">한국어
-    </option><option value="/threejs/lessons/ru/threejs-setup.html">Русский
-    </option><option value="/threejs/lessons/tr/threejs-setup.html">Türkçe
-    </option><option value="/threejs/lessons/zh_cn/threejs-setup.html">中文
-</option></select>
-
-
-    <a href="#toc">目次</a>
-  </div>
-</div>
-<div class="threejs_header">
-  <h1><a href="/threejs/lessons/ja/">threejsfundamentals.org</a></h1>
-<style>
-#forkongithub>div {
-    background: #000;
-    color: #fff;
-    font-family: arial,sans-serif;
-    text-align: center;
-    font-weight: bold;
-    padding: 5px 40px;
-    font-size: 0.9rem;
-    line-height: 1.3rem;
-    position: relative;
-    transition: 0.5s;
-    display: block;
-    width: 400px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(200px) rotate(45deg) translate(10px,70px);
-    box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
-    pointer-events: auto;
-}
-#forkongithub a {
-  text-decoration: none;
-  color: #fff;
-}
-#forkongithub>div:hover {
-    background: #c11;
-    color: #fff;
-}
-#forkongithub .contributors {
-  font-size: 0.75rem;
-  background: rgba(255,255,255,0.2);
-  line-height: 1.2;
-  padding: 0.1em;
-}
-#forkongithub>div::before,#forkongithub>div::after {
-    content: "";
-    width: 100%;
-    display: block;
-    position: absolute;
-    top: 1px;
-    left: 0;
-    height: 1px;
-    background: #fff;
-}
-#forkongithub>div::after {
-    bottom: 1px;
-    top: auto;
-}
-
-#forkongithub{
-    z-index: 9999;
-    /* needed for firefox */
-    overflow: hidden;
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    pointer-events: none;
-}
-#forkongithub svg{
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-}
-#forkongithub img {
-  width: 1em;
-  height: 1em;
-  border-radius: 100%;
-  vertical-align: middle;
-}
-
-@media (max-width: 900px) {
-    #forkongithub>div {
-        line-height: 1.2rem;
-    }
-}
-@media (max-width: 700px) {
-  #forkongithub {
-    display: none;
-  }
-}
-@media (max-width: 410px) {
-    #forkongithub>div {
-        font-size: 0.7rem;
-        transform: translateX(150px) rotate(45deg) translate(20px,40px);
-    }
-}
-
-</style>
-<div id="forkongithub"><div><div><a href="https://github.com/gfxfundamentals/threejsfundamentals">Fix, Fork, Contribute <!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
-
-<svg width="100%" height="100%" viewBox="0 0 136 133" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(3.92891,0,0,3.92891,67.867,129.125)">
-        <path d="M0,-31.904C-8.995,-31.904 -16.288,-24.611 -16.288,-15.614C-16.288,-8.417 -11.621,-2.312 -5.148,-0.157C-4.333,-0.008 -4.036,-0.511 -4.036,-0.943C-4.036,-1.329 -4.05,-2.354 -4.058,-3.713C-8.589,-2.729 -9.545,-5.897 -9.545,-5.897C-10.286,-7.779 -11.354,-8.28 -11.354,-8.28C-12.833,-9.29 -11.242,-9.27 -11.242,-9.27C-9.607,-9.155 -8.747,-7.591 -8.747,-7.591C-7.294,-5.102 -4.934,-5.821 -4.006,-6.238C-3.858,-7.29 -3.438,-8.008 -2.972,-8.415C-6.589,-8.826 -10.392,-10.224 -10.392,-16.466C-10.392,-18.244 -9.757,-19.698 -8.715,-20.837C-8.883,-21.249 -9.442,-22.905 -8.556,-25.148C-8.556,-25.148 -7.188,-25.586 -4.076,-23.478C-2.777,-23.84 -1.383,-24.02 0.002,-24.026C1.385,-24.02 2.779,-23.84 4.08,-23.478C7.19,-25.586 8.555,-25.148 8.555,-25.148C9.444,-22.905 8.885,-21.249 8.717,-20.837C9.761,-19.698 10.392,-18.244 10.392,-16.466C10.392,-10.208 6.583,-8.831 2.954,-8.428C3.539,-7.925 4.06,-6.931 4.06,-5.411C4.06,-3.234 4.04,-1.477 4.04,-0.943C4.04,-0.507 4.333,0 5.16,-0.159C11.628,-2.318 16.291,-8.419 16.291,-15.614C16.291,-24.611 8.997,-31.904 0,-31.904" style="fill:white;"></path>
-    </g>
-</svg>
-</a></div></div></div>
-
-</div>
-
-
 <div class="container">
-  <div class="lesson-title">
-    <h1>Three.jsのセットアップ</h1>
-  </div>
   <div class="lesson">
     <div class="lesson-main">
-      <p>これはthree.jsの連載記事の1つです。
-最初の記事は<a href="threejs-fundamentals.html">Three.jsの基礎知識</a>でした。
-まだ読んでない人はそこから読んでみるといいかもしれません。</p>
-<p>先に進む前に開発環境のセットアップの話をする必要があります。特にセキュリティ上の理由から、WebGLはハードディスクから直接画像を扱う事ができません。開発をするためにはWebサーバーを利用する必要があります。幸運な事に開発用のWebサーバーをセットアップし利用する事は非常に簡単です。</p>
-<p>まず最初にこのサイト全体を<a href="https://github.com/gfxfundamentals/threejsfundamentals/archive/gh-pages.zip">このリンク</a>からダウンロードする事ができます。
-ダウンロードしたらzipファイルをダブルクリックで解凍して下さい。</p>
-<p>次にシンプルなWebサーバーの1つをダウンロードします。
-ユーザーインターフェースのあるWebサーバーをお望みなら<a href="https://greggman.github.io/servez">Servez</a>があります。</p>
-<p></p><div class="threejs_image border">
-  <img class="" src="/threejs/lessons/resources/servez.gif">
-</div>
-
-<p></p>
-<p>ファイルを解凍してフォルダを指定し、"Start"をクリックしてからブラウザで<a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a>を表示するか、またはサンプルを閲覧したい場合は<a href="http://localhost:8080/threejs"><code class="notranslate" translate="no">http://localhost:8080/threejs</code></a>にアクセスして下さい。</p>
-<p>Servezのサービスを停止するにはstopを選ぶか、Servezを終了します。</p>
-<p>コマンドラインが好きな方は（私はそうしてる）、別の方法として<a href="https://nodejs.org">node.js</a>を使う事もできます。</p>
-<p>ダウンロードしてインストールし、コマンドプロンプト / コンソール / ターミナルウィンドウを開きます。WindowsのNode.jsインストーラーで追加した場合、"Node Command Prompt"を選択する必要があります。</p>
-<p><a href="https://github.com/greggman/servez-cli"><code class="notranslate" translate="no">servez</code></a>をインストールするには、次のように入力します。</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">npm -g install servez
-</pre><p>もしMacを使ってる場合は以下を入力します。</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">sudo npm -g install servez
-</pre><p>次に以下を入力します。</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">servez path/to/folder/where/you/unzipped/files
-</pre><p>または、私と同じであれば以下を入力します。</p>
-<pre class="prettyprint showlinemods notranslate notranslate" translate="no">cd path/to/folder/where/you/unzipped/files
-servez
-</pre><p>そして、以下のように表示されるはずです。</p>
-<p></p><div class="threejs_image ">
-  <img class="" src="/threejs/lessons/resources/servez-response.png">
-</div>
-
-<p></p>
-<p>ブラウザで<a href="http://localhost:8080/"><code class="notranslate" translate="no">http://localhost:8080/</code></a>にアクセスして下さい。</p>
-<p>もしパスを指定しなかった場合、servezは現在のフォルダをserveします。</p>
-<p>これらのオプションが好きでない場合、<a href="https://stackoverflow.com/questions/12905426/what-is-a-faster-alternative-to-pythons-servez-or-simplehttpserver">他にもたくさんのシンプルなサーバーがあります</a>。</p>
-<p>これでサーバーのセットアップが完了したので<a href="threejs-textures.html">テクスチャ</a>のページに移動しましょう。</p>
-
-    </div>
-    <div class="lesson-sidebar">
-        <select class="language">
-    <option value="/threejs/lessons/threejs-setup.html">English
-    </option><option value="/threejs/lessons/fr/threejs-setup.html">Français
-    </option><option value="/threejs/lessons/ja/threejs-setup.html" selected="">日本語
-    </option><option value="/threejs/lessons/kr/threejs-setup.html">한국어
-    </option><option value="/threejs/lessons/ru/threejs-setup.html">Русский
-    </option><option value="/threejs/lessons/tr/threejs-setup.html">Türkçe
-    </option><option value="/threejs/lessons/zh_cn/threejs-setup.html">中文
-</option></select>
-
-
-        <div id="toc">
-          <ul>  <li>基本</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-fundamentals.html">基礎知識</a></li>
-<li><a href="/threejs/lessons/ja/threejs-responsive.html">レスポンシブデザイン</a></li>
-<li><a href="/threejs/lessons/ja/threejs-prerequisites.html">前提条件</a></li>
-<li><a href="/threejs/lessons/ja/threejs-setup.html">セットアップ</a></li>
-        </ul>
-  <li>基礎</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-primitives.html">プリミティブ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-scenegraph.html">シーングラフ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-materials.html">マテリアル</a></li>
-<li><a href="/threejs/lessons/ja/threejs-textures.html">テクスチャ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-lights.html">ライト</a></li>
-<li><a href="/threejs/lessons/ja/threejs-cameras.html">カメラ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-shadows.html">シャドウ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-fog.html">フォグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-rendertargets.html">レンダーターゲット</a></li>
-<li><a href="/threejs/lessons/ja/threejs-custom-buffergeometry.html">カスタムバッファジオメトリ</a></li>
-        </ul>
-  <li>Tips</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-rendering-on-demand.html">要求されたレンダリング</a></li>
-<li><a href="/threejs/lessons/ja/threejs-debugging-javascript.html">JavaScriptのデバッグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-debugging-glsl.html">GLSLのデバッグ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#screenshot">スクリーンショットを撮る</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#preservedrawingbuffer">キャンバスがクリアされるのを防ぐ</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#tabindex">キャンバスからキーボード入力を取得する</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#transparent-canvas">キャンバスを透明にする</a></li>
-<li><a href="/threejs/lessons/ja/threejs-tips.html#html-background">HTMLの背景にthree.jsを使う</a></li>
-        </ul>
-  <li>最適化</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects.html">多くのオブジェクトを最適化</a></li>
-<li><a href="/threejs/lessons/ja/threejs-optimize-lots-of-objects-animated.html">アニメーションする多くのオブジェクトを最適化</a></li>
-<li><a href="/threejs/lessons/ja/threejs-offscreencanvas.html">Web WorkerでOffscreenCanvasを使用する</a></li>
-        </ul>
-  <li>解決策</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-load-obj.html">OBJファイルの読み込み</a></li>
-<li><a href="/threejs/lessons/ja/threejs-load-gltf.html">GLTFファイルの読み込み</a></li>
-<li><a href="/threejs/lessons/ja/threejs-backgrounds.html">背景やスカイボックスを追加する</a></li>
-<li><a href="/threejs/lessons/ja/threejs-transparency.html">透明なオブジェクトの描画方法</a></li>
-<li><a href="/threejs/lessons/ja/threejs-multiple-scenes.html">複数キャンバスと複数シーン</a></li>
-<li><a href="/threejs/lessons/ja/threejs-picking.html">マウスでオブジェクトをピッキング</a></li>
-<li><a href="/threejs/lessons/ja/threejs-post-processing.html">ポストプロセス</a></li>
-<li><a href="/threejs/lessons/ja/threejs-post-processing-3dlut.html">エフェクトにLUTファイルを適用する</a></li>
-<li><a href="/threejs/lessons/ja/threejs-shadertoy.html">Shadertoyのシェーダーを使う</a></li>
-<li><a href="/threejs/lessons/ja/threejs-align-html-elements-to-3d.html">HTML要素を3Dに揃える</a></li>
-<li><a href="/threejs/lessons/ja/threejs-indexed-textures.html">圧縮テクスチャのピッキングとカラー</a></li>
-<li><a href="/threejs/lessons/ja/threejs-canvas-textures.html">動的なテクスチャのキャンバスを使用する</a></li>
-<li><a href="/threejs/lessons/ja/threejs-billboards.html">Billboards and Facades</a></li>
-<li><a href="/threejs/lessons/ja/threejs-cleanup.html">Freeing Resources</a></li>
-<li><a href="/threejs/lessons/ja/threejs-voxel-geometry.html">Making Voxel Geometry (Minecraft)</a></li>
-<li><a href="/threejs/lessons/ja/threejs-game.html">Start making a Game.</a></li>
-        </ul>
-  <li>WebVR</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-webvr.html">VR - Basics</a></li>
-<li><a href="/threejs/lessons/ja/threejs-webvr-look-to-select.html">VR - Look To Select</a></li>
-<li><a href="/threejs/lessons/ja/threejs-webvr-point-to-select.html">VR - Point To Select</a></li>
-        </ul>
-  <li>参照</li>
-        <ul>
-          <li><a href="/threejs/lessons/ja/threejs-material-table.html">Material Table</a></li>
-        </ul></ul>
-<ul>
-  <li><a href="https://github.com/gfxfundamentals/threejsfundamentals">github</a></li>
-  <li><a href="https://threejs.org">three.js</a></li>
-  <li><a href="https://threejs.org/docs/">three.jsドキュメント</a></li>
-</ul>
-
-        </div>
+      <p class="warning">
+      These articles have moved: Their new home is <a href="https://threejs.org/manual/">https://threejs.org/manual/</a>. 
+      </p>
     </div>
     <div class="lesson-comments">
-        
-    <div>Issue/Bug? <a href="http://github.com/greggman/threefundamentals/issues">またはgithubでissueを作って下さい</a>.</div>
-  
-
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
