@@ -105,24 +105,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <link rel="stylesheet" href="/threejs/lessons/resources/lesson.css">
 </head>
 <body>
-{{{include "build/templates/header.template"}}}
 <div class="container">
-  <div class="lesson-title">
-    <h1>{{title}}</h1>
-  </div>
   <div class="lesson">
     <div class="lesson-main">
-      {{{content}}}
-    </div>
-    <div class="lesson-sidebar">
-        {{{include "build/templates/languages.template"}}}
-        <div id="toc">
-          {{{include "toc.html" filename="toc"}}}
-        </div>
+      <p class="warning">
+      These articles have moved: Their new home is <a href="https://threejs.org/manual/#{{langInfo.langCode}}">https://threejs.org/manual</a>. 
+      </p>
     </div>
     <div class="lesson-comments">
-        {{{langInfo.commentSectionHeader}}}
-
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

@@ -85,27 +85,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <body>
 <div id="canvas">
 </div>
-<div class="threejs_navbar">
-  <div>
-    {{{include "build/templates/languages.template"}}}
-  </div>
-</div>
 <div class="container">
   <div class="lesson">
     <div class="lesson-main">
-      <h1>{{title}} <span class="rss"><a href="http://threejsfundamentals.org/atom.xml"><img src="/threejs/lessons/resources/rss-icon.svg" alt="rss"/></a></span></h1>
-      <div class="home-lang">
-        {{{include "build/templates/languages.template"}}}
-      </div>
-      {{{content}}}
-      <div>
-      flamingo by: <a href="http://mirada.com/">mirada</a> from <a href="https://github.com/dataarts/3-dreams-of-black">3 Dreams of Black</a>
-      </div>
+      <p class="warning">
+      These articles have moved: Their new home is <a href="https://threejs.org/manual/#{{langInfo.langCode}}">https://threejs.org/manual</a>. 
+      </p>
     </div>
   </div>
 </div>
-{{{include "build/templates/repobanner.template"}}}
-<iframe class="background" src="/threejs/background.html"></iframe>
 </body>
 <script>
 const settings = {
