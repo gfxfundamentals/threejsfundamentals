@@ -1,6 +1,5 @@
-## NOTE: The contents of this repo has been moved to [https://github.com/mrdoob/three.js](https://github.com/mrdoob/three.js)
+## NOTE: The contents of this repo has been moved to [https://github.com/mrdoob/three.js/tree/dev/manual](https://github.com/mrdoob/three.js/tree/dev/manual)
 
-Specifically [it is under the `manual` folder](https://github.com/mrdoob/three.js/tree/dev/manual)
 ```
 
 
