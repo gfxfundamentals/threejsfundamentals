@@ -201,20 +201,19 @@ Current fields are
 
 #### `index.md`
 
-This is the template for the main page for each language
+Template for the main page for each language
 
 #### `toc.html`
 
-This is template for the table of contents for the language.
-It is included on both the index and at the bottom of each article. The only
-parts not auto-generated are the links at the bottom which
-you can translate if you want to.
+Template for the table of contents for the language.
+It is included on both the index and at the bottom of each article. 
+Links are not auto-generated which are located at the bottom, and can be translated if needed.
 The build system will create a placeholder for every English article for which there is no corresponding article in that language. 
 It will be filled with the `missing` message from above.
 
 #### `lang.css`
 
-This is included if and only if it exists. I'd strongly prefer not to have to
+Included if and only if it exists. I'd strongly prefer not to have to
 use it. In particular I don't want people to get into arguments about fonts
 but basically it's a way to choose the fonts per language. You should only set
 the variables that are absolutely needed. Example
